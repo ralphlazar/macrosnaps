@@ -464,24 +464,3 @@ print(f"  Backup         : {backup_path}")
 print("\n  ✓ BUILD SUCCESSFUL — {OUTPUT_FILE} is ready to publish.\n".format(
     OUTPUT_FILE=OUTPUT_FILE
 ))
-
-# ════════════════════════════════════════════════════════════════════════════
-# SECTION 8 — Auto git commit
-# ════════════════════════════════════════════════════════════════════════════
-import subprocess
-commit_msg = f"Build {TODAY} — auto commit"
-result = subprocess.run(["git", "add", "-A"], capture_output=True, text=True)
-if result.returncode != 0:
-    print(f"  ⚠  git add failed: {result.stderr.strip()}")
-else:
-    result = subprocess.run(
-        ["git", "commit", "-m", commit_msg],
-        capture_output=True, text=True
-    )
-    if result.returncode != 0:
-        if "nothing to commit" in result.stdout or "nothing to commit" in result.stderr:
-            print("  git: nothing to commit, working tree clean")
-        else:
-            print(f"  ⚠  git commit failed: {result.stderr.strip()}")
-    else:
-        print(f"  ✓ git commit: {commit_msg}")
