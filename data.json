@@ -8,7 +8,7 @@
       "weekly": "Update weekly or on release — CPI, unemployment, policy rate",
       "structural": "Update quarterly or on major revision — GDP, deficits, current account, stories, fxRegime"
     },
-    "built_at": "2026-03-09 14:29"
+    "built_at": "2026-03-09 16:38"
   },
   "countries": {
     "USA": {
@@ -41,9 +41,9 @@
             }
           },
           "Unemployment": {
-            "value": "4.2%",
+            "value": "4.4%",
             "tier": "weekly",
-            "last_updated": "2026-03-07",
+            "last_updated": "2026-03-09",
             "story": {
               "beginner": "The US added only 130,000 jobs in January — well below expectations — and the unemployment rate has drifted to 4.2%. The job market is cooling, with businesses becoming more cautious about hiring as tariffs and uncertainty weigh on investment decisions.",
               "moderate": "January payrolls of 130,000 (private +172k, federal -42k) masked a deeper weakness: ex-healthcare, private sector job creation was just 6,500. The unemployment rate reached 4.2% and is trending toward 4.4% by mid-2026 — a trajectory that would normally justify Fed easing, except that oil-driven inflation is now running in the opposite direction.",
@@ -71,9 +71,9 @@
             }
           },
           "Policy Rate": {
-            "value": "5.25-5.50%",
+            "value": "3.50-3.75%",
             "tier": "weekly",
-            "last_updated": "2026-03-07",
+            "last_updated": "2026-03-09",
             "story": {
               "beginner": "The Federal Reserve has kept interest rates at 4.25–4.50%, pausing its 2024 rate-cutting cycle. With oil prices surging and inflation risks rising from the Middle East conflict, the chances of rate cuts in the near term have dropped sharply.",
               "moderate": "The FOMC has been on hold at 4.25–4.50% since late 2025. Markets that priced June cuts before the Iran shock have repriced to July–September at the earliest. NY Fed's Williams has stated tariff-driven inflation has 'temporarily stalled' disinflation progress, and the energy shock adds a second layer of inflationary pressure that makes near-term easing extremely unlikely.",
@@ -83,9 +83,9 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "+2.0%",
+            "value": "+0.5%",
             "tier": "daily",
-            "last_updated": "2026-03-08",
+            "last_updated": "2026-03-09",
             "story": {
               "beginner": "US stocks (S&P 500) are up about 2% so far this year — a modest gain after a strong 2025. The Middle East conflict has added uncertainty, with markets worried that higher energy costs will squeeze corporate profits and slow consumer spending.",
               "moderate": "The S&P 500's +2% YTD gain masks significant sector divergence: energy and defence stocks have surged while consumer discretionary and transport are under pressure. The Iran shock has raised equity vol (VIX ~16) and created a risk-off tone, though the market has not broken key technical levels. Forward EPS estimates are being revised down as analysts build in higher energy cost assumptions.",
@@ -93,9 +93,9 @@
             }
           },
           "Equity Vol": {
-            "value": "~16",
+            "value": "~30",
             "tier": "daily",
-            "last_updated": "2026-03-08",
+            "last_updated": "2026-03-09",
             "story": {
               "beginner": "Stock market volatility (measured by the VIX) is running around 16, higher than the very calm conditions of early 2025. When volatility rises, it signals that investors are more uncertain about the future — often because of events like the current Middle East conflict.",
               "moderate": "The VIX at ~16 represents a moderate-stress environment — elevated versus early-2025 lows near 12, but well below the 25+ levels seen during previous geopolitical shocks. Options markets are pricing elevated uncertainty for the next 30 days, consistent with the ongoing Iran conflict. A break above 20 would signal a more significant risk-off shift and likely trigger further equity deleveraging.",
@@ -103,9 +103,9 @@
             }
           },
           "10Y Bond Yield": {
-            "value": "4.28%",
+            "value": "4.22%",
             "tier": "daily",
-            "last_updated": "2026-03-08",
+            "last_updated": "2026-03-09",
             "story": {
               "beginner": "The interest rate on 10-year US government bonds is 4.28%, which affects mortgage rates, corporate borrowing costs, and how investors value stocks. Higher bond yields make stocks less attractive relative to bonds, creating competition for investor money.",
               "moderate": "The 10Y Treasury yield at 4.28% reflects a complex balance: the Iran shock raises short-term inflation expectations (pushing yields up) while simultaneously raising recession fears (pulling yields down via flight to safety). The net result is a range-bound 10Y yield, though a sustained energy-driven CPI overshoot above 3.5% would likely push the 10Y toward 4.5–4.7% as real rate expectations reprice.",
@@ -113,9 +113,9 @@
             }
           },
           "Yield Curve": {
-            "value": "+8bps",
+            "value": "+22bps",
             "tier": "daily",
-            "last_updated": "2026-03-08",
+            "last_updated": "2026-03-09",
             "story": {
               "beginner": "The US yield curve — the difference between short-term and long-term interest rates — has recently turned positive at around +8 basis points. For much of 2023–2024, this was inverted (short rates higher than long rates), which often signals recession fears. A re-steepening can mean markets expect eventual rate cuts.",
               "moderate": "The US 10Y-2Y yield curve at +8bps has recently re-steepened from deep inversion, driven by short-end rate expectations pricing in eventual Fed easing. The Iran shock complicates this: energy-driven inflation argues for keeping short rates high (flattening pressure), while growth fears argue for long rates declining (steepening pressure). The net direction of the curve depends on which effect dominates — historically, a persistent energy shock sees a bear-steepening initially, then a bull-steepening as growth fears take over.",
@@ -123,9 +123,9 @@
             }
           },
           "Corp Spread": {
-            "value": "85bps",
+            "value": "100bps",
             "tier": "daily",
-            "last_updated": "2026-03-08",
+            "last_updated": "2026-03-09",
             "story": {
               "beginner": "US corporate bond spreads — the extra interest rate companies pay above government bonds — are at 85 basis points, relatively tight by historical standards. Tighter spreads mean investors are confident about corporate finances; wider spreads signal concern about defaults.",
               "moderate": "Investment-grade corporate spreads at 85bps are tight relative to the Iran-shock uncertainty, suggesting credit markets are still pricing a 'contained conflict' scenario. A sustained energy price shock would widen spreads via: (1) higher energy input costs compressing margins in manufacturing, transport, and consumer sectors; (2) rising default probabilities for high-yield energy-intensive issuers; and (3) a general risk-off repricing. A move above 110bps would signal a more significant credit stress regime shift.",
@@ -133,9 +133,9 @@
             }
           },
           "Sov CDS": {
-            "value": "35bps",
+            "value": "42bps",
             "tier": "daily",
-            "last_updated": "2026-03-08",
+            "last_updated": "2026-03-09",
             "story": {
               "beginner": "US sovereign CDS at 35 basis points is the cost to insure against the US government defaulting on its debt. While still low, this has risen slightly — reflecting growing concerns about the US debt trajectory and fiscal sustainability, particularly as the government borrows more to fund tax cuts and defence.",
               "moderate": "US sovereign CDS at 35bps reflects the market's base case of fiscal credibility, despite the widening structural deficit. The Iran shock is net-neutral to marginally negative for US CDS: higher energy revenues for US shale producers improve corporate tax receipts somewhat, but slower growth from the oil shock reduces income tax revenues. The key medium-term risk is if the OBBBA's permanent tax cuts push debt-to-GDP above 120%, triggering a rating agency action — Moody's is the last agency with a AAA-equivalent rating for the US.",
@@ -143,9 +143,9 @@
             }
           },
           "USD/DXY": {
-            "value": "104.2",
+            "value": "99.5",
             "tier": "daily",
-            "last_updated": "2026-03-08",
+            "last_updated": "2026-03-09",
             "story": {
               "beginner": "The US dollar index (DXY) at 104.2 measures the dollar's strength against a basket of major currencies. A strong dollar makes US exports more expensive for foreign buyers but makes imports cheaper for Americans. The Iran conflict has supported the dollar as a safe-haven currency.",
               "moderate": "The DXY at 104.2 reflects conflicting forces: the Iran crisis generates safe-haven USD demand (positive for DXY), but the Fed's rate-hold stance and slowing US growth create headwinds. The dollar smile framework — dollar strengthening at extremes of global cycle (deep recession or strong growth) but weakening in the middle — suggests the current moderate-stress environment favours range-bound DXY movement around 103–107.",
@@ -153,9 +153,9 @@
             }
           },
           "FX Vol": {
-            "value": "8.5%",
+            "value": "12.5%",
             "tier": "daily",
-            "last_updated": "2026-03-08",
+            "last_updated": "2026-03-09",
             "story": {
               "beginner": "FX volatility at 8.5% means currency markets are seeing larger-than-normal price swings. When geopolitical events like the Iran conflict create uncertainty, investors move money between currencies more rapidly, causing greater day-to-day fluctuations in exchange rates.",
               "moderate": "G10 FX implied volatility at 8.5% is elevated relative to early-2025 lows but contained relative to major stress episodes. The Iran shock has widened cross-currency basis swaps and increased demand for options hedges on energy-importing currency pairs (JPY, EUR, GBP) versus energy exporters (CAD, AUD, NOK). The USD's safe-haven status means USD options vol is bid on both the upside (risk-off spike) and downside (eventual Fed easing), creating a vol smile that differs from typical geopolitical shock patterns.",
@@ -1098,9 +1098,9 @@
             }
           },
           "Policy Rate": {
-            "value": "4.50%",
+            "value": "2.75%",
             "tier": "weekly",
-            "last_updated": "2026-03-07",
+            "last_updated": "2026-03-09",
             "story": {
               "beginner": "The Bank of Canada has been cutting interest rates to support the slowing economy, bringing the rate down to 4.50% from a peak of 5.00%. With oil prices rising from the Iran conflict, the Bank may slow its rate-cutting plans to make sure inflation does not pick back up.",
               "moderate": "The BoC has cut rates by 50bps from its 5.00% peak, moving faster than the Fed and creating a widening rate differential that has weighed on the Canadian dollar. The Iran energy shock complicates the path forward: the BoC wants to ease further to address rising unemployment and tariff-dampened growth, but energy-driven CPI upside gives it reason to pause. Markets are pricing one to two additional cuts in 2026, but the probability of a pause at the next meeting has risen meaningfully following the oil shock.",
@@ -1110,9 +1110,9 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "+6.8%",
+            "value": "+5.4%",
             "tier": "daily",
-            "last_updated": "2026-03-08",
+            "last_updated": "2026-03-09",
             "story": {
               "beginner": "Canadian stocks are up 6.8% so far this year, outperforming US markets. The main reason is that Canada's stock market has a large weighting in energy companies, which have surged in value as oil prices jumped from the Iran conflict.",
               "moderate": "The TSX's +6.8% YTD gain reflects the index's heavy energy and materials weighting (combined ~35% of the index), which have benefited directly from the oil and commodities price surge. Financials, the other dominant sector at ~30% of the index, are under modest pressure from concerns about consumer credit quality as unemployment rises and variable-rate mortgage holders face ongoing stress. The Iran shock has been a net positive for the TSX relative to other G7 markets, though this outperformance is concentration-dependent.",
@@ -1130,9 +1130,9 @@
             }
           },
           "10Y Bond Yield": {
-            "value": "3.45%",
+            "value": "3.55%",
             "tier": "daily",
-            "last_updated": "2026-03-08",
+            "last_updated": "2026-03-09",
             "story": {
               "beginner": "The interest rate on Canadian 10-year government bonds is 3.45%, well below the US equivalent of around 4.28%. This lower rate reflects the Bank of Canada cutting interest rates more aggressively than the Federal Reserve, and markets expecting Canadian growth to be softer than US growth in the near term.",
               "moderate": "Canada's 10Y yield at 3.45% is roughly 80bps below the US 10Y, a spread that has widened materially as the BoC has cut more aggressively than the Fed. This yield differential is a primary driver of CAD weakness versus the USD. If the BoC pauses cuts due to energy-driven inflation while the Fed remains on hold, the spread could narrow modestly, providing some CAD support. Domestic demand for Canadian government bonds from pension funds and insurance companies provides a structural bid that keeps yields anchored even as global conditions tighten.",
@@ -1140,9 +1140,9 @@
             }
           },
           "Yield Curve": {
-            "value": "+15bps",
+            "value": "+25bps",
             "tier": "daily",
-            "last_updated": "2026-03-08",
+            "last_updated": "2026-03-09",
             "story": {
               "beginner": "Canada's yield curve, measuring the difference between short-term and long-term interest rates, is positive at +15 basis points. This is healthier than the inverted curve seen in recent years, suggesting markets expect the economy to eventually recover and interest rates to normalize over time.",
               "moderate": "The Canadian 10Y-2Y yield curve at +15bps has re-steepened from inversion as the BoC has cut short-term rates while long-term rates have remained anchored by inflation expectations and global bond market dynamics. The re-steepening is driven by bull-steepening (short rates falling faster than long rates), which historically is associated with easing cycles responding to growth weakness rather than the bear-steepening that characterizes inflation-driven rate rises. This is a modestly positive signal, suggesting BoC cuts are transmitting into the yield structure as intended.",
@@ -1150,9 +1150,9 @@
             }
           },
           "Corp Spread": {
-            "value": "115bps",
+            "value": "130bps",
             "tier": "daily",
-            "last_updated": "2026-03-08",
+            "last_updated": "2026-03-09",
             "story": {
               "beginner": "Canadian corporate bonds are paying 115 basis points more than government bonds to attract investors, higher than the US equivalent of 85 basis points. This wider gap reflects concerns that some Canadian companies, particularly those exposed to the US trade relationship, face more uncertainty than their American counterparts.",
               "moderate": "Canadian IG corporate spreads at 115bps are meaningfully wider than US equivalents (85bps), reflecting additional uncertainty from tariff exposure concentrated in Canadian manufacturing and the higher proportion of resource sector issuers in the Canadian credit index, whose cash flows are volatile with commodity prices. The Iran oil shock is a mixed signal for Canadian credit: energy sector issuers benefit from higher revenues and improved coverage ratios, but manufacturers and consumer-facing issuers face margin compression. A spread above 130bps would signal a more significant credit stress event.",
@@ -1160,9 +1160,9 @@
             }
           },
           "Sov CDS": {
-            "value": "40bps",
+            "value": "45bps",
             "tier": "daily",
-            "last_updated": "2026-03-08",
+            "last_updated": "2026-03-09",
             "story": {
               "beginner": "The cost to insure against Canada defaulting on its government debt is 40 basis points, slightly above the US at 35 basis points. Both are very low, meaning markets consider both governments highly creditworthy. Canada's slightly higher reading reflects modest uncertainty about its economic outlook rather than any genuine default concern.",
               "moderate": "Canadian sovereign CDS at 40bps is marginally above the US at 35bps, which is somewhat counterintuitive given Canada's stronger fiscal position (lower deficit, lower debt-to-GDP). The premium likely reflects Canada's smaller economy and greater sensitivity to commodity price volatility, which creates more variance in government revenues than the US experiences. The oil windfall from the Iran shock is fiscally positive for Canada, which could tighten Canadian CDS modestly if higher oil revenues are sustained.",
@@ -1172,7 +1172,7 @@
           "CAD/USD": {
             "value": "0.74",
             "tier": "daily",
-            "last_updated": "2026-03-08",
+            "last_updated": "2026-03-09",
             "story": {
               "beginner": "The Canadian dollar is worth 74 US cents, meaning the currency has been weakening against the US dollar. A weaker Canadian dollar makes Canadian exports cheaper for foreigners (good for oil and agricultural exporters) but makes imports more expensive for Canadians, adding to cost pressures.",
               "moderate": "CAD/USD at 0.74 reflects the combined effect of the BoC-Fed rate differential (BoC cutting faster, widening the gap) and a tariff-related risk discount on a trade-exposed economy. The oil price surge is a partial offset: higher crude prices historically support the Canadian dollar as a petrocurrency, with the WTI-CAD correlation running near 0.6 over the past year. The net result is a range-bound CAD, with oil providing a floor and rate differentials capping upside. A sustained move below 0.72 would signal that tariff concerns are overriding the oil price support.",
@@ -1180,9 +1180,9 @@
             }
           },
           "FX Vol": {
-            "value": "7.2%",
+            "value": "10.0%",
             "tier": "daily",
-            "last_updated": "2026-03-08",
+            "last_updated": "2026-03-09",
             "story": {
               "beginner": "Currency market volatility for the Canadian dollar is running at 7.2%, meaning the exchange rate between the Canadian and US dollar is moving around more than usual. This is driven by uncertainty about US trade policy, oil price swings from the Iran conflict, and differing interest rate decisions by the Bank of Canada and the Federal Reserve.",
               "moderate": "CAD/USD implied volatility at 7.2% is elevated versus 2024 averages, reflecting the confluence of three independent uncertainty drivers: US tariff policy timing, BoC rate path, and oil price direction from the Iran conflict. Options markets are pricing a wider-than-normal range of outcomes for the Canadian dollar over the next three months. The vol premium is skewed toward CAD downside given tariff risk, with the risk reversal (25-delta puts vs calls) showing more demand for CAD put protection than call upside.",
@@ -2198,51 +2198,51 @@
             "last_updated": "2026-01-31"
           },
           "Policy Rate": {
-            "value": "5.25%",
+            "value": "4.25%",
             "tier": "weekly",
-            "last_updated": "2026-03-07"
+            "last_updated": "2026-03-09"
           }
         },
         "market": {
           "Stock Market YTD": {
-            "value": "+3.1%",
+            "value": "+2.0%",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Equity Vol": {
-            "value": "~13",
+            "value": "~18",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "10Y Bond Yield": {
-            "value": "4.05%",
+            "value": "4.40%",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Yield Curve": {
-            "value": "+10bps",
+            "value": "+30bps",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Corp Spread": {
-            "value": "100bps",
+            "value": "120bps",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Sov CDS": {
-            "value": "25bps",
+            "value": "32bps",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "GBP/USD": {
-            "value": "1.27",
+            "value": "1.33",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "FX Vol": {
-            "value": "8.0%",
+            "value": "12.0%",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           }
         }
       },
@@ -3253,51 +3253,51 @@
             "last_updated": "2026-01-31"
           },
           "Policy Rate": {
-            "value": "0.10%",
+            "value": "0.75%",
             "tier": "weekly",
-            "last_updated": "2026-03-07"
+            "last_updated": "2026-03-09"
           }
         },
         "market": {
           "Stock Market YTD": {
-            "value": "+28.1%",
+            "value": "+21.0%",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Equity Vol": {
-            "value": "~22",
+            "value": "~28",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "10Y Bond Yield": {
-            "value": "0.88%",
+            "value": "2.15%",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Yield Curve": {
-            "value": "+53bps",
+            "value": "+90bps",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Corp Spread": {
-            "value": "42bps",
+            "value": "50bps",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Sov CDS": {
-            "value": "22bps",
+            "value": "28bps",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "USD/JPY": {
-            "value": "149.5",
+            "value": "158.5",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "FX Vol": {
-            "value": "12.5%",
+            "value": "16.0%",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           }
         }
       },
@@ -4210,51 +4210,51 @@
             "last_updated": "2026-01-31"
           },
           "Policy Rate": {
-            "value": "4.50%",
+            "value": "2.50%",
             "tier": "weekly",
-            "last_updated": "2026-03-07"
+            "last_updated": "2026-03-09"
           }
         },
         "market": {
           "Stock Market YTD": {
-            "value": "+12.4%",
+            "value": "+11.0%",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Equity Vol": {
-            "value": "~14",
+            "value": "~20",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "10Y Bond Yield": {
-            "value": "2.35%",
+            "value": "2.65%",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Yield Curve": {
-            "value": "+30bps",
+            "value": "+35bps",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Corp Spread": {
-            "value": "55bps",
+            "value": "70bps",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Sov CDS": {
-            "value": "15bps",
+            "value": "20bps",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "EUR/USD": {
-            "value": "1.09",
+            "value": "1.1555",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "FX Vol": {
-            "value": "7.8%",
+            "value": "11.0%",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           }
         }
       },
@@ -5265,51 +5265,51 @@
             "last_updated": "2026-01-31"
           },
           "Policy Rate": {
-            "value": "4.50%",
+            "value": "2.50%",
             "tier": "weekly",
-            "last_updated": "2026-03-07"
+            "last_updated": "2026-03-09"
           }
         },
         "market": {
           "Stock Market YTD": {
-            "value": "+8.9%",
+            "value": "+7.0%",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Equity Vol": {
-            "value": "~14",
+            "value": "~20",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "10Y Bond Yield": {
-            "value": "2.88%",
+            "value": "3.15%",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Yield Curve": {
-            "value": "+38bps",
+            "value": "+50bps",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Corp Spread": {
-            "value": "60bps",
+            "value": "75bps",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Sov CDS": {
-            "value": "30bps",
+            "value": "38bps",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "EUR/USD": {
-            "value": "1.09",
+            "value": "1.1555",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "FX Vol": {
-            "value": "7.8%",
+            "value": "11.0%",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           }
         }
       },
@@ -6320,51 +6320,51 @@
             "last_updated": "2026-01-31"
           },
           "Policy Rate": {
-            "value": "4.50%",
+            "value": "2.50%",
             "tier": "weekly",
-            "last_updated": "2026-03-07"
+            "last_updated": "2026-03-09"
           }
         },
         "market": {
           "Stock Market YTD": {
-            "value": "+20.3%",
+            "value": "+19.0%",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Equity Vol": {
-            "value": "~14",
+            "value": "~20",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "10Y Bond Yield": {
-            "value": "3.72%",
+            "value": "4.10%",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Yield Curve": {
-            "value": "+62bps",
+            "value": "+80bps",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Corp Spread": {
-            "value": "65bps",
+            "value": "80bps",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Sov CDS": {
-            "value": "55bps",
+            "value": "70bps",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "EUR/USD": {
-            "value": "1.09",
+            "value": "1.1555",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "FX Vol": {
-            "value": "7.8%",
+            "value": "11.0%",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           }
         }
       },
@@ -7277,16 +7277,16 @@
             "last_updated": "2026-01-31"
           },
           "Policy Rate": {
-            "value": "3.45%",
+            "value": "3.00%",
             "tier": "weekly",
-            "last_updated": "2026-03-07"
+            "last_updated": "2026-03-09"
           }
         },
         "market": {
           "Stock Market YTD": {
-            "value": "-3.7%",
+            "value": "-4.5%",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Equity Vol": {
             "value": "-",
@@ -7294,34 +7294,34 @@
             "last_updated": "2026-03-08"
           },
           "10Y Bond Yield": {
-            "value": "2.56%",
+            "value": "2.40%",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Yield Curve": {
-            "value": "+46bps",
+            "value": "+35bps",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Corp Spread": {
-            "value": "55bps",
+            "value": "65bps",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Sov CDS": {
-            "value": "60bps",
+            "value": "72bps",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "USD/CNY": {
-            "value": "7.24",
+            "value": "6.91",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "FX Vol": {
-            "value": "5.2%",
+            "value": "6.5%",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           }
         }
       },
@@ -8329,44 +8329,44 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "+16.5%",
+            "value": "+14.0%",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Equity Vol": {
-            "value": "~14",
+            "value": "~20",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "10Y Bond Yield": {
-            "value": "7.18%",
+            "value": "7.50%",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Yield Curve": {
-            "value": "+23bps",
+            "value": "+35bps",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Corp Spread": {
-            "value": "75bps",
+            "value": "90bps",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Sov CDS": {
-            "value": "95bps",
+            "value": "115bps",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "USD/INR": {
-            "value": "83.1",
+            "value": "92.25",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "FX Vol": {
-            "value": "4.8%",
+            "value": "9.0%",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           }
         }
       },
@@ -9374,44 +9374,44 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "+5.2%",
+            "value": "+3.5%",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Equity Vol": {
-            "value": "~18",
+            "value": "~22",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "10Y Bond Yield": {
-            "value": "9.85%",
+            "value": "10.20%",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Yield Curve": {
-            "value": "+85bps",
+            "value": "+100bps",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Corp Spread": {
-            "value": "180bps",
+            "value": "200bps",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Sov CDS": {
-            "value": "195bps",
+            "value": "225bps",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "USD/ZAR": {
-            "value": "17.8",
+            "value": "16.86",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "FX Vol": {
-            "value": "15.2%",
+            "value": "18.0%",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           }
         }
       },
@@ -10007,44 +10007,44 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "+16.5%",
+            "value": "+16.0%",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Equity Vol": {
-            "value": "~22",
+            "value": "~25",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "10Y Bond Yield": {
-            "value": "13.56%",
+            "value": "13.80%",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Yield Curve": {
-            "value": "-145bps",
+            "value": "-140bps",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Corp Spread": {
-            "value": "220bps",
+            "value": "240bps",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Sov CDS": {
-            "value": "160bps",
+            "value": "180bps",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "USD/BRL": {
-            "value": "5.22",
+            "value": "5.10",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "FX Vol": {
-            "value": "16.8%",
+            "value": "20.0%",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           }
         }
       },
@@ -10576,12 +10576,12 @@
           "Stock Market YTD": {
             "value": "+5.0%",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Equity Vol": {
-            "value": "~28",
+            "value": "~32",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "10Y Bond Yield": {
             "value": "13.5%",
@@ -10594,24 +10594,24 @@
             "last_updated": "2026-03-08"
           },
           "Corp Spread": {
-            "value": "350bps",
+            "value": "380bps",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "Sov CDS": {
-            "value": "300bps",
+            "value": "320bps",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "USD/RUB": {
-            "value": "81.0",
+            "value": "80.0",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           },
           "FX Vol": {
-            "value": "18.0%",
+            "value": "20.0%",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-09"
           }
         }
       },
@@ -11045,7 +11045,7 @@
     }
   },
   "commodities": {
-    "asOf": "Mar 7, 2026",
+    "asOf": "Mar 9, 2026",
     "source": "CME · ICE · COMEX · CBOT · Yahoo Finance",
     "weather": "⛈️",
     "items": [
@@ -11054,11 +11054,9 @@
         "symbol": "CL",
         "cat": "energy",
         "unit": "$/bbl",
-        "price": 72.5,
-        "change": 9.8,
+        "price": 103.0,
+        "change": 13.3,
         "spark": [
-          63,
-          64,
           65,
           66,
           65,
@@ -11068,7 +11066,9 @@
           65,
           65,
           66,
-          73
+          73,
+          90.9,
+          103.0
         ],
         "annual": [
           79.61,
@@ -11097,11 +11097,9 @@
         "symbol": "BZ",
         "cat": "energy",
         "unit": "$/bbl",
-        "price": 80.5,
-        "change": 9.2,
+        "price": 109.0,
+        "change": 17.6,
         "spark": [
-          70,
-          71,
           72,
           73,
           72,
@@ -11111,7 +11109,9 @@
           72,
           72,
           73,
-          81
+          81,
+          92.7,
+          109.0
         ],
         "annual": [
           79.5,
@@ -11140,11 +11140,9 @@
         "symbol": "NG",
         "cat": "energy",
         "unit": "$/mmBtu",
-        "price": 2.83,
-        "change": 8.4,
+        "price": 4.5,
+        "change": 40.6,
         "spark": [
-          2.1,
-          2.2,
           2.3,
           2.4,
           2.5,
@@ -11154,7 +11152,9 @@
           2.7,
           2.6,
           2.6,
-          2.8
+          2.8,
+          3.2,
+          4.5
         ],
         "annual": [
           4.39,
@@ -11183,11 +11183,9 @@
         "symbol": "GC",
         "cat": "metals",
         "unit": "$/oz",
-        "price": 5159,
-        "change": 2.8,
+        "price": 5080,
+        "change": -0.8,
         "spark": [
-          2920,
-          3200,
           3500,
           3800,
           4000,
@@ -11197,7 +11195,9 @@
           4800,
           5000,
           5100,
-          5159
+          5159,
+          5120,
+          5080
         ],
         "annual": [
           1224.53,
@@ -11226,11 +11226,9 @@
         "symbol": "SI",
         "cat": "metals",
         "unit": "$/oz",
-        "price": 58.2,
-        "change": 3.2,
+        "price": 81.0,
+        "change": -3.7,
         "spark": [
-          32,
-          35,
           38,
           42,
           46,
@@ -11240,7 +11238,9 @@
           54,
           56,
           57,
-          58
+          58,
+          84.1,
+          81.0
         ],
         "annual": [
           20.19,
@@ -11269,11 +11269,9 @@
         "symbol": "HG",
         "cat": "metals",
         "unit": "$/lb",
-        "price": 5.2,
-        "change": 1.5,
+        "price": 5.0,
+        "change": -2.0,
         "spark": [
-          4.4,
-          4.5,
           4.6,
           4.7,
           4.8,
@@ -11283,7 +11281,9 @@
           5.1,
           5.1,
           5.1,
-          5.2
+          5.2,
+          5.1,
+          5.0
         ],
         "annual": [
           3.42,
@@ -11312,11 +11312,9 @@
         "symbol": "ZW",
         "cat": "agriculture",
         "unit": "¢/bu",
-        "price": 585,
-        "change": 1.2,
+        "price": 622,
+        "change": 5.1,
         "spark": [
-          570,
-          572,
           575,
           577,
           578,
@@ -11326,7 +11324,9 @@
           584,
           585,
           585,
-          585
+          585,
+          592,
+          622
         ],
         "annual": [
           597,
@@ -11355,11 +11355,9 @@
         "symbol": "ZC",
         "cat": "agriculture",
         "unit": "¢/bu",
-        "price": 455,
-        "change": 0.9,
+        "price": 472,
+        "change": 3.1,
         "spark": [
-          445,
-          447,
           449,
           450,
           451,
@@ -11369,7 +11367,9 @@
           454,
           455,
           455,
-          455
+          455,
+          458,
+          472
         ],
         "annual": [
           396,
@@ -11398,11 +11398,9 @@
         "symbol": "ZS",
         "cat": "agriculture",
         "unit": "¢/bu",
-        "price": 1065,
-        "change": 0.7,
+        "price": 1080,
+        "change": 1.1,
         "spark": [
-          1042,
-          1045,
           1048,
           1050,
           1052,
@@ -11412,7 +11410,9 @@
           1062,
           1063,
           1064,
-          1065
+          1065,
+          1068,
+          1080
         ],
         "annual": [
           989,
@@ -11472,61 +11472,61 @@
     "beginner": [
       {
         "icon": "🔥",
-        "label": "Iran Conflict Shocks Energy Markets",
-        "body": "The US and Israel launched strikes on Iran on February 28, triggering the closure of the Strait of Hormuz and cutting off about 20% of the world's oil supply. Oil prices have jumped over 25% in a week, raising fuel costs for households and businesses everywhere.",
-        "source": "PBS NewsHour / Al Jazeera, March 2026"
+        "label": "Oil Crosses $100 for First Time Since 2022",
+        "body": "Oil prices surged past $100 a barrel today as the war with Iran entered its second week with no ceasefire in sight. Saudi Arabia joined Iraq, Kuwait, and the UAE in cutting oil production because the Strait of Hormuz is too congested to ship barrels. Fuel prices are now rising sharply in most countries, adding to the cost squeeze many households are already feeling.",
+        "source": "Al Jazeera / Reuters / oilprice.com, March 9, 2026"
       },
       {
         "icon": "📉",
-        "label": "Central Banks Caught in Stagflation Trap",
-        "body": "Many central banks around the world had been preparing to cut interest rates to support their economies, but the sudden oil price shock from the Middle East is forcing them to reconsider — higher energy costs could push inflation back up while growth slows simultaneously.",
-        "source": "Nomura / CNBC, March 2026"
+        "label": "Stock Markets Tumble Worldwide",
+        "body": "Stock markets fell sharply on Monday. Japan's Nikkei dropped around 5%, European markets fell 1 to 2%, and US stocks slid further after already declining last week. Investors are worried that surging energy costs will eat into company profits and push inflation back up just as central banks were hoping to cut interest rates.",
+        "source": "Yahoo Finance / Reuters / Al Jazeera, March 9, 2026"
       },
       {
-        "icon": "🌍",
-        "label": "Shipping Lanes Disrupted Worldwide",
-        "body": "With the Strait of Hormuz effectively closed to tanker traffic, ships carrying oil, gas, and goods are being rerouted at much greater cost and delay. Countries in Asia and Europe that rely on Middle East energy are most affected, and Qatar has declared force majeure on its huge LNG exports.",
-        "source": "CNN Business / Bloomberg, March 2026"
+        "icon": "💼",
+        "label": "US Job Market Loses Steam",
+        "body": "The US economy unexpectedly shed jobs in February, with the unemployment rate rising to 4.4%. That is the weakest reading in two years. The Federal Reserve now faces a difficult balancing act: the job market is cooling and needs lower rates, but surging oil is pushing prices back up and makes rate cuts harder to justify.",
+        "source": "Reuters / CNBC, March 6, 2026"
       }
     ],
     "moderate": [
       {
         "icon": "🔥",
-        "label": "Hormuz Closure: 20% of Global Oil Offline",
-        "body": "The US-Israel war on Iran (Day 8) has effectively halted tanker traffic through the Strait of Hormuz, stranding ~140 million barrels of regional oil and pushing WTI to $90.90/barrel (+36% WoW) and Brent to $92.69 (+27%). Qatar declared LNG force majeure after drone strikes on its gas facilities, removing ~20% of global LNG supply from the market.",
-        "source": "Bloomberg / NPR / Al Jazeera, March 2026"
+        "label": "WTI at $103, Brent at $109: Oil Enters Superspike Territory",
+        "body": "Both crude benchmarks surged 13 to 18% today as Saudi Arabia announced production cuts to avoid storage overflow ,  joining Kuwait, Bahrain, and the UAE who can no longer export via the Strait of Hormuz. G7 finance ministers are discussing an emergency release of IEA strategic petroleum reserves, which briefly capped Brent's intraday high of $119. At $103-109/bbl, crude is now up roughly 45% year-to-date, adding an estimated 0.8-1.2pp to global headline inflation if sustained through Q2.",
+        "source": "Al Jazeera / Reuters / oilprice.com, March 9, 2026"
       },
       {
         "icon": "📉",
-        "label": "Fed, ECB, BoE All Frozen by Energy Shock",
-        "body": "Markets have rapidly repriced central bank rate paths: Fed June cut probability near zero (July-September earliest), BoE March cut probability collapsed from 84% to 30%, and the ECB faces a 'genuine dilemma' as energy inflation and weak growth pull policy in opposite directions. The oil shock could add 0.8pp to global inflation if sustained.",
-        "source": "Nomura / ING / Deloitte, March 2026"
+        "label": "Global Risk-Off: Nikkei -5%, VIX at 30, DXY Hits 3-Month High",
+        "body": "Risk assets sold off sharply in Asia and Europe. The Nikkei fell 5.2%, reflecting Japan's near-total Middle East oil dependency (95% of imports). The VIX surged from 16 to 30 in a week, its sharpest one-week move since the early pandemic shock. The US dollar index (DXY) hit a three-month high at 99.7 as safe-haven flows offset the long-run bearish trend. Gold fell 1.5% to $5,080 ,  a liquidity-driven selloff as investors met margin calls with profitable positions.",
+        "source": "Yahoo Finance / Reuters / FinancialContent, March 9, 2026"
       },
       {
-        "icon": "🌍",
-        "label": "Supply Chain Disruption Spreading Beyond Oil",
-        "body": "The Hormuz closure is rippling through non-energy supply chains: India's basmati rice exports (400,000 metric tons) are stuck at ports, fertiliser prices are spiking with LNG, airspace closures are grounding cargo flights across the Gulf, and European diesel prices have doubled in a week. The IMF has put global growth under review.",
-        "source": "CNN Business / IMF, March 2026"
+        "icon": "💼",
+        "label": "US February Payrolls Shock: -92K, Unemployment 4.4%",
+        "body": "The US economy shed 92,000 jobs in February ,  a significant negative surprise driven by federal layoffs, a decline in IT employment, and cautious hiring in manufacturing. The unemployment rate rose to 4.4%, its highest since early 2023. Markets now price a July Fed cut as the earliest realistic outcome, but the Iran oil shock could push that further out if CPI re-accelerates above 3.5% by mid-year.",
+        "source": "Reuters / CNBC / Trading Economics, March 6, 2026"
       }
     ],
     "expert": [
       {
         "icon": "🔥",
-        "label": "Hormuz Shock: Structural vs. Transitory Energy Risk",
-        "body": "The key macro question is duration: a 2-4 week Hormuz closure keeps Brent at $80-90 with manageable passthrough (~0.5pp global CPI). A sustained 3-month+ closure pushes Brent above $100, adds 0.8pp to global inflation, and materially impairs the Fed/ECB/BoE rate-cutting cycles. Iran's targeting of regional energy infrastructure (Qatar LNG, Saudi refinery, Kuwait precautionary shutdown) suggests damage extending well beyond any ceasefire timeline.",
-        "source": "Bank of America / Rystad Energy / Bloomberg, March 2026"
+        "label": "Hormuz Superspike: Saudi Output Cuts Confirm Physical Market Stress",
+        "body": "Saudi Arabia's unilateral output cuts confirm what physical market traders already knew: Gulf producers cannot export barrels accumulating at land terminals, creating a forced supply destruction that goes beyond the Hormuz shipping blockade itself. Brent's intraday high of $119.50 triggered a G7 reserve coordination discussion, temporarily capping the rally. The structural question is duration ,  at $103-109/bbl, every additional month of Hormuz disruption adds approximately 0.25pp to global CPI, widens current account deficits for importing economies by 0.4-0.6% of GDP, and compresses FOMC, ECB, and BoE rate-cutting optionality materially.",
+        "source": "Al Jazeera / Reuters / Rystad Energy, March 9, 2026"
       },
       {
         "icon": "📉",
-        "label": "Global Monetary Policy: The Stagflation Trilemma",
-        "body": "Central banks face a trilemma: a supply-shock-driven CPI spike with simultaneously weakening aggregate demand and deteriorating financial conditions means neither rate hikes nor cuts are unambiguously correct. The Nomura framework calls for 'fiscal-first' response — price controls, subsidies, excise cuts — before monetary policy reacts; but this worsens fiscal positions already under stress from pre-Iran deficit levels.",
-        "source": "Nomura / CNBC / Berenberg, March 2026"
+        "label": "Risk-Off Anatomy: VIX 30, DXY 99.7, Gold -1.5%: A Margin Call Day",
+        "body": "The decoupling of gold from the energy inflation narrative on March 9, falling 1.5% to $5,080 while oil surged 13-18%, is a textbook liquidity event. Institutional investors with long gold positions at cost basis well below current levels are liquidating to meet equity margin calls, a pattern seen in March 2020 and October 2008. The DXY surge to 99.7 represents a short-term reversal of the 2025-2026 USD bear trend, driven by safe-haven demand and tighter financial conditions. The more durable signal is the VIX term structure: front-month vol at 30 with the 3-month VIX at 24 implies the market is pricing binary near-term resolution of the Iran conflict, with significant mean-reversion expectations, a dangerous bet given Iran's demonstrated willingness to escalate into UAE territory.",
+        "source": "Reuters / FinancialContent / Yahoo Finance, March 9, 2026"
       },
       {
-        "icon": "🌍",
-        "label": "Geopolitical Fragmentation Accelerates",
-        "body": "The Iran conflict is the third major geopolitical shock in three years (Russia/Ukraine 2022, Gaza 2023, Iran 2026) and may permanently accelerate deglobalisation: Asian economies are rerouting supply chains, Gulf producers are reassessing the USD petrodollar arrangement, and the US military's dual commitment in Ukraine and the Middle East is straining strategic bandwidth. BlackRock's March 2026 note identifies geopolitical fragmentation as the dominant long-run driver of asset price dispersion.",
-        "source": "BlackRock Investment Institute / CNN, March 2026"
+        "icon": "💼",
+        "label": "US February Payrolls -92K: Stagflationary Signal Sharpens",
+        "body": "February nonfarm payrolls at -92K (vs. +125K consensus) and an unemployment rate at 4.4% confirm that the US labour market is deteriorating faster than the FOMC's December projections modelled. The K-shaped deterioration continues: federal employment fell 85K on DOGE-linked cuts, IT contracted 18K on AI displacement, while healthcare added 112K. The combined signal from -92K payrolls and $103/bbl oil is precisely the stagflationary configuration the December dot plot did not model. With the FOMC meeting March 17-18, the committee faces its most acute dual-mandate conflict since the 1970s: easing to address labour weakness risks validating the oil inflation shock; holding risks overtightening into a deteriorating economy.",
+        "source": "Reuters / CNBC / Trading Economics, March 6-9, 2026"
       }
     ]
   }
