@@ -8,7 +8,7 @@
       "weekly": "Update weekly or on release — CPI, unemployment, policy rate",
       "structural": "Update quarterly or on major revision — GDP, deficits, current account, stories, fxRegime"
     },
-    "built_at": "2026-03-09 21:10"
+    "built_at": "2026-03-09 21:59"
   },
   "countries": {
     "USA": {
@@ -6577,74 +6577,144 @@
           "GDP Growth": {
             "value": "+1%",
             "tier": "structural",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Italy is growing at about 1% this year, one of its steadier performances in recent years. Tourism is booming, defence company revenues are rising sharply, and the broader European spending push is helping. The main risk is that higher energy prices from the Iran conflict squeeze businesses and households.",
+              "moderate": "Italian GDP growth of 1% for 2026 rests on three pillars: strong tourism revenues, defence sector uplift via Leonardo and the broader European rearmament cycle, and indirect spillovers from Germany's fiscal expansion through northern Italian supply chains; the Iran energy shock is the key downside risk given Italy's near-total dependence on imported energy, which historically compresses domestic demand quickly when oil prices spike.",
+              "expert": "Italy's 1% growth forecast embeds a tourism and defence tailwind that partially insulates it from the energy shock relative to 2022, but the transmission channel is still acute: northern Italian manufacturing districts (ceramics, glass, chemicals) are among the most energy-intensive in Europe, and a sustained 0+ Brent environment compresses margins without the offsetting fiscal capacity Italy had in 2022 when EU recovery funds were still flowing at full rate."
+            }
           },
           "Inflation (CPI)": {
             "value": "2.3%",
             "tier": "weekly",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Italian inflation is running at 2.3%, close to the ECB's target. That relative calm could be disrupted by the Iran conflict, which has pushed up petrol, diesel, and gas prices across Europe. Italy imports almost all of its energy, so price spikes abroad hit Italian consumers quickly.",
+              "moderate": "Italian CPI at 2.3% had been converging toward the ECB target, but the Iran shock reintroduces energy-driven upside risk; Italy's LNG import infrastructure (Porto Empedocle, Piombino FSRUs) is exposed to the Qatar force majeure, and pipeline gas from Algeria and Libya provides only partial diversification from Persian Gulf supply disruptions.",
+              "expert": "Italy's 2.3% CPI is deceptively calm: the energy shock transmission operates with a 4-8 week lag through utility bill repricing and fuel pass-through, meaning the Iran impact will appear in Q2 data; the relevant ECB signal is not the current print but the forward path, and an energy-driven HICP re-acceleration toward 3%+ forces the ECB into a genuine hold vs. cut dilemma where Italy's fiscal sustainability is directly at stake through the rate sensitivity of its 2.9 trillion euro debt stock."
+            }
           },
           "Unemployment": {
             "value": "5.6%",
             "tier": "weekly",
-            "last_updated": "2026-03-07"
+            "last_updated": "2026-03-07",
+            "story": {
+              "beginner": "Italy's unemployment rate has fallen to 5.6%, the lowest in years. Tourism, construction, and some manufacturing sectors have been hiring. Youth unemployment in southern Italy remains a serious long-term problem, but the headline number shows genuine improvement.",
+              "moderate": "Italian unemployment at 5.6% is at a cyclical low, reflecting improvements in tourism, healthcare, and defence-related manufacturing; the structural north-south divide persists, with youth unemployment in the Mezzogiorno remaining well above the national headline; the Iran shock poses downside risk via its impact on energy-intensive manufacturing in the north, where the cassintegrazione short-time work scheme would buffer job losses but add fiscal cost.",
+              "expert": "Italy's labour market improvement is compositionally important: gains have been concentrated in services sectors (tourism, healthcare, retail) with lower energy cost sensitivity, providing a partial buffer to the Iran shock; the vulnerability sits in northern industrial employment, where energy cost increases directly threaten the viability of production at current margins; at 5.6% headline unemployment, Italy retains limited conventional slack to absorb a demand shock without triggering labour market deterioration given the structural mismatch between displaced manufacturing workers and available service sector roles."
+            }
           },
           "Budget Deficit": {
             "value": "-3.2% GDP",
             "tier": "structural",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Italy is running a budget deficit of 3.2% of its economy and carries one of the largest government debt piles in the world relative to its size. The Meloni government is trying to gradually reduce this deficit, but higher energy prices could make that harder by slowing growth and forcing spending on energy support for households.",
+              "moderate": "Italy's budget deficit of 3.2% of GDP sits above the EU's 3% reference threshold, keeping Italy under European Commission scrutiny; the Meloni government's consolidation plan targets a gradual reduction, but the Iran energy shock creates a dual fiscal squeeze: slower growth reduces tax revenues while household energy support measures increase spending, making the consolidation path more difficult to maintain without ECB rate relief.",
+              "expert": "Italy's fiscal trajectory is the most ECB-rate-sensitive in the eurozone: with roughly 400-500bn euros of debt rolling annually at post-QE market rates, each quarter of unexpected rate hold adds 2-3bn euros to annual interest charges; the 3.2% deficit already sits at the EU procedural limit, and an energy-driven growth shortfall could push it toward 4%, triggering a formal Excessive Deficit Procedure that constrains fiscal flexibility and risks widening the BTP-Bund spread toward levels that test TPI activation thresholds."
+            }
           },
           "Current Account": {
             "value": "+0.8% GDP",
             "tier": "structural",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Italy earns slightly more from international trade and investment than it spends, giving it a small current account surplus of 0.8% of its economy. The Iran conflict threatens to wipe this out by raising the cost of Italy's energy imports sharply.",
+              "moderate": "Italy's small current account surplus of 0.8% of GDP is structurally fragile given near-complete energy import dependence; the Iran-driven oil and LNG price spike materially widens the trade deficit component, partially offset by Italy's substantial tourism surplus; a shift into current account deficit would add pressure on sovereign spreads by signalling external imbalance in an already high-debt economy.",
+              "expert": "Italy's current account is the most vulnerable in the G7 to an energy price shock on a structural basis: the energy import bill at pre-Iran prices was already 70bn+ euros annually, and a 25-36% oil price increase adds 15-25bn euros to that figure; the resulting terms-of-trade deterioration compresses real domestic incomes and, given limited fiscal space to buffer the shock, will likely flow through to weaker consumption and investment rather than external financing, reinforcing the growth downside already embedded in the shock."
+            }
           },
           "Policy Rate": {
             "value": "2.50%",
             "tier": "weekly",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Italy uses the European Central Bank's interest rate of 2.50%, which has been cut several times from its peak. Italy's government pays billions in interest on its enormous debt, so lower ECB rates make a real difference to how much room the government has to spend on other things.",
+              "moderate": "The ECB deposit rate of 2.50% is critically important for Italian fiscal dynamics: each 25bp of rate hold relative to the baseline cutting path adds roughly 3-4bn euros annually to Italy's debt servicing costs; the Iran shock's impact on ECB forward guidance therefore has a direct and material fiscal consequence for Italy that goes well beyond the usual monetary policy transmission channels.",
+              "expert": "Italy's sensitivity to ECB policy creates a non-linear sovereign risk dynamic: at BTP-Bund spreads around 145bp, the market is pricing a manageable fiscal path; a shift toward 200-250bp as the ECB signals a prolonged hold would begin to raise refinancing risk questions that the TPI was designed to suppress, but TPI conditionality requires Italy to maintain compliance with EU fiscal recommendations, creating a constraint on the government's ability to respond with fiscal stimulus to the energy shock."
+            }
           }
         },
         "market": {
           "Stock Market YTD": {
             "value": "+19.0%",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "The Italian stock market has risen 19% this year, one of the best performances in Europe. The biggest contributor has been Leonardo, Italy's defence company, which has surged 77% as European countries race to increase their military spending. Banks and other financial companies have also done well.",
+              "moderate": "The FTSE MIB's 19% gain reflects two converging tailwinds: the European defence rearmament cycle (Leonardo +77%) and the ECB easing impulse supporting Italian bank earnings (banks are a large index weight); the Iran energy shock introduces risk on the downside via its impact on ECB rate expectations and Italian industrial margins, but the defence sector tailwind is structural and multi-year.",
+              "expert": "Italy's 19% equity return is among the highest in the eurozone YTD, driven by a concentrated re-rating in defence (Leonardo backlog expansion, NATO commitment escalation) and financials (Italian banks benefiting from the steeper yield curve and contained NPL ratios); the index is vulnerable to a BTP-Bund spread widening episode, as Italian bank equity is highly correlated with sovereign spread dynamics through the bank-sovereign nexus, and any Iran-driven growth shortfall that impairs fiscal consolidation is a direct risk to bank equity valuations."
+            }
           },
           "Equity Vol": {
             "value": "~20",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Italian stock market volatility is running at around 20, similar to Germany. Investors are weighing the positive news from defence spending and ECB rate cuts against the risks from higher energy prices and Italy's large government debt. Any sign that Italy's debt situation is worsening tends to make investors nervous quickly.",
+              "moderate": "Italian equity volatility at approximately 20 reflects the balance between structural tailwinds (defence cycle, ECB easing) and the ongoing sovereign risk premium embedded in Italian equities; the BTP-Bund spread is the key leading indicator for Italian equity vol, as spread widening tends to trigger risk-off positioning in Italian bank stocks, which have an outsized weight in the FTSE MIB.",
+              "expert": "Italian equity vol is structurally higher than northern European peers due to the bank-sovereign nexus: Italian banks hold roughly 400bn euros of BTPs on their balance sheets, meaning any sovereign spread widening directly impairs bank capital ratios and triggers equity selling; this reflexive relationship means Italian equity vol is sensitive to ECB communication shifts in a way that German or French equity vol is not, and the Iran shock creates the conditions for this channel to activate if the ECB signals a prolonged hold."
+            }
           },
           "10Y Bond Yield": {
             "value": "4.10%",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Italy's 10-year government bonds pay 4.10% annual interest, significantly more than Germany's equivalent bonds at 2.65%. The difference reflects the extra risk investors perceive in lending to Italy given its large debt pile. This gap matters enormously to Italy because the government has to refinance hundreds of billions of euros of debt every year.",
+              "moderate": "Italy's 10Y BTP yield of 4.10% implies a BTP-Bund spread of approximately 145bp, which is contained by historical standards but remains the primary indicator of Italian sovereign risk; the spread narrows when the ECB is easing and Italy is on its fiscal consolidation path, and widens when either condition is threatened, as the Iran shock potentially does through both channels simultaneously.",
+              "expert": "The BTP 10Y at 4.10% sits at a level that is fiscally manageable for Italy but leaves limited buffer to adverse shocks; the carry cost of Italy's debt at current rates is running at approximately 4% of GDP annually in interest payments, the largest in the eurozone in absolute terms; any widening of the BTP-Bund spread beyond 200bp would begin to impair Italy's primary surplus targets, creating a self-reinforcing dynamic where higher yields require more fiscal adjustment, which requires more growth, which the Iran shock is undermining."
+            }
           },
           "Yield Curve": {
             "value": "+80bps",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Italy's yield curve is upward sloping at +80 basis points, meaning investors demand a notably higher interest rate for lending to Italy for 10 years than for 2 years. This shape is broadly normal and reflects expectations of gradual recovery and higher rates over time.",
+              "moderate": "Italy's yield curve at +80bps is steeper than Germany's (+35bps), reflecting the additional term premium Italy carries given its debt level and political risk history; the steeper curve benefits Italian banks (who borrow short and lend long) but increases the cost of long-term sovereign financing relative to short-term refinancing, creating an incentive to issue shorter-duration debt that raises rollover risk.",
+              "expert": "Italy's +80bp curve steepness is a composite of the euro-area term premium (shared with Germany) and an idiosyncratic sovereign risk premium that is duration-dependent: investors demand more compensation per year of duration in Italian debt than in German debt, reflecting redenomination and fiscal sustainability risks that are more acute at longer maturities; the Italian Treasury's debt management strategy of extending average maturity (currently around 7 years) means the government is locked into paying this premium for longer, but also insulated from short-term rate spikes on the stock of existing debt."
+            }
           },
           "Corp Spread": {
             "value": "80bps",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Italian companies pay about 80 basis points (0.80%) more than the government to borrow, which is slightly wider than in Germany or France. This reflects the additional uncertainty investors attach to Italian businesses, partly linked to Italy's broader economic fragility and large government debt.",
+              "moderate": "Italian investment-grade corporate spreads at 80bps are modestly wider than German (70bps) and French peers, consistent with Italy's higher sovereign risk premium flowing through to the corporate credit market; the spread is well within normal ranges and reflects a functioning credit market rather than any systemic stress, but is sensitive to BTP-Bund spread movements given the high correlation between Italian sovereign and corporate credit conditions.",
+              "expert": "Italian IG corporate spreads at 80bps sit above northern European peers primarily because the sovereign risk premium creates a floor for Italian corporate credit: no Italian corporate can borrow at a spread below the sovereign unless it has explicit foreign parent support, since investors price in the redenomination and systemic risk that the sovereign embeds; the 80bp level is consistent with a well-functioning credit market but leaves Italian corporates more exposed to a spread-widening episode triggered by ECB policy surprise or BTP-Bund stress than their German or French counterparts."
+            }
           },
           "Sov CDS": {
             "value": "70bps",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Insuring against Italy defaulting on its government debt costs about 70 basis points per year, which is significantly more than for Germany (20bps) but has been much wider in the past during Italy's debt crises. The current level reflects cautious but not alarmed sentiment about Italy's finances.",
+              "moderate": "Italy's sovereign CDS at 70bps reflects a moderate but real sovereign risk premium, primarily driven by the redenomination risk embedded in high-debt eurozone sovereigns rather than genuine near-term default probability; the spread has compressed significantly from the 2011-2012 crisis peaks above 500bps and the 2018 political crisis, reflecting ECB backstop credibility, but remains sensitive to BTP-Bund spread dynamics and ECB communication.",
+              "expert": "Italy's 70bp CDS spread captures a complex bundle of risks: near-term default risk (very low, given ECB TPI backstop), redenomination risk (the primary driver, reflecting probability-weighted euro exit scenarios), and political risk premium (Meloni government's EU compliance track record partially containing this); the spread is most informative as a measure of the ECB's perceived credibility in suppressing sovereign stress, and any signal that TPI conditionality might not be met pushes the CDS wider well before BTP yields reach genuinely distressed levels."
+            }
           },
           "EUR/USD": {
             "value": "1.1555",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Italy uses the euro, which is currently buying about 1.16 US dollars. For Italy, a stronger euro is a double-edged sword: it makes energy imports cheaper (helpful given Italy's dependence on imported oil and gas), but it also makes Italian exports more expensive for buyers outside the eurozone.",
+              "moderate": "EUR/USD at 1.1555 reflects the same drivers as for any eurozone member, but the implications are distinctly Italian: a stronger euro reduces the yen cost of Italy's energy imports (a meaningful relief given 95%+ import dependence), but compresses the export competitiveness of Italian SMEs, particularly in the fashion, luxury, and food sectors that are important to Italy's trade balance; the net effect is ambiguous but likely slightly negative for Italy at current levels given its manufacturing base.",
+              "expert": "EUR/USD dynamics for Italy are filtered through the BTP-Bund spread: a euro strengthening driven by European fiscal optimism (Germany's spending package) is broadly positive for Italian sovereign risk as it reflects eurozone growth confidence, while a euro strengthening driven by ECB hawkishness (delayed cuts) is negative because it implies higher-for-longer Italian financing costs; the current 1.1555 level is in the former camp, making it net neutral to slightly positive for Italian asset prices, but the direction of travel matters more than the level."
+            }
           },
           "FX Vol": {
             "value": "11.0%",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "The euro has been moving around more than usual against the dollar, with volatility at 11%. For Italian businesses importing goods priced in dollars, particularly energy, these swings add uncertainty to costs. Hedging this risk is an additional expense that smaller companies often cannot afford.",
+              "moderate": "EUR/USD volatility at 11% reflects genuine macro uncertainty about the relative paths of ECB and Fed policy, amplified by the Iran geopolitical premium; for Italy specifically, elevated FX vol increases the cost of hedging energy import exposure for Italian utilities and industrials, which pass this uncertainty through to consumer prices with a lag, adding a second-order inflation effect beyond the direct oil price impact.",
+              "expert": "EUR/USD vol at 11% is relevant for Italy primarily through two channels: the hedging cost channel for energy importers (Italian utilities hedge forward oil and LNG purchases, and higher vol raises option premiums, which flow through to wholesale energy prices) and the capital flow channel (higher FX vol increases the cost of currency-hedged Italian bond investments for foreign investors, marginally reducing demand for BTPs and putting mild upward pressure on yields); both channels are second-order but compound Italy's primary energy and fiscal vulnerabilities."
+            }
           }
         }
       },
@@ -7534,74 +7604,144 @@
           "GDP Growth": {
             "value": "+4.5%",
             "tier": "structural",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "China is targeting 4.5% growth this year, its lowest official target on record. The economy is dealing with falling prices, a property market that has been contracting for years, and trade tensions with the US. The government is trying to fill the gap with infrastructure spending and subsidies, but consumers remain cautious.",
+              "moderate": "China's 4.5% GDP target for 2026 is a formal acknowledgement of structural deceleration: the property sector contracted 17% in 2025, fixed-asset investment fell 3.8%, and four years of deflationary pressure have suppressed private investment; the Iran shock adds a near-term energy cost headwind that could push growth to the lower end of the target range without additional fiscal stimulus.",
+              "expert": "China's GDP target reduction to 4.5-5% reflects both honest macro modelling and a political recalibration: lower targets are more credibly achievable and reduce the incentive for local governments to pursue wasteful investment to hit numbers; independent activity indices (electricity consumption, freight volumes, satellite nightlights) have consistently shown realised growth below official figures, and the Iran shock adds a supply-side energy cost increase that compresses manufacturing margins in an economy already running deflationary dynamics across most industrial sectors."
+            }
           },
           "Inflation (CPI)": {
             "value": "2%",
             "tier": "weekly",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Chinese consumer prices are up about 2% compared to a year ago, which looks normal but masks a more complicated picture. Factory prices are still falling, meaning businesses are struggling to make profits even as consumer prices have stabilised. This tension between rising consumer costs and falling producer prices is unusual and points to deep structural problems in the economy.",
+              "moderate": "China's CPI at 2% represents a headline stabilisation, but PPI remains deeply negative at around -2.6%, signalling ongoing deflation in the industrial economy; the disconnect reflects government subsidies supporting consumer spending while industrial overcapacity suppresses factory-gate prices; the Iran shock could partially reflate PPI via higher energy input costs, but simultaneously compresses corporate margins, making the net effect on the deflation cycle ambiguous.",
+              "expert": "China's inflation split between CPI (2%) and PPI (-2.6%) is a structural symptom of the overcapacity problem: subsidised industrial production sells below cost, keeping goods prices low for consumers but destroying corporate profitability and private investment incentives; the debt-deflation mechanism operates through the PPI channel, where falling factory prices raise real debt burdens for industrial borrowers and suppress capex; the Iran shock could partially close the PPI gap via energy input repricing, but this is cost-push rather than demand-pull and would not resolve the underlying overcapacity imbalance."
+            }
           },
           "Unemployment": {
             "value": "5.1%",
             "tier": "weekly",
-            "last_updated": "2026-03-07"
+            "last_updated": "2026-03-07",
+            "story": {
+              "beginner": "China's official unemployment rate is 5.1%, but youth unemployment is running above 16%, suggesting that recent graduates are struggling to find jobs in an economy where the private sector is contracting and the property sector has collapsed. Many young people are taking jobs well below their qualifications or giving up job-hunting entirely.",
+              "moderate": "China's 5.1% headline unemployment understates labour market stress: youth unemployment at 16.3% reflects a structural mismatch between the oversupply of university graduates and the contraction of white-collar private sector roles in technology, finance, and property; the headline figure also excludes migrant workers without urban residency registration, whose employment has been more exposed to manufacturing and construction slowdowns.",
+              "expert": "China's official unemployment statistics are methodologically narrow and politically sensitive: the urban survey unemployment rate excludes rural migrants, and periods of suspended youth unemployment reporting (as occurred in 2023) have undermined data credibility; the PMI employment sub-index, used by Goldman as a real-time proxy, has been at multi-decade lows outside of COVID periods, consistent with broad-based labour market weakness; the structural driver is the decline of private sector hiring capacity, which employed the majority of urban workers but has contracted under regulatory pressure, property sector stress, and deflationary margin compression."
+            }
           },
           "Budget Deficit": {
             "value": "-6.8% GDP",
             "tier": "structural",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "China's government is running a budget deficit of 6.8% of its economy, borrowing heavily to fund infrastructure, consumer subsidies, and support for struggling local governments. This is the largest deficit China has run in recent decades and reflects how much stimulus the government needs to inject to keep growth on target.",
+              "moderate": "China's official budget deficit of 6.8% of GDP is the headline figure, but the IMF estimates the augmented fiscal deficit including off-budget local government financing vehicles at 8-10% of GDP; the 2026 NPC maintained spending commitments while slightly trimming the consumer goods trade-in subsidy programme, signalling fiscal space preservation; the Iran shock creates additional pressure via potential energy support subsidies and slower growth reducing tax revenues.",
+              "expert": "China's fiscal architecture obscures the true deficit through off-budget quasi-fiscal mechanisms: local government financing vehicles (LGFVs) carry an estimated 50-60 trillion yuan of explicit debt, and ongoing bank-led debt rollovers at below-market rates represent implicit fiscal support that does not appear in headline deficit figures; the transmission from fiscal stimulus to real activity is impaired by the dominance of rollover operations (which support financial stability but do not generate new economic activity) over genuinely new productive investment, meaning the effective fiscal multiplier is materially below what headline deficit figures imply."
+            }
           },
           "Current Account": {
             "value": "+2.5% GDP",
             "tier": "structural",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "China sells much more to the rest of the world than it buys, generating a current account surplus of 2.5% of its economy. China's trade surplus hit a record .2 trillion in 2025 as manufacturers found new markets in Southeast Asia and Africa to replace lost sales to the US after tariffs were imposed. The Iran conflict threatens this by raising China's energy import bill.",
+              "moderate": "China's current account surplus of 2.5% of GDP is underpinned by a record goods trade surplus, driven by export market diversification away from the US toward Southeast Asia, Africa, and Latin America; the Iran shock threatens via higher oil import costs (China imports around 1.6 million barrels per day from Iran) and disruption to yuan-denominated trade routes through the Gulf, potentially compressing the surplus materially if the shock is sustained.",
+              "expert": "China's .2 trillion trade surplus is the largest in world history in absolute terms and has become structurally destabilising for the global trading system: the IMF's explicit warning about adverse spillovers reflects the scale of manufacturing overcapacity being absorbed by global export markets; the 15th Five-Year Plan's emphasis on new productive forces (EVs, AI, robotics) suggests export-led surpluses will persist or widen, risking retaliatory protectionism from the EU, India, and ASEAN that could prove more damaging than existing US tariffs."
+            }
           },
           "Policy Rate": {
             "value": "2.75%",
             "tier": "weekly",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "China's central bank has set its main interest rate at 2.75%, and has been cutting rates to encourage more borrowing and investment. The problem is that businesses and consumers are not borrowing much even at low rates because confidence is weak and prices are falling. When people expect prices to fall further, they delay purchases, making the economic slowdown worse.",
+              "moderate": "The PBOC's 2.75% policy rate reflects an easing cycle that has been undermined by deflation dynamics: nominal rate cuts are partially offset by falling prices, meaning real borrowing costs are not falling as fast as the PBOC intends; the confidence trap, where businesses defer investment expecting further price declines, limits the effectiveness of rate reductions and pushes the burden toward fiscal stimulus as the primary demand management tool.",
+              "expert": "China's monetary policy transmission is structurally impaired by three reinforcing constraints: deflationary expectations that raise real rates faster than nominal cuts reduce them; the bank lending channel's dysfunction as LGFV rollover operations crowd out productive credit allocation; and the capital account constraint that limits PBOC easing relative to Fed rates due to CNY depreciation and capital outflow risk; the Iran shock adds a further complication, as energy cost-push inflation in the CPI potentially limits the PBOC's justification for additional cuts even as the demand-side rationale for easing strengthens."
+            }
           }
         },
         "market": {
           "Stock Market YTD": {
             "value": "-4.5%",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Chinese stocks have fallen 4.5% this year, reflecting investor pessimism about the economy's prospects. While the government has tried to support the market with buying programmes, confidence in Chinese equities has been fragile since the property market crisis began. The Iran conflict and trade tensions with the US add further uncertainty.",
+              "moderate": "The CSI 300's 4.5% decline YTD reflects the weight of structural headwinds: persistent deflation, property sector distress, weak consumer confidence, and trade war uncertainty outweighing the government's market support operations (the National Team's ETF buying programmes and the PBOC's equity swap facility); foreign investor outflows have been a consistent pressure, with the Stock Connect seeing net selling in most months of 2025.",
+              "expert": "Chinese equity underperformance versus global peers is a multi-factor story: the deflationary PPI environment directly compresses corporate margins and earnings revisions; the risk premium for geopolitical factors (Taiwan, sanctions risk, regulatory intervention) has been repriced higher and remains sticky; and the property sector's balance sheet recession is flowing through to consumer discretionary spending in ways that hit domestically-oriented companies hardest; the government's market support operations have prevented disorderly declines but have not reversed the structural re-rating of Chinese equities to lower valuation multiples."
+            }
           },
           "Equity Vol": {
             "value": "-",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-08",
+            "story": {
+              "beginner": "Volatility data for Chinese stocks is not available in this dashboard. Chinese markets do tend to experience sharp swings driven by government policy announcements, regulatory changes, and shifts in sentiment about the economy. The combination of deflation, property sector stress, and trade tensions means uncertainty is elevated.",
+              "moderate": "Equity volatility data for China is not available in this dashboard, but realised volatility in Chinese equities has historically been higher than in developed markets due to the dominance of retail investors, the susceptibility of the market to policy-driven sentiment shifts, and the structural uncertainty around government intervention in both directions (support operations and regulatory crackdowns).",
+              "expert": "Chinese equity vol data is unavailable in this dashboard. Structurally, A-share implied vol is elevated versus global peers due to the concentration of retail participation (roughly 70% of trading volume), the non-linear impact of government policy announcements (which can move markets 5%+ in a single session), and the tail risk from geopolitical escalation or regulatory intervention events; the CSI 300 vol surface also reflects the China-specific risk that government support operations compress downside vol in ways that make put options expensive relative to fair value, distorting the vol surface."
+            }
           },
           "10Y Bond Yield": {
             "value": "2.40%",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "China's 10-year government bonds pay only 2.40% annual interest, which is very low. This reflects the deflationary environment in China, where prices are barely rising and the economy needs stimulus; low yields mean the government can borrow cheaply. By contrast, many other countries are paying much more to borrow for 10 years.",
+              "moderate": "China's 10Y yield at 2.40% is structurally low relative to its nominal GDP growth rate, reflecting deflationary dynamics and strong domestic institutional demand for safe assets; the PBOC has been a consistent buyer and reserve requirement reductions have channelled bank liquidity into government bonds; the yield is below the policy rate of 2.75%, an unusual inversion that reflects flight-to-quality within the domestic financial system as property and credit markets remain stressed.",
+              "expert": "China's 10Y yield at 2.40% sitting below the policy rate reflects a domestic liquidity trap dynamic: institutional investors (banks, insurers, pension funds) are concentrating in sovereign bonds as private credit demand weakens and property sector exposure is reduced; this is consistent with Japan's pre-Abenomics bond market dynamic; the PBOC has expressed concern about bond market concentration risk and has intervened to steepen the curve, but the structural demand for duration in a deflationary environment is difficult to suppress without genuine reflation; note that historical chart data for this metric is unavailable in the dashboard due to data source limitations."
+            }
           },
           "Yield Curve": {
             "value": "+35bps",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "China's yield curve is slightly upward sloping at +35 basis points, meaning the government pays a little more to borrow for 10 years than for 2 years. This is a relatively flat curve given China's deflationary environment, and the PBOC has been actively trying to prevent the curve from inverting, which would signal deeper economic stress.",
+              "moderate": "China's yield curve at +35bps is flatter than in other major economies, consistent with the deflationary environment where growth expectations are subdued and institutional investors concentrate in duration; the PBOC has intervened to prevent inversion, which would signal a Japan-style deflation trap to markets; any reflation from fiscal stimulus or energy price pass-through could steepen the curve, which would be a positive signal for the recovery narrative.",
+              "expert": "China's +35bp curve slope is a PBOC management target as much as a market signal: outright inversion would create negative optics for the government's growth narrative and potentially trigger capital outflows; the PBOC has used open market operations and guidance to maintain a modestly positive slope; the curve's flatness relative to nominal GDP growth is the deeper signal, consistent with a financial system where investors have lost confidence in productive investment opportunities and prefer duration in sovereign bonds despite compressed yields; note that historical chart data for this metric is unavailable in the dashboard due to FRED data source limitations."
+            }
           },
           "Corp Spread": {
             "value": "65bps",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Chinese companies pay about 65 basis points (0.65%) more than the government to borrow. This spread is relatively tight given China's economic challenges, partly because the government implicitly backstops many large companies and banks, giving investors confidence that major defaults will be avoided even in a downturn.",
+              "moderate": "China's investment-grade corporate spreads at 65bps reflect the implicit state guarantee that underpins much of the Chinese corporate bond market: most large borrowers are either state-owned enterprises with explicit government support or large private companies deemed systemically important; the tighter-than-expected spread given China's economic conditions reflects this moral hazard dynamic rather than genuine fundamental credit quality.",
+              "expert": "Chinese IG corporate spreads at 65bps are structurally compressed by implicit state guarantees but mask significant credit differentiation beneath the surface: SOE bonds trade at near-sovereign levels while genuine private sector credit (where data is more limited) prices materially wider; the property sector's credit crisis (Evergrande, Country Garden) demonstrated that implicit guarantees have limits, but the state has drawn a line under systemically important financial institutions and large SOEs, creating a two-tier credit market where the index-level spread understates the actual risk in the non-SOE private sector."
+            }
           },
           "Sov CDS": {
             "value": "72bps",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Insuring against China defaulting on its government debt costs 72 basis points per year, notably more than the US or Germany. This reflects investor concerns not about China being unable to pay its debts in yuan, but about geopolitical risk, the possibility of Western sanctions, and uncertainty about the direction of the Chinese economy and its government's policies.",
+              "moderate": "China's sovereign CDS at 72bps is elevated relative to its GDP per capita and foreign reserve position, reflecting a geopolitical risk premium (sanctions risk from Taiwan or trade war escalation) rather than conventional default risk; China's foreign exchange reserves of approximately .2 trillion and current account surplus make outright default on foreign currency obligations extremely unlikely in any conventional scenario.",
+              "expert": "China's 72bp sovereign CDS spread primarily captures geopolitical tail risk rather than fiscal or monetary sustainability concerns: the probability-weighted scenario of US sanctions analogous to those imposed on Russia post-2022 is the dominant driver, given that Russia's sovereign CDS widened from sub-100bp to effectively infinity in days following the Ukraine invasion; China's foreign reserve position and current account surplus make the conventional fiscal default scenario negligible, but the asset freeze and payment system exclusion risks that Russia experienced are the tail scenarios the CDS market is pricing at current levels."
+            }
           },
           "USD/CNY": {
             "value": "6.91",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "The US dollar currently buys about 6.91 Chinese yuan, with the yuan having strengthened noticeably this year. China's central bank controls the yuan's daily movement within a narrow range, so the exchange rate reflects official policy as much as market forces. A stronger yuan makes Chinese imports cheaper but can hurt Chinese exporters.",
+              "moderate": "USD/CNY at 6.91 reflects a notably stronger yuan than a year ago, consistent with the PBOC managing the currency to contain import-price inflation from the Iran energy shock and to signal confidence in the Chinese economy; the managed float means the daily fixing is a policy signal, and the sustained strengthening reflects a deliberate PBOC choice to use the exchange rate as an inflation management tool while maintaining competitiveness through productivity rather than currency depreciation.",
+              "expert": "USD/CNY at 6.91 sits at the stronger end of recent ranges and represents a PBOC policy choice with several simultaneous objectives: containing the import-price channel of the Iran energy shock (stronger CNY reduces the yuan cost of oil imports), managing the US-China trade tension optics (a weaker CNY would invite tariff escalation accusations of currency manipulation), and attracting portfolio inflows to support domestic asset prices; the tension between these objectives and the capital outflow pressure from domestic residents seeking higher foreign returns creates a complex FX management environment where the PBOC's foreign reserve deployment and the counter-cyclical factor are the primary tools."
+            }
           },
           "FX Vol": {
             "value": "6.5%",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "The Chinese yuan barely moves from day to day because the government tightly controls its exchange rate, keeping volatility at just 6.5%. This is much lower than most major currencies. The controlled exchange rate gives Chinese businesses more predictability, but it also means China is using up government reserves to maintain that stability.",
+              "moderate": "CNY FX vol at 6.5% is structurally low relative to free-floating peers, reflecting the PBOC's active management of the daily fixing and the narrow trading band; the low vol is intentional, providing exchange rate predictability for Chinese exporters and importers; however, it also signals that the PBOC is absorbing volatility that would otherwise be priced by the market, creating a potential for discontinuous adjustment if reserves or policy priorities shift.",
+              "expert": "CNY implied vol at 6.5% reflects the managed peg structure rather than genuine market risk appetite: the daily fixing mechanism and the 2% trading band suppress realised vol structurally, creating a compressed vol surface that misprices genuine tail risk; the relevant tail scenario is a PBOC decision to allow significant CNY depreciation (as occurred in August 2015) to offset tariff headwinds or stimulate export competitiveness, which would be a discontinuous vol event for all Asian currency pairs given CNY's role as the anchor for the regional currency complex; the CNH-CNY spread is the real-time indicator of capital flow pressure and devaluation expectations that the suppressed vol surface obscures."
+            }
           }
         }
       },
@@ -8579,74 +8719,144 @@
           "GDP Growth": {
             "value": "+6.5%",
             "tier": "structural",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "India is one of the fastest growing major economies in the world, expanding at 6.5% this year. Strong consumer spending, government infrastructure investment, and a booming services sector are the main drivers. The main risk is that higher oil prices from the Iran conflict raise costs and slow this momentum.",
+              "moderate": "India's 6.5% GDP growth for 2026 builds on real GDP growth of 8% in the first half of the financial year, supported by income tax cuts, GST rationalisation, and strong fixed investment; the Iran shock is a material adverse terms-of-trade shift, with the oil import cost increase equivalent to roughly 0.8-1.0% of GDP at sustained 0+ Brent, compressing real income growth and corporate margins.",
+              "expert": "India's growth resilience is structurally distinct from prior EM cycles: the combination of demand-side fiscal support (income tax cuts, GST rationalisation), supply-side infrastructure investment, and a services export engine insulated from trade war tariffs creates a multi-pillar growth base; the Iran shock tests this resilience primarily through the current account channel (terms-of-trade deterioration) and the monetary policy channel (RBI constrained from cutting), with the services export buffer partially insulating India from the full impact of an external demand shock."
+            }
           },
           "Inflation (CPI)": {
             "value": "4.2%",
             "tier": "weekly",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Indian prices are rising at 4.2%, within the Reserve Bank of India's target range. Oil prices jumping sharply because of the Iran conflict will push fuel and transport costs higher, and India imports most of its oil, so it cannot avoid this pain. The RBI is watching closely to decide whether to continue cutting rates or pause.",
+              "moderate": "India's CPI at 4.2% sits within the RBI's 2-6% tolerance band but the Iran shock introduces meaningful upside risk: oil is the single largest driver of India's import bill, and a 25-36% price increase adds 0.5pp or more to CPI via direct fuel price passthrough and logistics cost increases; the government's choice between absorbing the cost via excise duty cuts (fiscal hit) or passing it to consumers (CPI spike) will determine how much of the shock appears in the inflation data.",
+              "expert": "India's inflation transmission from oil shocks operates through three overlapping channels: the direct fuel price channel (controllable via excise duty, but at fiscal cost), the logistics and supply chain channel (affects all goods prices with a 4-8 week lag), and the second-round wage channel (historically muted in India given labour market informality, but relevant in organised manufacturing); the 4.2% starting point leaves the RBI with some buffer below the 6% upper bound, but the political sensitivity of CPI in India's electoral cycle means the government will resist a large passthrough and absorb more of the shock fiscally than the pure inflation-targeting framework would suggest."
+            }
           },
           "Unemployment": {
             "value": "4.7%",
             "tier": "weekly",
-            "last_updated": "2026-03-07"
+            "last_updated": "2026-03-07",
+            "story": {
+              "beginner": "India's official unemployment rate is 4.7%, but this number does not capture the full picture. Many millions of Indians work in informal jobs with low and irregular pay that are not counted as unemployment. Creating enough good-quality formal jobs for a young population growing by tens of millions every year is one of India's biggest long-term challenges.",
+              "moderate": "India's 4.7% unemployment headline masks significant underemployment in the informal sector, which employs roughly 90% of India's workforce; the Iran shock directly threatens employment in the basmati rice export supply chain, the oil-dependent logistics sector, and energy-intensive manufacturing; the structural challenge of generating sufficient formal sector employment for 8-10 million new labour market entrants annually is not addressed by cyclical growth and remains India's most pressing economic policy problem.",
+              "expert": "India's labour market data has significant quality limitations: the Periodic Labour Force Survey is annual with a lag, urban panel data covers a fraction of the workforce, and the informal sector remains largely unmeasured; the 4.7% headline is best interpreted as a floor on genuine unemployment rather than a complete picture; the manufacturing sector's failure to generate mass formal employment (unlike China's development path) has left India's labour market dependent on services and construction, both of which are sensitive to confidence shocks and financial conditions in ways that informal agriculture is not."
+            }
           },
           "Budget Deficit": {
             "value": "-7.2% GDP",
             "tier": "structural",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "India's government runs a budget deficit of 7.2% of its economy when combining central and state government spending, meaning it borrows significantly more than it collects in taxes. Some of this borrowing funds important infrastructure, but it also means India has less room to absorb unexpected shocks like higher oil prices without borrowing even more.",
+              "moderate": "India's combined central and state fiscal deficit of 7.2% of GDP reflects both structural spending pressures (subsidies, interest payments on a large debt stock) and the investment-heavy approach to boosting growth; the Iran oil shock creates upside fiscal risk via potential excise duty cuts to absorb fuel price increases, with a full reversal of recent duty increases costing roughly 0.3-0.5% of GDP annually, potentially delaying the consolidation path that rating agencies are monitoring for a potential sovereign upgrade.",
+              "expert": "India's fiscal architecture creates a complex interaction with the oil shock: the central government's fiscal deficit (targeting 4.5% of GDP) is partially offset by state government consolidation, but the political economy of fuel prices incentivises excise duty cuts that widen central finances; the rating agencies (Moody's Baa3, S&P BBB-) are watching the consolidation trajectory for an upgrade signal, and any oil-shock-driven fiscal deterioration that delays the consolidation path increases the cost of sovereign borrowing and complicates the RBI's monetary policy transmission via the sovereign-bank nexus."
+            }
           },
           "Current Account": {
             "value": "-1.2% GDP",
             "tier": "structural",
-            "last_updated": "2026-01-31"
+            "last_updated": "2026-01-31",
+            "story": {
+              "beginner": "India spends more abroad than it earns internationally, running a current account deficit of 1.2% of its economy. Oil is the main culprit, since India imports most of the energy it needs. When oil prices spike as they have with the Iran conflict, this deficit widens quickly, putting pressure on the rupee.",
+              "moderate": "India's current account deficit of 1.2% of GDP faces a material widening from the Iran shock: oil accounts for 25-28% of India's import bill, and a sustained 25-36% oil price increase adds 0-30bn annually to import costs; simultaneously, basmati rice export disruption from Middle East shipping lanes reduces a key export revenue line, creating a twin shock that could push the current account deficit above 2.5-3% of GDP and trigger RBI intervention to support the rupee.",
+              "expert": "India's current account vulnerability is a structural feature of its development stage: energy import dependence (oil, coal, LNG) creates a persistent trade deficit that services exports and remittances partially offset; the Iran shock attacks both the import side (higher oil costs) and the export side (rice export disruption, potential Gulf remittance reduction if Gulf economies contract), while simultaneously constraining the RBI's ability to cut rates to support domestic demand; a current account deficit above 3% of GDP historically triggers rupee depreciation episodes that compound the import cost shock and require FX reserve deployment."
+            }
           },
           "Policy Rate": {
             "value": "6%",
             "tier": "weekly",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "India's central bank has set interest rates at 6%, and had been cutting rates to support strong growth. The sharp rise in oil prices from the Iran conflict complicates this, since higher oil prices push up inflation, which normally calls for higher rather than lower rates. The RBI now faces a difficult choice between supporting growth and keeping inflation in check.",
+              "moderate": "The RBI's 6% policy rate reflects a cautious easing bias that the Iran shock may force into a pause: India's flexible inflation targeting framework technically allows looking through supply shocks, but the political sensitivity of fuel and food prices and the risk of rupee depreciation (which amplifies imported inflation) create practical constraints on the RBI's ability to cut into an energy price spike; the duration of the Hormuz disruption will be the key determining variable for the timing of the next rate move.",
+              "expert": "The RBI's monetary policy reaction function to the Iran shock involves three interacting constraints: the inflation targeting mandate (4% CPI target, 6% upper bound now under threat), the external balance constraint (current account deterioration and rupee pressure limit easing), and the growth support objective (slowing growth argues for cuts); historically the RBI has prioritised the external balance constraint in periods of commodity-driven current account stress, implying a pause or hold even if inflation is modestly above target, with the practical floor for rate action being rupee stabilisation rather than CPI dynamics alone."
+            }
           }
         },
         "market": {
           "Stock Market YTD": {
             "value": "+14.0%",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Indian stocks have risen 14% this year, reflecting the strong economic growth and investor confidence in India's long-term prospects. India has been one of the most popular destinations for global investors looking at emerging markets, drawn by the country's young population, growing middle class, and expanding technology sector.",
+              "moderate": "India's 14% equity return YTD reflects a structural re-rating driven by a combination of strong earnings growth, continued foreign institutional inflows as global investors overweight India relative to China, and optimism about the government's infrastructure and manufacturing push; the Iran shock introduces downside risk via its impact on oil-sensitive sectors (aviation, logistics, chemicals) and the RBI's constrained easing path, though India's services-heavy equity market is partially insulated from energy cost pressures.",
+              "expert": "India's equity outperformance reflects the global EM rotation away from China toward India as the default large EM allocation: foreign institutional investors have added India exposure consistently since 2022, and the domestic mutual fund industry (SIP inflows running at record levels) has become a stable marginal buyer that buffers global risk-off episodes; the sector composition of Indian equities (financials, IT, consumer, pharmaceuticals) means the index is less sensitive to energy prices than a manufacturing-heavy market, but rate-sensitive financials and cyclical consumer names are exposed to the Iran shock's impact on RBI policy and real income growth."
+            }
           },
           "Equity Vol": {
             "value": "~20",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Indian stock market volatility is running at around 20, elevated but not alarming. Investors are balancing excitement about India's long-term growth story against near-term concerns about oil prices, the global economic outlook, and the risk that India's strong growth could slow if energy costs stay high.",
+              "moderate": "Indian equity volatility at approximately 20 reflects the tension between strong structural tailwinds (domestic consumption, infrastructure investment, manufacturing investment cycle) and the Iran shock's near-term headwinds via oil prices, RBI policy constraints, and rupee pressure; the domestic SIP-driven investor base has become a stabilising force that prevents the sharp vol spikes seen in prior EM stress episodes, but cannot fully offset a sustained global risk-off move.",
+              "expert": "India's equity vol regime has structurally improved with the growth of domestic institutional investors (SIPs, domestic mutual funds) that provide counter-cyclical buying in risk-off episodes; the vol surface reflects a market pricing India's growth premium (higher valuation multiples than EM peers) against the oil shock downside; the key tail risk driving the vol skew is a rupee depreciation episode triggered by current account deterioration, which historically creates a negative feedback loop between FX weakness, imported inflation, and equity re-rating for the large foreign-owned portion of the market."
+            }
           },
           "10Y Bond Yield": {
             "value": "7.50%",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "India's 10-year government bonds pay 7.50% annual interest, significantly higher than in developed economies. This reflects India's higher inflation, larger fiscal deficit, and the risk premium investors demand for lending to an emerging market. Despite the high yield, Indian government bonds have become increasingly popular with global investors seeking better returns.",
+              "moderate": "India's 10Y yield at 7.50% reflects the combination of a higher inflation environment than developed markets and a large fiscal deficit that requires significant ongoing government bond issuance; the yield has been gradually declining as inflation moderated and the RBI cut rates, but the Iran shock introduces upside yield risk via potential CPI re-acceleration and reduced appetite for rate cuts, which would slow the yield compression that has been attracting foreign portfolio investors.",
+              "expert": "India's 10Y yield at 7.50% sits at a real yield of approximately 3.3% (versus 4.2% CPI), which is attractive relative to EM peers and has been drawing foreign portfolio investment under the JPMorgan GBI-EM and Bloomberg EM index inclusion; the Iran shock creates a complex yield dynamic: oil-driven CPI upside argues for higher yields, but the demand from foreign index investors (who must buy Indian bonds for index compliance) provides a structural bid that partially suppresses yield volatility; the RBI's active liquidity management through the LAF corridor means domestic yield dynamics are more managed than in a free-float sovereign bond market."
+            }
           },
           "Yield Curve": {
             "value": "+35bps",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "India's yield curve slopes upward at +35 basis points, meaning investors demand slightly more to lend to the government for 10 years than for 2 years. This is a normal, healthy shape suggesting investors expect moderate growth and inflation ahead. The curve has been flattening slightly as the RBI cut rates, bringing short-term yields down.",
+              "moderate": "India's yield curve at +35bps reflects the RBI's easing cycle bringing down the front end while the long end remains anchored by fiscal supply and inflation expectations; the curve shape is likely to change with the Iran shock, as the front end reprices higher (RBI pause) while the long end faces supply pressure from any widening of the fiscal deficit; a bear flattening or mild inversion would signal that markets are pricing a growth slowdown driven by the energy shock.",
+              "expert": "India's yield curve dynamics are heavily influenced by the RBI's liquidity management operations and the government's borrowing calendar; the +35bp slope is relatively flat given the stage of the easing cycle, suggesting the market has already priced in a significant portion of expected rate cuts at the long end; the Iran shock's impact on the curve will be transmitted primarily through the RBI's reaction function signal: a hold or hawkish pause steepens the curve as short rates stay elevated, while a cut-through signal despite energy inflation would flatten it further, with the long end anchored by index-inclusion demand."
+            }
           },
           "Corp Spread": {
             "value": "90bps",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Indian companies pay about 90 basis points (0.90%) more than the government to borrow, which is a moderate premium reflecting India's developing financial market and the generally higher costs of doing business in emerging markets. This spread has been narrowing as India's economy has grown and its financial system has deepened.",
+              "moderate": "India's corporate spreads at 90bps reflect both the genuine credit premium for Indian corporates and the liquidity premium for a less developed corporate bond market than in developed economies; the Iran shock introduces upside spread pressure for energy-intensive industries (petrochemicals, aviation, logistics) while leaving the large IT and financial sector bond market relatively unaffected; the spread level is consistent with a well-functioning credit market that has benefited from RBI easing and strong corporate earnings growth.",
+              "expert": "India's corporate bond market remains shallower than its equity market, with the spread of 90bps partially reflecting a liquidity premium rather than pure credit risk; the dominant issuers are large-cap financials, infrastructure companies, and PSU bonds that trade close to sovereign levels with implicit government support; the true credit spread for private sector mid-cap issuers is materially wider and less liquid; the Iran shock's most acute corporate credit impact will be on oil marketing companies (OMCs), whose spread dynamics are directly tied to the government's fuel pricing policy and subsidy regime rather than standalone credit fundamentals."
+            }
           },
           "Sov CDS": {
             "value": "115bps",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Insuring against India defaulting on its government debt costs 115 basis points per year, more than China or most developed economies. This reflects India's large fiscal deficit, its emerging market status, and the general risk premium investors apply to developing country debt. India has never defaulted on its external obligations and its reserves are substantial, so this is precautionary pricing rather than a genuine expectation of default.",
+              "moderate": "India's sovereign CDS at 115bps reflects the combined effect of its fiscal position (7.2% combined deficit), its current account vulnerability to oil prices, and the EM risk premium; the CDS is sensitive to oil price moves because a sustained energy shock widens both the current account and fiscal deficit simultaneously, increasing India's external financing requirement; India's 00bn+ FX reserve buffer provides significant protection against a sudden stop scenario, but the CDS reflects tail risk pricing rather than a base case.",
+              "expert": "India's 115bp CDS spread is the primary market signal for geopolitical and macro tail risk rather than near-term default probability: India's debt is predominantly rupee-denominated (limiting the hard currency default risk), FX reserves provide over 11 months of import cover, and the current account deficit is modest enough to finance through normal capital flows; the CDS primarily prices the scenario where a sustained terms-of-trade deterioration (sustained high oil) and capital flow reversal combine to create a balance of payments crisis, which the reserve buffer and IMF standing precautionary arrangements largely mitigate; the spread's sensitivity to oil prices makes it a useful real-time indicator of the Iran shock's perceived impact on India's external vulnerability."
+            }
           },
           "USD/INR": {
             "value": "92.25",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "One US dollar currently buys about 92 Indian rupees. The rupee has been gradually weakening against the dollar over many years, mainly because India has higher inflation than the US, which erodes the rupee's purchasing power over time. The Reserve Bank of India actively manages this decline, using its large foreign currency reserves to smooth out sharp moves.",
+              "moderate": "USD/INR at 92.25 reflects the rupee's gradual managed depreciation against the dollar, consistent with India's approximately 3-4% annual inflation differential; the RBI's active intervention smooths volatility and prevents disorderly moves, but cannot resist the structural depreciation trend; the Iran shock creates near-term rupee pressure via current account deterioration (higher oil import costs, lower rice export earnings) that the RBI will manage through FX reserve deployment, complicating monetary easing.",
+              "expert": "The rupee's trajectory at 92.25 reflects the RBI's managed depreciation framework, where the exchange rate depreciates at roughly the inflation differential rate to maintain real effective exchange rate stability; the Iran shock disrupts this framework by creating a sudden current account deterioration that is larger than what the steady-state depreciation path accommodates, requiring either accelerated nominal depreciation (importing inflation), FX reserve depletion to defend the rate, or a combination; India's 00bn+ reserve buffer provides substantial capacity to manage this transition, but the RBI's intervention strategy will be closely watched as a signal of tolerance for nominal exchange rate weakness."
+            }
           },
           "FX Vol": {
             "value": "9.0%",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "The rupee's volatility against the dollar is running at 9%, which is moderate. The Reserve Bank of India actively smooths out big currency swings by buying and selling dollars, which keeps volatility lower than it would be in a purely market-driven system. Despite this management, oil price spikes tend to weaken the rupee noticeably because they worsen India's trade balance.",
+              "moderate": "INR FX vol at 9% reflects the RBI's active management dampening volatility relative to free-floating EM peers; the Iran shock introduces upside vol risk via the current account channel, as oil-driven deterioration creates depreciation pressure that the RBI can smooth but not fully suppress; the options market in USD/INR is relatively liquid and increasingly used by Indian corporates to hedge commodity and FX exposure, meaning the vol surface provides genuine price discovery about perceived rupee vulnerability.",
+              "expert": "INR implied vol at 9% sits in the lower half of the historical range for India, reflecting the RBI's intervention dampening the vol surface; the RBI's forward book (approximately 0bn net short) and spot intervention create a managed vol environment that makes INR options appear cheaper than true risk warrants; the Iran shock is the type of event that can force discontinuous RBI intervention as the current account deterioration is rapid and concentrated, potentially creating a short-term vol spike followed by re-compression once the intervention signal is clear; the NDF market (offshore non-deliverable forwards) is the primary venue for speculative positioning and tends to lead the onshore market during stress episodes."
+            }
           }
         }
       },
@@ -9624,74 +9834,144 @@
           "GDP Growth": {
             "value": "+1.6%",
             "tier": "structural",
-            "last_updated": "2026-01-31"
+            "last_updated": "2026-01-31",
+            "story": {
+              "beginner": "South Africa's economy is growing at 1.6%, a modest but meaningful improvement after years of near-stagnation caused by chronic electricity blackouts. Power supplies are now far more reliable, removing a major drag on businesses. The gold price surge from the Iran conflict is a further boost, though high unemployment and weak consumer spending keep the recovery fragile.",
+              "moderate": "South Africa's 1.6% growth reflects two converging positives: the structural improvement from the end of load-shedding (removing a constraint that cost the economy an estimated 2% of GDP annually) and the commodity windfall from gold above ,100 per ounce; the Iran shock is ambiguous for South Africa, as higher gold and platinum prices improve mining revenues while higher fuel costs and potential rand weakness add inflationary headwinds in an economy still constrained by Transnet rail and port dysfunction.",
+              "expert": "South Africa's 1.6% growth path is a supply-side story dependent on infrastructure normalisation: the end of load-shedding is a genuine positive supply shock, but the Transnet rail and port crisis continues to cap the volume of mineral exports that can physically reach markets, limiting the revenue uplift from higher gold and PGM prices; the Iran shock's net impact on ZAF is positive on terms-of-trade (gold, platinum, palladium all benefit) but negative on fiscal and monetary flexibility (higher fuel import costs, rand volatility constraining SARB easing), making the growth forecast sensitive to the duration of the commodity price spike and the pace of Transnet operational recovery."
+            }
           },
           "Inflation (CPI)": {
             "value": "3.5%",
             "tier": "weekly",
-            "last_updated": "2026-03-07"
+            "last_updated": "2026-03-07",
+            "story": {
+              "beginner": "South African inflation is running at 3.5%, comfortably within the central bank's 3-6% target range. This relatively low level has allowed the Reserve Bank to cut interest rates. The Iran oil shock threatens to push it higher through fuel costs, and a weakening rand makes imports more expensive generally, since South Africa imports a wide range of goods.",
+              "moderate": "South Africa's CPI at 3.5% sits near the lower end of the SARB's 3-6% target band, giving the central bank room to cut rates; the Iran shock introduces dual upside risk via the fuel price channel (petrol and diesel prices are partially regulated and will rise with crude) and the rand depreciation channel (risk-off episodes typically weaken the ZAR by 5-10%, directly passing through to imported goods prices); the combined effect could push CPI toward 5-5.5%, narrowing the room for further SARB easing.",
+              "expert": "South Africa's inflation dynamics are particularly sensitive to the exchange rate channel: a 10% ZAR depreciation adds approximately 1.0-1.5pp to CPI via imported goods and energy price passthrough, meaning the rand's trajectory in a risk-off episode is as important as the direct oil price effect; at 3.5% starting CPI, the SARB has meaningful buffer below the 6% upper bound, but the non-linear nature of rand depreciation in EM stress episodes means the shock could exceed the direct oil price impact if global risk-off accelerates ZAR selling beyond the carry-driven base case."
+            }
           },
           "Unemployment": {
             "value": "32.5%",
             "tier": "weekly",
-            "last_updated": "2026-03-07"
+            "last_updated": "2026-03-07",
+            "story": {
+              "beginner": "South Africa has one of the highest unemployment rates in the world at 32.5%, meaning almost one in three people who want a job cannot find one. By the broader measure that includes people who have given up looking, the rate is above 40%. This is one of South Africa's most serious and persistent challenges, rooted in decades of structural economic problems that no commodity price cycle can fix.",
+              "moderate": "South Africa's 32.5% unemployment rate (narrow definition, 42%+ expanded) is among the highest of any major economy and reflects structural roots that cyclical growth cannot address: spatial apartheid legacy creating long commutes, dysfunctional basic education producing skill mismatches, and bargaining council wage floors that price low-skill workers out of formal employment; the gold price windfall improves formal mining sector employment at the margin but has no meaningful impact on the broad labour market.",
+              "expert": "South Africa's unemployment is a structural crisis with multiple reinforcing causes: the spatial legacy of apartheid concentrates labour far from economic centres, basic education outcomes rank near the bottom globally by PIRLS and TIMSS measures, and the dual labour market (capital-intensive formal sector and large informal sector) limits upward mobility; the Iran commodity windfall generates fiscal revenue that the government could theoretically deploy on skills development, but the political economy of South Africa's budget (dominated by the social wage, public sector wages, and state-owned enterprise bailouts) leaves limited room for structural human capital investment; note that historical chart data for unemployment is unavailable in the dashboard due to data source limitations."
+            }
           },
           "Budget Deficit": {
             "value": "-4.8% GDP",
             "tier": "structural",
-            "last_updated": "2026-01-31"
+            "last_updated": "2026-01-31",
+            "story": {
+              "beginner": "South Africa's government is spending 4.8% more of its economy than it collects in taxes, building up debt that now approaches 75% of GDP. A large share of the budget goes to paying interest on this debt rather than on services or investment. The gold price surge provides some relief through higher mining taxes, but structural spending pressures persist.",
+              "moderate": "South Africa's budget deficit of 4.8% of GDP reflects structural spending pressures that a commodity windfall only partially addresses: debt interest payments consume nearly 20% of expenditure, and Eskom and Transnet recapitalisation remain ongoing fiscal drains; the gold price surge above ,100 per ounce generates incremental royalty and corporate tax revenue on a formula basis, providing a temporary positive impulse, but the debt-to-GDP trajectory toward 75% is the primary concern for rating agencies.",
+              "expert": "South Africa's fiscal position is rated subinvestment grade by Moody's (Ba2) and at the lowest investment-grade rung by S&P (BB+) and Fitch, with the rating trajectory dependent on sustained primary surplus delivery; the Iran shock's gold windfall provides a temporary positive fiscal impulse (mining royalties are revenue-formula-based and respond automatically to price increases), but structural spending pressures mean this windfall is absorbed rather than used for deficit reduction; any deterioration from fuel subsidy expansion or ZAR-driven import cost increases that boost social spending would worsen the fiscal path that rating agencies are monitoring."
+            }
           },
           "Current Account": {
             "value": "-1.4% GDP",
             "tier": "structural",
-            "last_updated": "2026-01-31"
+            "last_updated": "2026-01-31",
+            "story": {
+              "beginner": "South Africa spends slightly more internationally than it earns, running a small current account deficit of 1.4% of its economy. Gold and platinum exports are major earners, and with gold prices at record highs, this deficit should narrow. The offsetting risk is higher fuel import costs and the physical constraints on getting mining exports to port due to Transnet's rail problems.",
+              "moderate": "South Africa's current account deficit of 1.4% of GDP is set to narrow mechanically from the gold price surge, with higher rand-denominated export revenues flowing directly into the trade balance; the partial offset comes from higher fuel import costs and the volume cap on mineral exports from Transnet rail disruption, which limits how much of the price windfall translates to additional export revenue; the net effect is likely a modest current account improvement that reduces ZAR depreciation pressure relative to a purely oil-importing EM.",
+              "expert": "South Africa's current account response to the Iran shock is structurally differentiated from other EM energy importers: the commodity export windfall (gold, PGMs) creates a natural hedge that partially offsets the fuel import cost increase, making ZAF's external position more resilient than countries like India or Turkey; the binding constraint is Transnet's operational dysfunction, which caps the volume response to higher prices and means the current account improvement is driven entirely by price rather than volume; the capital account remains the dominant BOP driver regardless, as ZAR direction is determined more by global EM risk appetite and carry attractiveness than by the underlying trade flows."
+            }
           },
           "Policy Rate": {
             "value": "6.25%",
             "tier": "weekly",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "South Africa's central bank has set interest rates at 6.25%, and had been gradually cutting them as inflation fell toward target. The Iran oil shock complicates this picture: higher oil prices push up inflation, while a potentially weaker rand makes imports more expensive. The Reserve Bank may pause its rate cuts until the picture becomes clearer.",
+              "moderate": "The SARB's 6.25% repo rate reflects a cautious easing cycle that the Iran shock may pause: the dual inflationary pressure from fuel price increases and rand depreciation risk could push CPI from its current 3.5% toward the upper end of the 3-6% target band; historically the SARB pauses easing when ZAR weakness creates imported inflation risk, and the Iran-driven global risk-off environment creates exactly that scenario.",
+              "expert": "The SARB's reaction function under the Iran shock reflects the asymmetric monetary policy constraints of a high-beta EM currency: even if the domestic inflation impulse from oil prices is manageable, the rand's volatility in risk-off episodes effectively tightens financial conditions independently of the repo rate, and any SARB cut during a ZAR depreciation episode risks being read as a loss of inflation credibility; the SARB therefore tends to hold rates and allow exchange rate adjustment to do the monetary tightening work, a passive channel that contains inflation at the cost of slower domestic demand recovery."
+            }
           }
         },
         "market": {
           "Stock Market YTD": {
             "value": "+3.5%",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "The South African stock market has gained 3.5% this year, a modest positive performance. The main driver has been soaring gold and platinum prices boosting mining company profits. South African miners like Anglo American, Gold Fields, and Sibanye-Stillwater are among the biggest index weights, so when precious metal prices surge, the market tends to follow.",
+              "moderate": "The JSE All Share's 3.5% YTD gain is almost entirely attributable to the mining sector windfall from gold above ,100 per ounce and elevated platinum group metal prices; the broader South African economy faces headwinds from high interest rates, weak consumer spending, and Transnet infrastructure constraints that weigh on industrial and consumer stocks; the index is effectively a leveraged play on global commodity prices and EM risk appetite, with the mining sector's outperformance masking weakness in domestic-facing sectors.",
+              "expert": "South Africa's equity market is structurally bifurcated between globally-priced commodity and resource companies (approximately 40% of JSE market cap) and domestically-exposed financials, retailers, and industrials; the 3.5% YTD return reflects the commodity sector's outperformance driven by gold and PGM price surges, with the domestic economy sectors underperforming due to high real rates, weak consumer confidence, and infrastructure constraints; the index-level return overstates the macro health signal, as the mining windfall does not translate to employment or broad income growth at the scale that would lift domestic spending."
+            }
           },
           "Equity Vol": {
             "value": "~22",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "South African stock market volatility is running at about 22, slightly elevated compared to developed markets. The JSE tends to be more volatile than European or US markets because South Africa's economy is smaller, more dependent on global commodity prices and foreign capital flows, and exposed to domestic political and infrastructure risks.",
+              "moderate": "South African equity volatility at approximately 22 reflects the elevated risk premium for a high-beta EM market exposed to commodity price swings, ZAR volatility, and domestic political risk; the SARB's constrained easing path and the Transnet infrastructure overhang add domestic idiosyncratic vol on top of the global EM risk-off premium that the Iran conflict has introduced; the mining sector's large index weight means gold and PGM price swings directly create index-level vol.",
+              "expert": "JSE implied vol at approximately 22 reflects the compounding of global EM risk premium (elevated by Iran geopolitical uncertainty), South Africa-specific political risk (GNU coalition stability, SOE reform pace), and commodity price vol (gold, platinum, palladium all repricing rapidly); the ZAR correlation with JSE performance is high given the large foreign ownership of South African equities, meaning that risk-off ZAR depreciation and JSE selling tend to be simultaneous and mutually reinforcing, creating a vol amplification mechanism absent in less foreign-owned markets."
+            }
           },
           "10Y Bond Yield": {
             "value": "10.20%",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "South Africa's 10-year government bonds pay 10.20% annual interest, one of the highest rates among major emerging markets. This reflects South Africa's large fiscal deficit, high debt levels, subinvestment-grade credit rating, and the general risk premium investors demand. Despite this high cost, South African bonds are widely traded and attract significant foreign interest because the yield is genuinely attractive.",
+              "moderate": "South Africa's 10Y yield at 10.20% reflects a large fiscal risk premium layered on top of the policy rate and inflation expectations: with a 6.25% repo rate, the 10Y yield implies a term premium of nearly 400bp, reflecting debt sustainability concerns and the subinvestment-grade rating; the yield has been gradually declining as load-shedding ended and fiscal consolidation made modest progress, but the Iran shock introduces upside risk via the CPI and fiscal deficit channels.",
+              "expert": "South Africa's 10Y yield at 10.20% represents a real yield of approximately 6.7% (versus 3.5% CPI), one of the highest real yields among liquid EM sovereigns; this attracts foreign carry traders and portfolio investors seeking real return, making South African bonds one of the most widely held EM sovereign bond positions globally; the high real yield also reflects genuine credit risk: Moody's Ba2 subinvestment grade reflects the debt trajectory and structural fiscal pressures, and the yield would need to compress materially for South Africa to regain investment grade status with all three agencies."
+            }
           },
           "Yield Curve": {
             "value": "+100bps",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "South Africa's yield curve slopes upward at +100 basis points, meaning investors demand meaningfully more to lend to the government for 10 years than for 2 years. This is a steeper curve than most developed economies, reflecting South Africa's higher inflation, fiscal risks, and the uncertainty investors attach to the long-term economic outlook.",
+              "moderate": "South Africa's steep +100bp yield curve reflects a large term premium for South African sovereign risk at longer maturities: the long end prices in fiscal deterioration risk, rand depreciation risk over a 10-year horizon, and the sovereign rating trajectory; the SARB's easing cycle has brought down the front end, steepening the curve; any Iran-driven CPI upside or fiscal deterioration (fuel subsidies) would push the long end higher and potentially flatten the curve if the SARB pauses cuts.",
+              "expert": "South Africa's +100bp curve steepness is significantly driven by the fiscal risk and sovereign rating premium at the long end rather than just the rate expectations component; the term structure of South African sovereign risk is asymmetric: investors demand disproportionate compensation for duration given the probability of fiscal slippage, rand depreciation, or rating downgrades over a 10-year horizon; the curve shape is also influenced by domestic institutional demand (pension funds and insurers are natural duration buyers) that partially suppresses long-end yields below what a pure credit risk model would imply."
+            }
           },
           "Corp Spread": {
             "value": "200bps",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "South African companies pay about 200 basis points (2%) more than the government to borrow, a wide spread reflecting both the challenging domestic economic environment and the general risk premium investors apply to South African assets. This high cost of borrowing discourages corporate investment and makes it harder for South African businesses to compete internationally.",
+              "moderate": "South Africa's corporate spreads of 200bps are wide relative to investment-grade EM peers, reflecting the domestic economic constraints (high real rates, weak demand, infrastructure disruption) and the sovereign risk premium that flows through to corporate credit; the main issuers in the South African corporate bond market are large banks and resource companies, with the mining sector benefiting from the commodity windfall reducing credit risk while the domestic consumer and industrial sectors face ongoing stress.",
+              "expert": "South Africa's 200bp corporate spread reflects the direct pass-through of sovereign credit risk to the corporate sector: South Africa's subinvestment-grade rating creates a floor for corporate spreads that no individual corporate credit quality can fully overcome, as the macroeconomic and FX risks that the sovereign faces are shared by all ZAR-denominated corporate borrowers; the spread is also inflated by market illiquidity, as the South African corporate bond market is shallow relative to the equity market, adding a liquidity premium to the genuine credit risk component."
+            }
           },
           "Sov CDS": {
             "value": "225bps",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Insuring against South Africa defaulting on its debt costs 225 basis points per year, one of the higher rates among countries in this dashboard. This reflects South Africa's large deficit, high debt, subinvestment-grade credit rating from Moody's, and the structural economic challenges the country faces. It is expensive but not in the range that signals imminent crisis.",
+              "moderate": "South Africa's sovereign CDS at 225bps is consistent with its subinvestment-grade Moody's rating (Ba2) and reflects genuine fiscal sustainability concerns rather than just geopolitical risk premium; the CDS has been gradually tightening as the GNU coalition reduced political risk and load-shedding ended, but the Iran shock introduces widening risk via the fuel subsidy fiscal impact and potential rand depreciation episode that markets associate with EM stress.",
+              "expert": "South Africa's 225bp CDS spread represents the intersection of fiscal risk, political risk, and the commodity cycle: the spread has been driven lower by the GNU coalition formation (reducing policy paralysis risk), the Eskom stabilisation (reducing contingent liability risk), and the commodity windfall (improving fiscal revenues); the Iran shock creates opposing forces of commodity revenue improvement (gold, PGMs positive) and energy import cost and ZAR depreciation risk (negative), making the net CDS direction ambiguous and sensitive to the duration and severity of the conflict."
+            }
           },
           "USD/ZAR": {
             "value": "16.86",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "One US dollar currently buys about 16.86 South African rand. The rand is one of the most volatile major emerging market currencies, frequently swinging sharply when global investors become nervous and pull money out of riskier assets. When commodity prices are high, as they are now with gold at record levels, the rand tends to be better supported.",
+              "moderate": "USD/ZAR at 16.86 reflects a rand that has been supported by the gold price surge and relative GNU political stability, partially offsetting the global risk-off pressure from the Iran conflict; the rand is a classic high-beta EM currency that tends to depreciate 5-10% in major risk-off episodes as carry trade positions are unwound; the current gold price support provides an unusual buffer that limits the extent of any Iran-driven rand weakness compared to a scenario without the commodity windfall.",
+              "expert": "USD/ZAR at 16.86 is at a level where the competing forces of commodity support (gold at ,100/oz generates strong ZAR demand through export earnings and mining company dividend repatriation) and risk-off pressure (Iran conflict driving EM carry unwind) are roughly balanced; the ZAR's correlation with VIX above 0.6 means any escalation in global risk-off sentiment creates depreciation pressure that the gold tailwind cannot fully offset; the SARB's limited FX intervention capacity (5bn reserves, approximately 5 months import cover) means ZAR depreciation is the primary adjustment mechanism for external shocks rather than reserve depletion."
+            }
           },
           "FX Vol": {
             "value": "18.0%",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "The rand has been swinging around more than most currencies, with volatility at 18%. South Africa's currency is known for its sharp movements, since it is heavily influenced by global investor sentiment, commodity prices, and domestic political developments. When investors globally get nervous, they tend to sell rand first and ask questions later.",
+              "moderate": "ZAR FX vol at 18% is structurally elevated relative to most EM peers, reflecting the rand's high-beta role in global risk sentiment: it is one of the most liquid African currencies and is used by global macro funds as a proxy for EM risk, meaning it absorbs selling pressure disproportionate to South Africa's economic size during stress episodes; the Iran conflict's risk-off dimension creates vol pressure, partially offset by the commodity price support from gold and PGMs.",
+              "expert": "ZAR implied vol at 18% reflects the structural characteristics of a currency that functions as a global EM risk proxy: South Africa's liquid financial markets, open capital account, and relatively deep currency derivatives market make the ZAR the instrument of choice for expressing EM risk views, attracting speculative positioning and carry trades that amplify vol in both directions; the vol surface in ZAR options shows a significant risk reversal skew toward ZAR weakness, reflecting both the structural current account deficit and the frequency of sudden stop episodes in South African financial history; the 18% level is elevated but not at crisis levels, consistent with an uncertain but not distressed macro environment."
+            }
           }
         }
       },
@@ -10257,74 +10537,144 @@
           "GDP Growth": {
             "value": "+1.7%",
             "tier": "structural",
-            "last_updated": "2026-01-31"
+            "last_updated": "2026-01-31",
+            "story": {
+              "beginner": "Brazil's economy is growing at 1.7%, supported by booming agricultural exports and rising oil revenues from Petrobras. With oil prices surging because of the Iran conflict, Brazil is one of the few large economies that stands to benefit rather than suffer. High domestic interest rates remain the main drag on growth.",
+              "moderate": "Brazil's 1.7% GDP growth reflects a commodity export engine (oil, soybeans, corn, beef) that is directly benefiting from the Iran-driven price surge, partially offset by the world's highest real interest rates suppressing domestic investment and consumption; Petrobras pre-salt production at roughly 3.5 million barrels per day is highly profitable at 0+ oil, generating windfall fiscal contributions, but the Lula government's spending trajectory has kept the BCB in a cautious holding pattern.",
+              "expert": "Brazil's growth is structurally caught between a commodity windfall that improves the external accounts and a domestic monetary-fiscal tension that prevents the windfall from translating to lower rates or stronger domestic demand: the BCB cannot ease aggressively because BRL depreciation risk would import inflation, and the Lula government's reluctance to commit to structural fiscal consolidation keeps the real risk premium elevated; the net growth effect of the Iran shock is marginally positive (terms-of-trade improvement outweighs tighter financial conditions) but the distribution of benefits is concentrated in the commodity and energy sectors rather than spreading to the broader economy."
+            }
           },
           "Inflation (CPI)": {
             "value": "4.2%",
             "tier": "weekly",
-            "last_updated": "2026-03-07"
+            "last_updated": "2026-03-07",
+            "story": {
+              "beginner": "Brazilian inflation is running at 4.2%, above the central bank's 3% target. The weak real makes imports more expensive, which flows through to goods prices across the economy. Higher oil prices from the Iran conflict create additional upside risk, though Petrobras's domestic fuel pricing policy means the government has some control over how quickly pump prices rise.",
+              "moderate": "Brazil's CPI at 4.2% sits above the BCB's 3% target, driven by BRL-related import cost passthrough and food price pressures; the Iran shock creates dual inflation risk via higher USD-denominated oil prices and potential BRL depreciation in a risk-off episode; the government's ability to influence Petrobras's domestic fuel pricing formula offers a partial buffer, but using it widens the fiscal deficit and reduces Petrobras dividend income.",
+              "expert": "Brazil's inflation dynamics are governed by a BRL passthrough coefficient of approximately 0.2-0.3pp of CPI per 10% depreciation, meaning the Iran shock's impact on Brazilian inflation is as much a currency story as an energy story; any risk-off episode that weakens BRL amplifies the direct oil price impact through this channel; the Petrobras pricing policy creates a political economy complication where the government faces a choice between fiscal credibility (let prices rise) and social protection (absorb the cost), with both options having adverse second-order macroeconomic consequences."
+            }
           },
           "Unemployment": {
             "value": "5.7%",
             "tier": "weekly",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Brazil's unemployment rate has fallen to 5.7%, near its lowest level in years. Agriculture, construction, and services have been hiring, and the oil sector provides well-paying jobs in Rio de Janeiro and Espirito Santo states. Many workers remain in the informal economy without social protections, but the headline number shows a genuine improvement.",
+              "moderate": "Brazil's unemployment at 5.7% reflects a cyclical low driven by agricultural employment (record harvests), government-linked construction, and oil sector expansion; the Iran oil shock supports Petrobras employment and its supply chain, partially offsetting any weakness from BRL volatility affecting manufacturing competitiveness; structural informality (roughly 40% of the workforce) means the official rate understates underemployment and limits the wage-growth signal for inflation purposes.",
+              "expert": "Brazil's labour market has reached a cyclical low, but the structural informality problem limits the macroeconomic significance of the headline rate: informal workers are excluded from unemployment statistics and absorb cyclical adjustment through hours and income reductions rather than job losses, creating a buffer that makes the official rate less meaningful as a signal of economic slack; the oil windfall's employment effects are concentrated in high-skill formal sector jobs (Petrobras, engineering, logistics) with a weak aggregate demand multiplier for the broader informal-dominated economy."
+            }
           },
           "Budget Deficit": {
             "value": "-0.8% GDP",
             "tier": "structural",
-            "last_updated": "2026-01-31"
+            "last_updated": "2026-01-31",
+            "story": {
+              "beginner": "Brazil's budget deficit is 0.8% of its economy on the headline measure, but the true fiscal picture including interest payments is much larger. The government under President Lula has been increasing social spending, which has made investors nervous about Brazil's long-term fiscal trajectory and contributed to keeping interest rates high. Higher Petrobras revenues from oil prices provide some temporary relief.",
+              "moderate": "Brazil's headline deficit of 0.8% of GDP understates the fiscal challenge: on a consolidated basis including interest costs, the total fiscal deficit is near 7-8% of GDP, reflecting the enormous debt interest burden at 13%+ borrowing rates; the Petrobras dividend windfall at 0+ oil provides incremental fiscal revenue of roughly 0.3-0.5% of GDP, a temporary positive that does not alter the structural spending trajectory the market is monitoring.",
+              "expert": "Brazil's fiscal framework is structurally challenged by constitutional spending mandates that limit discretionary consolidation, a high nominal interest rate that compounds debt servicing costs rapidly, and a political economy under Lula that has prioritised social spending over primary surplus targets; the Petrobras windfall is real but one-cycle in nature, and markets are pricing the probability of pre-election fiscal slippage (2026 presidential cycle) in the BRL risk premium and sovereign CDS; the BCB's independence, enshrined in law in 2021, is the primary institutional anchor holding the fiscal-monetary interaction in check."
+            }
           },
           "Current Account": {
             "value": "-2.6% GDP",
             "tier": "structural",
-            "last_updated": "2026-01-31"
+            "last_updated": "2026-01-31",
+            "story": {
+              "beginner": "Brazil spends more internationally than it earns, running a current account deficit of 2.6% of its economy. Oil price surges are actually good news for this gap, since Brazil is a large and growing oil exporter. Higher Petrobras revenues from 0+ oil directly improve the trade balance, partially offsetting the deficit from services imports and profit remittances.",
+              "moderate": "Brazil's current account deficit of 2.6% of GDP is set to narrow from the Iran-driven oil price surge: Petrobras pre-salt production at roughly 3.5 million barrels per day generates significantly more export revenue at 0+ versus 0 oil, improving the goods trade balance; agricultural export prices (soybeans, corn, beef) are also rising on global food inflation, providing a second commodity tailwind; the structural services deficit (profit remittances, travel, financial services) partially offsets these gains.",
+              "expert": "Brazil's current account trajectory under the Iran shock is one of the clearest positive terms-of-trade stories in the EM universe: pre-salt oil breakeven costs of 5-40/barrel mean each dollar above that level flows almost entirely to economic rent for Petrobras and the Brazilian state; at 0+ oil, the incremental current account improvement relative to a 0 baseline is approximately 0-25bn annually (roughly 1% of GDP), potentially moving the current account close to balance from the current 2.6% deficit; the key risk is that Lula government pressure on Petrobras's fuel pricing policy reduces the export revenue maximisation that this calculation assumes."
+            }
           },
           "Policy Rate": {
             "value": "12%",
             "tier": "weekly",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Brazil has one of the highest interest rates in the world at 12%, making borrowing very expensive for businesses and consumers. The central bank has kept rates this high to fight stubborn inflation and prevent the real from weakening too much. This creates a difficult environment for economic growth, as companies cannot afford to invest and expand as freely as they would with lower rates.",
+              "moderate": "Brazil's Selic rate at 12% reflects the BCB's tight stance in response to persistent inflation above target and BRL vulnerability; the Iran shock creates conflicting signals: positive terms-of-trade improvement from higher oil exports argues for eventual easing, but the risk-off BRL depreciation pressure and direct CPI upside from oil prices argue for holding; the BCB will almost certainly pause any nascent easing cycle until the BRL and inflation trajectories stabilise.",
+              "expert": "Brazil's real interest rate at approximately 7-8% (Selic minus CPI) is among the highest globally and represents a significant structural tax on domestic investment and growth; the BCB's rate-setting under its 2021 independence statute is governed by the inflation target, but the practical constraint is the BRL: any easing that triggers capital outflows and BRL depreciation imports inflation through the high passthrough coefficient, creating a negative feedback loop the BCB has to price into its reaction function; the Iran shock's net effect on the BCB's calculus is a hold, as the combination of direct CPI risk and risk-off BRL pressure outweighs the terms-of-trade improvement signal in the near term."
+            }
           }
         },
         "market": {
           "Stock Market YTD": {
             "value": "+16.0%",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Brazilian stocks have surged 16% this year, one of the best performances in the Americas. Petrobras is the star of the show, with its shares rising sharply as oil prices surge. The Bovespa index is heavily weighted toward commodities, energy, and banks, all of which have benefited from the current environment of high commodity prices.",
+              "moderate": "Brazil's 16% equity return YTD is led by Petrobras (direct oil price beneficiary) and agricultural commodity companies (JBS, BRF, Ambev benefiting from food price inflation); the Bovespa's heavy weighting toward commodities and energy makes it one of the most positively exposed major indices to the Iran oil shock; the partial offset comes from domestic consumer and retail stocks facing headwinds from high real rates and potential BRL-driven import inflation.",
+              "expert": "Brazil's equity outperformance reflects the direct commodity price sensitivity of the Bovespa's sectoral composition: Petrobras alone accounts for approximately 15% of the index, making the index effectively a leveraged play on Brent crude; the secondary commodity beneficiaries (iron ore via Vale, agricultural processors, pulp and paper) provide additional commodity beta; the domestic economy sectors (banks, retail, utilities) are more mixed, with banks benefiting from high Selic net interest margins while retailers face real income compression from inflation and high borrowing costs; the net index-level return is a commodity story masking significant domestic sector divergence."
+            }
           },
           "Equity Vol": {
             "value": "~25",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Brazilian stock market volatility is running at about 25, higher than most other markets in this dashboard. Brazil's market tends to be more volatile because of political uncertainty around government spending, the volatile real, and heavy dependence on commodity prices that swing sharply with global events. The Iran conflict has added to this uncertainty.",
+              "moderate": "Brazilian equity volatility at approximately 25 reflects the compound uncertainty from commodity price swings (positive for the index but creating intraday volatility), BRL instability, and political risk around fiscal policy and the upcoming presidential election cycle; the Petrobras-heavy index means oil price moves are directly transmitted to index-level vol, and any government intervention in Petrobras's pricing or dividend policy creates sharp stock-specific and index-level reactions.",
+              "expert": "Bovespa implied vol at approximately 25 reflects the structural characteristics of a commodity-heavy EM market with high domestic political risk: the Petrobras political risk premium (government interference in pricing, dividend policy, or management) creates an idiosyncratic vol layer on top of commodity price and EM risk-off vol; the 2026 presidential cycle adds a forward vol premium as markets price the probability of fiscal policy changes under a new administration; the combination of oil price sensitivity, BRL transmission, and political risk creates a vol surface with elevated skew toward downside scenarios in the domestic economy even as commodity upside scenarios remain viable."
+            }
           },
           "10Y Bond Yield": {
             "value": "13.80%",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Brazilian 10-year government bonds pay 13.80% annual interest, one of the highest rates in the world among major economies. This reflects Brazil's persistent inflation, large fiscal deficit, and the high policy rate needed to keep the economy in check. Foreign investors are attracted by these high yields but must accept the risk of BRL depreciation and political uncertainty.",
+              "moderate": "Brazil's 10Y yield at 13.80% sits above the Selic rate of 12%, implying a term premium that reflects fiscal sustainability concerns and election-cycle risk; the high nominal yield is attractive for carry investors but the BRL depreciation risk over a 10-year horizon erodes returns for USD-based investors; note that historical chart data for this metric is unavailable in the dashboard due to data source limitations.",
+              "expert": "Brazil's 10Y yield at 13.80% represents a real yield of approximately 9.6% (versus 4.2% CPI), extraordinarily high by any EM benchmark; the term premium above the Selic reflects: fiscal trajectory uncertainty (primary surplus targets increasingly viewed as aspirational), election-cycle risk (Lula 2026 re-election campaign spending incentives), and BCB independence risk (periodic market concern about political interference despite the 2021 independence law); the yield curve's shape (inverted at -140bps) reflects market expectations of eventual Selic cuts, making the 10Y the primary vehicle for positioning on Brazil's monetary easing expectations; note that historical chart data for this metric is unavailable in the dashboard due to data source limitations."
+            }
           },
           "Yield Curve": {
             "value": "-140bps",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Brazil's yield curve is unusual in that it is inverted at -140 basis points, meaning the government pays more interest on short-term borrowing than on long-term borrowing. This happens because short-term rates are very high right now due to the BCB's anti-inflation stance, while markets expect rates to eventually fall back toward more normal levels over the coming years.",
+              "moderate": "Brazil's -140bp yield curve inversion reflects market pricing of the BCB's eventual easing cycle: the Selic at 12% is viewed as a cyclical peak above neutral, and the long end reflects expectations of future rate cuts even if the BCB holds in the near term; the inversion is therefore not a recession signal (as in developed markets) but a carry market signal that the current rate level is unsustainably high relative to long-run equilibrium.",
+              "expert": "Brazil's deeply inverted yield curve is a distinctive feature of its monetary policy cycle: with Selic at 12% and the market pricing a terminal rate closer to 8-9% over the medium term, the 10Y yield embeds several years of expected rate cuts that the front end does not; this creates a steep carry trade opportunity (receiving long-end rates while funding at short end) that domestic DI futures and international investors exploit; the inversion deepens when BCB rhetoric is hawkish and compresses when easing expectations accelerate, making curve slope a real-time read on market confidence in the BCB's eventual policy pivot."
+            }
           },
           "Corp Spread": {
             "value": "240bps",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Brazilian companies pay about 240 basis points (2.40%) more than the government to borrow, one of the wider corporate spreads among the countries in this dashboard. This reflects Brazil's volatile economy, weak currency, high inflation, and the general difficulty of doing business in an environment with 13%+ interest rates. Only the strongest Brazilian companies can access international bond markets at reasonable costs.",
+              "moderate": "Brazil's corporate spreads of 240bps reflect the layering of sovereign risk premium, BRL depreciation risk, and domestic economic uncertainty on top of individual company credit quality; the primary issuers in the international Brazilian corporate bond market are large commodity companies (Petrobras, Vale, agribusiness) and banks, which benefit from the commodity windfall; domestic Brazilian corporates face even higher borrowing costs in the local debenture market, where the Selic rate creates a high floor for all credit pricing.",
+              "expert": "Brazilian IG corporate spreads at 240bps are structurally wide due to the sovereign ceiling effect: Brazilian corporate issuers cannot sustainably borrow at spreads below the sovereign, and the 180bp sovereign CDS creates a floor that limits spread compression regardless of individual company fundamentals; Petrobras is a partial exception given its strategic importance, but even its bonds trade at a premium to US energy majors reflecting Brazilian sovereign risk passthrough; the domestic debenture market operates in a parallel framework where CDI-linked instruments rather than fixed-rate bonds dominate, making the spread concept less directly applicable to most of Brazil's domestic corporate financing."
+            }
           },
           "Sov CDS": {
             "value": "180bps",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Insuring against Brazil defaulting on its international debt costs 180 basis points per year, reflecting genuine concerns about Brazil's fiscal trajectory and political risk. Brazil has defaulted on external debt in the past, and while that risk is not considered imminent, investors demand a meaningful premium to lend to the Brazilian government.",
+              "moderate": "Brazil's sovereign CDS at 180bps reflects fiscal sustainability concerns and political risk under the Lula government, partially offset by the oil windfall improving the near-term external account position; the CDS has been tightening as Petrobras revenues improve and the BCB has maintained its independence, but the structural fiscal deficit and election-cycle spending risk prevent further compression toward investment-grade territory.",
+              "expert": "Brazil's 180bp CDS spread captures a complex bundle of risks: near-term external debt service risk (low, given 50bn+ FX reserves and strong commodity export revenues), fiscal sustainability risk (moderate, driven by constitutional spending mandates and political economy constraints), and policy risk (BCB independence threat, Petrobras dividend/pricing interference); the spread has been driven lower by BCB independence legislation and the commodity windfall, but the 2026 electoral cycle creates a forward risk premium as markets price Lula's re-election campaign spending incentives; the spread is also sensitive to EM risk appetite shifts given Brazil's role as a high-beta EM proxy alongside South Africa and Turkey."
+            }
           },
           "USD/BRL": {
             "value": "5.10",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "One US dollar currently buys about 5.10 Brazilian reais. The real has been volatile in recent years, weakening sharply when investors become nervous about Brazil's government spending or when the US dollar strengthens globally. Brazil's high interest rates provide some support for the real by attracting foreign carry traders, but political uncertainty can quickly outweigh this support.",
+              "moderate": "USD/BRL at 5.10 reflects a real supported by high Selic carry (roughly 11 percentage points above US rates) and improving commodity export revenues from the Iran oil windfall, partially offset by fiscal risk and BRL's high sensitivity to global risk appetite; the Iran-driven risk-off environment creates opposing forces for the real: commodity windfall positive, risk-off capital outflow negative, with the net BRL direction depending on which factor dominates in investor positioning.",
+              "expert": "USD/BRL at 5.10 is near the stronger end of the recent trading range, reflecting the positive terms-of-trade impulse from oil and agricultural prices; the BRL's fair value is difficult to estimate given the competing drivers of an extraordinarily high real interest rate (supporting BRL via carry), a wide current account deficit (weakening BRL fundamentally), and a political risk premium (widening BRL vs model-implied fair value); the carry trade is the dominant near-term driver when global risk appetite is stable, but the convex risk of carry trade unwinding in a sustained risk-off episode means positioning is always at risk of rapid BRL depreciation regardless of fundamental improvement."
+            }
           },
           "FX Vol": {
             "value": "20.0%",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "The Brazilian real has been swinging around substantially, with volatility at 20%. This is one of the higher levels among major emerging market currencies, reflecting the many sources of uncertainty in Brazil: government spending, inflation, global commodity prices, and US interest rate movements all affect the real simultaneously. Brazilian exporters and importers face significant hedging costs as a result.",
+              "moderate": "BRL FX vol at 20% reflects the compounding of global EM risk factors (Iran geopolitical uncertainty, US dollar dynamics) and Brazil-specific factors (fiscal risk, BCB policy uncertainty, election cycle); the high carry (Selic-Fed differential) attracts positioning that creates convex unwind risk, meaning BRL tends to depreciate sharply when risk appetite reverses; the BCB's intervention capacity (via FX swaps rather than spot) provides a buffer but cannot suppress vol in sustained risk-off episodes.",
+              "expert": "BRL implied vol at 20% reflects both the structural characteristics of a high-carry, high-beta EM currency and the specific risks from Brazil's political economy cycle; the BCB's FX swap programme (roughly 00bn notional outstanding) manages the forward curve and corporate hedging demand rather than directly controlling spot volatility, meaning the spot market remains free to move while the forward premium is managed; the vol surface shows a significant risk reversal skew toward BRL weakness, reflecting demand for downside protection from both domestic corporates with USD liabilities and foreign investors seeking carry trade tail-risk hedges; the 20% level is consistent with a market pricing genuine fiscal and political tail risk rather than just short-term flow volatility."
+            }
           }
         }
       },
@@ -10824,74 +11174,144 @@
           "GDP Growth": {
             "value": "+1%",
             "tier": "structural",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Russia's economy is officially growing at around 1%, kept afloat by massive military spending, energy export revenues, and government contracts for wartime production. The Iran conflict is pushing oil prices higher, which is good for Russian revenues, but the underlying economy is deeply distorted by war costs, sanctions, and a severe shortage of civilian workers. Historical chart data for this metric is unavailable due to data limitations after 2022 sanctions.",
+              "moderate": "Russia's 1% GDP growth reflects a wartime economy where defence spending (officially 6-7% of GDP, likely higher including classified items) is the primary demand driver; higher oil prices from the Iran conflict push Urals revenues above the fiscal breakeven of roughly 0-80 per barrel, providing National Wealth Fund relief; but the civilian economy faces structural deterioration from labour mobilisation, technology import restrictions, and capital flight that official GDP figures obscure.",
+              "expert": "Russia's GDP measurement is methodologically compromised by wartime opacity: defence production is classified, price controls distort output deflators, and the departure of Western multinationals creates statistical gaps; independent estimates using electricity consumption, satellite data, and alternative activity proxies suggest civilian economy output is materially weaker than official figures; the oil windfall from the Iran shock raises Urals revenues above breakeven, reducing NWF drawdown, but does not resolve the structural distortions from military crowding-out of civilian investment and the technology gap from sanctions on advanced components. Historical chart data is unavailable due to data limitations after 2022 sanctions."
+            }
           },
           "Inflation (CPI)": {
             "value": "4.7%",
             "tier": "weekly",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Russian inflation is running at 4.7%, above the central bank's 4% target, driven by the government's huge military spending programme, shortages of imported goods due to sanctions, and pressure on the rouble. The Iran conflict adds uncertainty in both directions: higher oil revenues could support the rouble and reduce import costs, while global risk-off could weaken it and push prices higher.",
+              "moderate": "Russia's CPI at 4.7% represents the official figure, but inflation experienced by ordinary Russians is widely believed to be significantly higher, as sanctioned product categories disappear from the basket and price controls suppress measured prices in some sectors; the Iran oil shock is net ambiguous for Russian inflation: higher oil revenue is rouble-positive (reducing import costs) but also adds fiscal stimulus to an already overheated wartime economy.",
+              "expert": "Russia's CPI measurement is increasingly unreliable as a representation of experienced inflation: sanctioned goods categories are replaced with domestically produced or parallel-import substitutes at different quality and price points that are difficult to benchmark; the FRED series (RUSCPIALLMINMEI) provides one internationally benchmarked reference but its methodology diverges from Rosstat's official figures; independently, double-digit wage inflation in civilian sectors and documented price controls in key consumer categories suggest actual price pressure is materially above the 4.7% official figure, with the CBR's own alternative estimates running higher."
+            }
           },
           "Unemployment": {
             "value": "2.5%",
             "tier": "weekly",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Russia's official unemployment is only 2.5%, near a record low, but this number is deeply misleading. Hundreds of thousands of workers have been drafted into the military, and many others have emigrated to avoid mobilisation. Businesses across Russia report severe labour shortages, pushing up wages and adding to inflation. Historical chart data for this metric is unavailable due to data source limitations.",
+              "moderate": "Russia's 2.5% unemployment is a wartime statistical artefact: military mobilisation of roughly 600,000-800,000 civilian workers creates a forced labour supply reduction that appears in GDP as a demand stimulus (defence spending) but removes productive capacity from the civilian economy; the resulting labour shortages in construction, agriculture, logistics, and manufacturing are generating double-digit wage inflation in some sectors, complicating the CBR's inflation management. Historical chart data for this metric is unavailable due to data source limitations.",
+              "expert": "Russia's labour market dynamics represent an unprecedented peacetime-to-wartime transition in a large modern economy: the structural labour supply reduction from mobilisation and emigration (estimates of 500,000-900,000 net emigres since 2022) creates permanent supply-side damage that will not reverse when the conflict ends; the wage inflation being generated in civilian sectors is a form of cost-push inflation not addressable by conventional monetary tightening, since the CBR cannot reduce military demand for labour through interest rate policy; the labour market distortion also systematically understates the economic cost of the conflict, as civilian production forgone is not captured in headline unemployment statistics. Historical chart data for this metric is unavailable due to data source limitations."
+            }
           },
           "Budget Deficit": {
             "value": "-2.5% GDP",
             "tier": "structural",
-            "last_updated": "2026-01-31"
+            "last_updated": "2026-01-31",
+            "story": {
+              "beginner": "Russia is running a budget deficit of 2.5% of its economy, spending more than it collects to fund its military operations. High oil prices from the Iran conflict help fill this gap since oil and gas taxes are a major source of government income. Russia has a sovereign wealth fund (the National Wealth Fund) built up from past energy revenues that it has been drawing down to bridge the gap.",
+              "moderate": "Russia's 2.5% budget deficit is directly sensitive to Urals crude prices: the fiscal breakeven is estimated at 0-80 per barrel, and current price levels above that reduce the pace of National Wealth Fund drawdown; military spending estimated at 6-7% of GDP officially (with classified additional items) creates a structural deficit that requires either sustained high oil prices or NWF depletion to fund; the Iran windfall provides temporary relief but does not alter the long-run fiscal sustainability calculation.",
+              "expert": "Russia's fiscal position embeds significant off-budget military expenditure that makes the headline 2.5% deficit figure misleading: classified defence items, subsidised credit to defence enterprises via state banks, and social compensation payments for mobilised soldiers' families all represent fiscal cost not fully captured in published accounts; the usable NWF liquid portion has been drawn down materially since 2022, and at current spending rates the buffer could be depleted within 2-3 years absent sustained above-breakeven oil prices; the Iran shock provides a meaningful but cyclical reprieve, not a structural solution."
+            }
           },
           "Current Account": {
             "value": "+2% GDP",
             "tier": "structural",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Russia earns more from selling its oil, gas, and commodities abroad than it spends on imports, generating a current account surplus of 2% of its economy. China and India have become the main buyers of Russian oil at discounted prices since Western sanctions began. The Iran conflict is pushing oil prices higher, which means more revenue flowing into Russia, though the shadow tanker fleet that carries much of this oil faces increasing scrutiny.",
+              "moderate": "Russia's current account surplus of 2% of GDP is underpinned by continued energy exports to China and India via the shadow fleet; higher oil prices from the Iran shock improve the export revenue line, but the Urals-Brent discount (historically 0-20 per barrel for sanctions-circumvention costs) means Russia captures less than the headline Brent gain; simultaneously, the Iran conflict creates risk for shadow fleet operations as US naval presence in the Gulf intensifies secondary sanction enforcement.",
+              "expert": "Russia's current account depends structurally on the shadow fleet's operational integrity and the Urals discount level: each dollar narrowing of the Urals-Brent discount improves Russia's net oil revenue by approximately .5-2bn annually at current volumes; the Iran conflict creates opposing forces, as higher global tanker demand could theoretically narrow the discount (more vessels diverted from Russia's routes) while simultaneously intensifying US enforcement scrutiny of shadow fleet operators; the net current account impact is therefore ambiguous and highly sensitive to the conflict's duration and the US military's appetite for secondary sanctions enforcement as a strategic tool."
+            }
           },
           "Policy Rate": {
             "value": "12%",
             "tier": "weekly",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Russia's central bank has set its key interest rate at 12%, which is very high by international standards. The goal is to control inflation caused by massive military spending and to keep the rouble from weakening further. High interest rates are painful for Russian businesses, but the government has created separate subsidised lending channels for defence-related companies so they are not constrained by the high rate.",
+              "moderate": "Russia's 12% policy rate reflects the CBR's attempt to control above-target inflation and support the rouble in a wartime economy where the normal fiscal-monetary relationship is inverted: government spending is expansionary and inflationary while the CBR tries to offset this with tight monetary policy; the effectiveness is limited because defence-sector borrowers access subsidised state credit rather than market rates, meaning the high policy rate primarily constrains the civilian economy while leaving the primary source of inflation (military spending) untouched.",
+              "expert": "Russia's monetary policy operates in a structurally impaired transmission environment: the dual-rate economy, where headline CBR rates apply to civilian borrowers but subsidised state credit funds defence production, means rate hikes impose asymmetric costs on the civilian economy while having limited impact on the inflationary impulse from military spending; the CBR's de jure independence is maintained but its ability to achieve the 4% inflation target through conventional rate policy alone is fundamentally constrained by the government's off-budget financing mechanisms; the Iran oil windfall that strengthens the rouble is actually more effective at reducing imported inflation than rate hikes, creating a channel where geopolitical commodity prices partially substitute for conventional monetary policy transmission."
+            }
           }
         },
         "market": {
           "Stock Market YTD": {
             "value": "+5.0%",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Russian stocks have risen 5% this year on the Moscow Exchange, supported by higher oil prices and some cautious optimism about a possible peace process. Access to Russian stocks is effectively limited to Russian domestic investors, since Western sanctions prevent most international investors from buying or selling shares in Russian companies. The market is small and illiquid by global standards.",
+              "moderate": "The MOEX index's 5% YTD gain reflects the oil windfall (energy stocks are a dominant index weight) and some partial peace-process optimism that has intermittently lifted sentiment; the market is effectively a domestic Russian retail and institutional investor market, with Western capital locked out since 2022; the 5% gain in rouble terms may represent a real loss for investors who cannot convert gains to hard currency due to capital controls.",
+              "expert": "Russia's equity market is structurally isolated from global capital markets following the February 2022 sanctions and the NSD (National Settlement Depository) lock-out that froze foreign holdings; the MOEX operates as a closed domestic market where the primary price-setting investors are Russian retail investors, domestic pension funds, and state-controlled institutions; the 5% YTD nominal return in roubles provides limited information about fundamental value, as the market cannot clear at international prices given the convertibility restriction and as rouble-denominated returns cannot be realised in hard currency by most international benchmarks."
+            }
           },
           "Equity Vol": {
             "value": "~32",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Russian stock market volatility is running at about 32, one of the highest in this dashboard. This reflects the enormous uncertainty around Russia's economy, the war, sanctions, oil prices, and the possibility of a peace agreement or escalation. The market can swing sharply in both directions on news from the front lines or from diplomatic channels.",
+              "moderate": "Russian equity volatility at approximately 32 is the highest in this dashboard, reflecting the compound uncertainty of wartime geopolitics, sanctions risk, oil price sensitivity, and the binary optionality of a peace process that could either unlock significant asset revaluation or confirm permanent isolation; the elevated vol is also a function of the thin domestic-only investor base, where large positions create outsized price impacts.",
+              "expert": "MOEX implied vol at approximately 32 reflects a market with severely impaired price discovery: the absence of international arbitrageurs and market makers (sanctioned out since 2022), the dominance of retail sentiment over fundamental analysis, and the binary scenario distribution (peace vs. continued isolation) create a vol regime driven more by information asymmetry and positioning dynamics than conventional risk factor pricing; the vol surface also reflects the optionality embedded in peace process scenarios, where a ceasefire could trigger rapid re-rating but remains deeply uncertain in timing and structure."
+            }
           },
           "10Y Bond Yield": {
             "value": "13.5%",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-08",
+            "story": {
+              "beginner": "Russian 10-year government bonds pay 13.5% annual interest, among the highest in this dashboard. This reflects Russia's high inflation, the elevated policy rate, and the very high risk premium investors demand given the war, sanctions, and uncertainty about Russia's long-term financial system. Most international investors cannot hold Russian bonds due to sanctions, so this market is also largely limited to domestic Russian buyers.",
+              "moderate": "Russia's 10Y OFZ yield at 13.5% reflects the elevated policy rate, above-target inflation, and the domestic risk premium in a sanctions-isolated bond market; the yield curve is deeply inverted at -140bps, signalling that domestic investors expect the CBR to eventually cut rates as inflation moderates and the war winds down; the absence of foreign investors (locked out since 2022) means the market clears entirely on domestic demand, with state banks and pension funds as the primary buyers.",
+              "expert": "Russia's OFZ 10Y at 13.5% sits in a structurally isolated bond market where Western sanctions have permanently removed the international investor base that previously held roughly 30% of the OFZ market; the yield level reflects domestically-determined risk premia and CBR rate expectations, with the curve inversion implying that domestic investors are pricing in CBR easing as the dominant medium-term scenario; the yield provides limited information about international creditworthiness since it cannot be traded or settled by most international counterparties and the rouble's convertibility remains restricted by capital controls."
+            }
           },
           "Yield Curve": {
             "value": "-140bps",
             "tier": "daily",
-            "last_updated": "2026-03-08"
+            "last_updated": "2026-03-08",
+            "story": {
+              "beginner": "Russia's yield curve is inverted at -140 basis points, meaning the government pays more to borrow for 2 years than for 10 years. Like Brazil, this inversion reflects expectations that the very high short-term interest rates will eventually come down as inflation is controlled and the economic situation stabilises. It is a sign that domestic investors expect the current high-rate environment to be temporary.",
+              "moderate": "Russia's -140bp yield curve inversion mirrors Brazil's in structure: the elevated policy rate keeps the front end high while the long end prices in an eventual easing cycle; unlike in developed markets where inversion signals recession, in a high-inflation EM context inversion signals that the policy rate is above neutral and markets expect eventual normalisation; the depth of the inversion reflects domestic investors' confidence that CBR rates will fall materially once the war costs and inflation are better controlled.",
+              "expert": "Russia's deeply inverted curve at -140bps reflects a domestically-priced yield structure where the front end is anchored by the CBR's anti-inflation stance and the long end is priced on domestic institutional demand from banks and pension funds that must hold rouble-denominated assets; the inversion is analogous to Brazil's and similarly represents carry trade opportunity within the domestic market rather than a recession signal; the curve's shape is also influenced by the absence of international investors who would typically arbitrage the slope between domestic and offshore pricing, allowing the inversion to persist longer than in a more open market."
+            }
           },
           "Corp Spread": {
             "value": "380bps",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Russian companies pay about 380 basis points (3.80%) more than the government to borrow, one of the widest spreads in this dashboard. This reflects the immense difficulty Russian businesses face: sanctions limiting access to international finance, a high policy rate raising domestic borrowing costs, and deep uncertainty about the economic outlook. Only the largest state-connected companies can access credit at reasonable terms.",
+              "moderate": "Russia's corporate spreads of 380bps reflect the near-complete isolation of the Russian corporate sector from international capital markets: most large Russian corporates are under sanctions or unable to access Western clearing systems, making the spread a domestic market phenomenon priced against OFZ yields; the primary issuers in the domestic corporate bond market are state-connected enterprises (Gazprom, Rosneft, Sberbank) that benefit from implicit state support but still price at a premium to the sovereign given liquidity risk and sector-specific sanctions exposure.",
+              "expert": "Russia's 380bp corporate spread is priced in a fundamentally different market context from other countries in this dashboard: the international USD-denominated Russian corporate bond market is effectively frozen (Euroclear hold and sanctions prevent settlement), and the domestic rouble corporate bond market is isolated from global pricing benchmarks; the spread level reflects the combination of high base OFZ yields, corporate liquidity risk in a sanctions environment, and the absence of international investors who would normally compress spreads toward fundamental fair value; comparison to other countries' corporate spreads is therefore indicative rather than directly comparable."
+            }
           },
           "Sov CDS": {
             "value": "320bps",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Insuring against Russia defaulting on its international debt costs 320 basis points per year, the highest in this dashboard. Russia has already effectively defaulted on some of its foreign currency bonds since 2022 due to sanctions preventing payment processing, so this high CDS level reflects both the ongoing sanctions situation and the genuine uncertainty about Russia's ability and willingness to meet its international obligations.",
+              "moderate": "Russia's sovereign CDS at 320bps operates in an unusual market context: Russia's 2022 technical default on foreign currency bonds (caused by sanctions blocking payment processors rather than inability to pay) created a CDS credit event that was triggered for some contracts; the current CDS level reflects ongoing sanctions risk, the residual probability of further defaults on the limited foreign currency obligations still outstanding, and the geopolitical risk premium for a country in active conflict.",
+              "expert": "Russia's 320bp sovereign CDS is one of the most complex instruments in this dashboard: the 2022 credit event (technical default on USD-denominated OFZ interest payments blocked by Euroclear) triggered payouts on some contracts, but the CDS market for Russia remains active and prices a bundle of residual risks: further default risk on remaining foreign obligations, the probability of sanctions escalation or relief, and the tail scenario of regime change or political instability that could disrupt debt service; the spread is not directly comparable to other countries' CDS in this dashboard because the primary risk being priced is sanctions-driven payment inability rather than conventional fiscal solvency."
+            }
           },
           "USD/RUB": {
             "value": "80.0",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "One US dollar currently buys about 80 Russian roubles. The rouble has been kept relatively stable by strict government controls on how much currency can leave the country, and by requiring Russian exporters to convert most of their foreign earnings into roubles. Without these controls, the rouble would almost certainly be much weaker. Historical chart data for this metric is unavailable as the FRED series was discontinued after 2022 sanctions.",
+              "moderate": "USD/RUB at 80 reflects an administratively managed rate rather than a genuine market clearing price: mandatory conversion of 80% of export earnings into roubles, restrictions on capital outflows, and informal guidance to state banks create a domestically managed exchange rate that diverges from what offshore NDF markets imply; the Iran oil windfall is rouble-positive via higher export earnings (more roubles created through mandatory conversion), but the true convertibility-adjusted value of the rouble is materially weaker than the 80 onshore rate suggests. Historical chart data is unavailable as the FRED series was discontinued after 2022 sanctions.",
+              "expert": "USD/RUB at 80 is an administrative construct rather than a freely-determined exchange rate: the CBR uses mandatory FX conversion requirements rather than reserve-based intervention (roughly 00bn of reserves remain frozen in Western jurisdictions), and the rouble's stability reflects enforcement of capital controls rather than market confidence; the onshore rate diverges systematically from offshore NDF pricing that captures convertibility risk and sanctions premium; each 1 RUB appreciation costs approximately 150bn roubles in annual oil export revenue (at current volumes), meaning the CBR faces a trade-off between ruble stability (supporting inflation management) and fiscal revenue maximisation (favouring a weaker rouble) that it has historically resolved in favour of stability as the primary inflation-fighting tool. Historical chart data is unavailable as the FRED series was discontinued after 2022 sanctions."
+            }
           },
           "FX Vol": {
             "value": "20.0%",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "The rouble's volatility is running at about 20%, high by international standards. Despite the government's capital controls keeping the exchange rate artificially stable on paper, the rouble can still swing sharply when oil prices move, when sanctions are tightened or relaxed, or when news from the war in Ukraine shifts market sentiment. The true uncertainty around the rouble's value is even higher than the official volatility figures suggest.",
+              "moderate": "Rouble FX vol at 20% reflects the tension between administrative exchange rate management (capital controls suppressing vol mechanically) and the genuine macro uncertainty from oil price swings, sanctions developments, and war news; the vol is structurally elevated because the capital control regime itself creates event risk: any loosening of controls or enforcement failure could trigger sharp rouble depreciation, which the market prices as a tail risk in the options surface.",
+              "expert": "USD/RUB implied vol at 20% is structurally suppressed by capital controls relative to the true fundamental uncertainty, creating a vol surface that underprices tail risk: the primary tail scenario is a sudden capital control relaxation or enforcement failure that allows the accumulated demand for hard currency from domestic savers, emigres, and sanctioned corporates to clear at market prices; the offshore NDF market (thin liquidity, wide spreads) provides a better read on the convertibility-adjusted rouble risk premium than the onshore vol surface; the oil price sensitivity remains the dominant factor within the constrained onshore trading range, with each 0 move in Urals prices having an estimated 2-4 rouble per dollar impact on the administratively managed rate."
+            }
           }
         }
       },
