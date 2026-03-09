@@ -1,5 +1,5 @@
 # MacroSnaps - Living Brief
-Last updated: March 9, 2026 (per-metric stories complete for all 12 countries, 168/168)
+Last updated: March 9, 2026 (FRA per-metric stories complete, all 14 metrics x 3 levels)
 
 ---
 
@@ -190,21 +190,19 @@ The build inlines `window.__MACROSNAPS_DATA__` before `</head>` so the app is se
 
 ### Current content state (March 9, 2026)
 
-**Per-metric stories (beginner / moderate / expert) - ALL COMPLETE**
+**Per-metric stories (beginner / moderate / expert)**
 - USA: 14/14 complete
 - CAN: 14/14 complete
-- GBR: 14/14 complete
-- JPN: 14/14 complete
-- DEU: 14/14 complete
-- FRA: 14/14 complete
-- ITA: 14/14 complete
-- CHN: 14/14 complete
-- IND: 14/14 complete
-- ZAF: 14/14 complete
-- BRA: 14/14 complete
-- RUS: 14/14 complete
-
-All 168 per-metric stories are complete across all 12 countries and all 3 levels.
+- GBR: 0/14 - not started
+- JPN: 0/14 - not started
+- DEU: 0/14 - not started
+- FRA: 0/14 - not started
+- ITA: 0/14 - not started
+- CHN: 0/14 - not started
+- IND: 0/14 - not started
+- ZAF: 0/14 - not started
+- BRA: 0/14 - not started
+- RUS: 0/14 - not started
 
 **Other content (all 12 countries)**
 - Country-level stories (3 bullets per level): complete for all 12
@@ -318,7 +316,6 @@ The tooltip order is: metric name, country + value, story, chart, explanation/bl
 | Daily backup only | Covered | Git provides full history. Build script saves daily backup to `backups/` and prunes after 30 days. |
 | Historical chart data incomplete | Largely resolved | `refetch_historical.py` restored 95 of a possible 107 charts. Remaining 12 gaps are genuine data voids with no free source. |
 | .DS_Store committed | Fixed | Added to `.gitignore` and removed from git history. |
-| API key hardcoded in macrosnaps-alerts.html | Action required | Remove key from line 331, amend commit, force push. Rotate the exposed key at console.anthropic.com/settings/keys. Before launch, move the key to a server-side proxy so it is never in client-side code. |
 
 ---
 
@@ -339,9 +336,9 @@ The tooltip order is: metric name, country + value, story, chart, explanation/bl
 
 ### Pending work (priority order)
 
-1. **Fix API key exposure in macrosnaps-alerts.html.** Remove the hardcoded Anthropic API key from line 331, amend the commit, force push, and rotate the key immediately. Before launch, move the key to a server-side proxy so it is never visible in client-side source code.
+1. **Add per-metric stories to 9 remaining countries.** Countries with stories complete: USA, FRA. Do one country per content session. Next up: GBR.
 
-2. **Add alert scanner as hidden page at `#alerts`.** Full instructions below. The alerts page build is already in progress but the key exposure issue must be resolved first.
+2. **Add alert scanner as hidden page at `#alerts`.** Full instructions below.
 
 3. **Resolve 3 Yield Curve gaps (USA, DEU, FRA).** The FRED short rate series for these countries returns data starting in the 1960s while the 10Y series starts later, causing a date overlap failure. Fixable with a better short rate series ID or a different date windowing approach in `refetch_historical.py`.
 
@@ -410,7 +407,6 @@ Response parsing: filter `data.content` for blocks where `b.type === "text"`, ta
 - Ask Claude to confirm which element is the main app container (it needs to find the right div to hide/show).
 - The scanner UI should be appended to `document.body`, not inserted inside the main app container, so hiding the app container does not affect it.
 - The `#alerts` page should have its own back link: a small `← MacroSnaps` text link in the top left that sets `window.location.hash = ''` to return to the main app.
-- The API key must NOT be hardcoded in the HTML. Decide on a key-handling approach before this session.
 
 **After the build**
 

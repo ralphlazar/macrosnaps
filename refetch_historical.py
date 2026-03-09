@@ -95,7 +95,7 @@ log = logging.getLogger(__name__)
 # Short-rate series used only to compute yield curve (10Y - short rate).
 # Fetched separately and not written directly to _frozen_historical.
 SHORT_RATE_SERIES = {
-    "USA": "TB3MS",
+    "USA": "GS3M",
     "CAN": "IR3TIB01CAM156N",
     "GBR": "IR3TIB01GBM156N",
     "JPN": "IR3TIB01JPM156N",
