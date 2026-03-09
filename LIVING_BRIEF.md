@@ -1,5 +1,5 @@
 # MacroSnaps - Living Brief
-Last updated: March 9, 2026 (end of session)
+Last updated: March 9, 2026 (FRA per-metric stories complete, all 14 metrics x 3 levels)
 
 ---
 
@@ -336,7 +336,7 @@ The tooltip order is: metric name, country + value, story, chart, explanation/bl
 
 ### Pending work (priority order)
 
-1. **Add per-metric stories to 10 remaining countries.** 10 countries x 14 metrics x 3 levels = 420 story fields. Do one country per content session. Next up: GBR.
+1. **Add per-metric stories to 9 remaining countries.** Countries with stories complete: USA, FRA. Do one country per content session. Next up: GBR.
 
 2. **Add alert scanner as hidden page at `#alerts`.** Full instructions below.
 

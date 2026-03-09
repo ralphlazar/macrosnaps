@@ -8,7 +8,7 @@
       "weekly": "Update weekly or on release — CPI, unemployment, policy rate",
       "structural": "Update quarterly or on major revision — GDP, deficits, current account, stories, fxRegime"
     },
-    "built_at": "2026-03-09 19:20"
+    "built_at": "2026-03-09 20:03"
   },
   "countries": {
     "USA": {
@@ -2175,74 +2175,144 @@
           "GDP Growth": {
             "value": "+1.5%",
             "tier": "structural",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "The UK economy is growing, but only just. After a rough stretch of high inflation and rising interest rates, growth has returned, though it remains too slow to feel like a recovery for most people. The economy is propped up mainly by consumer spending and the services sector, while manufacturing and construction continue to drag.",
+              "moderate": "UK growth is grinding along at a pace that is low by historical standards and below what most forecasters consider the long-run trend rate. The services sector is doing the heavy lifting, but household budgets are still squeezed from the inflation years, and business investment has been tentative. Weak productivity growth is the structural problem underneath the cyclical story.",
+              "expert": "UK real GDP growth reflects the persistence of post-pandemic supply-side scarring, compounded by the fiscal drag from October 2024 employer NIC increases and subdued business investment. Private consumption is recovering modestly as real wage growth turns positive, but the output gap remains negative. The OBR's medium-term projections are predicated on productivity assumptions that few independent forecasters share, which makes the debt trajectory sensitive to any further demand disappointment."
+            }
           },
           "Inflation (CPI)": {
             "value": "2.1%",
             "tier": "weekly",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "UK inflation was one of the worst in the developed world during 2022 and 2023, peaking above 11%. It has come down significantly since then, but it is still taking longer to get back to the 2% target than the Bank of England expected. Services prices in particular, things like rent, insurance, and restaurant meals, are still rising faster than the Bank would like.",
+              "moderate": "Goods inflation has largely unwound as global supply chains healed and energy prices fell, but services inflation has proved stubborn. This split matters because services inflation is more closely tied to domestic wage growth, which is still running above levels compatible with 2% CPI. The Bank of England is easing carefully, aware that loosening too quickly could allow services inflation to become entrenched.",
+              "expert": "UK CPI dynamics reflect the classic second-round effects of an adverse supply shock. Headline CPI has moderated sharply from the 2022-23 energy-driven peaks, but core and services CPI are proving more persistent, with private-sector regular pay growth still implying services inflation well above target on a run-rate basis. The BoE's inflation-output trade-off is complicated by the structural element in services prices and by the fact that the October 2024 fiscal package is simultaneously inflationary (NIC rise passed through to consumer prices) and disinflationary (weaker demand)."
+            }
           },
           "Unemployment": {
             "value": "5.0%",
             "tier": "weekly",
-            "last_updated": "2026-03-07"
+            "last_updated": "2026-03-07",
+            "story": {
+              "beginner": "Unemployment in the UK has risen a little compared to a few years ago, when jobs were unusually plentiful after the pandemic. The job market is now more balanced, which is normal, but it means more people are taking longer to find work. Some sectors are hiring, particularly healthcare and tech, while others like retail and hospitality have been slower.",
+              "moderate": "The UK labour market has loosened from its very tight post-pandemic peak. Vacancies have fallen steadily and the unemployment rate has drifted up, consistent with weaker demand and the lagged effect of higher interest rates. Wage growth is slowing but is still well above its pre-pandemic average, and inactivity due to long-term illness remains structurally elevated, which keeps the effective labour supply tighter than the headline unemployment rate suggests.",
+              "expert": "UK unemployment is trending higher as the lagged effect of the BoE tightening cycle feeds through to labour demand, compounded by the forward impact of the April 2025 employer NIC increases, which have accelerated headcount reduction decisions. The labour market data are complicated by well-documented ONS survey reliability issues following the LFS redesign, so the Bank is placing more weight on PAYE and vacancies data. The persistent elevated inactivity rate from long-term sickness is a supply-side constraint that keeps real wage growth stickier than the unemployment rate alone would suggest."
+            }
           },
           "Budget Deficit": {
             "value": "-4.2% GDP",
             "tier": "structural",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "The UK government is spending significantly more than it collects in taxes. This gap has to be filled by borrowing, which adds to the national debt. The October 2024 budget increased spending on public services and infrastructure, which has widened the gap further, at least for now.",
+              "moderate": "The UK's fiscal position deteriorated after the October 2024 Autumn Budget, which combined large increases in current spending with a revised set of fiscal rules that gave the government more headroom by reclassifying how debt is measured. Markets accepted the package, but the OBR's forecasts left very little buffer against any growth disappointment. Rising debt service costs and demand for public investment keep the deficit elevated for the foreseeable future.",
+              "expert": "The UK cyclically adjusted primary balance remains in deficit, reflecting the structural spending pressures from health, social care, and defence, alongside the debt servicing cost of pandemic-era gilt issuance now repricing at higher rates. The Chancellor's reinterpretation of the fiscal rules to use PSND ex-BoE as the debt target bought near-term headroom but tied fiscal credibility more tightly to gilt market tolerance. The OBR's medium-term debt trajectory relies on a growth assumption most external forecasters view as optimistic, and any significant demand weakness would trigger a fiscal statement well before a scheduled budget."
+            }
           },
           "Current Account": {
             "value": "-2.5% GDP",
             "tier": "structural",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "The UK buys a lot more from the rest of the world than it sells to it. This deficit is one of the largest among wealthy nations as a share of the economy. The UK makes up the gap by attracting investment from abroad, particularly into property and financial assets.",
+              "moderate": "The UK runs a persistent and sizeable current account deficit, driven primarily by a goods trade deficit that financial services exports only partially offset. Post-Brexit trade frictions have added to the structural goods deficit. The UK funds this through the financial account, attracting foreign direct investment and portfolio flows, but this dependence makes sterling sensitive to global risk appetite. When investors pull back from risky assets, the pound typically weakens as the financing need becomes harder to meet cheaply.",
+              "expert": "The UK current account deficit reflects the structural mismatch between a goods deficit that Brexit-related trade barriers have widened and a services surplus concentrated in financial and professional services. The income balance is also a persistent drag as returns on foreign-held UK assets outpace returns on UK-held foreign assets. The UK depends heavily on portfolio inflows and direct investment, which makes the sterling exchange rate and gilt yields particularly exposed to shifts in global risk appetite or UK-specific fiscal credibility concerns."
+            }
           },
           "Policy Rate": {
             "value": "3.5%",
             "tier": "weekly",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "The Bank of England sets the interest rate that ripples through to mortgages, savings, and loans across the whole economy. After raising rates sharply to fight the worst inflation in decades, the Bank has started cutting. The rate is coming down slowly because inflation, while much better, has not fully returned to the 2% target.",
+              "moderate": "The Bank of England began cutting from the 5.25% peak in August 2024 and has been easing at a gradual pace since. The MPC is managing a careful balance between a services inflation rate that is still above target and a domestic economy that is clearly slowing. Rate cuts provide relief for mortgage holders, but the Bank does not want to signal that the inflation job is done before it truly is. The pace of future cuts depends heavily on how quickly services inflation retreats.",
+              "expert": "The BoE easing cycle is constrained by services inflation persistence and by a fiscal stance that is adding to near-term demand. The MPC's reaction function is focused on domestic wage and price dynamics rather than imported inflation, given that goods price pressure has largely dissipated. The pace of easing relative to the Fed matters for sterling, since a significantly faster BoE easing path would put downward pressure on GBP/USD at a time when the UK current account deficit makes the pound structurally vulnerable. MPC communication has emphasised a meeting-by-meeting, data-dependent approach rather than forward guidance on the rate path."
+            }
           }
         },
         "market": {
           "Stock Market YTD": {
             "value": "+2.0%",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "The FTSE 100 is the main index of the UK's biggest listed companies. It has a different character to the US stock market because it is full of oil and gas companies, miners, and banks rather than technology firms. This means it sometimes does well when the rest of the world is struggling, and sometimes lags when global growth is strong.",
+              "moderate": "The FTSE 100's sector composition makes it a poor proxy for the UK domestic economy. It earns the majority of its revenues abroad, especially in commodities and financials, so its performance is driven more by global commodity prices, emerging market demand, and the pound than by UK growth. A weaker sterling is, counterintuitively, positive for the index because it inflates the sterling value of dollar-denominated earnings. The FTSE 250, which is more domestically focused, is a better barometer of UK economic confidence.",
+              "expert": "FTSE 100 total return performance should be interpreted in the context of its structural overweight to energy, materials, financials, and consumer staples, and its structural underweight to technology. This composition makes it a global cyclical play rather than a pure UK equity call. The index trades at a persistent valuation discount to the S&P 500 (roughly 10-12x forward earnings versus 20-21x), reflecting both the sector mix and lower expected earnings growth. Dollar-reporting multinationals in the index create a negative sterling sensitivity to returns when measured in USD, but a positive translation effect in GBP terms when sterling weakens."
+            }
           },
           "Equity Vol": {
             "value": "~18",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "This measures how much the UK stock market has been swinging up and down. A low number means markets have been calm. A high number means there has been a lot of uncertainty and prices have been moving sharply. When investors are nervous about the economy or world events, volatility tends to rise.",
+              "moderate": "Implied volatility on the FTSE 100 tends to track global risk sentiment fairly closely, given the index's international earnings base. Spikes in volatility often coincide with macro shocks, commodity price swings, or changes in Fed and BoE rate expectations. UK-specific political events, such as fiscal credibility concerns following the Liz Truss episode in 2022, can also drive vol above what global sentiment alone would imply. Elevated vol tends to be self-limiting as institutional investors rebalance or buy protection.",
+              "expert": "FTSE 100 implied vol reflects the blend of international commodity and macro risk embedded in the index rather than UK domestic risk premium alone. Idiosyncratic UK political or fiscal events can cause vol to spike relative to European peers, as seen in the 2022 mini-budget episode. Structurally, the FTSE 100 vol surface trades at a modest premium to EuroStoxx, partly reflecting the UK's larger current account financing need and the associated sterling tail risk. Volatility is mean-reverting in the absence of persistent fundamental regime change."
+            }
           },
           "10Y Bond Yield": {
             "value": "4.40%",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "This is the interest rate the UK government pays when it borrows money for 10 years by issuing bonds called gilts. When this rate rises, it costs the government more to borrow and mortgages and business loans often become more expensive too. The gilt market is one of the most important financial markets in the UK.",
+              "moderate": "UK gilt yields have stayed elevated relative to pre-pandemic levels, reflecting Bank of England rate cuts happening more slowly than initially priced, persistent inflation, and a fiscal position that is adding supply to the gilt market. The gilt market carries the memory of the September 2022 episode when a poorly received budget caused a sharp and disorderly sell-off, and investors are attentive to any signs of fiscal credibility slipping. Sterling weakness can add to gilt selling pressure if foreign holders decide the real return is inadequate.",
+              "expert": "UK 10Y gilt yields are priced off a combination of the expected BoE policy path, the term premium (compensation for duration and fiscal risk), and UK-specific credit perception. The 2022 LDI crisis left a structural legacy in terms of market depth and investor vigilance toward UK fiscal settings. The gilt-Bund spread is a useful signal of UK-specific risk premium; widening spreads in the absence of global risk-off moves typically signal market concern about fiscal sustainability or political uncertainty. The DMO's record gross issuance programme to fund the 2024 budget adds supply pressure across the curve."
+            }
           },
           "Yield Curve": {
             "value": "+30bps",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "The yield curve shows the difference between short-term and long-term UK government borrowing costs. Normally, borrowing for longer costs more. When the curve flips upside down (short-term rates higher than long-term ones), it is often a sign that investors expect the economy to slow down and rates to fall in the future.",
+              "moderate": "The UK yield curve has moved through periods of inversion and gradual re-steepening as the Bank of England has started cutting rates. Short-term yields have fallen faster than long-term yields, which is the typical pattern in an easing cycle, so the curve has been normalising from the inverted position seen during the peak of the hiking cycle. However, long-end gilt yields remain sticky because of concerns about fiscal supply and persistent inflation, which limits how steeply the curve can steepen.",
+              "expert": "UK curve dynamics reflect the interplay between front-end rates anchored by BoE policy expectations and the long end, which is more exposed to fiscal supply and inflation risk premium. The bear flattening that accompanied the 2022-23 hiking cycle has given way to a more nuanced picture where bull steepening from front-end rate cuts is partially offset by back-end supply pressure from increased DMO issuance. The real yield curve matters separately: UK index-linked gilts have been driven by pension fund demand dynamics, particularly post-LDI reform, which has changed the structural demand side of the market."
+            }
           },
           "Corp Spread": {
             "value": "120bps",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "This measures the extra interest rate that UK companies have to pay when they borrow compared to what the UK government pays. A wider spread means companies are seen as riskier, which usually happens when the economy is slowing or when people are worried about defaults.",
+              "moderate": "UK corporate bond spreads track global credit conditions closely, given that large UK-listed companies access international bond markets. Spreads widen when investors are concerned about growth and default risk, and compress when liquidity is abundant and default expectations are low. UK-specific factors, such as the domestic growth outlook and any sterling depreciation that raises the cost of foreign-currency debt, can cause UK investment-grade spreads to diverge from European or US peers. The banking sector, heavily represented in UK credit indices, is a key swing factor.",
+              "expert": "UK investment-grade sterling credit spreads are influenced by both the global credit risk cycle and UK-specific factors including the domestic growth outlook, gilt yield volatility (which affects duration hedging costs), and sector composition of sterling credit indices, which are heavily weighted toward financials and utilities. The 2022 gilt crisis caused significant dislocation in UK credit, particularly for LDI-forced sellers, and left a structural memory in terms of duration management preferences among pension investors. High-yield spreads are more sensitive to UK economic conditions, particularly in consumer-facing and property-exposed credits."
+            }
           },
           "Sov CDS": {
             "value": "32bps",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "This is the cost of buying insurance against the UK government failing to repay its debts. Even though that is extremely unlikely, it is a market that exists and is watched as a measure of how much confidence investors have in UK government finances. A rising number means investors are slightly more nervous, though for the UK this number stays very low.",
+              "moderate": "UK sovereign CDS spreads are very low by global standards because the UK borrows in its own currency, which eliminates the hard-currency default risk that causes CDS for emerging markets to widen sharply. The UK can always print sterling to meet sterling obligations, though this comes at the cost of inflation. CDS can still move in response to significant fiscal credibility concerns or political instability, as happened modestly in 2022, but it remains a distant early warning signal rather than a pressing risk indicator.",
+              "expert": "UK sovereign CDS trades at a tight spread consistent with investment-grade, local-currency-issuing developed market status. The technical default risk is negligible because the UK retains monetary sovereignty and can redeem gilts in sterling, but CDS captures the tail risk of political dysfunction or fiscal instability that could undermine market confidence indirectly. The 2022 episode caused a transient widening in UK CDS, demonstrating that even a local-currency sovereign is not wholly immune to credibility shocks. It is most useful as a relative value signal compared to European peers rather than as an absolute default probability."
+            }
           },
           "GBP/USD": {
             "value": "1.33",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "This tells you how many US dollars you get for one British pound. A higher number means sterling is strong. When the pound falls against the dollar, imports become more expensive for UK consumers and businesses, which can push inflation higher. Sterling has had a rough decade, weighed down by Brexit, then the inflation shock, and now slow growth.",
+              "moderate": "GBP/USD is sensitive to the interest rate differential between the Bank of England and the Federal Reserve, to UK current account dynamics, and to global risk sentiment. When investors move away from risky assets, the dollar typically strengthens and the pound weakens, partly because of the UK's large external financing requirement. Post-Brexit structural changes, particularly in services trade, have added a persistent modest headwind to sterling. Any significant UK fiscal credibility concerns tend to hit the pound quickly, as the 2022 mini-budget episode illustrated dramatically.",
+              "expert": "GBP/USD is driven by the BoE-Fed policy rate differential at the front end, UK current account dynamics, and the term premium spread between gilts and Treasuries at the long end. The currency is also a risk-sensitive barometer: the UK's structural current account deficit and its reliance on portfolio inflows means sterling tends to sell off in global risk-off episodes, giving it a mild pro-cyclical character. Post-Brexit, the erosion of the UK's services trade surplus and reduced FDI attractiveness have weakened sterling's equilibrium level. The currency is politically sensitive to any events that threaten gilt market stability, given the 2022 precedent where currency weakness and gilt sell-off reinforced each other."
+            }
           },
           "FX Vol": {
             "value": "12.0%",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "This measures how much the pound has been swinging in value against other currencies. When the UK economy or politics is uncertain, the pound tends to move around a lot and this number rises. Businesses that buy or sell things internationally watch this closely because big swings in the currency can affect their costs and revenues unpredictably.",
+              "moderate": "Sterling volatility tends to spike during UK-specific political or fiscal events and also rises during global risk-off periods, given the pound's sensitivity to risk appetite. The 2022 episode was an extreme example of a UK-specific vol spike. More routinely, GBP vol rises around budget statements, BoE decisions that surprise markets, and periods of elevated uncertainty about the UK growth or inflation outlook. Implied vol in sterling FX options is a useful signal of how much hedging demand there is from businesses and investors with UK currency exposure.",
+              "expert": "GBP implied volatility reflects a blend of global risk sentiment, UK idiosyncratic political and fiscal risk, and the interest rate differential between the BoE and its G10 peers. The risk reversal structure in sterling options, specifically the skew toward downside protection, is an important indicator of directional market positioning and tail risk perception. Elevated risk reversals favouring GBP puts signal that options markets are pricing asymmetric downside, typically in response to fiscal credibility concerns or growth disappointments. The correlation between gilt yields and GBP adds complexity to the volatility surface interpretation, since rising gilt yields can be either positive for sterling on a carry basis or negative on a fiscal fear basis."
+            }
           }
         }
       },
