@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "generated": "2026-03-09",
+    "generated": "2026-03-08",
     "version": "1.0",
     "note": "AI-generated daily. Historical arrays are FROZEN — never modify the 'historical' or 'weatherGrid' sections.",
     "tier_guide": {
@@ -8,7 +8,7 @@
       "weekly": "Update weekly or on release — CPI, unemployment, policy rate",
       "structural": "Update quarterly or on major revision — GDP, deficits, current account, stories, fxRegime"
     },
-    "built_at": "2026-03-09 12:37"
+    "built_at": "2026-03-08 22:19"
   },
   "countries": {
     "USA": {
@@ -23,144 +23,74 @@
           "GDP Growth": {
             "value": "+2.8%",
             "tier": "structural",
-            "last_updated": "2026-01-31",
-            "story": {
-              "beginner": "The US economy grew 2.8% in 2025, helped by consumer spending and a strong stock market. Growth is expected to slow in 2026 as tariffs raise costs and oil prices surge, squeezing household budgets and reducing business confidence.",
-              "moderate": "US GDP grew 2.8% in 2025, above the G7 average, supported by OBBBA fiscal stimulus and resilient consumer spending. For 2026, Goldman forecasts 2.6% — above consensus — but the Iran oil shock introduces a stagflationary headwind that could shave 0.3–0.5pp if Brent sustains above $90 through Q2.",
-              "expert": "US real GDP is tracking 2.6% for 2026 on Goldman's base case, outperforming consensus by 0.6pp on the OBBBA fiscal impulse and reduced tariff drag post-SCOTUS IEEPA ruling. The Iran oil shock introduces a supply-side stagflationary channel — a $20/barrel increase in crude historically reduces US real GDP by 0.2–0.4pp over 4–6 quarters via the consumption and investment channels, with the labour market impact lagging the inflation effect by two to three quarters."
-            }
+            "last_updated": "2026-01-31"
           },
           "Inflation (CPI)": {
             "value": "3.1%",
             "tier": "weekly",
-            "last_updated": "2026-03-07",
-            "story": {
-              "beginner": "US prices rose 3.1% over the past year, still above the Fed's 2% target. Now, with oil prices jumping 25–36% from the Middle East conflict, fuel and goods prices are likely to rise further in the coming months, making the Fed's job harder.",
-              "moderate": "US CPI runs at 3.1% with tariff passthrough already adding ~0.3pp. The Iran energy shock could add a further 0.5–1.0pp to headline CPI within 6–8 weeks if crude stays elevated — potentially pushing CPI above 3.5% by mid-year and forcing the FOMC to revise its dot-plot guidance materially.",
-              "expert": "US CPI at 3.1% (January) masks rising core goods inflation from tariff passthrough (+1.3–1.4% on imported durables) and a re-accelerating shelter component. Goldman estimates the Iran shock adds 0.5pp to CPI within 6 weeks at current oil prices. The Fed's preferred PCE gauge, running ~0.3pp below CPI, faces the same upside risk — a sustained energy-driven PCE overshoot above 2.5% would likely close the FOMC's window for 2026 rate cuts entirely."
-            }
+            "last_updated": "2026-03-07"
           },
           "Unemployment": {
             "value": "4.2%",
             "tier": "weekly",
-            "last_updated": "2026-03-07",
-            "story": {
-              "beginner": "The US added only 130,000 jobs in January — well below expectations — and the unemployment rate has drifted to 4.2%. The job market is cooling, with businesses becoming more cautious about hiring as tariffs and uncertainty weigh on investment decisions.",
-              "moderate": "January payrolls of 130,000 (private +172k, federal -42k) masked a deeper weakness: ex-healthcare, private sector job creation was just 6,500. The unemployment rate reached 4.2% and is trending toward 4.4% by mid-2026 — a trajectory that would normally justify Fed easing, except that oil-driven inflation is now running in the opposite direction.",
-              "expert": "The K-shaped US labour market — healthcare/social assistance (+123,500) absorbing nearly all private job growth while IT (-12,000) and manufacturing contracted — reflects early-stage AI-driven labour displacement in white-collar sectors. The Beveridge curve is shifting outward, consistent with structural (not purely cyclical) unemployment rising. For the FOMC, this creates an acute dual-mandate conflict: the labour market argues for cuts, but tariff-and-energy inflation argues for holding — a stagflationary setup that the December dot plot did not model."
-            }
+            "last_updated": "2026-03-07"
           },
           "Budget Deficit": {
             "value": "-6.2% GDP",
             "tier": "structural",
-            "last_updated": "2026-01-31",
-            "story": {
-              "beginner": "The US government is spending far more than it collects in taxes — borrowing about 6 cents for every dollar it spends. Higher oil prices and slower growth could further widen this gap, adding to a debt burden that is already at historically high levels.",
-              "moderate": "The US fiscal deficit is running near 6.2% of GDP. Tariff revenues ($194bn above the 2022–24 average in 2025) provide partial offset, but the OBBBA's multi-trillion-dollar cost and rising debt service costs (10Y Treasury ~4.3%) are structurally widening the primary deficit — constraining the Fed's ability to pursue QE in a crisis without triggering fiscal dominance concerns.",
-              "expert": "Post-SCOTUS IEEPA ruling (Feb 20), the tariff revenue base shifted to Section 232 + Section 122 (10% temporary) + pre-existing Section 301 China tariffs, generating ~$194bn in 2026 per TPC estimates. However, OBBBA's permanent tax cut provisions and mandatory entitlement spending create a structural primary deficit that the Congressional Budget Office projects at 5.8–6.5% of GDP through the decade — a debt trajectory that markets have not yet fully priced via term premium, but which creates a binding long-run constraint on fiscal space."
-            }
+            "last_updated": "2026-01-31"
           },
           "Current Account": {
             "value": "-3.0% GDP",
             "tier": "structural",
-            "last_updated": "2026-01-31",
-            "story": {
-              "beginner": "The US buys far more from the rest of the world than it sells — a persistent trade deficit that tariffs were meant to reduce. Despite record tariff revenues, the deficit has remained wide, as a strong dollar offsets the competitiveness boost from tariffs.",
-              "moderate": "The US current account deficit has remained stubbornly wide despite high tariffs, consistent with the Lerner symmetry theorem: import tariffs reduce the trade deficit in the short run but exchange rate appreciation and income effects offset the gain over time. The Tax Foundation estimates tariffs have 'not meaningfully altered the trade deficit'; the Iran oil shock could temporarily widen the energy component before domestic shale production responds.",
-              "expert": "US current account persistence at -3% of GDP despite historically high tariff rates confirms the Lerner symmetry in practice: tariff incidence falls on domestic consumers (via higher prices) and exporters (via dollar appreciation reducing competitiveness), leaving the underlying savings-investment balance unchanged. The structural determinant — the gap between domestic investment and national saving — is actually widening under the OBBBA fiscal impulse, implying the current account deficit will persist regardless of trade policy at the margin."
-            }
+            "last_updated": "2026-01-31"
           },
           "Policy Rate": {
             "value": "5.25-5.50%",
             "tier": "weekly",
-            "last_updated": "2026-03-07",
-            "story": {
-              "beginner": "The Federal Reserve has kept interest rates at 4.25–4.50%, pausing its 2024 rate-cutting cycle. With oil prices surging and inflation risks rising from the Middle East conflict, the chances of rate cuts in the near term have dropped sharply.",
-              "moderate": "The FOMC has been on hold at 4.25–4.50% since late 2025. Markets that priced June cuts before the Iran shock have repriced to July–September at the earliest. NY Fed's Williams has stated tariff-driven inflation has 'temporarily stalled' disinflation progress, and the energy shock adds a second layer of inflationary pressure that makes near-term easing extremely unlikely.",
-              "expert": "The FOMC's reaction function is now constrained on multiple dimensions: the tariff-and-energy supply shock argues against cuts (inflation upside), while a deteriorating labour market and weakening business confidence argue for easing. The December dot plot (two cuts in 2026) is likely inoperative — market pricing has shifted to 0–1 cuts. Any premature pivot toward easing could trigger a USD depreciation-inflation feedback loop that further unanchors near-term expectations, while extended holding risks overtightening into a slowing economy."
-            }
+            "last_updated": "2026-03-07"
           }
         },
         "market": {
           "Stock Market YTD": {
             "value": "+2.0%",
             "tier": "daily",
-            "last_updated": "2026-03-08",
-            "story": {
-              "beginner": "US stocks (S&P 500) are up about 2% so far this year — a modest gain after a strong 2025. The Middle East conflict has added uncertainty, with markets worried that higher energy costs will squeeze corporate profits and slow consumer spending.",
-              "moderate": "The S&P 500's +2% YTD gain masks significant sector divergence: energy and defence stocks have surged while consumer discretionary and transport are under pressure. The Iran shock has raised equity vol (VIX ~16) and created a risk-off tone, though the market has not broken key technical levels. Forward EPS estimates are being revised down as analysts build in higher energy cost assumptions.",
-              "expert": "The S&P 500's YTD return reflects the tug-of-war between the OBBBA fiscal impulse (positive for domestic demand and earnings) and the Iran stagflation shock (negative for margins and multiples). The energy sector is the obvious beneficiary, but the 7-stock mega-cap dominance in index returns creates a fragile composition: if rate-cut repricing continues pushing long-end yields higher, the duration-sensitive growth stock valuations that anchor the index come under pressure — a multiple compression risk that the headline YTD figure obscures."
-            }
+            "last_updated": "2026-03-08"
           },
           "Equity Vol": {
             "value": "~16",
             "tier": "daily",
-            "last_updated": "2026-03-08",
-            "story": {
-              "beginner": "Stock market volatility (measured by the VIX) is running around 16, higher than the very calm conditions of early 2025. When volatility rises, it signals that investors are more uncertain about the future — often because of events like the current Middle East conflict.",
-              "moderate": "The VIX at ~16 represents a moderate-stress environment — elevated versus early-2025 lows near 12, but well below the 25+ levels seen during previous geopolitical shocks. Options markets are pricing elevated uncertainty for the next 30 days, consistent with the ongoing Iran conflict. A break above 20 would signal a more significant risk-off shift and likely trigger further equity deleveraging.",
-              "expert": "VIX at ~16 is deceptively contained given the geopolitical backdrop — the options market is likely underpricing tail risk given that the Iran conflict duration is unknown and energy supply disruption could persist for months. The volatility term structure (VIX vs. VIX3M) is currently flat-to-inverted, suggesting front-end uncertainty is elevated. Realized vol running below implied creates a vol risk premium that is attractive to sellers, but crowded short-vol positioning is a known systemic risk if the conflict escalates sharply."
-            }
+            "last_updated": "2026-03-08"
           },
           "10Y Bond Yield": {
             "value": "4.28%",
             "tier": "daily",
-            "last_updated": "2026-03-08",
-            "story": {
-              "beginner": "The interest rate on 10-year US government bonds is 4.28%, which affects mortgage rates, corporate borrowing costs, and how investors value stocks. Higher bond yields make stocks less attractive relative to bonds, creating competition for investor money.",
-              "moderate": "The 10Y Treasury yield at 4.28% reflects a complex balance: the Iran shock raises short-term inflation expectations (pushing yields up) while simultaneously raising recession fears (pulling yields down via flight to safety). The net result is a range-bound 10Y yield, though a sustained energy-driven CPI overshoot above 3.5% would likely push the 10Y toward 4.5–4.7% as real rate expectations reprice.",
-              "expert": "The 10Y Treasury at 4.28% embeds a modest positive term premium (~30–40bp per ACM model) and real rate of ~1.7%. The Iran shock creates non-linear yield dynamics: if energy inflation proves persistent, the FOMC's reaction function shifts hawkish (bearish for bonds); if it triggers growth fears, flight-to-safety demand emerges (bullish for bonds). The balance depends on duration — a 2-week Hormuz closure is likely bondneutral; a 3-month closure would likely see 10Y yields spike toward 4.6–4.8% as inflation expectations dominate."
-            }
+            "last_updated": "2026-03-08"
           },
           "Yield Curve": {
             "value": "+8bps",
             "tier": "daily",
-            "last_updated": "2026-03-08",
-            "story": {
-              "beginner": "The US yield curve — the difference between short-term and long-term interest rates — has recently turned positive at around +8 basis points. For much of 2023–2024, this was inverted (short rates higher than long rates), which often signals recession fears. A re-steepening can mean markets expect eventual rate cuts.",
-              "moderate": "The US 10Y-2Y yield curve at +8bps has recently re-steepened from deep inversion, driven by short-end rate expectations pricing in eventual Fed easing. The Iran shock complicates this: energy-driven inflation argues for keeping short rates high (flattening pressure), while growth fears argue for long rates declining (steepening pressure). The net direction of the curve depends on which effect dominates — historically, a persistent energy shock sees a bear-steepening initially, then a bull-steepening as growth fears take over.",
-              "expert": "The US yield curve's +8bps (10Y-2Y) reflects a complex regime: the re-steepening from the -100bps inversion of 2023 has been driven by bear-steepening (long rates rising) rather than the historically more common recession-signal bull-steepening. The Iran shock introduces competing forces: front-end rates anchored by FOMC caution on easing; long-end rates facing upward pressure from energy-driven inflation expectations but downward pressure from flight-to-safety demand. The convexity of this outcome for duration portfolios makes the yield curve a critical indicator — a break above +25bps would signal a fundamental repricing of the US real rate term structure."
-            }
+            "last_updated": "2026-03-08"
           },
           "Corp Spread": {
             "value": "85bps",
             "tier": "daily",
-            "last_updated": "2026-03-08",
-            "story": {
-              "beginner": "US corporate bond spreads — the extra interest rate companies pay above government bonds — are at 85 basis points, relatively tight by historical standards. Tighter spreads mean investors are confident about corporate finances; wider spreads signal concern about defaults.",
-              "moderate": "Investment-grade corporate spreads at 85bps are tight relative to the Iran-shock uncertainty, suggesting credit markets are still pricing a 'contained conflict' scenario. A sustained energy price shock would widen spreads via: (1) higher energy input costs compressing margins in manufacturing, transport, and consumer sectors; (2) rising default probabilities for high-yield energy-intensive issuers; and (3) a general risk-off repricing. A move above 110bps would signal a more significant credit stress regime shift.",
-              "expert": "IG corporate spreads at 85bps sit at the tighter end of the post-GFC range, leaving limited cushion for the Iran shock's pass-through effects. The credit spread-to-VIX ratio (currently ~5.3bps per VIX point) suggests spreads are moderately underpriced for the equity vol environment. Energy-intensive sectors (utilities, industrials, airlines) face direct margin compression; leveraged buyout deals using floating-rate debt face increased refinancing risk if the FOMC delays cuts. The high-yield market (spread ~350bps) is more vulnerable — watch the HY energy sub-index as the leading credit stress indicator."
-            }
+            "last_updated": "2026-03-08"
           },
           "Sov CDS": {
             "value": "35bps",
             "tier": "daily",
-            "last_updated": "2026-03-08",
-            "story": {
-              "beginner": "US sovereign CDS at 35 basis points is the cost to insure against the US government defaulting on its debt. While still low, this has risen slightly — reflecting growing concerns about the US debt trajectory and fiscal sustainability, particularly as the government borrows more to fund tax cuts and defence.",
-              "moderate": "US sovereign CDS at 35bps reflects the market's base case of fiscal credibility, despite the widening structural deficit. The Iran shock is net-neutral to marginally negative for US CDS: higher energy revenues for US shale producers improve corporate tax receipts somewhat, but slower growth from the oil shock reduces income tax revenues. The key medium-term risk is if the OBBBA's permanent tax cuts push debt-to-GDP above 120%, triggering a rating agency action — Moody's is the last agency with a AAA-equivalent rating for the US.",
-              "expert": "US sovereign CDS at 35bps trades as a tail-risk instrument rather than a credit risk indicator — the US is a monetary sovereign in its own currency, making default improbable absent extreme political dysfunction (debt ceiling crises). The CDS price primarily reflects: (1) political risk around debt ceiling negotiations; (2) tail scenarios involving fiscal dominance; and (3) technical demand from hedgers of US Treasury duration risk. The Iran shock's fiscal implications (higher defence spending, potential fuel subsidies, slower growth revenue drag) are incrementally negative for CDS but not material at current price levels."
-            }
+            "last_updated": "2026-03-08"
           },
           "USD/DXY": {
             "value": "104.2",
             "tier": "daily",
-            "last_updated": "2026-03-08",
-            "story": {
-              "beginner": "The US dollar index (DXY) at 104.2 measures the dollar's strength against a basket of major currencies. A strong dollar makes US exports more expensive for foreign buyers but makes imports cheaper for Americans. The Iran conflict has supported the dollar as a safe-haven currency.",
-              "moderate": "The DXY at 104.2 reflects conflicting forces: the Iran crisis generates safe-haven USD demand (positive for DXY), but the Fed's rate-hold stance and slowing US growth create headwinds. The dollar smile framework — dollar strengthening at extremes of global cycle (deep recession or strong growth) but weakening in the middle — suggests the current moderate-stress environment favours range-bound DXY movement around 103–107.",
-              "expert": "The DXY at 104.2 is being driven by competing dynamics: geopolitical safe-haven bid (bullish USD), FOMC rate-hold expectations (bullish USD), but deteriorating US fiscal trajectory and current account deficit (structurally bearish USD). The petrodollar arrangement — oil priced in USD creating structural dollar demand — is being tested by the Iran shock, which paradoxically could accelerate non-dollar oil pricing if Gulf states perceive the US military commitment as unreliable long-term. For EM central banks managing dollar-pegged regimes, DXY persistence above 104 creates reserve drawdown pressure that eventually feeds back into US Treasury demand dynamics."
-            }
+            "last_updated": "2026-03-08"
           },
           "FX Vol": {
             "value": "8.5%",
             "tier": "daily",
-            "last_updated": "2026-03-08",
-            "story": {
-              "beginner": "FX volatility at 8.5% means currency markets are seeing larger-than-normal price swings. When geopolitical events like the Iran conflict create uncertainty, investors move money between currencies more rapidly, causing greater day-to-day fluctuations in exchange rates.",
-              "moderate": "G10 FX implied volatility at 8.5% is elevated relative to early-2025 lows but contained relative to major stress episodes. The Iran shock has widened cross-currency basis swaps and increased demand for options hedges on energy-importing currency pairs (JPY, EUR, GBP) versus energy exporters (CAD, AUD, NOK). The USD's safe-haven status means USD options vol is bid on both the upside (risk-off spike) and downside (eventual Fed easing), creating a vol smile that differs from typical geopolitical shock patterns.",
-              "expert": "FX vol at 8.5% (implied 1-month) is underpriced for the binary nature of the Iran conflict's resolution path — a ceasefire would compress vol toward 6%, while an escalation scenario (Iranian missile retaliation, Hormuz indefinitely closed) would push vol above 12%. The vol surface is steepening (1-month vs. 3-month term structure) as the market prices a front-loaded uncertainty event. Carry strategies in EM FX (BRL, ZAR, INR) face elevated correlation risk — historically, energy shock episodes see EM carry trades unwind in a correlated fashion as risk-off sentiment dominates currency-specific fundamentals."
-            }
+            "last_updated": "2026-03-08"
           }
         }
       },
@@ -997,144 +927,74 @@
           "GDP Growth": {
             "value": "+1.1%",
             "tier": "structural",
-            "last_updated": "2026-01-31",
-            "story": {
-              "beginner": "Canada's economy grew just 1.1% in 2025, well below its potential, as uncertainty over US tariffs held back business investment. The oil price surge from the Iran conflict is giving the energy sector a short-term lift, but the broader economy remains sluggish heading into 2026.",
-              "moderate": "Canadian GDP grew 1.1% in 2025, dragged down by tariff-related investment hesitancy in trade-exposed manufacturing sectors, particularly autos. The oil shock is a net positive for energy-heavy Alberta but adds feedstock cost pressure for Eastern refiners, creating a regional split in the growth picture. Goldman forecasts 1.3% for 2026 on the base case, contingent on tariff uncertainty not escalating into a formal trade war.",
-              "expert": "Canada's 1.1% GDP growth in 2025 reflects the structural drag from US tariff uncertainty on non-energy business investment, with capex surveys showing manufacturers delaying expansion decisions pending clarity on USMCA enforcement. The oil shock creates a terms-of-trade improvement (energy is ~10% of GDP) that mechanically adds 0.2-0.3pp to growth, but geographic and sector mismatch limits the macro pass-through: Alberta benefits directly while Ontario and Quebec manufacturing face margin compression from higher energy input costs and subdued export demand. The net GDP effect of the Iran shock is modestly positive for Canada in the short run, but a sustained US slowdown from the same shock would dominate through the trade channel, which remains the primary external transmission mechanism."
-            }
+            "last_updated": "2026-01-31"
           },
           "Inflation (CPI)": {
             "value": "2.7%",
             "tier": "weekly",
-            "last_updated": "2026-03-07",
-            "story": {
-              "beginner": "Canadian inflation is running at 2.7%, still above the Bank of Canada's 2% target but moving in the right direction. Higher fuel prices from the Iran conflict could push this number back up, making the Bank of Canada more cautious about cutting interest rates further.",
-              "moderate": "Canadian CPI at 2.7% was on a credible path toward the 2% target before the Iran energy shock. Gasoline and home heating costs will add directly to the headline number in the coming months, with BoC models suggesting a $20/barrel crude increase adds roughly 0.3-0.4pp to headline CPI over two to three months. The BoC's next rate decision will hinge on whether the energy spike is treated as transitory or whether it begins feeding into core inflation expectations.",
-              "expert": "Canada's CPI at 2.7% masks regional asymmetry: energy-producing provinces face demand-side inflation from rising incomes while energy-consuming provinces face cost-push pressure from higher fuel and transport costs. Core CPI (ex food and energy) running closer to 2.5% suggests underlying domestic inflation is still elevated, limiting the BoC's room to cut aggressively. The Iran shock introduces a 0.3-0.5pp upside risk to headline CPI over one to two quarters, but Canada's net oil exporter status means terms-of-trade effects partially offset the consumer price impact at the macro level, a nuance the BoC's national CPI target does not capture by region."
-            }
+            "last_updated": "2026-03-07"
           },
           "Unemployment": {
             "value": "6.5%",
             "tier": "weekly",
-            "last_updated": "2026-03-07",
-            "story": {
-              "beginner": "Canada's unemployment rate has risen to 6.5%, among the highest in several years, as businesses have become more cautious about hiring due to uncertainty over US trade policy. The energy sector may add some jobs in oil-producing regions, but this is unlikely to offset weakness in manufacturing and other industries that rely heavily on US trade.",
-              "moderate": "Canadian unemployment at 6.5% reflects the direct impact of tariff-driven investment suppression in manufacturing, particularly auto supply chains tightly integrated with US production. Labour force participation has held up, meaning the rise in unemployment reflects genuine job destruction rather than discouraged workers leaving the count. A sustained oil price above $85 could generate 20,000-30,000 net new resource sector jobs over 12 months, but geographic mismatch between Alberta job creation and Ontario job losses limits how much of the manufacturing shortfall can be absorbed.",
-              "expert": "Canada's 6.5% unemployment rate understates effective labour market slack: the underemployment rate (including part-time workers seeking full-time work) has risen sharply in goods-producing sectors, and hours worked in manufacturing have fallen faster than headcount. The BoC's estimate of the natural rate (NAIRU) sits around 5.5-6.0%, meaning the current rate is above structural estimates and provides genuine disinflationary pressure from the labour market channel. The geographic mismatch between resource sector job creation (western provinces) and manufacturing sector losses (Ontario, Quebec) constrains the adjustment mechanism and argues for maintaining monetary easing even as energy prices rise."
-            }
+            "last_updated": "2026-03-07"
           },
           "Budget Deficit": {
             "value": "-1.4% GDP",
             "tier": "structural",
-            "last_updated": "2026-01-31",
-            "story": {
-              "beginner": "Canada's government is running a small budget deficit of about 1.4% of GDP, which is modest compared to most other G7 countries. This gives Ottawa room to increase spending to support the economy if the tariff situation worsens, without raising serious concerns about Canada's financial health.",
-              "moderate": "Canada's -1.4% of GDP federal deficit is among the smallest in the G7, giving Ottawa meaningful fiscal space relative to peers. Higher oil prices are delivering a windfall through corporate tax revenues and Alberta Heritage Fund contributions that could reduce the deficit further. If tariff headwinds intensify and unemployment rises, Canada has room to deploy targeted fiscal support (employment insurance, manufacturing adjustment programs) without threatening fiscal credibility or triggering a rating agency response.",
-              "expert": "Canada's federal deficit of -1.4% of GDP and debt-to-GDP around 40% place it in the strongest structural fiscal position among G7 economies, providing significant countercyclical capacity. The oil revenue windfall at current crude prices generates incremental federal corporate tax receipts and provincial royalty revenues that could bring the federal position close to balance in FY2026 under an optimistic scenario. The binding fiscal constraint for Canada is not solvency but political economy: with an election cycle approaching, the government faces pressure to deploy fiscal space as consumer support rather than as a buffer against downside risk, which complicates the BoC's ability to ease monetary policy without triggering crowding-out concerns."
-            }
+            "last_updated": "2026-01-31"
           },
           "Current Account": {
             "value": "-0.8% GDP",
             "tier": "structural",
-            "last_updated": "2026-01-31",
-            "story": {
-              "beginner": "Canada is running a small current account deficit, meaning it is importing slightly more than it is exporting in total. However, soaring oil prices from the Iran conflict are boosting Canada's energy export revenues, which could push this toward surplus territory in the coming months.",
-              "moderate": "Canada's current account deficit of -0.8% of GDP is narrow and likely to improve further as oil export revenues rise with crude prices. The goods trade surplus in energy is partially offset by a persistent services deficit, largely reflecting Canadian tourism spending in the US and profit repatriation by US-headquartered multinationals. The terms-of-trade improvement from a sustained oil price above $85 is mechanically supportive of the current account and provides a fundamental underpinning for the Canadian dollar that partially offsets the rate differential headwind versus the US.",
-              "expert": "Canada's current account dynamics under the Iran shock are driven primarily by the WCS-WTI spread and pipeline export capacity. At WTI above $85, Canadian crude revenues are near multi-year highs and the terms-of-trade channel mechanically improves the current account balance. A Hormuz disruption that strands Middle Eastern barrels could redirect global buyers to Canadian supply, compressing the WCS discount and amplifying current account improvement beyond the crude price effect alone. The structural services deficit (-2% of GDP) and investment income outflows partially offset this, but the net current account trajectory is improving, providing a divergent signal from the rate differential that is keeping CAD/USD compressed."
-            }
+            "last_updated": "2026-01-31"
           },
           "Policy Rate": {
             "value": "4.50%",
             "tier": "weekly",
-            "last_updated": "2026-03-07",
-            "story": {
-              "beginner": "The Bank of Canada has been cutting interest rates to support the slowing economy, bringing the rate down to 4.50% from a peak of 5.00%. With oil prices rising from the Iran conflict, the Bank may slow its rate-cutting plans to make sure inflation does not pick back up.",
-              "moderate": "The BoC has cut rates by 50bps from its 5.00% peak, moving faster than the Fed and creating a widening rate differential that has weighed on the Canadian dollar. The Iran energy shock complicates the path forward: the BoC wants to ease further to address rising unemployment and tariff-dampened growth, but energy-driven CPI upside gives it reason to pause. Markets are pricing one to two additional cuts in 2026, but the probability of a pause at the next meeting has risen meaningfully following the oil shock.",
-              "expert": "The BoC's rate path has diverged materially from the Fed's, with the resulting 75-100bp CAD/USD rate differential functioning as a persistent currency headwind. The Iran shock introduces a classic external supply shock dilemma: easing to address tariff-driven domestic weakness risks amplifying pass-through from a weaker currency into CPI, while holding risks overtightening into a slowing economy with rising unemployment. The BoC's FX pass-through estimates (0.05-0.08 into CPI over four quarters) suggest currency weakness from rate divergence is a secondary inflation risk, but at current CAD/USD levels any further depreciation begins to compound the energy price shock in consumer price terms."
-            }
+            "last_updated": "2026-03-07"
           }
         },
         "market": {
           "Stock Market YTD": {
             "value": "+6.8%",
             "tier": "daily",
-            "last_updated": "2026-03-08",
-            "story": {
-              "beginner": "Canadian stocks are up 6.8% so far this year, outperforming US markets. The main reason is that Canada's stock market has a large weighting in energy companies, which have surged in value as oil prices jumped from the Iran conflict.",
-              "moderate": "The TSX's +6.8% YTD gain reflects the index's heavy energy and materials weighting (combined ~35% of the index), which have benefited directly from the oil and commodities price surge. Financials, the other dominant sector at ~30% of the index, are under modest pressure from concerns about consumer credit quality as unemployment rises and variable-rate mortgage holders face ongoing stress. The Iran shock has been a net positive for the TSX relative to other G7 markets, though this outperformance is concentration-dependent.",
-              "expert": "The TSX's +6.8% YTD return is almost entirely a function of sectoral composition rather than broad-based earnings improvement: energy and materials together account for roughly 60-70% of the YTD index contribution. The financials sector (Royal Bank, TD, BNS) faces a complex backdrop - rising credit costs from mortgage arrears and consumer debt stress on one side, and steeper yield curves supporting net interest margins on the other. For investors, the TSX's current outperformance is a terms-of-trade trade, not a productivity or earnings quality story. The correlation between the TSX and WTI crude is running near its highest level in three years, making the index effectively a levered oil exposure for international portfolio managers."
-            }
+            "last_updated": "2026-03-08"
           },
           "Equity Vol": {
             "value": "-",
             "tier": "daily",
-            "last_updated": "2026-03-08",
-            "story": {
-              "beginner": "Data for Canadian equity volatility is not available here, but as a major commodity exporter Canada's stock market tends to swing more when oil prices move sharply. The current oil price surge from the Iran conflict is generating larger-than-usual price moves in Canadian energy stocks specifically.",
-              "moderate": "Canadian equity volatility data is not reported in this period, but the TSX's sectoral composition implies that realized volatility is elevated relative to pre-shock levels. Energy stocks, which dominate the index, are experiencing outsized intraday swings as oil prices fluctuate on Hormuz news. The implied volatility on TSX-listed energy names is tracking above historical averages, even as the index-level gain looks calm from the headline YTD figure.",
-              "expert": "TSX equity volatility is not available as a headline figure in this period, but the index-level calm implied by the +6.8% YTD return masks significant sector-level dispersion. Energy and materials names are experiencing high realized volatility from oil price swings, while financials volatility has increased on credit quality concerns. The cross-sectional dispersion of returns within the TSX is at multi-year highs, meaning single-stock and sector risk is elevated even without a visible index-level VIX equivalent. For options traders, this dispersion creates attractive index vs. single-stock volatility spread trades."
-            }
+            "last_updated": "2026-03-08"
           },
           "10Y Bond Yield": {
             "value": "3.45%",
             "tier": "daily",
-            "last_updated": "2026-03-08",
-            "story": {
-              "beginner": "The interest rate on Canadian 10-year government bonds is 3.45%, well below the US equivalent of around 4.28%. This lower rate reflects the Bank of Canada cutting interest rates more aggressively than the Federal Reserve, and markets expecting Canadian growth to be softer than US growth in the near term.",
-              "moderate": "Canada's 10Y yield at 3.45% is roughly 80bps below the US 10Y, a spread that has widened materially as the BoC has cut more aggressively than the Fed. This yield differential is a primary driver of CAD weakness versus the USD. If the BoC pauses cuts due to energy-driven inflation while the Fed remains on hold, the spread could narrow modestly, providing some CAD support. Domestic demand for Canadian government bonds from pension funds and insurance companies provides a structural bid that keeps yields anchored even as global conditions tighten.",
-              "expert": "Canada's 10Y at 3.45% versus the US 10Y at 4.28% reflects two distinct forces: the BoC's more aggressive easing cycle compressing the short end, and the market's view that Canada's growth trajectory is structurally softer than the US. The Canada-US 10Y spread at -83bps is near its widest in the current cycle. For fixed income managers, the question is whether this spread overestimates Canada's relative growth and inflation disadvantage: Canada's fiscal position is meaningfully stronger than the US, and a sustained oil price improvement could close part of the growth gap, supporting spread compression and Canadian bond outperformance relative to Treasuries on a hedged basis."
-            }
+            "last_updated": "2026-03-08"
           },
           "Yield Curve": {
             "value": "+15bps",
             "tier": "daily",
-            "last_updated": "2026-03-08",
-            "story": {
-              "beginner": "Canada's yield curve, measuring the difference between short-term and long-term interest rates, is positive at +15 basis points. This is healthier than the inverted curve seen in recent years, suggesting markets expect the economy to eventually recover and interest rates to normalize over time.",
-              "moderate": "The Canadian 10Y-2Y yield curve at +15bps has re-steepened from inversion as the BoC has cut short-term rates while long-term rates have remained anchored by inflation expectations and global bond market dynamics. The re-steepening is driven by bull-steepening (short rates falling faster than long rates), which historically is associated with easing cycles responding to growth weakness rather than the bear-steepening that characterizes inflation-driven rate rises. This is a modestly positive signal, suggesting BoC cuts are transmitting into the yield structure as intended.",
-              "expert": "Canada's +15bps 10Y-2Y spread reflects a textbook bull-steepening pattern: the BoC's 50bps of cuts has dragged the 2Y yield below the 10Y, re-establishing a normal curve slope from the -30bp inversion that persisted through much of 2024. The slope is still narrow by historical standards, suggesting the market is not yet pricing a full cyclical recovery. The Iran shock introduces competing forces: energy-driven inflation pushes long yields up (bear-steepening pressure) while growth fears push short yields down (bull-steepening pressure). A sustained steepening above +30bps would signal improving growth expectations and support financials sector earnings through wider net interest margins."
-            }
+            "last_updated": "2026-03-08"
           },
           "Corp Spread": {
             "value": "115bps",
             "tier": "daily",
-            "last_updated": "2026-03-08",
-            "story": {
-              "beginner": "Canadian corporate bonds are paying 115 basis points more than government bonds to attract investors, higher than the US equivalent of 85 basis points. This wider gap reflects concerns that some Canadian companies, particularly those exposed to the US trade relationship, face more uncertainty than their American counterparts.",
-              "moderate": "Canadian IG corporate spreads at 115bps are meaningfully wider than US equivalents (85bps), reflecting additional uncertainty from tariff exposure concentrated in Canadian manufacturing and the higher proportion of resource sector issuers in the Canadian credit index, whose cash flows are volatile with commodity prices. The Iran oil shock is a mixed signal for Canadian credit: energy sector issuers benefit from higher revenues and improved coverage ratios, but manufacturers and consumer-facing issuers face margin compression. A spread above 130bps would signal a more significant credit stress event.",
-              "expert": "Canada's 115bps IG corporate spread premium over US spreads (85bps) is structurally justified by index composition: Canadian credit indices carry higher weights in resource extraction and financial issuers, both of which have higher spread volatility than the US investment-grade average. The energy sector's improved cash flow under the oil shock improves credit metrics for E&P issuers but increases refinancing risk for service companies and pipeline operators that locked in financing at peak spreads in 2024. Canadian bank credit, typically the tightest part of the credit curve, is showing modest spread widening on mortgage credit quality concerns, a signal worth monitoring given banks' dominant role in the corporate bond market as issuers."
-            }
+            "last_updated": "2026-03-08"
           },
           "Sov CDS": {
             "value": "40bps",
             "tier": "daily",
-            "last_updated": "2026-03-08",
-            "story": {
-              "beginner": "The cost to insure against Canada defaulting on its government debt is 40 basis points, slightly above the US at 35 basis points. Both are very low, meaning markets consider both governments highly creditworthy. Canada's slightly higher reading reflects modest uncertainty about its economic outlook rather than any genuine default concern.",
-              "moderate": "Canadian sovereign CDS at 40bps is marginally above the US at 35bps, which is somewhat counterintuitive given Canada's stronger fiscal position (lower deficit, lower debt-to-GDP). The premium likely reflects Canada's smaller economy and greater sensitivity to commodity price volatility, which creates more variance in government revenues than the US experiences. The oil windfall from the Iran shock is fiscally positive for Canada, which could tighten Canadian CDS modestly if higher oil revenues are sustained.",
-              "expert": "Canada's sovereign CDS at 40bps trades at a premium to the US despite a structurally stronger fiscal position, an anomaly explained by liquidity: the Canadian CDS market is thinner than the US market, so the spread includes a meaningful liquidity premium beyond any credit risk component. Canada is a monetary sovereign in its own currency with no genuine default risk under any plausible scenario. The CDS price is most useful as a relative value indicator: the Canada-US CDS basis at +5bps is narrow and could compress further if oil revenues improve the fiscal outlook, or widen if the tariff war materially slows Canadian growth and raises fiscal transfer demands."
-            }
+            "last_updated": "2026-03-08"
           },
           "CAD/USD": {
             "value": "0.74",
             "tier": "daily",
-            "last_updated": "2026-03-08",
-            "story": {
-              "beginner": "The Canadian dollar is worth 74 US cents, meaning the currency has been weakening against the US dollar. A weaker Canadian dollar makes Canadian exports cheaper for foreigners (good for oil and agricultural exporters) but makes imports more expensive for Canadians, adding to cost pressures.",
-              "moderate": "CAD/USD at 0.74 reflects the combined effect of the BoC-Fed rate differential (BoC cutting faster, widening the gap) and a tariff-related risk discount on a trade-exposed economy. The oil price surge is a partial offset: higher crude prices historically support the Canadian dollar as a petrocurrency, with the WTI-CAD correlation running near 0.6 over the past year. The net result is a range-bound CAD, with oil providing a floor and rate differentials capping upside. A sustained move below 0.72 would signal that tariff concerns are overriding the oil price support.",
-              "expert": "CAD/USD at 0.74 is being driven by three competing forces: the BoC-Fed rate differential (bearish CAD), terms-of-trade improvement from oil prices (bullish CAD), and tariff-related risk premium on the Canadian economy (bearish CAD). The rate differential effect is dominant at current magnitudes: a 75-100bp BoC-Fed spread is historically associated with CAD trading 3-5% below purchasing power parity estimates. The petrocurrency correlation provides a partial offset, but FX pass-through of oil prices into CAD is asymmetric, stronger in sustained upcycles than in short-term shock-driven moves. If the BoC pauses its cutting cycle in response to energy-driven inflation while the Fed holds, the rate differential could narrow modestly and provide CAD with a near-term recovery catalyst."
-            }
+            "last_updated": "2026-03-08"
           },
           "FX Vol": {
             "value": "7.2%",
             "tier": "daily",
-            "last_updated": "2026-03-08",
-            "story": {
-              "beginner": "Currency market volatility for the Canadian dollar is running at 7.2%, meaning the exchange rate between the Canadian and US dollar is moving around more than usual. This is driven by uncertainty about US trade policy, oil price swings from the Iran conflict, and differing interest rate decisions by the Bank of Canada and the Federal Reserve.",
-              "moderate": "CAD/USD implied volatility at 7.2% is elevated versus 2024 averages, reflecting the confluence of three independent uncertainty drivers: US tariff policy timing, BoC rate path, and oil price direction from the Iran conflict. Options markets are pricing a wider-than-normal range of outcomes for the Canadian dollar over the next three months. The vol premium is skewed toward CAD downside given tariff risk, with the risk reversal (25-delta puts vs calls) showing more demand for CAD put protection than call upside.",
-              "expert": "CAD/USD 1-month implied vol at 7.2% is modestly elevated but potentially underpriced for the binary outcome distribution facing the Canadian dollar. The three main drivers (tariff escalation, BoC-Fed differential, oil price persistence) are each binary in character, meaning the actual outcome distribution is likely bimodal rather than normally distributed around a central case. Risk reversals skewed toward CAD downside indicate the options market is already partially pricing tariff escalation risk, but the magnitude of the skew may understate the tail scenario of a full USMCA breakdown. Carry strategies long CAD versus lower-yielding G10 currencies (JPY, CHF) face elevated unwind risk if global risk-off sentiment from the Iran conflict intensifies."
-            }
+            "last_updated": "2026-03-08"
           }
         }
       },
