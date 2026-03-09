@@ -6579,14 +6579,14 @@ function renderMTT(d) {
   // Metric story HTML
   let metricStoryHTML = '';
   if (d.metricStory) {
-    metricStoryHTML = `<div class="tt-section tt-metric-story"><div class="tt-label" style="color:#ffd700">📍 ${d.countryName}'s Story</div><div class="tt-story" style="margin-bottom:0;padding-bottom:0;border-bottom:none">${d.metricStory}</div></div>`;
+    metricStoryHTML = `<div class="tt-section tt-metric-story"><div class="tt-story" style="margin-bottom:0;padding-bottom:0;border-bottom:none">${d.metricStory}</div></div>`;
   }
 
   // Navigation arrows - only if metric list has entries
   const navHTML = d.metricList.length > 0 ? `<div class="tt-nav"><button class="tt-nav-btn" data-dir="up" title="Previous metric">▲</button><button class="tt-nav-btn" data-dir="down" title="Next metric">▼</button></div>` : '';
 
   const tt = document.createElement('div'); tt.className = 'tooltip';
-  tt.innerHTML = applyGlossary(`${navHTML}<div class="tt-close">✕</div>${levelToggleHTML()}<div class="tt-title">${d.metricName}</div><div class="tt-section"><div class="tt-label">${d.countryName}</div><div class="tt-value">${d.value}</div></div>${chartHTML}${metricStoryHTML}${exHTML ? `<div class="tt-story">${exHTML}</div>` : ''}${regimeHTML}${d.source ? `<div class="tt-source">Source: ${d.source}</div>` : ''}<button class="compare-btn" data-metric="${d.metricName}" data-country="${d.countryName}" data-sec="${d.section}"><span class="cb-icon">⇅</span> Compare All Countries</button>`, d.metricName);
+  tt.innerHTML = applyGlossary(`${navHTML}<div class="tt-close">✕</div>${levelToggleHTML()}<div class="tt-title">${d.metricName}</div><div class="tt-section"><div class="tt-label">${d.countryName}</div><div class="tt-value">${d.value}</div></div>${metricStoryHTML}${chartHTML}${exHTML ? `<div class="tt-story">${exHTML}</div>` : ''}${regimeHTML}${d.source ? `<div class="tt-source">Source: ${d.source}</div>` : ''}<button class="compare-btn" data-metric="${d.metricName}" data-country="${d.countryName}" data-sec="${d.section}"><span class="cb-icon">⇅</span> Compare All Countries</button>`, d.metricName);
   document.body.appendChild(tt); tt.offsetHeight; tt.classList.add('active'); attachGlossary(tt);
 
   // Close
