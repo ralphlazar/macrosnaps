@@ -8,7 +8,7 @@
       "weekly": "Update weekly or on release — CPI, unemployment, policy rate",
       "structural": "Update quarterly or on major revision — GDP, deficits, current account, stories, fxRegime"
     },
-    "built_at": "2026-03-09 20:04"
+    "built_at": "2026-03-09 20:50"
   },
   "countries": {
     "USA": {
@@ -3300,74 +3300,144 @@
           "GDP Growth": {
             "value": "+0.9%",
             "tier": "structural",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Japan's economy grows slowly compared to most wealthy nations, and that has been true for decades. The population is shrinking and ageing, which means fewer workers and less consumer spending over time. The economy gets bursts of activity from exports and tourism, but the underlying trend is modest. For most Japanese people, the economy feels stable rather than dynamic.",
+              "moderate": "Japan's growth is constrained by demographic decline and weak domestic demand. Real wage growth has turned positive for the first time in years, which suggests the long deflationary cycle may finally be breaking. But the structural headwinds from a shrinking workforce are powerful, and productivity growth has been insufficient to compensate. Export competitiveness has been boosted by a weak yen, but that also raises import costs and squeezes real incomes.",
+              "expert": "Japan's real GDP growth reflects the tension between cyclical tailwinds from a weak yen boosting export earnings and the structural drag from demographic contraction. The output gap has been closing, which is what gave the BoJ the confidence to exit negative rates in 2024. However, the pace of potential growth is constrained by labour force decline and a corporate sector that has historically prioritised retained earnings over investment. The recent nominal wage growth, while encouraging, needs to be sustained for several years before the BoJ can declare victory on its reflation objective."
+            }
           },
           "Inflation (CPI)": {
             "value": "1.8%",
             "tier": "weekly",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Japan spent most of the past 30 years struggling with prices that barely moved or even fell, which is unusual and actually harmful to an economy. Now inflation is above 2% for the first time in a generation. For older Japanese people this is a shock, as rising prices is something they barely experienced in their adult lives. The Bank of Japan is now trying to manage this carefully without letting prices rise too fast.",
+              "moderate": "Japan's inflation picture is the inverse of most developed economies right now. While other central banks are trying to bring inflation down, the Bank of Japan spent years trying to create it. Now that it has arrived, driven initially by import costs and a weak yen, the question is whether it becomes self-sustaining through wage growth. The BoJ is cautiously tightening policy, but it remains the most dovish major central bank by a wide margin.",
+              "expert": "Japan's CPI is running around the 2% target, but the composition matters more than the headline. The BoJ's sustainability test is whether inflation is driven by a domestic wage-price dynamic rather than purely imported cost-push. Services inflation, which is more wage-sensitive, has been picking up and is central to the BoJ's exit from ultra-easy policy. The risk is that any significant yen appreciation, triggered by rate hike expectations or risk-off flows, reverses import-price inflation before the domestic wage channel is firmly established."
+            }
           },
           "Unemployment": {
             "value": "2.5%",
             "tier": "weekly",
-            "last_updated": "2026-03-07"
+            "last_updated": "2026-03-07",
+            "story": {
+              "beginner": "Japan has one of the lowest unemployment rates in the world. Finding a job in Japan is generally not the problem. The more significant issue is that many jobs, particularly for women and older workers, are part-time or low-paid. The shrinking population means there are actually labour shortages in many sectors, including construction, nursing, and hospitality.",
+              "moderate": "Japan's unemployment rate is structurally low by international comparison, reflecting both cultural factors around lifetime employment and genuine labour scarcity from demographic decline. The labour market tightness is one of the conditions the BoJ needs to see to feel confident that wage growth will be sustained. Spring wage negotiations (Shunto) have become a closely watched indicator, as they set the tone for pay across the economy. Recent Shunto rounds have produced the strongest wage increases in decades.",
+              "expert": "Japan's headline unemployment rate understates the degree of labour market slack because of the significant structural role of part-time and non-regular employment, which accounts for roughly 37% of the workforce and receives substantially lower wages and benefits. The BoJ's assessment of labour market tightness relies on the jobs-to-applicants ratio alongside the unemployment rate. Shunto wage negotiation results have been strong in 2024 and 2025, which has been central to the BoJ's confidence in its exit from NIRP. The key question is whether smaller firms, which employ the majority of workers but have less pricing power, can sustain the wage increases seen at major corporates."
+            }
           },
           "Budget Deficit": {
             "value": "-1.2% GDP",
             "tier": "structural",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Japan has one of the largest government debt piles in the world relative to the size of its economy, built up over decades of stimulus spending to try to keep the economy growing. Despite this, Japan has not had a financial crisis, partly because most of its debt is owned by Japanese institutions and the Bank of Japan itself rather than foreign investors. The government continues to run a deficit, adding to this debt every year.",
+              "moderate": "Japan's fiscal position is an anomaly in global finance. Gross government debt is above 250% of GDP, which by conventional metrics should be alarming, but Japan has maintained low borrowing costs for decades because domestic investors (banks, pension funds, the BoJ itself) absorb the supply. As the BoJ gradually reduces its bond purchases, the question is whether private domestic demand can fill the gap without yields rising to fiscally disruptive levels.",
+              "expert": "Japan's fiscal dynamics are unique among developed economies. The high gross debt figure is partially offset by significant government financial assets, making net debt considerably lower, but still among the highest in the OECD. The critical variable is the interest rate-growth differential: for decades, the rate was below nominal growth, which meant the debt ratio was self-stabilising. As the BoJ exits NIRP and YCC, rates are rising, which tightens the fiscal arithmetic. Any significant rise in JGB yields has a large fiscal cost given the stock of debt, creating a binding constraint on how aggressively the BoJ can tighten."
+            }
           },
           "Current Account": {
             "value": "+4.8% GDP",
             "tier": "structural",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Japan typically earns more from the rest of the world than it spends, which makes it one of the world's biggest creditor nations. Much of this comes not from selling goods but from the income Japan earns on its enormous overseas investments, built up over decades. This means the yen tends to be seen as a safe haven currency that people buy when the world gets scary.",
+              "moderate": "Japan's current account surplus is dominated by the primary income balance (returns on foreign assets) rather than goods trade, which has been squeezed by the high cost of energy imports. The size of Japan's net foreign asset position, the largest in the world in absolute terms, means that income flows home consistently regardless of trade conditions. This structural surplus is part of why the yen, despite being a low-yielding currency, is treated as a safe haven: in a global downturn, Japanese investors repatriate assets, which bids up the yen.",
+              "expert": "Japan's current account structure reflects the transition from a trade-surplus to an investment-income-surplus economy. The goods trade balance has been volatile and sometimes negative, sensitive to yen depreciation (which inflates the yen cost of energy imports) and global demand for Japanese manufactured goods. The primary income balance is large and persistent, reflecting the returns on Japan's net foreign asset position of approximately 3-3.5 trillion USD. The safe haven dynamic in the yen is partly mechanical: global risk-off events prompt Japanese investors to unwind carry trades and hedge foreign currency exposure, generating yen buying regardless of domestic fundamentals."
+            }
           },
           "Policy Rate": {
             "value": "1.25%",
             "tier": "weekly",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Japan's interest rates were negative or near zero for years, which is almost unheard of anywhere in the world. The Bank of Japan finally raised rates in 2024 for the first time in 17 years. Rates are still very low compared to other countries, but the direction has changed for the first time in a generation. This is a big deal for Japan and also for global financial markets.",
+              "moderate": "The Bank of Japan's exit from negative interest rates and yield curve control is one of the most significant policy shifts in global central banking in recent years. After decades of unconventional easing, the BoJ is now cautiously normalising. The pace is deliberately slow because the BoJ is wary of choking off the nascent inflation and wage growth it has spent years trying to create. Any significant yen appreciation triggered by rate expectations could tighten financial conditions faster than the BoJ intends.",
+              "expert": "The BoJ's normalisation path is constrained by three interacting forces: the fiscal arithmetic (higher JGB yields raise debt servicing costs significantly given the stock of government debt), the exchange rate transmission channel (rate hike expectations drive yen appreciation, which reduces import prices and can undermine the inflation dynamics the BoJ is relying on), and the fragility of the domestic demand recovery. The interest rate differential between Japan and the US has been the primary driver of USD/JPY over the past two years, and any convergence driven by BoJ hikes or Fed cuts compresses the carry trade that has been a structural source of yen weakness."
+            }
           }
         },
         "market": {
           "Stock Market YTD": {
             "value": "+21.0%",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "The Nikkei 225 is Japan's main stock market index. It had a remarkable run recently, finally surpassing the record high it set back in 1989, which had stood for 35 years. Japanese stocks have benefited from a weak yen (which boosts the profits of big exporters), strong corporate governance reforms, and renewed interest from global investors who had largely ignored Japan for decades.",
+              "moderate": "The Nikkei's sustained recovery reflects a structural re-rating of Japanese equities rather than just a cyclical bounce. Corporate governance reforms pushed by the Tokyo Stock Exchange have led companies to prioritise return on equity and shareholder returns rather than cash hoarding. Overseas investors, particularly from the US, have helped shift sentiment. The weak yen has been a significant tailwind for export-heavy index constituents, which means any yen strengthening from BoJ hikes is a headwind for the headline index.",
+              "expert": "The Nikkei's re-rating reflects the convergence of several structural factors: TSE governance pressure driving buybacks and dividend increases, the weak yen inflating yen-denominated earnings of exporters, and the global reflation trade favouring value-heavy markets like Japan. The index is heavily weighted toward industrials, autos, and financials, making it a leveraged play on global growth and yen weakness. BoJ normalisation creates a complex dynamic: rate hikes are positive for bank earnings (a large index component) but negative for export-sector valuations via yen appreciation. The resulting sector rotation has added to intraday volatility."
+            }
           },
           "Equity Vol": {
             "value": "~28",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Japan's stock market has been more volatile than usual recently. This is partly because the yen has been moving a lot, and partly because the Bank of Japan has been changing its policy for the first time in years, which creates uncertainty. When investors are unsure what the Bank of Japan will do next, Japanese stocks can swing sharply in both directions.",
+              "moderate": "Nikkei volatility is amplified by the yen sensitivity of the index. Because a large part of the Nikkei's earnings come from overseas and are reported in yen, any rapid yen move creates an immediate translation effect on earnings estimates and stock prices. The August 2024 episode, when an unexpected BoJ rate hike triggered a sharp yen rally and a 12% single-day Nikkei drop, illustrated just how violent this transmission can be. Volatility in Japan is therefore partly a function of BoJ communication risk as well as global macro conditions.",
+              "expert": "Nikkei implied volatility is structurally linked to yen vol and carry trade positioning. The index's high beta to USD/JPY means that any disorderly unwinding of yen carry trades, triggered by BoJ surprises, Fed dovishness, or global risk-off events, creates correlated selling pressure in Japanese equities. The August 2024 episode demonstrated the reflexivity: BoJ hike triggered yen rally, triggered carry unwind, triggered Nikkei sell-off, triggered margin calls, triggered further yen buying and equity selling. The vol surface in Nikkei options reflects this tail risk with a pronounced skew, and the realised correlation between USD/JPY and Nikkei is among the highest of any currency-equity pair globally."
+            }
           },
           "10Y Bond Yield": {
             "value": "2.15%",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Japanese government bonds have had some of the lowest interest rates in the world for decades. This is changing as the Bank of Japan slowly moves away from the policy of pinning rates near zero. Even now, Japanese bond yields are far lower than in the US or UK, which reflects how different Japan's economic situation has been.",
+              "moderate": "The JGB yield has risen from near zero to levels not seen since the early 2010s, as the BoJ has loosened and then abandoned its yield curve control policy. The pace of yield normalisation matters enormously for Japan's fiscal position, since even a modest rise in yields adds significantly to debt servicing costs given the scale of government debt. The BoJ is also a massive holder of JGBs (owning over half the market), and as it slows or stops buying, the market has to find new clearing prices with a much-reduced marginal buyer.",
+              "expert": "JGB 10Y yields are at a structural inflection point. The BoJ's exit from YCC has transferred price discovery back to the market, but the starting point near zero means even a normalisation to 1-1.5% represents a dramatic repricing. The fiscal arithmetic is sensitive: each 100bp rise in yields adds roughly 10-15 trillion yen to debt servicing costs over a 10-year horizon as bonds mature and roll at higher rates. The BoJ's residual QE legacy means it faces mark-to-market losses as yields rise, though these are economically irrelevant for a central bank that cannot go insolvent in its own currency. The real constraint is the feedback from higher yields to government fiscal credibility."
+            }
           },
           "Yield Curve": {
             "value": "+90bps",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Japan's yield curve shows how much the government pays to borrow for different lengths of time. For years it was almost completely flat because the Bank of Japan was controlling it artificially. Now that the Bank of Japan has stepped back from that control, the curve is starting to look more normal, with longer borrowing costing more than shorter borrowing.",
+              "moderate": "The JGB yield curve was arguably the most distorted of any major sovereign market during the yield curve control era, when the BoJ was actively capping 10Y yields. The exit from YCC has allowed the curve to steepen toward a more conventional shape. A normal upward-sloping curve is generally a positive signal, suggesting that markets expect the economy to grow and rates to remain higher over time. The steepness of the curve also affects the profitability of Japanese banks, which borrow short and lend long.",
+              "expert": "Post-YCC, the JGB curve is repricing toward equilibrium, but the process is non-linear given the BoJ's dominant market position. The super-long end (20Y, 30Y, 40Y) has been particularly volatile as domestic life insurers and pension funds, who are the natural buyers of duration, reassess their hedging needs in a rising rate environment. The curve shape also has implications for the carry trade: a steeper JGB curve makes domestic fixed income marginally more attractive relative to hedged foreign bonds, which could reduce the structural outflow of Japanese capital that has been a source of yen weakness."
+            }
           },
           "Corp Spread": {
             "value": "50bps",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "This is the extra interest rate that Japanese companies pay to borrow compared to the government. In Japan, this gap has traditionally been very small because Japanese companies are seen as conservative and reliable borrowers. Corporate defaults are rare, and companies tend to carry less debt than in other countries.",
+              "moderate": "Japanese corporate bond spreads are among the tightest in the world, reflecting the conservative financial culture of Japanese corporates, low default rates, and a domestic investor base that has historically been a stable buyer of investment-grade credit. As BoJ normalisation raises the risk-free rate, corporate bond yields have risen in absolute terms, but spreads have remained contained. The key risk would be if rising rates stress the large number of small and medium-sized enterprises that borrowed heavily during the zero-rate era.",
+              "expert": "Japanese investment-grade credit spreads are structurally compressed by a combination of strong corporate balance sheets (most large Japanese companies are net cash), a risk-averse domestic investor base, and historically low default rates. BoJ normalisation raises the absolute level of corporate borrowing costs but spread dynamics are largely driven by idiosyncratic and global credit cycle factors rather than domestic monetary policy. The more meaningful credit risk in Japan sits in the SME sector and in property-related lending at regional banks, which is not well-represented in the liquid corporate bond indices but could become systemic if rate normalisation accelerates."
+            }
           },
           "Sov CDS": {
             "value": "28bps",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "This measures the cost of insuring against Japan defaulting on its debts. Despite Japan having one of the biggest debt piles in the world, this insurance is still cheap because investors believe the Japanese government will always be able to repay its yen-denominated debts. Japan has never defaulted on those debts in the modern era and the Bank of Japan can always create more yen if needed.",
+              "moderate": "Japan's sovereign CDS remains low despite the scale of government debt, for the same reason as any local-currency-issuing sovereign: default on yen-denominated debt is a political choice, not a financial necessity. The more realistic risk that Japanese CDS partially captures is a loss of confidence in the yen itself, or a fiscal spiral where rising rates increase deficits faster than growth can offset. Neither scenario is imminent, but they define the extreme tail that CDS markets price.",
+              "expert": "Japan sovereign CDS reflects the paradox of a country with the highest debt-to-GDP ratio in the developed world trading at tight spreads. A monetary sovereign with a closed capital account and a current account surplus has a very different default probability profile than an emerging market borrower in a foreign currency. The CDS market is also relatively illiquid for Japan, so spreads can move on positioning rather than fundamental reassessment. The genuine tail risk that could widen JGB CDS materially would be a sudden acceleration in yields that forces the BoJ to choose between its inflation mandate and fiscal stability, a scenario sometimes called fiscal dominance."
+            }
           },
           "USD/JPY": {
             "value": "158.5",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "This tells you how many yen you get for one US dollar. A higher number means the yen is weak. The yen has been very weak in recent years, which makes Japan cheap for foreign tourists but makes imported goods like food and energy more expensive for ordinary Japanese people. The weakness is mainly because Japan's interest rates have been far lower than in the US, making it unattractive to hold yen.",
+              "moderate": "USD/JPY is the most interest-rate-sensitive major currency pair in the world right now. The enormous gap between US rates and Japanese rates has made the yen a favoured funding currency for carry trades, where investors borrow in yen at low rates and invest in higher-yielding assets elsewhere. When this trade unwinds, because of BoJ rate hikes, Fed cuts, or global risk-off events, it can happen very quickly and violently, as seen in August 2024. The direction of USD/JPY is essentially a bet on how quickly the BoJ-Fed rate differential narrows.",
+              "expert": "USD/JPY is the primary expression of the BoJ-Fed policy divergence trade and the dominant carry trade funding currency globally. The sensitivity of the cross to rate differentials is mechanical: interest rate parity implies that with a large positive USD-JPY rate differential, the yen should depreciate at roughly the rate of the differential, which is broadly what has happened. The risk is the non-linearity of carry trade unwinds: positioning is large, leveraged, and concentrated, meaning that a trigger event (BoJ surprise, Fed pivot, geopolitical risk-off) can cause disorderly moves that overshoot fundamental value significantly. The Ministry of Finance has intervened multiple times to slow yen depreciation, but has limited tools to affect the fundamental rate differential driver."
+            }
           },
           "FX Vol": {
             "value": "16.0%",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "This measures how much the yen has been swinging in value. The yen has been one of the most volatile major currencies in recent years, moving sharply when the Bank of Japan changes its policies or when global investors rapidly shift their bets. For businesses trading between Japan and the rest of the world, this unpredictability is a real challenge.",
+              "moderate": "Yen volatility is structurally elevated compared to pre-2022 levels because the BoJ's policy path is genuinely uncertain in a way it was not during the decades of stable near-zero rates. Every BoJ meeting now carries the possibility of a surprise, and the large carry trade positioning in yen means that any BoJ-driven move is amplified by forced position unwinds. The Japanese government and BoJ have also intervened in FX markets several times, which adds event risk around periods of sharp yen weakness.",
+              "expert": "JPY implied volatility reflects both the structural uncertainty around BoJ normalisation and the tail risk from carry trade positioning. Realised vol in USD/JPY has been significantly higher than in EUR/USD over the past two years, reflecting the asymmetric risk profile of a currency transitioning from a yield curve control anchor to a market-determined rate environment. The vol surface in JPY options shows a pronounced risk reversal skew toward yen strength scenarios, reflecting demand for carry trade unwind hedges. MoF intervention adds a further layer of complexity: the threat of intervention caps vol in the downside yen direction, while BoJ surprise risk caps vol in the yen strength direction."
+            }
           }
         }
       },
