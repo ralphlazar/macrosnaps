@@ -8,7 +8,7 @@
       "weekly": "Update weekly or on release — CPI, unemployment, policy rate",
       "structural": "Update quarterly or on major revision — GDP, deficits, current account, stories, fxRegime"
     },
-    "built_at": "2026-03-09 16:38"
+    "built_at": "2026-03-09 17:25"
   },
   "countries": {
     "USA": {
@@ -21,9 +21,9 @@
       "metrics": {
         "macro": {
           "GDP Growth": {
-            "value": "+2.8%",
+            "value": "+2.1%",
             "tier": "structural",
-            "last_updated": "2026-01-31",
+            "last_updated": "2026-03-09",
             "story": {
               "beginner": "The US economy grew 2.8% in 2025, helped by consumer spending and a strong stock market. Growth is expected to slow in 2026 as tariffs raise costs and oil prices surge, squeezing household budgets and reducing business confidence.",
               "moderate": "US GDP grew 2.8% in 2025, above the G7 average, supported by OBBBA fiscal stimulus and resilient consumer spending. For 2026, Goldman forecasts 2.6% — above consensus — but the Iran oil shock introduces a stagflationary headwind that could shave 0.3–0.5pp if Brent sustains above $90 through Q2.",
@@ -31,9 +31,9 @@
             }
           },
           "Inflation (CPI)": {
-            "value": "3.1%",
+            "value": "2.3%",
             "tier": "weekly",
-            "last_updated": "2026-03-07",
+            "last_updated": "2026-03-09",
             "story": {
               "beginner": "US prices rose 3.1% over the past year, still above the Fed's 2% target. Now, with oil prices jumping 25–36% from the Middle East conflict, fuel and goods prices are likely to rise further in the coming months, making the Fed's job harder.",
               "moderate": "US CPI runs at 3.1% with tariff passthrough already adding ~0.3pp. The Iran energy shock could add a further 0.5–1.0pp to headline CPI within 6–8 weeks if crude stays elevated — potentially pushing CPI above 3.5% by mid-year and forcing the FOMC to revise its dot-plot guidance materially.",
@@ -41,7 +41,7 @@
             }
           },
           "Unemployment": {
-            "value": "4.4%",
+            "value": "4.2%",
             "tier": "weekly",
             "last_updated": "2026-03-09",
             "story": {
@@ -51,9 +51,9 @@
             }
           },
           "Budget Deficit": {
-            "value": "-6.2% GDP",
+            "value": "-7.5% GDP",
             "tier": "structural",
-            "last_updated": "2026-01-31",
+            "last_updated": "2026-03-09",
             "story": {
               "beginner": "The US government is spending far more than it collects in taxes — borrowing about 6 cents for every dollar it spends. Higher oil prices and slower growth could further widen this gap, adding to a debt burden that is already at historically high levels.",
               "moderate": "The US fiscal deficit is running near 6.2% of GDP. Tariff revenues ($194bn above the 2022–24 average in 2025) provide partial offset, but the OBBBA's multi-trillion-dollar cost and rising debt service costs (10Y Treasury ~4.3%) are structurally widening the primary deficit — constraining the Fed's ability to pursue QE in a crisis without triggering fiscal dominance concerns.",
@@ -61,9 +61,9 @@
             }
           },
           "Current Account": {
-            "value": "-3.0% GDP",
+            "value": "-3.8% GDP",
             "tier": "structural",
-            "last_updated": "2026-01-31",
+            "last_updated": "2026-03-09",
             "story": {
               "beginner": "The US buys far more from the rest of the world than it sells — a persistent trade deficit that tariffs were meant to reduce. Despite record tariff revenues, the deficit has remained wide, as a strong dollar offsets the competitiveness boost from tariffs.",
               "moderate": "The US current account deficit has remained stubbornly wide despite high tariffs, consistent with the Lerner symmetry theorem: import tariffs reduce the trade deficit in the short run but exchange rate appreciation and income effects offset the gain over time. The Tax Foundation estimates tariffs have 'not meaningfully altered the trade deficit'; the Iran oil shock could temporarily widen the energy component before domestic shale production responds.",
@@ -71,7 +71,7 @@
             }
           },
           "Policy Rate": {
-            "value": "3.50-3.75%",
+            "value": "3.25%",
             "tier": "weekly",
             "last_updated": "2026-03-09",
             "story": {
@@ -1048,9 +1048,9 @@
       "metrics": {
         "macro": {
           "GDP Growth": {
-            "value": "+1.1%",
+            "value": "+1.8%",
             "tier": "structural",
-            "last_updated": "2026-01-31",
+            "last_updated": "2026-03-09",
             "story": {
               "beginner": "Canada's economy grew just 1.1% in 2025, well below its potential, as uncertainty over US tariffs held back business investment. The oil price surge from the Iran conflict is giving the energy sector a short-term lift, but the broader economy remains sluggish heading into 2026.",
               "moderate": "Canadian GDP grew 1.1% in 2025, dragged down by tariff-related investment hesitancy in trade-exposed manufacturing sectors, particularly autos. The oil shock is a net positive for energy-heavy Alberta but adds feedstock cost pressure for Eastern refiners, creating a regional split in the growth picture. Goldman forecasts 1.3% for 2026 on the base case, contingent on tariff uncertainty not escalating into a formal trade war.",
@@ -1058,9 +1058,9 @@
             }
           },
           "Inflation (CPI)": {
-            "value": "2.7%",
+            "value": "2%",
             "tier": "weekly",
-            "last_updated": "2026-03-07",
+            "last_updated": "2026-03-09",
             "story": {
               "beginner": "Canadian inflation is running at 2.7%, still above the Bank of Canada's 2% target but moving in the right direction. Higher fuel prices from the Iran conflict could push this number back up, making the Bank of Canada more cautious about cutting interest rates further.",
               "moderate": "Canadian CPI at 2.7% was on a credible path toward the 2% target before the Iran energy shock. Gasoline and home heating costs will add directly to the headline number in the coming months, with BoC models suggesting a $20/barrel crude increase adds roughly 0.3-0.4pp to headline CPI over two to three months. The BoC's next rate decision will hinge on whether the energy spike is treated as transitory or whether it begins feeding into core inflation expectations.",
@@ -1078,9 +1078,9 @@
             }
           },
           "Budget Deficit": {
-            "value": "-1.4% GDP",
+            "value": "-1.5% GDP",
             "tier": "structural",
-            "last_updated": "2026-01-31",
+            "last_updated": "2026-03-09",
             "story": {
               "beginner": "Canada's government is running a small budget deficit of about 1.4% of GDP, which is modest compared to most other G7 countries. This gives Ottawa room to increase spending to support the economy if the tariff situation worsens, without raising serious concerns about Canada's financial health.",
               "moderate": "Canada's -1.4% of GDP federal deficit is among the smallest in the G7, giving Ottawa meaningful fiscal space relative to peers. Higher oil prices are delivering a windfall through corporate tax revenues and Alberta Heritage Fund contributions that could reduce the deficit further. If tariff headwinds intensify and unemployment rises, Canada has room to deploy targeted fiscal support (employment insurance, manufacturing adjustment programs) without threatening fiscal credibility or triggering a rating agency response.",
@@ -1088,9 +1088,9 @@
             }
           },
           "Current Account": {
-            "value": "-0.8% GDP",
+            "value": "-0.5% GDP",
             "tier": "structural",
-            "last_updated": "2026-01-31",
+            "last_updated": "2026-03-09",
             "story": {
               "beginner": "Canada is running a small current account deficit, meaning it is importing slightly more than it is exporting in total. However, soaring oil prices from the Iran conflict are boosting Canada's energy export revenues, which could push this toward surplus territory in the coming months.",
               "moderate": "Canada's current account deficit of -0.8% of GDP is narrow and likely to improve further as oil export revenues rise with crude prices. The goods trade surplus in energy is partially offset by a persistent services deficit, largely reflecting Canadian tourism spending in the US and profit repatriation by US-headquartered multinationals. The terms-of-trade improvement from a sustained oil price above $85 is mechanically supportive of the current account and provides a fundamental underpinning for the Canadian dollar that partially offsets the rate differential headwind versus the US.",
@@ -1098,7 +1098,7 @@
             }
           },
           "Policy Rate": {
-            "value": "2.75%",
+            "value": "2.25%",
             "tier": "weekly",
             "last_updated": "2026-03-09",
             "story": {
@@ -2173,14 +2173,14 @@
       "metrics": {
         "macro": {
           "GDP Growth": {
-            "value": "+0.6%",
+            "value": "+1.5%",
             "tier": "structural",
-            "last_updated": "2026-01-31"
+            "last_updated": "2026-03-09"
           },
           "Inflation (CPI)": {
-            "value": "4.0%",
+            "value": "2.1%",
             "tier": "weekly",
-            "last_updated": "2026-03-07"
+            "last_updated": "2026-03-09"
           },
           "Unemployment": {
             "value": "5.0%",
@@ -2188,17 +2188,17 @@
             "last_updated": "2026-03-07"
           },
           "Budget Deficit": {
-            "value": "-4.5% GDP",
+            "value": "-4.2% GDP",
             "tier": "structural",
-            "last_updated": "2026-01-31"
+            "last_updated": "2026-03-09"
           },
           "Current Account": {
-            "value": "-2.9% GDP",
+            "value": "-2.5% GDP",
             "tier": "structural",
-            "last_updated": "2026-01-31"
+            "last_updated": "2026-03-09"
           },
           "Policy Rate": {
-            "value": "4.25%",
+            "value": "3.5%",
             "tier": "weekly",
             "last_updated": "2026-03-09"
           }
@@ -3228,14 +3228,14 @@
       "metrics": {
         "macro": {
           "GDP Growth": {
-            "value": "+1.9%",
+            "value": "+0.9%",
             "tier": "structural",
-            "last_updated": "2026-01-31"
+            "last_updated": "2026-03-09"
           },
           "Inflation (CPI)": {
-            "value": "2.8%",
+            "value": "1.8%",
             "tier": "weekly",
-            "last_updated": "2026-03-07"
+            "last_updated": "2026-03-09"
           },
           "Unemployment": {
             "value": "2.5%",
@@ -3243,17 +3243,17 @@
             "last_updated": "2026-03-07"
           },
           "Budget Deficit": {
-            "value": "-5.6% GDP",
+            "value": "-1.2% GDP",
             "tier": "structural",
-            "last_updated": "2026-01-31"
+            "last_updated": "2026-03-09"
           },
           "Current Account": {
-            "value": "+3.5% GDP",
+            "value": "+4.8% GDP",
             "tier": "structural",
-            "last_updated": "2026-01-31"
+            "last_updated": "2026-03-09"
           },
           "Policy Rate": {
-            "value": "0.75%",
+            "value": "1.25%",
             "tier": "weekly",
             "last_updated": "2026-03-09"
           }
@@ -4185,14 +4185,14 @@
       "metrics": {
         "macro": {
           "GDP Growth": {
-            "value": "-0.1%",
+            "value": "+1.2%",
             "tier": "structural",
-            "last_updated": "2026-01-31"
+            "last_updated": "2026-03-09"
           },
           "Inflation (CPI)": {
-            "value": "2.9%",
+            "value": "2.2%",
             "tier": "weekly",
-            "last_updated": "2026-03-07"
+            "last_updated": "2026-03-09"
           },
           "Unemployment": {
             "value": "3.8%",
@@ -4200,14 +4200,14 @@
             "last_updated": "2026-03-07"
           },
           "Budget Deficit": {
-            "value": "-2.1% GDP",
+            "value": "-2% GDP",
             "tier": "structural",
-            "last_updated": "2026-01-31"
+            "last_updated": "2026-03-09"
           },
           "Current Account": {
-            "value": "+5.8% GDP",
+            "value": "+4.5% GDP",
             "tier": "structural",
-            "last_updated": "2026-01-31"
+            "last_updated": "2026-03-09"
           },
           "Policy Rate": {
             "value": "2.50%",
@@ -5240,14 +5240,14 @@
       "metrics": {
         "macro": {
           "GDP Growth": {
-            "value": "+0.9%",
+            "value": "+1.4%",
             "tier": "structural",
-            "last_updated": "2026-01-31"
+            "last_updated": "2026-03-09"
           },
           "Inflation (CPI)": {
-            "value": "2.4%",
+            "value": "2%",
             "tier": "weekly",
-            "last_updated": "2026-03-07"
+            "last_updated": "2026-03-09"
           },
           "Unemployment": {
             "value": "7.7%",
@@ -5255,14 +5255,14 @@
             "last_updated": "2026-03-07"
           },
           "Budget Deficit": {
-            "value": "-4.9% GDP",
+            "value": "-4.8% GDP",
             "tier": "structural",
-            "last_updated": "2026-01-31"
+            "last_updated": "2026-03-09"
           },
           "Current Account": {
-            "value": "-0.7% GDP",
+            "value": "+1% GDP",
             "tier": "structural",
-            "last_updated": "2026-01-31"
+            "last_updated": "2026-03-09"
           },
           "Policy Rate": {
             "value": "2.50%",
@@ -6295,14 +6295,14 @@
       "metrics": {
         "macro": {
           "GDP Growth": {
-            "value": "+0.7%",
+            "value": "+1%",
             "tier": "structural",
-            "last_updated": "2026-01-31"
+            "last_updated": "2026-03-09"
           },
           "Inflation (CPI)": {
-            "value": "1.8%",
+            "value": "2.3%",
             "tier": "weekly",
-            "last_updated": "2026-03-07"
+            "last_updated": "2026-03-09"
           },
           "Unemployment": {
             "value": "5.6%",
@@ -6310,14 +6310,14 @@
             "last_updated": "2026-03-07"
           },
           "Budget Deficit": {
-            "value": "-5.3% GDP",
+            "value": "-3.2% GDP",
             "tier": "structural",
-            "last_updated": "2026-01-31"
+            "last_updated": "2026-03-09"
           },
           "Current Account": {
-            "value": "+0.5% GDP",
+            "value": "+0.8% GDP",
             "tier": "structural",
-            "last_updated": "2026-01-31"
+            "last_updated": "2026-03-09"
           },
           "Policy Rate": {
             "value": "2.50%",
@@ -7252,14 +7252,14 @@
       "metrics": {
         "macro": {
           "GDP Growth": {
-            "value": "+5.2%",
+            "value": "+4.5%",
             "tier": "structural",
-            "last_updated": "2026-01-31"
+            "last_updated": "2026-03-09"
           },
           "Inflation (CPI)": {
-            "value": "-0.3%",
+            "value": "2%",
             "tier": "weekly",
-            "last_updated": "2026-03-07"
+            "last_updated": "2026-03-09"
           },
           "Unemployment": {
             "value": "5.1%",
@@ -7267,17 +7267,17 @@
             "last_updated": "2026-03-07"
           },
           "Budget Deficit": {
-            "value": "-3.8% GDP",
+            "value": "-6.8% GDP",
             "tier": "structural",
-            "last_updated": "2026-01-31"
+            "last_updated": "2026-03-09"
           },
           "Current Account": {
-            "value": "+1.5% GDP",
+            "value": "+2.5% GDP",
             "tier": "structural",
-            "last_updated": "2026-01-31"
+            "last_updated": "2026-03-09"
           },
           "Policy Rate": {
-            "value": "3.00%",
+            "value": "2.75%",
             "tier": "weekly",
             "last_updated": "2026-03-09"
           }
@@ -8297,14 +8297,14 @@
       "metrics": {
         "macro": {
           "GDP Growth": {
-            "value": "+7.6%",
+            "value": "+6.5%",
             "tier": "structural",
-            "last_updated": "2026-01-31"
+            "last_updated": "2026-03-09"
           },
           "Inflation (CPI)": {
-            "value": "5.1%",
+            "value": "4.2%",
             "tier": "weekly",
-            "last_updated": "2026-03-07"
+            "last_updated": "2026-03-09"
           },
           "Unemployment": {
             "value": "4.7%",
@@ -8312,9 +8312,9 @@
             "last_updated": "2026-03-07"
           },
           "Budget Deficit": {
-            "value": "-5.9% GDP",
+            "value": "-7.2% GDP",
             "tier": "structural",
-            "last_updated": "2026-01-31"
+            "last_updated": "2026-03-09"
           },
           "Current Account": {
             "value": "-1.2% GDP",
@@ -8322,9 +8322,9 @@
             "last_updated": "2026-01-31"
           },
           "Policy Rate": {
-            "value": "6.50%",
+            "value": "6%",
             "tier": "weekly",
-            "last_updated": "2026-03-07"
+            "last_updated": "2026-03-09"
           }
         },
         "market": {
@@ -9367,9 +9367,9 @@
             "last_updated": "2026-01-31"
           },
           "Policy Rate": {
-            "value": "7.50%",
+            "value": "6.25%",
             "tier": "weekly",
-            "last_updated": "2026-03-07"
+            "last_updated": "2026-03-09"
           }
         },
         "market": {
@@ -9985,9 +9985,9 @@
             "last_updated": "2026-03-07"
           },
           "Unemployment": {
-            "value": "5.1%",
+            "value": "5.7%",
             "tier": "weekly",
-            "last_updated": "2026-03-07"
+            "last_updated": "2026-03-09"
           },
           "Budget Deficit": {
             "value": "-0.8% GDP",
@@ -10000,9 +10000,9 @@
             "last_updated": "2026-01-31"
           },
           "Policy Rate": {
-            "value": "15.00%",
+            "value": "12%",
             "tier": "weekly",
-            "last_updated": "2026-03-07"
+            "last_updated": "2026-03-09"
           }
         },
         "market": {
@@ -10542,19 +10542,19 @@
       "metrics": {
         "macro": {
           "GDP Growth": {
-            "value": "+0.8%",
+            "value": "+1%",
             "tier": "structural",
-            "last_updated": "2026-01-31"
+            "last_updated": "2026-03-09"
           },
           "Inflation (CPI)": {
-            "value": "6.5%",
+            "value": "4.7%",
             "tier": "weekly",
-            "last_updated": "2026-03-07"
+            "last_updated": "2026-03-09"
           },
           "Unemployment": {
-            "value": "2.2%",
+            "value": "2.5%",
             "tier": "weekly",
-            "last_updated": "2026-03-07"
+            "last_updated": "2026-03-09"
           },
           "Budget Deficit": {
             "value": "-2.5% GDP",
@@ -10562,14 +10562,14 @@
             "last_updated": "2026-01-31"
           },
           "Current Account": {
-            "value": "+2.0% GDP",
+            "value": "+2% GDP",
             "tier": "structural",
-            "last_updated": "2026-01-31"
+            "last_updated": "2026-03-09"
           },
           "Policy Rate": {
-            "value": "15.50%",
+            "value": "12%",
             "tier": "weekly",
-            "last_updated": "2026-03-07"
+            "last_updated": "2026-03-09"
           }
         },
         "market": {
