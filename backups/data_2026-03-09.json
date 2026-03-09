@@ -8,7 +8,7 @@
       "weekly": "Update weekly or on release — CPI, unemployment, policy rate",
       "structural": "Update quarterly or on major revision — GDP, deficits, current account, stories, fxRegime"
     },
-    "built_at": "2026-03-09 20:50"
+    "built_at": "2026-03-09 21:09"
   },
   "countries": {
     "USA": {
@@ -4327,74 +4327,144 @@
           "GDP Growth": {
             "value": "+1.2%",
             "tier": "structural",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Germany's economy is forecast to grow 1.2% in 2026, a modest recovery after two years of contraction, driven largely by a historic 500 billion euro government spending package for defence and infrastructure.",
+              "moderate": "Germany's 2026 GDP forecast of 1.2% reflects the early impulse from the constitutional debt-brake reform and the 500bn euro fiscal package; Goldman's higher forecast of 1.5% assumes faster defence procurement ramp-up, while the Iran energy shock creates downside risk by compressing manufacturing margins in an already weakened industrial sector.",
+              "expert": "Germany's growth recovery is a fiscal multiplier story with considerable uncertainty: Capital Economics estimates the fiscal impulse adds only 0.5pp annually to GDP (not the 1pp+ bull case), partly because defence spending multipliers are lower in a capacity-constrained economy; the +1.2% consensus embeds execution risk on procurement timelines and is vulnerable to the stagflationary interaction between energy cost-push and the demand impulse from infrastructure spending."
+            }
           },
           "Inflation (CPI)": {
             "value": "2.2%",
             "tier": "weekly",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "German inflation is sitting just above the European Central Bank's 2% target at 2.2%, but petrol and diesel prices jumped sharply after the Iran conflict began, which could push prices higher in the months ahead.",
+              "moderate": "German HICP is at 2.2%, slightly above the ECB's target, with energy CPI the main near-term upside risk; diesel prices rose sharply in the first week of the Iran conflict, creating a potential 0.5-1.0pp HICP overshoot in Q2 2026 if sustained, which complicates the ECB's easing path.",
+              "expert": "Germany's 2.2% inflation print sits at a deceptive level of calm: the interaction between the demand-side impulse from fiscal expansion (historically inflationary with a 6-12 month lag) and the energy cost-push shock from the Iran conflict creates near-term risk of HICP re-acceleration above 3%, testing the ECB's ability to continue its easing cycle without abandoning its price stability mandate and generating intra-governing-council tension between hawks anchored to German CPI and doves focused on growth."
+            }
           },
           "Unemployment": {
             "value": "3.8%",
             "tier": "weekly",
-            "last_updated": "2026-03-07"
+            "last_updated": "2026-03-07",
+            "story": {
+              "beginner": "Germany's unemployment rate of 3.8% remains relatively low, but the number of people out of work has been rising as German factories and carmakers have struggled with high energy costs and competition from Chinese manufacturers.",
+              "moderate": "Germany's 3.8% unemployment rate understates labour market stress in the industrial sector: auto industry employment (roughly 800,000 direct workers) is contracting as the EV transition accelerates and Chinese competition intensifies; the fiscal package's employment effect will be concentrated in construction and defence, with a 12-24 month lag from fiscal commitment to actual job creation.",
+              "expert": "Germany's labour market exhibits structural duality: tight aggregate unemployment at 3.8% masks acute sectoral stress in automotive and traditional manufacturing, where hollowing-out dynamics reflect both cyclical energy cost headwinds and secular competitive pressure from Chinese OEMs; the misalignment between where labour is being displaced (capital-intensive manufacturing) and where fiscal stimulus creates demand (construction, defence, infrastructure) implies a protracted skill-reallocation challenge the Bundesagentur fuer Arbeit's retraining programmes are not scaled to address quickly."
+            }
           },
           "Budget Deficit": {
             "value": "-2% GDP",
             "tier": "structural",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Germany is running a budget deficit of 2% of its economy, which is modest by international standards. The government changed its constitution to allow much more borrowing to fund a massive defence and infrastructure spending programme.",
+              "moderate": "Germany's budget deficit of 2% of GDP reflects the early stages of fiscal expansion; the constitutional debt-brake reform enables the 500bn euro off-budget infrastructure fund and effectively unlimited defence borrowing above 1% of GDP; the federal budget totals 520.5bn euros in 2026 and debt-to-GDP remains around 63%, preserving fiscal credibility relative to eurozone peers.",
+              "expert": "Germany's deficit trajectory represents a structural shift in sovereign supply dynamics: the debt-brake reform implies Bund issuance rising by an estimated 80-100bn euros annually over the investment cycle, permanently widening the Bund-swap spread and compressing the safe-haven premium; at 2% of GDP currently, the deficit understates the committed spending pipeline, with the off-budget vehicle structurally exempted from annual parliamentary scrutiny and designed to persist across multiple legislative terms."
+            }
           },
           "Current Account": {
             "value": "+4.5% GDP",
             "tier": "structural",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Germany still sells significantly more to the rest of the world than it buys, giving it a current account surplus of 4.5% of its economy. This surplus has been shrinking as German manufacturing has weakened and energy import costs have risen.",
+              "moderate": "Germany's current account surplus of 4.5% of GDP has narrowed materially from the 7-8% peaks of the 2010s as manufacturing competitiveness erodes and energy import costs remain elevated; the fiscal expansion may narrow it further by boosting domestic demand and imports, though domestically-oriented defence procurement partially offsets this via import substitution.",
+              "expert": "Germany's current account adjustment is tracking the secular rebalancing the IMF and European Commission have long advocated: the surplus compression from 8%+ pre-COVID to 4.5% reflects both supply-side industrial weakness and structural energy cost normalisation post-2022; the fiscal expansion introduces an ambiguous impulse, as infrastructure investment draws in capital goods imports (widening) while domestic demand stimulus substitutes for some export-driven growth (narrowing), with the net effect dependent on the import content of the investment programme."
+            }
           },
           "Policy Rate": {
             "value": "2.50%",
             "tier": "weekly",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Germany uses the European Central Bank's interest rate of 2.5%, which has been cut several times as European inflation came under control. The recent energy price spike from the Iran conflict has made further cuts less certain.",
+              "moderate": "The ECB deposit rate of 2.5% reflects eight cuts from the June 2024 peak; Germany's fiscal expansion creates an inflationary impulse reinforcing ECB hawks, while the Iran oil shock creates a growth headwind supporting doves, producing what ING described as a genuine dilemma at the March 2026 meeting; Capital Economics has revised its ECB terminal rate forecast upward from 1.5% to above 2% in response to the fiscal shift.",
+              "expert": "The ECB's reaction function to Germany's fiscal regime change is structurally underappreciated: if German fiscal expansion raises euro-area neutral rates (r*) via higher capital demand and sovereign issuance, the ECB's r* estimate shifts upward, implying the current 2.50% rate is closer to neutral than previously modelled; this compresses the remaining cutting cycle and reprices the entire EGB complex, with Bund-OAT and Bund-BTP spreads both sensitive to the ECB's revised r* signal at each press conference."
+            }
           }
         },
         "market": {
           "Stock Market YTD": {
             "value": "+11.0%",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "The German stock market has risen 11% so far this year, outperforming most other major markets. Defence companies have surged the most, with Rheinmetall up nearly 95% and Hensoldt up over 110%, as Germany massively increases its military spending.",
+              "moderate": "The DAX is up 11% year-to-date, led by defence stocks (Rheinmetall +95%, Hensoldt +112%) pricing in a multi-year demand boom from Germany's military spending surge toward NATO's 3.5% of GDP target; the fiscal stimulus has broadly re-rated German equities, though the Iran oil shock introduces margin risk for energy-intensive industrial names.",
+              "expert": "Germany's +11% equity return reflects a classic fiscal re-rating: the debt-brake reform de-rated the structural constraint on fiscal stimulus and the consequent upward revision to growth and earnings expectations is being captured in a concentrated set of defence and infrastructure-adjacent names; the rally breadth is narrow, with energy-intensive industrials and auto sector names underperforming as the Iran shock compounds structural EV transition headwinds, suggesting the index-level gain overstates the macro recovery signal."
+            }
           },
           "Equity Vol": {
             "value": "~20",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Volatility in German stocks is elevated at around 20, meaning prices are swinging more than usual. Investors are uncertain about how the Iran conflict, new government spending plans, and global trade tensions will all play out together.",
+              "moderate": "German equity volatility at approximately 20 reflects multiple concurrent uncertainties: the Iran energy shock, the ECB's evolving policy path, execution risk on the fiscal programme, and US tariff risk for Germany's export-oriented industrial base; this is above long-run averages but not at crisis levels, consistent with a risk-on market that is nonetheless pricing significant tail risk.",
+              "expert": "German equity vol at approximately 20 sits in a structurally elevated range relative to pre-2022 norms, reflecting the persistent interaction of energy security risk, fiscal regime uncertainty, and ECB policy optionality; the vol surface implies markets are pricing asymmetric downside scenarios where the Iran shock escalates or the fiscal stimulus disappoints on execution, even as the central case remains constructive; the Bund vol market (repriced substantially post-debt-brake reform) is a better leading indicator of the equity vol regime than the equity market itself."
+            }
           },
           "10Y Bond Yield": {
             "value": "2.65%",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Germany's 10-year government bond pays an annual interest rate of 2.65%. This yield has risen this year as Germany plans to borrow much more than before, meaning the government has to offer investors a higher return to attract buyers.",
+              "moderate": "Germany's 10-year Bund yield at 2.65% reflects the post-debt-brake repricing of Bund supply expectations: the yield has risen materially from sub-2% levels as markets price in structurally higher annual issuance of 80-100bn euros; the current level sits above the ECB's policy rate (2.50%), implying a modestly positive term premium rather than the near-zero or negative term premium that characterised the 2015-2022 QE era.",
+              "expert": "The 10-year Bund at 2.65% represents a structural break from the safe-haven anchoring that defined the post-GFC decade: the debt-brake reform has permanently impaired the Bund's scarcity premium (the primary driver of negative real yields pre-2022), and the combination of ECB QT reducing reinvestments and the new issuance pipeline creates a sustained supply-demand imbalance; at 2.65%, Bund yields remain below US Treasuries (reflecting lower euro-area r*) but the spread compression since January 2026 reflects the Bund's diminishing safe-haven role in a world where German fiscal policy has joined the global reflation consensus."
+            }
           },
           "Yield Curve": {
             "value": "+35bps",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Germany's yield curve is slightly positive at +35 basis points, meaning longer-term bonds pay a bit more than shorter-term ones. This is a healthy sign suggesting investors expect gradual economic recovery rather than a recession.",
+              "moderate": "Germany's yield curve at +35bps (10-year minus 2-year) is modestly upward-sloping after a period of inversion; the curve steepened as fiscal expansion lifted long-end yields while the ECB continued cutting the policy rate, a pattern consistent with a growth recovery narrative but vulnerable to reversal if the Iran energy shock triggers an ECB pause.",
+              "expert": "Germany's +35bp curve slope reflects the classic bear-steepening dynamic of fiscal regime change: the back end is being repriced by supply expectations (higher Bund issuance) while the front end remains anchored by ECB forward guidance; this pattern mirrors the US curve dynamic in 2023-2024 and suggests the term premium component (distinct from the rate expectations component) has turned structurally positive for the first time since the pre-QE era; note the FRED date alignment issue means the historical chart for this metric is unavailable in the dashboard."
+            }
           },
           "Corp Spread": {
             "value": "70bps",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "German corporate bonds are paying about 70 basis points (0.70%) more than government bonds, which is relatively tight. This means investors are fairly confident that German companies will be able to repay their debts.",
+              "moderate": "German investment-grade corporate spreads of 70bps are near the tight end of recent ranges, reflecting the constructive fiscal outlook and ECB support; the Iran oil shock introduces some widening risk for energy-intensive industrials and chemicals, but the broad credit market continues to price in a soft-landing scenario where fiscal stimulus offsets cyclical headwinds.",
+              "expert": "German IG corporate spreads at 70bps are consistent with a credit market pricing the fiscal re-rating optimistically: the spread is near post-GFC tights when adjusted for the current macro volatility regime, implying credit investors are discounting the Iran tail risk and fiscal execution uncertainty more aggressively than equity vol suggests; the tightest spreads are concentrated in defence and infrastructure-adjacent credits benefiting directly from fiscal flows, while auto sector credit is trading at meaningful premiums and diverging from the index-level signal."
+            }
           },
           "Sov CDS": {
             "value": "20bps",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Insuring against Germany defaulting on its debt costs only 20 basis points per year, one of the lowest rates in the world. This reflects how strongly financial markets trust Germany to repay what it owes.",
+              "moderate": "Germany's sovereign CDS at 20bps reflects near-zero perceived default risk even as the government takes on substantially more debt; the debt-brake reform has not materially impaired Germany's sovereign creditworthiness because debt-to-GDP remains around 63% and the fiscal expansion is investment-oriented; the CDS remains well below eurozone peers, confirming Germany's position as the benchmark euro-area sovereign.",
+              "expert": "Germany's 20bp CDS spread represents the structural floor for euro-area sovereign credit risk and is essentially pricing no sovereign stress scenario; the modest widening from near-zero during the debt-brake reform debate has stabilised, with markets concluding the fiscal expansion is growth-enhancing rather than credit-impairing at current debt-to-GDP levels; the more significant market signal is in Bund yields and Bund-OAT spreads rather than CDS, as the primary repricing from the fiscal shift is a term premium and supply story, not a credit risk story."
+            }
           },
           "EUR/USD": {
             "value": "1.1555",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "One euro currently buys about 1.16 US dollars. The euro has strengthened this year, partly because Germany's big spending plans have improved confidence in the European economy.",
+              "moderate": "EUR/USD at 1.1555 reflects factors favouring the euro: Germany's fiscal expansion has improved eurozone growth expectations, while US growth concerns and tariff uncertainty have weighed on the dollar; from a German perspective the stronger euro is a mixed signal, helping reduce energy import costs but compressing the competitiveness advantage German exporters have historically enjoyed from an effectively undervalued currency.",
+              "expert": "EUR/USD at 1.1555 is repricing Germany's fiscal regime change as a structural euro-positive: the debt-brake reform increases capital demand in Germany (attracting foreign investment in infrastructure and defence), reduces the euro-area current account surplus (narrowing the EUR-negative capital outflow from European pension funds), and shifts the ECB's r* estimate higher (narrowing the Fed-ECB rate differential); the move from 1.05 to 1.15+ in early 2026 likely overstates the fair value impulse and is partially a positioning unwind from extreme USD-long positions, but the structural EUR/USD support from the fiscal regime shift is durable."
+            }
           },
           "FX Vol": {
             "value": "11.0%",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "The euro's exchange rate against the dollar has been moving around more than usual, with volatility at 11%. This reflects uncertainty about the Iran conflict, interest rate decisions, and the shifting economic outlook on both sides of the Atlantic.",
+              "moderate": "EUR/USD volatility at 11% is elevated relative to the low-volatility regime of 2022-2024, reflecting genuine macro uncertainty about the pace of ECB cuts, the dollar's trajectory under US tariff policy, and the geopolitical risk premium from the Iran conflict; for German exporters this creates hedging costs that partially offset any competitive benefit from euro weakness.",
+              "expert": "EUR/USD vol at 11% reflects the structural vol regime shift post-2022: the convergence of ECB and Fed policy uncertainty, the repricing of r* on both sides of the Atlantic, and the geopolitical risk premium from the Iran energy shock has sustainably lifted the vol surface from the sub-5% levels of the 2017-2019 QE compression era; the 11% level is consistent with a market pricing genuine two-sided risk in EUR/USD, with the fiscal-driven EUR appreciation scenario competing against the energy shock growth headwind scenario for the euro area in roughly equal probability weight."
+            }
           }
         }
       },
