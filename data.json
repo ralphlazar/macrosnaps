@@ -8,7 +8,7 @@
       "weekly": "Update weekly or on release — CPI, unemployment, policy rate",
       "structural": "Update quarterly or on major revision — GDP, deficits, current account, stories, fxRegime"
     },
-    "built_at": "2026-03-09 17:25"
+    "built_at": "2026-03-09 19:20"
   },
   "countries": {
     "USA": {
@@ -5242,74 +5242,144 @@
           "GDP Growth": {
             "value": "+1.4%",
             "tier": "structural",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "France's economy is growing, but not by much. At 1.4%, it's keeping its head above water while much of Europe struggles. The main drag is weak consumer spending and high public debt, which leaves less room to invest in things that would actually speed things up.",
+              "moderate": "France's 1.4% growth forecast sits below the eurozone average and reflects the structural weight of a large public sector, sticky domestic consumption, and limited export dynamism outside aerospace and luxury goods. The Iran oil shock introduces a further headwind via energy costs, which disproportionately affect French industrial output given the country's limited domestic hydrocarbon production.",
+              "expert": "France's 1.4% real GDP growth forecast reflects a negative output gap that has persisted since 2023, with domestic demand constrained by fiscal consolidation under the EU's Excessive Deficit Procedure and real wage growth insufficient to offset the post-pandemic savings drawdown. The Iran oil shock adds a supply-side drag of an estimated 0.2-0.3pp if Brent sustains above $90 through Q2, compounding the structural weakness in total factor productivity that has seen France underperform Germany on output-per-hour metrics for three consecutive years."
+            }
           },
           "Inflation (CPI)": {
             "value": "2%",
             "tier": "weekly",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "French inflation is right at the European Central Bank's 2% target, which is good news after years of prices rising too fast. The worry now is whether higher oil prices from tensions in the Middle East push it back up before the ECB can cut interest rates further.",
+              "moderate": "France's CPI at 2% sits on the ECB's target, offering a brief window for further rate cuts. The Iran oil shock is the key upside risk: energy is roughly 10% of France's CPI basket, and a sustained $20 per barrel increase in crude would likely add 0.5-0.8pp to headline inflation, complicating the ECB's easing path.",
+              "expert": "France's headline CPI at 2% masks divergent component dynamics: services inflation remains elevated at around 3.5% on sticky wage settlements, while goods deflation has provided the offsetting drag. The oil shock introduces a first-round energy effect and a second-round risk via transport and industrial input costs. Core CPI is likely to prove more resilient than headline would suggest, putting the ECB's conditional easing path under pressure even as the growth outlook softens."
+            }
           },
           "Unemployment": {
             "value": "7.7%",
             "tier": "weekly",
-            "last_updated": "2026-03-07"
+            "last_updated": "2026-03-07",
+            "story": {
+              "beginner": "About 1 in 13 French workers is unemployed, which is higher than in Germany or the US but has been slowly improving. Youth unemployment is the bigger problem, running well above the national average and concentrated in the suburbs of major cities.",
+              "moderate": "France's 7.7% unemployment rate understates labour market slack given the high share of part-time work and discouraged workers outside the headline measure. Structural unemployment remains elevated relative to northern European peers, reflecting labour market rigidities and skills mismatches in the services sector. The current oil shock is unlikely to move the headline rate quickly, but softer consumer demand through H2 2026 could stall the slow improvement seen over the past two years.",
+              "expert": "France's NAIRU is estimated at around 7%, meaning the current 7.7% reading reflects modest cyclical slack on top of a structurally high floor. The Macron-era labour reforms partially loosened hiring and firing rules, but severance costs and collective bargaining coverage remain higher than the OECD average. Participation rate trends are more constructive, with the 55-64 cohort showing the sharpest gains in activity, but this provides limited near-term cyclical flexibility. A sustained oil shock tightening financial conditions would likely widen the output gap further before the labour market responds."
+            }
           },
           "Budget Deficit": {
             "value": "-4.8% GDP",
             "tier": "structural",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "France is spending about 4.8% more than it earns each year. That puts it under official pressure from the EU, which has rules about how much governments can borrow. Cutting spending is politically hard in France, which has some of the largest public services in Europe.",
+              "moderate": "France's -4.8% deficit places it firmly in the EU's Excessive Deficit Procedure, with Brussels requiring a credible path back toward the 3% Maastricht ceiling. The Iran oil shock complicates this directly: lower growth reduces tax revenues while pressure to subsidise fuel costs could add expenditure, compressing the consolidation path Finance Minister has outlined for 2026-2027.",
+              "expert": "France's structural deficit, adjusted for the cycle, is estimated at around 3.8% of GDP, meaning even at potential output France would breach the Maastricht threshold. At -4.8%, France carries the largest structural fiscal imbalance among major eurozone economies outside Italy. The oil shock creates a negative fiscal multiplier: discretionary energy support widens the headline deficit, while the consolidation measures required to comply with EDP dampen growth, leaving the minority government with no clean options."
+            }
           },
           "Current Account": {
             "value": "+1% GDP",
             "tier": "structural",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "France is selling slightly more to the rest of the world than it's buying, which is a healthy sign. Its main earners abroad are luxury goods, aerospace, and tourism, which together more than cover the cost of the energy France has to import.",
+              "moderate": "France's +1% current account surplus is modest and driven by services (tourism, financial services) and high-value goods exports including Airbus and luxury brands. The goods balance remains in deficit. The Iran oil shock puts pressure on the import bill: France is not energy self-sufficient, and a sustained rise in crude prices will compress the surplus, potentially pushing the current account to flat or marginally negative by year-end.",
+              "expert": "France's current account moved into marginal surplus in 2025 after years of deficit, driven by strong services exports and recovering tourism receipts. The structural goods deficit reflects competitiveness losses in mid-range manufacturing, where France has ceded market share to Germany and southern European exporters. The oil shock hits via two channels: a direct import cost increase and an indirect demand reduction in France's key export destinations. The surplus is likely to compress toward zero through H2 2026, limiting the current account as a buffer to fiscal stress."
+            }
           },
           "Policy Rate": {
             "value": "2.50%",
             "tier": "weekly",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "The European Central Bank sets interest rates for all eurozone countries including France. At 2.5%, rates have been coming down from their highs, which helps people with mortgages and businesses that need to borrow. Whether they fall further depends on whether inflation stays under control.",
+              "moderate": "The ECB's 2.5% rate reflects a cutting cycle that began in late 2024 as eurozone inflation converged toward target. For France, lower rates ease the debt servicing burden on a large stock of public debt and provide some support to the domestic housing market. The Iran oil shock introduces an upside inflation risk that could force the ECB to pause or reverse, a scenario that would be particularly damaging for French fiscal arithmetic.",
+              "expert": "The ECB deposit rate at 2.5% is estimated to be close to the neutral rate for the eurozone, meaning further cuts require a clear softening of the inflation outlook or a deterioration in growth. France is more sensitive to rate levels than Germany given the higher public debt-to-GDP ratio: each 25bp cut reduces France's annual interest burden by approximately 3-4 billion euros on new issuance and floating-rate debt. The oil shock creates a classic dilemma between the inflation mandate (suggesting a hold or reversal) and the growth and fiscal stability implications (favouring continued easing)."
+            }
           }
         },
         "market": {
           "Stock Market YTD": {
             "value": "+7.0%",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "French shares are up 7% so far this year, which is a solid start. The defence sector has been the biggest driver, with companies like Thales gaining strongly as European governments pour money into military spending.",
+              "moderate": "The CAC 40's +7% gain reflects two main drivers: European rearmament (Thales +78%, Safran and Airbus also up strongly) and rotation into European equities from US markets as dollar assets have underperformed. The index is heavily weighted toward luxury goods and industrials, both of which face mixed signals from the oil shock: luxury may benefit from continued wealth effects, while industrials face higher input costs.",
+              "expert": "The CAC 40's 7% YTD gain outperforms the DAX on a returns basis but slightly lags the EURO STOXX 50. Performance is concentrated in defence and aerospace, which account for the majority of the index gain. Luxury goods (LVMH, Kering) have lagged on China demand uncertainty and the strong euro weighing on dollar-translated revenues. At current valuations, the index trades around 13x forward earnings, not stretched by historical standards, but earnings estimates have not yet fully priced in the oil shock's impact on consumer discretionary demand."
+            }
           },
           "Equity Vol": {
             "value": "~20",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "A reading of around 20 means markets are moderately uncertain but not panicking. It's higher than the calm periods of 2023 and 2024, reflecting genuine worries about oil prices and government debt, but well below the stress levels seen during past crises.",
+              "moderate": "Implied volatility at around 20 on the CAC 40 is elevated relative to the 12-15 range that prevailed through most of 2024, reflecting the geopolitical premium from the Iran conflict and domestic uncertainty from France's minority government. It is not at stress levels. The vol surface is pricing the oil shock as a known risk rather than a tail event, which suggests the market is not positioned for a disorderly escalation.",
+              "expert": "CAC 40 implied vol at around 20 sits above the long-run median of roughly 17, reflecting a risk premium across three overlapping uncertainties: oil shock severity, ECB reaction function ambiguity, and French fiscal slippage risk. The vol term structure is relatively flat, suggesting no near-term resolution is priced in. Skew is bid to the downside, consistent with hedging demand from institutional holders of French equities who are concerned about OAT spread widening feeding through to equity risk premium compression."
+            }
           },
           "10Y Bond Yield": {
             "value": "3.15%",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "The French government pays 3.15% per year to borrow money for 10 years. That's more expensive than Germany but less than Italy or Spain. The higher France's borrowing costs go, the more pressure there is to cut public spending to keep the debt manageable.",
+              "moderate": "France's 10Y OAT yield at 3.15% reflects the ECB's current rate level plus a fiscal risk premium over German Bunds. The OAT-Bund spread is the key variable to watch: it widened sharply during France's political crisis in 2024 and the market remains sensitive to any signal that fiscal consolidation is slipping. The oil shock raises both the floor on ECB rates (via inflation) and the spread (via fiscal slippage risk).",
+              "expert": "France's 10Y OAT at 3.15% embeds a term premium and a sovereign risk premium over the German Bund. The spread has historically been a more useful signal than the absolute yield level. The key risks to yields are a pause or reversal in the ECB cutting cycle lifting the base, and a political breakdown in the minority government raising questions about the 2027 budget path. Duration buying from French insurance companies (ALM buyers) has provided technical support to the OAT market, but this demand is rate-sensitive and could soften if yields rise further."
+            }
           },
           "Yield Curve": {
             "value": "+50bps",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "When long-term borrowing costs are higher than short-term ones, as they are now by about half a percent, it usually means investors expect the economy to grow and rates to stay relatively stable. A positive yield curve is generally a healthy sign, though the gap is still quite narrow.",
+              "moderate": "The +50bps slope in the French yield curve reflects the ECB's current rate level and the market's expectation of modest further easing. It is a normalisation from the inverted curve of 2023-2024, which had signalled recession risk. The steepening also reflects a modest term premium for fiscal risk: investors demand slightly more for long-dated French debt given uncertainty around the budget consolidation path.",
+              "expert": "The 50bps 2s10s slope in French OATs reflects ECB easing expectations anchoring the short end and a combination of term premium and fiscal risk premium at the long end. The curve has steepened from inversion as the cutting cycle progressed but remains flatter than the historical average of 80-100bps for this stage of the cycle. A bear steepener driven by long-end selling would signal deteriorating sovereign confidence, while a bull steepener with short rates falling faster would indicate the market pricing deeper ECB cuts on a growth downside scenario."
+            }
           },
           "Corp Spread": {
             "value": "75bps",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "French companies borrowing in the bond market pay about 0.75% more than the government does. That's a fairly tight margin, meaning investors are reasonably confident French companies can repay their debts even with the current uncertainty around energy prices.",
+              "moderate": "Investment-grade French corporate spreads at 75bps are tight by historical standards, reflecting ECB policy support and investor appetite for European credit as an alternative to US fixed income. The risk is a spread widening if the oil shock feeds through to earnings and credit quality, particularly in energy-intensive industrials and consumer discretionary sectors, which make up a significant share of the French corporate bond universe.",
+              "expert": "French IG credit spreads at 75bps are tracking the broader iTraxx Europe index, which has held relatively well due to lingering carry demand from investors rotating out of US credit. The key risk is a non-linear widening if French sovereign spreads break higher: corporate spreads in France have historically had a high beta to sovereign stress, given the large share of quasi-sovereign and government-linked issuers (utilities, infrastructure) in the index. A 30-40bp sovereign widening would typically push IG corporate spreads 15-20bps wider on a historical regression basis."
+            }
           },
           "Sov CDS": {
             "value": "38bps",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "The cost of insuring against France defaulting on its debts is very low at 38 basis points. Markets are not seriously worried about France being unable to pay what it owes, even though its deficit is high. Being inside the eurozone with ECB backing keeps that number low.",
+              "moderate": "France's 5Y CDS at 38bps reflects the ECB backstop via the TPI mechanism, which effectively caps eurozone sovereign default risk for countries that comply with EU fiscal rules. The spread is higher than Germany (around 15bps) but well below Italy (around 90bps), placing France in an intermediate position. A sustained breach of EDP commitments or a political shock raising questions about eurozone commitment could push CDS wider rapidly.",
+              "expert": "France's 5Y sovereign CDS at 38bps prices a low but non-trivial probability of fiscal stress. The ECB's Transmission Protection Instrument provides an implicit put against disorderly spread widening for compliant member states. The key tail risk is a scenario where France's fiscal slippage triggers EDP sanctions and the government refuses to comply, removing TPI eligibility and exposing OATs to unconstrained market pricing. This remains low probability, but the CDS market is pricing a slightly higher tail risk than 12 months ago."
+            }
           },
           "EUR/USD": {
             "value": "1.1555",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "One euro buys about 1.16 US dollars right now. The euro has been strengthening, which is good for French people travelling abroad or buying imported goods, but makes it harder for French exporters to compete on price in dollar markets.",
+              "moderate": "EUR/USD at 1.1555 reflects dollar weakness driven by US fiscal concerns and reduced confidence in the Federal Reserve's independence. For France, a stronger euro is double-edged: it reduces import price pressure (helpful for inflation) but compresses the euro-translated revenues of French multinationals with large dollar exposures, particularly LVMH and Airbus.",
+              "expert": "EUR/USD at 1.1555 is near the top of its recent trading range, reflecting structural dollar weakness from twin-deficit concerns and geopolitical portfolio reallocation out of US assets. For French OAT holders, the strong euro is a partial offset to sovereign spread risk, as foreign investors holding OATs in their own currency see reduced FX-adjusted returns from further euro appreciation. French export competitiveness is more sensitive to the EUR/USD level than Germany's equivalent, given the lower share of euro-invoiced exports in France's trade mix outside the EU."
+            }
           },
           "FX Vol": {
             "value": "11.0%",
             "tier": "daily",
-            "last_updated": "2026-03-09"
+            "last_updated": "2026-03-09",
+            "story": {
+              "beginner": "Currency markets are not moving dramatically right now. A reading of 11% shows moderate day-to-day swings, above the very calm periods of recent years but nowhere near crisis territory. It reflects the broader uncertainty in the global economy without signalling anything acute.",
+              "moderate": "EUR/USD implied vol at 11% is elevated relative to the 7-8% range that prevailed during the low-volatility 2023-2024 period. It reflects genuine uncertainty about the Fed's and ECB's reaction functions under the oil shock, as well as a geopolitical risk premium. For French exporters with FX hedging programs, higher vol means hedges are more expensive to roll, adding a small cost to the competitiveness headwind from the stronger euro.",
+              "expert": "EUR/USD 1-month implied vol at 11% sits above the long-run median and reflects the cross-asset risk premium associated with the Iran conflict and the policy uncertainty it creates for both the Fed and ECB. The vol surface is relatively symmetric, suggesting the market is not strongly directional on EUR/USD from current levels. For French corporates with dynamic hedging strategies, the combination of elevated spot (1.1555) and elevated vol creates a difficult environment: at-the-money options are expensive and the carry from selling vol is thin relative to the risk of being caught unhedged in a disorderly move."
+            }
           }
         }
       },
