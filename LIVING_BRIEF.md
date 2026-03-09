@@ -1,5 +1,5 @@
 # MacroSnaps - Living Brief
-Last updated: March 9, 2026 (per-metric stories complete for all 12 countries, 168/168)
+Last updated: March 9, 2026 (Yield Curve gaps resolved; macrosnaps-alerts abandoned and scrubbed)
 
 ---
 
@@ -224,12 +224,12 @@ All 168 per-metric stories are complete across all 12 countries and all 3 levels
 
 | Country | Charts populated | Notes |
 |---|---|---|
-| USA | 13/14 | Yield Curve gap: FRED date alignment issue |
+| USA | 14/14 | Yield Curve fixed 2026-03-09 (GS3M short rate) |
 | CAN | 14/14 | |
-| GBR | 13/14 | Yield Curve populated |
+| GBR | 14/14 | |
 | JPN | 14/14 | |
-| DEU | 13/14 | Yield Curve gap: FRED date alignment issue |
-| FRA | 13/14 | Yield Curve gap: FRED date alignment issue |
+| DEU | 14/14 | Yield Curve fixed 2026-03-09 |
+| FRA | 14/14 | Yield Curve fixed 2026-03-09 |
 | ITA | 14/14 | |
 | CHN | 11/14 | Unemployment, 10Y Bond Yield, Yield Curve: no free source |
 | IND | 11/14 | Unemployment, 10Y Bond Yield, Yield Curve: no free source |
@@ -316,9 +316,7 @@ The tooltip order is: metric name, country + value, story, chart, explanation/bl
 | No preview step | Fixed | `sync_sheet.py` preview mode shows all changes before anything is written. |
 | Spurious git diffs from build timestamps | Fixed | Build script stamps `_meta` in memory only. `data.json` on disk is never written by the build. |
 | Daily backup only | Covered | Git provides full history. Build script saves daily backup to `backups/` and prunes after 30 days. |
-| Historical chart data incomplete | Largely resolved | `refetch_historical.py` restored 95 of a possible 107 charts. Remaining 12 gaps are genuine data voids with no free source. |
-| .DS_Store committed | Fixed | Added to `.gitignore` and removed from git history. |
-| API key hardcoded in macrosnaps-alerts.html | Action required | Remove key from line 331, amend commit, force push. Rotate the exposed key at console.anthropic.com/settings/keys. Before launch, move the key to a server-side proxy so it is never in client-side code. |
+| Historical chart data incomplete | Largely resolved | `refetch_historical.py` restored all charts except genuine data voids (CHN, IND, BRA, RUS gaps where no free source exists). |
 
 ---
 
@@ -339,84 +337,8 @@ The tooltip order is: metric name, country + value, story, chart, explanation/bl
 
 ### Pending work (priority order)
 
-1. **Fix API key exposure in macrosnaps-alerts.html.** Remove the hardcoded Anthropic API key from line 331, amend the commit, force push, and rotate the key immediately. Before launch, move the key to a server-side proxy so it is never visible in client-side source code.
+1. **Resolve 3 Yield Curve gaps (USA, DEU, FRA).** Fixed 2026-03-09. USA short rate switched from discontinued TB3MS to GS3M. DEU and FRA confirmed working on IR3TIB01EZM156N (same as ITA). All three now produce 60 points.
 
-2. **Add alert scanner as hidden page at `#alerts`.** Full instructions below. The alerts page build is already in progress but the key exposure issue must be resolved first.
+2. **Post-launch:** revisit architecture if a second person joins to update data daily.
 
-3. **Resolve 3 Yield Curve gaps (USA, DEU, FRA).** The FRED short rate series for these countries returns data starting in the 1960s while the 10Y series starts later, causing a date overlap failure. Fixable with a better short rate series ID or a different date windowing approach in `refetch_historical.py`.
 
-4. **Post-launch:** revisit architecture if a second person joins to update data daily.
-
----
-
-### Alert scanner: detailed build instructions (UI session)
-
-**Session type:** UI session. Upload `LIVING_BRIEF.md` + `macrosnaps-shell.html`.
-
-**Do NOT upload** `macrosnaps-alerts.jsx`. The JSX file is React. The shell is vanilla JS. Claude must translate, not copy-paste.
-
-**Goal**
-
-Add a hidden page to the existing app accessible at:
-```
-https://ralphlazar.github.io/macrosnaps/macrosnaps-globe.html#alerts
-```
-When the user navigates to that URL, the main content area is replaced with the MacroSnaps alert scanner. The globe and all normal UI is hidden. Navigating away from `#alerts` (or hitting back) restores the normal app.
-
-This page is intentionally undiscoverable. No link to it in the nav. No mention of it in the UI. Just a bookmarkable URL for internal use.
-
-**Exact prompt to give Claude**
-
-> Add a hidden alert scanner page to the shell, accessible only at `#alerts`. When the URL hash is `#alerts`, hide the main app content and show the scanner UI instead. When the hash changes away from `#alerts`, restore the normal app. Translate the scanner logic from the reference below into the shell's existing vanilla JS and CSS pattern. No new libraries, no React, no imports.
->
-> Here is the reference implementation to translate (not copy): [paste the full contents of `macrosnaps-alerts.jsx` below this line]
-
-**What Claude needs to build inside the shell**
-
-A hash-change listener:
-```javascript
-window.addEventListener('hashchange', handleHashChange);
-window.addEventListener('load', handleHashChange);
-
-function handleHashChange() {
-  if (window.location.hash === '#alerts') {
-    showAlertsPage();
-  } else {
-    hideAlertsPage();
-  }
-}
-```
-
-A `showAlertsPage()` function that hides the normal app container and injects or reveals the alerts div.
-
-A `hideAlertsPage()` function that restores the normal app container.
-
-The full scanner UI rendered as a regular DOM div with inline styles, matching the dark terminal aesthetic from the JSX reference.
-
-The API call translated to vanilla JS fetch. The critical headers are:
-```javascript
-headers: {
-  "Content-Type": "application/json",
-  "anthropic-version": "2023-06-01",
-}
-```
-Model: `claude-sonnet-4-20250514`. Tool: `{ type: "web_search_20250305", name: "web_search" }`.
-
-Response parsing: filter `data.content` for blocks where `b.type === "text"`, take the first one, strip any markdown fences, then `JSON.parse`. Do not assume `data.content[0]` is the text block - this will break when web search is active.
-
-**Things to flag to Claude before it starts**
-
-- Tell Claude to share its approach before writing any code and wait for you to say go.
-- Ask Claude to confirm which element is the main app container (it needs to find the right div to hide/show).
-- The scanner UI should be appended to `document.body`, not inserted inside the main app container, so hiding the app container does not affect it.
-- The `#alerts` page should have its own back link: a small `← MacroSnaps` text link in the top left that sets `window.location.hash = ''` to return to the main app.
-- The API key must NOT be hardcoded in the HTML. Decide on a key-handling approach before this session.
-
-**After the build**
-
-Run `python3 build.py` and confirm `BUILD SUCCESSFUL`. Then:
-```bash
-git add -A && git commit -m "Add hidden alerts page at #alerts"
-git push origin master
-```
-Test by navigating to `macrosnaps-globe.html#alerts` in Safari locally before pushing. Confirm SCAN NOW fires and returns results. Confirm navigating to `macrosnaps-globe.html` (no hash) restores the normal globe.
