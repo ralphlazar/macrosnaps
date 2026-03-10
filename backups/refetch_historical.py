@@ -1,0 +1,796 @@
+#!/usr/bin/env python3
+"""
+refetch_historical.py
+MacroSnaps - re-fetch historical chart data for all 12 countries.
+
+Sources
+  FRED  (api.stlouisfed.org) for macro metrics and rates
+  Yahoo Finance (yfinance) for stock indices
+
+Writes updated _frozen_historical into data.json in place.
+Skips any metric that already has sufficient data, unless FORCE_OVERWRITE = True.
+Never touches _frozen_weatherGrid or any other field.
+
+Cannot restore: Equity Vol, Corp Spread, Sov CDS, FX Vol, Budget Deficit.
+No free public source exists for these. They remain as gaps.
+
+After a successful run:
+  python3 build.py && git add -A && git commit -m "Restore _frozen_historical"
+
+Requirements
+  pip3 install requests yfinance python-dotenv
+
+Setup
+  Get a free FRED API key: https://fred.stlouisfed.org/docs/api/api_key.html
+  Create .env in ~/Downloads/macrosnaps/ containing:
+    FRED_API_KEY=your_key_here
+
+Run
+  cd ~/Downloads/macrosnaps
+  python3 refetch_historical.py
+"""
+
+import json
+import logging
+import os
+import sys
+import time
+from collections import defaultdict
+from pathlib import Path
+
+import requests
+
+try:
+    import yfinance as yf
+except ImportError:
+    sys.exit("ERROR: yfinance not installed. Run: pip3 install yfinance")
+
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass  # .env is optional if FRED_API_KEY is already in the environment
+
+# ---------------------------------------------------------------------------
+# SETTINGS
+# ---------------------------------------------------------------------------
+
+FORCE_OVERWRITE = True   # Re-fetch everything to apply all fixes cleanly
+MIN_POINTS      = 5      # Existing point count that qualifies as "already populated"
+REQUEST_DELAY   = 0.15   # Seconds between FRED requests (avoid rate limiting)
+
+DATA_FILE    = Path(__file__).parent / "data.json"
+FRED_BASE    = "https://api.stlouisfed.org/fred"
+FRED_API_KEY = os.environ.get("FRED_API_KEY", "")
+
+# ---------------------------------------------------------------------------
+# LOGGING
+# ---------------------------------------------------------------------------
+
+logging.basicConfig(level=logging.INFO, format="%(message)s")
+log = logging.getLogger(__name__)
+
+# ---------------------------------------------------------------------------
+# SERIES CONFIGURATION
+#
+# FRED_METRICS maps: country code -> metric label -> series config dict.
+#
+# Config fields:
+#   id          FRED series ID
+#   type        "line" or "bar" (how the chart renders)
+#   transform   one of: monthly_60 | annual_6 | qtr_sum_6 | gdp_qtr_6
+#   annual      True for annual bar charts
+#   stepped     True for policy rate charts
+#   zeroLine    True for yield curve
+#   indexLabel  True for stock market charts
+#
+# Transforms
+#   monthly_60   last 60 monthly observations as-is
+#   annual_6     last 6 annual observations as-is (direct annual series)
+#   qtr_sum_6    sum quarterly values to annual totals, last 6 complete years
+#   gdp_qtr_6    compute annual real GDP growth from quarterly level series,
+#                last 6 complete years
+# ---------------------------------------------------------------------------
+
+# Short-rate series used only to compute yield curve (10Y - short rate).
+# Fetched separately and not written directly to _frozen_historical.
+SHORT_RATE_SERIES = {
+    "USA": "GS3M",
+    "CAN": "IR3TIB01CAM156N",
+    "GBR": "IR3TIB01GBM156N",
+    "JPN": "IR3TIB01JPM156N",
+    "DEU": "IR3TIB01EZM156N",   # Eurozone 3-month interbank rate
+    "FRA": "IR3TIB01EZM156N",
+    "ITA": "IR3TIB01EZM156N",
+    "CHN": "IRSTCI01CNM156N",   # Policy rate as short rate proxy
+    "IND": "IRSTCI01INM156N",
+    "ZAF": "IRSTCI01ZAM156N",
+    "BRA": "IRSTCI01BRM156N",
+    "RUS": "IRSTCI01RUM156N",
+}
+
+# FX series on FRED (daily, resampled to monthly end-of-month values).
+# USA has no FX metric so it is omitted.
+FX_FRED_SERIES = {
+    "CAN": "DEXCAUS",   # Canadian dollars per USD
+    "GBR": "DEXUSUK",   # USD per British pound
+    "JPN": "DEXJPUS",   # Yen per USD
+    "DEU": "DEXUSEU",   # USD per euro
+    "FRA": "DEXUSEU",
+    "ITA": "DEXUSEU",
+    "CHN": "DEXCHUS",   # Yuan per USD
+    "IND": "DEXINUS",   # Rupees per USD
+    "ZAF": "DEXSFUS",   # Rand per USD
+    "BRA": "DEXBZUS",   # Brazilian reals per USD
+    "RUS": "DEXRUUS",   # Rubles per USD (may have post-2022 gaps)
+}
+
+# Fallback FX metric labels if the label cannot be detected from data.json.
+FX_LABEL_DEFAULTS = {
+    "CAN": "USD/CAD",
+    "GBR": "GBP/USD",
+    "JPN": "USD/JPY",
+    "DEU": "EUR/USD",
+    "FRA": "EUR/USD",
+    "ITA": "EUR/USD",
+    "CHN": "USD/CNY",
+    "IND": "USD/INR",
+    "ZAF": "USD/ZAR",
+    "BRA": "USD/BRL",
+    "RUS": "USD/RUB",
+}
+
+# Yahoo Finance tickers for the stock market index in each country.
+STOCK_TICKERS = {
+    "USA": "^GSPC",       # S&P 500
+    "CAN": "^GSPTSE",     # TSX Composite
+    "GBR": "^FTSE",       # FTSE 100
+    "JPN": "^N225",       # Nikkei 225
+    "DEU": "^GDAXI",      # DAX
+    "FRA": "^FCHI",       # CAC 40
+    "ITA": "FTSEMIB.MI",  # FTSE MIB
+    "CHN": "000001.SS",   # Shanghai Composite
+    "IND": "^BSESN",      # BSE Sensex
+    "ZAF": "^J203.JO",    # JSE All Share
+    "BRA": "^BVSP",       # Bovespa
+    "RUS": "IMOEX.ME",    # MOEX (may have post-2022 gaps)
+}
+
+# All metric names that are NOT the FX pair. Used to detect the FX label.
+KNOWN_NON_FX_METRICS = {
+    "GDP Growth", "Inflation (CPI)", "Unemployment", "Budget Deficit",
+    "Current Account", "Policy Rate", "Stock Market YTD", "Equity Vol",
+    "10Y Bond Yield", "Yield Curve", "Corp Spread", "Sov CDS", "FX Vol",
+}
+
+FRED_METRICS = {
+    "USA": {
+        "GDP Growth":      {"id": "A191RL1A225NBEA", "transform": "annual_6",   "type": "bar",  "annual": True},
+        "Inflation (CPI)": {"id": "CPALTT01USM659N", "transform": "monthly_60", "type": "line"},
+        "Unemployment":    {"id": "UNRATE",           "transform": "monthly_60", "type": "line"},
+        "Current Account": {"id": "BPBLTT01USQ637S",   "transform": "qtr_sum_6",  "type": "bar",  "annual": True},
+        "Policy Rate":     {"id": "FEDFUNDS",         "transform": "monthly_60", "type": "line", "stepped": True},
+        "10Y Bond Yield":  {"id": "GS10",             "transform": "monthly_60", "type": "line"},
+    },
+    "CAN": {
+        "GDP Growth":      {"id": "NGDPRSAXDCCAQ",   "transform": "gdp_qtr_6",  "type": "bar",  "annual": True},
+        "Inflation (CPI)": {"id": "CPALTT01CAM659N", "transform": "monthly_60", "type": "line"},
+        "Unemployment":    {"id": "LRUNTTTTCAM156S", "transform": "monthly_60", "type": "line"},
+        "Current Account": {"id": "BPBLTT01CAQ637S", "transform": "qtr_sum_6",  "type": "bar",  "annual": True},
+        "Policy Rate":     {"id": "IRSTCI01CAM156N", "transform": "monthly_60", "type": "line", "stepped": True},
+        "10Y Bond Yield":  {"id": "IRLTLT01CAM156N", "transform": "monthly_60", "type": "line"},
+    },
+    "GBR": {
+        "GDP Growth":      {"id": "NGDPRSAXDCGBQ",   "transform": "gdp_qtr_6",  "type": "bar",  "annual": True},
+        "Inflation (CPI)": {"id": "CPALTT01GBM659N", "transform": "monthly_60", "type": "line"},
+        "Unemployment":    {"id": "LRHUTTTTGBM156S", "transform": "monthly_60", "type": "line"},
+        "Current Account": {"id": "BPBLTT01GBQ637S", "transform": "qtr_sum_6",  "type": "bar",  "annual": True},
+        "Policy Rate":     {"id": "IRSTCI01GBM156N",  "transform": "monthly_60", "type": "line", "stepped": True},
+        "10Y Bond Yield":  {"id": "IRLTLT01GBM156N", "transform": "monthly_60", "type": "line"},
+    },
+    "JPN": {
+        "GDP Growth":      {"id": "NGDPRSAXDCJPQ",   "transform": "gdp_qtr_6",  "type": "bar",  "annual": True},
+        "Inflation (CPI)": {"id": "CPALTT01JPM659N", "transform": "monthly_60", "type": "line"},
+        "Unemployment":    {"id": "LRUNTTTTJPM156S", "transform": "monthly_60", "type": "line"},
+        "Current Account": {"id": "BPBLTT01JPQ637S", "transform": "qtr_sum_6",  "type": "bar",  "annual": True},
+        "Policy Rate":     {"id": "IRSTCI01JPM156N", "transform": "monthly_60", "type": "line", "stepped": True},
+        "10Y Bond Yield":  {"id": "IRLTLT01JPM156N", "transform": "monthly_60", "type": "line"},
+    },
+    "DEU": {
+        "GDP Growth":      {"id": "CLVMNACSCAB1GQDE", "transform": "gdp_qtr_6",  "type": "bar",  "annual": True},
+        "Inflation (CPI)": {"id": "CPALTT01DEM659N",  "transform": "monthly_60", "type": "line"},
+        "Unemployment":    {"id": "LRHUTTTTDEM156S",  "transform": "monthly_60", "type": "line"},
+        "Current Account": {"id": "BPBLTT01DEQ637S",  "transform": "qtr_sum_6",  "type": "bar",  "annual": True},
+        "Policy Rate":     {"id": "ECBDFR",            "transform": "monthly_60", "type": "line", "stepped": True},
+        "10Y Bond Yield":  {"id": "IRLTLT01DEM156N",  "transform": "monthly_60", "type": "line"},
+    },
+    "FRA": {
+        "GDP Growth":      {"id": "CLVMNACSCAB1GQFR", "transform": "gdp_qtr_6",  "type": "bar",  "annual": True},
+        "Inflation (CPI)": {"id": "CPALTT01FRM659N",  "transform": "monthly_60", "type": "line"},
+        "Unemployment":    {"id": "LRHUTTTTFRM156S",  "transform": "monthly_60", "type": "line"},
+        "Current Account": {"id": "BPBLTT01FRQ637S",  "transform": "qtr_sum_6",  "type": "bar",  "annual": True},
+        "Policy Rate":     {"id": "ECBDFR",            "transform": "monthly_60", "type": "line", "stepped": True},
+        "10Y Bond Yield":  {"id": "IRLTLT01FRM156N",  "transform": "monthly_60", "type": "line"},
+    },
+    "ITA": {
+        "GDP Growth":      {"id": "CLVMNACSCAB1GQIT", "transform": "gdp_qtr_6",  "type": "bar",  "annual": True},
+        "Inflation (CPI)": {"id": "CPALTT01ITM659N",  "transform": "monthly_60", "type": "line"},
+        "Unemployment":    {"id": "LRHUTTTTITM156S",  "transform": "monthly_60", "type": "line"},
+        "Current Account": {"id": "BPBLTT01ITQ637S",  "transform": "qtr_sum_6",  "type": "bar",  "annual": True},
+        "Policy Rate":     {"id": "ECBDFR",            "transform": "monthly_60", "type": "line", "stepped": True},
+        "10Y Bond Yield":  {"id": "IRLTLT01ITM156N",  "transform": "monthly_60", "type": "line"},
+    },
+    "CHN": {
+        "GDP Growth":      {"id": "CHNGDPNQDSMEI",    "transform": "gdp_qtr_6",  "type": "bar",  "annual": True},
+        "Inflation (CPI)": {"id": "CPALTT01CNM659N",  "transform": "monthly_60", "type": "line"},
+        "Unemployment":    {"id": "LRUNTTTTCNM156S",  "transform": "monthly_60", "type": "line"},
+        "Current Account": {"id": "BPBLTT01CNQ637S",  "transform": "qtr_sum_6",  "type": "bar",  "annual": True},
+        "Policy Rate":     {"id": "IRSTCI01CNM156N",  "transform": "monthly_60", "type": "line", "stepped": True},
+        "10Y Bond Yield":  {"id": "IRLTLT01CNM156N",  "transform": "monthly_60", "type": "line"},
+    },
+    "IND": {
+        "GDP Growth":      {"id": "INDGDPNQDSMEI",    "transform": "gdp_qtr_6",  "type": "bar",  "annual": True},
+        "Inflation (CPI)": {"id": "CPALTT01INM659N",  "transform": "monthly_60", "type": "line"},
+        "Unemployment":    {"id": "LRUNTTTTINM156S",  "transform": "monthly_60", "type": "line"},
+        "Current Account": {"id": "BPBLTT01INQ637S",  "transform": "qtr_sum_6",  "type": "bar",  "annual": True},
+        "Policy Rate":     {"id": "IRSTCI01INM156N",  "transform": "monthly_60", "type": "line", "stepped": True},
+        "10Y Bond Yield":  {"id": "IRLTLT01INM156N",  "transform": "monthly_60", "type": "line"},
+    },
+    "ZAF": {
+        "GDP Growth":      {"id": "ZAFGDPNQDSMEI",    "transform": "gdp_qtr_6",  "type": "bar",  "annual": True},
+        "Inflation (CPI)": {"id": "CPALTT01ZAM659N",  "transform": "monthly_60", "type": "line"},
+        "Unemployment":    {"id": "LRUNTTTTMZAM156S", "transform": "monthly_60", "type": "line"},
+        "Current Account": {"id": "BPBLTT01ZAQ637S",  "transform": "qtr_sum_6",  "type": "bar",  "annual": True},
+        "Policy Rate":     {"id": "IRSTCI01ZAM156N",  "transform": "monthly_60", "type": "line", "stepped": True},
+        "10Y Bond Yield":  {"id": "IRLTLT01ZAM156N",  "transform": "monthly_60", "type": "line"},
+    },
+    "BRA": {
+        "GDP Growth":      {"id": "NGDPRSAXDCBRQ",   "transform": "gdp_qtr_6",  "type": "bar",  "annual": True},
+        "Inflation (CPI)": {"id": "CPALTT01BRM659N", "transform": "monthly_60", "type": "line"},
+        "Unemployment":    {"id": "LRUNTTTTBRM156S", "transform": "monthly_60", "type": "line"},
+        "Current Account": {"id": "BPBLTT01BRQ637S", "transform": "qtr_sum_6",  "type": "bar",  "annual": True},
+        "Policy Rate":     {"id": "IRSTCI01BRM156N", "transform": "monthly_60", "type": "line", "stepped": True},
+        "10Y Bond Yield":  {"id": "IRLTLT01BRM156N", "transform": "monthly_60", "type": "line"},
+    },
+    "RUS": {
+        "GDP Growth":      {"id": "NGDPRSAXDCRUQ",   "transform": "gdp_qtr_6",  "type": "bar",  "annual": True},
+        "Inflation (CPI)": {"id": "CPALTT01RUM659N", "transform": "monthly_60", "type": "line"},
+        "Unemployment":    {"id": "LRUNTTTTRUM156S", "transform": "monthly_60", "type": "line"},
+        "Current Account": {"id": "BPBLTT01RUQ637S", "transform": "qtr_sum_6",  "type": "bar",  "annual": True},
+        "Policy Rate":     {"id": "IRSTCI01RUM156N", "transform": "monthly_60", "type": "line", "stepped": True},
+        "10Y Bond Yield":  {"id": "IRLTLT01RUM156N", "transform": "monthly_60", "type": "line"},
+    },
+}
+
+
+# ---------------------------------------------------------------------------
+# FRED FETCH
+# ---------------------------------------------------------------------------
+
+def fred_fetch(series_id, limit=200, observation_start=None):
+    """
+    Fetch observations from FRED for one series.
+    Fetches the most recent `limit` observations (sort_order=desc, then reversed)
+    so results are always sorted oldest first and contain recent data.
+    Returns a list of (date_str, float) pairs, or None on error.
+    """
+    params = {
+        "series_id":  series_id,
+        "api_key":    FRED_API_KEY,
+        "file_type":  "json",
+        "sort_order": "desc",
+        "limit":      limit,
+    }
+    if observation_start:
+        params["observation_start"] = observation_start
+
+    url = f"{FRED_BASE}/series/observations"
+    try:
+        r = requests.get(url, params=params, timeout=20)
+        time.sleep(REQUEST_DELAY)
+        if r.status_code == 400:
+            log.warning(f"    FRED {series_id}: series not found (400)")
+            return None
+        if r.status_code != 200:
+            log.warning(f"    FRED {series_id}: HTTP {r.status_code}")
+            return None
+        obs = r.json().get("observations", [])
+        pairs = [
+            (o["date"], float(o["value"]))
+            for o in obs
+            if o["value"] not in (".", "", None)
+        ]
+        if not pairs:
+            log.warning(f"    FRED {series_id}: returned no usable observations")
+            return None
+        # Reverse so result is oldest-first
+        pairs.reverse()
+        return pairs
+    except Exception as exc:
+        log.warning(f"    FRED {series_id}: {exc}")
+        return None
+
+
+# ---------------------------------------------------------------------------
+# OECD FETCH (fallback for unemployment where FRED has no monthly series)
+# ---------------------------------------------------------------------------
+
+# OECD uses standard ISO-3 country codes for most countries.
+# Non-members (CHN, IND, RUS) are not in this dataset.
+OECD_UNEMPLOYMENT_COUNTRIES = {"GBR", "DEU", "FRA", "ITA", "ZAF", "BRA"}
+
+def oecd_fetch_unemployment(country_code):
+    """
+    Fetch monthly harmonized unemployment rate from the OECD Data API.
+    Returns a list of (date_str, float) pairs sorted oldest first, or None.
+    Only works for OECD member and partner countries in the HUR dataset.
+    """
+    url = (
+        f"https://stats.oecd.org/SDMX-JSON/data/LFSRATE/"
+        f"{country_code}.LR/all"
+    )
+    params = {"startTime": "2019-01", "format": "jsondata"}
+    try:
+        r = requests.get(url, params=params, timeout=30)
+        time.sleep(REQUEST_DELAY)
+        if r.status_code != 200:
+            log.warning(f"    OECD {country_code} unemployment: HTTP {r.status_code}")
+            return None
+        body = r.json()
+        datasets   = body.get("data", {}).get("dataSets", [])
+        structures = body.get("data", {}).get("structures", [])
+        if not datasets or not structures:
+            log.warning(f"    OECD {country_code} unemployment: empty response")
+            return None
+        series_map = datasets[0].get("series", {})
+        if not series_map:
+            log.warning(f"    OECD {country_code} unemployment: no series in response")
+            return None
+        # Take the first series key
+        obs = list(series_map.values())[0].get("observations", {})
+        time_values = structures[0]["dimensions"]["observation"][0]["values"]
+        pairs = []
+        for idx_str, vals in obs.items():
+            idx = int(idx_str)
+            if idx < len(time_values) and vals and vals[0] is not None:
+                period = time_values[idx]["id"]   # "2019-01"
+                pairs.append((period + "-01", float(vals[0])))
+        pairs.sort(key=lambda x: x[0])
+        return pairs if pairs else None
+    except Exception as exc:
+        log.warning(f"    OECD {country_code} unemployment: {exc}")
+        return None
+
+
+
+
+def r2(v):
+    """Round to 2 decimal places."""
+    return round(v, 2)
+
+
+def apply_monthly_60(pairs):
+    """Return the last 60 monthly values from the series."""
+    if not pairs:
+        return None
+    vals = [r2(v) for _, v in pairs]
+    return vals[-60:] if len(vals) >= 1 else None
+
+
+def apply_annual_6(pairs):
+    """Return the last 6 values from a directly annual series."""
+    if not pairs:
+        return None
+    vals = [r2(v) for _, v in pairs]
+    return vals[-6:] if len(vals) >= 1 else None
+
+
+def apply_qtr_sum_6(pairs):
+    """
+    Sum quarterly values into annual totals.
+    Returns the last 6 complete years (years with all 4 quarters present).
+    """
+    if not pairs:
+        return None
+    by_year = defaultdict(list)
+    for date_str, val in pairs:
+        by_year[date_str[:4]].append(val)
+    complete = {y: vs for y, vs in by_year.items() if len(vs) >= 4}
+    if not complete:
+        return None
+    sorted_years = sorted(complete.keys())
+    annual = [r2(sum(complete[y])) for y in sorted_years]
+    return annual[-6:] if annual else None
+
+
+def apply_gdp_qtr_6(pairs):
+    """
+    Compute annual real GDP growth from a quarterly level series.
+    Averages the 4 quarters within each year to get an annual level,
+    then computes year-over-year percentage change.
+    Returns the last 6 complete-year growth values.
+    """
+    if not pairs or len(pairs) < 8:
+        return None
+    by_year = defaultdict(list)
+    for date_str, val in pairs:
+        by_year[date_str[:4]].append(val)
+    # Only use years with all 4 quarters
+    complete = {y: vs for y, vs in by_year.items() if len(vs) >= 4}
+    if len(complete) < 2:
+        return None
+    sorted_years = sorted(complete.keys())
+    annual_avg = {y: sum(complete[y]) / len(complete[y]) for y in sorted_years}
+    growth = []
+    for i in range(1, len(sorted_years)):
+        y_prev = sorted_years[i - 1]
+        y_curr = sorted_years[i]
+        base = annual_avg[y_prev]
+        if base and base != 0:
+            pct = (annual_avg[y_curr] - base) / abs(base) * 100
+            growth.append(r2(pct))
+    return growth[-6:] if growth else None
+
+
+def apply_transform(pairs, transform):
+    """Dispatch to the correct transform function."""
+    if transform == "monthly_60":
+        return apply_monthly_60(pairs)
+    if transform == "annual_6":
+        return apply_annual_6(pairs)
+    if transform == "qtr_sum_6":
+        return apply_qtr_sum_6(pairs)
+    if transform == "gdp_qtr_6":
+        return apply_gdp_qtr_6(pairs)
+    log.warning(f"    Unknown transform '{transform}'")
+    return None
+
+
+# ---------------------------------------------------------------------------
+# YIELD CURVE
+# ---------------------------------------------------------------------------
+
+def compute_yield_curve(long_pairs, short_pairs):
+    """
+    Subtract short rate from 10Y rate on matching months.
+    Normalizes dates to YYYY-MM to handle FRED series with different
+    day-of-month conventions for the same reporting period.
+    Returns the last 60 monthly spread values.
+    """
+    if not long_pairs or not short_pairs:
+        return None
+    long_dict  = {d[:7]: v for d, v in long_pairs}
+    short_dict = {d[:7]: v for d, v in short_pairs}
+    common = sorted(set(long_dict) & set(short_dict))
+    if not common:
+        return None
+    spread = [r2(long_dict[d] - short_dict[d]) for d in common]
+    return spread[-60:] if spread else None
+
+
+# ---------------------------------------------------------------------------
+# STOCK MARKET (Yahoo Finance)
+# ---------------------------------------------------------------------------
+
+def fetch_stock_monthly(ticker):
+    """
+    Fetch monthly closing prices for a stock index via yfinance.
+    Returns the last 60 monthly values, or None on failure.
+    """
+    try:
+        hist = yf.Ticker(ticker).history(period="6y", interval="1mo")
+        if hist.empty:
+            log.warning(f"    Yahoo {ticker}: no data returned")
+            return None
+        vals = [r2(float(v)) for v in hist["Close"].dropna().tolist()]
+        return vals[-60:] if vals else None
+    except Exception as exc:
+        log.warning(f"    Yahoo {ticker}: {exc}")
+        return None
+
+
+# ---------------------------------------------------------------------------
+# FX (FRED daily, resampled to monthly)
+# ---------------------------------------------------------------------------
+
+def fetch_fx_monthly(fred_series):
+    """
+    Fetch daily FX rate from FRED, resample to monthly end-of-month values.
+    Returns the last 60 monthly values, or None on failure.
+    """
+    pairs = fred_fetch(fred_series, limit=3000, observation_start="2019-01-01")
+    if not pairs:
+        return None
+    # Keep only the last observation within each YYYY-MM month
+    by_month = {}
+    for date_str, val in pairs:
+        by_month[date_str[:7]] = val
+    sorted_months = sorted(by_month.keys())
+    vals = [r2(by_month[m]) for m in sorted_months]
+    return vals[-60:] if vals else None
+
+
+# ---------------------------------------------------------------------------
+# HELPERS
+# ---------------------------------------------------------------------------
+
+def is_populated(frozen, metric_key):
+    """Return True if the metric already has MIN_POINTS or more data points."""
+    entry = frozen.get(metric_key)
+    if not entry:
+        return False
+    return len(entry.get("v", [])) >= MIN_POINTS
+
+
+def build_entry(vals, cfg):
+    """Build a _frozen_historical entry dict from processed values and config."""
+    entry = {"v": vals, "type": cfg["type"]}
+    if cfg.get("annual"):    entry["annual"]     = True
+    if cfg.get("stepped"):   entry["stepped"]    = True
+    if cfg.get("zeroLine"):  entry["zeroLine"]   = True
+    if cfg.get("indexLabel"):entry["indexLabel"] = True
+    return entry
+
+
+def detect_fx_label(country_data, frozen, code):
+    """
+    Find the FX metric key for a country.
+    Checks: (1) the metrics array in country_data, (2) existing frozen keys,
+    (3) the hardcoded default table.
+    """
+def detect_fx_label(country_data, frozen, code):
+    """
+    Find the FX metric key for a country.
+    Checks: (1) nested metrics dict (macro/market sub-keys),
+            (2) flat metrics list/dict,
+            (3) existing frozen keys,
+            (4) hardcoded default table.
+    """
+    metrics = country_data.get("metrics", {})
+
+    # Case 1: nested dict with 'macro' and 'market' sub-dicts
+    if isinstance(metrics, dict):
+        for section in metrics.values():
+            if isinstance(section, dict):
+                for name in section.keys():
+                    if name and name not in KNOWN_NON_FX_METRICS:
+                        return name
+            elif isinstance(section, list):
+                for item in section:
+                    name = item if isinstance(item, str) else item.get("name", "")
+                    if name and name not in KNOWN_NON_FX_METRICS:
+                        return name
+
+    # Case 2: flat list
+    elif isinstance(metrics, list):
+        for item in metrics:
+            name = item if isinstance(item, str) else item.get("name", "")
+            if name and name not in KNOWN_NON_FX_METRICS:
+                return name
+
+    # Case 3: existing frozen keys (excluding the wrong "macro" fallback)
+    for key in frozen:
+        if key not in KNOWN_NON_FX_METRICS and key != "macro":
+            return key
+
+    # Case 4: hardcoded defaults
+    return FX_LABEL_DEFAULTS.get(code)
+
+
+# ---------------------------------------------------------------------------
+# PER-COUNTRY PROCESSING
+# ---------------------------------------------------------------------------
+
+def process_country(code, country_data):
+    """
+    Fetch and update _frozen_historical for one country.
+    Returns a dict with 'fetched', 'skipped', and 'failed' lists.
+    """
+    if "_frozen_historical" not in country_data:
+        country_data["_frozen_historical"] = {}
+    frozen = country_data["_frozen_historical"]
+
+    metrics_cfg = FRED_METRICS.get(code, {})
+    results = {"fetched": [], "skipped": [], "failed": []}
+
+    # Retain 10Y and short rate pairs so we can compute yield curve after.
+    ten_y_pairs   = None
+    short_pairs   = None
+
+    # Fetch FRED-sourced metrics
+    for metric, cfg in metrics_cfg.items():
+
+        if is_populated(frozen, metric) and not FORCE_OVERWRITE:
+            log.info(f"  SKIP    {metric} (already populated)")
+            results["skipped"].append(metric)
+            # Still need 10Y pairs for yield curve even when skipping
+            if metric == "10Y Bond Yield":
+                ten_y_pairs = fred_fetch(cfg["id"], limit=120, observation_start="2015-01-01")
+            continue
+
+        log.info(f"  Fetch   {metric}  [{cfg['id']}]")
+        pairs = fred_fetch(cfg["id"], limit=250)
+
+        if metric == "10Y Bond Yield":
+            ten_y_pairs = pairs[-120:] if pairs else None  # keep only recent 120 for yield curve
+
+        if not pairs:
+            # FRED has no monthly unemployment for many non-US countries.
+            # Try OECD as a fallback.
+            if metric == "Unemployment" and code in OECD_UNEMPLOYMENT_COUNTRIES:
+                log.info(f"    Trying OECD fallback for {metric}...")
+                pairs = oecd_fetch_unemployment(code)
+                if pairs:
+                    log.info(f"    OECD OK ({len(pairs)} raw points)")
+                else:
+                    log.warning(f"    OECD fallback also failed")
+
+        if not pairs:
+            results["failed"].append(metric)
+            continue
+
+        vals = apply_transform(pairs, cfg["transform"])
+        if not vals:
+            log.warning(f"    transform produced no values")
+            results["failed"].append(metric)
+            continue
+
+        frozen[metric] = build_entry(vals, cfg)
+        log.info(f"    OK ({len(vals)} points)")
+        results["fetched"].append(metric)
+
+    # Fetch short rate for yield curve
+    short_series = SHORT_RATE_SERIES.get(code)
+    if short_series:
+        short_pairs = fred_fetch(short_series, limit=120, observation_start="2015-01-01")
+        if short_pairs:
+            log.info(f"  Short rate [{short_series}]: OK ({len(short_pairs)} points)")
+        else:
+            log.warning(f"  Short rate [{short_series}]: FAILED - yield curve will be skipped")
+
+    # Yield curve
+    if not is_populated(frozen, "Yield Curve") or FORCE_OVERWRITE:
+        log.info(f"  Compute Yield Curve (10Y - short rate)")
+        log.info(f"    DEBUG: ten_y_pairs={len(ten_y_pairs) if ten_y_pairs else None}, short_pairs={len(short_pairs) if short_pairs else None}")
+        if ten_y_pairs:
+            log.info(f"    DEBUG: 10Y sample dates: {[d for d,v in ten_y_pairs[:3]]}")
+        if short_pairs:
+            log.info(f"    DEBUG: short rate sample dates: {[d for d,v in short_pairs[:3]]}")
+        spread = compute_yield_curve(ten_y_pairs, short_pairs)
+        if spread:
+            frozen["Yield Curve"] = {"v": spread, "type": "line", "zeroLine": True}
+            log.info(f"    OK ({len(spread)} points)")
+            results["fetched"].append("Yield Curve")
+        else:
+            log.warning(f"    failed - missing 10Y or short rate data")
+            results["failed"].append("Yield Curve")
+    else:
+        log.info(f"  SKIP    Yield Curve (already populated)")
+        results["skipped"].append("Yield Curve")
+
+    # Stock Market (Yahoo Finance)
+    ticker = STOCK_TICKERS.get(code)
+    if ticker:
+        if not is_populated(frozen, "Stock Market YTD") or FORCE_OVERWRITE:
+            log.info(f"  Fetch   Stock Market YTD  [{ticker}]")
+            vals = fetch_stock_monthly(ticker)
+            if vals:
+                frozen["Stock Market YTD"] = {
+                    "v": vals, "type": "line", "indexLabel": True
+                }
+                log.info(f"    OK ({len(vals)} points)")
+                results["fetched"].append("Stock Market YTD")
+            else:
+                results["failed"].append("Stock Market YTD")
+        else:
+            log.info(f"  SKIP    Stock Market YTD (already populated)")
+            results["skipped"].append("Stock Market YTD")
+
+    # FX rate (FRED daily, resampled)
+    fx_series = FX_FRED_SERIES.get(code)
+    fx_label  = detect_fx_label(country_data, frozen, code)
+    if fx_series and fx_label:
+        if not is_populated(frozen, fx_label) or FORCE_OVERWRITE:
+            log.info(f"  Fetch   {fx_label}  [{fx_series}]")
+            vals = fetch_fx_monthly(fx_series)
+            if vals:
+                frozen[fx_label] = {"v": vals, "type": "line"}
+                log.info(f"    OK ({len(vals)} points)")
+                results["fetched"].append(fx_label)
+            else:
+                results["failed"].append(fx_label)
+        else:
+            log.info(f"  SKIP    {fx_label} (already populated)")
+            results["skipped"].append(fx_label)
+
+    # Rename any wrongly stored "macro" FX entry to the correct label
+    if "macro" in frozen and fx_label and fx_label != "macro":
+        log.info(f"  Rename  'macro' -> '{fx_label}' in frozen historical")
+        frozen[fx_label] = frozen.pop("macro")
+
+    return results
+
+
+# ---------------------------------------------------------------------------
+# MAIN
+# ---------------------------------------------------------------------------
+
+def main():
+    # Pre-flight checks
+    if not FRED_API_KEY:
+        sys.exit(
+            "\nERROR: FRED_API_KEY not set.\n"
+            "Get a free key at: https://fred.stlouisfed.org/docs/api/api_key.html\n"
+            "Then add this line to .env in ~/Downloads/macrosnaps/\n"
+            "  FRED_API_KEY=your_key_here\n"
+        )
+
+    if not DATA_FILE.exists():
+        sys.exit(f"\nERROR: data.json not found at {DATA_FILE}\n")
+
+    log.info(f"Reading {DATA_FILE} ...")
+    with open(DATA_FILE, encoding="utf-8") as f:
+        data = json.load(f)
+
+    # Support list, {countries: [...]}, or {countries: {CODE: {...}}}
+    if isinstance(data, list):
+        country_map = {c["code"]: c for c in data if "code" in c}
+    elif isinstance(data, dict) and "countries" in data:
+        raw = data["countries"]
+        if isinstance(raw, dict):
+            country_map = raw  # already keyed by country code
+        else:
+            country_map = {c["code"]: c for c in raw if "code" in c}
+    else:
+        sys.exit("\nERROR: Cannot find country list in data.json\n")
+
+    run_order = ["USA", "CAN", "GBR", "JPN", "DEU", "FRA", "ITA",
+                 "CHN", "IND", "ZAF", "BRA", "RUS"]
+
+    totals = {"fetched": 0, "skipped": 0, "failed": 0, "failed_list": []}
+
+    for code in run_order:
+        if code not in country_map:
+            log.warning(f"\n[{code}] not found in data.json - skipping")
+            continue
+
+        log.info(f"\n{'='*52}")
+        log.info(f"  {code}")
+        log.info(f"{'='*52}")
+
+        results = process_country(code, country_map[code])
+
+        totals["fetched"]  += len(results["fetched"])
+        totals["skipped"]  += len(results["skipped"])
+        totals["failed"]   += len(results["failed"])
+        totals["failed_list"].extend(
+            [f"{code}/{m}" for m in results["failed"]]
+        )
+
+    # Write data.json back
+    log.info(f"\nWriting {DATA_FILE} ...")
+    with open(DATA_FILE, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+    log.info("Write complete.")
+
+    # Summary
+    log.info(f"\n{'='*52}")
+    log.info("SUMMARY")
+    log.info(f"{'='*52}")
+    log.info(f"  Fetched : {totals['fetched']}")
+    log.info(f"  Skipped : {totals['skipped']}  (already populated)")
+    log.info(f"  Failed  : {totals['failed']}")
+    if totals["failed_list"]:
+        log.info("  Failed series:")
+        for item in totals["failed_list"]:
+            log.info(f"    - {item}")
+        log.info("\n  Note: Some series may simply not exist on FRED for a given")
+        log.info("  country. Check the series IDs in FRED_METRICS near the top")
+        log.info("  of this file if you want to substitute alternatives.")
+
+    log.info("\nNext steps:")
+    log.info("  python3 build.py && git add -A && git commit -m 'Restore _frozen_historical'")
+
+
+if __name__ == "__main__":
+    main()
