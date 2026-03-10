@@ -1,5 +1,5 @@
 # MacroSnaps - Living Brief
-Last updated: March 10, 2026 (Daily update run; global + country + commodity stories updated; "What the project is" description updated)
+Last updated: March 10, 2026 (Weather Map sync bug fixed - 2026F column now reads live metric values at runtime)
 
 ---
 
@@ -40,7 +40,7 @@ Never upload `macrosnaps-globe.html`. It is a build output, not a source file.
 
 **Working preferences**
 
-⚠️ CRITICAL - PLAN BEFORE BUILDING: Never write code or make any edit without first presenting a clear plan of exactly what will change and why. Wait for explicit approval before proceeding. The word "go" is the signal to proceed. This applies to every change, no matter how small it seems.
+CRITICAL - PLAN BEFORE BUILDING: Never write code or make any edit without first presenting a clear plan of exactly what will change and why. Wait for explicit approval before proceeding. The word "go" is the signal to proceed. This applies to every change, no matter how small it seems.
 
 Think before building. On any non-trivial change, share your approach and flag concerns before writing code. Wait for me to say "go."
 
@@ -370,6 +370,7 @@ The tooltip order is: metric name, country + value, story, chart, explanation/bl
 | Historical chart data incomplete | Largely resolved | `refetch_historical.py` restored all charts except genuine data voids (CHN, IND, BRA, RUS gaps where no free source exists). |
 | Stale or missing market data | Partially resolved | 4 automatable metrics will be fetched daily by `fetch_market_data.py` (not yet built). 4 data-void metrics display as "not available" rather than showing stale values. |
 | Manual story maintenance burden | Being resolved | `update_stories.py` (not yet built) will automate story rewrites for any metric that moves past threshold. |
+| Weather Map showing stale forecast values | Fixed | Shell reads the 2026F column from live metrics at runtime. Historical years stay frozen. `_frozen_weatherGrid` is the source of truth for 2020-2025 only. |
 
 ---
 
@@ -379,11 +380,13 @@ The tooltip order is: metric name, country + value, story, chart, explanation/bl
 |---|---|
 | `.tt-metric-story` CSS | Line 165 |
 | `metricStories` object declaration | Line 5605 |
+| `parseLiveVal()` helper | Line 5613 |
 | `metricStories` populated from data | Line 5637 |
 | `renderMTT()` function | Line 6542 |
 | Metric story HTML built | Line 6581-6582 |
 | Full tooltip render string | Line 6589 |
 | `historicalData` populated from `_frozen_historical` | Line 5638 |
+| Weather grid population (live override) | Line 5646 |
 | `window.__MACROSNAPS_DATA__` injected by build | Before `</head>` in built output |
 
 ---
@@ -399,19 +402,3 @@ The tooltip order is: metric name, country + value, story, chart, explanation/bl
 4. **Build `print_snapshot.py`.** Uses Playwright to open the built HTML file, loops through each country, expands it, and captures a full-height PDF. Output is a dated file in `snapshots/` (e.g. `macrosnaps-2026-03-09.pdf`). Audience level hardcoded to expert. For personal use only, not a public feature. Run optionally after the daily ritual. Requires `pip3 install playwright` and `playwright install chromium`.
 
 5. **Post-launch:** revisit architecture if a second person joins to update data daily.
-
----
-
-### Known bug: Weather Map out of sync with sheet values
-
-Discovered 2026-03-10. The GDP Growth Weather Map tooltip (and equivalent CPI, Unemployment, Budget Deficit, Current Account weather maps) shows values from `_frozen_weatherGrid` inside `data.json`, not from the live metric values updated by `sync_sheet.py`. This means the Weather Map can show different numbers than the country card for the same metric. Example: USA GDP showed +2.4% in the Weather Map but +2.2% on the country card after a sheet sync.
-
-**Root cause:** `assembleWeatherGrid()` in the shell reads from `gdpAllCountries` etc., which are populated from `c._frozen_weatherGrid` (line 5639 of shell). `sync_sheet.py` updates the live metric values but never touches `_frozen_weatherGrid`.
-
-**Fix options:**
-- Option A (tooling): have `sync_sheet.py` also update the 2026F column of `_frozen_weatherGrid` for each country when it writes a metric value.
-- Option B (UI): make `assembleWeatherGrid()` read the current year value from the live metrics instead of `_frozen_weatherGrid`, keeping historical years from the frozen data.
-
-Option B is cleaner but requires care to preserve the historical year columns. This is a tooling + UI session. Upload `LIVING_BRIEF.md` + `macrosnaps-shell.html` + `data.json` + `sync_sheet.py`.
-
-Add to pending work list as item 5, before the post-launch note.
