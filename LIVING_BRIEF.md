@@ -40,6 +40,8 @@ Never upload `macrosnaps-globe.html`. It is a build output, not a source file.
 
 **Working preferences**
 
+⚠️ CRITICAL - PLAN BEFORE BUILDING: Never write code or make any edit without first presenting a clear plan of exactly what will change and why. Wait for explicit approval before proceeding. The word "go" is the signal to proceed. This applies to every change, no matter how small it seems.
+
 Think before building. On any non-trivial change, share your approach and flag concerns before writing code. Wait for me to say "go."
 
 Make surgical edits. Change the minimum needed. Do not rewrite surrounding code unless it is broken.
