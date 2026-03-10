@@ -1,5 +1,5 @@
 # MacroSnaps - Living Brief
-Last updated: March 9, 2026 (Yield Curve gaps resolved; macrosnaps-alerts abandoned and scrubbed)
+Last updated: March 9, 2026 (Daily automation plan decided; 4 data-void metrics to be greyed out; story writing style guide added)
 
 ---
 
@@ -50,6 +50,10 @@ If something feels architecturally wrong, say so before doing it.
 
 Never present a task as done until the build has run successfully and the output has been copied to the outputs folder.
 
+**Stories are written by AI**
+
+All per-metric stories (beginner, moderate, expert) are written by Claude, not by hand. When metric values change meaningfully, `update_stories.py` calls the Claude API and rewrites the relevant stories automatically. Do not write or edit stories manually unless specifically asked to.
+
 **Session rhythm**
 
 We work in focused chunks. At the end of each natural unit of work (a feature shipped, a content block done, a bug fixed), before starting the next thing, you update `LIVING_BRIEF.md` and make it available for download. Do not wait until the context window is full. Write it while everything is fresh.
@@ -57,6 +61,22 @@ We work in focused chunks. At the end of each natural unit of work (a feature sh
 **Writing style (apply to every response)**
 
 Write in plain, natural English. Do not use em dashes or en dashes. Only use a standard hyphen (-) if a dash is genuinely needed. Prefer commas, periods, or parentheses instead. Before outputting any response, scan it for the characters and. If found, rewrite those sentences. Output only the final corrected version. This rule applies to all responses including code comments and story content written into data.json.
+
+**Story writing style (apply to all metric stories in data.json)**
+
+The goal is for every story to read as if a knowledgeable human wrote it quickly for a smart friend. AI-sounding writing undermines the product. Apply all of the following rules to every story at every level.
+
+- No em dashes or en dashes, ever. Use commas, periods, or parentheses instead.
+- No passive voice where an active version is natural. "The Fed raised rates" not "rates were raised by the Fed."
+- No hedging openers. Never start a sentence with "It is worth noting," "It is important to understand," or "This reflects the fact that."
+- No AI-typical sentence starters. Do not begin consecutive sentences with "This metric," "This reflects," or "This suggests."
+- Vary sentence length deliberately. Mix short punchy sentences with longer ones. Uniform sentence length is a tell.
+- Write numbers as if they are real and specific. "Inflation hit 8.4%" reads better than "the inflation rate stands at 8.4%."
+- No filler conclusions. Never end a story with "overall," "in summary," or "taken together."
+- No committee language. Write as if explaining to a smart friend, not presenting a report.
+- Before outputting any story, scan it against every rule above and rewrite any sentence that fails. Output only the final corrected version.
+
+This style guide must also be included verbatim in the system prompt used by `update_stories.py` when calling the Claude API.
 
 **What I am working on today:**
 
@@ -119,12 +139,28 @@ Read the output. If the changes look correct, continue. If something looks wrong
 
 **Step 3. Apply the sheet sync**
 
-This writes the changes to `data.json`.
+This writes the macro metric changes to `data.json`.
 ```bash
 python3 sync_sheet.py --apply
 ```
 
-**Step 4. Build the output file**
+**Step 4. Fetch live market data**
+
+This pulls Stock Market YTD, 10Y Bond Yield, Yield Curve, and FX pairs from Yahoo Finance and FRED and writes them into `data.json`. The 4 data-void metrics (Equity Vol, Corp Spread, Sov CDS, FX Vol) are skipped - they display as "not available" in the UI.
+```bash
+python3 fetch_market_data.py
+```
+(Script not yet built - see Pending work.)
+
+**Step 5. Rewrite stories where values moved**
+
+This diffs `data.json` against the last git commit, identifies metrics that changed past threshold, calls the Claude API, and rewrites stories for those metrics at all three levels.
+```bash
+python3 update_stories.py
+```
+(Script not yet built - see Pending work.)
+
+**Step 6. Build the output file**
 
 This validates `data.json`, assembles `macrosnaps-globe.html`, and saves a dated backup.
 ```bash
@@ -132,27 +168,25 @@ python3 build.py
 ```
 The build must say `BUILD SUCCESSFUL` before you continue. If it fails, do not push.
 
-**Step 5. Commit and push**
+**Step 7. Commit and push**
 
 ```bash
-git add -A && git commit -m "Sheet sync $(date +%Y-%m-%d)"
+git add -A && git commit -m "Daily update $(date +%Y-%m-%d)"
 git push origin master
 ```
 
-**Step 6. Verify the live site**
+**Step 8. Verify the live site**
 
 Wait about 60 seconds, then open:
 ```
 https://ralphlazar.github.io/macrosnaps/macrosnaps-globe.html
 ```
 
-That is it. Five steps from terminal to live site.
-
 ---
 
 ### What the Google Sheet controls
 
-The sheet is the single source of truth for the 6 macro metrics per country. Update these values in the sheet, then run the daily ritual above.
+The sheet is the single source of truth for the 6 macro metrics per country. These values are forecast-based and change infrequently. Update them in the sheet when consensus forecasts change, then run the daily ritual.
 
 **Sheet URL (published CSV):**
 ```
@@ -168,7 +202,7 @@ https://docs.google.com/spreadsheets/d/e/2PACX-1vQgdfggKVeP6013PCtc3_L_hJGLE--b9
 - Policy_Rate_2026
 
 **What the sheet does NOT control:**
-Market metrics (yields, spreads, FX, vol, equities) and commodity data are still updated manually in `data.json`. So are all stories, metricBriefs, and historical chart data.
+Market metrics are handled by `fetch_market_data.py` (automated) or displayed as "not available" (data-void metrics). Stories are handled by `update_stories.py`. Commodity data, global stories, metricBriefs, and historical chart data are still updated manually or via dedicated scripts.
 
 ---
 
@@ -204,7 +238,7 @@ The build inlines `window.__MACROSNAPS_DATA__` before `</head>` so the app is se
 - BRA: 14/14 complete
 - RUS: 14/14 complete
 
-All 168 per-metric stories are complete across all 12 countries and all 3 levels.
+All 168 per-metric stories are complete across all 12 countries and all 3 levels. Going forward, stories for the 4 data-void metrics (Equity Vol, Corp Spread, Sov CDS, FX Vol) will not be maintained as those metrics are moving to "not available" display state.
 
 **Other content (all 12 countries)**
 - Country-level stories (3 bullets per level): complete for all 12
@@ -237,7 +271,7 @@ All 168 per-metric stories are complete across all 12 countries and all 3 levels
 | BRA | 12/14 | 10Y Bond Yield, Yield Curve: no free source |
 | RUS | 10/14 | GDP Growth, Unemployment, USD/RUB discontinued post-2022 sanctions |
 
-Metrics that cannot be restored for any country (no free public source): Equity Vol, Corp Spread, Sov CDS, FX Vol, Budget Deficit.
+Metrics with no free public source (historical or live): Equity Vol, Corp Spread, Sov CDS, FX Vol, Budget Deficit.
 
 ---
 
@@ -280,6 +314,10 @@ Key settings at the top of the script:
 
 **Market (8):** Stock Market YTD, Equity Vol, 10Y Bond Yield, Yield Curve, Corp Spread, Sov CDS, [FX pair - varies by country], FX Vol.
 
+**Data-void metrics (4):** Equity Vol, Corp Spread, Sov CDS, FX Vol. No reliable free daily source exists for any of these. These will be displayed as "not available" in the UI with a tooltip explanation. Stories for these metrics will not be maintained going forward. This decision can be revisited post-launch if a paid data source is added.
+
+**Automatable market metrics (4):** Stock Market YTD (Yahoo Finance), 10Y Bond Yield (FRED), Yield Curve (FRED, derived), FX pair (Yahoo Finance). These are fetched daily by `fetch_market_data.py` (not yet built).
+
 ---
 
 ### How metric stories work
@@ -292,17 +330,23 @@ When a user clicks a metric, `renderMTT()` (line 6542) builds the tooltip. The s
 
 The tooltip order is: metric name, country + value, story, chart, explanation/bluf, FX regime (if applicable), compare button.
 
+**Stories are written and maintained by AI.** `update_stories.py` (not yet built) diffs data.json against the last git commit, identifies metrics that changed past a configurable threshold, calls the Claude API, and rewrites the affected stories at all three levels in one pass. Do not write or edit stories by hand.
+
 ---
 
 ### Architecture decisions and why
 
-**Google Sheet for macro metrics.** The sheet holds the 6 macro metrics per country (GDP, CPI, unemployment, budget deficit, current account, policy rate). `sync_sheet.py` pulls from the sheet and writes `data.json`. The sheet is updated manually with year-end consensus forecasts. Market metrics remain in `data.json` and are updated manually.
+**Google Sheet for macro metrics.** The sheet holds the 6 macro metrics per country (GDP, CPI, unemployment, budget deficit, current account, policy rate). `sync_sheet.py` pulls from the sheet and writes `data.json`. The sheet is updated manually but infrequently, when year-end consensus forecasts change.
+
+**fetch_market_data.py for live market metrics.** Pulls the 4 automatable market metrics (Stock Market YTD, 10Y Bond Yield, Yield Curve, FX pair) from Yahoo Finance and FRED daily. Skips the 4 data-void metrics entirely. Not yet built.
+
+**update_stories.py for story maintenance.** Diffs data.json against the last git commit to detect meaningful value changes, then calls the Claude API to rewrite stories for affected metrics. Runs after both sync_sheet.py and fetch_market_data.py so it catches all changes in one pass. Not yet built. Requires ANTHROPIC_API_KEY in .env.
 
 **No CMS.** Pre-launch solo workflow. JSON plus build script is faster to iterate with than any external system.
 
 **GitHub Pages for hosting.** Repo is public at https://github.com/ralphlazar/macrosnaps. Deploy from master branch, root folder. The built HTML file is self-contained (data inlined) so no build step is needed on the server side.
 
-**Git for version history.** Commit after every feature or meaningful change.
+**Git for version history.** Commit after every feature or meaningful change. `update_stories.py` uses git diff to detect what has changed since the last commit, so committing consistently is essential for correct story rewrite targeting.
 
 ---
 
@@ -317,6 +361,8 @@ The tooltip order is: metric name, country + value, story, chart, explanation/bl
 | Spurious git diffs from build timestamps | Fixed | Build script stamps `_meta` in memory only. `data.json` on disk is never written by the build. |
 | Daily backup only | Covered | Git provides full history. Build script saves daily backup to `backups/` and prunes after 30 days. |
 | Historical chart data incomplete | Largely resolved | `refetch_historical.py` restored all charts except genuine data voids (CHN, IND, BRA, RUS gaps where no free source exists). |
+| Stale or missing market data | Partially resolved | 4 automatable metrics will be fetched daily by `fetch_market_data.py` (not yet built). 4 data-void metrics display as "not available" rather than showing stale values. |
+| Manual story maintenance burden | Being resolved | `update_stories.py` (not yet built) will automate story rewrites for any metric that moves past threshold. |
 
 ---
 
@@ -337,8 +383,12 @@ The tooltip order is: metric name, country + value, story, chart, explanation/bl
 
 ### Pending work (priority order)
 
-1. **Resolve 3 Yield Curve gaps (USA, DEU, FRA).** Fixed 2026-03-09. USA short rate switched from discontinued TB3MS to GS3M. DEU and FRA confirmed working on IR3TIB01EZM156N (same as ITA). All three now produce 60 points.
+1. **Grey out 4 data-void metrics in the UI.** Equity Vol, Corp Spread, Sov CDS, and FX Vol should display as "not available" with a tooltip: "no reliable free data source - will be added post-launch." This is a UI session - upload `LIVING_BRIEF.md` + `macrosnaps-shell.html`.
 
-2. **Post-launch:** revisit architecture if a second person joins to update data daily.
+2. **Build `fetch_market_data.py`.** Pulls Stock Market YTD, 10Y Bond Yield, Yield Curve, and FX pairs from Yahoo Finance and FRED. Writes directly into `data.json`. Skips data-void metrics. Design should mirror `refetch_historical.py`. Requires FRED_API_KEY in .env. This is a tooling session.
 
+3. **Build `update_stories.py`.** Diffs data.json against last git commit. Applies per-metric thresholds to decide what warrants a rewrite. Calls Claude API (claude-sonnet-4-20250514) for affected metrics and writes all three story levels back into data.json. Requires ANTHROPIC_API_KEY in .env. This is a tooling session.
 
+4. **Build `print_snapshot.py`.** Uses Playwright to open the built HTML file, loops through each country, expands it, and captures a full-height PDF. Output is a dated file in `snapshots/` (e.g. `macrosnaps-2026-03-09.pdf`). Audience level hardcoded to expert. For personal use only, not a public feature. Run optionally after the daily ritual. Requires `pip3 install playwright` and `playwright install chromium`.
+
+5. **Post-launch:** revisit architecture if a second person joins to update data daily.
