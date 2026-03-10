@@ -8,7 +8,7 @@
       "weekly": "Update weekly or on release — CPI, unemployment, policy rate",
       "structural": "Update quarterly or on major revision — GDP, deficits, current account, stories, fxRegime"
     },
-    "built_at": "2026-03-10 10:04"
+    "built_at": "2026-03-10 10:34"
   },
   "countries": {
     "USA": {
@@ -166,19 +166,19 @@
       },
       "stories": {
         "beginner": [
-          "Oil prices have spiked over 25% since the US and Israel launched strikes on Iran last week, pushing gas prices to near year-long highs and adding to the cost-of-living squeeze already felt from tariffs.",
-          "The economy added only 130,000 jobs in January, well below the pace of a year earlier, raising concerns that tariffs and uncertainty are slowing hiring across most industries outside healthcare.",
-          "The Federal Reserve is stuck between rising prices caused by the Iran oil shock and tariffs on one side, and a cooling job market on the other — making interest rate decisions unusually difficult right now."
+          "The US economy lost 92,000 jobs in February, the first monthly decline since 2020. Unemployment rose to 4.4%, the highest in two years, as federal government cuts and a slowdown in tech hiring weighed heavily on the total.",
+          "Oil prices spiking to near $120 this week, before pulling back sharply, pushed up fuel costs and reignited inflation fears just as the job market was cooling. That combination is extremely hard for policymakers to manage.",
+          "The Federal Reserve meets next week and faces an almost impossible choice: lower rates to protect jobs, or hold firm to prevent another inflation surge. Most economists expect the Fed to hold and wait for more data."
         ],
         "moderate": [
-          "WTI crude surged past $90/barrel this week — up 36% from pre-war levels — as the Strait of Hormuz closure blocked roughly 20% of global oil supply, adding fresh inflationary pressure on top of tariff passthrough already expected to lift CPI by 0.3–0.5pp in H1 2026.",
-          "January nonfarm payrolls of 130,000 (private: +172k, federal: -42k) came in below trend; excluding healthcare, net job creation was just 6,500, consistent with a cooling labour market already pushing unemployment toward 4.4%.",
-          "The FOMC faces a textbook stagflation dilemma: tariff-induced inflation running at 2.4% CPI (ex-shutdown distortions closer to 2.7%) plus a weakening labour market limits space to ease; markets have repriced Fed cuts to July-September at the earliest."
+          "February payrolls fell 92,000 against a consensus of +55,000, driven by 85,000 federal job cuts and 18,000 in IT. Healthcare added 112,000, masking deterioration across most of the private sector. Unemployment hit 4.4%, above the FOMC's December projection.",
+          "WTI's spike to $119 before retreating to $88 adds 0.8 to 1.2 percentage points to headline CPI if sustained through Q2, on top of tariff passthrough already running at 0.3 to 0.5pp. February CPI on Wednesday will signal whether energy is passing through to core.",
+          "The FOMC meeting on March 17-18 now carries maximum uncertainty. Markets price September as the earliest cut, but a soft CPI print could reopen July. A hot CPI print effectively closes the door on 2026 easing entirely."
         ],
         "expert": [
-          "The Iran oil shock compounds an already complex policy transmission environment: post-SCOTUS IEEPA ruling (Feb 20), effective tariff rates dropped but Section 122 tariffs (10%) remain in place, and energy-driven CPI upside risks are forcing the FOMC to de-prioritise the labour-market easing channel three December dissenters had advocated.",
-          "January payrolls reveal a K-shaped labour market: healthcare/social assistance (+123,500) masks near-zero private sector ex-healthcare growth (+6,500), while IT employment fell 12,000 — a structural signal consistent with AI-driven productivity displacement beginning to depress labour demand in white-collar sectors.",
-          "The Fed's dual-mandate tension is now acute: NY Fed President Williams estimates tariffs have already contributed 0.5–0.75pp to the current ~3% inflation rate; layering a 25-36% oil spike on top risks unanchoring near-term inflation expectations, complicating the ability to signal a credible rate-cutting path without triggering a USD depreciation-inflation feedback loop."
+          "The K-shaped payroll breakdown, healthcare +112,000, federal -85,000, IT -18,000, private ex-healthcare near zero, confirms that AI-driven labour displacement and DOGE fiscal contraction are compressing white-collar employment while public-facing services remain resilient. The structural signal is more durable than the headline number.",
+          "The simultaneous arrival of -92,000 payrolls and $103-plus oil is the precise stagflationary configuration the December dot plot failed to model. The FOMC faces a genuine dual-mandate conflict: easing to address labour weakness risks validating the energy inflation shock; tightening risks accelerating deterioration in an already contracting labour market.",
+          "The Fed's most credible communication posture on March 18 is explicit acknowledgment of the dilemma, data-dependence framing, and a hold, buying time until the February CPI and PCE prints clarify whether oil is embedding into core expectations. Any premature signal in either direction risks a violent repricing of the long end."
         ]
       },
       "fxRegime": {
@@ -1193,19 +1193,19 @@
       },
       "stories": {
         "beginner": [
-          "Canada's oil-producing provinces are seeing a windfall from the global oil price spike, though the country also faces higher fuel and goods costs as the Iran conflict disrupts global supply chains.",
-          "The Canadian dollar has been under pressure from US tariff uncertainty, but Canada benefits from USMCA protections — about 85% of Canadian goods exported to the US face low or no tariffs.",
-          "The Bank of Canada has been cutting interest rates to support a slowing economy, and markets expect further cuts even as energy prices create new inflation risks in the wake of the Middle East conflict."
+          "Canada is a major oil producer, so higher crude prices bring in more revenue for energy companies and government budgets. But Canadians also pay more at the pump, so the benefit is not evenly shared across the economy.",
+          "Trade uncertainty with the United States remains a drag. Tariffs imposed earlier this year have hurt Canadian exporters, particularly in manufacturing and agriculture, and negotiations toward a new USMCA deal are moving slowly.",
+          "The Bank of Canada cut rates earlier this year as the economy softened, but rising oil-driven inflation now complicates further easing. Expect the central bank to pause and watch how the Iran situation develops before its next move."
         ],
         "moderate": [
-          "Canada is a net oil exporter, meaning the WTI price surge above $90 benefits Alberta's fiscal revenues and energy-sector equities, though supply-chain disruptions in the Persian Gulf could raise costs for Eastern Canadian refiners who import some crude.",
-          "US tariff uncertainty remains a structural drag: despite USMCA protecting ~85% of Canadian exports, the broader threat of Section 232 tariffs on steel and aluminium and ongoing policy unpredictability has dampened business investment and contributed to a softer labour market.",
-          "The Bank of Canada has front-run the Fed with more aggressive cuts, and with IEEPA tariffs struck down and some tariff pressure relieved, the trade-off between supporting growth and managing energy-driven inflation is now delicately balanced going into Q2."
+          "Canada's dual identity as a major oil exporter and a US-trade-dependent economy creates a genuine split: Western Canadian Select crude rising toward $80 benefits Alberta's fiscal position and energy sector earnings, while tariff-exposed manufacturers in Ontario and Quebec face margin compression and demand softness.",
+          "The USMCA renegotiation timeline has slipped. With US politics consumed by the Iran conflict and a deteriorating labour market, Canadian exporters face a prolonged period of elevated trade uncertainty, particularly in auto parts, lumber, and agriculture.",
+          "The Bank of Canada, having cut rates to 2.75% earlier this year, now faces a similar stagflationary bind to the Fed. Oil-driven CPI upside and trade-driven growth downside pull in opposite directions. A pause at the April meeting is the most likely outcome."
         ],
         "expert": [
-          "Canada's terms of trade improve mechanically with WTI above $90, as Canadian crude benchmarks (WCS) track WTI with a variable differential; the Hormuz closure could compress the WCS differential if Asian buyers divert to Canadian/Atlantic basin supply, creating a complex cross-market dynamic for Canadian heavy crude producers.",
-          "The BoC's rate path now faces cross-currents: higher oil prices improve Canada's macro fundamentals (supporting CAD), but the global risk-off sentiment and potential synchronized global growth slowdown argue for further easing — a divergent signal that complicates BoC communication and creates CAD/USD rate-differential uncertainty.",
-          "Canada's fiscal positioning is materially stronger than the US (deficit ~1% of GDP vs. ~6% US), providing ample space to buffer an energy shock via fuel excise relief or strategic petroleum reserve coordination — but political risk from the federal election cycle may constrain timely fiscal response."
+          "Canada's terms-of-trade position improves mechanically as WTI rises: a sustained $88 WTI adds roughly 0.3% to nominal GDP via energy export revenues and narrows the federal deficit through resource royalties. The distributional effect is acutely regional, concentrated in Alberta and Newfoundland, widening internal economic divergence.",
+          "The USMCA renegotiation is the dominant structural risk. The Trump administration's focus on the Iran conflict and domestic stagflation politics deprioritises trade diplomacy, extending the uncertainty premium on Canadian manufacturing and agricultural exports. Section 232 steel and aluminium tariffs remain in place and continue to weigh on integrated supply chains.",
+          "The BoC's terminal rate debate has shifted: the pre-war consensus saw one more 25bp cut to 2.50% by mid-2026; the current configuration now argues for an extended hold at 2.75%, with the primary risk being energy-driven CPI re-acceleration above 3% on an annual basis, which would close the door on further easing through year-end."
         ]
       },
       "fxRegime": {
@@ -2318,19 +2318,19 @@
       },
       "stories": {
         "beginner": [
-          "UK inflation fell to 3.0% in January, the lowest in nearly a year, but the Iran conflict has pushed up fuel and energy prices again, reducing the chances that the Bank of England will cut interest rates at its March 19 meeting.",
-          "UK unemployment has risen to 5.2%, the highest since the pandemic, putting pressure on the government to stimulate growth even as energy price rises threaten to push inflation back up.",
-          "The British economy is stuck in a difficult spot: prices are still too high for the Bank of England to cut rates quickly, but growth is too weak to sustain current high borrowing costs."
+          "The UK imports most of its oil, so higher crude prices push up fuel and energy bills for households and businesses. Inflation, which had been falling, now faces renewed upward pressure from the Middle East conflict.",
+          "Monthly GDP data out this week is expected to show only modest growth, consistent with an economy that has been sluggish since late 2025. The housing market remains subdued and consumer confidence has not recovered meaningfully.",
+          "The Bank of England was expected to cut interest rates further this year, but an oil-driven inflation spike may delay that. Standard Chartered and Morgan Stanley both revised their Bank of England forecasts this week, now expecting fewer cuts in 2026."
         ],
         "moderate": [
-          "UK CPI fell to 3.0% in January (from 3.4% Dec), with services inflation easing to 4.4% — a credible disinflation path that had priced an 84% probability of a March BoE cut. The Iran energy shock has now slashed that probability to ~30%, with markets pricing just one cut for all of 2026.",
-          "ING models UK CPI could peak at 3.5% in 2026 if energy prices remain elevated through Q2; NIESR's stress scenario — oil up 30% and gas up 50% for a full year — sees the BoE potentially hiking back to 4.5%, reversing most of the 150bp cuts since August 2024.",
-          "The BoE MPC's February vote was already split 5-4 (hold vs. cut), reflecting genuine uncertainty about the disinflation path; the energy shock now likely tips marginal dove votes toward hold at the March 19 meeting, with the next window for easing narrowing to May or June if the conflict de-escalates quickly."
+          "The UK CPI was 3.2% in December and running above the BoE's 2% target before the Iran conflict. An oil shock at $103-plus adds a further 0.3 to 0.5pp to headline CPI via fuel and energy passthrough, reinforcing the argument for an extended hold at 4.50%.",
+          "UK monthly GDP data released this week covers January, a period before the war began. Even so, PMI surveys had signalled a modest upturn in manufacturing and services activity going into the conflict, providing a slightly better starting point than feared.",
+          "Standard Chartered and Morgan Stanley revised their BoE forecasts this week to expect a rate cut in Q2 rather than Q1, with the number of 2026 cuts reduced from three to two. Services inflation at 5.0-plus percent remains the stickiest domestic component."
         ],
         "expert": [
-          "The UK's external vulnerability to Middle East energy shocks is acute: the UK imports around 80% of its oil and a significant share of LNG; European diesel prices doubled post-Hormuz closure, and UK petrol prices have already climbed materially — creating direct CPI upside via energy and indirect passthrough via services costs (logistics, heating).",
-          "The BoE faces a classic external shock trade-off: the same Iran-driven supply shock that raises inflation also weakens real incomes and suppresses aggregate demand, creating simultaneous upward CPI pressure and downward growth pressure — a policy environment in which the MPC's reaction function becomes non-linear and data-dependent to an unusual degree.",
-          "GBP cross-asset implications are complex: sterling typically weakens on risk-off spikes (flight to USD), but energy-importer currency dynamics could accelerate GBP weakness vs. petrocurrency pairs; UK Gilts face a stagflationary environment where the correlation with US Treasuries breaks down, as BoE optionality is constrained in a way the Fed's is not."
+          "The UK's oil import dependency, roughly 60% of consumption sourced externally, makes it materially exposed to the Hormuz disruption even with North Sea production providing partial offset. A sustained 20-25 dollar oil premium adds approximately 0.4pp to annual CPI, pushing headline toward 3.8% and extending the period of above-target inflation into 2027.",
+          "The BoE's rate-cutting optionality is now materially constrained. Services CPI at 5.0-plus percent was already preventing aggressive easing; an oil-driven energy shock adds a second layer of above-target inflation that the MPC cannot look through without risking unanchoring longer-dated expectations. The February MPC minutes and Governor Bailey's commentary this week will be closely read for any shift in the reaction function.",
+          "Gilt markets are watching the energy shock as a potential catalyst for fiscal slippage: if household energy costs rise sharply, the government faces pressure to reintroduce support schemes, adding to an already stretched fiscal position. The OBR's March forecast update will be the first official assessment of the Iran shock's budgetary implications."
         ]
       },
       "fxRegime": {
@@ -3443,19 +3443,19 @@
       },
       "stories": {
         "beginner": [
-          "Japan imports nearly all its oil, so the 25-36% surge in crude prices from the Iran conflict is a serious concern for Japanese households and businesses already dealing with the highest inflation in decades.",
-          "The Bank of Japan raised interest rates to 0.75% last December — the highest in 30 years — and is gradually moving away from years of near-zero rates as wages rise and prices stay above its 2% target.",
-          "Japan's spring wage negotiations are expected to deliver another round of 5%+ pay rises, which is good news for workers' purchasing power but means the Bank of Japan will likely continue raising interest rates slowly through 2026."
+          "Japan imports nearly all of its oil, and about 90% of it flows through the Strait of Hormuz. When that route was disrupted this week, Japan was one of the hardest-hit economies in the world, driving the Nikkei stock index down more than 6%.",
+          "The Japanese yen weakened sharply as investors sold riskier Asian assets. A weaker yen makes imports more expensive, which pushes inflation higher at exactly the wrong time for consumers who were already dealing with rising prices.",
+          "Japan's economy had been growing well before the war started, with wages rising and business investment picking up. The oil shock is the biggest threat to that recovery in years, but the Bank of Japan still expects the positive momentum to hold if the conflict is short-lived."
         ],
         "moderate": [
-          "Japan is especially exposed to the Hormuz closure: roughly 85% of Japan's oil imports transit the strait, and Qatar's LNG force majeure directly hits Japan as one of the world's largest LNG buyers — a dual energy shock threatening to push CPI back above 3% after headline inflation had moderated to around 2.9%.",
-          "The BOJ, which hiked 25bp to 0.75% unanimously in December and held at its January meeting (8-1, with Takata dissenting for 1.0%), now faces a dilemma: an oil-driven CPI spike gives superficial justification for hikes, but Governor Ueda has consistently emphasised distinguishing cost-push from demand-pull inflation in its reaction function.",
-          "JPY dynamics are pivotal: Japan's massive net energy import position mechanically weakens the yen through current account deterioration, yet a weaker yen amplifies import-price inflation — potentially forcing the BOJ's hand toward a sooner-than-expected hike, or triggering FX intervention if USD/JPY breaks above 160 again."
+          "Japan sources approximately 90% of its crude through the Strait of Hormuz, making it uniquely exposed to any disruption. The Nikkei 225 fell 6.45% on March 9, its worst single session of 2026, as the combined effect of oil import costs and yen weakness created a double bind for corporate Japan.",
+          "Q4 GDP data released this week is expected to confirm the earlier flash estimate of solid growth, supported by wage gains and business investment. That positive base is now at risk from an energy shock that J.P. Morgan estimates could shave 0.5 to 0.8pp from Japan's 2026 growth forecast if Hormuz disruptions persist beyond Q1.",
+          "The Bank of Japan's rate normalisation path remains intact in the near term, with the next hike still pencilled in for mid-2026. But a prolonged oil shock complicates the BoJ's communication: energy-driven inflation is not the demand-pull variety the BoJ wants to validate with rate hikes, creating a risk of a policy messaging error."
         ],
         "expert": [
-          "Japan's policy bind is structurally unique: real rates remain deeply negative at 0.75% policy rate vs. ~2.9% headline CPI (approximately -2.15% real), yet the BOJ cannot normalise quickly given Japan's 230% debt-to-GDP — a 1pp rise in JGB yields adds ~¥25tn in debt servicing over a decade, making the fiscal-monetary interaction acute.",
-          "The Shunto 2026 wage negotiations are tracking above 5% (Keidanren has endorsed base pay increases as the new norm), creating a wage-price spiral risk distinct from the external energy shock; the BOJ's June meeting remains the most probable next hike window (ING: October; Goldman: July), with the JPY's trajectory the primary swing factor.",
-          "JGB yield curve dynamics are increasingly complex: the BOJ's 0.75% policy rate, negative real rate environment, and the energy shock could increase the current account deficit — driving a bear-steepening risk with material cross-asset implications for the yen carry trade (estimated at $4-6tn notional) and global risk appetite."
+          "Japan's structural vulnerability to the Hormuz disruption is unmatched among G7 economies. With 90% of crude imports routed through the strait and strategic petroleum reserves covering roughly 150 days of demand, the immediate risk is a sharp deterioration in the terms of trade and a widening of the current account deficit, which narrows the BoJ's room to maintain a constructive policy normalisation narrative.",
+          "The yen's depreciation pressure, USD/JPY testing 150 on risk-off flows, reflects the classic Japanese vulnerability: an energy shock simultaneously widens the trade deficit (yen negative) and compresses equity valuations (risk-off negative). J.P. Morgan's pre-conflict forecast of USD/JPY at 164 by December assumed BoJ gradualism; a sustained Hormuz shock accelerates the yen depreciation timeline.",
+          "The BoJ faces a precisely inverted dilemma to the Fed: energy inflation argues for rate hikes to protect the yen and anchor import costs, but deteriorating corporate margins and household real income argue for policy patience. Governor Ueda's most likely response is to maintain the normalisation path in language while deferring the next hike decision, effectively doing nothing while claiming optionality in both directions."
         ]
       },
       "fxRegime": {
@@ -4470,19 +4470,19 @@
       },
       "stories": {
         "beginner": [
-          "Germany's new government has approved a massive €500 billion spending plan for defence and infrastructure, ending decades of strict debt limits and giving Europe's largest economy its biggest fiscal boost in a generation.",
-          "Germany's industrial sector is struggling with high energy costs, competition from cheap Chinese goods, and now rising oil prices from the Iran conflict — but the fiscal stimulus is expected to help stabilise the economy through 2026.",
-          "Defence company stocks have surged dramatically — Rheinmetall is up 95% and Hensoldt 112% — as Germany rapidly expands its military budget to over €119 billion for 2026, more than double the level of a few years ago."
+          "Germany's factory orders and industrial production both fell short of forecasts in January, the latest sign that Europe's largest economy is struggling to regain momentum after two years of near-stagnation.",
+          "Business confidence collapsed in February according to the Sentix survey, which directly reflects how the Iran war has rattled German corporate leaders who depend on stable energy supplies and global trade flows.",
+          "Germany imports significant amounts of oil and gas, and higher energy prices hit its industrial sector especially hard. Automakers, chemical companies, and machine builders all face sharply higher input costs at a time when demand from key export markets is already soft."
         ],
         "moderate": [
-          "The CDU/CSU-SPD coalition's fiscal package — a €500bn off-budget infrastructure fund plus defence spending above 1% of GDP — has lifted German GDP growth forecasts from near-zero to 1.5% for 2026 (Goldman); the Iran energy shock introduces near-term headwinds but does not fundamentally alter the multi-year fiscal trajectory.",
-          "Germany's 2026 federal budget allocates €82.7bn to military spending (€20bn more than 2025), bringing total defence outlays to €128bn including the Bundeswehr special fund — tracking toward NATO's 3.5% of GDP target by 2029; defence equities (Rheinmetall +95%, Hensoldt +112%) are pricing in a sustained demand boom.",
-          "The ECB's policy calculus has shifted: German fiscal expansion generates domestic demand and inflation upside that supports hawks, while the Iran oil shock adds a growth headwind that supports doves — creating a 'genuine dilemma' (ING) where the March ECB meeting messaging is particularly important."
+          "Germany's double miss on January factory orders and industrial production, both contracting against consensus expectations of modest recovery, confirms that the PMI-implied manufacturing revival was running ahead of underlying demand. The Sentix investor confidence index collapsed in February, falling to its worst reading since the war in Ukraine began.",
+          "The Iran oil shock compounds Germany's structural energy challenge. Industrial electricity prices remain high relative to US and Asian peers, and a renewed crude price spike adds to input cost pressure for the chemicals, autos, and metals sectors that anchor German industrial exports.",
+          "The ECB faces a painful dilemma in the context of German data: core eurozone inflation remains sticky at 2.6-plus percent, energy inflation is reaccelerating, and Germany's largest economy is simultaneously contracting. Further rate cuts risk embedding inflation; holding risks deepening Germany's industrial downturn."
         ],
         "expert": [
-          "Germany's debt-brake reform is structurally unprecedented in post-reunification fiscal history: the constitutional amendment allowing virtually unlimited defence borrowing and the €500bn off-budget fund effectively circumvents the Schuldenbremse — a regime shift with durable implications for Bund supply, EGB spreads, and EUR/USD pricing.",
-          "Goldman's upward GDP revision (1.5% for 2026, +0.5pp) rests on a defence spending multiplier that may be optimistic: Goldman's own team warned execution will fall short of budget targets due to procurement pipeline constraints, suggesting the growth impulse will be back-loaded toward 2027 when infrastructure spending ramps up.",
-          "The Iran oil shock creates a stagflationary headwind that interacts non-linearly with fiscal stimulus: higher energy costs directly compress manufacturing margins (Germany's industry already ~10% below pre-pandemic output levels), potentially neutralising near-term demand stimulus — a fiscal multiplier compression the Bundesbank will highlight in its next projection cycle."
+          "Germany's factory orders miss is partially distorted by the absence of large individual orders, which can swing the monthly figure by 2 to 3 percentage points. Stripping out that distortion, the underlying trend is still deteriorating rather than recovering, consistent with a structural competitiveness deficit rather than a cyclical soft patch.",
+          "The ECB is structurally trapped in the German context. Frankfurt faces a conflict between Germany's growth weakness (arguing for easing) and energy-driven eurozone inflation (arguing for caution). The Iran oil shock has hardened the ECB's constraint: board member Elderson's March 9 comments were limited to supervisory matters precisely because the Governing Council has no clean policy signal to give.",
+          "The Competitiveness Compass framework launched by the European Commission in early 2026 is the only structural relief valve for Germany's industrial challenge, but implementation timelines extend well beyond the current crisis. Near-term, the EUR/USD short thesis is reinforced: Germany's double miss, the Sentix collapse, and the ECB's policy paralysis all structurally weaken the euro against the dollar's safe-haven bid."
         ]
       },
       "fxRegime": {
@@ -5595,19 +5595,19 @@
       },
       "stories": {
         "beginner": [
-          "France is benefiting from the European defence spending boom, with its defence giant Thales seeing shares rise 78% this year as governments across Europe rapidly expand their military budgets.",
-          "The French economy faces the same energy price shock as the rest of Europe from the Iran conflict, with higher fuel and gas prices threatening to push inflation above the European Central Bank's 2% target.",
-          "France's government deficit remains one of the highest in the eurozone, and with borrowing costs rising from the energy shock, pressure to cut public spending is growing even as the economy needs support."
+          "France, like most of Europe, imports most of its oil and is exposed to higher energy costs from the Iran conflict. Energy prices affect everything from transport and manufacturing to household bills.",
+          "French government borrowing costs have edged higher this week. Investors are asking for slightly more return to lend money to France, reflecting both global uncertainty and ongoing concerns about France's stretched public finances.",
+          "The French economy is expected to grow modestly in 2026, supported by consumer spending and tourism, but the oil shock creates real downside risk if energy prices stay elevated through the spring and summer."
         ],
         "moderate": [
-          "France is a key beneficiary of European rearmament: Thales SA has gained 78% year-to-date, driven by a structural uplift in EU defence procurement; France's independent nuclear deterrent and existing defence industrial base position it as a preferred supplier in a post-US-guarantees security environment.",
-          "French CPI had been tracking toward the ECB's 2% target, but the Iran oil shock risks a 1pp+ overshoot across the EU if energy prices remain elevated — a scenario that would force the ECB to pause its cutting cycle even as France's domestic demand and labour market remain soft.",
-          "France's fiscal trajectory remains under European Commission scrutiny: a deficit above 4% of GDP and elevated debt put France in the EU's Excessive Deficit Procedure; the energy shock adds expenditure pressure (potential fuel subsidies) and revenue headwinds (slower growth), compressing the consolidation path Finance Minister outlined for 2026-2027."
+          "French Treasury bill auctions cleared at meaningfully elevated rates on March 9: the 12-month BTF printed at 2.339%, up from 2.097% prior, and the 6-month at 2.217%, up from 2.065%. The repricing is modest but directionally significant, reflecting a broader short-term sovereign risk premium building across southern Europe.",
+          "The ECB's dilemma is particularly acute for France: oil-driven inflation complicates any further easing, but France's fiscal deficit, running above 5% of GDP, creates pressure for a more accommodative policy environment to keep borrowing costs manageable. These two forces are now directly in conflict.",
+          "French growth is forecast at around 1.1% for 2026, supported by domestic consumption and a tourism sector that tends to hold up even in uncertain environments. The Iran shock's primary channel into the French economy is energy cost passthrough to consumers and SMEs, rather than export disruption."
         ],
         "expert": [
-          "France's OAT-Bund spread is a key barometer of eurozone fiscal stress: the Iran shock widens this via dual channels — German Bund supply increases from defence borrowing, while French fiscal credibility faces renewed questions as energy-driven growth underperformance threatens consolidation commitments; OAT spreads above 100bp would signal renewed peripheral stress dynamics.",
-          "The ECB's reaction to the oil shock is critical for France's fiscal sustainability: if the ECB holds rates to manage energy-driven inflation, the negative fiscal multiplier from higher sovereign financing costs falls disproportionately on high-debt countries like France; ECB council member Wunsch's explicit 'avoid reacting hastily' statement signals a data-dependent approach that buys time but creates policy uncertainty.",
-          "France's defence industrial complex represents a structural equity long with multi-year revenue visibility: Thales's +78% YTD gain reflects both current order flow and the NPV of a decade-long European rearmament cycle; the key risk is political — any NATO negotiation that reverts to US procurement dependency would undermine the investment thesis."
+          "The BTF spread widening, 24bp on the 12-month and 15bp on the 6-month, is the early sovereign signal to watch. France's fiscal position, deficit above 5% of GDP and public debt near 112%, creates vulnerability to any sustained rise in short-term borrowing costs. A 50bp rise in French short rates sustained through Q2 would add approximately 8 billion euros to annual debt service, compounding the fiscal consolidation challenge.",
+          "The ECB Governing Council faces a critical communication test: energy inflation reaccelerating toward 4.5 to 5% in eurozone headline terms makes further easing unjustifiable on price stability grounds, but German industrial contraction and French sovereign repricing argue for support. The most likely outcome is a prolonged hold, with the forward guidance shifting toward 'higher for longer' from 'gradual easing.'",
+          "BlackRock's pre-war positioning, long French and UK equities against shorts in Germany and high-flying EMs, is being stress-tested by the oil shock. French equities benefit from a relatively lower industrial energy intensity compared to Germany, and the CAC 40's luxury and consumer goods weighting provides partial insulation from the direct energy cost channel."
         ]
       },
       "fxRegime": {
@@ -6720,19 +6720,19 @@
       },
       "stories": {
         "beginner": [
-          "Italy's defence company Leonardo has surged 77% this year as European countries scramble to boost their militaries, giving the Italian stock market one of its better performances in recent memory.",
-          "Italy, like the rest of Europe, faces higher energy bills from the Iran conflict — a particularly sensitive issue given Italy's past struggles with high energy costs after Russia's invasion of Ukraine cut off gas supplies.",
-          "Italy's government is under pressure to reduce its large debt pile while also supporting households hit by higher energy prices — a difficult balancing act made harder by rising global uncertainty."
+          "Italy imports nearly all of its oil and gas, making it one of the most exposed economies in Europe to the current Middle East disruption. Higher energy costs hit Italian households and small businesses particularly hard.",
+          "Italy's manufacturing sector, which runs on tight margins, faces sharply higher energy input costs at a difficult time. Many Italian factories had only recently returned to positive territory after the energy crisis of 2022 and 2023.",
+          "Tourism, a major pillar of Italy's economy, remains strong heading into the spring season. That provides a buffer, but it cannot fully offset the drag from higher energy prices across industry and transport."
         ],
         "moderate": [
-          "Italy's FTSE MIB has benefited disproportionately from European defence rearmament via Leonardo (+77%) and from the broader re-rating of European equities on German fiscal stimulus; however, the Iran energy shock poses acute risk given Italy's 95%+ reliance on imported energy and historical vulnerability to energy price spikes.",
-          "The ECB's policy trajectory matters enormously for Italy: every 25bp of unexpected rate hold adds ~€3-4bn to Italy's annual debt servicing cost on its €2.9tn public debt (134% of GDP), and a prolonged energy-driven hold cycle would materially worsen Italy's fiscal trajectory relative to the baseline consolidation path.",
-          "Italy's economy showed nascent signs of recovery entering 2026 — industrial production stabilising, tourism revenues strong — but the Iran shock threatens to reverse this via energy cost passthrough to manufacturing margins, particularly in energy-intensive sectors like ceramics, glass, and chemicals concentrated in northern Italy."
+          "Italy's BTP spread over German Bunds has edged wider this week, reflecting a broader European sovereign repricing as the oil shock reintroduces fiscal sustainability concerns for higher-debt economies. Italy's debt-to-GDP ratio above 135% makes it sensitive to any sustained rise in ECB rates or reduction in ECB balance sheet support.",
+          "Italian industrial production had been recovering modestly in late 2025, but the energy shock threatens that trajectory. Italy's industrial base, concentrated in metals, ceramics, glass, and food processing, is energy-intensive and cannot easily absorb a 40 to 50% oil and gas price spike.",
+          "The ECB's hold posture benefits Italy by keeping financing costs from rising further, but it also means no new monetary stimulus to cushion the growth impact of the oil shock. Italy's 2026 growth forecast of 0.9% already implies a fragile recovery; a sustained energy price shock could push that to near zero."
         ],
         "expert": [
-          "Italian BTP-Bund spreads are the clearest real-time indicator of ECB credibility risk in Italy's context: the oil shock creates a stagflationary environment where the ECB's Transmission Protection Instrument (TPI) may be required if spreads widen sharply — but TPI activation requires conditionality that Italy's current fiscal trajectory may not fully satisfy, creating an asymmetric sovereign risk premium.",
-          "Italy's energy import dependence (~€70bn+ annual energy import bill at pre-Iran prices) means a sustained 25-36% oil price increase adds a material current account shock — effectively a terms-of-trade transfer that reduces domestic real income and compresses the ECB's ability to engineer a soft landing through monetary easing alone.",
-          "The structural opportunity in Italian defence — Leonardo's backlog growth, new NATO commitments, domestic procurement support — represents a multi-year earnings upgrade cycle; however, at 77% YTD the valuation premium prices in optimistic scenario execution, and any Iran conflict de-escalation or NATO negotiation revision poses significant de-rating risk for Italian defence multiples."
+          "Italy's BTP spread is the canary in the European sovereign coal mine during energy shocks. The 2022 gas crisis pushed the BTP-Bund spread above 250bp; the current disruption started from a more benign 120bp but is directionally widening. ECB flexibility under the Transmission Protection Instrument provides a ceiling, but TPI activation requires Italy to be in compliance with EU fiscal rules, a condition that may be tested if growth disappointments force spending above target.",
+          "The structural vulnerability for Italy in an oil shock is the combination of high energy import dependence, high sovereign debt requiring low rates to service, and an industrial export base competing with lower-cost Asian producers. All three pressures intensify simultaneously when crude rises sharply. Italy's partial insulation comes from its service-heavy GDP and a current account that was broadly balanced before the shock.",
+          "The Meloni government's fiscal space is limited: the 2026 budget was built on 1.0% growth and WTI near $75. A scenario of 0.3% growth and WTI at $90 through Q2 likely pushes the 2026 deficit above 4% of GDP, potentially triggering an EU Excessive Deficit Procedure that constrains fiscal policy at the worst possible moment."
         ]
       },
       "fxRegime": {
@@ -7747,19 +7747,19 @@
       },
       "stories": {
         "beginner": [
-          "China set its lowest official growth target on record this week — 4.5% to 5% for 2026 — as leaders acknowledge the economy is facing its toughest stretch in years, with falling prices, a weak property market, and trade tensions all dragging on growth.",
-          "China imports about 1.6 million barrels of oil from Iran every day, making it one of the most exposed major economies to the Middle East conflict — disruptions could force China to find alternative suppliers at higher prices.",
-          "China's National People's Congress is meeting this week to finalise its economic plans for 2026, with more infrastructure spending and support for consumers among the key policies being discussed."
+          "China's exports surged 21.8% in the first two months of 2026 compared to a year earlier. Businesses rushed to ship goods before new US tariffs take effect, creating an artificial short-term boom in trade figures.",
+          "China imports a large portion of its oil through the Strait of Hormuz, so the disruption is a real concern for Chinese policymakers who are watching energy costs closely. China has been building up strategic oil reserves as a buffer.",
+          "China's National People's Congress is meeting this week, where the government will set economic targets for the year. Most analysts expect a 2026 growth target of around 5%, though the Iran war has introduced new uncertainty into the global backdrop."
         ],
         "moderate": [
-          "China's NPC set a 2026 GDP target of 4.5-5% — the lowest on record and a formal acknowledgement of structural headwinds: the economy has entered its fourth consecutive year of deflation (PPI -2.6% in 2025, CPI near-zero), fixed-asset investment fell 3.8% last year, and the property sector contracted -17.2% in 2025.",
-          "The Hormuz closure creates a material energy supply shock for China: Iran supplied ~1.6mb/d (roughly 10% of Chinese crude imports); with the strait effectively closed, Chinese state refiners have reportedly halted diesel/gasoline exports and are navigating emergency procurement from Russian Arctic and West African routes at significant premium.",
-          "The US-China trade truce secured at the Trump-Xi South Korea summit (Oct 30) appears increasingly fragile: the Iran conflict could delay or cancel a planned follow-up Trump-Xi meeting, and if China is perceived as insufficiently supportive of US war aims, tariff escalation risks could re-emerge despite the current 30% effective tariff rate."
+          "China's January-February export growth of 21.8% is explicitly a front-loading anomaly driven by accelerated shipments ahead of anticipated tariff escalation under the USMCA renegotiation and potential US-China trade friction. Goldman Sachs flags that the March data will likely show a sharp reversal as the pull-forward effect unwinds.",
+          "China's energy security exposure through the Strait of Hormuz is significant: the Middle East accounted for 54% of Chinese crude imports in 2024, with Russia, Iran, and Venezuela providing a further 33%. A prolonged Hormuz closure disrupts over half of China's external crude supply, though strategic petroleum reserves of roughly 90 days provide near-term buffer.",
+          "The NPC growth target of around 5% assumes the US-China trade truce holds and domestic stimulus accelerates consumption. Goldman Sachs forecasts 4.8% GDP growth, slightly above consensus at 4.5%. The oil shock adds complexity: China is both a manufacturing economy exposed to energy costs and a major beneficiary of lower commodity prices when they fall."
         ],
         "expert": [
-          "China's PPI deflation cycle (-2.6% for 2025, approaching a fourth year) reflects a fundamental supply-side imbalance: excess industrial capacity subsidised by SOE financing and local government support produces goods below profitable prices, crowding out private investment; the IMF estimates industrial subsidies at 4% of GDP — twice the EU level — and has called for a 50% subsidy reduction Beijing has not signalled it will deliver.",
-          "The NPC's 15th Five-Year Plan (2026-2030) doubles down on 'new productive forces' — EVs, AI, robotics — but this export-led technology strategy risks accelerating 'China Shock 2.0' trade tensions with the US and EU, particularly as China's $1.2tn trade surplus has become politically untenable; the rare-earth export control leverage used in Oct 2025 trade negotiations remains the critical asymmetric tool.",
-          "China's energy security calculus has changed materially: the Hormuz closure demonstrates strategic vulnerability that accelerates domestic energy investments (nuclear, renewables, Xinjiang coal), the yuan-denominated oil trading agenda, and deeper energy ties with Russia — but all these pivots take time, leaving China exposed near-term to oil price spikes that compress corporate margins and accelerate deflationary pressure via input cost uncertainty."
+          "The 21.8% export surge is analytically noise rather than signal. Strip out the front-loading effect and China's real export trajectory is tracking 5 to 6% volume growth to non-US markets, reflecting successful diversification toward ASEAN, the Middle East, and Africa. The structural story is intact; the monthly data is not a demand signal.",
+          "China's Hormuz exposure creates a potentially significant policy response trigger. If the blockade extends beyond Q1, the PBOC and NDRC are likely to accelerate domestic strategic reserve releases and fast-track alternative supply routes through Central Asia. The Russia-China energy corridor via the Power of Siberia pipeline is already operating near capacity, limiting the offset available from that direction.",
+          "The NPC policy package this week is the key variable for Chinese equities and the yuan. A fiscal deficit expansion above 4% of GDP and targeted consumption subsidies beyond the existing trade-in program would support the Deloitte 4.5% and Goldman 4.8% growth forecasts. Falling short of that would compress the growth differential advantage that has recently supported yuan appreciation relative to the dollar."
         ]
       },
       "fxRegime": {
@@ -8862,19 +8862,19 @@
       },
       "stories": {
         "beginner": [
-          "India is feeling the Iran conflict from two directions: oil prices have surged, raising fuel and import costs for a country that imports most of its energy, while over 400,000 tonnes of rice stuck at Indian ports cannot reach their Middle East customers because of the shipping disruption.",
-          "Despite global turmoil, India's economy remains one of the world's fastest growing, with GDP expanding 8% in the first half of the current financial year, driven by strong consumer spending and government investment.",
-          "India has been cutting interest rates to support strong growth, but rising oil prices could force the Reserve Bank of India to pause or reverse course to prevent inflation from getting out of hand."
+          "India imports most of its oil and has been buying large amounts of discounted Russian crude to keep costs down. A new US trade deal announced recently requires India to stop purchasing Russian oil, which could push up India's energy costs significantly.",
+          "Higher oil prices are particularly painful for India because they push up the cost of petrol, diesel, and cooking fuel, which affect hundreds of millions of households directly. Inflation was already running above the Reserve Bank of India's comfort zone.",
+          "Despite the oil shock, India's economy remains one of the fastest-growing in the world. The government is pushing ahead with infrastructure investment and digital economy initiatives, which support growth even when the external environment is difficult."
         ],
         "moderate": [
-          "India faces a dual shock from the Iran conflict: as a large oil importer (~5mb/d, of which Iran had supplied ~400kb/d), WTI at $90+ directly widens India's current account deficit and could add 0.5pp+ to CPI; simultaneously, more than 400,000 metric tons of basmati rice — 75% of annual exports go to the Middle East — are stuck in transit or at ports as Middle East shipping lanes are disrupted.",
-          "India's economic fundamentals entering the shock are resilient: real GDP grew 8% YoY in H1 FY2026 (April-September), supported by strong private consumption (+7.5%) and fixed investment (+7.6%), and income tax cuts and GST rationalisation have boosted disposable incomes; but the energy shock is a material adverse terms-of-trade shift that will compress real income growth.",
-          "The RBI had been on an easing trajectory; the oil shock now complicates this path — India's fuel subsidies are already a significant fiscal line item, and the government faces the choice of absorbing higher crude costs (fiscal deterioration) or passing them through (CPI spike), either of which creates headwinds to the RBI's rate-cutting cycle."
+          "The US-India trade deal announced in early March includes a commitment to halt Indian purchases of Russian crude, a significant policy shift given that Russia supplied roughly 30% of India's oil imports in 2025. India has not officially confirmed the commitment, but the market is pricing in a meaningful reduction in the discount it had been receiving on Russian barrels.",
+          "The Reserve Bank of India cut the repo rate by 25bp to 6.25% in February, with markets pricing one more cut. The oil shock complicates that path: energy-driven CPI, which had fallen toward 4%, risks bouncing back above 5%, reducing the RBI's room to ease further without falling behind the inflation curve.",
+          "The rupee came under pressure this week on dual headwinds: higher oil import costs widening the current account deficit, and global risk-off reducing capital inflows. USD/INR testing 87.5 is a constraint on the RBI's easing ambitions, as a weaker rupee feeds directly into import inflation."
         ],
         "expert": [
-          "India's structural resilience is being tested by external shocks: the current account, which had benefited from services export growth and remittances, now faces concurrent headwinds — oil import costs (rising), goods export disruption (rice), and potentially reduced Middle East remittances if Gulf economies contract; the rupee's managed float will come under pressure if the current account deficit widens toward 3% of GDP.",
-          "The rice export disruption is structurally significant beyond immediate revenue loss: India is the world's largest rice exporter (~22 million tons annually), and Middle Eastern market disruption could permanently redirect some buyer relationships to Vietnam or Thailand; the WTO's food security provisions India uses to subsidise farmers may face renewed scrutiny if rice prices spike globally due to supply disruption.",
-          "India's energy security diversification — accelerating with the Russia-India oil deal that bypassed Western sanctions channels — now faces a second test: Russian Arctic crude supply chains are also vulnerable to US secondary sanctions escalation if Iran conflict politics drive tighter enforcement; the triangular dynamic between India's energy import needs, US alliance pressures, and Russia/Iran supply options represents a complex strategic-economic calculation for New Delhi."
+          "The US-India trade deal's requirement to halt Russian crude purchases is a structural inflection point in India's energy supply chain. Russian oil had provided a 10 to 15 dollar per barrel discount that saved India approximately 12 to 15 billion dollars annually in import costs. Losing that discount while simultaneously facing a Hormuz-driven spot price spike of 20-plus dollars creates a terms-of-trade shock of roughly 25 to 30 billion dollars at an annualised rate, or about 0.8% of GDP.",
+          "India's current account deficit, which had narrowed to 1.2% of GDP in Q3 2025 partly due to the Russian oil discount, now faces a sharp widening. A 25-dollar oil price increase sustained for a full quarter adds approximately 0.6% of GDP to the current account deficit, increasing external financing needs and putting the rupee under structural pressure.",
+          "The RBI's response function is constrained on both sides: the rupee's depreciation pressure argues for hawkish signalling to attract capital inflows, but the domestic growth slowdown argues for the continuation of the easing cycle. The most likely outcome is a prolonged hold at 6.25%, with forward guidance shifted from 'accommodative' to 'neutral,' buying time until the oil shock's duration becomes clearer."
         ]
       },
       "fxRegime": {
@@ -9977,19 +9977,19 @@
       },
       "stories": {
         "beginner": [
-          "South Africa is seeing a windfall from surging gold prices — gold hit over $5,100 per ounce this week — which is a major boost for the country's mining industry and government revenues.",
-          "Higher oil prices from the Middle East conflict are a mixed picture for South Africa: the country imports most of its fuel but also exports commodities like platinum that benefit from global risk appetite and the energy transition.",
-          "South Africa's electricity supply has improved significantly after years of crippling power cuts (load-shedding), helping the economy begin to recover — though global uncertainty and high local interest rates remain significant challenges."
+          "South Africa exports gold, platinum, and coal, all of which have seen prices rise or hold firm during the current global uncertainty. This provides a partial cushion for the country's export revenues even as global growth slows.",
+          "The South African rand weakened this week as global risk aversion drove investors out of emerging market currencies and into safe-haven assets like the US dollar. A weaker rand pushes up the price of imported oil and goods.",
+          "Persistent load shedding, where the national grid cuts power to manage shortages, continues to weigh on business confidence and economic activity. The energy crisis at home compounds the challenges from higher global oil prices."
         ],
         "moderate": [
-          "South Africa is a net commodity beneficiary of the Iran-driven price spike: gold above $5,100/oz directly boosts fiscal revenues via mining royalties and rand-denominated export earnings; platinum and palladium — critical for catalytic converters and hydrogen fuel cells — are similarly supported by the energy transition premium and supply tightness.",
-          "The end of load-shedding — after more than a decade of rolling blackouts — represents a structural improvement to South Africa's business environment; however, the benefit is partially offset by persistent infrastructure constraints (rail, ports), a fiscal deficit above 4% of GDP, and sovereign debt approaching 75% of GDP.",
-          "The SARB faces imported inflation from the oil shock on top of still-elevated domestic services inflation; with the rand's sensitivity to risk-off episodes (typically weakening 5-10% in major EM sell-offs), the Middle East conflict creates dual-channel inflationary pressure — commodity import costs rising while the currency depreciates."
+          "South Africa's commodity export mix provides partial insulation from the oil shock. Gold at $5,145/oz benefits mine revenues and foreign exchange earnings. Platinum group metals, used in catalytic converters, hold firm as vehicle production continues. Coal export prices have firmed on the back of energy demand globally.",
+          "The rand weakened to above 19 per dollar this week on risk-off flows, a meaningful move that feeds directly into domestic inflation through higher import costs for fuel, food, and manufactured goods. South Africa imports all of its crude oil, so the Brent spike from $73 to $109 before pulling back is a direct fiscal and household cost.",
+          "Load shedding remains at Stage 3 to 4 for much of the week, a structural constraint on industrial output that the oil shock makes worse: diesel-powered backup generators, which many businesses use to offset grid outages, are significantly more expensive at current crude prices."
         ],
         "expert": [
-          "South Africa's gold mining sector is operationally leveraged to spot prices: at $5,100/oz, production is highly profitable even for marginal high-cost producers in the Witwatersrand Basin; the rand-gold price (currently at all-time highs) amplifies returns for ZAR-revenue mines, generating significant free cash flow that the government can capture via royalties — boosting the JSE's All Share Index above the political noise.",
-          "ZAF unemployment FRED series (LRHUTTTTZAM156S) remains broken with 400 errors — a reminder of data fragility; using fallback values, official unemployment is estimated at ~32.5% (narrow) or ~42% (expanded), among the highest in emerging markets; the informal economy and structural skills mismatch are not addressed by commodity price cycles, limiting the distributional impact of mining windfalls.",
-          "South Africa's current account dynamics under the Iran shock reflect competing forces: the commodity export windfall (gold, PGMs) improves the trade balance, but Eskom's coal import needs and fuel imports partially offset this; the capital account remains the dominant BOP driver, with ZAR direction determined primarily by global EM risk appetite and commodity terms-of-trade simultaneously — creating net BOP uncertainty that limits SARB easing optionality."
+          "South Africa's current account, which turned modestly positive in 2025 driven by commodity exports, faces renewed pressure from the oil shock. The improvement in gold and PGM revenues is partly offset by a sharply higher oil import bill. Net-net, the current account position is likely to deteriorate by 0.5 to 0.8% of GDP if oil stays above $90 through Q2.",
+          "The South African Reserve Bank held rates at 7.5% at its January meeting, balancing sticky core inflation against sluggish domestic growth. The oil shock tilts the balance toward a prolonged hold: rand weakness and energy passthrough risk pushing headline CPI back above 5%, the upper end of the SARB's target band, while growth remains constrained by structural energy deficits.",
+          "The rand's sensitivity to global risk-off episodes reflects South Africa's twin deficits vulnerability and relatively high beta to commodity price cycles. The partial offset from gold at $5,145 is meaningful but incomplete: gold's contribution to South Africa's current account is roughly 2.5% of GDP, while oil imports are 4 to 4.5% of GDP, leaving a net negative exposure to the current commodity price configuration."
         ]
       },
       "fxRegime": {
@@ -10680,19 +10680,19 @@
       },
       "stories": {
         "beginner": [
-          "Brazil is one of the few major economies that could benefit from the Middle East oil crisis, as Petrobras ramps up production of Brazilian pre-salt crude to help replace supplies lost from the disrupted Persian Gulf.",
-          "The Brazilian real has been under pressure from global uncertainty, high US interest rates, and concerns about Brazil's own government spending, making imports more expensive for Brazilian businesses and households.",
-          "Brazil's economy has shown resilience with strong agricultural exports and growing energy revenues, but high interest rates at home have kept borrowing costs punishingly high for companies and consumers."
+          "Brazil produces oil through its state-owned Petrobras company and actually benefits from higher global crude prices, which boost government revenues and company profits. That makes Brazil somewhat unusual among emerging markets right now.",
+          "Higher oil prices are already feeding into diesel costs in Brazil, which matter enormously because the country relies heavily on trucks to move goods across its vast territory. A diesel price spike ripples through food and freight costs quickly.",
+          "Brazil signed a landmark free trade agreement with the European Union in January 2026, which is good news for long-term growth. The deal has not yet been ratified by the EU, but it signals a broader effort to diversify trade partnerships beyond the United States."
         ],
         "moderate": [
-          "Petrobras is a major beneficiary of the WTI/Brent price surge: Brazilian pre-salt crude production (~3.5mb/d) is highly competitive at current prices, generating windfall fiscal revenues for a government that controls Petrobras and relies on its dividends; the Santos Basin fields can ramp up on a 3-6 month timeline.",
-          "Brazil's macro remains challenged despite the oil windfall: the primary fiscal deficit and concerns about government spending under President Lula have kept the real volatile and the Selic rate elevated (above 13%); the central bank has been cautious about cutting given inflation persistence, and the oil windfall may delay rather than accelerate fiscal consolidation.",
-          "Brazil's agricultural export engine — soybeans, corn, beef, coffee — faces some logistical disruption from Hormuz closure (key shipment route for some Asian buyers), though the primary impact is positive as global food price inflation improves Brazil's terms of trade with major buyers in Asia and Europe."
+          "Brazil's Petrobras is one of the few energy companies globally that benefits directly from the oil price spike: deepwater pre-salt production costs average around $35 per barrel, giving the company extraordinary margins at current prices. Government royalty revenues are rising in parallel.",
+          "The diesel price passthrough is the primary macro risk in Brazil right now. A Reuters report from March 9 flagged diesel price spikes as the most immediate domestic threat from the Iran war, as Brazil's logistics network is almost entirely road-based. A 15-plus percent diesel increase adds roughly 0.4pp to headline inflation within 60 days.",
+          "Brazil's BCB Focus survey showed inflation expectations anchored near 4.26% in December, close to the 4.5% upper target limit. The Iran shock adds upside risk to that trajectory, and the COPOM, which raised rates to 14.25% in early 2026, may now be forced to keep them elevated longer than previously signalled."
         ],
         "expert": [
-          "Brazil's pre-salt oil fields represent a structural geopolitical asset: located in the Santos and Campos basins beyond OPEC+ influence, with Petrobras breakeven costs of ~$35-40/barrel, the current $90+ price environment generates extraordinary economic rent; the key policy question is whether the Lula government will direct revenues toward fiscal consolidation (credit positive) or expanded social spending (politically popular ahead of elections).",
-          "The BRL's sensitivity to US monetary policy (via the DXY) and risk appetite is structurally large — the real has traded in a 4.8-6.2 range against the USD over the past 18 months; an Iran-driven risk-off episode with USD strengthening creates contradictory forces: oil revenue windfall improves fundamentals while risk-off capital outflows pressure the currency, and higher imported inflation could delay BCB easing despite the Selic being one of the world's highest real rates.",
-          "Brazil's current account is moving toward surplus on oil revenues, reversing a multi-year structural deficit; but the capital account remains highly sensitive to the Fed's rate path and EM risk appetite; the net BOP position and real exchange rate equilibrium have shifted materially with oil above $90, creating a window for BCB to rebuild FX reserves and potentially reduce the government's USD-denominated debt service burden."
+          "Brazil's net energy position is structurally positive given Petrobras's low production costs and crude export volumes, but the domestic pricing mechanism creates a domestic inflation offset. Petrobras's fuel pricing formula links domestic pump prices to international benchmarks, meaning that a sustained WTI spike above $90 translates into higher domestic diesel and petrol prices within weeks, compressing real household disposable income.",
+          "The Mercosur-EU free trade agreement, signed in January and pending EU ratification, is the most significant structural trade development for Brazil in decades. If ratified, it provides preferential access for Brazilian agricultural exports to the EU's 450 million consumer market, partially reducing dependence on US and China demand. The Iran war has diverted EU political attention from ratification, extending the timeline into late 2026 or 2027.",
+          "COPOM's 14.25% rate is the highest among large EM economies and reflects Brazil's chronic inflation challenge. The Iran shock's passthrough via diesel creates a credibility test for the BCB: if the COPOM acknowledges energy-driven inflation upside but signals no further hikes, it risks appearing passive; if it hikes further, it risks overtightening into an economy where real rates are already among the most restrictive in the world."
         ]
       },
       "fxRegime": {
@@ -11317,19 +11317,19 @@
       },
       "stories": {
         "beginner": [
-          "Russia's economy is facing a complicated situation from the Iran conflict: higher oil prices are positive for Russian energy revenues, but the Strait of Hormuz disruption creates shipping challenges for Russian tankers in the region.",
-          "Russia's shadow fleet of oil tankers — used to circumvent Western sanctions — is now under additional scrutiny as the US military presence in the Gulf intensifies, potentially disrupting some of Russia's key export routes.",
-          "Russia's economy has been kept afloat largely by energy revenues, military spending, and wartime government contracts, but underlying structural weaknesses in industry and consumer spending remain significant."
+          "Russia exports large amounts of oil and benefits from higher global prices, so the Iran war initially seemed like a financial windfall. But Russia has its own complications: a sanctioned Russian LNG tanker exploded in the Mediterranean this week in what officials are investigating as a sabotage incident.",
+          "The Iran conflict has reshuffled global oil flows in ways that create winners and losers. Countries that were buying Russian crude at discounts, including India and China, are now under pressure to reduce those purchases, potentially reducing Russia's key export market.",
+          "Russia's economy is under severe strain from Western sanctions, a tight labour market as workers are drafted into the military, and inflation running well above the central bank's target. Higher oil revenue helps, but it does not solve the structural problems."
         ],
         "moderate": [
-          "Russia is a net beneficiary of higher oil prices — Urals crude tracking near $80+ (though at a discount to Brent) generates meaningful additional fiscal revenue funding the Ukraine campaign; however, the Hormuz closure diverts Chinese oil-buying attention partly toward Russian Arctic routes, potentially giving Russia some pricing power but also straining its tanker logistics.",
-          "Russia's shadow fleet operations are increasingly constrained: the expanded US military presence in the Gulf creates secondary risk for tankers that previously transited with reduced scrutiny; India and China — Russia's primary oil customers — are simultaneously managing their own supply-side disruptions and may negotiate harder on price discount, compressing Russia's net oil revenues relative to headline price gains.",
-          "Russia's macroeconomy remains under severe structural stress: inflation well above the CBR's 4% target, the ruble vulnerable to sanction escalation, and the IMOEX appearing delisted on Yahoo Finance — a data signal consistent with continued degradation of Russia's international financial market access."
+          "The sanctioned Russian LNG tanker explosion in the Mediterranean is the week's most significant development for Russia's energy export infrastructure. Russia has increasingly relied on a shadow fleet to circumvent Western sanctions, and an attack on that infrastructure, if confirmed as sabotage, raises the risk premium on all Russian energy exports.",
+          "India's partial reduction in Russian crude purchases, linked to the US trade deal, removes one of Russia's most reliable discounted export relationships. Russia supplied approximately 30% of India's crude imports in 2025; even a partial reduction tightens Russia's export volume options and reduces the discount leverage the Kremlin has used to maintain revenue.",
+          "The Central Bank of Russia held rates at 21% in February, the highest on record, as inflation remained above 9%. The oil price spike provides temporary fiscal relief but does not reduce underlying inflationary pressure driven by military spending, labour shortages, and supply chain constraints."
         ],
         "expert": [
-          "Russia's fiscal break-even oil price has been estimated at $70-80/barrel Urals equivalent by the IMF; current Urals pricing (discounted to Brent but elevated by the global shock) places Russia above fiscal break-even, reducing pressure on the National Wealth Fund — the key sovereign buffer; but the quality of Russia's fiscal data remains highly uncertain given wartime reporting opacity and off-budget military expenditure.",
-          "The Iran conflict creates strategic ambiguity for Russia: Tehran has historically been a regional competitor, and Russia's UN Security Council position prevents a Western resolution condemning the US/Israel strikes; simultaneously, Russian energy companies have exposure to Middle East infrastructure investments (Lukoil in Iraq) now under risk — a complex web of interests that constrains Russian diplomatic posturing.",
-          "Russia's monetary policy remains distorted by wartime command-economy dynamics: the CBR's policy rate balances war-financing needs (low), inflation control (high), and ruble support (high), creating an environment where conventional interest rate transmission is impaired; the FRED degradation of Russian series (only 3 active: CPI, policy rate, current account) reflects the methodological difficulty of integrating sanctioned-economy data into standard macro frameworks."
+          "The LNG tanker explosion is strategically significant beyond its immediate commercial impact. Russia's shadow fleet, estimated at 400 to 600 tankers operating outside Western insurance and tracking frameworks, has been the primary mechanism for maintaining export revenues under sanctions. If the explosion is confirmed as deliberate, it signals a new phase of infrastructure-targeting that could materially constrain Russia's ability to monetise oil and gas exports.",
+          "Russia's fiscal position is better than the sanctions narrative suggests at $88-plus WTI: the Urals discount to Brent has compressed from 30-plus dollars in 2022 to around 10 to 12 dollars currently, and export volumes have been partially maintained through diversification to India, China, and Turkey. However, India's policy shift removes a key demand anchor, and any further tightening of enforcement on the shadow fleet would create a non-linear revenue impact.",
+          "The CBR's 21% policy rate reflects a genuine monetary policy dilemma: military expenditure is driving fiscal expansion that is inherently inflationary, while rate hikes compress the non-military civilian economy. McKinsey's January forecast of 1% GDP growth for 2026 already assumes the current oil price environment; a scenario where India significantly reduces Russian crude purchases and the shadow fleet is further disrupted could push the forecast to near recessionary territory."
         ]
       },
       "fxRegime": {
@@ -11745,7 +11745,7 @@
     }
   },
   "commodities": {
-    "asOf": "Mar 9, 2026",
+    "asOf": "Mar 10, 2026",
     "source": "CME · ICE · COMEX · CBOT · Yahoo Finance",
     "weather": "⛈️",
     "items": [
@@ -11790,7 +11790,18 @@
         ],
         "_tier_price": "daily",
         "_tier_spark": "daily",
-        "_note": "Update price and change daily; spark array: drop first, append new close"
+        "_note": "Update price and change daily; spark array: drop first, append new close",
+        "story": {
+          "beginner": {
+            "text": "WTI crude is the main US oil benchmark and the price most American consumers feel at the petrol pump. It spiked to nearly $120 this week as war shut down oil shipping lanes in the Middle East, then fell back sharply toward $88 when peace signals emerged. At $88 a barrel, fuel costs remain well above where they were at the start of 2026."
+          },
+          "moderate": {
+            "text": "WTI surged 35.6% in the week ending March 9, the largest weekly gain in the contract's history, driven by the Strait of Hormuz closure. Front-month futures hit $119.48 intraday before collapsing to $86 after Trump signalled the military campaign was nearly over and the G7 prepared an emergency strategic reserve release. WTI at $88 still prices roughly $12 to $14 of war premium above the pre-conflict baseline of $74 to $75."
+          },
+          "expert": {
+            "text": "WTI's $38 intraday range on March 9 is the most extreme single-session volatility event in crude oil market history, exceeding the 2020 negative-price episode in percentage terms. The J.P. Morgan-identified $90 liquidity void proved to be the exact zone of maximum two-way violence: longs covering from $119 and shorts pressing from $86 both found limited market depth in that range. At $88, the implied war premium is 12 to 14 dollars. A confirmed ceasefire would likely test $74 quickly; a resumption of Hormuz hostilities targets $105 to $110."
+          }
+        }
       },
       {
         "name": "Brent Crude",
@@ -11833,7 +11844,18 @@
         ],
         "_tier_price": "daily",
         "_tier_spark": "daily",
-        "_note": "Update price and change daily; spark array: drop first, append new close"
+        "_note": "Update price and change daily; spark array: drop first, append new close",
+        "story": {
+          "beginner": {
+            "text": "Brent crude is the global oil benchmark that most of the world uses to price oil trades. It jumped to over $108 this week before pulling back to around $90 as fears of a prolonged Middle East war eased. Brent prices directly affect what countries pay to import oil, so movements here ripple through energy bills worldwide."
+          },
+          "moderate": {
+            "text": "Brent hit $108.20 at the week's high, its highest level since early 2023, as the Hormuz blockade removed roughly 20% of global oil supply from the market. Iraq and Kuwait declared force majeure as storage at land terminals backed up with barrels that could not be exported. Brent retreated to $90 on March 10 following Trump's ceasefire signals and G7 reserve release discussions. The Brent-WTI spread widened slightly, reflecting Brent's greater sensitivity to Gulf supply disruptions."
+          },
+          "expert": {
+            "text": "Brent's divergence from WTI during the Hormuz crisis reflects the physically grounded nature of the global benchmark: Brent tracks the seaborne crude market most directly affected by Middle East supply disruption, while WTI is anchored by US domestic production and Cushing storage dynamics. At $90, Brent still reflects a 10 to 12 dollar war premium. The key structural question is whether Iraq and Kuwait can resume normal export volumes once Hormuz reopens, or whether the force majeure period has disrupted maintenance and contract schedules in ways that extend the supply shortfall."
+          }
+        }
       },
       {
         "name": "Natural Gas",
@@ -11876,7 +11898,18 @@
         ],
         "_tier_price": "daily",
         "_tier_spark": "daily",
-        "_note": "Update price and change daily; spark array: drop first, append new close"
+        "_note": "Update price and change daily; spark array: drop first, append new close",
+        "story": {
+          "beginner": {
+            "text": "Natural gas prices spiked sharply this week after Qatar, the world's largest LNG exporter, halted shipments following Iranian attacks on Gulf energy infrastructure. Gas is used to heat homes, generate electricity, and power factories, so higher prices feed quickly into household bills and industrial costs."
+          },
+          "moderate": {
+            "text": "Henry Hub natural gas hit $4.50/mmBtu, up 40.6% in the past month, driven by two concurrent shocks: the Qatar LNG export halt after Iranian strikes on Gulf infrastructure, and persistent below-average US storage levels heading into spring. European TTF gas jumped even more sharply as the EU scrambled to secure alternative LNG supply. At $4.50, Henry Hub is well above the EIA's pre-war February forecast of $4.30 for full-year 2026."
+          },
+          "expert": {
+            "text": "The gas market is absorbing two simultaneous shocks: a physical supply disruption via the Qatar LNG halt and a structural tightening from US production constraints during the winter drawdown. The Strait of Hormuz's role in LNG markets is less direct than in crude, but Qatar's LNG terminal proximity to the conflict zone is creating buyer reluctance to commit to spot cargoes. European buyers, who need to refill storage to 90% capacity by November, face a drastically compressed timeline and are paying any price to secure supply. TTF and JKM Asian LNG markers have surged to three-year highs."
+          }
+        }
       },
       {
         "name": "Gold",
@@ -11919,7 +11952,18 @@
         ],
         "_tier_price": "daily",
         "_tier_spark": "daily",
-        "_note": "Update price and change daily; spark array: drop first, append new close"
+        "_note": "Update price and change daily; spark array: drop first, append new close",
+        "story": {
+          "beginner": {
+            "text": "Gold is trading near $5,145 an ounce, just off its all-time high, as investors seek safe assets during the Middle East conflict. Gold fell briefly to $5,080 on Monday as some investors sold gold to cover losses elsewhere, but it bounced back quickly. At over $5,000, gold has more than doubled in the past three years."
+          },
+          "moderate": {
+            "text": "Gold's 1.5% drop to $5,080 on March 9, while oil surged 13 to 18%, was a textbook liquidity event: institutional investors with large profitable gold positions sold to meet equity margin calls. The metal recovered to $5,145 on March 10 as the dollar weakened and safe-haven demand reasserted. Central bank buying, which has been running at record levels for three consecutive years, provides a structural floor. The week's CPI and PCE data are the next catalysts: a soft print would support gold by weakening the dollar; a hot print would complicate the picture."
+          },
+          "expert": {
+            "text": "Gold's divergence from the energy inflation narrative on March 9 is analytically important: in a genuine stagflation scenario, gold should eventually rally as real rates fall and the dollar weakens. The Monday selloff was not a signal of changed fundamentals but a mechanical margin-call liquidation. The $5,000 level, which represents approximately 3% of global household net wealth, has become a structural support as central bank and retail allocations have doubled over five years. J.P. Morgan's $5,000 Q4 2026 target now looks conservative; the conflict-driven safe-haven bid could push gold to $5,500 to $5,800 if the Iran war extends beyond Q1."
+          }
+        }
       },
       {
         "name": "Silver",
@@ -11962,7 +12006,18 @@
         ],
         "_tier_price": "daily",
         "_tier_spark": "daily",
-        "_note": "Update price and change daily; spark array: drop first, append new close"
+        "_note": "Update price and change daily; spark array: drop first, append new close",
+        "story": {
+          "beginner": {
+            "text": "Silver is trading near $87.90 an ounce, having fallen from recent highs as investors briefly shifted to cash and the dollar strengthened. Silver is both a precious metal that investors buy for safety and an industrial metal used in solar panels and electronics, so it is sensitive to both safe-haven demand and global growth expectations."
+          },
+          "moderate": {
+            "text": "Silver fell 3.7% in the past session, underperforming gold, as the industrial demand component of silver pricing reacted negatively to global growth fears triggered by the oil shock. Silver's gold ratio, currently around 59x, suggests silver remains relatively undervalued on a historical basis. J.P. Morgan's 2026 silver forecast of $56/oz was set before the conflict; with the Iran shock pushing gold higher and industrial demand from solar and EV infrastructure remaining structurally robust, silver could significantly outperform that target."
+          },
+          "expert": {
+            "text": "Silver's underperformance versus gold during the March 9 risk-off episode reflects the dual-nature pricing dynamic: the industrial component of silver demand priced in growth fears, while the monetary component provided only partial safe-haven offset. Silver's sustained deficit, running for the third consecutive year according to the Silver Institute, means any recovery in industrial sentiment and safe-haven demand convergence could create a powerful simultaneous bid. Citi's pre-conflict bull case of $58/oz by Q4 2026 is plausible; a scenario of extended conflict, dollar weakness, and accelerating solar deployment could push silver toward $100/oz."
+          }
+        }
       },
       {
         "name": "Copper",
@@ -12005,7 +12060,18 @@
         ],
         "_tier_price": "daily",
         "_tier_spark": "daily",
-        "_note": "Update price and change daily; spark array: drop first, append new close"
+        "_note": "Update price and change daily; spark array: drop first, append new close",
+        "story": {
+          "beginner": {
+            "text": "Copper is often called the metal with a PhD in economics because its price reflects global growth expectations. Copper slipped slightly this week as the Iran war raised fears of slower economic activity. At over $5 a pound, copper remains historically expensive, reflecting strong long-term demand from electric vehicles and renewable energy infrastructure."
+          },
+          "moderate": {
+            "text": "Copper fell 2% to $5.00/lb as global risk-off sentiment and growth concerns outweighed the structural supply deficit narrative. The LME copper all-time high of $13,238/tonne in January 2026 reflected genuine physical tightness: a projected 1 million tonne supply deficit in 2026 driven by AI data centre construction, EV infrastructure, and grid electrification. The Iran shock creates a short-term demand pessimism overlay on an unchanged structural supply story. Copper typically recovers quickly from geopolitical selloffs as the underlying demand fundamentals reassert."
+          },
+          "expert": {
+            "text": "Copper's 2% selloff is consistent with its pattern of behaving as a high-beta global growth proxy in the initial phase of geopolitical shocks, before the structural supply deficit reasserts. The 1 million tonne 2026 deficit is driven by demand sources, AI data centres consuming 10x the copper of conventional facilities, EV buildout, and grid expansion, that are entirely disconnected from the traditional commodity demand cycle. Institutional rotation from gold and silver into copper that was underway before the conflict may accelerate once the binary war risk resolves. Citi's $12,000 base case and $14,000 bull case represent 20% and 40% upside respectively from current levels."
+          }
+        }
       },
       {
         "name": "Wheat",
@@ -12048,7 +12114,18 @@
         ],
         "_tier_price": "daily",
         "_tier_spark": "daily",
-        "_note": "Update price and change daily; spark array: drop first, append new close"
+        "_note": "Update price and change daily; spark array: drop first, append new close",
+        "story": {
+          "beginner": {
+            "text": "Wheat prices rose 5.1% over the past month, driven by cold weather damaging crops in parts of Europe and the United States, and ongoing disruptions to grain shipments from the Black Sea region. Higher wheat prices feed into the cost of bread, pasta, and many other foods, affecting household budgets globally."
+          },
+          "moderate": {
+            "text": "Global wheat prices rose 1.8% in February, according to the FAO, following reports of frost and winter kill risk in parts of Europe and the US. Logistics disruptions from Russia and ongoing Black Sea tensions also contributed. The Iran conflict has added a secondary logistics risk: disruptions to shipping routes through the Red Sea and Persian Gulf affect some wheat trade flows, particularly to Middle Eastern and North African import markets that depend on Gulf port access."
+          },
+          "expert": {
+            "text": "Wheat's 5.1% monthly move reflects a convergence of supply-side risks that were building before the Iran conflict: frost damage in key winter wheat regions, Russian export logistics constraints, and tight global stocks-to-use ratios near multi-year lows. The FAO Cereal Price Index's February uptick, after five consecutive monthly declines, signals that the deflationary trend in agricultural prices may be reversing. The Iran war adds a demand-side shock for Middle Eastern and North African importing nations, which typically use Gulf ports for wheat deliveries and now face both higher commodity costs and higher shipping costs."
+          }
+        }
       },
       {
         "name": "Corn",
@@ -12091,7 +12168,18 @@
         ],
         "_tier_price": "daily",
         "_tier_spark": "daily",
-        "_note": "Update price and change daily; spark array: drop first, append new close"
+        "_note": "Update price and change daily; spark array: drop first, append new close",
+        "story": {
+          "beginner": {
+            "text": "Corn prices rose around 3% this month as the Iran conflict raised concerns about global economic activity and trade routes. Corn is used for animal feed, ethanol fuel, and food products worldwide, making it a broad indicator of agricultural market conditions. Prices remain below their 2022 highs."
+          },
+          "moderate": {
+            "text": "Corn prices have held firm at 472 cents per bushel, up 3.1% over the past month, despite broader commodity market volatility. Global corn prices were broadly stable in February according to the FAO, though the Iran conflict introduces upside risk via two channels: reduced US ethanol blending demand if consumers cut driving, and increased feed cost pressure on livestock producers already dealing with tight cattle supplies."
+          },
+          "expert": {
+            "text": "Corn's relative stability reflects its more domestically anchored demand structure compared to wheat or soybeans. US corn demand is split roughly equally between ethanol, animal feed, and export, meaning that global shipping disruptions have a more modest direct impact. The agricultural price index is projected to decline modestly in 2026 under the World Bank baseline, but the Iran shock introduces upside risk via energy cost passthrough: nitrogen fertiliser, derived from natural gas, becomes significantly more expensive when gas prices spike 40-plus percent, raising 2026 crop production costs and potentially reducing planted acreage if farmers price in margin compression."
+          }
+        }
       },
       {
         "name": "Soybeans",
@@ -12134,7 +12222,18 @@
         ],
         "_tier_price": "daily",
         "_tier_spark": "daily",
-        "_note": "Update price and change daily; spark array: drop first, append new close"
+        "_note": "Update price and change daily; spark array: drop first, append new close",
+        "story": {
+          "beginner": {
+            "text": "Soybean prices edged up slightly this month. Soybeans are crushed into oil and meal used in food, biofuels, and animal feed, making them one of the world's most important agricultural commodities. Brazil and the United States are the two largest producers, and trade between them and China shapes the global price."
+          },
+          "moderate": {
+            "text": "Soybeans at 1,080 cents per bushel, up 1.1% on the month, reflect a calm physical market despite geopolitical noise. Brazil's soybean harvest is progressing well, with the 2025/26 crop expected to set a new record near 170 million tonnes. Mercosur's EU trade agreement, signed in January, is a medium-term positive for Brazilian soybean exporters, reducing tariff barriers to the EU market. The key price driver this week is China demand, which remains the dominant swing factor for global soy trade."
+          },
+          "expert": {
+            "text": "Soybean prices are navigating three simultaneous forces: a record Brazilian harvest that is bearish on supply, persistent Chinese demand that is supportive on the demand side, and an Iran-conflict backdrop that creates logistical and demand uncertainty. The World Bank forecasts agricultural prices to edge slightly lower in 2026, with soybeans in particular benefiting from easing trade tensions between the US and China under the October 2025 Busan truce. The Mercosur-EU deal, pending ratification, would provide Brazilian soybeans with tariff-free access to the EU over a phase-in period, shifting some trade flows from US to Brazilian origin over the medium term."
+          }
+        }
       }
     ],
     "stories": {
@@ -12171,62 +12270,62 @@
   "globalStories": {
     "beginner": [
       {
-        "icon": "🔥",
-        "label": "Oil Crosses $100 for First Time Since 2022",
-        "body": "Oil prices surged past $100 a barrel today as the war with Iran entered its second week with no ceasefire in sight. Saudi Arabia joined Iraq, Kuwait, and the UAE in cutting oil production because the Strait of Hormuz is too congested to ship barrels. Fuel prices are now rising sharply in most countries, adding to the cost squeeze many households are already feeling.",
-        "source": "Al Jazeera / Reuters / oilprice.com, March 9, 2026"
+        "icon": "🛢️",
+        "label": "Oil Swings Wildly as Iran War Dominates Markets",
+        "body": "Oil prices hit $119 a barrel on Monday morning before crashing back to around $88 by Tuesday. The swing happened after US President Trump suggested the military campaign against Iran was nearly over and that oil tankers could soon move freely again through the Strait of Hormuz. Prices are still much higher than before the war started, which means fuel costs remain elevated for most households and businesses worldwide.",
+        "source": "Reuters / Investing.com / oilprice.com, March 9-10, 2026"
       },
       {
         "icon": "📉",
-        "label": "Stock Markets Tumble Worldwide",
-        "body": "Stock markets fell sharply on Monday. Japan's Nikkei dropped around 5%, European markets fell 1 to 2%, and US stocks slid further after already declining last week. Investors are worried that surging energy costs will eat into company profits and push inflation back up just as central banks were hoping to cut interest rates.",
-        "source": "Yahoo Finance / Reuters / Al Jazeera, March 9, 2026"
+        "label": "US Lost 92,000 Jobs in February",
+        "body": "The US economy shed 92,000 jobs last month, a shock result that nobody expected. Unemployment climbed to 4.4%. The Federal Reserve now faces a painful choice: cutting interest rates could help the job market, but oil prices are already pushing inflation back up. Doing both at the same time is nearly impossible, which is why financial markets are unusually nervous right now.",
+        "source": "Reuters / CNBC, March 6, 2026"
       },
       {
-        "icon": "💼",
-        "label": "US Job Market Loses Steam",
-        "body": "The US economy unexpectedly shed jobs in February, with the unemployment rate rising to 4.4%. That is the weakest reading in two years. The Federal Reserve now faces a difficult balancing act: the job market is cooling and needs lower rates, but surging oil is pushing prices back up and makes rate cuts harder to justify.",
-        "source": "Reuters / CNBC, March 6, 2026"
+        "icon": "📈",
+        "label": "Stock Markets Bounce Back on Peace Hopes",
+        "body": "After a brutal Monday selloff, stock markets recovered on Tuesday when Trump hinted the Iran conflict could end soon. The S&P 500 gained about 0.8% on Monday's close and Asian markets stabilised on Tuesday. Gold is trading around $5,145 an ounce, holding near record highs as investors stay cautious. The situation remains fragile, and markets will swing sharply on any new developments from the Middle East.",
+        "source": "Trading Economics / Reuters / JM Bullion, March 10, 2026"
       }
     ],
     "moderate": [
       {
-        "icon": "🔥",
-        "label": "WTI at $103, Brent at $109: Oil Enters Superspike Territory",
-        "body": "Both crude benchmarks surged 13 to 18% today as Saudi Arabia announced production cuts to avoid storage overflow ,  joining Kuwait, Bahrain, and the UAE who can no longer export via the Strait of Hormuz. G7 finance ministers are discussing an emergency release of IEA strategic petroleum reserves, which briefly capped Brent's intraday high of $119. At $103-109/bbl, crude is now up roughly 45% year-to-date, adding an estimated 0.8-1.2pp to global headline inflation if sustained through Q2.",
-        "source": "Al Jazeera / Reuters / oilprice.com, March 9, 2026"
+        "icon": "🛢️",
+        "label": "WTI's $38 Intraday Swing: The Biggest Single-Day Oil Move in History",
+        "body": "WTI crude touched $119.48 overnight before collapsing to $86 as Trump signalled that the Hormuz blockade was ending and the G7 prepared to release strategic reserves. The 35.6% weekly gain through March 9 was the largest in WTI's recorded history. By March 10, front-month WTI settled near $88, still up roughly 23% year-to-date. The reversal shows how heavily war-premium pricing has dominated physical markets, and how vulnerable that premium is to a single diplomatic headline. February CPI on Wednesday and PCE on Friday will show whether energy passthrough has begun hitting core inflation.",
+        "source": "Reuters / Investing.com / oilprice.com, March 9-10, 2026"
       },
       {
         "icon": "📉",
-        "label": "Global Risk-Off: Nikkei -5%, VIX at 30, DXY Hits 3-Month High",
-        "body": "Risk assets sold off sharply in Asia and Europe. The Nikkei fell 5.2%, reflecting Japan's near-total Middle East oil dependency (95% of imports). The VIX surged from 16 to 30 in a week, its sharpest one-week move since the early pandemic shock. The US dollar index (DXY) hit a three-month high at 99.7 as safe-haven flows offset the long-run bearish trend. Gold fell 1.5% to $5,080 ,  a liquidity-driven selloff as investors met margin calls with profitable positions.",
-        "source": "Yahoo Finance / Reuters / FinancialContent, March 9, 2026"
+        "label": "US Payrolls -92K: Stagflation Enters the Base Case",
+        "body": "February nonfarm payrolls fell 92,000 against a consensus of +55,000, the first payroll contraction since 2020. Federal employment drove much of the decline, shedding 85,000 jobs tied to DOGE-related cuts. Healthcare added 112,000, masking near-zero private-sector ex-healthcare growth. Unemployment rose to 4.4%, its highest since early 2023. The combination of a contracting labour market and a 23% oil spike is the definition of stagflation, and markets have now pushed Fed cut expectations to September at the earliest. Wednesday's CPI is the next pivot point.",
+        "source": "Reuters / CNBC / Trading Economics, March 6-10, 2026"
       },
       {
-        "icon": "💼",
-        "label": "US February Payrolls Shock: -92K, Unemployment 4.4%",
-        "body": "The US economy shed 92,000 jobs in February ,  a significant negative surprise driven by federal layoffs, a decline in IT employment, and cautious hiring in manufacturing. The unemployment rate rose to 4.4%, its highest since early 2023. Markets now price a July Fed cut as the earliest realistic outcome, but the Iran oil shock could push that further out if CPI re-accelerates above 3.5% by mid-year.",
-        "source": "Reuters / CNBC / Trading Economics, March 6, 2026"
+        "icon": "📈",
+        "label": "Risk Assets Stabilise: S&P Recovers 0.8%, Gold at $5,145",
+        "body": "Wall Street executed a partial reversal on Monday as Trump's comments about a swift end to military operations triggered a collapse in crude from $119 to $86, removing the immediate stagflation worst-case. The S&P 500 closed up 0.83%, the Nasdaq gained 1.38%, and the VIX retreated from 30 toward the mid-20s. Gold pulled back slightly to $5,145 on a firmer dollar before recovering. European shares bounced on Tuesday. Markets are pricing a binary outcome: a quick peace deal sends oil back toward $70 and equities higher; a protracted conflict risks embedding energy inflation and forcing the Fed's hand.",
+        "source": "Trading Economics / Reuters / JM Bullion, March 9-10, 2026"
       }
     ],
     "expert": [
       {
-        "icon": "🔥",
-        "label": "Hormuz Superspike: Saudi Output Cuts Confirm Physical Market Stress",
-        "body": "Saudi Arabia's unilateral output cuts confirm what physical market traders already knew: Gulf producers cannot export barrels accumulating at land terminals, creating a forced supply destruction that goes beyond the Hormuz shipping blockade itself. Brent's intraday high of $119.50 triggered a G7 reserve coordination discussion, temporarily capping the rally. The structural question is duration ,  at $103-109/bbl, every additional month of Hormuz disruption adds approximately 0.25pp to global CPI, widens current account deficits for importing economies by 0.4-0.6% of GDP, and compresses FOMC, ECB, and BoE rate-cutting optionality materially.",
-        "source": "Al Jazeera / Reuters / Rystad Energy, March 9, 2026"
+        "icon": "🛢️",
+        "label": "Hormuz War Premium Collapses on Trump Comment: The $90 Liquidity Void Is Now the Map",
+        "body": "WTI's intraday range of $98 to $119.48 on March 9, followed by a collapse to $86 on Trump's ceasefire comment, is a textbook demonstration of how binary geopolitical optionality reprices in an illiquid physical market. Saudi Arabia's forced output cuts and Iraq's 70% production decline at its three main fields created a genuine scarcity signal, but the Trump comment triggered the exact flash crash J.P. Morgan identified as the risk: a $20 move into the $90 liquidity void in minutes. Front-month WTI at $88 on March 10 still prices meaningful conflict duration, roughly 10-12 dollars of war premium above the pre-war $75 baseline. Every week of Hormuz disruption adds approximately 0.25pp to global CPI. The duration of that premium, not its existence, is the macro variable that will define the FOMC's path through Q2.",
+        "source": "Reuters / Investing.com / J.P. Morgan via bingx.com, March 9-10, 2026"
       },
       {
         "icon": "📉",
-        "label": "Risk-Off Anatomy: VIX 30, DXY 99.7, Gold -1.5%: A Margin Call Day",
-        "body": "The decoupling of gold from the energy inflation narrative on March 9, falling 1.5% to $5,080 while oil surged 13-18%, is a textbook liquidity event. Institutional investors with long gold positions at cost basis well below current levels are liquidating to meet equity margin calls, a pattern seen in March 2020 and October 2008. The DXY surge to 99.7 represents a short-term reversal of the 2025-2026 USD bear trend, driven by safe-haven demand and tighter financial conditions. The more durable signal is the VIX term structure: front-month vol at 30 with the 3-month VIX at 24 implies the market is pricing binary near-term resolution of the Iran conflict, with significant mean-reversion expectations, a dangerous bet given Iran's demonstrated willingness to escalate into UAE territory.",
-        "source": "Reuters / FinancialContent / Yahoo Finance, March 9, 2026"
+        "label": "US February Payrolls -92K: Dual-Mandate Conflict Reaches Critical Mass",
+        "body": "The K-shaped deterioration in the US labour market sharpened in February: healthcare added 112,000, masking federal government shedding 85,000 (DOGE-linked), IT contracting 18,000 (AI displacement), and near-zero private-sector ex-healthcare growth. Unemployment at 4.4% now sits above the FOMC's December median forecast. The FOMC meeting on March 17-18 is the first real test of the committee's reaction function under simultaneous supply-shock inflation and labour-market weakness. Easing signals risk embedding energy-inflation expectations above 3.5%; tightening signals risk accelerating labour-market deterioration. The Fed's only plausible communication strategy is to acknowledge the dilemma explicitly and remain data-dependent, buying time until the February CPI print clarifies whether oil passthrough is accelerating into core.",
+        "source": "Reuters / CNBC / Trading Economics, March 6-10, 2026"
       },
       {
-        "icon": "💼",
-        "label": "US February Payrolls -92K: Stagflationary Signal Sharpens",
-        "body": "February nonfarm payrolls at -92K (vs. +125K consensus) and an unemployment rate at 4.4% confirm that the US labour market is deteriorating faster than the FOMC's December projections modelled. The K-shaped deterioration continues: federal employment fell 85K on DOGE-linked cuts, IT contracted 18K on AI displacement, while healthcare added 112K. The combined signal from -92K payrolls and $103/bbl oil is precisely the stagflationary configuration the December dot plot did not model. With the FOMC meeting March 17-18, the committee faces its most acute dual-mandate conflict since the 1970s: easing to address labour weakness risks validating the oil inflation shock; holding risks overtightening into a deteriorating economy.",
-        "source": "Reuters / CNBC / Trading Economics, March 6-9, 2026"
+        "icon": "📈",
+        "label": "Risk Asset Anatomy: Monday's Reversal Was Rational, Tuesday's Stability Is Fragile",
+        "body": "Monday's reversal in US equities, S&P 500 up 0.83%, Dow up 0.5%, Nasdaq up 1.38%, was mechanically driven by crude's collapse from $119 to $86, which removed the immediate worst-case stagflation premium from equity discount rates. Gold's recovery to $5,145 on March 10 after Monday's liquidity-driven selloff to $5,080 confirms the safe-haven bid remains structurally intact beneath the tactical noise. The VIX term structure, front-month near 30 with the 3-month at 24, still prices binary resolution. Tuesday stability is conditional on no new military escalation from Iran's IRGC, which has demonstrated willingness to extend operations into UAE territory. The February CPI release on Wednesday is now the dominant macro catalyst for the week, with a soft print potentially compressing the stagflation narrative and giving the FOMC room to signal patience without implying a hawkish pivot.",
+        "source": "Trading Economics / Reuters / Investing.com, March 9-10, 2026"
       }
     ]
   }
