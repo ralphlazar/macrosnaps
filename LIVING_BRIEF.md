@@ -1,5 +1,5 @@
 # MacroSnaps - Living Brief
-Last updated: March 9, 2026 (Daily automation plan decided; 4 data-void metrics to be greyed out; story writing style guide added)
+Last updated: March 10, 2026 (Daily update run; global + country + commodity stories updated; "What the project is" description updated)
 
 ---
 
@@ -92,7 +92,9 @@ This style guide must also be included verbatim in the system prompt used by `up
 
 ### What the project is
 
-MacroSnaps is a daily global macro and markets dashboard. It shows key economic metrics, market data, stories, and historical charts for 12 countries and 9 commodities. It is designed for three audience levels: beginner, moderate, and expert. The user toggles between levels and everything in the UI adapts - stories, terminology, glossary definitions.
+MacroSnaps is a daily dashboard that makes global macro and market data accessible to everyone - from curious beginners to seasoned professionals.
+
+Each day, we generate concise snapshots for 12 major economies: the G7 + BRICS. Every card includes key macro forecasts, live market data, AI-generated story bullets, and a weather icon that tells you the economic outlook at a glance.
 
 The product is pre-launch. The architecture is intentionally simple. The goal right now is to get the product right before making it scalable.
 
