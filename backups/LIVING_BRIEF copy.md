@@ -1,5 +1,5 @@
 # MacroSnaps - Living Brief
-Last updated: March 10, 2026 (Content session - fixed 2 stale USA metric values; documented value/story drift across all countries)
+Last updated: March 10, 2026 (Weather Map sync bug fixed - 2026F column now reads live metric values at runtime)
 
 ---
 
@@ -139,7 +139,6 @@ This fetches your Google Sheet and shows what will change in `data.json`. Nothin
 ```bash
 python3 sync_sheet.py
 ```
-
 Read the output. If the changes look correct, continue. If something looks wrong, fix the sheet first and re-run this step.
 
 **Step 3. Apply the sheet sync**
@@ -192,8 +191,6 @@ https://ralphlazar.github.io/macrosnaps/macrosnaps-globe.html
 ### What the Google Sheet controls
 
 The sheet is the single source of truth for the 6 macro metrics per country. These values are forecast-based and change infrequently. Update them in the sheet when consensus forecasts change, then run the daily ritual.
-
-**Important:** The `value` field for macro metrics holds the year-end forecast from the Google Sheet, not the current live reading. For example, USA Policy Rate shows 3.25% (year-end forecast) even though the Fed funds rate is currently 3.50-3.75%. Stories should reference both the current reading and the forecast where relevant.
 
 **Sheet URL (published CSV):**
 ```
@@ -259,40 +256,6 @@ All 9 commodities have a `story` object with beginner, moderate, and expert keys
 - Slot 1: Oil Swings Wildly as Iran War Dominates Markets (WTI $119 to $88 intraday)
 - Slot 2: US Lost 92,000 Jobs in February (stagflation signal, Fed stuck)
 - Slot 3: Stock Markets Bounce Back on Peace Hopes (S&P +0.8%, Gold $5,145)
-
----
-
-### Known value/story drift (as of March 10, 2026)
-
-A content audit on March 10 found that several metric `value` fields were updated to current market prices but the stories were not regenerated to match. This is the expected gap that `update_stories.py` will close. Do not fix these manually - leave them for the automation.
-
-**USA - story text references stale numbers (value is correct, story is stale):**
-
-| Metric | Correct value | What stories say |
-|---|---|---|
-| Policy Rate | 3.25% (year-end forecast) | 4.25-4.50% (old rate, pre-cuts) |
-| Stock Market YTD | +0.5% | +2% |
-| Equity Vol (VIX) | ~30 | ~16 |
-| 10Y Bond Yield | 4.22% | 4.28% |
-| Yield Curve | +22bps | +8bps |
-| Corp Spread | 100bps | 85bps |
-| Sov CDS | 42bps | 35bps |
-| USD/DXY | 99.5 | 104.2 |
-| FX Vol | 12.5% | 8.5% |
-| Budget Deficit | -7.5% GDP | 6.2% GDP |
-
-**Canada - story text references stale numbers:**
-
-| Metric | Correct value | What stories say |
-|---|---|---|
-| GDP Growth | +1.7% | 1.1% |
-| Stock Market YTD | +5.4% | 6.8% |
-| Yield Curve | +25bps | +30bps |
-| Sov CDS | 45bps | 40bps |
-| FX Vol | 10.0% | 7.2% |
-
-**Other countries - minor rounding gaps only (not material):**
-CHN GDP, IND GDP, ZAF GDP, BRA Stock Market YTD, RUS GDP. All within 0.2-0.5pp of the story figure. Low priority.
 
 ---
 
@@ -408,7 +371,6 @@ The tooltip order is: metric name, country + value, story, chart, explanation/bl
 | Stale or missing market data | Partially resolved | 4 automatable metrics will be fetched daily by `fetch_market_data.py` (not yet built). 4 data-void metrics display as "not available" rather than showing stale values. |
 | Manual story maintenance burden | Being resolved | `update_stories.py` (not yet built) will automate story rewrites for any metric that moves past threshold. |
 | Weather Map showing stale forecast values | Fixed | Shell reads the 2026F column from live metrics at runtime. Historical years stay frozen. `_frozen_weatherGrid` is the source of truth for 2020-2025 only. |
-| Value/story drift between daily market updates and story rewrites | Known, pending | Will be resolved by `update_stories.py`. Until then, a known list of stale stories is tracked in the "Known value/story drift" section above. |
 
 ---
 
@@ -435,7 +397,7 @@ The tooltip order is: metric name, country + value, story, chart, explanation/bl
 
 2. **Build `fetch_market_data.py`.** Pulls Stock Market YTD, 10Y Bond Yield, Yield Curve, and FX pairs from Yahoo Finance and FRED. Writes directly into `data.json`. Skips data-void metrics. Design should mirror `refetch_historical.py`. Requires FRED_API_KEY in .env. This is a tooling session.
 
-3. **Build `update_stories.py`.** Diffs data.json against last git commit. Applies per-metric thresholds to decide what warrants a rewrite. Calls Claude API (claude-sonnet-4-20250514) for affected metrics and writes all three story levels back into data.json. Requires ANTHROPIC_API_KEY in .env. This is a tooling session. Note: once built, this will also clear the known value/story drift backlog documented above.
+3. **Build `update_stories.py`.** Diffs data.json against last git commit. Applies per-metric thresholds to decide what warrants a rewrite. Calls Claude API (claude-sonnet-4-20250514) for affected metrics and writes all three story levels back into data.json. Requires ANTHROPIC_API_KEY in .env. This is a tooling session.
 
 4. **Build `print_snapshot.py`.** Uses Playwright to open the built HTML file, loops through each country, expands it, and captures a full-height PDF. Output is a dated file in `snapshots/` (e.g. `macrosnaps-2026-03-09.pdf`). Audience level hardcoded to expert. For personal use only, not a public feature. Run optionally after the daily ritual. Requires `pip3 install playwright` and `playwright install chromium`.
 
