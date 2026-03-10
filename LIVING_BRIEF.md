@@ -399,3 +399,19 @@ The tooltip order is: metric name, country + value, story, chart, explanation/bl
 4. **Build `print_snapshot.py`.** Uses Playwright to open the built HTML file, loops through each country, expands it, and captures a full-height PDF. Output is a dated file in `snapshots/` (e.g. `macrosnaps-2026-03-09.pdf`). Audience level hardcoded to expert. For personal use only, not a public feature. Run optionally after the daily ritual. Requires `pip3 install playwright` and `playwright install chromium`.
 
 5. **Post-launch:** revisit architecture if a second person joins to update data daily.
+
+---
+
+### Known bug: Weather Map out of sync with sheet values
+
+Discovered 2026-03-10. The GDP Growth Weather Map tooltip (and equivalent CPI, Unemployment, Budget Deficit, Current Account weather maps) shows values from `_frozen_weatherGrid` inside `data.json`, not from the live metric values updated by `sync_sheet.py`. This means the Weather Map can show different numbers than the country card for the same metric. Example: USA GDP showed +2.4% in the Weather Map but +2.2% on the country card after a sheet sync.
+
+**Root cause:** `assembleWeatherGrid()` in the shell reads from `gdpAllCountries` etc., which are populated from `c._frozen_weatherGrid` (line 5639 of shell). `sync_sheet.py` updates the live metric values but never touches `_frozen_weatherGrid`.
+
+**Fix options:**
+- Option A (tooling): have `sync_sheet.py` also update the 2026F column of `_frozen_weatherGrid` for each country when it writes a metric value.
+- Option B (UI): make `assembleWeatherGrid()` read the current year value from the live metrics instead of `_frozen_weatherGrid`, keeping historical years from the frozen data.
+
+Option B is cleaner but requires care to preserve the historical year columns. This is a tooling + UI session. Upload `LIVING_BRIEF.md` + `macrosnaps-shell.html` + `data.json` + `sync_sheet.py`.
+
+Add to pending work list as item 5, before the post-launch note.

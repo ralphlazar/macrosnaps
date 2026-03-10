@@ -5609,13 +5609,6 @@ let newsData       = {beginner:[], moderate:[], expert:[]};
 let commoditiesData= {items:[], stories:{}, commentary:{}, weather:'', asOf:'', source:''};
 let _countries     = {};
 
-// ── Helper: extract numeric value from a live metric string (e.g. "+2.2%", "-7.5% GDP") ──
-function parseLiveVal(s) {
-  if (!s) return null;
-  const n = parseFloat(s.replace(/[^0-9.\-]/g, ''));
-  return isNaN(n) ? null : n;
-}
-
 // ── Load data.json ──
 fetch('data.json')
   .then(r => { if(!r.ok) throw new Error('data.json not found: ' + r.status); return r.json(); })
@@ -5644,24 +5637,11 @@ fetch('data.json')
       if(c.fxRegime && c.fxRegime.label) fxRegime[c.code] = c.fxRegime;
       if(c._frozen_historical)  historicalData[c.code] = c._frozen_historical;
       const wg = c._frozen_weatherGrid || {};
-      const lm = (c.metrics && c.metrics.macro) ? c.metrics.macro : {};
-      function liveGrid(frozen, metricName) {
-        if (!frozen) return null;
-        const vals = frozen.values.slice();
-        const live = parseLiveVal((lm[metricName] || {}).value);
-        if (live !== null) vals[vals.length - 1] = live;
-        return vals;
-      }
-      const gdpV    = liveGrid(wg.gdp,    'GDP Growth');
-      const cpiV    = liveGrid(wg.cpi,    'Inflation (CPI)');
-      const unempV  = liveGrid(wg.unemp,  'Unemployment');
-      const budgetV = liveGrid(wg.budget, 'Budget Deficit');
-      const caV     = liveGrid(wg.ca,     'Current Account');
-      if(gdpV)    gdpAllCountries[c.code]    = { flag: c.flag, v: gdpV };
-      if(cpiV)    cpiAllCountries[c.code]    = { flag: c.flag, v: cpiV };
-      if(unempV)  unempAllCountries[c.code]  = { flag: c.flag, v: unempV };
-      if(budgetV) budgetAllCountries[c.code] = { flag: c.flag, v: budgetV };
-      if(caV)     caAllCountries[c.code]     = { flag: c.flag, v: caV };
+      if(wg.gdp)    gdpAllCountries[c.code]    = { flag: c.flag, v: wg.gdp.values };
+      if(wg.cpi)    cpiAllCountries[c.code]    = { flag: c.flag, v: wg.cpi.values };
+      if(wg.unemp)  unempAllCountries[c.code]  = { flag: c.flag, v: wg.unemp.values };
+      if(wg.budget) budgetAllCountries[c.code] = { flag: c.flag, v: wg.budget.values };
+      if(wg.ca)     caAllCountries[c.code]     = { flag: c.flag, v: wg.ca.values };
     });
 
     // Global stories
