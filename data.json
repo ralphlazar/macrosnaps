@@ -8,7 +8,7 @@
       "weekly": "Update weekly or on release — CPI, unemployment, policy rate",
       "structural": "Update quarterly or on major revision — GDP, deficits, current account, stories, fxRegime"
     },
-    "built_at": "2026-03-10 16:30"
+    "built_at": "2026-03-10 16:33"
   },
   "countries": {
     "USA": {
@@ -21,9 +21,9 @@
       "metrics": {
         "macro": {
           "GDP Growth": {
-            "value": "+2.1%",
+            "value": "+2.2%",
             "tier": "structural",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-10",
             "story": {
               "beginner": "The US economy grew 2.8% in 2025, helped by consumer spending and a strong stock market. Growth is expected to slow in 2026 as tariffs raise costs and oil prices surge, squeezing household budgets and reducing business confidence.",
               "moderate": "US GDP grew 2.8% in 2025, above the G7 average, supported by OBBBA fiscal stimulus and resilient consumer spending. For 2026, Goldman forecasts 2.6% — above consensus — but the Iran oil shock introduces a stagflationary headwind that could shave 0.3–0.5pp if Brent sustains above $90 through Q2.",
@@ -1048,9 +1048,9 @@
       "metrics": {
         "macro": {
           "GDP Growth": {
-            "value": "+1.8%",
+            "value": "+1.7%",
             "tier": "structural",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-10",
             "story": {
               "beginner": "Canada's economy grew just 1.1% in 2025, well below its potential, as uncertainty over US tariffs held back business investment. The oil price surge from the Iran conflict is giving the energy sector a short-term lift, but the broader economy remains sluggish heading into 2026.",
               "moderate": "Canadian GDP grew 1.1% in 2025, dragged down by tariff-related investment hesitancy in trade-exposed manufacturing sectors, particularly autos. The oil shock is a net positive for energy-heavy Alberta but adds feedstock cost pressure for Eastern refiners, creating a regional split in the growth picture. Goldman forecasts 1.3% for 2026 on the base case, contingent on tariff uncertainty not escalating into a formal trade war.",
@@ -3298,9 +3298,9 @@
       "metrics": {
         "macro": {
           "GDP Growth": {
-            "value": "+0.9%",
+            "value": "+0.8%",
             "tier": "structural",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-10",
             "story": {
               "beginner": "Japan's economy grows slowly compared to most wealthy nations, and that has been true for decades. The population is shrinking and ageing, which means fewer workers and less consumer spending over time. The economy gets bursts of activity from exports and tourism, but the underlying trend is modest. For most Japanese people, the economy feels stable rather than dynamic.",
               "moderate": "Japan's growth is constrained by demographic decline and weak domestic demand. Real wage growth has turned positive for the first time in years, which suggests the long deflationary cycle may finally be breaking. But the structural headwinds from a shrinking workforce are powerful, and productivity growth has been insufficient to compensate. Export competitiveness has been boosted by a weak yen, but that also raises import costs and squeezes real incomes.",
@@ -7602,9 +7602,9 @@
       "metrics": {
         "macro": {
           "GDP Growth": {
-            "value": "+4.5%",
+            "value": "+4.7%",
             "tier": "structural",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-10",
             "story": {
               "beginner": "China is targeting 4.5% growth this year, its lowest official target on record. The economy is dealing with falling prices, a property market that has been contracting for years, and trade tensions with the US. The government is trying to fill the gap with infrastructure spending and subsidies, but consumers remain cautious.",
               "moderate": "China's 4.5% GDP target for 2026 is a formal acknowledgement of structural deceleration: the property sector contracted 17% in 2025, fixed-asset investment fell 3.8%, and four years of deflationary pressure have suppressed private investment; the Iran shock adds a near-term energy cost headwind that could push growth to the lower end of the target range without additional fiscal stimulus.",
@@ -8717,9 +8717,9 @@
       "metrics": {
         "macro": {
           "GDP Growth": {
-            "value": "+6.5%",
+            "value": "+6.3%",
             "tier": "structural",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-10",
             "story": {
               "beginner": "India is one of the fastest growing major economies in the world, expanding at 6.5% this year. Strong consumer spending, government infrastructure investment, and a booming services sector are the main drivers. The main risk is that higher oil prices from the Iran conflict raise costs and slow this momentum.",
               "moderate": "India's 6.5% GDP growth for 2026 builds on real GDP growth of 8% in the first half of the financial year, supported by income tax cuts, GST rationalisation, and strong fixed investment; the Iran shock is a material adverse terms-of-trade shift, with the oil import cost increase equivalent to roughly 0.8-1.0% of GDP at sustained 0+ Brent, compressing real income growth and corporate margins.",
@@ -9832,9 +9832,9 @@
       "metrics": {
         "macro": {
           "GDP Growth": {
-            "value": "+1.6%",
+            "value": "+1.5%",
             "tier": "structural",
-            "last_updated": "2026-01-31",
+            "last_updated": "2026-03-10",
             "story": {
               "beginner": "South Africa's economy is growing at 1.6%, a modest but meaningful improvement after years of near-stagnation caused by chronic electricity blackouts. Power supplies are now far more reliable, removing a major drag on businesses. The gold price surge from the Iran conflict is a further boost, though high unemployment and weak consumer spending keep the recovery fragile.",
               "moderate": "South Africa's 1.6% growth reflects two converging positives: the structural improvement from the end of load-shedding (removing a constraint that cost the economy an estimated 2% of GDP annually) and the commodity windfall from gold above ,100 per ounce; the Iran shock is ambiguous for South Africa, as higher gold and platinum prices improve mining revenues while higher fuel costs and potential rand weakness add inflationary headwinds in an economy still constrained by Transnet rail and port dysfunction.",
@@ -11172,9 +11172,9 @@
       "metrics": {
         "macro": {
           "GDP Growth": {
-            "value": "+1%",
+            "value": "+0.9%",
             "tier": "structural",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-10",
             "story": {
               "beginner": "Russia's economy is officially growing at around 1%, kept afloat by massive military spending, energy export revenues, and government contracts for wartime production. The Iran conflict is pushing oil prices higher, which is good for Russian revenues, but the underlying economy is deeply distorted by war costs, sanctions, and a severe shortage of civilian workers. Historical chart data for this metric is unavailable due to data limitations after 2022 sanctions.",
               "moderate": "Russia's 1% GDP growth reflects a wartime economy where defence spending (officially 6-7% of GDP, likely higher including classified items) is the primary demand driver; higher oil prices from the Iran conflict push Urals revenues above the fiscal breakeven of roughly 0-80 per barrel, providing National Wealth Fund relief; but the civilian economy faces structural deterioration from labour mobilisation, technology import restrictions, and capital flight that official GDP figures obscure.",
