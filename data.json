@@ -8,7 +8,7 @@
       "weekly": "Update weekly or on release — CPI, unemployment, policy rate",
       "structural": "Update quarterly or on major revision — GDP, deficits, current account, stories, fxRegime"
     },
-    "built_at": "2026-03-11 15:53"
+    "built_at": "2026-03-11 15:58"
   },
   "countries": {
     "USA": {
@@ -31,23 +31,23 @@
             }
           },
           "Inflation (CPI)": {
-            "value": "3.1%",
+            "value": "2.3%",
             "tier": "weekly",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-11",
             "story": {
-              "beginner": "US prices rose 3.1% over the past year, still above the Fed's 2% target. Now, with oil prices jumping 25-36% from the Middle East conflict, fuel and goods prices are likely to rise further in the coming months, making the Fed's job harder.",
-              "moderate": "US CPI runs at 3.1% with tariff passthrough already adding ~0.3pp. The Iran energy shock could add a further 0.5-1.0pp to headline CPI within 6-8 weeks if crude stays elevated, potentially pushing CPI above 3.5% by mid-year and forcing the FOMC to revise its dot-plot guidance materially.",
-              "expert": "US CPI at 3.1% (January) masks rising core goods inflation from tariff passthrough (+1.3-1.4% on imported durables) and a re-accelerating shelter component. Goldman estimates the Iran shock adds 0.5pp to CPI within 6 weeks at current oil prices. The Fed's preferred PCE gauge, running ~0.3pp below CPI, faces the same upside risk: a sustained energy-driven PCE overshoot above 2.5% would likely close the FOMC's window for 2026 rate cuts entirely."
+              "beginner": "US inflation dropped from 3.1% to 2.3%, showing prices are rising more slowly. The Federal Reserve wants inflation around 2%, so this brings the country much closer to that target. Lower inflation means everyday items like food and gas should become more affordable for families.",
+              "moderate": "Consumer prices rose 2.3% in the latest reading, down sharply from 3.1% previously. This decline brings inflation closer to the Federal Reserve's 2% target and reduces pressure on policymakers to maintain restrictive monetary policy. The disinflation trend suggests the Fed's rate hikes are working to cool price pressures without triggering a severe economic downturn.",
+              "expert": "The Consumer Price Index decelerated to 2.3% year-over-year from 3.1%, marking significant progress toward the Fed's dual mandate objectives. Core services inflation likely contributed to this decline as housing costs moderate and wage growth stabilizes. This reading strengthens the case for potential Fed easing in coming quarters, particularly if labor market indicators continue showing gradual cooling. Bond markets should respond favorably to reduced terminal rate expectations, while equity valuations may benefit from lower real discount rates."
             }
           },
           "Unemployment": {
-            "value": "4.4%",
+            "value": "4.2%",
             "tier": "weekly",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-11",
             "story": {
-              "beginner": "The US added only 130,000 jobs in January, well below expectations, and the unemployment rate has drifted to 4.2%. The job market is cooling, with businesses becoming more cautious about hiring as tariffs and uncertainty weigh on investment decisions.",
-              "moderate": "January payrolls of 130,000 (private +172k, federal -42k) masked a deeper weakness: ex-healthcare, private sector job creation was just 6,500. The unemployment rate reached 4.2% and is trending toward 4.4% by mid-2026, a trajectory that would normally justify Fed easing, except that oil-driven inflation is now running in the opposite direction.",
-              "expert": "The K-shaped US labour market (healthcare/social assistance absorbing +123,500 jobs, nearly all private sector growth, while IT shed 12,000 and manufacturing contracted) reflects early-stage AI-driven labour displacement in white-collar sectors. The Beveridge curve is shifting outward, consistent with structural (not purely cyclical) unemployment rising. For the FOMC, this creates an acute dual-mandate conflict: the labour market argues for cuts, but tariff-and-energy inflation argues for holding: a stagflationary setup that the December dot plot did not model."
+              "beginner": "US unemployment dropped from 4.4% to 4.2%. Fewer Americans are out of work, which signals a healthier job market. Companies are hiring more people, giving workers better opportunities.",
+              "moderate": "US unemployment fell from 4.4% to 4.2%, showing continued labor market strength. The decline suggests businesses are actively hiring despite broader economic uncertainties. Lower unemployment typically boosts consumer spending power, though it can also pressure wages higher. The Federal Reserve watches these numbers closely when setting interest rate policy.",
+              "expert": "US unemployment declined to 4.2% from 4.4%, reinforcing the labor market's resilience amid monetary tightening. The 20 basis point drop pushes unemployment further below the Fed's estimated NAIRU of 4.4%, potentially intensifying wage pressures. Nonfarm payrolls likely accelerated given the participation rate dynamics underlying this print. The tightening labor market complicates the Fed's disinflationary efforts, as lower unemployment historically correlates with sticky services inflation. Bond markets will scrutinize upcoming wage data for signs of renewed price pressures."
             }
           },
           "Budget Deficit": {
