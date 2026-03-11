@@ -1,5 +1,5 @@
 # MacroSnaps - Living Brief
-Last updated: March 11, 2026 (Tooling session - update_stories.py built and brief updated; data-void metrics now handled if values appear post-launch)
+Last updated: March 10, 2026 (Content session - fixed macro historical charts: Current Account converted to % GDP across all 12 countries; 2026F forecasts appended to all macro metric arrays)
 
 ---
 
@@ -62,7 +62,7 @@ We work in focused chunks. At the end of each natural unit of work (a feature sh
 
 **Writing style (apply to every response)**
 
-Write in plain, natural English. Do not use em dashes or en dashes. Only use a standard hyphen (-) if a dash is genuinely needed. Prefer commas, periods, or parentheses instead. Before outputting any response, scan it for those characters. If found, rewrite those sentences. Output only the final corrected version. This rule applies to all responses including code comments and story content written into data.json.
+Write in plain, natural English. Do not use em dashes or en dashes. Only use a standard hyphen (-) if a dash is genuinely needed. Prefer commas, periods, or parentheses instead. Before outputting any response, scan it for the characters and. If found, rewrite those sentences. Output only the final corrected version. This rule applies to all responses including code comments and story content written into data.json.
 
 **Story writing style (apply to all metric stories in data.json)**
 
@@ -88,106 +88,13 @@ This style guide must also be included verbatim in the system prompt used by `up
 
 ---
 
-## PART 1B - STORIES SESSION PROMPT (use this instead of the master prompt when doing a story rewrite session)
-### Copy from here...
-
-You are helping me rewrite stale metric stories for MacroSnaps, a daily global macro and markets dashboard.
-
-I am uploading two files: `LIVING_BRIEF.md` and `data.json`. Read both in full before doing anything. The brief contains the full project reference and story writing rules. The data file contains all current metric values and existing story text.
-
-**Your job this session:**
-
-Rewrite the stories listed in the "Known value/story drift" section of the brief. These are metrics where the value has been updated but the story text still references old numbers.
-
-For each metric, rewrite all three levels (beginner, moderate, expert) so they are consistent with the current `value` field in data.json.
-
-**Before writing anything, present a plan:**
-- List exactly which country/metric pairs you will rewrite
-- Confirm the current value you will write to for each one
-- Wait for me to say "go"
-
-**Story writing rules (apply to every story at every level):**
-- No em dashes or en dashes. Use commas, periods, or parentheses instead.
-- No passive voice where an active version is natural.
-- No hedging openers ("It is worth noting", "It is important to understand", "This reflects the fact that").
-- No AI-typical sentence starters. Do not begin consecutive sentences with "This metric," "This reflects," or "This suggests."
-- Vary sentence length deliberately. Mix short punchy sentences with longer ones.
-- Write numbers as real and specific. "Inflation hit 8.4%" not "the inflation rate stands at 8.4%."
-- No filler conclusions ("overall," "in summary," "taken together").
-- No committee language. Write as if explaining to a smart friend.
-- Scan every story against these rules before outputting. Output only the final corrected version.
-
-**Story length guidelines:**
-- Beginner: 2-3 short sentences. No jargon. One plain-English explanation of what the number means for everyday life.
-- Moderate: 3-4 sentences. Include one piece of context (historical comparison, regional comparison, or causal driver).
-- Expert: 4-5 sentences. Include specific numbers, a directional signal, and one forward-looking implication.
-
-**Output format:**
-
-For each rewrite, output a JSON block that can be copied directly into data.json. Use this format exactly:
-
-```json
-"story": {
-  "beginner": "...",
-  "moderate": "...",
-  "expert": "..."
-}
-```
-
-After all rewrites are done, output a summary table of every country/metric pair that was updated.
-
-Then update `LIVING_BRIEF.md` to clear the rewritten entries from the "Known value/story drift" section and make it available for download.
-
-Do not rewrite stories for the 4 data-void metrics (Equity Vol, Corp Spread, Sov CDS, FX Vol). These are moving to "not available" display state.
-
-**What I am working on today:** Rewriting stale metric stories. All current values are in data.json.
-
-### ...to here
-
----
-
-## PART 1C - COMMODITIES SESSION PROMPT (use this when updating commodity stories)
-### Copy from here...
-
-You are helping me update commodity stories for MacroSnaps, a daily global macro and markets dashboard.
-
-I am uploading two files: `LIVING_BRIEF.md` and `data.json`. Read both in full before doing anything.
-
-**Your job this session:**
-
-Review the current `value` field for each of the 9 commodities in data.json and compare it to what the existing stories say. Rewrite any stories where the current price has moved meaningfully since the story was last written (roughly 5% or more for most commodities, 10% for more volatile ones like Natural Gas).
-
-**The 9 commodities:** Oil (WTI), Natural Gas, Gold, Silver, Copper, Wheat, Corn, Iron Ore, Lithium.
-
-**Before writing anything, present a plan:**
-- List which commodities have meaningful drift between value and story text
-- Show the current value vs what the story references
-- Wait for me to say "go"
-
-**Story writing rules:** Same as metric stories. No em dashes or en dashes. No passive voice. No hedging openers. Vary sentence length. Write numbers as real and specific. No filler conclusions. No committee language.
-
-**Story length guidelines:**
-- Beginner: 2-3 sentences. What this commodity is and why its price matters to ordinary people.
-- Moderate: 3-4 sentences. Include one driver of the current price level and one downstream effect.
-- Expert: 4-5 sentences. Include specific price, directional trend, supply/demand driver, and one forward implication.
-
-**Output format:** Same JSON block format as metric stories. After all rewrites, output a summary of what changed.
-
-Then update `LIVING_BRIEF.md` to note the commodity story update date and make it available for download.
-
-**What I am working on today:** Reviewing and updating commodity stories based on current prices in data.json.
-
-### ...to here
-
----
-
 ## PART 2 - PROJECT REFERENCE
 
 ---
 
 ### What the project is
 
-MacroSnaps is a daily dashboard that makes global macro and market data accessible to everyone, from curious beginners to seasoned professionals.
+MacroSnaps is a daily dashboard that makes global macro and market data accessible to everyone - from curious beginners to seasoned professionals.
 
 Each day, we generate concise snapshots for 12 major economies: the G7 + BRICS. Every card includes key macro forecasts, live market data, AI-generated story bullets, and a weather icon that tells you the economic outlook at a glance.
 
@@ -244,15 +151,11 @@ python3 sync_sheet.py --apply
 
 **Step 4. Fetch live market data**
 
-This pulls Stock Market YTD, 10Y Bond Yield, Yield Curve, FX pairs, Equity Vol, Corp Spread, Sov CDS, and FX Vol from Yahoo Finance and FRED and writes them into `data.json`.
+This pulls Stock Market YTD, 10Y Bond Yield, Yield Curve, and FX pairs from Yahoo Finance and FRED and writes them into `data.json`. The 4 data-void metrics (Equity Vol, Corp Spread, Sov CDS, FX Vol) are skipped - they display as "not available" in the UI.
 ```bash
 python3 fetch_market_data.py
 ```
-
-Always run a dry run first on any new machine or after a long gap:
-```bash
-python3 fetch_market_data.py --dry-run
-```
+(Script not yet built - see Pending work.)
 
 **Step 5. Rewrite stories where values moved**
 
@@ -290,7 +193,7 @@ https://ralphlazar.github.io/macrosnaps/macrosnaps-globe.html
 
 The sheet is the single source of truth for the 6 macro metrics per country. These values are forecast-based and change infrequently. Update them in the sheet when consensus forecasts change, then run the daily ritual.
 
-**Important:** The `value` field for macro metrics holds the year-end forecast from the Google Sheet, not the current live reading. For example, USA Policy Rate shows 3.25% (year-end forecast) even though the Fed funds rate is currently higher. Stories should reference both the current reading and the forecast where relevant.
+**Important:** The `value` field for macro metrics holds the year-end forecast from the Google Sheet, not the current live reading. For example, USA Policy Rate shows 3.25% (year-end forecast) even though the Fed funds rate is currently 3.50-3.75%. Stories should reference both the current reading and the forecast where relevant.
 
 **Important:** When a forecast changes in the sheet, `sync_sheet.py` updates the `value` field. You must also manually update the last point in the corresponding `_frozen_historical` array to keep the chart in sync. The last point in every macro historical array is the 2026F forecast. This convention was established on March 10, 2026.
 
@@ -299,9 +202,16 @@ The sheet is the single source of truth for the 6 macro metrics per country. The
 https://docs.google.com/spreadsheets/d/e/2PACX-1vQgdfggKVeP6013PCtc3_L_hJGLE--b9jiGaU-yMHwKK_iO5o4lPg4dxHvq1hlO3uTb-q_KuiBB8Swj/pub?output=csv
 ```
 
-**Columns synced:** GDP_Growth_2026, Inflation_2026, Budget_Deficit_2026, Current_Account_2026, Unemployment_2026, Policy_Rate_2026.
+**Columns synced:**
+- GDP_Growth_2026
+- Inflation_2026
+- Budget_Deficit_2026
+- Current_Account_2026
+- Unemployment_2026
+- Policy_Rate_2026
 
-**What the sheet does NOT control:** Market metrics (handled by `fetch_market_data.py`) or stories (handled by `update_stories.py`). Commodity data, global stories, metricBriefs, and historical chart data are updated manually or via dedicated scripts.
+**What the sheet does NOT control:**
+Market metrics are handled by `fetch_market_data.py` (automated) or displayed as "not available" (data-void metrics). Stories are handled by `update_stories.py`. Commodity data, global stories, metricBriefs, and historical chart data are still updated manually or via dedicated scripts.
 
 ---
 
@@ -317,21 +227,35 @@ cd ~/Downloads/macrosnaps && python3 -m http.server 8000
 ```
 Then go to `http://localhost:8000/macrosnaps-globe.html`. Keep that terminal window open while browsing.
 
+The build inlines `window.__MACROSNAPS_DATA__` before `</head>` so the app is self-contained. Chrome blocks local file access by default. Safari works without a server.
+
 ---
 
-### Current content state (March 11, 2026)
+### Current content state (March 10, 2026)
 
-**Per-metric stories (beginner / moderate / expert)**
+**Per-metric stories (beginner / moderate / expert) - ALL COMPLETE**
+- USA: 14/14 complete
+- CAN: 14/14 complete
+- GBR: 14/14 complete
+- JPN: 14/14 complete
+- DEU: 14/14 complete
+- FRA: 14/14 complete
+- ITA: 14/14 complete
+- CHN: 14/14 complete
+- IND: 14/14 complete
+- ZAF: 14/14 complete
+- BRA: 14/14 complete
+- RUS: 14/14 complete
 
-All 168 per-metric stories are complete across all 12 countries and all 3 levels. Stories for the 4 data-void metrics (Equity Vol, Corp Spread, Sov CDS, FX Vol) will not be maintained going forward as those metrics are moving to "not available" display state.
+All 168 per-metric stories are complete across all 12 countries and all 3 levels. Going forward, stories for the 4 data-void metrics (Equity Vol, Corp Spread, Sov CDS, FX Vol) will not be maintained as those metrics are moving to "not available" display state.
 
 **Other content (all 12 countries)**
 - Country-level stories (3 bullets per level): complete for all 12, last updated March 10, 2026
 - metricBriefs (short summaries per metric): complete for all 12
 - fxRegime descriptions (3 levels): complete for all 12
 
-**Commodity stories (beginner / moderate / expert)**
-All 9 commodities have a `story` object with beginner, moderate, and expert keys. Last updated March 10, 2026. Update these whenever commodity prices move meaningfully, as part of the daily content session. Use the Commodities Session Prompt in Part 1C above.
+**Commodity stories (beginner / moderate / expert) - ALL COMPLETE**
+All 9 commodities have a `story` object with beginner, moderate, and expert keys. Last updated March 10, 2026. Update these whenever commodity prices move meaningfully, as part of the daily content session.
 
 **Global stories (March 10, 2026)**
 - Slot 1: Oil Swings Wildly as Iran War Dominates Markets (WTI $119 to $88 intraday)
@@ -340,129 +264,37 @@ All 9 commodities have a `story` object with beginner, moderate, and expert keys
 
 ---
 
-### Known value/story drift (as of March 11, 2026)
+### Known value/story drift (as of March 10, 2026)
 
-These are metrics where the live value has been updated by `fetch_market_data.py` but the stories still reference older numbers. Use the Stories Session Prompt in Part 1B to clear this backlog. Do not fix these manually outside a dedicated story session.
+A content audit on March 10 found that several metric `value` fields were updated to current market prices but the stories were not regenerated to match. This is the expected gap that `update_stories.py` will close. Do not fix these manually - leave them for the automation.
 
-**USA - values as of March 11 dry run:**
+**USA - story text references stale numbers (value is correct, story is stale):**
 
-| Metric | Current value | What stories say |
+| Metric | Correct value | What stories say |
 |---|---|---|
-| Stock Market YTD | -1.1% | +2% |
-| Equity Vol (VIX) | ~25 | ~16 |
-| 10Y Bond Yield | 4.12% | 4.28% |
-| Yield Curve | +52bps | +8bps |
-| Corp Spread | 84bps | 85bps |
-| USD/DXY | 99.1 | 104.2 |
-| FX Vol | 5.8% | 8.5% |
-| Policy Rate | 3.25% (year-end forecast) | 4.25-4.50% (pre-cut) |
+| Policy Rate | 3.25% (year-end forecast) | 4.25-4.50% (old rate, pre-cuts) |
+| Stock Market YTD | +0.5% | +2% |
+| Equity Vol (VIX) | ~30 | ~16 |
+| 10Y Bond Yield | 4.22% | 4.28% |
+| Yield Curve | +22bps | +8bps |
+| Corp Spread | 100bps | 85bps |
+| Sov CDS | 42bps | 35bps |
+| USD/DXY | 99.5 | 104.2 |
+| FX Vol | 12.5% | 8.5% |
 | Budget Deficit | -7.5% GDP | 6.2% GDP |
 
-**CAN - values as of March 11 dry run:**
+**Canada - story text references stale numbers:**
 
-| Metric | Current value | What stories say |
+| Metric | Correct value | What stories say |
 |---|---|---|
 | GDP Growth | +1.7% | 1.1% |
-| Stock Market YTD | +4.1% | 6.8% |
-| 10Y Bond Yield | 3.40% | (check story) |
-| Yield Curve | +121bps | +30bps |
-| CAD/USD | 0.74 | (check story) |
-| FX Vol | 5.2% | 7.2% |
+| Stock Market YTD | +5.4% | 6.8% |
+| Yield Curve | +25bps | +30bps |
+| Sov CDS | 45bps | 40bps |
+| FX Vol | 10.0% | 7.2% |
 
-**Other countries - live values as of March 11 dry run:**
-
-| Country | Metric | Current value |
-|---|---|---|
-| GBR | Stock Market YTD | +3.8% |
-| GBR | 10Y Bond Yield | 4.45% |
-| GBR | Yield Curve | +74bps |
-| GBR | GBP/USD | 1.34 |
-| JPN | Stock Market YTD | +6.2% |
-| JPN | Equity Vol | ~32 |
-| JPN | 10Y Bond Yield | 2.24% |
-| JPN | Yield Curve | +112bps |
-| JPN | USD/JPY | 158.6 |
-| DEU | Stock Market YTD | -3.8% |
-| DEU | 10Y Bond Yield | 2.81% |
-| DEU | Yield Curve | +81bps |
-| DEU | EUR/USD | 1.1589 |
-| FRA | Stock Market YTD | -2.2% |
-| FRA | 10Y Bond Yield | 3.53% |
-| FRA | Yield Curve | +153bps |
-| ITA | Stock Market YTD | -1.4% |
-| ITA | 10Y Bond Yield | 3.49% |
-| ITA | Yield Curve | +149bps |
-| CHN | Stock Market YTD | +2.7% |
-| CHN | USD/CNY | 6.86 |
-| IND | Stock Market YTD | -9.8% |
-| IND | 10Y Bond Yield | 6.73% |
-| IND | Yield Curve | +123bps |
-| IND | Sov CDS | 261bps |
-| IND | USD/INR | 92.04 |
-| ZAF | Stock Market YTD | +0.5% |
-| ZAF | Equity Vol | ~29 |
-| ZAF | 10Y Bond Yield | 8.62% |
-| ZAF | Yield Curve | +187bps |
-| ZAF | Sov CDS | 450bps |
-| ZAF | USD/ZAR | 16.38 |
-| BRA | Stock Market YTD | +15.1% |
-| BRA | USD/BRL | 5.16 |
-| RUS | USD/RUB | 79.1 |
-
-**Minor rounding gaps only (not material):** CHN GDP, IND GDP, ZAF GDP. All within 0.2-0.5pp of story figure. Low priority.
-
----
-
-### fetch_market_data.py
-
-The script lives in `~/Downloads/macrosnaps/`. It pulls all 8 market metrics and writes `value` and `last_updated` fields directly into `data.json`. It never touches historical arrays, stories, macro metrics, or any other field.
-
-**Metrics fetched:**
-
-| Metric | Source | Notes |
-|---|---|---|
-| Stock Market YTD | Yahoo Finance | YTD % change from Jan 1 close |
-| Equity Vol | Yahoo Finance | Implied vol index where available, 30-day realized vol as fallback |
-| 10Y Bond Yield | FRED | Daily series per country |
-| Yield Curve | FRED (derived) | 10Y minus short rate |
-| Corp Spread | FRED | ICE BofA IG/HY OAS series |
-| Sov CDS | Derived proxy | Local 10Y minus UST (EM countries only) |
-| FX pair | Yahoo Finance | Varies by country |
-| FX Vol | Yahoo Finance (derived) | 30-day realized vol from daily FX returns |
-
-**Known gaps (expected, not bugs):**
-- RUS: `IMOEX.ME` is delisted on Yahoo. Stock Market YTD and Equity Vol will always fail. FX and FX Vol come through.
-- CHN and BRA: No FRED 10Y series. 10Y Bond Yield, Yield Curve, and Sov CDS will always fail.
-- RUS: No Corp Spread series configured.
-- Bund 10Y pre-fetch returns unrounded (e.g. `2.80666666666667%`). Minor cosmetic issue, does not affect output values.
-
-**Dry run results (March 11, 2026):** 77 of 96 metrics fetched successfully. 19 failures all fall in the known gaps above.
-
-**Requirements (one-time setup):**
-```
-pip3 install requests yfinance python-dotenv
-```
-
-**FRED API key** (free): https://fred.stlouisfed.org/docs/api/api_key.html
-
-The `.env` file lives at `~/Downloads/macrosnaps/.env` and contains:
-```
-FRED_API_KEY=your_key_here
-```
-
-This file exists as of March 11, 2026.
-
-**To run (dry run first):**
-```bash
-cd ~/Downloads/macrosnaps
-python3 fetch_market_data.py --dry-run
-python3 fetch_market_data.py
-```
-
-**After a successful live run:**
-```bash
-python3 build.py && git add -A && git commit -m "Daily market update $(date +%Y-%m-%d)" && git push origin master
-```
+**Other countries - minor rounding gaps only (not material):**
+CHN GDP, IND GDP, ZAF GDP, BRA Stock Market YTD, RUS GDP. All within 0.2-0.5pp of the story figure. Low priority.
 
 ---
 
@@ -470,7 +302,7 @@ python3 build.py && git add -A && git commit -m "Daily market update $(date +%Y-
 
 **Macro metric charts - structure as of March 10:**
 
-All macro historical arrays follow the same pattern: 6 points covering 2020-2025 actuals, plus a final 7th point which is the 2026F forecast from the Google Sheet. Current Account arrays were converted from absolute USD values to % of GDP on March 10 using IMF WEO denominators. When forecasts change in the sheet, update both the `value` field and the last point of the corresponding `_frozen_historical` array.
+All macro historical arrays (where they exist) now follow the same pattern: 6 points covering 2020-2025 actuals, plus a final 7th point which is the 2026F forecast from the Google Sheet. Current Account arrays were converted from absolute USD values to % of GDP on March 10 using IMF WEO denominators. When forecasts change in the sheet, update both the `value` field and the last point of the corresponding `_frozen_historical` array.
 
 **GDP denominators used for Current Account conversion (IMF WEO, USD billions, 2020-2025):**
 
@@ -510,6 +342,43 @@ All macro historical arrays follow the same pattern: 6 points covering 2020-2025
 - IND and ZAF GDP Growth historical arrays show anomalously large values in some years (IND 2025: 16.77, ZAF 2025: 6.76), likely reflecting nominal USD growth from FRED rather than real % growth. The 2026F forecast has been appended as the correct final point. The historical points are a pre-existing issue to investigate separately.
 - Budget Deficit arrays are empty for 9 countries (CAN, GBR, DEU, FRA, CHN, IND, ZAF, BRA, RUS). A single forecast point with no history would be meaningless as a chart, so these were left empty intentionally.
 
+Metrics with no free public source (historical or live): Equity Vol, Corp Spread, Sov CDS, FX Vol, Budget Deficit (most countries).
+
+---
+
+### refetch_historical.py
+
+The script lives in `~/Downloads/macrosnaps/`. It pulls data from FRED and Yahoo Finance and writes `_frozen_historical` into `data.json` in place. It never touches any other field.
+
+**Warning:** Running `refetch_historical.py` will overwrite Current Account arrays with raw absolute dollar values, undoing the % GDP conversion. After any refetch run, the CA conversion must be re-applied. This is a known risk until `refetch_historical.py` is updated to output % of GDP natively (see Pending work).
+
+**Requirements (one-time setup):**
+```
+pip3 install requests yfinance python-dotenv
+```
+
+**FRED API key** (free): https://fred.stlouisfed.org/docs/api/api_key.html
+
+Create `~/Downloads/macrosnaps/.env` containing:
+```
+FRED_API_KEY=your_key_here
+```
+
+**To run:**
+```
+cd ~/Downloads/macrosnaps && python3 refetch_historical.py
+```
+
+**After a successful run:**
+```
+python3 build.py && git add -A && git commit -m "Restore _frozen_historical"
+git push origin master
+```
+
+Key settings at the top of the script:
+- `FORCE_OVERWRITE = False` - set to True to re-fetch countries that already have data
+- `MIN_POINTS = 5` - existing point count that qualifies as already populated
+
 ---
 
 ### The 14 metrics per country
@@ -519,6 +388,8 @@ All macro historical arrays follow the same pattern: 6 points covering 2020-2025
 **Market (8):** Stock Market YTD, Equity Vol, 10Y Bond Yield, Yield Curve, Corp Spread, Sov CDS, [FX pair - varies by country], FX Vol.
 
 **Data-void metrics (4):** Equity Vol, Corp Spread, Sov CDS, FX Vol. No reliable free daily source exists for any of these. These will be displayed as "not available" in the UI with a tooltip explanation. Stories for these metrics will not be maintained going forward. This decision can be revisited post-launch if a paid data source is added.
+
+**Automatable market metrics (4):** Stock Market YTD (Yahoo Finance), 10Y Bond Yield (FRED), Yield Curve (FRED, derived), FX pair (Yahoo Finance). These are fetched daily by `fetch_market_data.py` (not yet built).
 
 ---
 
@@ -532,17 +403,17 @@ When a user clicks a metric, `renderMTT()` (line 6542) builds the tooltip. The s
 
 The tooltip order is: metric name, country + value, story, chart, explanation/bluf, FX regime (if applicable), compare button.
 
-**Stories are written and maintained by AI.** `update_stories.py` (built March 11, 2026) diffs data.json against the last git commit, identifies metrics that changed past a configurable threshold, calls the Claude API, and rewrites the affected stories at all three levels in one pass. Do not write or edit stories by hand outside a dedicated stories session.
+**Stories are written and maintained by AI.** `update_stories.py` (not yet built) diffs data.json against the last git commit, identifies metrics that changed past a configurable threshold, calls the Claude API, and rewrites the affected stories at all three levels in one pass. Do not write or edit stories by hand.
 
 ---
 
 ### Architecture decisions and why
 
-**Google Sheet for macro metrics.** The sheet holds the 6 macro metrics per country. `sync_sheet.py` pulls from the sheet and writes `data.json`. The sheet is updated manually but infrequently, when year-end consensus forecasts change.
+**Google Sheet for macro metrics.** The sheet holds the 6 macro metrics per country (GDP, CPI, unemployment, budget deficit, current account, policy rate). `sync_sheet.py` pulls from the sheet and writes `data.json`. The sheet is updated manually but infrequently, when year-end consensus forecasts change.
 
-**fetch_market_data.py for live market metrics.** Pulls all 8 market metrics from Yahoo Finance and FRED daily. Built and verified March 11, 2026.
+**fetch_market_data.py for live market metrics.** Pulls the 4 automatable market metrics (Stock Market YTD, 10Y Bond Yield, Yield Curve, FX pair) from Yahoo Finance and FRED daily. Skips the 4 data-void metrics entirely. Not yet built.
 
-**update_stories.py for story maintenance.** Diffs data.json against the last git commit to detect meaningful value changes, then calls the Claude API to rewrite stories for affected metrics. Runs after both sync_sheet.py and fetch_market_data.py so it catches all changes in one pass. Built and verified March 11, 2026. Requires ANTHROPIC_API_KEY in .env.
+**update_stories.py for story maintenance.** Diffs data.json against the last git commit to detect meaningful value changes, then calls the Claude API to rewrite stories for affected metrics. Runs after both sync_sheet.py and fetch_market_data.py so it catches all changes in one pass. Not yet built. Requires ANTHROPIC_API_KEY in .env.
 
 **No CMS.** Pre-launch solo workflow. JSON plus build script is faster to iterate with than any external system.
 
@@ -562,15 +433,14 @@ The tooltip order is: metric name, country + value, story, chart, explanation/bl
 | No preview step | Fixed | `sync_sheet.py` preview mode shows all changes before anything is written. |
 | Spurious git diffs from build timestamps | Fixed | Build script stamps `_meta` in memory only. `data.json` on disk is never written by the build. |
 | Daily backup only | Covered | Git provides full history. Build script saves daily backup to `backups/` and prunes after 30 days. |
-| Historical chart data incomplete | Largely resolved | `refetch_historical.py` restored all charts except genuine data voids. |
-| Stale or missing market data | Resolved | `fetch_market_data.py` built and verified March 11, 2026. 4 data-void metrics display as "not available." |
-| Manual story maintenance burden | Resolved | `update_stories.py` built March 11, 2026. Runs after fetch_market_data.py and sync_sheet.py to catch all value changes in one pass. |
-| Weather Map showing stale forecast values | Fixed | Shell reads the 2026F column from live metrics at runtime. Historical years stay frozen. |
-| Value/story drift between daily market updates and story rewrites | Resolved | `update_stories.py` built March 11, 2026. Run after every data refresh to keep stories current. |
+| Historical chart data incomplete | Largely resolved | `refetch_historical.py` restored all charts except genuine data voids (CHN, IND, BRA, RUS gaps where no free source exists). |
+| Stale or missing market data | Partially resolved | 4 automatable metrics will be fetched daily by `fetch_market_data.py` (not yet built). 4 data-void metrics display as "not available" rather than showing stale values. |
+| Manual story maintenance burden | Being resolved | `update_stories.py` (not yet built) will automate story rewrites for any metric that moves past threshold. |
+| Weather Map showing stale forecast values | Fixed | Shell reads the 2026F column from live metrics at runtime. Historical years stay frozen. `_frozen_weatherGrid` is the source of truth for 2020-2025 only. |
+| Value/story drift between daily market updates and story rewrites | Known, pending | Will be resolved by `update_stories.py`. Until then, a known list of stale stories is tracked in the "Known value/story drift" section above. |
 | Current Account displayed in absolute dollars | Fixed 2026-03-10 | All CA historical arrays converted to % of GDP using IMF WEO denominators. 2026F appended as final point. |
 | Macro chart 2026F point missing | Fixed 2026-03-10 | 2026F forecast appended as final point to all macro historical arrays with existing data. |
 | refetch_historical.py overwrites CA % GDP conversion | Known risk | Running refetch restores raw dollar values. Re-run CA conversion after any refetch. Fix properly when updating refetch_historical.py (see Pending work). |
-| No .env file | Fixed 2026-03-11 | .env created at ~/Downloads/macrosnaps/.env with FRED_API_KEY. |
 
 ---
 
@@ -591,46 +461,18 @@ The tooltip order is: metric name, country + value, story, chart, explanation/bl
 
 ---
 
-### refetch_historical.py
-
-The script lives in `~/Downloads/macrosnaps/`. It pulls data from FRED and Yahoo Finance and writes `_frozen_historical` into `data.json` in place. It never touches any other field.
-
-**Warning:** Running `refetch_historical.py` will overwrite Current Account arrays with raw absolute dollar values, undoing the % GDP conversion. After any refetch run, the CA conversion must be re-applied. This is a known risk until `refetch_historical.py` is updated to output % of GDP natively (see Pending work).
-
-**Requirements (one-time setup):**
-```
-pip3 install requests yfinance python-dotenv
-```
-
-**To run:**
-```
-cd ~/Downloads/macrosnaps && python3 refetch_historical.py
-```
-
-**After a successful run:**
-```
-python3 build.py && git add -A && git commit -m "Restore _frozen_historical"
-git push origin master
-```
-
-Key settings at the top of the script:
-- `FORCE_OVERWRITE = False` - set to True to re-fetch countries that already have data
-- `MIN_POINTS = 5` - existing point count that qualifies as already populated
-
----
-
 ### Pending work (priority order)
 
-1. **Manual stories session.** Use the Stories Session Prompt in Part 1B to rewrite all stale metric stories listed in "Known value/story drift" above. This is a content session - upload `LIVING_BRIEF.md` + `data.json`. Do this before building `update_stories.py` so there is a clean baseline.
+1. **Grey out 4 data-void metrics in the UI.** Equity Vol, Corp Spread, Sov CDS, and FX Vol should display as "not available" with a tooltip: "no reliable free data source - will be added post-launch." This is a UI session - upload `LIVING_BRIEF.md` + `macrosnaps-shell.html`.
 
-2. **Grey out 4 data-void metrics in the UI.** Equity Vol, Corp Spread, Sov CDS, and FX Vol should display as "not available" with a tooltip: "no reliable free data source - will be added post-launch." This is a UI session - upload `LIVING_BRIEF.md` + `macrosnaps-shell.html`.
+2. **Build `fetch_market_data.py`.** Pulls Stock Market YTD, 10Y Bond Yield, Yield Curve, and FX pairs from Yahoo Finance and FRED. Writes directly into `data.json`. Skips data-void metrics. Design should mirror `refetch_historical.py`. Requires FRED_API_KEY in .env. This is a tooling session.
 
-3. ~~**Build `update_stories.py`.**~~ Done March 11, 2026. Diffs data.json against last git commit. Calls Claude API (claude-sonnet-4-20250514) for affected metrics and writes all three story levels back into data.json. Handles data-void metrics if values appear post-launch. Requires ANTHROPIC_API_KEY in .env.
+3. **Build `update_stories.py`.** Diffs data.json against last git commit. Applies per-metric thresholds to decide what warrants a rewrite. Calls Claude API (claude-sonnet-4-20250514) for affected metrics and writes all three story levels back into data.json. Requires ANTHROPIC_API_KEY in .env. This is a tooling session. Once built, this will also clear the known value/story drift backlog documented above.
 
 4. **Update `refetch_historical.py` to output Current Account as % of GDP natively.** Running refetch currently overwrites CA arrays with raw dollar values, requiring a manual re-conversion. The script should divide by nominal GDP at fetch time. This is a tooling session.
 
 5. **Investigate IND and ZAF GDP Growth historical anomalies.** Some historical points appear to reflect nominal USD growth rather than real % growth (IND 2025: 16.77, ZAF 2025: 6.76). Verify the FRED series and correct if needed. This is a tooling session.
 
-6. **Build `print_snapshot.py`.** Uses Playwright to open the built HTML file, loops through each country, expands it, and captures a full-height PDF. Output is a dated file in `snapshots/` (e.g. `macrosnaps-2026-03-09.pdf`). Audience level hardcoded to expert. For personal use only, not a public feature. Requires `pip3 install playwright` and `playwright install chromium`.
+6. **Build `print_snapshot.py`.** Uses Playwright to open the built HTML file, loops through each country, expands it, and captures a full-height PDF. Output is a dated file in `snapshots/` (e.g. `macrosnaps-2026-03-09.pdf`). Audience level hardcoded to expert. For personal use only, not a public feature. Run optionally after the daily ritual. Requires `pip3 install playwright` and `playwright install chromium`.
 
 7. **Post-launch:** revisit architecture if a second person joins to update data daily.
