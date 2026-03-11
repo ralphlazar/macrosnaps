@@ -1,5 +1,5 @@
 # MacroSnaps - Living Brief
-Last updated: March 11, 2026 (Tooling session - update_stories.py built and brief updated; data-void metrics now handled if values appear post-launch)
+Last updated: March 11, 2026 (Tooling session - update_headlines.py debugged and verified; first live run 13/13 clean; script ready for daily use)
 
 ---
 
@@ -260,9 +260,21 @@ This diffs `data.json` against the last git commit, identifies metrics that chan
 ```bash
 python3 update_stories.py
 ```
-(Script not yet built - see Pending work.)
 
-**Step 6. Build the output file**
+**Step 6. Draft and review country + global headlines**
+
+This calls the Claude API with web search enabled and drafts fresh country-level story bullets and global stories. It writes a preview file but does NOT touch data.json.
+```bash
+python3 update_headlines.py
+```
+Wait for the draft to complete (8-10 minutes, 13 API calls). Then open `headline_review.html` in your browser, load the draft file, review and edit each country and global, approve, and export `stories_approved_YYYY-MM-DD.json`.
+
+Then apply the approved draft:
+```bash
+python3 update_headlines.py --apply stories_approved_YYYY-MM-DD.json
+```
+
+**Step 7. Build the output file**
 
 This validates `data.json`, assembles `macrosnaps-globe.html`, and saves a dated backup.
 ```bash
@@ -270,14 +282,14 @@ python3 build.py
 ```
 The build must say `BUILD SUCCESSFUL` before you continue. If it fails, do not push.
 
-**Step 7. Commit and push**
+**Step 8. Commit and push**
 
 ```bash
 git add -A && git commit -m "Daily update $(date +%Y-%m-%d)"
 git push origin master
 ```
 
-**Step 8. Verify the live site**
+**Step 9. Verify the live site**
 
 Wait about 60 seconds, then open:
 ```
@@ -355,14 +367,14 @@ These are metrics where the live value has been updated by `fetch_market_data.py
 | Corp Spread | 84bps | 85bps |
 | USD/DXY | 99.1 | 104.2 |
 | FX Vol | 5.8% | 8.5% |
-| Policy Rate | 3.25% (year-end forecast) | 4.25-4.50% (pre-cut) |
-| Budget Deficit | -7.5% GDP | 6.2% GDP |
+| Policy Rate | Rewritten March 11, 2026 | |
+| Budget Deficit | Rewritten March 11, 2026 | |
 
 **CAN - values as of March 11 dry run:**
 
 | Metric | Current value | What stories say |
 |---|---|---|
-| GDP Growth | +1.7% | 1.1% |
+| GDP Growth | Rewritten March 11, 2026 | |
 | Stock Market YTD | +4.1% | 6.8% |
 | 10Y Bond Yield | 3.40% | (check story) |
 | Yield Curve | +121bps | +30bps |
@@ -377,7 +389,7 @@ These are metrics where the live value has been updated by `fetch_market_data.py
 | GBR | 10Y Bond Yield | 4.45% |
 | GBR | Yield Curve | +74bps |
 | GBR | GBP/USD | 1.34 |
-| JPN | Stock Market YTD | +6.2% |
+| JPN | Stock Market YTD | Rewritten March 11, 2026 |
 | JPN | Equity Vol | ~32 |
 | JPN | 10Y Bond Yield | 2.24% |
 | JPN | Yield Curve | +112bps |
@@ -560,13 +572,14 @@ The tooltip order is: metric name, country + value, story, chart, explanation/bl
 | JSON corruption from manual edits | Fixed | Run `python3 build.py --validate-only` before editing. Build script also validates on every run. |
 | Forgetting to rebuild | Habit-dependent | Never call a task done until build has run and output copied. |
 | No preview step | Fixed | `sync_sheet.py` preview mode shows all changes before anything is written. |
+| Headline stories applied without review | Fixed | `update_headlines.py` writes a draft file only. `headline_review.html` is a browser tool for reviewing, editing, and approving before applying. |
 | Spurious git diffs from build timestamps | Fixed | Build script stamps `_meta` in memory only. `data.json` on disk is never written by the build. |
 | Daily backup only | Covered | Git provides full history. Build script saves daily backup to `backups/` and prunes after 30 days. |
 | Historical chart data incomplete | Largely resolved | `refetch_historical.py` restored all charts except genuine data voids. |
 | Stale or missing market data | Resolved | `fetch_market_data.py` built and verified March 11, 2026. 4 data-void metrics display as "not available." |
-| Manual story maintenance burden | Resolved | `update_stories.py` built March 11, 2026. Runs after fetch_market_data.py and sync_sheet.py to catch all value changes in one pass. |
+| Manual story maintenance burden | Resolved | `update_stories.py` built March 11, 2026. Rewrites stories for any metric that moves past threshold. |
 | Weather Map showing stale forecast values | Fixed | Shell reads the 2026F column from live metrics at runtime. Historical years stay frozen. |
-| Value/story drift between daily market updates and story rewrites | Resolved | `update_stories.py` built March 11, 2026. Run after every data refresh to keep stories current. |
+| Value/story drift between daily market updates and story rewrites | Resolved | `update_stories.py` built March 11, 2026. Run after each data fetch to keep stories current. |
 | Current Account displayed in absolute dollars | Fixed 2026-03-10 | All CA historical arrays converted to % of GDP using IMF WEO denominators. 2026F appended as final point. |
 | Macro chart 2026F point missing | Fixed 2026-03-10 | 2026F forecast appended as final point to all macro historical arrays with existing data. |
 | refetch_historical.py overwrites CA % GDP conversion | Known risk | Running refetch restores raw dollar values. Re-run CA conversion after any refetch. Fix properly when updating refetch_historical.py (see Pending work). |
@@ -621,11 +634,13 @@ Key settings at the top of the script:
 
 ### Pending work (priority order)
 
-1. **Manual stories session.** Use the Stories Session Prompt in Part 1B to rewrite all stale metric stories listed in "Known value/story drift" above. This is a content session - upload `LIVING_BRIEF.md` + `data.json`. Do this before building `update_stories.py` so there is a clean baseline.
+1. **Apply USA sheet changes.** `sync_sheet.py` preview on March 11 showed USA CPI 3.1% -> 2.3% and Unemployment 4.4% -> 4.2%. These were never applied. Run: `python3 sync_sheet.py --apply && python3 update_stories.py && python3 build.py`
+
+2. **Manual stories session.** Use the Stories Session Prompt in Part 1B to rewrite all stale metric stories listed in "Known value/story drift" above. This is a content session - upload `LIVING_BRIEF.md` + `data.json`. Do this before building `update_stories.py` so there is a clean baseline.
 
 2. **Grey out 4 data-void metrics in the UI.** Equity Vol, Corp Spread, Sov CDS, and FX Vol should display as "not available" with a tooltip: "no reliable free data source - will be added post-launch." This is a UI session - upload `LIVING_BRIEF.md` + `macrosnaps-shell.html`.
 
-3. ~~**Build `update_stories.py`.**~~ Done March 11, 2026. Diffs data.json against last git commit. Calls Claude API (claude-sonnet-4-20250514) for affected metrics and writes all three story levels back into data.json. Handles data-void metrics if values appear post-launch. Requires ANTHROPIC_API_KEY in .env.
+3. ~~**Build `update_stories.py`.**~~ Done March 11, 2026. Script diffs data.json against last git commit, applies per-metric thresholds, calls Claude API (claude-sonnet-4-20250514), and writes all three story levels back into data.json. Also rewrites stories for data-void metrics if their values are ever populated.
 
 4. **Update `refetch_historical.py` to output Current Account as % of GDP natively.** Running refetch currently overwrites CA arrays with raw dollar values, requiring a manual re-conversion. The script should divide by nominal GDP at fetch time. This is a tooling session.
 
@@ -633,4 +648,6 @@ Key settings at the top of the script:
 
 6. **Build `print_snapshot.py`.** Uses Playwright to open the built HTML file, loops through each country, expands it, and captures a full-height PDF. Output is a dated file in `snapshots/` (e.g. `macrosnaps-2026-03-09.pdf`). Audience level hardcoded to expert. For personal use only, not a public feature. Requires `pip3 install playwright` and `playwright install chromium`.
 
-7. **Post-launch:** revisit architecture if a second person joins to update data daily.
+7. ~~**Add country-level and global stories to the daily bash ritual.**~~ Done March 11, 2026. `update_headlines.py` calls the Claude API with web search enabled, drafts 12 country story blocks (3 bullets x 3 levels) and global stories (3 items x 3 levels), and saves to `stories_draft_YYYY-MM-DD.json`. `headline_review.html` is a browser-based review and edit tool: load the draft, edit inline, approve per country, export `stories_approved_YYYY-MM-DD.json`. Apply with `python3 update_headlines.py --apply stories_approved_YYYY-MM-DD.json`. Sources from web search are embedded in the draft for verification. First live run verified 13/13 March 11, 2026. Batches: 3x4 countries (Haiku, 8000 tokens each) + 1 global (Sonnet, 5000 tokens).
+
+8. **Post-launch:** revisit architecture if a second person joins to update data daily.

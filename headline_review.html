@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MacroSnaps - Headline Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:        #0d0f13;
+    --surface:   #141720;
+    --border:    #242832;
+    --amber:     #f5a623;
+    --amber-dim: #7a5210;
+    --green:     #3ecf70;
+    --red:       #e05252;
+    --muted:     #505570;
+    --text:      #d4d8e8;
+    --text-dim:  #808499;
+    --mono:      'IBM Plex Mono', monospace;
+    --sans:      'DM Sans', sans-serif;
+  }
+
+  html, body { height: 100%; background: var(--bg); color: var(--text); font-family: var(--sans); }
+
+  /* ── Layout ─────────────────────────────────────────── */
+  #app { display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+
+  #topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 20px; height: 52px; border-bottom: 1px solid var(--border);
+    background: var(--surface); flex-shrink: 0;
+  }
+  #topbar .logo {
+    font-family: var(--mono); font-size: 13px; font-weight: 600;
+    color: var(--amber); letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  #topbar .meta { font-size: 12px; color: var(--text-dim); font-family: var(--mono); }
+
+  #main { display: flex; flex: 1; overflow: hidden; }
+
+  /* ── Sidebar ─────────────────────────────────────────── */
+  #sidebar {
+    width: 180px; flex-shrink: 0; border-right: 1px solid var(--border);
+    overflow-y: auto; background: var(--surface); padding: 12px 0;
+  }
+  .sidebar-section { margin-bottom: 4px; }
+  .sidebar-label {
+    font-size: 9px; font-weight: 600; letter-spacing: 0.12em;
+    color: var(--muted); text-transform: uppercase;
+    padding: 8px 16px 4px;
+  }
+  .sidebar-item {
+    display: flex; align-items: center; gap: 8px;
+    padding: 7px 16px; cursor: pointer; font-size: 13px;
+    transition: background 0.12s; color: var(--text-dim);
+    border-left: 2px solid transparent;
+  }
+  .sidebar-item:hover { background: rgba(245,166,35,0.06); color: var(--text); }
+  .sidebar-item.active {
+    background: rgba(245,166,35,0.1); color: var(--amber);
+    border-left-color: var(--amber);
+  }
+  .sidebar-item .flag { font-size: 16px; line-height: 1; }
+  .sidebar-item .code { font-family: var(--mono); font-size: 12px; font-weight: 500; }
+  .sidebar-item .dot {
+    margin-left: auto; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--green); flex-shrink: 0; display: none;
+  }
+  .sidebar-item.approved .dot { display: block; }
+
+  /* ── Editor pane ─────────────────────────────────────── */
+  #editor {
+    flex: 1; overflow-y: auto; padding: 28px 32px;
+    display: flex; flex-direction: column; gap: 0;
+  }
+
+  #drop-zone {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 16px;
+    border: 1.5px dashed var(--border); border-radius: 8px;
+    cursor: pointer; transition: border-color 0.2s;
+    padding: 48px;
+  }
+  #drop-zone:hover, #drop-zone.drag-over { border-color: var(--amber); }
+  #drop-zone .drop-icon { font-size: 32px; opacity: 0.4; }
+  #drop-zone h2 { font-size: 17px; font-weight: 500; color: var(--text-dim); }
+  #drop-zone p { font-size: 13px; color: var(--muted); text-align: center; line-height: 1.6; }
+  #drop-zone .btn-load {
+    margin-top: 8px; padding: 9px 20px;
+    background: var(--amber); color: #000; border: none;
+    font-family: var(--sans); font-weight: 600; font-size: 13px;
+    border-radius: 4px; cursor: pointer; transition: opacity 0.15s;
+  }
+  #drop-zone .btn-load:hover { opacity: 0.85; }
+  #file-input { display: none; }
+
+  /* ── Country header ──────────────────────────────────── */
+  .country-header {
+    display: flex; align-items: baseline; gap: 12px; margin-bottom: 24px;
+  }
+  .country-flag { font-size: 28px; line-height: 1; }
+  .country-name { font-size: 22px; font-weight: 600; }
+  .country-code { font-family: var(--mono); font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+  /* ── Level tabs ──────────────────────────────────────── */
+  .level-tabs {
+    display: flex; flex-direction: row; gap: 8px; margin-bottom: 24px;
+  }
+  .level-tab {
+    padding: 7px 20px; font-size: 12px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    cursor: pointer; background: transparent;
+    border: 1px solid var(--border); border-radius: 5px;
+    color: var(--muted); font-family: var(--sans);
+    transition: background 0.12s, color 0.12s;
+  }
+  .level-tab.active { background: var(--amber); color: #000; border-color: var(--amber); }
+  .level-tab:not(.active):hover { background: rgba(255,255,255,0.04); color: var(--text); }
+
+  /* ── Level rows ─────────────────────────────────────── */
+  .level-row { align-items: flex-start; gap: 12px; }
+  .level-row-label {
+    font-family: var(--mono); font-size: 10px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--amber-dim); width: 64px; flex-shrink: 0;
+    padding-top: 11px;
+  }
+
+  /* ── Story bullets ───────────────────────────────────── */
+  .bullets-section { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+
+  .bullet-item {
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .bullet-num {
+    font-family: var(--mono); font-size: 11px; font-weight: 600;
+    color: var(--amber-dim); margin-top: 11px; flex-shrink: 0; width: 16px;
+  }
+  .bullet-textarea {
+    flex: 1; background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+    border-radius: 4px; padding: 10px 12px;
+    font-family: var(--mono); font-size: 13px; line-height: 1.6;
+    color: var(--text); resize: vertical; min-height: 64px;
+    transition: border-color 0.15s;
+    width: 100%;
+  }
+  .bullet-textarea:focus { outline: none; border-color: var(--amber); }
+
+  /* ── Global story items ──────────────────────────────── */
+  .global-item { margin-bottom: 20px; }
+  .global-item-num {
+    font-family: var(--mono); font-size: 10px; color: var(--amber-dim);
+    margin-bottom: 6px; font-weight: 600;
+  }
+  .global-headline-textarea {
+    width: 100%; background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+    border-radius: 4px 4px 0 0; padding: 9px 12px;
+    font-family: var(--mono); font-size: 13px; font-weight: 500;
+    color: var(--text); resize: none; border-bottom: none;
+    transition: border-color 0.15s;
+  }
+  .global-headline-textarea:focus { outline: none; border-color: var(--amber); border-bottom: none; }
+  .global-detail-textarea {
+    width: 100%; background: rgba(255,255,255,0.02); border: 1px solid var(--border);
+    border-radius: 0 0 4px 4px; padding: 9px 12px;
+    font-family: var(--mono); font-size: 12px; line-height: 1.6;
+    color: var(--text-dim); resize: vertical; min-height: 60px;
+    transition: border-color 0.15s;
+  }
+  .global-detail-textarea:focus { outline: none; border-color: var(--amber); }
+
+  /* ── Sources ─────────────────────────────────────────── */
+  .sources-section {
+    margin-top: 8px; border-top: 1px solid var(--border);
+    padding-top: 16px; margin-bottom: 32px;
+  }
+  .sources-label {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 8px;
+  }
+  .sources-list { display: flex; flex-direction: column; gap: 4px; }
+  .source-item {
+    font-family: var(--mono); font-size: 11px; color: var(--text-dim);
+    line-height: 1.5;
+  }
+  .source-item a { color: var(--amber-dim); text-decoration: none; }
+  .source-item a:hover { color: var(--amber); }
+
+  /* ── Action bar ──────────────────────────────────────── */
+  .action-bar {
+    display: flex; gap: 10px; align-items: center; margin-bottom: 32px;
+    padding: 14px 16px; background: var(--surface);
+    border: 1px solid var(--border); border-radius: 6px;
+  }
+  .action-bar .label { font-size: 12px; color: var(--muted); flex: 1; font-family: var(--mono); }
+  .btn {
+    padding: 8px 18px; border: none; border-radius: 4px;
+    font-family: var(--sans); font-weight: 600; font-size: 12px;
+    cursor: pointer; transition: opacity 0.15s, transform 0.1s;
+    letter-spacing: 0.02em;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn:active { transform: scale(0.97); }
+  .btn-approve { background: var(--green); color: #000; }
+  .btn-skip { background: var(--border); color: var(--text-dim); }
+  .btn-export { background: var(--amber); color: #000; }
+  .btn-export:disabled { opacity: 0.35; cursor: not-allowed; }
+  .btn-export:disabled:hover { opacity: 0.35; }
+
+  /* ── Top toolbar ─────────────────────────────────────── */
+  #toolbar {
+    display: flex; align-items: center; gap: 10px; padding: 10px 32px;
+    border-bottom: 1px solid var(--border); background: var(--surface);
+    flex-shrink: 0;
+  }
+  #toolbar .progress-text { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+  #toolbar .progress-bar-wrap {
+    flex: 1; height: 3px; background: var(--border); border-radius: 2px; overflow: hidden;
+  }
+  #toolbar .progress-bar-fill { height: 100%; background: var(--green); transition: width 0.3s; }
+
+  /* ── Approved badge ──────────────────────────────────── */
+  .approved-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 11px; font-weight: 600; color: var(--green);
+    font-family: var(--mono); letter-spacing: 0.05em;
+    padding: 4px 10px; border: 1px solid rgba(62,207,112,0.3);
+    border-radius: 3px; margin-left: 12px;
+  }
+
+  /* ── Scrollbar ───────────────────────────────────────── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+  /* ── Toast ───────────────────────────────────────────── */
+  #toast {
+    position: fixed; bottom: 24px; right: 24px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-left: 3px solid var(--green);
+    padding: 12px 20px; border-radius: 5px;
+    font-size: 13px; font-family: var(--mono);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    opacity: 0; transform: translateY(8px);
+    transition: opacity 0.2s, transform 0.2s;
+    pointer-events: none; z-index: 999;
+  }
+  #toast.show { opacity: 1; transform: translateY(0); }
+
+  .nav-arrows { display: flex; gap: 4px; }
+  .nav-btn {
+    width: 28px; height: 28px; background: var(--border);
+    border: none; border-radius: 3px; cursor: pointer; color: var(--text-dim);
+    font-size: 14px; display: flex; align-items: center; justify-content: center;
+    transition: background 0.12s;
+  }
+  .nav-btn:hover { background: var(--muted); }
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- Top bar -->
+  <div id="topbar">
+    <div class="logo">MacroSnaps / Headline Review</div>
+    <div class="meta" id="draft-meta">No draft loaded</div>
+  </div>
+
+  <!-- Toolbar (hidden until loaded) -->
+  <div id="toolbar" style="display:none">
+    <span class="progress-text" id="progress-text">0 / 0 approved</span>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-bar" style="width:0%"></div></div>
+    <div class="nav-arrows">
+      <button class="nav-btn" onclick="navigate(-1)" title="Previous">&#8592;</button>
+      <button class="nav-btn" onclick="navigate(1)" title="Next">&#8594;</button>
+    </div>
+    <button class="btn btn-export" id="btn-export" onclick="exportApproved()">Export Approved JSON</button>
+  </div>
+
+  <div id="main">
+
+    <!-- Sidebar -->
+    <div id="sidebar" style="display:none"></div>
+
+    <!-- Editor -->
+    <div id="editor">
+      <!-- Drop zone (shown when no draft loaded) -->
+      <div id="drop-zone">
+        <div class="drop-icon">&#x25A4;</div>
+        <h2>Load your draft file</h2>
+        <p>Drop a <code>stories_draft_YYYY-MM-DD.json</code> file here,<br>or click to browse.</p>
+        <button class="btn-load" onclick="document.getElementById('file-input').click()">Choose file</button>
+        <input type="file" id="file-input" accept=".json">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+// ── State ────────────────────────────────────────────────────────────────────
+let draft = null;
+let approved = {};       // { "USA": true, "GLOBAL": true, ... }
+let editedData = {};     // { "USA": { beginner: [...], moderate: [...], expert: [...] }, ... }
+let currentKey = null;
+let currentBullet = 0;
+const LEVELS = ['beginner', 'moderate', 'expert'];
+const COUNTRY_META = {
+  USA:{flag:'🇺🇸'}, CAN:{flag:'🇨🇦'}, GBR:{flag:'🇬🇧'}, JPN:{flag:'🇯🇵'},
+  DEU:{flag:'🇩🇪'}, FRA:{flag:'🇫🇷'}, ITA:{flag:'🇮🇹'}, CHN:{flag:'🇨🇳'},
+  IND:{flag:'🇮🇳'}, ZAF:{flag:'🇿🇦'}, BRA:{flag:'🇧🇷'}, RUS:{flag:'🇷🇺'}
+};
+
+// ── File loading ─────────────────────────────────────────────────────────────
+const dropZone = document.getElementById('drop-zone');
+const fileInput = document.getElementById('file-input');
+
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+dropZone.addEventListener('drop', e => {
+  e.preventDefault(); dropZone.classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (file) loadFile(file);
+});
+fileInput.addEventListener('change', e => { if (e.target.files[0]) loadFile(e.target.files[0]); });
+
+function loadFile(file) {
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      draft = JSON.parse(e.target.result);
+      initDraft(file.name);
+    } catch(err) {
+      alert('Could not parse JSON: ' + err.message);
+    }
+  };
+  reader.readAsText(file);
+}
+
+function initDraft(filename) {
+  // Build editedData from draft
+  editedData = {};
+  approved = {};
+
+  const countries = draft.countries || {};
+  for (const code of Object.keys(countries)) {
+    const s = countries[code].stories || {};
+    editedData[code] = {
+      beginner: [...(s.beginner || [])],
+      moderate: [...(s.moderate || [])],
+      expert:   [...(s.expert   || [])],
+      sources:  countries[code].sources || []
+    };
+  }
+
+  // Global stories
+  const gs = draft.globalStories || {};
+  editedData['GLOBAL'] = {
+    beginner: (gs.beginner || []).map(x => ({icon: x.icon||'', label: x.label||'', body: x.body||'', source: x.source||''})),
+    moderate: (gs.moderate || []).map(x => ({icon: x.icon||'', label: x.label||'', body: x.body||'', source: x.source||''})),
+    expert:   (gs.expert   || []).map(x => ({icon: x.icon||'', label: x.label||'', body: x.body||'', source: x.source||''})),
+    sources:  gs.sources || []
+  };
+
+  // Show UI
+  document.getElementById('draft-meta').textContent =
+    filename + (draft.date ? '  |  ' + draft.date : '');
+  document.getElementById('toolbar').style.display = 'flex';
+  document.getElementById('sidebar').style.display = 'block';
+  document.getElementById('drop-zone').style.display = 'none';
+
+  buildSidebar();
+  const firstKey = Object.keys(editedData)[0];
+  selectItem(firstKey);
+  updateProgress();
+}
+
+// ── Sidebar ──────────────────────────────────────────────────────────────────
+function buildSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  sidebar.innerHTML = '';
+
+  // Global section
+  const globalSection = document.createElement('div');
+  globalSection.className = 'sidebar-section';
+  globalSection.innerHTML = `<div class="sidebar-label">Global</div>`;
+  const globalItem = document.createElement('div');
+  globalItem.className = 'sidebar-item' + (approved['GLOBAL'] ? ' approved' : '');
+  globalItem.id = 'sidebar-GLOBAL';
+  globalItem.innerHTML = `<span class="flag">🌐</span><span class="code">GLOBAL</span><span class="dot"></span>`;
+  globalItem.onclick = () => selectItem('GLOBAL');
+  globalSection.appendChild(globalItem);
+  sidebar.appendChild(globalSection);
+
+  // Countries section
+  const countriesSection = document.createElement('div');
+  countriesSection.className = 'sidebar-section';
+  countriesSection.innerHTML = `<div class="sidebar-label">Countries</div>`;
+
+  const countryKeys = Object.keys(editedData).filter(k => k !== 'GLOBAL');
+  for (const code of countryKeys) {
+    const meta = COUNTRY_META[code] || {};
+    const item = document.createElement('div');
+    item.className = 'sidebar-item' + (approved[code] ? ' approved' : '');
+    item.id = 'sidebar-' + code;
+    item.innerHTML = `<span class="flag">${meta.flag || ''}</span><span class="code">${code}</span><span class="dot"></span>`;
+    item.onclick = () => selectItem(code);
+    countriesSection.appendChild(item);
+  }
+  sidebar.appendChild(countriesSection);
+}
+
+// ── Editor ───────────────────────────────────────────────────────────────────
+function selectItem(key) {
+  // Save any in-flight edits before switching
+  if (currentKey) saveEditsFromDom();
+
+  currentKey = key;
+  currentBullet = 0;
+
+  // Update sidebar highlight
+  document.querySelectorAll('.sidebar-item').forEach(el => el.classList.remove('active'));
+  const sidebarEl = document.getElementById('sidebar-' + key);
+  if (sidebarEl) sidebarEl.classList.add('active');
+
+  renderEditor();
+}
+
+function saveEditsFromDom() {
+  if (!currentKey) return;
+  const data = editedData[currentKey];
+  if (!data) return;
+
+  if (currentKey === 'GLOBAL') {
+    for (const lv of LEVELS) {
+      const items = data[lv];
+      items.forEach((item, i) => {
+        const iconEl   = document.getElementById(`global-icon-${lv}-${i}`);
+        const labelEl  = document.getElementById(`global-label-${lv}-${i}`);
+        const bodyEl   = document.getElementById(`global-body-${lv}-${i}`);
+        const sourceEl = document.getElementById(`global-source-${lv}-${i}`);
+        if (iconEl)   item.icon   = iconEl.value;
+        if (labelEl)  item.label  = labelEl.value;
+        if (bodyEl)   item.body   = bodyEl.value;
+        if (sourceEl) item.source = sourceEl.value;
+      });
+    }
+  } else {
+    for (const lv of LEVELS) {
+      const bullets = data[lv];
+      bullets.forEach((_, i) => {
+        const el = document.getElementById(`bullet-${lv}-${i}`);
+        if (el) bullets[i] = el.value;
+      });
+    }
+  }
+}
+
+function renderEditor() {
+  const editor = document.getElementById('editor');
+  const key = currentKey;
+  const data = editedData[key];
+  if (!data) return;
+
+  const isGlobal = key === 'GLOBAL';
+  const meta = COUNTRY_META[key] || {};
+  const isApproved = approved[key];
+
+  let html = '';
+
+  // Header
+  if (isGlobal) {
+    html += `<div class="country-header">
+      <span class="country-flag">🌐</span>
+      <div>
+        <div class="country-name">Global Stories${isApproved ? '<span class="approved-badge">&#10003; Approved</span>' : ''}</div>
+        <div class="country-code">3 items &times; 3 levels</div>
+      </div>
+    </div>`;
+  } else {
+    html += `<div class="country-header">
+      <span class="country-flag">${meta.flag || ''}</span>
+      <div>
+        <div class="country-name">${key}${isApproved ? '<span class="approved-badge">&#10003; Approved</span>' : ''}</div>
+        <div class="country-code">3 bullets &times; 3 levels</div>
+      </div>
+    </div>`;
+  }
+
+  // Bullet tabs
+  const tabLabel = isGlobal ? 'Story' : 'Bullet';
+  html += `<div class="level-tabs">`;
+  for (let bi = 0; bi < 3; bi++) {
+    html += `<button class="level-tab${currentBullet === bi ? ' active' : ''}" onclick="switchBullet(${bi})">${tabLabel} ${bi + 1}</button>`;
+  }
+  html += `</div>`;
+
+  // Content for current bullet
+  html += `<div id="level-content">`;
+  if (isGlobal) {
+    html += renderGlobalBullet(data, currentBullet);
+  } else {
+    html += renderCountryBullet(data, currentBullet);
+  }
+  html += `</div>`;
+
+  // Sources
+  const sources = data.sources || [];
+  if (sources.length) {
+    html += `<div class="sources-section">
+      <div class="sources-label">Sources used by AI</div>
+      <div class="sources-list">`;
+    sources.forEach(s => {
+      if (typeof s === 'string') {
+        html += `<div class="source-item">${escHtml(s)}</div>`;
+      } else if (s.url) {
+        html += `<div class="source-item"><a href="${escHtml(s.url)}" target="_blank">${escHtml(s.title || s.url)}</a></div>`;
+      } else if (s.title) {
+        html += `<div class="source-item">${escHtml(s.title)}</div>`;
+      }
+    });
+    html += `</div></div>`;
+  }
+
+  // Action bar
+  const allKeys = Object.keys(editedData);
+  const idx = allKeys.indexOf(key);
+  const nextKey = allKeys[idx + 1];
+  html += `<div class="action-bar">
+    <span class="label">${isApproved ? 'Approved. Edit above or move on.' : 'Review and edit above, then approve.'}</span>
+    <button class="btn btn-skip" onclick="navigate(1)">Skip &#8594;</button>
+    <button class="btn btn-approve" onclick="approveAndNext()">${isApproved ? 'Re-approve' : 'Approve'} ${nextKey ? '&#8594;' : ''}</button>
+  </div>`;
+
+  editor.innerHTML = html;
+}
+
+function renderCountryBullet(data, bulletIdx) {
+  let html = `<div class="bullets-section">`;
+  for (const lv of LEVELS) {
+    const bullet = (data[lv] || [])[bulletIdx] || '';
+    html += `<div class="bullet-item level-row">
+      <div class="level-row-label">${lv}</div>
+      <textarea class="bullet-textarea" id="bullet-${lv}-${bulletIdx}" rows="4">${escHtml(bullet)}</textarea>
+    </div>`;
+  }
+  html += `</div>`;
+  return html;
+}
+
+function renderGlobalBullet(data, bulletIdx) {
+  let html = `<div class="bullets-section">`;
+  for (const lv of LEVELS) {
+    const item = (data[lv] || [])[bulletIdx] || {};
+    html += `<div class="global-item level-row">
+      <div class="level-row-label">${lv}</div>
+      <div style="flex:1">
+        <div style="display:flex;gap:8px;margin-bottom:6px">
+          <textarea class="global-headline-textarea" id="global-icon-${lv}-${bulletIdx}" rows="1" style="width:52px;flex-shrink:0;text-align:center;font-size:18px;padding:6px 4px">${escHtml(item.icon || '')}</textarea>
+          <textarea class="global-headline-textarea" id="global-label-${lv}-${bulletIdx}" rows="1" style="flex:1">${escHtml(item.label || '')}</textarea>
+        </div>
+        <textarea class="global-detail-textarea" id="global-body-${lv}-${bulletIdx}" rows="3">${escHtml(item.body || '')}</textarea>
+        <textarea class="global-detail-textarea" id="global-source-${lv}-${bulletIdx}" rows="1" style="min-height:32px;font-size:11px;color:var(--muted)">${escHtml(item.source || '')}</textarea>
+      </div>
+    </div>`;
+  }
+  html += `</div>`;
+  return html;
+}
+
+function switchBullet(idx) {
+  saveEditsFromDom();
+  currentBullet = idx;
+  const data = editedData[currentKey];
+  if (!data) return;
+
+  document.querySelectorAll('.level-tab').forEach((el, i) => {
+    el.classList.toggle('active', i === idx);
+  });
+
+  const isGlobal = currentKey === 'GLOBAL';
+  const content = document.getElementById('level-content');
+  if (content) {
+    content.innerHTML = isGlobal
+      ? renderGlobalBullet(data, idx)
+      : renderCountryBullet(data, idx);
+  }
+}
+
+function approveAndNext() {
+  saveEditsFromDom();
+  approved[currentKey] = true;
+
+  // Update sidebar dot
+  const sidebarEl = document.getElementById('sidebar-' + currentKey);
+  if (sidebarEl) sidebarEl.classList.add('approved');
+
+  updateProgress();
+  navigate(1);
+}
+
+function navigate(dir) {
+  saveEditsFromDom();
+  const allKeys = Object.keys(editedData);
+  const idx = allKeys.indexOf(currentKey);
+  const next = allKeys[idx + dir];
+  if (next) selectItem(next);
+}
+
+function updateProgress() {
+  const total = Object.keys(editedData).length;
+  const done = Object.keys(approved).length;
+  document.getElementById('progress-text').textContent = `${done} / ${total} approved`;
+  document.getElementById('progress-bar').style.width = (done / total * 100) + '%';
+}
+
+// ── Export ───────────────────────────────────────────────────────────────────
+function exportApproved() {
+  saveEditsFromDom();
+
+  const approvedKeys = Object.keys(approved);
+  if (approvedKeys.length === 0) {
+    showToast('Nothing approved yet.');
+    return;
+  }
+
+  const out = { date: draft.date || new Date().toISOString().slice(0,10), countries: {}, globalStories: null };
+
+  for (const key of approvedKeys) {
+    if (key === 'GLOBAL') {
+      const d = editedData['GLOBAL'];
+      out.globalStories = {
+        beginner: d.beginner,
+        moderate: d.moderate,
+        expert:   d.expert
+      };
+      // sources excluded from apply file (stay in draft for reference only)
+    } else {
+      const d = editedData[key];
+      out.countries[key] = {
+        stories: {
+          beginner: d.beginner,
+          moderate: d.moderate,
+          expert:   d.expert
+        }
+      };
+    }
+  }
+
+  // Remove null globalStories if not approved
+  if (!out.globalStories) delete out.globalStories;
+
+  const blob = new Blob([JSON.stringify(out, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `stories_approved_${out.date}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+
+  showToast(`Exported ${approvedKeys.length} approved items.`);
+}
+
+// ── Helpers ──────────────────────────────────────────────────────────────────
+function escHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+</script>
+</body>
+</html>
