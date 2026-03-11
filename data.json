@@ -8,7 +8,7 @@
       "weekly": "Update weekly or on release — CPI, unemployment, policy rate",
       "structural": "Update quarterly or on major revision — GDP, deficits, current account, stories, fxRegime"
     },
-    "built_at": "2026-03-11 21:17"
+    "built_at": "2026-03-11 22:02"
   },
   "countries": {
     "USA": {
@@ -12321,62 +12321,62 @@
   "globalStories": {
     "beginner": [
       {
-        "icon": "⚡",
-        "label": "Middle East Oil Crisis Rocks Markets",
-        "body": "<cite index=\"2-8,2-9\">Global oil markets swung wildly as tensions in the Strait of Hormuz sent Brent crude from $97 to over $103 before retreating.</cite> <cite index=\"1-21,1-22\">Asian markets crashed hardest because they import 90% of oil through this critical shipping route.</cite> <cite index=\"1-23,1-24\">Korea's stock market hit circuit breakers falling 7.7% while Japan dropped 6.5%.</cite>",
-        "source": "WBN Digital"
-      },
-      {
-        "icon": "🤖",
-        "label": "AI Spending Hits $500 Billion Globally",
-        "body": "<cite index=\"4-18\">The \"AI Capex Boom\" is projected to reach nearly $500 billion this year.</cite> <cite index=\"13-8\">China alone expects industry-wide AI spending to exceed $70 billion in 2026.</cite> <cite index=\"2-13,2-14\">Major tech firms announced multi-billion-dollar plans for AI chips and data centers across North America, Europe, and Asia.</cite>",
-        "source": "Financial Content"
-      },
-      {
-        "icon": "🏠",
-        "label": "Global Housing Shows Recovery Signs",
-        "body": "<cite index=\"2-15\">Several global housing markets are beginning to show modest signs of recovery as mortgage rates ease slightly from recent highs.</cite> <cite index=\"9-4,9-8\">However, the UK construction sector plunged into contraction with residential building collapsing amid mortgage uncertainty.</cite> Recovery remains uneven across regions.",
+        "icon": "🛢️",
+        "label": "Oil Crisis Despite Reserve Release",
+        "body": "<cite index=\"22-1,25-13\">The IEA released 400 million barrels from emergency reserves, its largest release ever, as oil prices spiked due to the Iran war</cite>. <cite index=\"26-4,26-13\">Oil prices briefly fell after the announcement but quickly climbed back above $88 per barrel</cite>. <cite index=\"25-9\">The Strait of Hormuz closure has created the biggest oil supply disruption in history</cite>.",
         "source": "Bloomberg"
+      },
+      {
+        "icon": "📈",
+        "label": "Markets Mixed on Energy Fears",
+        "body": "<cite index=\"7-1\">Energy stocks surged 25% year-to-date while tech stocks fell 5%</cite>. <cite index=\"9-5,9-6\">The Dow dropped 308 points while the Nasdaq managed small gains</cite>. <cite index=\"8-18\">Energy companies like Valero and CF Industries led market gains</cite>.",
+        "source": "TheStreet"
+      },
+      {
+        "icon": "⚡",
+        "label": "Inflation Stays Calm Before Storm",
+        "body": "<cite index=\"11-10,11-12\">February inflation came in exactly at 2.4% as expected, with core prices at 2.5%</cite>. <cite index=\"11-6,11-9\">Economists warned this was 'calm before the storm' as the data predates the recent oil surge</cite>. <cite index=\"11-5\">The Fed will likely keep rates unchanged at its March 18 meeting</cite>.",
+        "source": "CNBC"
       }
     ],
     "moderate": [
       {
-        "icon": "⚡",
-        "label": "Middle East Oil Crisis Rocks Markets",
-        "body": "<cite index=\"2-8,2-9\">Global oil markets swung wildly as tensions in the Strait of Hormuz sent Brent crude from $97 to over $103 before retreating.</cite> <cite index=\"2-10\">The move highlights how sensitive energy markets remain to disruptions affecting one of the world's most critical corridors, where nearly 20% of global oil supply passes daily.</cite> <cite index=\"1-21,1-23,1-24\">Asian markets bore the brunt, with Korea hitting circuit breakers down 7.7% and Japan falling 6.5% as these economies import 90% of oil through the strait.</cite> <cite index=\"6-1\">Markets now price just one Fed rate cut in 2026, down from two cuts expected before the conflict.</cite>",
-        "source": "WBN Digital"
-      },
-      {
-        "icon": "🤖",
-        "label": "AI Spending Hits $500 Billion Globally",
-        "body": "<cite index=\"4-18\">The \"AI Capex Boom\" is projected to reach nearly $500 billion this year.</cite> <cite index=\"4-19\">The spending is hitting a physical wall: power availability, as energy conferences will address how new legislation incentivizing domestic energy production bridges this gap.</cite> <cite index=\"13-8,13-10\">China alone expects industry-wide AI spending to exceed $70 billion in 2026, with cloud AI revenue accelerating to reach nearly $90 billion by 2030.</cite> <cite index=\"11-8\">However, Chinese AI investment has been constrained by US export controls creating chip supply bottlenecks, though pressure should lift in 2026.</cite>",
-        "source": "Financial Content"
-      },
-      {
-        "icon": "🏠",
-        "label": "Global Housing Shows Recovery Signs",
-        "body": "<cite index=\"2-15\">Several global housing markets are beginning to show modest signs of recovery as mortgage rates ease slightly from recent highs.</cite> <cite index=\"9-4,9-7,9-8\">However, the UK construction sector plunged deeper into contraction in February, with the PMI falling to 44.5 from 46.4 as residential building collapsed amid mortgage-rate uncertainty and planning delays.</cite> The divergence reflects how central bank policy changes are creating winners and losers across regions. <cite index=\"15-14,15-15\">China's property sector weakness is expected to persist in 2026, weighing down domestic demand despite other economic strengths.</cite>",
+        "icon": "🛢️",
+        "label": "Oil Crisis Despite Reserve Release",
+        "body": "<cite index=\"22-1,23-3\">The IEA approved releasing 400 million barrels from emergency reserves, more than double the 182.7 million released after Russia invaded Ukraine in 2022</cite>. <cite index=\"26-4,30-8\">Despite the announcement, oil prices climbed above $88 per barrel as Brent traded over $90</cite>. <cite index=\"25-6,25-9\">About 20% of global oil normally flows through the Strait of Hormuz, creating the biggest supply disruption in history</cite>. <cite index=\"30-9,30-10\">The release equals just four days of global production, with analysts saying 'it isn't much'</cite>.",
         "source": "Bloomberg"
+      },
+      {
+        "icon": "📈",
+        "label": "Markets Mixed on Energy Fears",
+        "body": "<cite index=\"7-1,7-4\">Energy stocks rallied 25% year-to-date as Brent crude jumped from $70 to over $110 per barrel, while tech stocks fell 5%</cite>. <cite index=\"9-1,9-2,9-7\">The Dow fell 308 points to close at 47,398, the S&P 500 dropped to 6,770, but the Nasdaq gained 5.89 points to 22,703</cite>. <cite index=\"7-11,7-12\">Resource giants like ExxonMobil and Chevron benefited from higher crude prices and increased production quotas</cite>. <cite index=\"7-14\">Copper hit $6.11 per pound due to massive data center wiring requirements</cite>.",
+        "source": "TheStreet"
+      },
+      {
+        "icon": "⚡",
+        "label": "Inflation Stays Calm Before Storm",
+        "body": "<cite index=\"11-10,11-12,18-4\">February CPI rose 0.3% monthly and 2.4% annually, matching forecasts exactly, with core inflation at 2.5%</cite>. <cite index=\"11-6,11-7,11-8\">Economists warned this was the 'calm before the storm' as tariff impacts hit core goods while services inflation remained hot</cite>. <cite index=\"11-9,20-32\">The data predates the oil surge from the Iran war, so energy impacts will appear in March data</cite>. <cite index=\"11-5,20-38\">The Fed will likely hold rates steady at 3.5%-3.75% through its next three meetings</cite>.",
+        "source": "CNBC"
       }
     ],
     "expert": [
       {
-        "icon": "⚡",
-        "label": "Middle East Oil Crisis Rocks Markets",
-        "body": "<cite index=\"2-8,2-9\">Global oil markets experienced sharp overnight volatility as geopolitical risk in the Strait of Hormuz sent Brent crude from $97-$98 to $103-$104 before retreating, representing an intraday swing of approximately $6-$7 per barrel.</cite> <cite index=\"2-10\">The move underscores sensitivity to disruptions affecting nearly 20% of global oil supply that passes through this corridor daily.</cite> <cite index=\"1-21,1-23,1-24\">Asian markets suffered disproportionately given 90% oil import dependency through Hormuz, with Korea's KOSPI hitting circuit breakers down 7.72% and Japan's Nikkei falling 6.45%.</cite> <cite index=\"6-1\">Fed rate cut expectations collapsed from two moves to just one 25bp reduction in September 2026.</cite> <cite index=\"6-3,6-4\">The energy shock creates an inflation wildcard for oil-importing emerging markets while benefiting commodity exporters, likely widening LatAm divergence if sustained.</cite>",
-        "source": "WBN Digital"
-      },
-      {
-        "icon": "🤖",
-        "label": "AI Spending Hits $500 Billion Globally",
-        "body": "<cite index=\"4-18\">The \"AI Capex Boom\" is projected to reach nearly $500 billion in 2026, now hitting a physical constraint: power availability.</cite> <cite index=\"17-11,17-12\">Hyperscaler capex budgets now constitute 2.2% of US GDP, with Google's Larry Page quoted saying \"I'm willing to go bankrupt rather than lose this race.\"</cite> <cite index=\"13-8,13-10\">China's industry-wide AI and cloud capex is projected to exceed $70 billion in 2026, with cloud AI revenue accelerating at a 45% 6-year CAGR to reach $90 billion by 2030.</cite> <cite index=\"11-7,11-8\">Chinese AI investment should accelerate as chip supply constraints from US export controls begin lifting, becoming a bright spot despite broader investment slowdown.</cite> <cite index=\"17-2,17-4\">However, Chinese competition and Moore's Law dynamics make capex increasingly hard to justify, with companies likely to walk back plans on investor pressure.</cite>",
-        "source": "Financial Content"
-      },
-      {
-        "icon": "🏠",
-        "label": "Global Housing Shows Recovery Signs",
-        "body": "<cite index=\"2-15\">Several global housing markets show modest recovery signs as mortgage rates ease from recent highs.</cite> <cite index=\"9-4,9-7,9-8\">However, the UK construction PMI plunged to 44.5 in February versus 47.0 expected, with residential building collapsing amid mortgage uncertainty and planning backlogs.</cite> <cite index=\"15-14,15-15\">China's property sector weakness is expected to persist in 2026, with domestic demand remaining subdued despite economic growth drivers elsewhere.</cite> <cite index=\"18-16,18-23,18-24\">China's property crisis continues causing deflation, trapping the economy in a cycle dating to 2008 where infrastructure spending maintains GDP above 5% but underlying reforms lag.</cite> The global housing divergence reflects how monetary policy transmission varies dramatically across regulatory environments and consumer leverage profiles.",
+        "icon": "🛢️",
+        "label": "Oil Crisis Despite Reserve Release",
+        "body": "<cite index=\"22-1,23-3,24-5\">The IEA's unanimous approval of a 400 million barrel emergency release dwarfs the 182.7 million barrel response to Russia's Ukraine invasion, yet markets remain skeptical</cite>. <cite index=\"26-4,26-13,30-8\">WTI crude briefly dipped below session lows after the announcement before climbing back above $88, with Brent trading over $90</cite>. <cite index=\"29-6,29-8\">Export volumes through the Strait of Hormuz have collapsed to less than 10% of pre-conflict levels, disrupting 20 million barrels per day that normally transit the waterway</cite>. <cite index=\"26-19,28-17\">JPMorgan notes that U.S. SPR releases typically take 13 days to begin delivery, while physical flow limits constrain how quickly stockpiles can be emptied</cite>. <cite index=\"30-9,28-19\">The release equals just four days of global production and cannot substitute for restoring Strait access, according to analysts</cite>.",
         "source": "Bloomberg"
+      },
+      {
+        "icon": "📈",
+        "label": "Markets Mixed on Energy Fears",
+        "body": "<cite index=\"7-1,7-2,7-4\">The energy sector's 25% YTD rally versus tech's 5% decline reflects a dramatic escalation that sent Brent from $70 in late 2025 to over $110 by mid-March</cite>. <cite index=\"9-1,9-2,9-7\">The Dow's 308-point decline (-0.65%) to 47,398 contrasted with the Nasdaq's modest 5.89-point gain (+0.03%) to 22,703 on semiconductor strength</cite>. <cite index=\"7-7,7-8,7-9\">The 'AI Power Wall' has emerged as data center electricity demand outpaces green energy supply, forcing a return to fossil fuels and nuclear</cite>. <cite index=\"7-12,7-14\">ExxonMobil and Chevron benefited from higher quotas and crude prices, while copper reached $6.11/pound on data center infrastructure demand</cite>. <cite index=\"10-4,10-10\">BlackRock warns of market complacency with limited directional equity exposure and reduced U.S. equity positioning given AI deployment concentration risks</cite>.",
+        "source": "TheStreet"
+      },
+      {
+        "icon": "⚡",
+        "label": "Inflation Stays Calm Before Storm",
+        "body": "<cite index=\"11-10,11-12,18-7,18-10\">February's 0.3% monthly CPI gain and 2.4% annual rate matched consensus precisely, with core CPI at 0.2% monthly and 2.5% annually, near 2021 lows</cite>. <cite index=\"11-6,11-7,11-8\">The Carson Group's Varghese characterized this as 'calm before the storm,' noting tariff impacts on core goods and persistent services inflation outside housing</cite>. <cite index=\"18-8,18-9,20-35\">Shelter contributed the largest monthly increase at 0.2%, while gasoline rose 0.8% and food gained 0.4%</cite>. <cite index=\"11-9,20-32,8-8\">The data predates the Iran conflict oil shock, with the EU warning inflation could exceed 3% if Brent sustains $100/barrel levels</cite>. <cite index=\"11-5,2-2,20-38\">Fed funds futures price a March hold at 3.5%-3.75% with near-100% odds, as the FOMC maintains data-dependent policy amid divisions on easing pace</cite>.",
+        "source": "CNBC"
       }
     ]
   }

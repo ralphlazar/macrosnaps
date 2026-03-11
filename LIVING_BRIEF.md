@@ -1,5 +1,5 @@
 # MacroSnaps - Living Brief
-Last updated: March 11, 2026 (Tooling session - update_headlines.py debugged and verified; first live run 13/13 clean; script ready for daily use)
+Last updated: March 11, 2026 (Tooling session - update_headlines.py debugged and verified 13/13; headline_review.html layout redesigned; first live headlines applied and pushed; .env exposure incident resolved)
 
 ---
 
@@ -584,6 +584,7 @@ The tooltip order is: metric name, country + value, story, chart, explanation/bl
 | Macro chart 2026F point missing | Fixed 2026-03-10 | 2026F forecast appended as final point to all macro historical arrays with existing data. |
 | refetch_historical.py overwrites CA % GDP conversion | Known risk | Running refetch restores raw dollar values. Re-run CA conversion after any refetch. Fix properly when updating refetch_historical.py (see Pending work). |
 | No .env file | Fixed 2026-03-11 | .env created at ~/Downloads/macrosnaps/.env with FRED_API_KEY. |
+| .env committed to public repo | Resolved 2026-03-11 | .env and env removed from all git history via filter-branch, force pushed. .env and env added to .gitignore. Anthropic API key regenerated twice (exposed in git history, then again in chat). Always use interactive input or nano to set secrets, never paste into chat. |
 
 ---
 
@@ -648,6 +649,17 @@ Key settings at the top of the script:
 
 6. **Build `print_snapshot.py`.** Uses Playwright to open the built HTML file, loops through each country, expands it, and captures a full-height PDF. Output is a dated file in `snapshots/` (e.g. `macrosnaps-2026-03-09.pdf`). Audience level hardcoded to expert. For personal use only, not a public feature. Requires `pip3 install playwright` and `playwright install chromium`.
 
-7. ~~**Add country-level and global stories to the daily bash ritual.**~~ Done March 11, 2026. `update_headlines.py` calls the Claude API with web search enabled, drafts 12 country story blocks (3 bullets x 3 levels) and global stories (3 items x 3 levels), and saves to `stories_draft_YYYY-MM-DD.json`. `headline_review.html` is a browser-based review and edit tool: load the draft, edit inline, approve per country, export `stories_approved_YYYY-MM-DD.json`. Apply with `python3 update_headlines.py --apply stories_approved_YYYY-MM-DD.json`. Sources from web search are embedded in the draft for verification. First live run verified 13/13 March 11, 2026. Batches: 3x4 countries (Haiku, 8000 tokens each) + 1 global (Sonnet, 5000 tokens).
+**Global stories narrative formula**
+
+The three global story cards always follow a fixed three-act arc:
+- Card 1 - Today's Story: the dominant macro event of the day
+- Card 2 - Biggest Movers: which markets, currencies, or economies are reacting and how
+- Card 3 - The Connection: what ties cards 1 and 2 together, the "so what" for the global picture
+
+All three levels (beginner, moderate, expert) tell the same arc at different depths. The icon and label are identical across levels. This formula is enforced in the `build_global_system()` prompt in `update_headlines.py`.
+
+---
+
+7. ~~**Add country-level and global stories to the daily bash ritual.**~~ Done and verified March 11, 2026. `update_headlines.py` calls the Claude API, drafts 12 country story blocks (3 bullets x 3 levels) in 3 batches of 4 via Haiku (8000 tokens each) and global stories (3 items x 3 levels) via Sonnet with web search (5000 tokens). Saves to `stories_draft_YYYY-MM-DD.json`. `headline_review.html` is a browser-based review tool: tabs show Bullet 1/2/3, each tab shows all three levels stacked for easy comparison. Export `stories_approved_YYYY-MM-DD.json`, apply with `python3 update_headlines.py --apply`. First live run completed 13/13 March 11, 2026.
 
 8. **Post-launch:** revisit architecture if a second person joins to update data daily.

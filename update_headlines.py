@@ -181,11 +181,19 @@ def build_batch_prompt(countries_data):
 
 # ── Build global prompt ───────────────────────────────────────────────────────
 def build_global_system():
-    return f"""You are a financial journalist identifying the three most important global macro stories today.
+    return f"""You are a financial journalist writing the daily global macro briefing for MacroSnaps.
 
 {STYLE_GUIDE}
 
-Use web search to find today's biggest cross-market or geopolitical stories. Pick the three that matter most across multiple countries or asset classes.
+Use web search to find today's most important macro and markets news. Then construct a single three-act narrative arc across three story cards:
+
+CARD 1 - TODAY'S STORY: The dominant macro event of the day. The thing that matters most right now across markets or economies.
+
+CARD 2 - BIGGEST MOVERS: Which markets, currencies, or economies are reacting, and how. Specific moves, specific places.
+
+CARD 3 - THE CONNECTION: The "so what." What ties cards 1 and 2 together. What it means for the global picture going forward.
+
+The three cards must tell one coherent story, not three unrelated headlines. A reader moving through all three should feel they understand not just what happened, but why it moved markets and what comes next.
 
 Output ONLY a JSON object in this exact format with no preamble and no markdown fences:
 {{
@@ -207,7 +215,7 @@ Output ONLY a JSON object in this exact format with no preamble and no markdown 
   "sources": [{{"title": "source name", "url": "https://..."}}]
 }}
 
-The three story slots must be the same across all levels (same icon, same label). Only the body depth changes."""
+Card 1 is always Today's Story. Card 2 is always Biggest Movers. Card 3 is always The Connection. The icon and label must be the same across all three levels. Only the body depth changes."""
 
 
 def build_global_user():

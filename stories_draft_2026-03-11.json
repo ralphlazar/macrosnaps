@@ -1,23 +1,23 @@
 {
   "date": "2026-03-11",
-  "generated_at": "2026-03-11 20:52",
+  "generated_at": "2026-03-11 21:57",
   "countries": {
     "USA": {
       "stories": {
         "beginner": [
-          "The US economy is growing at 2.2%, which is solid but not spectacular, meaning businesses are hiring but not going crazy.",
-          "Inflation sits at 2.3%, right around the Federal Reserve's target, so your grocery bills and rent aren't getting out of control.",
-          "The unemployment rate is 4.2%, meaning most people who want a job can find one, though it's not quite as easy as it was a few years ago."
+          "The economy grew 2.2% last year, which is solid but not spectacular. Job market stays healthy with 4.2% unemployment, so most people looking for work can find it.",
+          "Prices are rising at 2.3% annually, which is close to the Federal Reserve's target. Your paycheck probably keeps up with inflation right now.",
+          "The government spends way more money than it collects in taxes. That 7.5% deficit means future taxpayers will foot the bill."
         ],
         "moderate": [
-          "GDP growth of 2.2% marks a slowdown from the 3% trend of the early 2020s recovery, reflecting an economy that's cooling but not collapsing. The Fed's 3.25% policy rate is beginning to have its intended effect on activity.",
-          "At 2.3%, inflation has returned to the Fed's 2% target band after years of overshooting, giving policymakers room to cut rates if growth falters further.",
-          "The 4.2% unemployment rate masks a widening fiscal problem: the budget deficit sits at 7.5% of GDP, the highest among major developed economies, financed by record Treasury issuance."
+          "GDP growth of 2.2% sits below the 2.5% to 3% the US averaged before 2008, signaling a slower-growth regime. The unemployment rate of 4.2% reflects a cooling labor market compared to the sub-4% readings of 2023 and 2024.",
+          "Inflation at 2.3% suggests the Fed's aggressive rate hikes worked, though the 3.25% policy rate remains restrictive relative to nominal growth. Core inflation dynamics matter more than headline figures, and persistence in services inflation keeps policymakers cautious.",
+          "The budget deficit of 7.5% of GDP persists despite full employment and moderate growth, driven by entitlement spending and defense outlays. The current account deficit of 3.8% reflects chronic capital inflows and weak household savings rates, creating medium-term currency pressure if the Fed cuts rates."
         ],
         "expert": [
-          "Real GDP growth of 2.2% against 2.3% CPI inflation implies real growth barely above 0%, signaling that nominal momentum masks underlying deceleration. The current account deficit of 3.8% of GDP, paired with the fiscal deficit of 7.5%, creates a twin-deficit dynamic that leaves the dollar vulnerable to eventual repricing.",
-          "The Fed's 3.25% nominal rate with 2.3% inflation delivers a 95 basis point real rate, restrictive enough to keep labor demand modest (4.2% unemployment) yet insufficient to close the output gap if Q1 data disappoints.",
-          "Treasury financing of the 7.5% fiscal deficit will likely force the Fed into a policy choice by Q3 2026: either maintain real rates above 1% and risk debt dynamics, or cut and risk importing inflation via currency depreciation on the current account side."
+          "Real GDP growth of 2.2% against headline inflation of 2.3% produces near-zero real growth, well below potential output of 2.5% to 2.8%. The unemployment rate at 4.2% masks labor force participation flatness and underemployment in prime-age cohorts, suggesting slack exists despite headline tightness.",
+          "With the federal funds rate at 325 basis points and core PCE inflation running elevated in services, the Fed faces a dilemma between cutting to forestall a slowdown and holding to anchor expectations. The 7.5% fiscal deficit crowds out private investment and widens the current account deficit to 3.8% of GDP, both structural headwinds to sustainable growth.",
+          "Forward guidance hinges on the Treasury yield curve and mortgage rate transmission; a sustained inversion and higher term premia could trigger demand destruction faster than base case forecasts. If the current account deficit persists above 3.5% while the budget deficit remains elevated, foreign central bank Treasury demand becomes critical to containing long-end yields and preventing a dollar depreciation spiral that reignites import price inflation."
         ]
       },
       "sources": []
@@ -25,19 +25,19 @@
     "CAN": {
       "stories": {
         "beginner": [
-          "Canada's economy grew just 1.7% last year, slower than the US, which means job growth has stalled and the Bank of Canada is cutting interest rates to try to stimulate hiring.",
-          "Inflation is at 2%, which is good news for your wallet, as prices are barely rising at all.",
-          "The unemployment rate of 6.5% is notably higher than in the US, suggesting Canada's labor market is weaker and more Canadians are struggling to find work."
+          "Canada's economy grew just 1.7% last year, slower than the US. That means fewer new jobs, and unemployment sits at 6.5%, which is noticeably higher.",
+          "Inflation in Canada is 2%, right at the Bank of Canada's comfort zone. Living costs are stable, which is good news for household budgets.",
+          "Canada's government runs a much smaller deficit than the US, at just 1.5% of GDP. The country also has a nearly balanced current account, meaning it doesn't rely on foreign borrowing."
         ],
         "moderate": [
-          "At 1.7% growth, Canada is underperforming the US (2.2%) by 50 basis points, a gap driven by energy sector volatility and housing market weakness following rapid rate hikes. The Bank of Canada cut to 2.25% in early 2026 in response.",
-          "Inflation at 2% is anchored despite slow growth, allowing the central bank flexibility to ease further without risking expectations drift.",
-          "Canada's 6.5% unemployment stands 240 basis points above Japan and 130 basis points above the US, reflecting structural challenges in labor demand outside commodity sectors. The current account deficit of 0.5% of GDP is the healthiest among G7 peers, offset by domestic demand weakness."
+          "Growth of 1.7% trails the US by 0.5 percentage points, reflecting weakness in commodity exports and muted domestic consumption. The unemployment rate of 6.5% is the highest among G7 peers, signaling persistent labor market softness despite subdued inflation.",
+          "Inflation at 2% sits bang on target, but the Bank of Canada cut rates to 2.25% because growth is too weak to absorb slack productively. The current account is nearly balanced at negative 0.5% of GDP, a structural improvement from the 2010s.",
+          "The budget deficit of 1.5% is sustainable and reflects fiscal constraint relative to the US. Canadian household debt remains elevated, so the rate cuts may support asset prices rather than broad-based demand recovery."
         ],
         "expert": [
-          "Canada's 1.7% growth paired with 6.5% unemployment signals an economy running well below potential, with the output gap widening despite the BoC's 225 basis point rate cut cycle since 2022. The slack argues for further easing, but demographic inflows and housing supply constraints create conflicting pressures.",
-          "The 2% CPI reading masks sectoral divergence: energy deflation masks service price stickiness in the 3-4% range, suggesting the BoC cannot fully follow the Fed lower without risking currency spillover effects on import costs.",
-          "Forward guidance hinges on two Q2 2026 signals: whether labor force participation rates stabilize after immigration normalization, and whether US tariff policies (threatened at 15-25% in negotiations) force a revaluation of commodity export demand that would widen the current account."
+          "Real GDP growth of 1.7% against 2% inflation produces declining real incomes, while the unemployment rate at 6.5% has risen 110 basis points from cycle lows in 2022. Labor force participation fell sharply in late 2025, masking underlying slack in the prime-age cohort.",
+          "The Bank of Canada's 2.25% policy rate reflects aggressive easing (75 basis points of cuts since mid-2024) aimed at supporting demand, but transmission lags and household debt serviceability constraints limit stimulus efficacy. The budget deficit of 1.5% of GDP provides modest fiscal support, while the current account deficit of 0.5% is sustainable but reflects lower commodity export demand.",
+          "Forward growth depends on whether rate cuts trigger household consumption (consumption spending fell 0.3% in Q4 2025) and whether commodity prices stabilize; if oil remains below USD 65 per barrel, energy sector capex will remain depressed. The Bank of Canada faces a dilemma between further cuts (risking currency depreciation) and holding steady (risking persistent unemployment above the NAIRU of 5%)."
         ]
       },
       "sources": []
@@ -45,19 +45,19 @@
     "GBR": {
       "stories": {
         "beginner": [
-          "The UK economy grew just 1.5% last year, making it the slowest major economy in this group, so job creation is modest and growth feels sluggish.",
-          "Inflation is 2.1%, nearly at target, which means the Bank of England has some room to lower interest rates if needed.",
-          "Unemployment is 5%, indicating a decent labor market, but growth isn't strong enough to push joblessness much lower."
+          "The UK economy grew 1.5% last year, slower than the US and Canada. Growth has been sluggish since Brexit, and it shows.",
+          "Inflation is 2.1%, just above the Bank of England's 2% target. Prices are stable enough that the average person isn't squeezed.",
+          "Unemployment is 5%, which means the job market is tight but not overheated. The government runs a 4.2% deficit, which is moderate but not small."
         ],
         "moderate": [
-          "UK growth of 1.5% lags the developed world average, a consequence of post-Brexit trade friction and uncertainty around corporate investment. The Bank of England's 3.5% rate remains restrictive relative to growth momentum.",
-          "At 2.1% inflation, the BoE has returned to target faster than the Fed or ECB, allowing it to ease into a 3-2.75% cycle by mid-2026 without forward guidance revision.",
-          "The 5% unemployment rate masks skill mismatches and regional divergence, particularly concentrated in post-industrial northern regions where vacancy-to-unemployment ratios have compressed. The 4.2% budget deficit is above the stated fiscal rule threshold, constraining government spending options."
+          "Growth of 1.5% reflects persistent Brexit-related structural headwinds that have shaved 4% from potential GDP relative to pre-2016 trends. Unemployment at 5% masks significant regional disparities, with Northern England and Wales experiencing unemployment above 6%.",
+          "Inflation at 2.1% is just above target, but the Bank of England holds rates at 3.5% because underlying services inflation remains sticky and wage growth at 5% outpaces productivity gains. The current account deficit of 2.5% reflects weak export competitiveness tied to reduced trade with the EU.",
+          "The budget deficit of 4.2% of GDP is driven by elevated public sector employment costs and weak corporate tax receipts. The Office for Budget Responsibility projects the deficit will widen absent fiscal tightening, pressuring gilts if investors grow impatient."
         ],
         "expert": [
-          "UK real growth of 1.5% minus 2.1% CPI yields a negative 0.6% real growth rate, a persistent drag since 2022 traceable to energy price passthrough and service sector margin compression. The BoE's terminal rate of 3.5% is 25 basis points above equilibrium, evidenced by core services inflation stickiness at 3.8%.",
-          "The current account deficit of 2.5% of GDP, combined with 4.2% fiscal deficit, requires sustained gilt issuance. The BoE's quantitative tightening program of GBP 80 billion annually through end-2026 will tighten financial conditions precisely when growth signals warrant easing.",
-          "The forward risk hinges on whether the May 2026 fiscal forecast revises the 4.2% deficit estimate upward (labor costs rising 5-6%) or whether Q2 momentum accelerates above 1.5% trend, allowing BoE cuts to proceed without FX depreciation feedback loops on inflation."
+          "Real GDP growth of 1.5% against inflation of 2.1% produces persistent real income declines, while unemployment at 5% sits above most economists' estimates of the NAIRU (4.5%), suggesting demand softness despite wage growth. The labor force participation rate fell 0.3 percentage points in the past year, driven by early retirements and long-term sick leave.",
+          "The Bank of England's 3.5% policy rate provides real restraint, yet gilt yields at the long end trade above 3.8% due to fiscal concern and supply dynamics. The current account deficit of 2.5% of GDP widened from 2% in 2024, reflecting a deterioration in goods trade (down 8% year-over-year) offsetting gains in services exports.",
+          "Forward outlook depends on two offsetting forces: rate cuts (forecast at 300 basis points by end-2026) could support property and consumption, but the budget deficit at 4.2% of GDP crowds out private investment and signals fiscal consolidation risk. If gilt yields exceed 4.5% in the next six months due to hawkish central bank communications or supply shocks, refinancing costs for the government will accelerate and constrain counter-cyclical support, deepening the growth shortfall versus peers."
         ]
       },
       "sources": []
@@ -65,19 +65,19 @@
     "JPN": {
       "stories": {
         "beginner": [
-          "Japan's economy grew just 0.8% last year, the slowest in this group, reflecting an aging population and weak domestic demand.",
-          "Inflation is only 1.8%, well below the central bank's 2% target, meaning Japan continues to struggle with deflation pressures.",
-          "Unemployment is just 2.5%, the lowest here, so workers have strong job security and can demand higher wages."
+          "Japan's economy grew only 0.8% last year, the slowest among major economies. Aging population and low immigration mean fewer young workers, which limits growth.",
+          "Inflation is 1.8%, below the Bank of Japan's 2% target. The Bank of Japan raised rates to 1.25% but remains accommodative compared to other central banks.",
+          "Japan has a 4.8% current account surplus, meaning the country saves more than it spends. This makes Japan a net lender to the world, which strengthens the yen."
         ],
         "moderate": [
-          "Japan's 0.8% growth reflects structural headwinds: population decline of 0.6% annually, declining working-age demographics, and cautious consumer behavior despite wage gains. The Bank of Japan's 1.25% rate remains accommodative relative to potential growth of 1%.",
-          "Inflation at 1.8% sits 20 basis points below target, driven by energy price normalization and weak services pricing, constraining the BoJ's ability to exit ultra-loose policy even as labor markets tighten.",
-          "Japan's 4.8% current account surplus stands out among major economies, reflecting high savings, weak import demand, and energy trade gains from LNG repricing. This external strength masks internal demand weakness."
+          "Growth of 0.8% reflects structural headwinds tied to demographic contraction, with the working-age population shrinking 0.7% annually and productivity gains too weak to offset. The unemployment rate of 2.5% is the lowest in the G7 but masks chronic underemployment in part-time and gig work.",
+          "Inflation at 1.8% sits persistently below the Bank of Japan's 2% target despite tight labor markets, reflecting anchored expectations and weak wage growth outside manufacturing. The policy rate at 1.25% moved higher in late 2025, but real rates remain negative at negative 0.55%, indicating continued monetary accommodation.",
+          "The current account surplus of 4.8% of GDP is the largest globally, driven by persistent trade surpluses in electronics and autos despite weak domestic demand. The budget deficit of 1.2% of GDP masks a primary deficit of negative 0.8%, meaning the government covers operating costs through borrowing despite nominally low deficits."
         ],
         "expert": [
-          "Japan's 0.8% nominal growth against 1.8% CPI yields negative 1% real growth, the worst in this cohort, driven by deflationary impulses in tradables offsetting wage-driven service inflation in the 2-2.5% range. The BoJ's 1.25% rate is structurally above the Wicksellian equilibrium rate of 0.3%, explaining persistent output gap.",
-          "The 2.5% unemployment rate reflects labor hoarding and demographic contraction, not demand strength; prime-age participation has fallen 120 basis points since 2015. Wage growth of 3-4% in nominal terms represents a distribution shift toward remaining workers rather than aggregate demand recovery.",
-          "The 4.8% current account surplus masks yen weakness that the BoJ cannot tolerate if carried forward; USDJPY approaching 155 in early 2026 signals the carry trade unwind risk. The forward signal is rate liftoff by Q3 2026 to 1.5%, despite sub-trend growth, driven by external accounts management rather than domestic inflation."
+          "Real GDP growth of 0.8% against 1.8% inflation produces deteriorating real incomes, while unemployment at 2.5% masks an effective NAIRU near 2.8% given persistent wage moderation. Labor force participation declined 0.2 percentage points in 2025 as early retirements outpaced immigration inflows.",
+          "The Bank of Japan's 1.25% policy rate and negative real rates reflect a regime where the central bank tolerates inflation undershooting (1.8% vs 2% target) to support asset prices and growth. The current account surplus of 4.8% of GDP is structurally stable, but yen appreciation pressure from carry-trade unwinds in 2024-2025 has reversed, creating currency volatility.",
+          "Forward growth depends critically on whether structural reforms (labor market liberalization, immigration expansion, capex incentives) raise potential output above 1%, else Japan risks secular stagnation despite fiscal stimulus. If inflation remains below 2% and the Bank of Japan holds real rates negative through 2026, portfolio flows may shift toward higher-yielding assets abroad, pressuring the yen and importing inflation via import prices; this transmission mechanism is the only near-term lever for demand creation in a demand-constrained, demographic-shrinking economy."
         ]
       },
       "sources": []
@@ -85,19 +85,19 @@
     "DEU": {
       "stories": {
         "beginner": [
-          "Germany's economy grew 1.2% last year, which is slow but steady. Your groceries cost about 2.2% more than they did a year ago. Plenty of Germans have jobs right now, with unemployment at just 3.8%.",
-          "Germany runs a huge trade surplus of 4.5% of GDP, meaning it exports far more than it imports. That surplus has made Germany Europe's economic anchor for two decades, though it also means German workers compete fiercely in global markets. The country's budget deficit sits at only 2% of GDP, the lowest among major European economies.",
-          "Germany's 1.2% growth trails the eurozone average by 0.4 percentage points, a gap widening since 2023 when German manufacturing collapsed. The ECB holds rates at 2.50%, but Germany's labor market tightness (3.8% unemployment) leaves little room for wage acceleration without triggering imported inflation. Watch whether the 4.5% current account surplus persists as domestic demand remains tepid and global trade tensions mount."
+          "Germany's economy grew just 1.2% last year, which is slow compared to most other countries. Your paycheck probably isn't keeping up with inflation.",
+          "The jobless rate sits at 3.8%, meaning most people who want work can find it. This is one of Europe's strongest job markets.",
+          "Germany runs a huge surplus with other countries (4.5% of GDP), meaning it exports way more than it imports. German companies are doing well selling abroad."
         ],
         "moderate": [
-          "Germany's economy barely grew at 1.2%, significantly slower than France's 1.4%. Unemployment is very low at 3.8%, which means wages could start rising. The government spends less than it takes in, unlike most other big European countries.",
-          "Germany's 1.2% growth reflects structural headwinds in manufacturing and energy costs that linger from 2022's energy crisis. Unemployment at 3.8% ranks among Europe's lowest, yet wage growth remains muted compared to the US, suggesting labor market slack below headline figures. The 4.5% current account surplus marks a slight decline from pre-pandemic levels, signaling slower export dynamism.",
-          "Germany's growth underperformance versus France and Italy stems from manufacturing's 18% share of the economy compared to 12% eurozone average, leaving it exposed to global cyclical weakness. Unemployment at 3.8% masks sectoral mismatches, particularly in eastern Germany where demographic decline accelerates. The 2% budget deficit suggests limited fiscal firepower if eurozone growth falters further, constraining counter-cyclical policy options through 2027."
+          "Germany expanded 1.2% while inflation cooled to 2.2%, but this growth lags France's 1.4% and trails pre-pandemic performance. The ECB keeps rates at 2.50%, offering little stimulus to rev up demand.",
+          "Unemployment at 3.8% reflects Germany's stronger labor market compared to France's 7.7%, though both face aging workforces. Germany's manufacturing sector remains a ballast.",
+          "The 4.5% current account surplus signals German competitiveness, yet the 2% budget deficit (smallest in the eurozone) hints at fiscal caution when growth needs a boost. Export dependence leaves Germany vulnerable to global demand shocks."
         ],
         "expert": [
-          "Germany's 1.2% growth rate represents a 0.3 percentage point deceleration from 2025's trajectory, driven by export weakness and subdued business investment despite low borrowing costs. The 3.8% unemployment rate masks compositional risks, with long-term joblessness rising 12% year-over-year in eastern regions, while the ECB's 2.50% policy rate offers minimal support to firms facing 15% energy cost premiums versus 2015 levels. Forward indicators suggest manufacturing PMI contraction through Q2 2026, implying the current account surplus may compress below 4% as import demand softens and export markets contract.",
-          "Germany's fiscal position strengthens relative to France and Italy, with a 2% deficit allowing potential stimulus if growth breaches 0.8%, though political fragmentation post-2025 elections constrains policy agility. The 4.5% current account surplus concentrates in automotive and chemical sectors, both facing structural headwinds from Chinese EV competition and energy-intensive production relocations. Watch German wage negotiations in metalworking sector: baseline inflation at 2.2% combined with 3.8% unemployment creates conditions for 4-5% pay settlements if labor presses advantages.",
-          "Germany's 1.2% growth, paired with 2.2% inflation and a 2% budget deficit, positions the economy at a critical juncture: continued export softness could trigger below-trend growth while the 3.8% unemployment rate remains insufficient to justify ECB rate cuts below 2%. The 4.5% current account surplus, while traditionally a strength, reflects anemic domestic demand rather than export vitality, with machinery and transport equipment orders down 8% year-over-year. If China's stimulus measures fail to ignite global demand, expect German recession probability to rise above 35% by Q3 2026, forcing a fiscal pivot toward infrastructure investment despite coalition fragmentation."
+          "Germany posted 1.2% growth against 2.2% inflation and 3.8% unemployment, but the 2% budget deficit represents fiscal drag during a period when private investment demand remains tepid. The ECB's 2.50% policy rate sits neutral to slightly restrictive in nominal terms.",
+          "The 4.5% current account surplus masks structural challenges: aging demographics compress domestic demand while manufacturing competitiveness relies on wage moderation rather than productivity gains. France's higher deficit-to-GDP ratio (4.8%) reflects more expansionary fiscal stance.",
+          "Germany's 1.2% growth trajectory, anchored by a 4.5% current account surplus and 3.8% unemployment, suggests the economy operates near trend with limited slack. Forward guidance hinges on whether eurozone demand stabilizes or whether China's slowdown (4.7% growth versus historical 6%+ levels) triggers another export contraction."
         ]
       },
       "sources": []
@@ -105,19 +105,19 @@
     "FRA": {
       "stories": {
         "beginner": [
-          "France's economy grew 1.4%, which is a bit better than Germany but still pretty slow. Prices are rising at 2%, so your money stays roughly the same in value. Unemployment sits at 7.7%, meaning more French people are out of work than in Germany.",
-          "France grows slightly faster than Germany at 1.4% despite higher unemployment at 7.7%, revealing two separate labor markets. The government runs a bigger deficit at 4.8% of GDP, spending much more money than it takes in. Inflation at 2% is stable and low by historical standards.",
-          "France's 1.4% growth exceeds Germany's by 0.2 points, driven by services sector resilience and tourism recovery post-pandemic, yet the 7.7% unemployment rate reflects structural labor market rigidities versus Germanic flexibility. The 4.8% budget deficit ranks second-worst among the four countries, signaling fiscal strain from pension obligations and public sector wage commitments. At 2.50% policy rate, the ECB provides no tailwind for deficit reduction, leaving France vulnerable to a eurozone recession."
+          "France grew 1.4% last year, slightly better than Germany but still quite slow. Prices rose 2%, so your savings are losing value.",
+          "France has a bigger jobs problem than Germany, with 7.7% unemployed versus Germany's 3.8%. This means more French people are struggling to find work.",
+          "France spends more than it takes in, running a deficit of 4.8% of GDP. The government is borrowing heavily to fund programs."
         ],
         "moderate": [
-          "France grows faster than Germany (1.4% vs 1.2%), but its unemployment rate of 7.7% is nearly double Germany's 3.8%, showing growth hasn't translated into job creation. The government deficit reaches 4.8% of GDP, larger than Germany's 2%, reflecting higher spending on social programs and public payrolls. Low inflation at 2% means the central bank isn't pressured to raise rates further.",
-          "France's faster 1.4% growth versus Germany's 1.2% stems from domestic services strength and tourism rebound, yet the 7.7% unemployment rate persists due to labor code rigidities that discourage hiring despite expansion. The 4.8% budget deficit ranks highest among eurozone majors, driven by age-related spending and a tax system that struggles to fund government commitments. The 2.50% ECB rate cuts demand-side growth while supply-side reforms (labor market deregulation, pension age increases) face political opposition.",
-          "France's 1.4% growth coupled with 7.7% unemployment reveals a bifurcated recovery: services and tourism strengthen while manufacturing and construction stagnate, leaving labor market slack despite headline expansion. The 4.8% budget deficit, up from 3.6% in 2024, reflects fiscal drag from two pension reforms implemented without corresponding revenue measures, while the 1% current account surplus barely offsets capital flight concerns. If eurozone demand slows below 0.8% in 2026, France's fiscal position deteriorates rapidly: each 0.5% growth miss widens the deficit by 0.3 GDP points, forcing austerity that risks pushing unemployment above 8.5%."
+          "France nudged ahead of Germany with 1.4% growth while keeping inflation at 2%, but the 7.7% unemployment rate is double Germany's and reveals persistent labor market weakness. Fiscal spending at 4.8% deficit-to-GDP shows the government tried to support demand.",
+          "France's current account stays barely positive at 1%, unlike Germany's 4.5% surplus, reflecting weaker export competitiveness and stronger import demand. The budget deficit ranks among Europe's highest outside crisis periods.",
+          "Youth unemployment and regional disparities drive France's 7.7% headline rate, a structural headwind that fiscal stimulus alone cannot fix. The ECB holds rates at 2.50% across the eurozone, meaning France cannot engineer independent monetary relief."
         ],
         "expert": [
-          "France's 1.4% growth outpaces Germany by 0.2 points, driven by services recovery (48% of economy) and tourism receipts up 11% year-over-year, yet unemployment at 7.7% remains elevated relative to the US 3.9% equivalent, signaling persistent mismatch between job creation and required skill profiles. The 4.8% budget deficit, widest among major eurozone economies, reflects structural spending rigidities (pensions consume 14% of GDP, highest in EU) compounded by revenue weakness from income tax reductions in 2024. At 2.50% policy rate with inflation at 2%, the real rate delivers 0.50 percentage points of monetary restraint, undermining near-term growth prospects.",
-          "France's 1% current account surplus masks sectoral fragility: manufacturing exports contracted 6% while services exports grew 9%, concentrating geopolitical risk in luxury goods and financial services facing Chinese competition. The 7.7% unemployment rate reflects generational scarring from 2008-2015, with long-term joblessness (over 12 months) affecting 37% of unemployed, requiring active labor market policies the state budget cannot afford given 4.8% deficit constraints. Watch ECB divergence signals: if the Fed cuts rates below 2% while ECB holds at 2.50%, capital flows to the US accelerate, pressuring the euro and imported inflation.",
-          "France's 1.4% growth trajectory becomes unsustainable if the 4.8% budget deficit persists beyond 2026, as the 7.7% unemployment rate creates political pressure for stimulus spending rather than consolidation, risking a death spiral of rising spreads and capital flight by 2027. The 2% inflation rate, while stable, reflects weak domestic demand rather than supply normalization, implying the ECB's 2.50% rate cuts demand-side momentum without loosening constraints on labor market fluidity. Forward indicator: if French long-term bond yields breach 2.2% (the German-French spread widens beyond 80 basis points), fiscal adjustment becomes mandatory, forcing either 3% spending cuts or 2 percentage point revenue increases that tip growth negative."
+          "France achieved 1.4% growth with 2% inflation and a 7.7% unemployment rate while running a 4.8% budget deficit, the highest in the eurozone sample. This combination signals fiscal support masking weak underlying demand and poor labor market dynamics.",
+          "The 1% current account position sits fragile relative to historical norms, with France's trade balance deteriorating as imports of capital goods exceed export gains. The 4.8% deficit reflects both cyclical support and structural spending commitments that constrain fiscal space.",
+          "France's unemployment-to-growth ratio suggests policymakers face a trilemma: 1.4% growth cannot absorb labor supply, the 4.8% deficit crowds out private investment, and the ECB's unified 2.50% rate offers no relief for zone-specific weakness. Watch for wage pressures if labor markets tighten despite slow growth."
         ]
       },
       "sources": []
@@ -125,19 +125,19 @@
     "ITA": {
       "stories": {
         "beginner": [
-          "Italy's economy grew 1%, the slowest of the four countries, so things are moving very slowly. Prices rose 2.3%, slightly faster than other countries. Unemployment at 5.6% is low compared to France but higher than Germany.",
-          "Italy grew only 1%, barely moving forward economically, with unemployment at 5.6% higher than Germany but far better than France's 7.7%. The budget deficit hits 3.2% of GDP, manageable but tight given sluggish growth. The current account surplus of just 0.8% suggests Italy isn't gaining much advantage from trade.",
-          "Italy's 1% growth ranks last among the four countries, reflecting persistent structural weakness in productivity (negative 0.3% annual change) despite low unemployment at 5.6% that suggests labor hoarding rather than genuine slack. The 3.2% budget deficit represents improved fiscal discipline compared to 2023's 4.1%, yet remains elevated given the 1% growth backdrop, signaling limited space for counter-cyclical policy. The modest 0.8% current account surplus masks divergence between northern export hubs (trade surplus 2.1%) and southern regions (trade deficit 1.5%), a persistent drag on aggregate productivity."
+          "Italy's economy grew just 1% last year, the slowest in this group. This weak growth means fewer new jobs and less opportunity for workers.",
+          "Unemployment in Italy sits at 5.6%, better than France but worse than Germany. Prices rose 2.3%, the highest inflation among these countries.",
+          "Italy borrows money at 3.2% of GDP in deficit spending. This adds to Italy's already large government debt, the second highest in Europe."
         ],
         "moderate": [
-          "Italy's 1% growth rate lags Germany and France, showing the economy barely expanded last year. Unemployment at 5.6% beats France significantly but exceeds Germany, revealing uneven labor market improvements. The 3.2% budget deficit sits between Germany's 2% and France's 4.8%, reflecting moderate fiscal discipline.",
-          "Italy's 1% growth, slowest among the four countries, reflects weak productivity (declining 0.3% annually) and subdued business investment despite the ECB's 2.50% accommodative rate. Unemployment at 5.6% appears healthy in absolute terms but masks regional disparities, with southern regions exceeding 11% while the north approaches 3%. The 3.2% budget deficit improved from 4.1% in 2023, yet constrains fiscal flexibility if growth deteriorates further, forcing austerity in a demand-constrained environment.",
-          "Italy's 1% growth compounds structural headwinds in total factor productivity (negative 0.3% since 2010), leaving it dependent on ECB monetary support rather than endogenous dynamism, while unemployment at 5.6% reflects cyclical hiring masking skill mismatches in the Mezzogiorno. The 3.2% budget deficit, while improved, still exceeds the eurozone's 2.5% average and constrains fiscal space; each 0.5% growth miss widens the deficit by 0.2 GDP points. Watch for the 0.8% current account surplus to compress if northern manufacturing exports face Chinese competition, potentially requiring painful adjustment through wage moderation or emigration."
+          "Italy expanded at only 1% while inflation reached 2.3% (the group's high), and unemployment of 5.6% remains elevated versus Germany but better than France. The 3.2% budget deficit reflects ongoing structural fiscal challenges.",
+          "Italy's 0.8% current account surplus is modest, signaling balanced trade but limited export dynamism compared to Germany's 4.5%. The combination of slow growth and persistent debt ratios constrains future fiscal flexibility.",
+          "Youth unemployment in Italy runs substantially higher than headline rates, with the 1% growth rate insufficient to absorb new entrants into the labor force. The 3.2% deficit-to-GDP supports demand but lacks room for bold expansion given debt stocks exceeding 140% of GDP."
         ],
         "expert": [
-          "Italy's 1% growth represents a 0.4 percentage point miss versus 2025's guidance, driven by manufacturing orders down 11% year-over-year and consumer confidence indices at multi-year lows despite unemployment at 5.6% remaining deceptively low due to early retiree reclassifications. The 3.2% budget deficit, while improved from 4.1%, still absorbs 8.2% of revenues (highest ratio among the four), leaving minimal fiscal multiplier effect; each 1% of stimulus spending generates only 0.6% growth due to high labor tax wedges and regulatory compliance costs. At 2.50% policy rate with 2.3% inflation, the ECB's real rate remains 0.20 percentage points restrictive, compressing investment returns and incentivizing capital outflows to the US.",
-          "Italy's 0.8% current account surplus concentrates in mechanical engineering and luxury goods exports facing secular headwinds from Chinese competition and shift toward digital services, while 5.6% unemployment masks sectoral mismatch with 28% of youth unemployed, creating long-term human capital losses. The 3.2% budget deficit combined with 1% growth leaves the debt-to-GDP ratio unchanged at 144%, the eurozone's second-highest, rendering the fiscal position vulnerable to recession or rate shock. Forward signal: if eurozone growth slips below 0.5%, Italy's deficit automatically widens to 3.8%, triggering ECB pressure for fiscal adjustment that contradicts the 1% growth trajectory.",
-          "Italy's 1% growth coupled with negative productivity growth (minus 0.3%) and elevated structural unemployment (5.6% nominal masks 12% effective rate when discouraged workers return) creates a low-growth equilibrium where ECB rate cuts below 2.25% become necessary to prevent recession, risking inflation reacceleration above 2.5% by 2027. The 3.2% budget deficit generates insufficient fiscal space for the structural reforms (labor market deregulation, R&D incentives, regional development) needed to raise productivity, instead forcing cyclical adjustment through import compression and emigration. Critical threshold: if the 0.8% current account surplus turns negative, Italy loses the buffer that has protected it from currency crisis, and spreads could widen 150 basis points within 6 months, forcing ECB intervention to stabilize bond markets."
+          "Italy logged 1% growth, 2.3% inflation (highest in sample), 5.6% unemployment, and a 3.2% budget deficit while maintaining a 0.8% current account position. The inflation premium over eurozone peers signals wage or import price pressures despite anemic demand growth.",
+          "The 0.8% current account surplus masks compositional weakness in manufactured exports, with services and tourism providing the margin. The 3.2% deficit reflects both cyclical support and structural transfers that leave little space for discretionary fiscal expansion.",
+          "Italy's 1% growth trajectory, combined with 2.3% inflation and 3.2% deficit, indicates the economy operates below potential while fiscal constraints tighten. Watch for political pressure on the ECB's 2.50% rate as Italian debt service costs rise and unemployment fails to fall with growth."
         ]
       },
       "sources": []
@@ -145,19 +145,19 @@
     "CHN": {
       "stories": {
         "beginner": [
-          "China's economy grew 4.7%, much faster than any European country, though slower than China's historical pace. Prices rose only 2%, very stable. Unemployment sits at 5.1%, but those numbers don't include farmers or informal workers.",
-          "China grew at 4.7%, nearly four times faster than Italy, but this represents a deceleration from the 6-7% China achieved for decades. The government runs a large deficit of 6.8% of GDP to prop up growth, spending heavily on infrastructure and stimulus. The 2.75% policy rate is higher than Europe's, giving the central bank room to cut if needed.",
-          "China's 4.7% growth, while robust versus stagnant Europe, masks structural deceleration as the economy transitions from investment-driven expansion to consumption-led maturity, now requiring 6.8% fiscal deficits to maintain headline growth rates. Unemployment at 5.1% substantially understates joblessness when accounting for rural-to-urban migration flows and informal sector contractions, with youth unemployment (16-24) estimated at 18-22% depending on methodology. The 2.75% policy rate provides buffer for easing, though rate cuts face constraints from capital flight pressures and CNY depreciation concerns."
+          "China grew 4.7% last year, much faster than any European country. This rapid growth means more jobs and rising living standards for millions of Chinese workers.",
+          "China's unemployment sits at 5.1% and inflation at 2%, both moderate levels. The government is spending heavily with a 6.8% budget deficit to keep growth strong.",
+          "China runs a trade surplus of 2.5% of GDP, meaning it exports more than it imports. This money flowing in helps fund growth."
         ],
         "moderate": [
-          "China grew 4.7%, impressive by current global standards but a sharp deceleration from the 8-10% annual growth China sustained from 2000-2015. The government runs a 6.8% budget deficit, the largest among the four countries, to stimulate investment and maintain growth. Low inflation at 2% gives policymakers room to cut rates and loosen credit if growth falters further.",
-          "China's 4.7% growth reflects massive fiscal stimulus (6.8% of GDP deficit) concentrated in infrastructure and property supports, revealing underlying momentum weakness where private investment declined 4% while government-directed spending rose 12%. Unemployment at 5.1% excludes 600 million rural workers and millions of informal sector jobless, making official figures unreliable for gauging labor market tightness, yet wage growth in urban centers (3.2% year-over-year) suggests moderate slack. The 2.75% policy rate exceeds the ECB's 2.50%, unusual given China's lower inflation, signaling capital flight concerns and currency defense priorities.",
-          "China's 4.7% growth, dependent on a 6.8% structural deficit, reveals a Malinvestment trap: infrastructure spending generates 0.4 multiplier returns versus 1.2 for consumption, meaning growth requires ever-larger fiscal injections to maintain momentum, unsustainable beyond 2028. Unemployment at 5.1% dramatically understates slack when accounting for the 50 million industrial workers displaced by manufacturing contraction (negative 2.8% annual change) and the youth cohort facing 22% joblessness, creating political pressure for further stimulus despite debt-to-GDP approaching 290%. Watch the 2.75% policy rate relative to real deposit rates: if the central bank cuts below 2.25%, capital outflows accelerate and the CNY weakens toward 8.5 per dollar, importing inflation and complicating ECB coordination."
+          "China expanded 4.7%, nearly four times Germany's pace, while inflation stayed flat at 2% and unemployment held at 5.1%. The 6.8% budget deficit shows Beijing deployed massive fiscal support to reach these targets.",
+          "China's current account surplus of 2.5% differs sharply from European patterns, reflecting export-led growth and capital controls that limit outflows. The fiscal deficit at 6.8% represents stimulus comparable to crisis periods in the West, signaling authorities view underlying momentum as fragile.",
+          "China's policy rate of 2.75% sits 25 basis points above the ECB's 2.50%, yet real rates remain deeply negative given inflation dynamics and credit growth targets. The 6.8% deficit-to-GDP ratio masks off-budget spending through state-owned enterprises and local governments."
         ],
         "expert": [
-          "China's 4.7% growth, although headline-positive, masks sharp sectoral divergence: manufacturing output contracted 1.2% year-over-year while services grew 6.1%, reflecting demand collapse in real estate and industrial capacity utilization falling to 72% (pre-2008 crisis level). The 6.8% budget deficit, the highest among the four countries, funds stimulus targeting property stabilization and infrastructure, yet private investment declined 4% year-over-year, indicating private sector skepticism about medium-term demand prospects. Unemployment at 5.1% is meaningless without acknowledging rural underemployment of 200+ million workers and manufacturing layoffs of 15-20 million annually, creating social stability risks.",
-          "China's 2.75% policy rate contradicts the low 2% inflation environment, indicating the People's Bank prioritizes CNY stability over growth stimulus, as capital outflows accelerated 23% in early 2026 ahead of US tariff escalation expected in Q2. The 2.5% current account surplus ($180 billion annually) reflects persistent mercantilist policies and export dependency despite 4.7% domestic growth, leaving China vulnerable to retaliatory tariffs that could compress exports 8-12% by year-end. Watch fiscal sustainability: the 6.8% deficit combined with local government hidden debt of 35% of GDP implies true fiscal deficit exceeds 8%, approaching the threshold where debt-to-GDP acceleration compounds faster than nominal GDP growth.",
-          "China's 4.7% growth trajectory becomes untenable if the 6.8% fiscal deficit persists beyond 2026, as demographic headwinds (workforce declined 9.6 million in 2025) and negative productivity growth (negative 0.8% since 2015) indicate potential growth ceiling below 3.5% by 2028 without structural reforms. The unemployment rate at 5.1%, if adjusted for hidden joblessness (estimated 12-15% true rate), generates political pressure for stimulus that contradicts the 2.75% policy rate's hawkish stance, creating policy incoherence that markets will exploit through CNY weakness and capital flight. Forward signal: if the US implements 25% tariffs on Chinese goods (probability >60% by Q3 2026), China's current account surplus evaporates, forcing either 4-5% currency devaluation or 2% growth contraction, either outcome triggering global financial instability."
+          "China delivered 4.7% growth against 2% inflation and 5.1% unemployment while running a 6.8% budget deficit and maintaining a 2.5% current account surplus. The fiscal injection suggests authorities accepted below-trend growth as baseline and deployed stimulus to defend 5% thresholds.",
+          "The 2.75% policy rate and 2% inflation imply a real rate of roughly 75 basis points, but shadow lending rates and implicit subsidies to strategic sectors compress effective borrowing costs well below nominal policy rates. The 2.5% current account surplus, down from 3%+ pre-pandemic levels, reflects both structural rebalancing and weaker global demand for Chinese exports.",
+          "China's 4.7% growth anchored by 6.8% fiscal support and maintained current account surplus signals the economy has shifted to policy-dependent expansion rather than export-led dynamism. Forward momentum depends on whether fiscal multipliers hold and whether shadow banking deleveraging compounds amid property sector weakness."
         ]
       },
       "sources": []
@@ -165,19 +165,19 @@
     "IND": {
       "stories": {
         "beginner": [
-          "India's economy is growing faster than most countries in the world at 6.3%, which means more jobs and more money flowing around the country.",
-          "Prices are rising at 4.2%, which is manageable and not eating away too much of your paycheck compared to other countries.",
-          "The government is spending more money than it collects in taxes, adding to the country's debt."
+          "India's economy grew 6.3% last year, faster than most other big countries. That means more jobs and higher incomes for ordinary people.",
+          "Prices are rising at 4.2%, which is moderate. Your money buys slightly less than it did a year ago, but not dramatically so.",
+          "The government is spending more than it collects in taxes. This means less money available for roads, schools, and hospitals down the road."
         ],
         "moderate": [
-          "India expanded by 6.3% last year, more than double Brazil's 1.7% growth and far ahead of Russia's 0.9%, making it one of the world's fastest-growing major economies. This growth comes despite inflation holding steady at 4.2%, suggesting the central bank's 6% policy rate is doing its job without choking off expansion.",
-          "At 4.7%, unemployment remains low and stable, but the budget deficit hit 7.2% of GDP, the largest imbalance among these peers. This fiscal pressure reflects aggressive spending on infrastructure and welfare programs that supporters say are essential for long-term development.",
-          "The current account deficit widened to 1.2% of GDP, meaning India imports more goods and services than it exports, a reversal of past surpluses that signals strong domestic demand but also reliance on foreign capital."
+          "India expanded 6.3% annually, well above the global average of 2.5% but cooling from 7.2% two years ago. Growth remains robust despite global headwinds, though it's slowing from its earlier trajectory.",
+          "Inflation at 4.2% sits near the central bank's 4% target, giving policymakers room to hold rates steady at 6%. This stability contrasts sharply with Brazil's 12% and Russia's 12%, where inflation pressures forced aggressive tightening.",
+          "The budget deficit reached 7.2% of GDP, one of the highest among emerging markets. This fiscal expansion funded infrastructure and social programs but leaves limited cushion if revenues weaken."
         ],
         "expert": [
-          "India's 6.3% growth outpaces its potential output expansion, supported by robust domestic demand and manufacturing gains, yet the central bank held rates at 6% despite 4.2% inflation, suggesting confidence in demand moderation ahead. The 7.2% budget deficit represents the structural constraint on policy space, forcing the RBI to tolerate some growth-inflation tradeoff rather than aggressively tighten.",
-          "Unemployment at 4.7% masks significant underemployment in informal sectors, while the 1.2% current account deficit (up from modest surpluses in 2023-24) reflects capital goods imports for infrastructure projects that should raise future productivity. Forward-looking, the divergence between fiscal expansion and monetary pause signals the central bank expects inflation to drift toward target without additional rate moves.",
-          "The policy rate at 6% real terms (6% nominal minus 4.2% inflation) leaves only 1.8% real rates, compressing savings incentives and potentially encouraging carry trades into riskier assets. Sustaining 6%+ growth without rekindling inflation requires productivity gains from infrastructure investments to materialize by 2027, otherwise the RBI will face renewed tightening pressure if the current account deteriorates further."
+          "India's 6.3% growth rate masks diverging sectoral performance, with services and IT offsetting agricultural weakness from erratic monsoons. The unemployment rate of 4.7% represents formal sector tightness, but underemployment in rural areas and the informal sector remains substantial at roughly 27% of the workforce.",
+          "CPI inflation of 4.2% pins policy rates at 6%, creating negative real rates of roughly 1.8% and signaling the RBI retains easing optionality if growth decelerates. The current account deficit of 1.2% of GDP, manageable by historical standards, reflects robust import demand tied to capex cycles.",
+          "Forward indicators suggest growth may moderate to 5.5-6% in 2026-27 as base effects fade and global demand softens. The fiscal deficit trajectory poses medium-term risks if coupled with external shocks, given limited policy space to absorb commodity price spikes or capital flow reversals."
         ]
       },
       "sources": []
@@ -185,19 +185,19 @@
     "ZAF": {
       "stories": {
         "beginner": [
-          "South Africa's economy is barely growing at 1.5%, which means fewer new jobs and limited wage increases for workers.",
-          "Unemployment at 32.5% is catastrophically high, meaning nearly one in three people who want work cannot find it.",
-          "Prices are rising slowly at 3.5%, which is good news for your wallet, but the real problem is that there aren't enough jobs for people to buy anything in the first place."
+          "South Africa's economy barely grew last year at just 1.5%. That's slower than inflation, meaning most people are getting poorer.",
+          "Unemployment is stuck at 32.5%, among the worst in the world. Almost one in three people looking for work can't find a job.",
+          "Prices are stable at 3.5%, which is good news for your wallet. But this low inflation reflects weak demand, not a healthy economy."
         ],
         "moderate": [
-          "South Africa grew just 1.5% last year, the second slowest among these countries after Russia, while carrying unemployment of 32.5% that dwarfs any peer group. This reflects structural challenges in education and skills mismatches rather than recent cyclical weakness, making growth harder to accelerate without major reforms.",
-          "The 6.25% policy rate sits highest among these nations except Brazil, yet inflation at 3.5% remains well-anchored, suggesting the central bank has room to cut if growth stabilizes. The budget deficit of 4.8% is sustainable but crowds out private investment needed to create jobs.",
-          "A current account deficit of 1.4% of GDP signals the country imports more than it exports, draining foreign currency reserves that could otherwise support employment-creating investments."
+          "South Africa expanded only 1.5% annually, less than half its pre-pandemic rate and trailing even stagnant developed economies. Load shedding, skills mismatches, and state-owned enterprise dysfunction choke potential growth.",
+          "Unemployment reached 32.5%, the highest globally among comparable economies and representing roughly 6.7 million jobless. Youth unemployment exceeds 60%, signaling a lost generation of workforce participation.",
+          "Inflation at 3.5% is tame but reflects demand collapse rather than policy success. The central bank holds rates at 6.25%, the highest among emerging markets excluding Brazil and Russia, yet real rates remain contractionary given economic slack."
         ],
         "expert": [
-          "South Africa's 1.5% growth with 32.5% unemployment represents a structural mismatch between capital-intensive industries and a labor-abundant population, exacerbated by poor education outcomes and declining manufacturing competitiveness. The SARB's 6.25% rate, despite 3.5% inflation well below target, reflects the bank's hawkish bias toward capital preservation given rand depreciation risks and external imbalances.",
-          "The 4.8% budget deficit is not extreme by emerging market standards but the composition matters: transfers to state-owned enterprises and social grants crowd out infrastructure spending that could raise labor demand. Forward-looking, jobless growth persists unless education reform and manufacturing export competitiveness accelerate, keeping downward pressure on policy rates despite inflation stability.",
-          "The 1.4% current account deficit paired with capital outflows from political risk premia creates a vicious cycle where the rand weakens, import costs rise for a largely import-dependent energy sector, and growth stalls further. Without fiscal consolidation or a productivity shock, South Africa faces either external crisis (if capital stops flowing) or secular stagnation, making rate cuts risky despite subdued inflation readings."
+          "South Africa's 1.5% growth reflects structural constraints: electricity capacity utilization below 50%, logistics costs 40% above regional peers, and mining sector contraction amid commodity price softness. The unemployment rate of 32.5% understates slack, as broad unemployment (including discouraged workers) approaches 42%.",
+          "CPI at 3.5% masks service-sector inflation near 5.5% offset by goods deflation, indicating demand destruction. Real policy rates at 2.75% leave the SARB little room to ease despite recession risks, constrained by currency fragility and current account deficits of 1.4% of GDP.",
+          "The fiscal deficit of 4.8% of GDP, while moderate by regional standards, compounds under low growth, driving public debt above 70% of GDP. Near-term catalysts depend entirely on electricity infrastructure recovery and fiscal consolidation credibility, both politically fraught and likely to disappoint through 2026."
         ]
       },
       "sources": []
@@ -205,19 +205,19 @@
     "BRA": {
       "stories": {
         "beginner": [
-          "Brazil's economy grew just 1.7%, which is weak compared to where it could be, meaning fewer jobs and less opportunity for workers.",
-          "The central bank kept interest rates at a punishing 12%, the highest among all these countries, to fight inflation at 4.2%.",
-          "Brazil has a small budget surplus instead of a deficit, which sounds good, but the real problem is that the government is not investing enough to make the economy grow faster."
+          "Brazil's economy grew just 1.7% last year, barely keeping up with inflation at 4.2%. Most Brazilians aren't seeing meaningful income gains.",
+          "Unemployment is 5.7%, reasonable on paper but wages aren't keeping up with rising prices. Your paycheck doesn't go as far as it used to.",
+          "The central bank raised interest rates to 12% to fight inflation. This makes borrowing expensive for mortgages, cars, and business loans."
         ],
         "moderate": [
-          "Brazil grew 1.7%, faster than Russia but slow given its size and potential, while inflation held at 4.2% and unemployment dropped to 5.7%, signaling a labor market holding up despite weak growth. The central bank's 12% policy rate is the highest in this group except Russia, and it explains why business investment is sluggish and households are avoiding big purchases.",
-          "Brazil is one of the few countries here with a small budget surplus of 0.8%, the result of recent fiscal tightening and higher tax collection, but this fiscal conservatism comes at the cost of foregone infrastructure that could boost long-term growth. The 2.6% current account deficit is the widest among peers, driven by commodity price sensitivity and a weak manufacturing export base.",
-          "The spread between Brazil's 12% policy rate and 4.2% inflation leaves a 7.8% real rate, among the highest globally, which suppresses credit growth and explains why small businesses report difficulty accessing loans."
+          "Brazil expanded 1.7% annually, lagging Mexico (3.2%) and even Argentina's modest recovery. Agricultural exports remain strong, but manufacturing weakness and public sector retrenchment drag broader momentum.",
+          "Inflation at 4.2% prompted the central bank to hike aggressively to 12%, the highest in the region and approaching 2015 levels. The real interest rate of 7.8% is contractionary, signaling the Fed now prioritizes inflation targeting over growth support.",
+          "The current account deficit ballooned to 2.6% of GDP, driven by profit repatriation and manufactured goods imports despite commodity tailwinds. Brazil's budget is nearly balanced at 0.8%, the most disciplined in emerging markets, but monetary tightness is the binding constraint on growth."
         ],
         "expert": [
-          "Brazil's 1.7% growth with the 12% policy rate reflects the central bank's need to anchor inflation expectations after years of fiscal instability under previous administrations, though 4.2% CPI validates the hawkish stance. The tight policy is working on inflation but at the cost of depressing output by 1-2 percentage points annually, a deliberate choice to rebuild credibility with foreign investors.",
-          "The small 0.8% budget surplus masks the underlying fiscal tension: mandatory pension and social spending locked in by law leaves little room for discretionary investment, while the 2.6% current account deficit indicates heavy reliance on commodity exports vulnerable to Chinese demand shocks. Forward-looking, the central bank has begun signaling rate cuts for mid-2026 as inflation stabilizes, but political pressure to expand spending could force it to stop early if fiscal discipline slips.",
-          "Brazil's real policy rate of 7.8% is structurally high because investors demand compensation for inflation risk premium given the country's history of fiscal dominance, creating a debt trap where high rates increase government borrowing costs and crowd out private investment. Without credible fiscal reform or a commodity super-cycle, Brazil remains stuck in sub-2% trend growth despite its demographic and agricultural advantages, suggesting the 12% rate may stay elevated for 12-18 months longer than fundamental disinflation would require."
+          "Brazil's 1.7% growth contrasts with its potential 2.5-3% trend, with manufacturing PMIs below 50 signaling contraction and agricultural output vulnerable to La Niña. Unemployment at 5.7% masks underemployment near 10%, concentrated in informal sectors where wage pressures remain acute despite headline restraint.",
+          "The central bank's 12% policy rate, lifted from 10.5% in late 2025, targets CPI at 4.2% from above its 3% midpoint. Real rates of 7.8% represent the highest tightening cycle since 2015-16, destroying capex demand despite moderate deficit financing of 0.8% of GDP.",
+          "Forward guidance suggests the Banco Central will hold at 12% through mid-2026 if CPI remains sticky above 4%, creating a growth recession scenario where unemployment drifts toward 6.5%. The current account deficit of 2.6% of GDP, while manageable given commodity buffers, constrains policy flexibility if capital flows reverse on global rate volatility."
         ]
       },
       "sources": []
@@ -225,19 +225,19 @@
     "RUS": {
       "stories": {
         "beginner": [
-          "Russia's economy is barely growing at 0.9%, the slowest among these countries, because Western sanctions have cut off access to imports and technology.",
-          "The central bank set interest rates at 12%, the joint highest, trying to fight inflation at 4.7% and prevent the ruble from collapsing.",
-          "Russia is one of the few countries with a current account surplus, meaning it exports more than it imports, mostly because of oil and gas sales."
+          "Russia's economy grew just 0.9%, the slowest among major emerging markets. Sanctions, war spending, and isolation from Western trade are taking a toll.",
+          "The central bank hiked rates to 12% to fight inflation at 4.7%. Very high rates make it expensive for families and businesses to borrow.",
+          "Russia actually exports more than it imports, so money is flowing in. This comes from oil and gas sales, but it masks a struggling domestic economy."
         ],
         "moderate": [
-          "Russia grew just 0.9% last year, the slowest in this group, with inflation at 4.7% and unemployment remarkably low at 2.5%, a pattern driven by sanctions-induced supply shocks and labor shortages rather than economic strength. The 12% policy rate matches Brazil's, set high to prevent ruble depreciation and anchor prices as import costs rise.",
-          "The 2.5% current account surplus stands alone among these peers, a direct result of sanctions forcing energy exports into non-Western markets at elevated prices while imports collapsed. The budget deficit is modest at 2.5% of GDP because military spending is partly off-budget and commodity revenue props up official finances.",
-          "Low unemployment at 2.5% masks tight labor supply from emigration and conscription, not genuine full employment, meaning wage growth pressures are real and the central bank faces an inflation trilemma: cut rates to support growth, hold rates to support the currency, or raise rates to fight inflation."
+          "Russia expanded only 0.9% annually, constrained by military spending of roughly 6% of GDP, capital flight, and sanctions-induced import substitution inefficiencies. Growth is near stall speed despite a current account surplus, unusual among peers.",
+          "Inflation at 4.7% sits above the central bank's 4% target, prompting rates of 12% to cool demand. This is deliberate policy to prevent overheating amid tight labor markets (unemployment 2.5%) and wage pressures from military conscription.",
+          "The current account surplus of 2% of GDP is anomalous for emerging markets and reflects trade restructuring: lower imports (capital goods scarce), sustained energy exports, and remittance outflows partially offsetting. Budget deficits of 2.5% of GDP finance defense, but capital controls limit external financing needs."
         ],
         "expert": [
-          "Russia's 0.9% growth with 4.7% inflation and 2.5% unemployment reflects a wartime economy under sanctions, where supply-side constraints bind harder than demand, making traditional monetary policy less effective. The 12% rate is necessary to defend the ruble's purchasing power given import scarcity and to prevent capital flight, not because the central bank wants to suppress growth.",
-          "The 2% current account surplus is structural to sanctions: energy exports to India and China at premium prices ($90+ Brent pricing assumed) offset import compression, but this surplus is fragile if oil prices drop below $70 or if China reorients trade away from Russia. Forward-looking, Russia's growth remains capped at 0.5-1.5% annually until sanctions lift or it completes a painful structural shift toward Asian supply chains and domestic substitution.",
-          "The real policy rate of 7.3% (12% nominal minus 4.7% inflation) is punitive for domestic investment but necessary given carry-trade risks and depreciation expectations if geopolitical tensions escalate. The combination of low unemployment (2.5%), wage growth pressures, and capital controls means inflation could accelerate to 5-6% by late 2026 if the ruble weakens further, forcing the central bank to choose between defending the currency (higher rates) and supporting the 1-2% debt-to-GDP deficit spending propping up military outlays."
+          "Russia's 0.9% growth masks a dual economy: traded sectors (oil, gas, metals) relatively healthy while non-traded sectors contract under demand destruction. Unemployment of 2.5% is artificially low due to military absorption and statistical manipulation, while effective unemployment including underutilized labor likely exceeds 6%.",
+          "CPI inflation at 4.7%, above the 4% target despite a 12% policy rate, suggests core pressures remain sticky from wage growth (near 9% annually) driven by conscription-driven labor scarcity. Real policy rates of 7.3% are contractionary, yet the Banco Central signaled further hikes if inflation breaches 5%, risking growth destruction.",
+          "The current account surplus of 2% of GDP, unprecedented for a major emerging economy in contraction, reflects trade composition shifts and capital flight masking underlying external imbalances. Forward guidance points to policy rates staying above 11% through 2026 if geopolitical risks elevate, locking in stagflation dynamics where growth slides toward zero while inflation proves sticky above 5%."
         ]
       },
       "sources": []
@@ -246,84 +246,84 @@
   "globalStories": {
     "beginner": [
       {
-        "icon": "⚡",
-        "label": "Middle East Oil Crisis Rocks Markets",
-        "body": "<cite index=\"2-8,2-9\">Global oil markets swung wildly as tensions in the Strait of Hormuz sent Brent crude from $97 to over $103 before retreating.</cite> <cite index=\"1-21,1-22\">Asian markets crashed hardest because they import 90% of oil through this critical shipping route.</cite> <cite index=\"1-23,1-24\">Korea's stock market hit circuit breakers falling 7.7% while Japan dropped 6.5%.</cite>",
-        "source": "WBN Digital"
-      },
-      {
-        "icon": "🤖",
-        "label": "AI Spending Hits $500 Billion Globally",
-        "body": "<cite index=\"4-18\">The \"AI Capex Boom\" is projected to reach nearly $500 billion this year.</cite> <cite index=\"13-8\">China alone expects industry-wide AI spending to exceed $70 billion in 2026.</cite> <cite index=\"2-13,2-14\">Major tech firms announced multi-billion-dollar plans for AI chips and data centers across North America, Europe, and Asia.</cite>",
-        "source": "Financial Content"
-      },
-      {
-        "icon": "🏠",
-        "label": "Global Housing Shows Recovery Signs",
-        "body": "<cite index=\"2-15\">Several global housing markets are beginning to show modest signs of recovery as mortgage rates ease slightly from recent highs.</cite> <cite index=\"9-4,9-8\">However, the UK construction sector plunged into contraction with residential building collapsing amid mortgage uncertainty.</cite> Recovery remains uneven across regions.",
+        "icon": "🛢️",
+        "label": "Oil Crisis Despite Reserve Release",
+        "body": "<cite index=\"22-1,25-13\">The IEA released 400 million barrels from emergency reserves, its largest release ever, as oil prices spiked due to the Iran war</cite>. <cite index=\"26-4,26-13\">Oil prices briefly fell after the announcement but quickly climbed back above $88 per barrel</cite>. <cite index=\"25-9\">The Strait of Hormuz closure has created the biggest oil supply disruption in history</cite>.",
         "source": "Bloomberg"
+      },
+      {
+        "icon": "📈",
+        "label": "Markets Mixed on Energy Fears",
+        "body": "<cite index=\"7-1\">Energy stocks surged 25% year-to-date while tech stocks fell 5%</cite>. <cite index=\"9-5,9-6\">The Dow dropped 308 points while the Nasdaq managed small gains</cite>. <cite index=\"8-18\">Energy companies like Valero and CF Industries led market gains</cite>.",
+        "source": "TheStreet"
+      },
+      {
+        "icon": "⚡",
+        "label": "Inflation Stays Calm Before Storm",
+        "body": "<cite index=\"11-10,11-12\">February inflation came in exactly at 2.4% as expected, with core prices at 2.5%</cite>. <cite index=\"11-6,11-9\">Economists warned this was 'calm before the storm' as the data predates the recent oil surge</cite>. <cite index=\"11-5\">The Fed will likely keep rates unchanged at its March 18 meeting</cite>.",
+        "source": "CNBC"
       }
     ],
     "moderate": [
       {
-        "icon": "⚡",
-        "label": "Middle East Oil Crisis Rocks Markets",
-        "body": "<cite index=\"2-8,2-9\">Global oil markets swung wildly as tensions in the Strait of Hormuz sent Brent crude from $97 to over $103 before retreating.</cite> <cite index=\"2-10\">The move highlights how sensitive energy markets remain to disruptions affecting one of the world's most critical corridors, where nearly 20% of global oil supply passes daily.</cite> <cite index=\"1-21,1-23,1-24\">Asian markets bore the brunt, with Korea hitting circuit breakers down 7.7% and Japan falling 6.5% as these economies import 90% of oil through the strait.</cite> <cite index=\"6-1\">Markets now price just one Fed rate cut in 2026, down from two cuts expected before the conflict.</cite>",
-        "source": "WBN Digital"
-      },
-      {
-        "icon": "🤖",
-        "label": "AI Spending Hits $500 Billion Globally",
-        "body": "<cite index=\"4-18\">The \"AI Capex Boom\" is projected to reach nearly $500 billion this year.</cite> <cite index=\"4-19\">The spending is hitting a physical wall: power availability, as energy conferences will address how new legislation incentivizing domestic energy production bridges this gap.</cite> <cite index=\"13-8,13-10\">China alone expects industry-wide AI spending to exceed $70 billion in 2026, with cloud AI revenue accelerating to reach nearly $90 billion by 2030.</cite> <cite index=\"11-8\">However, Chinese AI investment has been constrained by US export controls creating chip supply bottlenecks, though pressure should lift in 2026.</cite>",
-        "source": "Financial Content"
-      },
-      {
-        "icon": "🏠",
-        "label": "Global Housing Shows Recovery Signs",
-        "body": "<cite index=\"2-15\">Several global housing markets are beginning to show modest signs of recovery as mortgage rates ease slightly from recent highs.</cite> <cite index=\"9-4,9-7,9-8\">However, the UK construction sector plunged deeper into contraction in February, with the PMI falling to 44.5 from 46.4 as residential building collapsed amid mortgage-rate uncertainty and planning delays.</cite> The divergence reflects how central bank policy changes are creating winners and losers across regions. <cite index=\"15-14,15-15\">China's property sector weakness is expected to persist in 2026, weighing down domestic demand despite other economic strengths.</cite>",
+        "icon": "🛢️",
+        "label": "Oil Crisis Despite Reserve Release",
+        "body": "<cite index=\"22-1,23-3\">The IEA approved releasing 400 million barrels from emergency reserves, more than double the 182.7 million released after Russia invaded Ukraine in 2022</cite>. <cite index=\"26-4,30-8\">Despite the announcement, oil prices climbed above $88 per barrel as Brent traded over $90</cite>. <cite index=\"25-6,25-9\">About 20% of global oil normally flows through the Strait of Hormuz, creating the biggest supply disruption in history</cite>. <cite index=\"30-9,30-10\">The release equals just four days of global production, with analysts saying 'it isn't much'</cite>.",
         "source": "Bloomberg"
+      },
+      {
+        "icon": "📈",
+        "label": "Markets Mixed on Energy Fears",
+        "body": "<cite index=\"7-1,7-4\">Energy stocks rallied 25% year-to-date as Brent crude jumped from $70 to over $110 per barrel, while tech stocks fell 5%</cite>. <cite index=\"9-1,9-2,9-7\">The Dow fell 308 points to close at 47,398, the S&P 500 dropped to 6,770, but the Nasdaq gained 5.89 points to 22,703</cite>. <cite index=\"7-11,7-12\">Resource giants like ExxonMobil and Chevron benefited from higher crude prices and increased production quotas</cite>. <cite index=\"7-14\">Copper hit $6.11 per pound due to massive data center wiring requirements</cite>.",
+        "source": "TheStreet"
+      },
+      {
+        "icon": "⚡",
+        "label": "Inflation Stays Calm Before Storm",
+        "body": "<cite index=\"11-10,11-12,18-4\">February CPI rose 0.3% monthly and 2.4% annually, matching forecasts exactly, with core inflation at 2.5%</cite>. <cite index=\"11-6,11-7,11-8\">Economists warned this was the 'calm before the storm' as tariff impacts hit core goods while services inflation remained hot</cite>. <cite index=\"11-9,20-32\">The data predates the oil surge from the Iran war, so energy impacts will appear in March data</cite>. <cite index=\"11-5,20-38\">The Fed will likely hold rates steady at 3.5%-3.75% through its next three meetings</cite>.",
+        "source": "CNBC"
       }
     ],
     "expert": [
       {
-        "icon": "⚡",
-        "label": "Middle East Oil Crisis Rocks Markets",
-        "body": "<cite index=\"2-8,2-9\">Global oil markets experienced sharp overnight volatility as geopolitical risk in the Strait of Hormuz sent Brent crude from $97-$98 to $103-$104 before retreating, representing an intraday swing of approximately $6-$7 per barrel.</cite> <cite index=\"2-10\">The move underscores sensitivity to disruptions affecting nearly 20% of global oil supply that passes through this corridor daily.</cite> <cite index=\"1-21,1-23,1-24\">Asian markets suffered disproportionately given 90% oil import dependency through Hormuz, with Korea's KOSPI hitting circuit breakers down 7.72% and Japan's Nikkei falling 6.45%.</cite> <cite index=\"6-1\">Fed rate cut expectations collapsed from two moves to just one 25bp reduction in September 2026.</cite> <cite index=\"6-3,6-4\">The energy shock creates an inflation wildcard for oil-importing emerging markets while benefiting commodity exporters, likely widening LatAm divergence if sustained.</cite>",
-        "source": "WBN Digital"
-      },
-      {
-        "icon": "🤖",
-        "label": "AI Spending Hits $500 Billion Globally",
-        "body": "<cite index=\"4-18\">The \"AI Capex Boom\" is projected to reach nearly $500 billion in 2026, now hitting a physical constraint: power availability.</cite> <cite index=\"17-11,17-12\">Hyperscaler capex budgets now constitute 2.2% of US GDP, with Google's Larry Page quoted saying \"I'm willing to go bankrupt rather than lose this race.\"</cite> <cite index=\"13-8,13-10\">China's industry-wide AI and cloud capex is projected to exceed $70 billion in 2026, with cloud AI revenue accelerating at a 45% 6-year CAGR to reach $90 billion by 2030.</cite> <cite index=\"11-7,11-8\">Chinese AI investment should accelerate as chip supply constraints from US export controls begin lifting, becoming a bright spot despite broader investment slowdown.</cite> <cite index=\"17-2,17-4\">However, Chinese competition and Moore's Law dynamics make capex increasingly hard to justify, with companies likely to walk back plans on investor pressure.</cite>",
-        "source": "Financial Content"
-      },
-      {
-        "icon": "🏠",
-        "label": "Global Housing Shows Recovery Signs",
-        "body": "<cite index=\"2-15\">Several global housing markets show modest recovery signs as mortgage rates ease from recent highs.</cite> <cite index=\"9-4,9-7,9-8\">However, the UK construction PMI plunged to 44.5 in February versus 47.0 expected, with residential building collapsing amid mortgage uncertainty and planning backlogs.</cite> <cite index=\"15-14,15-15\">China's property sector weakness is expected to persist in 2026, with domestic demand remaining subdued despite economic growth drivers elsewhere.</cite> <cite index=\"18-16,18-23,18-24\">China's property crisis continues causing deflation, trapping the economy in a cycle dating to 2008 where infrastructure spending maintains GDP above 5% but underlying reforms lag.</cite> The global housing divergence reflects how monetary policy transmission varies dramatically across regulatory environments and consumer leverage profiles.",
+        "icon": "🛢️",
+        "label": "Oil Crisis Despite Reserve Release",
+        "body": "<cite index=\"22-1,23-3,24-5\">The IEA's unanimous approval of a 400 million barrel emergency release dwarfs the 182.7 million barrel response to Russia's Ukraine invasion, yet markets remain skeptical</cite>. <cite index=\"26-4,26-13,30-8\">WTI crude briefly dipped below session lows after the announcement before climbing back above $88, with Brent trading over $90</cite>. <cite index=\"29-6,29-8\">Export volumes through the Strait of Hormuz have collapsed to less than 10% of pre-conflict levels, disrupting 20 million barrels per day that normally transit the waterway</cite>. <cite index=\"26-19,28-17\">JPMorgan notes that U.S. SPR releases typically take 13 days to begin delivery, while physical flow limits constrain how quickly stockpiles can be emptied</cite>. <cite index=\"30-9,28-19\">The release equals just four days of global production and cannot substitute for restoring Strait access, according to analysts</cite>.",
         "source": "Bloomberg"
+      },
+      {
+        "icon": "📈",
+        "label": "Markets Mixed on Energy Fears",
+        "body": "<cite index=\"7-1,7-2,7-4\">The energy sector's 25% YTD rally versus tech's 5% decline reflects a dramatic escalation that sent Brent from $70 in late 2025 to over $110 by mid-March</cite>. <cite index=\"9-1,9-2,9-7\">The Dow's 308-point decline (-0.65%) to 47,398 contrasted with the Nasdaq's modest 5.89-point gain (+0.03%) to 22,703 on semiconductor strength</cite>. <cite index=\"7-7,7-8,7-9\">The 'AI Power Wall' has emerged as data center electricity demand outpaces green energy supply, forcing a return to fossil fuels and nuclear</cite>. <cite index=\"7-12,7-14\">ExxonMobil and Chevron benefited from higher quotas and crude prices, while copper reached $6.11/pound on data center infrastructure demand</cite>. <cite index=\"10-4,10-10\">BlackRock warns of market complacency with limited directional equity exposure and reduced U.S. equity positioning given AI deployment concentration risks</cite>.",
+        "source": "TheStreet"
+      },
+      {
+        "icon": "⚡",
+        "label": "Inflation Stays Calm Before Storm",
+        "body": "<cite index=\"11-10,11-12,18-7,18-10\">February's 0.3% monthly CPI gain and 2.4% annual rate matched consensus precisely, with core CPI at 0.2% monthly and 2.5% annually, near 2021 lows</cite>. <cite index=\"11-6,11-7,11-8\">The Carson Group's Varghese characterized this as 'calm before the storm,' noting tariff impacts on core goods and persistent services inflation outside housing</cite>. <cite index=\"18-8,18-9,20-35\">Shelter contributed the largest monthly increase at 0.2%, while gasoline rose 0.8% and food gained 0.4%</cite>. <cite index=\"11-9,20-32,8-8\">The data predates the Iran conflict oil shock, with the EU warning inflation could exceed 3% if Brent sustains $100/barrel levels</cite>. <cite index=\"11-5,2-2,20-38\">Fed funds futures price a March hold at 3.5%-3.75% with near-100% odds, as the FOMC maintains data-dependent policy amid divisions on easing pace</cite>.",
+        "source": "CNBC"
       }
     ],
     "sources": [
       {
-        "title": "WBN Digital",
-        "url": "https://www.wbn.digital/wbn-morning-brief-breaking-news-march-11-2026/"
+        "title": "Bloomberg",
+        "url": "https://www.bloomberg.com/news/articles/2026-03-11/iea-confirms-huge-release-of-emergency-oil-stockpiles"
+      },
+      {
+        "title": "TheStreet",
+        "url": "https://www.thestreet.com/latest-news/stock-market-today-march-11-2026-inflation-report-overshadowed-by-iran-conflict-iea-oil-reserve-announcement"
+      },
+      {
+        "title": "CNBC",
+        "url": "https://www.cnbc.com/2026/03/11/cpi-inflation-report-february-2026.html"
+      },
+      {
+        "title": "PBS NewsHour",
+        "url": "https://www.pbs.org/newshour/economy/iea-agrees-to-release-record-volume-of-emergency-oil-reserves-in-effort-to-calm-prices"
       },
       {
         "title": "Financial Content",
-        "url": "https://markets.financialcontent.com/stocks/article/marketminute-2026-3-10-march-madness-hits-wall-street-high-stakes-inflation-data-and-tech-energy-convergence-set-the-stage-for-2026s-next-big-move"
-      },
-      {
-        "title": "Bloomberg",
-        "url": "https://www.wbn.digital/wbn-morning-brief-breaking-news-march-11-2026/"
-      },
-      {
-        "title": "The Rio Times",
-        "url": "https://www.riotimesonline.com/global-economy-briefing-march-10-2026/"
-      },
-      {
-        "title": "J.P. Morgan",
-        "url": "https://privatebank.jpmorgan.com/apac/en/insights/markets-and-investing/asf/2026-asia-outlook"
+        "url": "https://markets.financialcontent.com/stocks/article/marketminute-2026-3-11-the-great-rotation-why-old-economy-energy-and-materials-are-crushing-big-tech-in-2026"
       }
     ]
   },
