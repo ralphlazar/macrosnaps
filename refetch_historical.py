@@ -11,8 +11,9 @@ Writes updated _frozen_historical into data.json in place.
 Skips any metric that already has sufficient data, unless FORCE_OVERWRITE = True.
 Never touches _frozen_weatherGrid or any other field.
 
-Cannot restore: Equity Vol, Corp Spread, Sov CDS, FX Vol, Budget Deficit.
+Cannot restore: Equity Vol, Corp Spread, Sov CDS, FX Vol.
 No free public source exists for these. They remain as gaps.
+Budget Deficit is fetched from the World Bank API (no key required).
 
 After a successful run:
   python3 build.py && git add -A && git commit -m "Restore _frozen_historical"
@@ -396,6 +397,39 @@ def oecd_fetch_unemployment(country_code):
         return None
 
 
+
+
+# ---------------------------------------------------------------------------
+# WORLD BANK FETCH (Budget Deficit - no key required)
+# ---------------------------------------------------------------------------
+
+def fetch_wb_budget_deficit(country_code):
+    """
+    Fetch general government net lending/borrowing (% GDP) from World Bank API.
+    Indicator: GC.NLD.TOTL.GD.ZS (negative = deficit).
+    Returns last 10 annual values sorted oldest first, or None on error.
+    No API key required.
+    """
+    url = f"https://api.worldbank.org/v2/country/{country_code}/indicator/GC.NLD.TOTL.GD.ZS"
+    try:
+        r = requests.get(url, params={"format": "json", "mrv": 10, "per_page": 10}, timeout=20)
+        time.sleep(REQUEST_DELAY)
+        if r.status_code != 200:
+            log.warning(f"    World Bank budget deficit {country_code}: HTTP {r.status_code}")
+            return None
+        data = r.json()
+        if not isinstance(data, list) or len(data) < 2 or not data[1]:
+            log.warning(f"    World Bank budget deficit {country_code}: unexpected response")
+            return None
+        pts = sorted(
+            [(x["date"], r2(x["value"])) for x in data[1] if x is not None and x["value"] is not None],
+            key=lambda x: x[0]
+        )
+        vals = [v for _, v in pts]
+        return vals[-10:] if vals else None
+    except Exception as exc:
+        log.warning(f"    World Bank budget deficit {country_code}: {exc}")
+        return None
 
 
 def r2(v):
@@ -833,6 +867,20 @@ def process_country(code, country_data):
         else:
             log.info(f"  SKIP    {fx_label} (already populated)")
             results["skipped"].append(fx_label)
+
+    # Budget Deficit (World Bank API - no key required)
+    if not is_populated(frozen, "Budget Deficit") or FORCE_OVERWRITE:
+        log.info(f"  Fetch   Budget Deficit  [World Bank GC.NLD.TOTL.GD.ZS]")
+        vals = fetch_wb_budget_deficit(code)
+        if vals:
+            frozen["Budget Deficit"] = {"v": vals, "type": "bar", "annual": True}
+            log.info(f"    OK ({len(vals)} points)")
+            results["fetched"].append("Budget Deficit")
+        else:
+            results["failed"].append("Budget Deficit")
+    else:
+        log.info(f"  SKIP    Budget Deficit (already populated)")
+        results["skipped"].append("Budget Deficit")
 
     # Rename any wrongly stored "macro" FX entry to the correct label
     if "macro" in frozen and fx_label and fx_label != "macro":
