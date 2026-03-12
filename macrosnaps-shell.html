@@ -6258,7 +6258,7 @@ function showCommoditiesCard() {
         </div>
         <div style="display:flex;align-items:baseline;gap:8px">
           <span class="comm-price">${formatCommPrice(item.price)}<span class="comm-unit">${item.unit}</span></span>
-          <span class="comm-change ${chDir}">${chSign}${item.change.toFixed(1)}%</span>
+          <span class="comm-change ${chDir}">${chSign}${item.change.toFixed(1)}% YoY</span>
         </div>
       </div>`;
   });
@@ -6341,7 +6341,7 @@ function showCommodityMTT(idx) {
   const navHTML = `<div class="tt-nav"><button class="tt-nav-btn" data-dir="up" title="Previous commodity">▲</button><button class="tt-nav-btn" data-dir="down" title="Next commodity">▼</button></div>`;
 
   const tt = document.createElement('div'); tt.className = 'tooltip';
-  tt.innerHTML = `${navHTML}<div class="tt-close">✕</div>${levelToggleHTML()}<div class="tt-title" style="border-left-color:${color}">${item.name}</div><div class="tt-section"><div class="tt-label">${item.symbol} · ${({energy:'Energy',metals:'Metals',agriculture:'Agriculture'})[item.cat] || item.cat}</div><div class="tt-value">${formatCommPrice(item.price)}<span style="font-size:12px;color:#666;font-weight:400;margin-left:6px">${item.unit}</span> <span class="comm-change ${chDir}" style="margin-left:8px">${chSign}${item.change.toFixed(1)}%</span></div></div>${chartHTML}${exHTML}<div class="tt-source">Source: ${comm.source}</div>`;
+  tt.innerHTML = `${navHTML}<div class="tt-close">✕</div>${levelToggleHTML()}<div class="tt-title" style="border-left-color:${color}">${item.name}</div><div class="tt-section"><div class="tt-label">${item.symbol} · ${({energy:'Energy',metals:'Metals',agriculture:'Agriculture'})[item.cat] || item.cat}</div><div class="tt-value">${formatCommPrice(item.price)}<span style="font-size:12px;color:#666;font-weight:400;margin-left:6px">${item.unit}</span> <span class="comm-change ${chDir}" style="margin-left:8px">${chSign}${item.change.toFixed(1)}% YoY</span></div></div>${chartHTML}${exHTML}<div class="tt-source">Source: ${comm.source}</div>`;
 
   document.body.appendChild(tt); tt.offsetHeight; tt.classList.add('active'); attachGlossary(tt);
 
