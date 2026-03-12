@@ -387,30 +387,28 @@ def yf_fx_daily_returns(ticker, days=60):
         log.warning(f"    Yahoo FX returns {ticker}: {exc}")
         return None
 
-def yf_price_and_yoy(ticker):
+def yf_price_and_ytd(ticker):
     """
-    Fetch latest close and year-over-year % change for a futures ticker.
-    Uses 400 days of history so there is always a valid price from ~365 days ago.
-    Returns (current_price_float, yoy_pct_float) or (None, None).
+    Fetch latest close and YTD % change for a futures ticker.
+    Uses the first available close on or after Jan 1 of the current year
+    as the base price, matching the convention used for stock indices.
+    Returns (current_price_float, ytd_pct_float) or (None, None).
     """
     try:
-        end   = datetime.today()
-        start = end - timedelta(days=400)
+        today = datetime.today()
+        jan1  = datetime(today.year, 1, 1)
         t = yf.Ticker(ticker)
-        hist = t.history(start=start.strftime("%Y-%m-%d"))
+        hist = t.history(start=jan1.strftime("%Y-%m-%d"))
         if hist.empty or len(hist) < 2:
             return None, None
-        current = float(hist["Close"].iloc[-1])
-        # Find the close closest to 365 days ago
-        target = end - timedelta(days=365)
-        diffs = abs(hist.index.tz_localize(None) - target)
-        year_ago = float(hist["Close"].iloc[diffs.argmin()])
-        if year_ago == 0:
+        current    = float(hist["Close"].iloc[-1])
+        jan1_close = float(hist["Close"].iloc[0])
+        if jan1_close == 0:
             return current, None
-        yoy = (current - year_ago) / year_ago * 100
-        return current, yoy
+        ytd = (current - jan1_close) / jan1_close * 100
+        return current, ytd
     except Exception as exc:
-        log.warning(f"    Yahoo price/YoY {ticker}: {exc}")
+        log.warning(f"    Yahoo price/YTD {ticker}: {exc}")
         return None, None
 
 # ---------------------------------------------------------------------------
@@ -697,7 +695,7 @@ def process_commodities(data):
             failed += 1
             continue
 
-        current, yoy = yf_price_and_yoy(ticker)
+        current, ytd = yf_price_and_ytd(ticker)
 
         if current is None:
             log.warning(f"  {name:<16} FAILED")
@@ -707,9 +705,9 @@ def process_commodities(data):
         # Update price (round to match existing precision in data.json)
         item["price"] = round(current, 2)
 
-        # Update YoY change
-        if yoy is not None:
-            item["change"] = round(yoy, 1)
+        # Update YTD change
+        if ytd is not None:
+            item["change"] = round(ytd, 1)
 
         # Update spark: drop oldest point, append new close
         spark = item.get("spark", [])
@@ -717,8 +715,8 @@ def process_commodities(data):
             spark = spark[1:] + [round(current, 2)]
             item["spark"] = spark
 
-        change_str = f"{yoy:+.1f}%" if yoy is not None else "YoY n/a"
-        log.info(f"  {name:<16} {current:.2f}  ({change_str} YoY)")
+        change_str = f"{ytd:+.1f}%" if ytd is not None else "YTD n/a"
+        log.info(f"  {name:<16} {current:.2f}  ({change_str} YTD)")
         ok += 1
 
     # Update asOf date to match existing format, e.g. "Mar 12, 2026"
