@@ -566,7 +566,6 @@ function renderGlobalBullet(data, bulletIdx) {
           <textarea class="global-headline-textarea" id="global-label-${lv}-${bulletIdx}" rows="1" style="flex:1">${escHtml(item.label || '')}</textarea>
         </div>
         <textarea class="global-detail-textarea" id="global-body-${lv}-${bulletIdx}" rows="3">${escHtml(item.body || '')}</textarea>
-        <textarea class="global-detail-textarea" id="global-source-${lv}-${bulletIdx}" rows="1" style="min-height:32px;font-size:11px;color:var(--muted)">${escHtml(item.source || '')}</textarea>
       </div>
     </div>`;
   }
