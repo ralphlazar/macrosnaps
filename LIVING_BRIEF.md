@@ -1,5 +1,5 @@
 # MacroSnaps - Living Brief
-Last updated: March 11, 2026 (Tooling session - update_headlines.py debugged and verified 13/13; headline_review.html layout redesigned; first live headlines applied and pushed; .env exposure incident resolved)
+Last updated: March 11, 2026 (Tooling session - update_headlines.py debugged and verified 13/13; max_tokens raised to 8000 per country batch and 5000 for global; batches split from 2x6 to 3x4 to stay within Haiku output ceiling; headline_review.html layout redesigned with bullet tabs showing all three levels stacked; global stories narrative arc formula defined and enforced in prompt: Today's Story / Biggest Movers / The Connection; first live headlines applied and published; .env exposure incident resolved, history rewritten, .gitignore fixed)
 
 ---
 
@@ -660,6 +660,22 @@ All three levels (beginner, moderate, expert) tell the same arc at different dep
 
 ---
 
+### Editorial principle: forecasts vs stories
+
+MacroSnaps has two distinct layers of truth that must not be conflated:
+
+**Forecast values** (source: Ralph's Google Sheet) are annual consensus views for 2026. They drive the metric value displayed on each card and the weather icon. Policy Rate is the year-end forecast. These are proprietary and intentionally stable.
+
+**Stories** should be written off recent data and trends, not off the forecast values. Monthly CPI prints, quarterly GDP flash estimates, central bank decisions, weekly jobless claims - this is the live texture that makes stories worth reading. A story that just restates the annual forecast number adds no value.
+
+The correct approach: stories comment on what is actually happening right now. If recent data is tracking ahead of or behind the annual forecast, the story can note that tension briefly (e.g. "February CPI came in at 2.6%, above the Fed target, but full-year inflation is still expected to settle at 2.3% as base effects kick in mid-year"). But the forecast is not the anchor of the story - recent data is.
+
+Implication for tooling: country stories in `update_headlines.py` should have web search enabled so they can pull actual recent data, not just comment on annual forecast numbers. This is a pending tooling change (see Pending work).
+
+---
+
 7. ~~**Add country-level and global stories to the daily bash ritual.**~~ Done and verified March 11, 2026. `update_headlines.py` calls the Claude API, drafts 12 country story blocks (3 bullets x 3 levels) in 3 batches of 4 via Haiku (8000 tokens each) and global stories (3 items x 3 levels) via Sonnet with web search (5000 tokens). Saves to `stories_draft_YYYY-MM-DD.json`. `headline_review.html` is a browser-based review tool: tabs show Bullet 1/2/3, each tab shows all three levels stacked for easy comparison. Export `stories_approved_YYYY-MM-DD.json`, apply with `python3 update_headlines.py --apply`. First live run completed 13/13 March 11, 2026.
 
-8. **Post-launch:** revisit architecture if a second person joins to update data daily.
+8. **Enable web search for country stories in `update_headlines.py`.** Currently country stories are written off annual forecast values only (Haiku, no search). They should be written off recent data and trends instead, with web search enabled so the model can pull actual monthly/quarterly prints. This requires switching the country batch call from Haiku to Sonnet (web search not available on Haiku) and rearchitecting the prompt to de-emphasise forecast values as the anchor. Forecast values should still be passed as context ("our full-year forecast is X") but recent data should lead. This is a tooling session - upload `LIVING_BRIEF.md` + `update_headlines.py`.
+
+9. **Post-launch:** revisit architecture if a second person joins to update data daily.

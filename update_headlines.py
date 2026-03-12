@@ -4,10 +4,12 @@ update_headlines.py
 ===================
 Drafts fresh country-level stories and global stories.
 
-Architecture (2 API calls total):
-  Call 1 - Haiku, no search: all 12 countries in one batch prompt.
-            Metric values from data.json are the context. Fast and cheap.
-  Call 2 - Sonnet + web search: top 3 global stories.
+Architecture (3 API calls total):
+  Call 1 - Sonnet + web search: harvest recent data for all 12 countries.
+            One call, compact JSON output. Feeds context into country batches.
+  Call 2 - Haiku x3 batches: write country stories using recent data + forecast values.
+            Recent data leads; forecasts passed as background context only.
+  Call 3 - Sonnet + web search: top 3 global stories.
             Web search justified here because global stories need today's news.
 
 Usage:
@@ -46,8 +48,9 @@ except ImportError:
 # ── Config ───────────────────────────────────────────────────────────────────
 DATA_FILE     = "data.json"
 TODAY         = date.today().isoformat()
-MODEL_COUNTRY = "claude-haiku-4-5-20251001"   # batch call, no search
-MODEL_GLOBAL  = "claude-sonnet-4-20250514"     # search-enabled, one call
+MODEL_COUNTRY = "claude-haiku-4-5-20251001"   # batch call, writing only
+MODEL_GLOBAL  = "claude-sonnet-4-20250514"     # search-enabled, global stories
+MODEL_SEARCH  = "claude-sonnet-4-20250514"     # search-enabled, recent data harvest
 LEVELS        = ["beginner", "moderate", "expert"]
 
 COUNTRY_ORDER = [
@@ -222,15 +225,91 @@ def build_global_user():
     return f"Today is {TODAY}. Search for the three most important global macro and markets stories right now and write them at all three audience levels."
 
 
-# ── Call 1: country batch (Haiku, no search) ──────────────────────────────────
-def draft_countries_batch(client, codes, countries_data, label):
+# ── Call 1: recent data harvest (Sonnet + web search) ────────────────────────
+def fetch_recent_country_data(client, countries_data):
+    """
+    Single Sonnet + web search call that pulls recent macro data for all 12
+    countries. Returns a dict keyed by country code with a short plain-text
+    summary of the most recent data points (CPI print, GDP read, central bank
+    decision, etc.). This feeds into the Haiku writing batches as lead context.
+    """
+    print("  [HARVEST] Fetching recent data for all 12 countries (Sonnet+search)...", end=" ", flush=True)
+
+    country_list = []
+    for code in COUNTRY_ORDER:
+        cd = countries_data.get(code)
+        if cd:
+            country_list.append(f"{code} ({cd.get('name', code)})")
+
+    system = (
+        "You are a macro data researcher. Use a single broad web search to find a "
+        "recent global macro roundup or data summary covering multiple economies. "
+        "Do not search per country. One search is enough. "
+        "Extract the most recent data point available for each country: latest CPI "
+        "or inflation print, latest GDP read, or most recent central bank decision. "
+        "Include the actual number and the period it covers. "
+        "Keep each country summary to 1-2 sentences. "
+        "Output ONLY a JSON object with 3-letter country codes as keys and a single "
+        "string value per country. No preamble, no markdown fences."
+    )
+
+    user = (
+        f"Today is {TODAY}. Search for a recent global macro data roundup and extract "
+        f"one short summary per country for these economies:\n"
+        + "\n".join(country_list)
+        + "\n\nOutput format: {\"USA\": \"recent data summary...\", \"CAN\": \"...\", ...}"
+    )
+
+    messages = [{"role": "user", "content": user}]
+    sources = []
+
+    for turn in range(2):
+        try:
+            response = client.messages.create(
+                model=MODEL_SEARCH,
+                max_tokens=1500,
+                system=system,
+                tools=[{"type": "web_search_20250305", "name": "web_search"}],
+                messages=messages
+            )
+        except anthropic.RateLimitError:
+            print("(rate limit, waiting 30s...)", end=" ", flush=True)
+            time.sleep(30)
+            continue
+
+        tool_blocks = [b for b in response.content if b.type == "tool_use"]
+        text_blocks = [b.text for b in response.content if b.type == "text"]
+
+        messages.append({"role": "assistant", "content": response.content})
+
+        if response.stop_reason == "end_turn":
+            text = "\n".join(text_blocks)
+            parsed = extract_json(text)
+            print("OK")
+            return parsed
+
+        if tool_blocks:
+            for tb in tool_blocks:
+                sources.append({"query": tb.input.get("query", "")})
+            messages.append({"role": "user", "content": [
+                {"type": "tool_result", "tool_use_id": tb.id, "content": []}
+                for tb in tool_blocks
+            ]})
+        else:
+            text = "\n".join(text_blocks)
+            parsed = extract_json(text)
+            print("OK")
+            return parsed
+
+    print("FAILED (max turns)")
+    return {}
+
+
+# ── Call 2: country batch (Haiku, writing only) ───────────────────────────────
+def draft_countries_batch(client, codes, countries_data, label, recent_data):
     """Draft stories for a subset of countries in one call."""
     print(f"  [COUNTRIES {label}] {', '.join(codes)}...", end=" ", flush=True)
 
-    # Build prompt for this subset only
-    import copy
-    subset_order_backup = COUNTRY_ORDER[:]
-    # Temporarily patch COUNTRY_ORDER for build_batch_prompt
     lines = []
     lines.append(f"Today is {TODAY}.")
     lines.append("")
@@ -243,11 +322,29 @@ def draft_countries_batch(client, codes, countries_data, label):
     for lv, guide in LEVEL_GUIDANCE.items():
         lines.append(f"  {lv}: {guide}")
     lines.append("")
-    lines.append("Current macro metrics (use as factual anchors):")
+    lines.append(
+        "IMPORTANT: Lead each bullet with recent data and events, not with annual forecast numbers. "
+        "Recent CPI prints, GDP reads, central bank decisions, and market moves are the story. "
+        "Full-year forecast values are provided only as background context. Reference a forecast "
+        "only if recent data is tracking meaningfully ahead of or behind it, and keep that "
+        "reference brief (one clause, not the opening)."
+    )
+    lines.append("")
+    lines.append("Recent data (lead with this):")
+    lines.append("")
+    for code in codes:
+        recent = recent_data.get(code, "")
+        if recent:
+            lines.append(f"{code}: {recent}")
+        else:
+            lines.append(f"{code}: No recent data available. Use your knowledge of current conditions.")
+    lines.append("")
+    lines.append("Full-year forecast values (background context only):")
     lines.append("")
     for code in codes:
         cd = countries_data.get(code)
-        if not cd: continue
+        if not cd:
+            continue
         name = cd.get("name", code)
         macro = cd.get("metrics", {}).get("macro", {})
         lines.append(f"{code} - {name}")
@@ -255,24 +352,48 @@ def draft_countries_batch(client, codes, countries_data, label):
             val = v.get("value") if isinstance(v, dict) else v
             lines.append(f"  {k}: {val}")
         lines.append("")
+    lines.append("BULLET COUNT RULE: EVERY level for EVERY country must have EXACTLY 3 bullets. Not 2, not 4. Exactly 3.")
+    lines.append("If you run out of things to say, write a third bullet drawing on the forecast context.")
+    lines.append("A response with any level containing fewer than 3 bullets is invalid.")
+    lines.append("")
     lines.append("Output ONLY a JSON object with country codes as keys. No preamble, no markdown fences:")
     lines.append("{")
-    lines.append('  "' + codes[0] + '": { "beginner": ["bullet","bullet","bullet"], "moderate": ["...","...","..."], "expert": ["...","...","..."] },')
+    lines.append('  "' + codes[0] + '": { "beginner": ["bullet","bullet","bullet"], "moderate": ["bullet","bullet","bullet"], "expert": ["bullet","bullet","bullet"] },')
     lines.append("  ... (one entry per country code listed above)")
     lines.append("}")
-    lines.append("Each level must have exactly 3 bullets. Each bullet is a single string of 1-3 sentences. Use straight apostrophes only.")
+    lines.append("FINAL CHECK before outputting: count the bullets for every country and every level. Each must be exactly 3. Use straight apostrophes only.")
 
     user_prompt = "\n".join(lines)
 
-    response = client.messages.create(
-        model=MODEL_COUNTRY,
-        max_tokens=8000,
-        messages=[{"role": "user", "content": user_prompt}]
-    )
-    text = response.content[0].text
-    parsed = extract_json(text)
-    print("OK")
-    return parsed
+    for attempt in range(2):
+        response = client.messages.create(
+            model=MODEL_COUNTRY,
+            max_tokens=8000,
+            messages=[{"role": "user", "content": user_prompt}]
+        )
+        text = response.content[0].text
+        parsed = extract_json(text)
+
+        # Validate bullet counts before accepting
+        short = [
+            f"{code}/{lv}"
+            for code in codes
+            if code in parsed
+            for lv in LEVELS
+            if not isinstance(parsed[code].get(lv), list) or len(parsed[code][lv]) < 3
+        ]
+
+        if not short:
+            print("OK")
+            return parsed
+
+        if attempt == 0:
+            print(f"(short bullets: {', '.join(short)}, retrying...)", end=" ", flush=True)
+            time.sleep(5)
+        else:
+            raise ValueError(f"Batch {label} still short after retry: {', '.join(short)}")
+
+    raise ValueError(f"Batch {label} failed validation")
 
 
 def draft_countries(client, data):
@@ -280,15 +401,17 @@ def draft_countries(client, data):
     batch2 = COUNTRY_ORDER[4:8]
     batch3 = COUNTRY_ORDER[8:]
     countries_data = data.get("countries", {})
-    r1 = draft_countries_batch(client, batch1, countries_data, "1/3")
+    recent_data = fetch_recent_country_data(client, countries_data)
     time.sleep(5)
-    r2 = draft_countries_batch(client, batch2, countries_data, "2/3")
+    r1 = draft_countries_batch(client, batch1, countries_data, "1/3", recent_data)
     time.sleep(5)
-    r3 = draft_countries_batch(client, batch3, countries_data, "3/3")
+    r2 = draft_countries_batch(client, batch2, countries_data, "2/3", recent_data)
+    time.sleep(5)
+    r3 = draft_countries_batch(client, batch3, countries_data, "3/3", recent_data)
     return {**r1, **r2, **r3}
 
 
-# ── Call 2: global stories (Sonnet + web search) ──────────────────────────────
+# ── Call 3: global stories (Sonnet + web search) ──────────────────────────────
 def draft_global(client):
     print("  [GLOBAL] Drafting global stories with web search (Sonnet)...", end=" ", flush=True)
 
@@ -346,7 +469,28 @@ def generate_draft(client, data):
         "_failures": []
     }
 
-    # Call 1a + 1b: countries in two batches of 6
+    # Call 1: global stories - run first to avoid Sonnet rate limit after harvest
+    try:
+        gs_parsed, gs_sources = draft_global(client)
+        for lv in LEVELS:
+            if lv not in gs_parsed or len(gs_parsed[lv]) < 3:
+                raise ValueError(f"Missing or short level '{lv}' in global response")
+        draft["globalStories"] = {
+            "beginner": gs_parsed["beginner"][:3],
+            "moderate": gs_parsed["moderate"][:3],
+            "expert":   gs_parsed["expert"][:3],
+            "sources":  gs_parsed.get("sources", []) + [
+                {"title": f"Web search: {s['query']}"} for s in gs_sources if s.get("query")
+            ]
+        }
+    except KeyboardInterrupt:
+        print("\n  Interrupted during global. Saving partial draft...")
+        return draft
+    except Exception as e:
+        print(f"FAILED ({e})")
+        draft["_failures"].append("GLOBAL")
+
+    # Call 2: harvest + country batches
     try:
         country_results = draft_countries(client, data)
         for code in COUNTRY_ORDER:
@@ -355,7 +499,7 @@ def generate_draft(client, data):
                 print(f"  [{code}] missing from batch response - flagged as failure")
                 draft["_failures"].append(code)
                 continue
-            # Validate
+            # Validate (belt-and-suspenders - batch already validates internally)
             ok = True
             for lv in LEVELS:
                 if lv not in result or not isinstance(result[lv], list) or len(result[lv]) < 3:
@@ -374,30 +518,9 @@ def generate_draft(client, data):
                 }
     except KeyboardInterrupt:
         print("\n  Interrupted. Saving partial draft...")
-        return draft
     except Exception as e:
         print(f"FAILED ({e})")
         draft["_failures"].extend(COUNTRY_ORDER)
-
-    # Call 2: global stories
-    try:
-        gs_parsed, gs_sources = draft_global(client)
-        for lv in LEVELS:
-            if lv not in gs_parsed or len(gs_parsed[lv]) < 3:
-                raise ValueError(f"Missing or short level '{lv}' in global response")
-        draft["globalStories"] = {
-            "beginner": gs_parsed["beginner"][:3],
-            "moderate": gs_parsed["moderate"][:3],
-            "expert":   gs_parsed["expert"][:3],
-            "sources":  gs_parsed.get("sources", []) + [
-                {"title": f"Web search: {s['query']}"} for s in gs_sources if s.get("query")
-            ]
-        }
-    except KeyboardInterrupt:
-        print("\n  Interrupted during global. Saving partial draft...")
-    except Exception as e:
-        print(f"FAILED ({e})")
-        draft["_failures"].append("GLOBAL")
 
     return draft
 
@@ -493,7 +616,7 @@ def main():
     print("  MacroSnaps - Draft Headlines")
     print(f"  {TODAY}")
     print("="*60)
-    print(f"\n  2 API calls: Haiku batch (countries) + Sonnet+search (global)\n")
+    print(f"\n  3 API calls: Sonnet+search (harvest) + Haiku x3 (countries) + Sonnet+search (global)\n")
 
     client = get_client()
     t0     = time.time()
