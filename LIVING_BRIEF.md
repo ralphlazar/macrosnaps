@@ -1,5 +1,5 @@
 # MacroSnaps - Living Brief
-Last updated: March 12, 2026 (Tooling session - commodity price automation added to fetch_market_data.py; COMMODITY_TICKERS dict, yf_price_and_yoy helper, and process_commodities function added; updates price, change, spark, and asOf for all 9 commodities daily via Yahoo Finance continuous futures tickers; verified 9/9 March 12, 2026)
+Last updated: March 12, 2026 (Tooling session - update_commodity_stories.py built and verified; checks drift between current commodity prices and storyWrittenAtPrice in data.json; rewrites stories at all three levels for any commodity that has moved past threshold (10% for Natural Gas, 5% for all others); applies directly to data.json with no review step; bootstrapped all 9 commodities on first run March 12, 2026)
 
 ---
 
@@ -254,14 +254,21 @@ Always run a dry run first on any new machine or after a long gap:
 python3 fetch_market_data.py --dry-run
 ```
 
-**Step 5. Rewrite stories where values moved**
+**Step 5. Update commodity stories where prices moved**
+
+This checks each commodity's current price against the price recorded when the story was last written. Any commodity that has moved past its threshold (10% for Natural Gas, 5% for all others) gets a fresh story written at all three levels. If nothing has moved, it exits in under a second.
+```bash
+python3 update_commodity_stories.py
+```
+
+**Step 6. Rewrite stories where values moved**
 
 This diffs `data.json` against the last git commit, identifies metrics that changed past threshold, calls the Claude API, and rewrites stories for those metrics at all three levels.
 ```bash
 python3 update_stories.py
 ```
 
-**Step 6. Draft and review country + global headlines**
+**Step 7. Draft and review country + global headlines**
 
 This calls the Claude API with web search enabled and drafts fresh country-level story bullets and global stories. It writes a preview file but does NOT touch data.json.
 ```bash
@@ -274,7 +281,7 @@ Then apply the approved draft:
 python3 update_headlines.py --apply stories_approved_YYYY-MM-DD.json
 ```
 
-**Step 7. Build the output file**
+**Step 8. Build the output file**
 
 This validates `data.json`, assembles `macrosnaps-globe.html`, and saves a dated backup.
 ```bash
@@ -282,14 +289,14 @@ python3 build.py
 ```
 The build must say `BUILD SUCCESSFUL` before you continue. If it fails, do not push.
 
-**Step 8. Commit and push**
+**Step 9. Commit and push**
 
 ```bash
 git add -A && git commit -m "Daily update $(date +%Y-%m-%d)"
 git push origin master
 ```
 
-**Step 9. Verify the live site**
+**Step 10. Verify the live site**
 
 Wait about 60 seconds, then open:
 ```
@@ -343,7 +350,7 @@ All 168 per-metric stories are complete across all 12 countries and all 3 levels
 - fxRegime descriptions (3 levels): complete for all 12
 
 **Commodity stories (beginner / moderate / expert)**
-All 9 commodities have a `story` object with beginner, moderate, and expert keys. Last updated March 10, 2026. Commodity prices are now updated automatically by `fetch_market_data.py` daily. Stories still require a manual content session when prices move meaningfully. Use the Commodities Session Prompt in Part 1C above. **Next up: commodity story rewrite session.**
+All 9 commodities have a `story` object with beginner, moderate, and expert keys. Commodity prices are updated automatically by `fetch_market_data.py` daily. Stories are now also updated automatically by `update_commodity_stories.py`, which runs daily and rewrites any commodity whose price has moved past threshold (10% for Natural Gas, 5% for all others). All 9 stories bootstrapped and `storyWrittenAtPrice` set on March 12, 2026. No manual story session needed unless you want to override the automated output.
 
 **Global stories (March 10, 2026)**
 - Slot 1: Oil Swings Wildly as Iran War Dominates Markets (WTI $119 to $88 intraday)
@@ -557,6 +564,8 @@ The tooltip order is: metric name, country + value, story, chart, explanation/bl
 
 **update_stories.py for story maintenance.** Diffs data.json against the last git commit to detect meaningful value changes, then calls the Claude API to rewrite stories for affected metrics. Runs after both sync_sheet.py and fetch_market_data.py so it catches all changes in one pass. Built and verified March 11, 2026. Requires ANTHROPIC_API_KEY in .env.
 
+**update_commodity_stories.py for commodity story maintenance.** Runs daily after `fetch_market_data.py`. Compares each commodity's current `price` field against `storyWrittenAtPrice` stored in `data.json`. Rewrites stories at all three levels for any commodity that has moved past its threshold (10% for Natural Gas, 5% for all others). Applies directly to `data.json` with no draft or review step. Built and verified March 12, 2026.
+
 **No CMS.** Pre-launch solo workflow. JSON plus build script is faster to iterate with than any external system.
 
 **GitHub Pages for hosting.** Repo is public at https://github.com/ralphlazar/macrosnaps. Deploy from master branch, root folder. The built HTML file is self-contained (data inlined) so no build step is needed on the server side.
@@ -606,6 +615,39 @@ The tooltip order is: metric name, country + value, story, chart, explanation/bl
 
 ---
 
+### update_commodity_stories.py
+
+The script lives in `~/Downloads/macrosnaps/`. It runs as part of the daily ritual after `fetch_market_data.py`. It checks each commodity's current `price` against `storyWrittenAtPrice` in `data.json` and rewrites stories for any that have moved past threshold.
+
+**Thresholds:**
+
+| Commodity | Threshold |
+|---|---|
+| Natural Gas | 10% |
+| All others | 5% |
+
+**Fields written to each commodity in `data.json`:**
+- `story.beginner.text`, `story.moderate.text`, `story.expert.text` - rewritten story
+- `storyWrittenAtPrice` - price at time of last write, used for future drift checks
+- `storyUpdatedDate` - datestamp of last rewrite
+
+**First-run behaviour:** Any commodity missing `storyWrittenAtPrice` is treated as needing a rewrite, bootstrapping the state. All 9 commodities bootstrapped March 12, 2026.
+
+**Requirements:**
+```
+pip3 install anthropic python-dotenv
+```
+
+**ANTHROPIC_API_KEY** must be set in `.env`.
+
+**To run:**
+```bash
+cd ~/Downloads/macrosnaps
+python3 update_commodity_stories.py
+```
+
+---
+
 ### refetch_historical.py
 
 The script lives in `~/Downloads/macrosnaps/`. It pulls data from FRED and Yahoo Finance and writes `_frozen_historical` into `data.json` in place. It never touches any other field.
@@ -636,7 +678,7 @@ Key settings at the top of the script:
 
 ### Pending work (priority order)
 
-1. **Commodity story rewrite session.** Prices have moved significantly since March 10 (Gold +74% YoY, Silver +157% YoY, WTI at $93.61, Natural Gas down 22% YoY). Use the Commodities Session Prompt in Part 1C. Upload `LIVING_BRIEF.md` + `data.json`.
+1. ~~**Commodity story rewrite session.**~~ Done March 12, 2026. `update_commodity_stories.py` built and added to daily ritual. Bootstrapped all 9 stories on first run. Prices have moved significantly since March 10 (Gold +74% YoY, Silver +157% YoY, WTI at $93.61, Natural Gas down 22% YoY) - all now rewritten automatically.
 
 2. **Apply USA sheet changes.** `sync_sheet.py` preview on March 11 showed USA CPI 3.1% -> 2.3% and Unemployment 4.4% -> 4.2%. These were never applied. Run: `python3 sync_sheet.py --apply && python3 update_stories.py && python3 build.py`
 

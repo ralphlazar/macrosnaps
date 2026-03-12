@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MacroSnaps - Global Economic Dashboard</title>
+<meta name="description" content="Daily macro and market snapshots for 12 major economies. Three expertise levels. Updated every morning.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ralphlazar.github.io/macrosnaps/macrosnaps-globe.html">
+<meta property="og:title" content="MacroSnaps - Global Economic Dashboard">
+<meta property="og:description" content="Daily macro and market snapshots for 12 major economies. Three expertise levels. Updated every morning.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MacroSnaps - Global Economic Dashboard">
+<meta name="twitter:description" content="Daily macro and market snapshots for 12 major economies. Three expertise levels. Updated every morning.">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -5203,20 +5211,23 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column}
 {
   "_note": "FROZEN — never modify. Only data.json changes.",
   "metricSources": {
-    "GDP Growth": "BEA (US) · Cabinet Office (JPN) · ISTAT (ITA) · National statistics offices",
-    "Inflation (CPI)": "BLS (US) · MIC (JPN) · ISTAT (ITA) · National statistics offices",
-    "Unemployment": "BLS (US) · MIC (JPN) · ISTAT (ITA) · National statistics offices",
-    "Budget Deficit": "CBO (US) · MOF (JPN) · ISTAT (ITA) · IMF Fiscal Monitor",
-    "Current Account": "BEA (US) · MOF (JPN) · Bank of Italy · IMF BOP",
-    "Policy Rate": "Federal Reserve · Bank of Japan · ECB · National central banks",
-    "Stock Market YTD": "S&P Dow Jones (US) · Nikkei (JPN) · FTSE Russell (ITA) · Exchange data",
+    "GDP Growth": "National statistics offices · IMF",
+    "Inflation (CPI)": "National statistics offices · IMF",
+    "Unemployment": "National statistics offices · IMF",
+    "Budget Deficit": "IMF Fiscal Monitor · National finance ministries",
+    "Current Account": "IMF BOP Statistics",
+    "Policy Rate": "National central banks",
+    "Stock Market YTD": "Exchange data",
     "Equity Vol": "CBOE VIX (US) · Nikkei VI (JPN) · VSTOXX (EU) · Exchange data",
-    "10Y Bond Yield": "US Treasury · MOF (JPN) · MTS (ITA) · Bloomberg / Refinitiv",
-    "Yield Curve": "US Treasury · MOF (JPN) · MTS (ITA) · Bloomberg / Refinitiv",
+    "10Y Bond Yield": "Bloomberg · Refinitiv",
+    "Yield Curve": "Bloomberg · Refinitiv",
     "Corp Spread": "ICE BofA · Bloomberg Barclays · Refinitiv",
     "Sov CDS": "ICE · DTCC · Bloomberg / Refinitiv",
     "FX Vol": "Bloomberg · Refinitiv · CBOE",
     "FX": "WM/Refinitiv · Bloomberg · National central banks"
+  },
+  "metricDisplayLabels": {
+    "Policy Rate": "Policy Rate (year-end)"
   },
   "chartConfig": {
     "annualLabels": [
@@ -5432,7 +5443,7 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column}
   },
   "footer": {
     "what": "<h2>What?</h2>\n<p><strong>MacroSnaps</strong> is a daily dashboard that makes global macro and market data accessible to everyone - from curious beginners to seasoned professionals.</p>\n<p>Each day, we generate concise snapshots for <span class=\"ft-highlight\">12 major economies</span>: the G7 + BRICS. Every card includes key macro forecasts, live market data, AI-generated story bullets, and a weather icon that tells you the economic outlook at a glance.</p>\n<div class=\"ft-sub\">Three expertise levels</div>\n<p>Not everyone reads the economy the same way. Toggle between <strong>Beginner</strong>, <strong>Moderate</strong>, and <strong>Expert</strong> to change everything - the stories, the terminology, the glossary, and the daily briefing. A beginner sees \"prices are rising faster than normal.\" An expert sees \"core services ex-housing PCE at 4.1% annualised 3M.\"</p>\n<div class=\"ft-sub\">Today's Snap</div>\n<p>Three stories updated each day.<br><span class=\"ft-highlight\">🔥 Today's Story</span> covers the most important macro event.<br><span class=\"ft-highlight\">⚡ Biggest Movers</span> highlights where markets are shifting.<br><span class=\"ft-highlight\">💡 The Connection</span> ties it all together - because in macro, everything is connected.<br><span class=\"ft-highlight\">🛢️ Commodities</span> shows live commodity prices across energy, metals, and agriculture.</p>",
-    "how": "<h2>How?</h2>\n<p>MacroSnaps pulls together macro and market data from public sources daily. The stories, briefings, and glossary definitions are drafted with the help of AI and then edited by hand before anything goes live. Our forecasts are proprietary. The interface is intentionally minimal - the data speaks for itself.</p>",
+    "how": "<h2>How?</h2>\n<p>MacroSnaps pulls together macro and market data from public sources daily. Stories and briefings are drafted by AI and reviewed via a custom editorial tool before going live. Our forecasts are proprietary. The interface is intentionally minimal - the data speaks for itself.</p>",
     "who": "<h2>Who?</h2>\n<p>Built by <strong>Ralph Lazar</strong> - MSc Economics (LSE), formerly Global Equity Strategy at Goldman Sachs and Fixed-Income Prop Trading at CSFB. Old habits die hard.</p>",
     "legal": "<h2>Legalese</h2>\n<div class=\"ft-sub\">Disclaimer</div>\n<p class=\"ft-legal\">All content, including market trends and economic insights, is provided for informational and educational purposes only and does not constitute financial, investment, or trading advice. Past performance is not indicative of future results. You must consult with a qualified financial advisor before making any investment decisions.</p>\n<div class=\"ft-sub\">Privacy</div>\n<p class=\"ft-legal\">MacroSnaps does not sell, share, or distribute any personal data to third parties. We do not use tracking cookies for advertising purposes. Basic analytics may be collected to improve the service (e.g. page views, session duration). If you contact us via the form on this site, your name and email are used solely to respond to your message and are not added to any mailing list. We do not store financial data or personal investment information. By using this site, you consent to this policy. For questions or data removal requests, please use the contact form.</p>",
     "ping": "<h2>Ping Me</h2>\n<p>Something to say? This is the place.</p>\n<form class=\"contact-form\" onsubmit=\"event.preventDefault();this.innerHTML='<p style=\\'color:#00d4ff;margin-top:12px\\'>Message sent. Thanks! ✓</p>';\">\n  <input type=\"text\" placeholder=\"Name\" required>\n  <input type=\"email\" placeholder=\"Email\" required>\n  <textarea placeholder=\"What's on your mind?\" required></textarea>\n  <button type=\"submit\">Send</button>\n</form>"
@@ -5591,7 +5602,8 @@ Object.entries(_glossaryRaw).forEach(([term, entry]) => {
 });
 
 // Frozen config references
-const metricSources     = _frozen.metricSources;
+const metricSources      = _frozen.metricSources;
+const metricDisplayLabels = _frozen.metricDisplayLabels || {};
 const histAnnualLabels  = _frozen.chartConfig.annualLabels;
 const histMonthlyLabels = _frozen.chartConfig.monthlyLabels;
 const gdpYears          = _frozen.chartConfig.weatherGridYears;
@@ -6476,8 +6488,8 @@ function assembleCardData(co) {
 
 function renderCard(d, co) {
   let mH = '', mkH = '';
-  d.macroMetrics.forEach(m => { mH += `<div class="metric" data-m="${m.name}" data-v="${m.val}" data-c="${d.name}" data-s="macro"><div class="m-name">${m.name}</div><div class="m-val">${m.val}</div></div>`; });
-  d.marketMetrics.forEach(m => { mkH += `<div class="metric" data-m="${m.name}" data-v="${m.val}" data-c="${d.name}" data-s="market"><div class="m-name">${m.name}</div><div class="m-val">${m.val}</div></div>`; });
+  d.macroMetrics.forEach(m => { const label = metricDisplayLabels[m.name] || m.name; mH += `<div class="metric" data-m="${m.name}" data-v="${m.val}" data-c="${d.name}" data-s="macro"><div class="m-name">${label}</div><div class="m-val">${m.val}</div></div>`; });
+  d.marketMetrics.forEach(m => { const label = metricDisplayLabels[m.name] || m.name; mkH += `<div class="metric" data-m="${m.name}" data-v="${m.val}" data-c="${d.name}" data-s="market"><div class="m-name">${label}</div><div class="m-val">${m.val}</div></div>`; });
 
   const macroSection = d.macroMetrics.length > 0 ? `<div class="sec-head">MACRO FORECASTS (2026)</div><div class="metrics">${mH}</div>` : '';
   const marketSection = d.marketMetrics.length > 0 ? `<div class="sec-head">MARKETS</div><div class="metrics mkt">${mkH}</div>` : '';
