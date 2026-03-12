@@ -8,7 +8,7 @@
       "weekly": "Update weekly or on release — CPI, unemployment, policy rate",
       "structural": "Update quarterly or on major revision — GDP, deficits, current account, stories, fxRegime"
     },
-    "built_at": "2026-03-12 11:33"
+    "built_at": "2026-03-12 13:25"
   },
   "countries": {
     "USA": {
@@ -83,9 +83,9 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "-1.4%",
+            "value": "-1.2%",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "US stocks fell into negative territory this year, dropping from a 0.5% gain to a 1.4% loss. Markets gave back earlier gains as investors grew more cautious. The shift shows how quickly sentiment can change on Wall Street.",
               "moderate": "The S&P 500's year-to-date performance turned negative, sliding from +0.5% to -1.4% as market momentum reversed course. The 1.9 percentage point decline erased months of steady gains and pushed major indices back into the red. Investor sentiment shifted as concerns about economic growth and corporate earnings weighed on equity valuations. The move reflects broader uncertainty about the direction of US markets heading into year-end.",
@@ -93,9 +93,9 @@
             }
           },
           "Equity Vol": {
-            "value": "~25",
+            "value": "~26",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "Stock market volatility dropped from 30 to 25, meaning investors expect calmer trading ahead. When this number falls, it usually signals growing confidence that stocks won't swing wildly up and down. Markets appear more settled than they were recently.",
               "moderate": "Equity volatility declined from 30 to 25, indicating reduced expectations for sharp price swings in the stock market. This drop suggests investors are pricing in less uncertainty and potential market stress. Lower volatility typically coincides with improved risk sentiment and can make stocks more attractive relative to bonds. The decline points to stabilizing market conditions after a period of heightened concern.",
@@ -103,9 +103,9 @@
             }
           },
           "10Y Bond Yield": {
-            "value": "4.12%",
+            "value": "4.15%",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "The 10-year Treasury yield dropped from 4.22% to 4.12%. This means investors are willing to accept lower returns on government bonds. Lower yields often signal that people expect economic growth to slow down or inflation to ease.",
               "moderate": "The 10-year Treasury yield fell 10 basis points to 4.12%, down from 4.22%. Bond yields move inversely to prices, so this decline indicates stronger demand for government debt. Markets may be pricing in expectations of slower economic growth or anticipating that the Federal Reserve will cut interest rates sooner than previously expected.",
@@ -113,9 +113,9 @@
             }
           },
           "Yield Curve": {
-            "value": "+52bps",
+            "value": "+55bps",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "The difference between long-term and short-term interest rates widened from 22 basis points to 52 basis points. This means investors now demand much higher returns to hold bonds for longer periods. The bigger gap suggests growing optimism about economic growth and inflation expectations.",
               "moderate": "The yield curve steepened significantly, with the spread expanding from 22 basis points to 52 basis points. Bond investors are demanding higher compensation for duration risk, signaling expectations of stronger economic growth and potentially higher inflation ahead. The steeper curve typically benefits banks by widening their lending margins and suggests the Federal Reserve may face pressure to adjust monetary policy.",
@@ -125,7 +125,7 @@
           "Corp Spread": {
             "value": "84bps",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "Corporate bond spreads in the US fell from 100 basis points to 84 basis points. This means investors now demand less extra yield to hold corporate bonds instead of government bonds. Companies can borrow money more cheaply as credit markets show more confidence.",
               "moderate": "US corporate credit spreads tightened significantly from 100bps to 84bps, signaling improved investor sentiment toward corporate debt. The 16 basis point compression indicates markets view default risk as lower and liquidity conditions as more favorable. This spread tightening reduces borrowing costs for companies and suggests stronger corporate credit fundamentals. The move reflects either improving economic conditions or increased risk appetite among fixed income investors.",
@@ -143,9 +143,9 @@
             }
           },
           "USD/DXY": {
-            "value": "99.2",
+            "value": "99.5",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "The dollar weakened slightly, with the Dollar Index falling from 99.5 to 99.2. This means the dollar lost a bit of value compared to other major currencies like the euro and yen. A weaker dollar can make American exports cheaper for foreign buyers.",
               "moderate": "The Dollar Index (DXY) declined from 99.5 to 99.2, signaling modest weakness in the greenback against its major trading partners. This 0.3% drop suggests reduced demand for dollars or increased appetite for risk assets denominated in other currencies. The move could benefit U.S. exporters while potentially adding inflationary pressure through higher import costs. Dollar weakness often coincides with improved sentiment toward emerging markets and commodities.",
@@ -155,7 +155,7 @@
           "FX Vol": {
             "value": "5.8%",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "Currency volatility in the US dropped sharply from 12.5% to 5.8%. This means the dollar became much more stable against other currencies. Calmer markets usually signal that investors feel less worried about economic uncertainty.",
               "moderate": "US dollar volatility plunged from 12.5% to 5.8%, indicating significantly reduced currency market stress. This dramatic decline suggests investors have grown more confident about the economic outlook and Federal Reserve policy direction. Lower FX volatility typically accompanies periods of market stability and reduced geopolitical tensions. The drop makes dollar-denominated investments more attractive to risk-averse global investors.",
@@ -1114,9 +1114,9 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "+3.7%",
+            "value": "+3.9%",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "Canada's stock market gains dropped from 5.4% to 3.7% so far this year. Stocks gave back some of their earlier profits. The market remains positive but momentum has slowed.",
               "moderate": "The TSX's year-to-date performance weakened from +5.4% to +3.7%, signaling recent selling pressure. Canadian equities surrendered nearly two percentage points of gains as investors took profits or rotated out of positions. Despite the pullback, the market maintains solid positive territory for the year. Resource stocks and financials likely drove much of the volatility given their heavy weighting in the index.",
@@ -1126,7 +1126,7 @@
           "Equity Vol": {
             "value": "~20",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "Canadian stock market volatility jumped to around 20%. This means stock prices are swinging up and down much more than usual. Investors are feeling uncertain about the market's direction.",
               "moderate": "Canadian equity volatility spiked to approximately 20%, signaling heightened market uncertainty. This level suggests investors are pricing in significant price swings as they react to economic or political developments. Higher volatility often accompanies periods of market stress or major policy shifts. Trading activity typically increases as investors adjust their positions more frequently.",
@@ -1136,7 +1136,7 @@
           "10Y Bond Yield": {
             "value": "3.40%",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "Canada's 10-year government bond yield dropped from 3.55% to 3.40%. This means investors are willing to accept lower returns to lend money to the Canadian government for a decade. Lower bond yields often signal that people expect slower economic growth or lower inflation ahead.",
               "moderate": "Canadian 10-year government bond yields fell 15 basis points to 3.40%, down from 3.55%. The decline suggests bond investors are pricing in either weaker economic growth prospects or expectations that the Bank of Canada may need to cut interest rates sooner than previously anticipated. This move in long-term yields typically reflects shifting sentiment about Canada's economic trajectory. Lower yields make borrowing cheaper for businesses and consumers, which could support economic activity.",
@@ -1146,7 +1146,7 @@
           "Yield Curve": {
             "value": "+121bps",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "Canada's yield curve steepened dramatically, jumping from 25 basis points to 121 basis points. This means long-term bonds now pay much more interest than short-term ones. Investors expect stronger economic growth or higher inflation ahead.",
               "moderate": "The Canadian yield curve steepened sharply from 25bps to 121bps, signaling a major shift in market expectations. Long-term government bonds now offer significantly higher yields relative to short-term paper. This steepening typically reflects investor bets on stronger future growth, rising inflation expectations, or both. The move suggests markets anticipate the Bank of Canada may need to maintain higher rates for longer than previously expected.",
@@ -1156,7 +1156,7 @@
           "Corp Spread": {
             "value": "84bps",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "Canadian corporate bond spreads dropped sharply from 130 basis points to 84 basis points. This means investors now see much less risk in lending money to Canadian companies compared to the government. Companies can borrow more cheaply, which helps their profits and growth prospects.",
               "moderate": "Canadian corporate credit spreads compressed dramatically from 130bps to 84bps, signaling improved market confidence in corporate borrowers. The 46 basis point tightening reflects reduced default risk perceptions and stronger investor appetite for corporate debt over government bonds. Lower borrowing costs should support capital investment and balance sheet management across Canadian corporates. Credit market conditions have clearly improved as spreads moved well below recent stress levels.",
@@ -1176,7 +1176,7 @@
           "CAD/USD": {
             "value": "0.74",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "The Canadian dollar is worth 74 US cents, meaning the currency has been weakening against the US dollar. A weaker Canadian dollar makes Canadian exports cheaper for foreigners (good for oil and agricultural exporters) but makes imports more expensive for Canadians, adding to cost pressures.",
               "moderate": "CAD/USD at 0.74 reflects the combined effect of the BoC-Fed rate differential (BoC cutting faster, widening the gap) and a tariff-related risk discount on a trade-exposed economy. The oil price surge is a partial offset: higher crude prices historically support the Canadian dollar as a petrocurrency, with the WTI-CAD correlation running near 0.6 over the past year. The net result is a range-bound CAD, with oil providing a floor and rate differentials capping upside. A sustained move below 0.72 would signal that tariff concerns are overriding the oil price support.",
@@ -1184,9 +1184,9 @@
             }
           },
           "FX Vol": {
-            "value": "5.8%",
+            "value": "5.1%",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "The Canadian dollar became much less volatile, with price swings dropping from 10.0% to 5.8%. This means the currency moved around less dramatically in recent trading. Calmer currency markets typically signal that investors feel more confident about Canada's economic outlook.",
               "moderate": "CAD volatility declined sharply from 10.0% to 5.8%, indicating reduced uncertainty in currency markets. Lower FX volatility typically reflects improved investor confidence and reduced hedging costs for Canadian businesses. The compression suggests that market participants see fewer risks to the Canadian dollar's stability. This environment generally supports increased cross-border investment flows and trade activity.",
@@ -2241,9 +2241,9 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "+4.0%",
+            "value": "+3.8%",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "UK stocks gained 4% so far this year, doubling from their 2% rise earlier. British companies are performing better as investors grow more confident. The London stock market shows steady upward momentum.",
               "moderate": "The FTSE has climbed to 4% year-to-date returns, up from 2% in the previous period. UK equities are benefiting from improved investor sentiment and stronger corporate performance. This acceleration suggests growing confidence in British markets despite ongoing economic uncertainties. The doubling of returns indicates momentum is building in London-listed stocks.",
@@ -2253,7 +2253,7 @@
           "Equity Vol": {
             "value": "~15",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "UK stock market volatility dropped from 18% to 15%, showing investors are feeling calmer about British shares. When volatility falls like this, it usually means people expect smoother sailing ahead. Markets appear more stable right now.",
               "moderate": "UK equity volatility declined from approximately 18% to 15%, signaling reduced investor anxiety about British stock market swings. Lower volatility typically indicates greater market confidence and expectations for more predictable price movements. This compression suggests traders are pricing in less uncertainty around UK equities. The move reflects improved sentiment toward British markets.",
@@ -2263,7 +2263,7 @@
           "10Y Bond Yield": {
             "value": "4.45%",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "UK government borrowing costs rose slightly this week. The 10-year bond yield climbed from 4.40% to 4.45%. Higher yields mean the government pays more to borrow money for the long term.",
               "moderate": "The UK 10-year gilt yield edged higher to 4.45% from 4.40%. This uptick reflects investor concerns about inflation persistence or fiscal policy uncertainty. Rising yields increase borrowing costs for the government and often pressure mortgage rates higher. The move suggests bond markets remain cautious about the UK's economic outlook.",
@@ -2273,7 +2273,7 @@
           "Yield Curve": {
             "value": "+74bps",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "The UK yield curve jumped from 30 basis points to 74 basis points. This means the gap between short-term and long-term government borrowing costs widened significantly. Investors now demand much higher returns for lending money to the UK government over longer periods.",
               "moderate": "The UK yield curve steepened dramatically from 30 basis points to 74 basis points, indicating growing investor concerns about longer-term economic prospects. This widening spread between short and long-term gilt yields suggests markets expect either higher inflation or increased credit risk over time. The steepening typically signals that investors demand greater compensation for holding longer-duration UK government debt. Bond markets are pricing in potential economic headwinds that could affect the government's fiscal position.",
@@ -2283,7 +2283,7 @@
           "Corp Spread": {
             "value": "84bps",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "UK corporate bond spreads dropped sharply from 120 basis points to 84 basis points. This means investors now see much less risk in lending money to UK companies compared to the government. Companies can borrow more cheaply, which helps their profits and growth prospects.",
               "moderate": "UK corporate credit spreads compressed dramatically from 120bps to 84bps, signaling improved investor confidence in corporate debt. The 36 basis point tightening reflects reduced default risk perceptions and stronger demand for corporate bonds relative to gilts. This credit improvement lowers borrowing costs for UK businesses and suggests healthier economic conditions ahead.",
@@ -2303,7 +2303,7 @@
           "GBP/USD": {
             "value": "1.34",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "The British pound gained ground against the US dollar, rising from 1.33 to 1.34. This means each pound can now buy slightly more dollars than before. The strengthening pound often signals growing confidence in the UK economy.",
               "moderate": "GBP/USD climbed from 1.33 to 1.34, marking a notable strengthening of sterling against the dollar. The move reflects shifting investor sentiment toward UK assets, possibly driven by economic data or monetary policy expectations. Currency traders are positioning for potential further gains as the pound breaks through technical resistance levels. This appreciation benefits UK consumers purchasing dollar-denominated goods while making British exports more expensive.",
@@ -2313,7 +2313,7 @@
           "FX Vol": {
             "value": "6.8%",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "Currency volatility in the UK dropped sharply from 12.0% to 6.8%. This means the British pound became much more stable against other currencies. Markets are calming down after a period of uncertainty.",
               "moderate": "UK foreign exchange volatility collapsed from 12.0% to 6.8%, signaling a dramatic shift in sterling market conditions. The sharp decline suggests traders see less uncertainty around the pound's direction. Lower FX volatility typically indicates improved market confidence in UK economic stability. This environment makes it cheaper for businesses to hedge currency risk.",
@@ -3371,9 +3371,9 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "+6.2%",
+            "value": "+5.1%",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "Japan's stock market is up 6.2% for the year, a solid gain but well below the 21% peak it hit earlier in 2026. The market gave back much of its strong early gains as the yen strengthened and investors grew cautious about global growth. Japanese stocks remain in positive territory, which is better than most major markets are managing right now.",
               "moderate": "The Nikkei's year-to-date gain has settled at 6.2%, down sharply from its 2026 peak of 21%. The 14.8 percentage point pullback reflects yen appreciation pressuring export earnings, Bank of Japan rate hike expectations, and global risk-off sentiment tied to the Iran conflict and US labor market weakness. At 6.2%, Japan is outperforming most developed markets on a YTD basis, but the momentum that drove the early rally has clearly faded.",
@@ -3383,7 +3383,7 @@
           "Equity Vol": {
             "value": "~32",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "Japanese stock market volatility jumped from 28 to 32, meaning investors expect bigger price swings ahead. When this number rises, it usually signals growing uncertainty about Japan's economic direction. Markets become choppier when traders can't agree on where prices should go.",
               "moderate": "Japan's equity volatility spiked from 28 to 32, reflecting heightened investor uncertainty in domestic markets. This 14% increase in the VIX-equivalent measure suggests traders are pricing in larger potential price movements across Japanese equities. Rising volatility often accompanies periods of economic transition or policy shifts. The jump indicates decreased confidence in near-term market direction among institutional investors.",
@@ -3393,7 +3393,7 @@
           "10Y Bond Yield": {
             "value": "2.24%",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "Japan's 10-year government bond yield jumped from 2.15% to 2.24% in a sharp move higher. This means investors now demand more return to lend money to the Japanese government for a decade. Rising bond yields often signal expectations for higher inflation or economic growth ahead.",
               "moderate": "Japan's 10-year government bond yield climbed 9 basis points to 2.24%, marking a notable shift in the country's debt markets. The move reflects growing investor expectations for either sustained inflation pressures or potential monetary policy adjustments by the Bank of Japan. Higher yields make government borrowing more expensive while potentially strengthening the yen against other currencies. This level puts Japanese yields well above the ultra-low rates that defined the country's bond market for over a decade.",
@@ -3403,7 +3403,7 @@
           "Yield Curve": {
             "value": "+112bps",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "Japan's yield curve steepened significantly, jumping from 90 basis points to 112 basis points. This means the gap between short-term and long-term interest rates grew wider. Investors now expect bigger differences between what the government pays on short versus long bonds.",
               "moderate": "Japan's yield curve steepened sharply from 90 to 112 basis points, signaling shifting expectations about monetary policy and economic growth. The widening spread between short and long-term government bond yields suggests investors anticipate either higher future inflation or potential policy normalization by the Bank of Japan. This steepening typically reflects growing optimism about economic expansion. Bond traders are pricing in a scenario where short-term rates may rise less aggressively than longer-term rates.",
@@ -3413,7 +3413,7 @@
           "Corp Spread": {
             "value": "84bps",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "Japanese corporate bonds became much riskier investments recently. The extra interest investors demand to hold company debt instead of government bonds jumped from 0.5% to 0.84%. Companies now face higher borrowing costs, which could slow business expansion.",
               "moderate": "Corporate credit spreads in Japan widened dramatically from 50 basis points to 84 basis points. This 34bp increase signals growing investor concern about corporate default risk and deteriorating credit conditions. Japanese companies will face higher funding costs, potentially constraining capital expenditure and dividend payments. The spread widening suggests credit markets are repricing risk amid economic uncertainty.",
@@ -3431,9 +3431,9 @@
             }
           },
           "USD/JPY": {
-            "value": "158.8",
+            "value": "159.0",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "The Japanese yen weakened slightly against the US dollar, moving from 158.5 to 158.8. This means it now takes more yen to buy one dollar. The yen continues trading near levels that make Japanese exports cheaper for foreign buyers.",
               "moderate": "USD/JPY climbed from 158.5 to 158.8, extending the yen's weakness against the dollar. The pair remains near multi-decade highs as the interest rate gap between Japan and the US keeps pressure on the yen. This level supports Japanese exporters through improved competitiveness but raises import costs for consumers.",
@@ -3441,9 +3441,9 @@
             }
           },
           "FX Vol": {
-            "value": "8.5%",
+            "value": "8.4%",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "Currency traders expect much less wild swings in the Japanese yen now. The measure of expected volatility dropped from 16.0% to 8.5%. This means markets think the yen will move more predictably against other currencies.",
               "moderate": "FX volatility for the Japanese yen fell sharply from 16.0% to 8.5%, signaling that currency markets expect calmer trading conditions ahead. This decline suggests reduced uncertainty around Japanese monetary policy and economic outlook. Lower volatility typically makes the yen more attractive to carry trade strategies and institutional investors seeking stable currency exposure.",
@@ -4404,9 +4404,9 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "-3.6%",
+            "value": "-3.7%",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "German stocks have fallen sharply this year. The market went from being up 11% to down 3.6%, a major reversal that wipes out earlier gains.",
               "moderate": "German equities have reversed course dramatically, falling from an 11% year-to-date gain to a 3.6% loss. This 14.6 percentage point swing reflects broader concerns about Europe's largest economy. The DAX decline mirrors weakness across European markets as investors reassess growth prospects and monetary policy impacts.",
@@ -4416,7 +4416,7 @@
           "Equity Vol": {
             "value": "~20",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "Volatility in German stocks is elevated at around 20, meaning prices are swinging more than usual. Investors are uncertain about how the Iran conflict, new government spending plans, and global trade tensions will all play out together.",
               "moderate": "German equity volatility at approximately 20 reflects multiple concurrent uncertainties: the Iran energy shock, the ECB's evolving policy path, execution risk on the fiscal programme, and US tariff risk for Germany's export-oriented industrial base; this is above long-run averages but not at crisis levels, consistent with a risk-on market that is nonetheless pricing significant tail risk.",
@@ -4426,7 +4426,7 @@
           "10Y Bond Yield": {
             "value": "2.81%",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "Germany's 10-year bond yield jumped from 2.65% to 2.81%. This means investors now demand higher returns to lend money to the German government for a decade. Higher yields often signal concerns about inflation or economic uncertainty.",
               "moderate": "German 10-year bond yields climbed 16 basis points to 2.81%, up from 2.65%. The move reflects shifting investor sentiment toward German sovereign debt, with markets pricing in either higher inflation expectations or increased risk premiums. Bond prices fall when yields rise, creating losses for existing bondholders. The yield increase suggests investors are demanding better compensation for long-term exposure to German government debt.",
@@ -4436,7 +4436,7 @@
           "Yield Curve": {
             "value": "+81bps",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "Germany's yield curve steepened dramatically, jumping from 35 basis points to 81 basis points. This means the gap between short-term and long-term interest rates widened significantly. Investors now demand much higher returns for lending money to Germany over longer periods.",
               "moderate": "Germany's yield curve steepened sharply to 81 basis points from 35 basis points, signaling a major shift in bond market dynamics. The widening spread between short and long-term yields suggests investors expect higher inflation or economic growth ahead. This steepening typically reflects growing optimism about Germany's economic prospects, though it also raises borrowing costs for long-term financing. The 46 basis point jump represents one of the more significant curve movements in recent months.",
@@ -4446,7 +4446,7 @@
           "Corp Spread": {
             "value": "84bps",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "German corporate bonds became riskier investments this period. The extra interest companies must pay over safe government bonds jumped from 0.70% to 0.84%. Investors now demand higher compensation for lending to German businesses.",
               "moderate": "German corporate credit spreads widened significantly from 70 basis points to 84 basis points. This 14 basis point increase signals deteriorating investor confidence in corporate debt quality. Companies now face higher borrowing costs as bond investors demand greater compensation for credit risk. The spread expansion suggests growing concerns about corporate default probabilities in the German market.",
@@ -4464,9 +4464,9 @@
             }
           },
           "EUR/USD": {
-            "value": "1.1575",
+            "value": "1.1538",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "The euro gained ground against the dollar, rising from 1.1555 to 1.1575. This means it now takes more dollars to buy one euro. A stronger euro makes European goods more expensive for American buyers.",
               "moderate": "EUR/USD climbed 20 basis points from 1.1555 to 1.1575 as the euro strengthened against the dollar. The move signals shifting investor sentiment favoring European assets over dollar-denominated holdings. German exporters face headwinds from the stronger euro, while import costs decline for eurozone consumers. The currency pair continues trading within its recent range despite the modest uptick.",
@@ -4474,9 +4474,9 @@
             }
           },
           "FX Vol": {
-            "value": "6.3%",
+            "value": "6.4%",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "Currency traders betting on the euro became much less worried about big price swings. The measure of expected volatility dropped sharply from 11.0% to 6.3%. German markets now look calmer and more predictable.",
               "moderate": "EUR/USD implied volatility collapsed from 11.0% to 6.3%, signaling reduced uncertainty around the euro's near-term direction. Options markets now price significantly lower odds of dramatic currency moves. The decline suggests investors see fewer catalysts for major euro fluctuations ahead. Reduced FX volatility typically supports risk assets and cross-border investment flows.",
@@ -5532,9 +5532,9 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "-2.0%",
+            "value": "-2.1%",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "French stocks have turned negative for the year, falling to -2.0% after starting strong at +7.0%. The 9 percentage point drop shows investors pulling back from French companies. Stock prices reflect concerns about France's economic outlook and global market conditions.",
               "moderate": "The French stock market has reversed course dramatically, moving from a solid +7.0% gain to a -2.0% loss year-to-date. This 900 basis point swing reflects mounting investor concerns about domestic economic challenges and broader European headwinds. The CAC 40 index now trails major global markets as sentiment toward French equities has soured. Political uncertainty and fiscal pressures continue weighing on investor confidence.",
@@ -5544,7 +5544,7 @@
           "Equity Vol": {
             "value": "~16",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "French stock market volatility dropped from 20 to 16, signaling calmer trading conditions. Investors appear less nervous about price swings. Lower volatility usually means markets feel more stable and predictable.",
               "moderate": "French equity volatility declined from 20 to 16, indicating reduced uncertainty in domestic stock markets. The drop suggests investors have gained confidence, leading to steadier price movements and less dramatic daily swings. This environment typically supports higher valuations as risk premiums compress. Lower vol often coincides with increased institutional participation and more stable market conditions.",
@@ -5554,7 +5554,7 @@
           "10Y Bond Yield": {
             "value": "3.53%",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "France's 10-year government bond yield jumped from 3.15% to 3.53%. This means investors now demand higher returns to lend money to the French government for a decade. Higher bond yields often signal growing concerns about inflation or government finances.",
               "moderate": "French 10-year government bond yields surged 38 basis points to 3.53%, marking a significant move in the euro area's second-largest debt market. The sharp increase suggests investors are demanding higher compensation for lending to France, potentially reflecting broader concerns about fiscal policy or European economic conditions. This yield spike puts additional pressure on French borrowing costs and could signal shifting sentiment toward eurozone sovereign debt. Rising yields typically indicate either inflation expectations are climbing or credit risk perceptions are worsening.",
@@ -5564,7 +5564,7 @@
           "Yield Curve": {
             "value": "+153bps",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "France's yield curve steepened dramatically, jumping from 50 basis points to 153 basis points. This means long-term French government bonds now pay much more interest than short-term ones. Investors are pricing in higher inflation or economic growth expectations for the years ahead.",
               "moderate": "The French yield curve steepened sharply from 50 to 153 basis points, signaling a major shift in bond market sentiment. This widening spread between long and short-term government yields suggests investors expect higher inflation, stronger economic growth, or increased fiscal spending down the road. The steepening could pressure mortgage rates and corporate borrowing costs while potentially benefiting banks' net interest margins.",
@@ -5574,7 +5574,7 @@
           "Corp Spread": {
             "value": "84bps",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "French companies now pay 84 basis points more than government bonds when they borrow money, up from 75 basis points. This 9 basis point jump means investors see more risk in lending to businesses. Higher borrowing costs could make it harder for French companies to expand or invest.",
               "moderate": "French corporate bond spreads widened to 84 basis points from 75 basis points, marking a notable deterioration in credit conditions. The 9 basis point increase signals growing investor concern about corporate default risk or broader economic uncertainty. This spread expansion will raise financing costs for French businesses, potentially constraining their capital expenditure and growth plans. Credit markets often tighten before broader economic slowdowns materialize.",
@@ -5592,9 +5592,9 @@
             }
           },
           "EUR/USD": {
-            "value": "1.1575",
+            "value": "1.1538",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "The euro gained ground against the dollar, rising from 1.1555 to 1.1575. This small uptick means it now takes slightly more dollars to buy one euro. European goods become a bit more expensive for American buyers when the euro strengthens.",
               "moderate": "EUR/USD climbed from 1.1555 to 1.1575, marking a modest gain for the single currency. The 20-pip advance suggests renewed euro strength, likely driven by shifting interest rate expectations or European economic data. This move makes eurozone exports less competitive while reducing import costs for European consumers and businesses.",
@@ -5602,9 +5602,9 @@
             }
           },
           "FX Vol": {
-            "value": "6.3%",
+            "value": "6.4%",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "French currency volatility dropped sharply from 11.0% to 6.3%. This means the euro became much more stable against other currencies. Calmer currency markets usually signal that investors feel less worried about France's economy.",
               "moderate": "EUR volatility against major currencies fell dramatically from 11.0% to 6.3%, indicating much calmer FX markets. The sharp decline in implied volatility suggests reduced uncertainty around French economic fundamentals and European monetary policy. Lower FX volatility typically attracts institutional flows and reduces hedging costs for French exporters. This stabilization could reflect improved confidence in France's fiscal position or broader eurozone stability.",
@@ -6661,9 +6661,9 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "-1.3%",
+            "value": "-2.0%",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "Italian stocks crashed from a 19% gain to a 1.3% loss this year. The market gave back all its profits and then some. Italian companies lost serious value as investors pulled money out.",
               "moderate": "Italy's stock market suffered a dramatic reversal, plunging from +19.0% year-to-date returns into negative territory at -1.3%. The 20+ percentage point swing erased all gains accumulated earlier in the year and pushed the benchmark index into the red. This sharp correction reflects broader European equity weakness and likely signals investor concerns about Italian economic fundamentals or political stability.",
@@ -6673,7 +6673,7 @@
           "Equity Vol": {
             "value": "~22",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "Italian stock market volatility jumped from 20 to 22, showing investors are getting more nervous. When this number goes up, it means stock prices are swinging around more than usual. Something has Italian traders on edge.",
               "moderate": "Italy's equity volatility climbed from 20 to 22, signaling heightened market uncertainty. This 10% increase suggests investors are pricing in greater potential for sharp price movements in Italian stocks. The uptick could reflect concerns about domestic political developments or broader European market stress affecting Italian equities.",
@@ -6683,7 +6683,7 @@
           "10Y Bond Yield": {
             "value": "3.49%",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "Italy's 10-year government bond yield dropped sharply from 4.10% to 3.49%. This means investors are more confident about lending money to the Italian government for a decade. Lower yields make it cheaper for Italy to borrow money and suggest reduced concerns about the country's financial risks.",
               "moderate": "Italian 10-year government bond yields fell 61 basis points to 3.49%, marking a significant rally in Italian debt markets. The decline signals improved investor sentiment toward Italian sovereign risk and reduces the government's borrowing costs substantially. This move likely reflects either broader European Central Bank policy expectations, improved Italian fiscal metrics, or reduced political uncertainty. The yield drop makes Italian bonds more attractive to yield-hungry investors while easing pressure on Rome's debt servicing burden.",
@@ -6693,7 +6693,7 @@
           "Yield Curve": {
             "value": "+149bps",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "Italy's yield curve steepened dramatically, jumping from 80 basis points to 149 basis points. This means investors now demand much higher returns for holding long-term Italian bonds compared to short-term ones. The widening gap signals growing concerns about Italy's economic outlook.",
               "moderate": "Italy's yield curve steepened sharply to 149 basis points from 80 basis points, indicating increased term premium demands from bond investors. The 69 basis point widening reflects heightened concerns about Italy's fiscal position and long-term growth prospects. This steepening typically signals that markets expect either higher inflation or increased credit risk over the longer term. The move puts additional pressure on Italy's borrowing costs for future debt issuances.",
@@ -6703,7 +6703,7 @@
           "Corp Spread": {
             "value": "84bps",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "Italian corporate bonds became riskier to hold this period. The extra interest investors demand to own corporate debt instead of government bonds jumped from 80 to 84 basis points. Companies now face higher borrowing costs.",
               "moderate": "Italian corporate credit spreads widened from 80 to 84 basis points, signaling deteriorating investor confidence in corporate debt. The spread expansion means companies face higher financing costs as bondholders demand greater compensation for credit risk. This 4 basis point move suggests either broader market stress or specific concerns about Italian corporate fundamentals. Tighter corporate credit conditions could constrain business investment and expansion plans.",
@@ -6721,9 +6721,9 @@
             }
           },
           "EUR/USD": {
-            "value": "1.1575",
+            "value": "1.1538",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "The euro gained ground against the dollar, rising from 1.1555 to 1.1575. This means each euro now buys slightly more dollars than before. A stronger euro makes imports cheaper for Italian consumers but can hurt Italian exports.",
               "moderate": "EUR/USD climbed from 1.1555 to 1.1575, marking a modest gain for the euro against the dollar. The 20-pip move reflects shifting sentiment in currency markets. For Italy, euro strength reduces import costs but pressures exporters who face less competitive pricing abroad. The move suggests either dollar weakness or improved eurozone fundamentals driving demand.",
@@ -6731,9 +6731,9 @@
             }
           },
           "FX Vol": {
-            "value": "6.3%",
+            "value": "6.4%",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "The euro's volatility against other currencies dropped sharply from 11.0% to 6.3%. This means traders expect much calmer moves in Italy's currency going forward. Markets are betting on fewer wild swings in the euro.",
               "moderate": "EUR volatility collapsed from 11.0% to 6.3%, signaling increased currency stability expectations. This dramatic decline suggests traders anticipate reduced uncertainty around Italian economic conditions and eurozone policy. Lower FX volatility typically reflects improved market confidence and reduced hedging costs for Italian businesses operating internationally. The drop indicates calmer currency markets ahead.",
@@ -7693,9 +7693,9 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "+2.7%",
+            "value": "+2.6%",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "China's stock market turned positive for the year, jumping from a 4.5% loss to a 2.7% gain. Chinese stocks rallied strongly in recent weeks. Investors grew more optimistic about the country's economic recovery.",
               "moderate": "Chinese equities reversed course dramatically, moving from a 4.5% year-to-date decline to a 2.7% gain. The 7.2 percentage point swing reflects renewed investor confidence in China's economic trajectory. Market sentiment improved on expectations of additional policy support and signs of stabilizing growth. The turnaround highlights how quickly Chinese markets can pivot when investor psychology shifts.",
@@ -7705,7 +7705,7 @@
           "Equity Vol": {
             "value": "~13",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "Chinese stock market volatility sits around 13%, showing moderate price swings. This level suggests investors feel neither extremely confident nor panicked about Chinese stocks. Markets appear relatively stable compared to periods of major uncertainty.",
               "moderate": "China's equity volatility registers at approximately 13%, indicating measured market sentiment without extreme fear or complacency. This moderate vol environment suggests institutional investors can deploy capital without facing dramatic price dislocations. The reading falls within normal ranges for Chinese equities, allowing for strategic positioning without excessive hedging costs.",
@@ -7735,7 +7735,7 @@
           "Corp Spread": {
             "value": "162bps",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "Chinese corporate bonds became much riskier to own. The extra interest investors demand to hold corporate debt instead of government bonds jumped from 65 to 162 basis points. Companies now face much higher borrowing costs.",
               "moderate": "Chinese corporate credit spreads widened dramatically from 65bps to 162bps, signaling heightened default risk perceptions among investors. The 97 basis point expansion reflects deteriorating confidence in corporate balance sheets and tighter financing conditions. Companies will face substantially higher funding costs, potentially constraining capital expenditure and refinancing activities.",
@@ -7753,9 +7753,9 @@
             }
           },
           "USD/CNY": {
-            "value": "6.86",
+            "value": "6.87",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "The Chinese yuan strengthened against the US dollar, with each dollar now buying 6.86 yuan compared to 6.91 yuan before. This means the yuan became more valuable relative to the dollar. A stronger yuan makes Chinese goods more expensive for foreign buyers but helps Chinese consumers afford imported products.",
               "moderate": "USD/CNY dropped from 6.91 to 6.86, indicating yuan appreciation against the dollar. The strengthening suggests either increased demand for Chinese assets, central bank intervention, or broader dollar weakness in regional markets. This move makes Chinese exports less competitive internationally while reducing import costs for domestic businesses. The direction aligns with China's preference for a stable, gradually appreciating currency to support economic rebalancing.",
@@ -7763,9 +7763,9 @@
             }
           },
           "FX Vol": {
-            "value": "3.2%",
+            "value": "2.9%",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "China's currency became much less volatile, with swings dropping from 6.5% to 3.2%. This means the yuan moved around less dramatically against other currencies. Calmer currency markets usually signal more stable economic conditions.",
               "moderate": "Chinese yuan volatility plunged from 6.5% to 3.2%, indicating significantly calmer FX markets. Lower volatility typically reflects reduced uncertainty about China's economic outlook and monetary policy direction. Currency traders now face smaller daily price swings, which often coincides with improved market confidence. The sharp decline suggests either successful policy intervention or diminishing external pressures on the yuan.",
@@ -8812,9 +8812,9 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "-9.8%",
+            "value": "-10.7%",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "India's stock market has crashed from a 14% gain to a 9.8% loss this year. That's a massive 24 percentage point swing that has wiped out billions in investor wealth. Indian stocks went from being one of the world's best performers to deeply in the red.",
               "moderate": "India's equity markets have undergone a dramatic reversal, plunging from +14% year-to-date to -9.8%. This 24 percentage point decline represents one of the sharpest turnarounds among major emerging markets this year. The Nifty and Sensex have given back all their earlier gains and more, reflecting growing concerns about valuations and global risk sentiment. Foreign institutional investors have likely accelerated their selling pressure during this downturn.",
@@ -8822,9 +8822,9 @@
             }
           },
           "Equity Vol": {
-            "value": "~21",
+            "value": "~22",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "India's stock market became slightly more volatile, with equity volatility rising from 20 to 21. This means stock prices are swinging up and down a bit more than before. Higher volatility often signals that investors feel more uncertain about market direction.",
               "moderate": "Indian equity volatility ticked up from 20 to 21, indicating increased price swings in the domestic stock market. The modest uptick suggests investors are pricing in slightly higher uncertainty, though the move remains within normal ranges. Rising volatility often precedes periods of market indecision as traders reassess risk premiums amid changing fundamentals.",
@@ -8834,7 +8834,7 @@
           "10Y Bond Yield": {
             "value": "6.73%",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "India's 10-year government bond yield dropped sharply from 7.50% to 6.73%. This means investors now accept lower returns to lend money to the Indian government for a decade. The decline signals growing confidence in India's economic stability and lower inflation expectations.",
               "moderate": "India's 10-year government bond yield fell 77 basis points to 6.73% from 7.50%. The significant drop reflects increased investor appetite for Indian sovereign debt amid expectations of monetary policy easing. Lower yields indicate reduced borrowing costs for the government and typically signal improved economic sentiment. This move brings Indian bond yields closer to emerging market peers and suggests foreign capital inflows may be strengthening.",
@@ -8844,7 +8844,7 @@
           "Yield Curve": {
             "value": "+123bps",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "India's yield curve steepened dramatically, with the spread jumping from 35 basis points to 123 basis points. This means investors now demand much higher returns for holding long-term Indian government bonds compared to short-term ones. The steepening suggests growing concerns about inflation or economic growth over the longer term.",
               "moderate": "India's yield curve steepened sharply as the spread widened from 35bps to 123bps. This significant steepening indicates investors are pricing in higher inflation expectations or increased credit risk for longer-dated government securities. The move suggests bond markets anticipate either more aggressive monetary tightening ahead or concerns about India's fiscal trajectory. Such rapid steepening typically signals shifting economic fundamentals or changing investor sentiment toward emerging market debt.",
@@ -8854,7 +8854,7 @@
           "Corp Spread": {
             "value": "162bps",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "Indian companies now pay 162 basis points more than government bonds to borrow money, up sharply from 90 basis points before. This jump shows investors see much higher risk in lending to businesses. Companies will face higher borrowing costs, which could slow their growth and expansion plans.",
               "moderate": "India's corporate bond spreads widened dramatically to 162bps from 90bps, signaling deteriorating credit conditions in the business sector. The 72 basis point increase reflects investors demanding higher premiums for corporate credit risk compared to sovereign bonds. This spread expansion will translate into elevated funding costs for Indian companies, potentially constraining capital investment and affecting earnings growth across sectors.",
@@ -8862,9 +8862,9 @@
             }
           },
           "Sov CDS": {
-            "value": "261bps",
+            "value": "258bps",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "India's borrowing costs spiked dramatically as investors now demand much higher compensation to protect against potential government default. The cost to insure Indian government debt more than doubled from 115 basis points to 261 basis points. This signals growing concern about India's ability to repay its debts.",
               "moderate": "India's sovereign credit default swap spreads surged from 115bps to 261bps, indicating a sharp deterioration in perceived creditworthiness. Investors now demand significantly higher premiums to insure against potential sovereign default risk. The 146 basis point jump reflects mounting concerns about India's fiscal position and debt sustainability. This widening spread typically correlates with increased borrowing costs for the government in international markets.",
@@ -8872,9 +8872,9 @@
             }
           },
           "USD/INR": {
-            "value": "92.15",
+            "value": "92.25",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "The Indian rupee strengthened slightly against the US dollar, moving from 92.25 to 92.15. This small improvement means it now takes fewer rupees to buy one dollar. The rupee's modest gain reflects recent market conditions favoring the Indian currency.",
               "moderate": "USD/INR declined from 92.25 to 92.15, indicating rupee strength against the dollar. The 10 paisa appreciation suggests improved sentiment toward Indian assets or reduced dollar demand in local markets. This move brings the rupee closer to recent support levels. Currency traders will watch whether this momentum continues amid ongoing global market volatility.",
@@ -8882,9 +8882,9 @@
             }
           },
           "FX Vol": {
-            "value": "7.2%",
+            "value": "7.1%",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "The Indian rupee became much less volatile, with its swing patterns dropping from 9.0% to 7.2%. This means currency traders expect smaller price moves ahead. A calmer rupee typically signals more stable economic conditions.",
               "moderate": "Indian rupee volatility declined sharply from 9.0% to 7.2%, indicating reduced currency turbulence in the near term. Lower FX volatility typically reflects diminished uncertainty around India's economic outlook and monetary policy path. This environment generally supports foreign investment flows as currency hedging costs decrease. The drop suggests market participants see fewer risks to rupee stability ahead.",
@@ -9931,9 +9931,9 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "+1.1%",
+            "value": "+1.3%",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "South Africa's stock market gained 1.1% this year, down from 3.5% earlier. The country's shares have given back some of their gains. Investors are becoming more cautious about South African companies.",
               "moderate": "The JSE All Share Index returned 1.1% year-to-date, retreating from the 3.5% gains posted previously. South African equities faced headwinds that eroded earlier performance. The decline suggests growing investor concerns about domestic economic conditions and corporate earnings prospects. Market sentiment has clearly shifted from the optimism seen in earlier months.",
@@ -9943,7 +9943,7 @@
           "Equity Vol": {
             "value": "~29",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "South African stock market volatility jumped from 22 to 29, showing investors are much more nervous than before. When this number rises, it means stock prices are swinging up and down more wildly. This spike suggests something has spooked investors about South Africa's economic outlook.",
               "moderate": "South African equity volatility surged from 22 to 29, indicating heightened investor uncertainty in the local market. This 32% increase in the volatility index signals that traders expect much larger price swings in JSE-listed stocks. The jump likely reflects concerns about domestic economic conditions, political developments, or global risk sentiment affecting emerging markets. Higher volatility typically makes investors demand greater returns to compensate for increased risk.",
@@ -9953,7 +9953,7 @@
           "10Y Bond Yield": {
             "value": "8.62%",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "South Africa's 10-year government bond yield dropped sharply from 10.20% to 8.62%. This means investors are willing to accept lower returns to lend money to the South African government for 10 years. Lower bond yields usually signal that investors feel more confident about the country's economic outlook.",
               "moderate": "South Africa's 10-year bond yield fell 158 basis points from 10.20% to 8.62%, a significant decline that suggests improving investor sentiment toward the country's sovereign debt. Bond yields move inversely to prices, so this drop indicates strong demand for South African government bonds. The decline likely reflects reduced risk premiums as investors perceive lower default risk or expect improved fiscal conditions. This yield compression should lower the government's borrowing costs and may signal broader economic stabilization.",
@@ -9963,7 +9963,7 @@
           "Yield Curve": {
             "value": "+187bps",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "South Africa's yield curve steepened dramatically, jumping from 100 basis points to 187 basis points. This means long-term government bonds now pay much more interest than short-term ones. Investors are demanding higher compensation for lending money to South Africa for longer periods.",
               "moderate": "South Africa's yield curve steepened significantly to 187 basis points from 100 basis points, reflecting growing investor concerns about long-term risks. The widening spread between short and long-term government bond yields signals heightened inflation expectations and fiscal sustainability worries. Bond traders are demanding substantially higher premiums for holding longer-dated South African debt. This steepening typically indicates weakening confidence in the country's economic outlook.",
@@ -9973,7 +9973,7 @@
           "Corp Spread": {
             "value": "162bps",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "South African corporate bonds became much more attractive to investors. The extra interest companies pay over government bonds dropped from 200 basis points to 162 basis points. This means investors feel more confident about lending money to South African businesses.",
               "moderate": "Corporate credit spreads in South Africa tightened significantly from 200bps to 162bps, signaling improved investor confidence in the country's corporate sector. The 38 basis point compression indicates that market participants now demand less premium to hold corporate debt over government bonds. This tightening suggests either improving company fundamentals or reduced perception of default risk among South African corporates.",
@@ -9981,9 +9981,9 @@
             }
           },
           "Sov CDS": {
-            "value": "450bps",
+            "value": "447bps",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "South Africa's borrowing costs doubled from 225 to 450 basis points, signaling investors now see much higher risk in lending money to the government. This sharp increase means markets worry about the country's ability to pay back its debts. Higher borrowing costs make it more expensive for South Africa to fund government operations.",
               "moderate": "South African sovereign credit default swaps spiked from 225bps to 450bps, reflecting a dramatic deterioration in investor confidence about the government's creditworthiness. The doubling of CDS spreads indicates markets now price significantly higher default risk into South African government bonds. This widening will likely translate into higher borrowing costs across the economy, pressuring both government finances and private sector credit conditions. The move suggests either domestic economic concerns or broader emerging market stress.",
@@ -9991,9 +9991,9 @@
             }
           },
           "USD/ZAR": {
-            "value": "16.40",
+            "value": "16.62",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "The South African rand strengthened against the US dollar, moving from 16.86 to 16.40. This means each dollar now buys fewer rand than before. A stronger rand makes imports cheaper for South Africans but can hurt exporters who earn dollars.",
               "moderate": "The USD/ZAR pair declined from 16.86 to 16.40, marking a notable strengthening of the rand against the dollar. This 2.7% appreciation reflects improved sentiment toward South African assets or broader dollar weakness. The move benefits consumers through lower import costs but pressures export-dependent sectors like mining and manufacturing. Currency strength often signals foreign investor confidence in the country's economic prospects.",
@@ -10003,7 +10003,7 @@
           "FX Vol": {
             "value": "17.2%",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "South Africa's currency became less jumpy this month. The rand's volatility dropped from 18.0% to 17.2%, meaning traders expect smaller price swings ahead. A calmer currency usually signals more confidence in the country's economy.",
               "moderate": "The rand's implied volatility declined from 18.0% to 17.2%, indicating reduced expectations for currency swings in coming weeks. Lower FX volatility typically reflects improving investor sentiment toward South African assets. This decline suggests traders see less uncertainty around the rand's direction, potentially making it easier for businesses to plan investments. The drop could also attract foreign capital that previously stayed away due to currency risk concerns.",
@@ -10638,9 +10638,9 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "+14.8%",
+            "value": "+13.2%",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "Brazil's stock market dropped from 16.0% gains to 14.8% this year. The market gave back some of its earlier profits. Brazilian stocks are still performing well overall in 2024.",
               "moderate": "The Brazilian equity market retreated slightly, with year-to-date returns falling from 16.0% to 14.8%. This pullback represents normal profit-taking after strong earlier gains. The Bovespa continues to outperform many global markets despite recent headwinds. Brazilian equities remain attractive to investors seeking emerging market exposure.",
@@ -10648,9 +10648,9 @@
             }
           },
           "Equity Vol": {
-            "value": "~22",
+            "value": "~21",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "Brazil's stock market became less volatile recently, with equity volatility dropping from 25 to 22. This means Brazilian stocks are swinging up and down less dramatically than before. Calmer markets often signal that investors feel more confident about the country's economic outlook.",
               "moderate": "Brazilian equity volatility declined from 25 to 22, indicating reduced price swings in the local stock market. Lower volatility typically reflects improved investor sentiment and reduced uncertainty about Brazil's economic prospects. This compression in vol suggests market participants see fewer immediate risks to Brazilian equities. The decline points to a more stable trading environment for local stocks.",
@@ -10680,7 +10680,7 @@
           "Corp Spread": {
             "value": "162bps",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "Brazilian corporate bonds became much cheaper to borrow against government bonds. The extra cost companies pay dropped from 240 basis points to 162 basis points. Investors now see Brazilian companies as less risky than before.",
               "moderate": "Corporate borrowing costs in Brazil fell sharply as credit spreads narrowed from 240 basis points to 162 basis points over government bonds. This 78 basis point compression shows investors demanding less extra compensation for lending to Brazilian companies versus the government. The tightening reflects either improving corporate fundamentals or stronger appetite for Brazilian credit risk among international investors.",
@@ -10698,9 +10698,9 @@
             }
           },
           "USD/BRL": {
-            "value": "5.15",
+            "value": "5.19",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "The Brazilian real weakened against the US dollar, moving from 5.10 to 5.15. This means it now takes more reais to buy one dollar. Brazilian goods become cheaper for Americans while US imports get more expensive for Brazilians.",
               "moderate": "USD/BRL climbed from 5.10 to 5.15, marking a depreciation in the Brazilian real. The move reflects ongoing pressure on emerging market currencies amid global dollar strength. Brazilian exporters benefit from the weaker real while importers face higher costs. The central bank will monitor this closely given inflation concerns from a depreciating currency.",
@@ -10708,9 +10708,9 @@
             }
           },
           "FX Vol": {
-            "value": "10.5%",
+            "value": "10.4%",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "Brazil's currency volatility dropped sharply from 20.0% to 10.5%. This means the real became much more stable against other currencies. Calmer currency markets usually signal improved confidence in Brazil's economy.",
               "moderate": "Brazilian real volatility fell dramatically from 20.0% to 10.5%, indicating significantly reduced currency turbulence. Lower FX volatility typically reflects improved market confidence and reduced uncertainty about Brazil's economic outlook. This stabilization makes the real more attractive to foreign investors and reduces hedging costs for Brazilian companies with international exposure. The sharp decline suggests either policy stabilization or improved external conditions supporting the currency.",
@@ -11340,9 +11340,9 @@
             }
           },
           "USD/RUB": {
-            "value": "79.1",
+            "value": "79.5",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "The Russian ruble got stronger against the US dollar, moving from 80.0 to 79.1 rubles per dollar. This means it now takes fewer rubles to buy one dollar. A stronger ruble typically helps Russian consumers buy imported goods more cheaply.",
               "moderate": "The USD/RUB pair declined from 80.0 to 79.1, indicating ruble appreciation against the dollar. This 1.1% strengthening suggests either improved sentiment toward Russian assets or increased dollar selling pressure in local markets. The move benefits Russian importers and consumers purchasing foreign goods, while potentially pressuring export revenues when converted back to rubles.",
@@ -11352,7 +11352,7 @@
           "FX Vol": {
             "value": "15.0%",
             "tier": "daily",
-            "last_updated": "2026-03-11",
+            "last_updated": "2026-03-12",
             "story": {
               "beginner": "The Russian ruble became much less volatile, with currency swings dropping from 20% to 15%. This means the ruble's daily price movements are now smaller and more predictable. A calmer currency usually signals that traders feel less worried about Russia's economic situation.",
               "moderate": "Russian FX volatility declined sharply from 20% to 15%, indicating reduced uncertainty in ruble trading. Lower volatility typically emerges when geopolitical tensions ease or when traders gain more confidence in Russia's economic stability. This compression in vol makes it cheaper for businesses to hedge currency risk and suggests that extreme ruble movements are becoming less likely in the near term.",
@@ -11796,7 +11796,7 @@
     }
   },
   "commodities": {
-    "asOf": "Mar 10, 2026",
+    "asOf": "Mar 12, 2026",
     "source": "CME · ICE · COMEX · CBOT · Yahoo Finance",
     "weather": "⛈️",
     "items": [
@@ -11805,10 +11805,9 @@
         "symbol": "CL",
         "cat": "energy",
         "unit": "$/bbl",
-        "price": 103.0,
-        "change": 13.3,
+        "price": 94.19,
+        "change": 41.5,
         "spark": [
-          65,
           66,
           65,
           64,
@@ -11819,7 +11818,8 @@
           66,
           73,
           90.9,
-          103.0
+          103.0,
+          94.19
         ],
         "annual": [
           79.61,
@@ -11859,10 +11859,9 @@
         "symbol": "BZ",
         "cat": "energy",
         "unit": "$/bbl",
-        "price": 109.0,
-        "change": 17.6,
+        "price": 95.3,
+        "change": 36.4,
         "spark": [
-          72,
           73,
           72,
           71,
@@ -11873,7 +11872,8 @@
           73,
           81,
           92.7,
-          109.0
+          109.0,
+          95.3
         ],
         "annual": [
           79.5,
@@ -11913,10 +11913,9 @@
         "symbol": "NG",
         "cat": "energy",
         "unit": "$/mmBtu",
-        "price": 4.5,
-        "change": 40.6,
+        "price": 3.23,
+        "change": -21.5,
         "spark": [
-          2.3,
           2.4,
           2.5,
           2.6,
@@ -11927,7 +11926,8 @@
           2.6,
           2.8,
           3.2,
-          4.5
+          4.5,
+          3.23
         ],
         "annual": [
           4.39,
@@ -11967,10 +11967,9 @@
         "symbol": "GC",
         "cat": "metals",
         "unit": "$/oz",
-        "price": 5080,
-        "change": -0.8,
+        "price": 5185.4,
+        "change": 73.8,
         "spark": [
-          3500,
           3800,
           4000,
           4200,
@@ -11981,7 +11980,8 @@
           5100,
           5159,
           5120,
-          5080
+          5080,
+          5185.4
         ],
         "annual": [
           1224.53,
@@ -12021,10 +12021,9 @@
         "symbol": "SI",
         "cat": "metals",
         "unit": "$/oz",
-        "price": 81.0,
-        "change": -3.7,
+        "price": 87.23,
+        "change": 156.2,
         "spark": [
-          38,
           42,
           46,
           48,
@@ -12035,7 +12034,8 @@
           57,
           58,
           84.1,
-          81.0
+          81.0,
+          87.23
         ],
         "annual": [
           20.19,
@@ -12075,10 +12075,9 @@
         "symbol": "HG",
         "cat": "metals",
         "unit": "$/lb",
-        "price": 5.0,
-        "change": -2.0,
+        "price": 5.87,
+        "change": 19.8,
         "spark": [
-          4.6,
           4.7,
           4.8,
           4.9,
@@ -12089,7 +12088,8 @@
           5.1,
           5.2,
           5.1,
-          5.0
+          5.0,
+          5.87
         ],
         "annual": [
           3.42,
@@ -12129,10 +12129,9 @@
         "symbol": "ZW",
         "cat": "agriculture",
         "unit": "¢/bu",
-        "price": 622,
-        "change": 5.1,
+        "price": 604.0,
+        "change": 10.4,
         "spark": [
-          575,
           577,
           578,
           580,
@@ -12143,7 +12142,8 @@
           585,
           585,
           592,
-          622
+          622,
+          604.0
         ],
         "annual": [
           597,
@@ -12183,10 +12183,9 @@
         "symbol": "ZC",
         "cat": "agriculture",
         "unit": "¢/bu",
-        "price": 472,
-        "change": 3.1,
+        "price": 465.75,
+        "change": 2.7,
         "spark": [
-          449,
           450,
           451,
           452,
@@ -12197,7 +12196,8 @@
           455,
           455,
           458,
-          472
+          472,
+          465.75
         ],
         "annual": [
           396,
@@ -12237,10 +12237,9 @@
         "symbol": "ZS",
         "cat": "agriculture",
         "unit": "¢/bu",
-        "price": 1080,
-        "change": 1.1,
+        "price": 1229.25,
+        "change": 23.3,
         "spark": [
-          1048,
           1050,
           1052,
           1055,
@@ -12251,7 +12250,8 @@
           1064,
           1065,
           1068,
-          1080
+          1080,
+          1229.25
         ],
         "annual": [
           989,

@@ -1,5 +1,5 @@
 # MacroSnaps - Living Brief
-Last updated: March 11, 2026 (Tooling session - update_headlines.py debugged and verified 13/13; max_tokens raised to 8000 per country batch and 5000 for global; batches split from 2x6 to 3x4 to stay within Haiku output ceiling; headline_review.html layout redesigned with bullet tabs showing all three levels stacked; global stories narrative arc formula defined and enforced in prompt: Today's Story / Biggest Movers / The Connection; first live headlines applied and published; .env exposure incident resolved, history rewritten, .gitignore fixed)
+Last updated: March 12, 2026 (Tooling session - update_headlines.py extended with Sonnet+search harvest call for country stories; two-phase architecture: Call 1 global Sonnet+search, Call 2 Sonnet+search harvest for all 12 countries, Calls 3-5 Haiku x3 batches writing stories off recent data with forecasts as background context only; harvest capped at 2 search turns and 1500 max_tokens to control cost; call order fixed so global runs before harvest to avoid Sonnet rate limit exhaustion; Haiku bullet count enforcement strengthened with retry logic; first successful run 13/13 March 12, 2026)
 
 ---
 
@@ -670,12 +670,12 @@ MacroSnaps has two distinct layers of truth that must not be conflated:
 
 The correct approach: stories comment on what is actually happening right now. If recent data is tracking ahead of or behind the annual forecast, the story can note that tension briefly (e.g. "February CPI came in at 2.6%, above the Fed target, but full-year inflation is still expected to settle at 2.3% as base effects kick in mid-year"). But the forecast is not the anchor of the story - recent data is.
 
-Implication for tooling: country stories in `update_headlines.py` should have web search enabled so they can pull actual recent data, not just comment on annual forecast numbers. This is a pending tooling change (see Pending work).
+Implication for tooling: implemented March 12, 2026. See `update_headlines.py` architecture: Sonnet+search harvest call feeds recent data into Haiku writing batches as lead context.
 
 ---
 
 7. ~~**Add country-level and global stories to the daily bash ritual.**~~ Done and verified March 11, 2026. `update_headlines.py` calls the Claude API, drafts 12 country story blocks (3 bullets x 3 levels) in 3 batches of 4 via Haiku (8000 tokens each) and global stories (3 items x 3 levels) via Sonnet with web search (5000 tokens). Saves to `stories_draft_YYYY-MM-DD.json`. `headline_review.html` is a browser-based review tool: tabs show Bullet 1/2/3, each tab shows all three levels stacked for easy comparison. Export `stories_approved_YYYY-MM-DD.json`, apply with `python3 update_headlines.py --apply`. First live run completed 13/13 March 11, 2026.
 
-8. **Enable web search for country stories in `update_headlines.py`.** Currently country stories are written off annual forecast values only (Haiku, no search). They should be written off recent data and trends instead, with web search enabled so the model can pull actual monthly/quarterly prints. This requires switching the country batch call from Haiku to Sonnet (web search not available on Haiku) and rearchitecting the prompt to de-emphasise forecast values as the anchor. Forecast values should still be passed as context ("our full-year forecast is X") but recent data should lead. This is a tooling session - upload `LIVING_BRIEF.md` + `update_headlines.py`.
+8. ~~**Enable web search for country stories in `update_headlines.py`.**~~ Done March 12, 2026. Two-phase architecture: a single Sonnet+search harvest call pulls recent data for all 12 countries (capped at 2 search turns, 1500 max_tokens), then 3 Haiku batches write stories with recent data leading and forecast values passed as background context only. Global runs first to avoid Sonnet rate limit exhaustion from the harvest call. Haiku prompt strengthened with explicit bullet count enforcement and one automatic retry per batch.
 
 9. **Post-launch:** revisit architecture if a second person joins to update data daily.

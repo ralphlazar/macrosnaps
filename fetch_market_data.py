@@ -254,6 +254,20 @@ SOV_CDS_BENCHMARK = {"USA", "DEU"}
 SOV_CDS_EM_ONLY   = {"CHN", "IND", "ZAF", "BRA"}   # only these get a value
 SOV_CDS_VS_BUND   = {"FRA", "ITA"}   # unused now but kept for reference
 
+# Yahoo Finance continuous futures tickers for commodities.
+# Keyed by the symbol field in data.json commodities items.
+COMMODITY_TICKERS = {
+    "CL": "CL=F",   # WTI Crude
+    "BZ": "BZ=F",   # Brent Crude
+    "NG": "NG=F",   # Natural Gas
+    "GC": "GC=F",   # Gold
+    "SI": "SI=F",   # Silver
+    "HG": "HG=F",   # Copper
+    "ZW": "ZW=F",   # Wheat
+    "ZC": "ZC=F",   # Corn
+    "ZS": "ZS=F",   # Soybeans
+}
+
 # ---------------------------------------------------------------------------
 # FRED FETCH
 # ---------------------------------------------------------------------------
@@ -372,6 +386,32 @@ def yf_fx_daily_returns(ticker, days=60):
     except Exception as exc:
         log.warning(f"    Yahoo FX returns {ticker}: {exc}")
         return None
+
+def yf_price_and_yoy(ticker):
+    """
+    Fetch latest close and year-over-year % change for a futures ticker.
+    Uses 400 days of history so there is always a valid price from ~365 days ago.
+    Returns (current_price_float, yoy_pct_float) or (None, None).
+    """
+    try:
+        end   = datetime.today()
+        start = end - timedelta(days=400)
+        t = yf.Ticker(ticker)
+        hist = t.history(start=start.strftime("%Y-%m-%d"))
+        if hist.empty or len(hist) < 2:
+            return None, None
+        current = float(hist["Close"].iloc[-1])
+        # Find the close closest to 365 days ago
+        target = end - timedelta(days=365)
+        diffs = abs(hist.index.tz_localize(None) - target)
+        year_ago = float(hist["Close"].iloc[diffs.argmin()])
+        if year_ago == 0:
+            return current, None
+        yoy = (current - year_ago) / year_ago * 100
+        return current, yoy
+    except Exception as exc:
+        log.warning(f"    Yahoo price/YoY {ticker}: {exc}")
+        return None, None
 
 # ---------------------------------------------------------------------------
 # METRIC FETCHERS
@@ -626,6 +666,67 @@ def apply_updates(country_data, updates):
             log.warning(f"    Label '{label}' not found in market metrics - skipped")
 
 # ---------------------------------------------------------------------------
+# COMMODITIES
+# ---------------------------------------------------------------------------
+
+def process_commodities(data):
+    """
+    Fetch latest price and YoY % change for all 9 commodities and update
+    data.json in place. Only touches `price`, `change`, `spark`, and the
+    top-level `asOf` date. Never touches `annual`, `story`, or any other field.
+    """
+    log.info(f"\n{'='*52}")
+    log.info("  COMMODITIES")
+    log.info(f"{'='*52}")
+
+    items = data.get("commodities", {}).get("items", [])
+    if not items:
+        log.warning("  No commodities items found in data.json - skipping")
+        return
+
+    ok = 0
+    failed = 0
+
+    for item in items:
+        symbol  = item.get("symbol")
+        name    = item.get("name", symbol)
+        ticker  = COMMODITY_TICKERS.get(symbol)
+
+        if not ticker:
+            log.warning(f"  {name:<16} no ticker configured - skipped")
+            failed += 1
+            continue
+
+        current, yoy = yf_price_and_yoy(ticker)
+
+        if current is None:
+            log.warning(f"  {name:<16} FAILED")
+            failed += 1
+            continue
+
+        # Update price (round to match existing precision in data.json)
+        item["price"] = round(current, 2)
+
+        # Update YoY change
+        if yoy is not None:
+            item["change"] = round(yoy, 1)
+
+        # Update spark: drop oldest point, append new close
+        spark = item.get("spark", [])
+        if isinstance(spark, list) and len(spark) > 0:
+            spark = spark[1:] + [round(current, 2)]
+            item["spark"] = spark
+
+        change_str = f"{yoy:+.1f}%" if yoy is not None else "YoY n/a"
+        log.info(f"  {name:<16} {current:.2f}  ({change_str} YoY)")
+        ok += 1
+
+    # Update asOf date to match existing format, e.g. "Mar 12, 2026"
+    data["commodities"]["asOf"] = datetime.today().strftime("%b %-d, %Y")
+
+    log.info(f"\n  Commodities updated: {ok}  failed: {failed}")
+
+# ---------------------------------------------------------------------------
 # MAIN
 # ---------------------------------------------------------------------------
 
@@ -688,6 +789,7 @@ def main():
     log.info(f"  Failed  : {total_failed}")
 
     if DRY_RUN:
+        process_commodities(data)
         log.info("\nDRY RUN complete. Nothing written.")
         return
 
@@ -695,6 +797,8 @@ def main():
     for code, updates in all_updates.items():
         if updates:
             apply_updates(countries[code], updates)
+
+    process_commodities(data)
 
     log.info(f"\nWriting {DATA_FILE} ...")
     with open(DATA_FILE, "w", encoding="utf-8") as f:
