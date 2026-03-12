@@ -64,6 +64,28 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column}
   border-bottom:1px solid rgba(255,255,255,.08);flex-shrink:0;
 }
 
+/* ── Welcome Banner ── */
+.welcome-banner{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  padding:7px 16px;flex-shrink:0;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  background:rgba(0,212,255,.04);
+  font-family:var(--font-body);font-size:12px;color:#bbb;
+  animation:ttIn .3s ease-out;
+}
+.welcome-banner a{
+  color:var(--cyan);text-decoration:underline;text-underline-offset:3px;
+  cursor:pointer;background:none;border:none;font:inherit;padding:0;
+}
+.welcome-banner a:hover{color:#fff}
+.welcome-banner .wb-close{
+  position:absolute;right:16px;background:none;border:none;
+  color:#555;font-size:16px;cursor:pointer;line-height:1;padding:2px 4px;
+  transition:color .2s;
+}
+.welcome-banner .wb-close:hover{color:#aaa}
+.welcome-banner.hidden{display:none}
+
 /* ── Hero ── */
 .hero{
   flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -528,6 +550,7 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column}
 
   /* ── Tagline ── */
   .tagline{font-size:10px;padding:5px 12px}
+  .welcome-banner{font-size:11px;padding:6px 40px 6px 16px;text-align:center}
 
   /* ── Hero ── */
   .hero{justify-content:flex-start;padding-top:6px}
@@ -669,6 +692,11 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column}
 </div>
 
 <div class="tagline">Like learning a language - a little every day, and soon you'll be fluent.</div>
+
+<div class="welcome-banner hidden" id="welcomeBanner">
+  New here? <a id="welcomeWhat">Find out what MacroSnaps is and how it works.</a>
+  <button class="wb-close" id="welcomeClose" aria-label="Dismiss">✕</button>
+</div>
 
 <div class="hero">
   <div class="news-icons">
@@ -7060,6 +7088,25 @@ document.querySelectorAll('.exp-btn').forEach(btn=>{btn.addEventListener('click'
 
 // initGlobe() is called by fetch('data.json').then() above
 
+
+// ── Welcome Banner ──
+(function() {
+  const banner = document.getElementById('welcomeBanner');
+  if (!banner) return;
+  if (!localStorage.getItem('ms_welcomed')) {
+    banner.classList.remove('hidden');
+  }
+  document.getElementById('welcomeWhat').addEventListener('click', () => {
+    banner.classList.add('hidden');
+    localStorage.setItem('ms_welcomed', '1');
+    const whatLink = document.querySelector('[data-ft="what"]');
+    if (whatLink) whatLink.click();
+  });
+  document.getElementById('welcomeClose').addEventListener('click', () => {
+    banner.classList.add('hidden');
+    localStorage.setItem('ms_welcomed', '1');
+  });
+})();
 
 document.querySelectorAll('.footer-link').forEach(el => {
   el.addEventListener('click', () => {
