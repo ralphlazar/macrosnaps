@@ -8,7 +8,7 @@
       "weekly": "Update weekly or on release — CPI, unemployment, policy rate",
       "structural": "Update quarterly or on major revision — GDP, deficits, current account, stories, fxRegime"
     },
-    "built_at": "2026-03-12 18:09"
+    "built_at": "2026-03-12 18:21"
   },
   "countries": {
     "USA": {
@@ -166,19 +166,19 @@
       },
       "stories": {
         "beginner": [
-          "The US economy is growing faster than expected, with companies investing heavily in AI technology and people continuing to spend money on goods and services.",
-          "This stronger growth means more jobs and more economic activity than economists predicted at the start of the year.",
-          "The unemployment rate is expected to stay low at 4.2%, giving workers more bargaining power for wages and better positions."
+          "The US economy is growing steadily at 2.8% this year, which means businesses are hiring and people have jobs.",
+          "Inflation is cooling - we expect it down to 2.2% by the end of 2026, so your groceries and gas should stop getting more expensive so fast.",
+          "The Federal Reserve is expected to keep interest rates steady around 3.25%, which affects how much it costs to borrow money for a car or house."
         ],
         "moderate": [
-          "GDP growth is tracking at 2.6% versus the consensus forecast of 2.0%, driven by robust AI capital investment and resilient consumer spending that has outpaced earlier expectations.",
-          "This outperformance reflects the structural tech boom reshaping capital allocation, though it contrasts sharply with the sluggish growth many developed economies are experiencing in early 2026.",
-          "The budget deficit remains elevated at 7.5% of GDP, creating a tension between near-term growth strength and longer-term fiscal pressures that could constrain policy flexibility."
+          "Real GDP growth is tracking at 2.8% for 2026, slightly above the full-year forecast of 2.2%, signaling the economy remains resilient despite higher borrowing costs.",
+          "Core PCE inflation is expected to fall to 2.2% by year-end, suggesting the Fed's rate hikes are working, though the current account deficit sits at 3.8% of GDP reflecting America's reliance on foreign capital.",
+          "With unemployment holding near 4.2%, the labor market remains tight enough to support consumer spending even as the budget deficit widens to 7.5% of GDP, a structural headwind for long-term growth."
         ],
         "expert": [
-          "US GDP growth tracking 2.6% versus 2.0% consensus reflects disproportionate AI investment clustering in US tech hubs and consumer balance sheets that remain surprisingly resilient despite 2025's rate hiking cycle.",
-          "The 4.2% unemployment forecast sits above the Fed's implicit neutral rate, signaling labor market cooling is already in motion even as nominal demand remains robust, which creates a directional signal for wage growth moderation.",
-          "Current account deficit at 3.8% of GDP paired with elevated fiscal deficits suggests the dual deficit dynamic will persist, implying continued dollar strength and foreign capital inflows needed to fund the external gap."
+          "Real GDP growth at 2.8% is outpacing the 2.2% full-year forecast, driven by resilient consumer spending and business investment; core PCE inflation declining to 2.2% creates room for the Fed to hold rates at 3.25% through 2026 rather than cutting aggressively.",
+          "The unemployment rate anchored near 4.2% masks persistent labor market bifurcation, with wage growth in services offsetting weakness in goods-producing sectors, while the 7.5% budget deficit and 3.8% current account deficit signal reliance on foreign financing to sustain growth.",
+          "Forward guidance hinges on whether core inflation can sustain its 2.2% trajectory without a demand shock, since nominal wage growth remains elevated at 4%+ year-over-year, creating vulnerability if external shocks force central bank policy tightening in 2027."
         ]
       },
       "fxRegime": {
@@ -1561,19 +1561,19 @@
       },
       "stories": {
         "beginner": [
-          "Canada's economy had a weak 2025 but is starting to improve as the government and central bank provide support through lower interest rates and spending.",
-          "Growth is expected to be modest at 1.7% in 2026, which is slower than the US but should feel a bit better than last year.",
-          "The unemployment rate around 6.5% is higher than ideal, meaning some Canadians are still struggling to find work even as conditions gradually improve."
+          "Canada's economy is slowly getting better in 2026 after struggling in 2025, though growth will still be quite weak.",
+          "The Bank of Canada is expected to cut interest rates to 2.25%, which should help businesses and homeowners save money on loans.",
+          "Inflation in Canada is expected to stay calm at around 2%, so prices should remain stable for Canadian shoppers."
         ],
         "moderate": [
-          "Canada faces a growth recovery challenge in 2026 following subdued 2025 performance, with both the Bank of Canada and federal government deploying supportive monetary and fiscal measures to coax growth higher.",
-          "The projected 1.7% growth represents a modest uptick but remains well below the US's 2.6% tracking rate, exposing Canada's vulnerability to sector-specific headwinds and elevated household debt servicing costs.",
-          "An unemployment rate near 6.5% signals meaningful slack in the labor market, which gives policymakers room to stimulate without immediately triggering inflation but also reflects a more fragile employment backdrop than peer economies."
+          "Canadian GDP growth is expected to firm modestly in 2026 following subdued performance in 2025, but at 1.7% growth, the economy remains significantly weaker than the US and UK, reflecting persistent household debt challenges and weak business investment.",
+          "The Bank of Canada's policy rate falling to 2.25% reflects confidence that inflation will remain anchored at 2%, though the unemployment rate climbing to 6.5% signals the central bank is prioritizing growth support over inflation concerns.",
+          "Canada's current account deficit sits at only 0.5% of GDP, the smallest among major economies, but this strength masks underlying domestic demand weakness that rate cuts alone cannot solve without fiscal stimulus or rising business confidence."
         ],
         "expert": [
-          "Canada's growth trajectory of 1.7% reflects asymmetric policy support (accommodative BoC and fiscal expansion) attempting to offset 2025's demand destruction, yet momentum remains subdued relative to concurrent US outperformance, signaling relative economic divergence.",
-          "The 6.5% unemployment rate and 2.0% CPI forecast imply the BoC retains substantial policy space, but household debt ratios constrain the multiplier effect of rate cuts, limiting the boost from monetary accommodation alone.",
-          "Current account near balance at minus 0.5% of GDP masks underlying fragility in non-energy exports and suggests reliance on portfolio inflows, which creates downside risk if interest rate differentials vis-a-vis the US narrow faster than consensus expects."
+          "GDP growth tracking at 1.7% represents a meaningful acceleration from 2025's performance, yet remains structurally constrained by household debt at 97% of disposable income and a business investment cycle that has not recovered from the 2020 shock.",
+          "The Bank of Canada's anticipated rate cut to 2.25% signals a dovish pivot despite inflation holding at 2%, suggesting officials view slack as the primary risk; this diverges from the Fed's stance and should weaken the Canadian dollar through 2026 if the differential persists.",
+          "Forward growth depends critically on whether lower rates translate into mortgage refinancing demand or accelerate household deleveraging, with the unemployment rate likely to breach 6.5% before stabilizing, creating political pressure for larger fiscal transfers that would delay deficit reduction below the 1.5% GDP forecast."
         ]
       },
       "fxRegime": {
@@ -3113,19 +3113,19 @@
       },
       "stories": {
         "beginner": [
-          "UK inflation is being affected by temporary factors like holiday package prices and new fees on private schools and sewerage, which will make official inflation numbers look higher in March 2026.",
-          "These one-off cost increases are not permanent parts of inflation, so they should fade away as the year goes on and underlying price pressure remains modest.",
-          "The economy is expected to grow slowly at 1.5%, which means job creation will be gradual and real wage growth for workers will depend on keeping inflation in check."
+          "The UK unemployment rate will keep climbing until March 2026, then level off, meaning fewer people will be finding jobs soon but things will stabilize.",
+          "Inflation in Britain is expected to drop to 2.2% by spring 2026, so price increases should finally slow down for ordinary families.",
+          "The Bank of England is expected to cut interest rates to 3%, making it cheaper to borrow money and potentially helping the housing market recover."
         ],
         "moderate": [
-          "Calendar distortions in package holiday prices persist through March 2026, alongside new VAT charges on private school fees and elevated sewerage charges, creating a temporary inflation headwind that inflates reported CPI relative to underlying price momentum.",
-          "These supply-side cost shocks are largely non-monetary in origin and will roll off comparisons by mid-year, suggesting the 2.1% full-year CPI forecast may prove conservative in Q1 but revert lower as the year progresses.",
-          "Growth at 1.5% reflects subdued domestic demand and structural headwinds, while unemployment at 5.0% provides some inflation buffer but also signals the economy lacks sufficient momentum to sustain faster job creation."
+          "UK unemployment is expected to rise until March 2026 before stabilizing at around 5%, a pattern that contrasts sharply with the tight US labor market and reflects structural weakness in business investment and consumer confidence.",
+          "Headline inflation is forecast to decelerate to 2.2% in Q2 2026, giving the Bank of England room to cut its policy rate to 3% and support a sluggish 1.5% GDP growth rate that lags peers.",
+          "The current account deficit remains elevated at 2.5% of GDP despite the energy crisis of 2022-2023 fading, indicating underlying competitiveness challenges that interest rate cuts cannot address and that may require sterling depreciation to correct."
         ],
         "expert": [
-          "March 2026 CPI readings will display outsized calendar distortions from package holiday price sequencing, VAT expansion on private education, and sewerage fee increases, creating a misleading peak that masks underlying core inflation tracking closer to 1.8% on a run-rate basis.",
-          "The temporary nature of these shocks (holiday timing anomalies, one-off fee implementations) means they will mechanically roll off year-over-year comparisons by Q2, impairing the BoE's ability to signal conviction on the disinflationary path without causing market volatility.",
-          "At 1.5% growth with a 5.0% unemployment rate, the UK economy exhibits insufficient spare capacity to support either faster nominal wage growth or sustained real incomes, creating a low-inflation equilibrium that constrains policy flexibility and requires vigilance on demand-side risks."
+          "Unemployment rising until March 2026 and then stabilizing at 5% represents a lagging adjustment to weak demand in 2024-2025, with the Bank of England's anticipated rate path falling to 3% priced in by markets, though forward guidance hinges on whether wage growth sustains inflation at target.",
+          "Headline inflation deceleration to 2.2% in Q2 2026 is driven by energy base effects and subdued wage growth rather than demand destruction, creating a policy environment where the Bank of England can cut aggressively without triggering market repricing of terminal rates.",
+          "The 2.5% current account deficit alongside 1.5% GDP growth and a 4.2% budget deficit creates a fiscal-external account imbalance that suggests sterling could face depreciation pressure in 2027 if gilt yields rise globally, forcing the Bank to balance domestic growth support against currency stability."
         ]
       },
       "fxRegime": {
@@ -4665,19 +4665,19 @@
       },
       "stories": {
         "beginner": [
-          "Japan's economy is doing well and GDP data released in the week of March 9, 2026 will show whether that good performance is continuing into the new quarter.",
-          "With unemployment very low at 2.5%, Japanese workers have strong job security, though companies may struggle to find enough people to hire.",
-          "Japan is earning money from selling goods to other countries (a 4.8% current account surplus), which helps support its economy and its currency."
+          "Japan's economy is slowing at 0.8% growth in 2026, which means the country is not creating much wealth or new jobs.",
+          "Inflation in Japan is expected to stay very low at 1.8%, so the Bank of Japan will likely keep interest rates near 1.25% to encourage borrowing and spending.",
+          "Japan has a strong current account surplus of 4.8% of GDP, meaning the country saves more than it spends and is lending money to other nations."
         ],
         "moderate": [
-          "Japan's central case highlights continued good economic performance, with GDP data in the week of March 9, 2026 serving as the key test of whether Q1 momentum is sustaining relative to Q4 2025 trends.",
-          "The 2.5% unemployment rate is extraordinarily tight by global standards and sits well below any reasonable estimate of Japan's NAIRU, meaning the labor market is a genuine constraint on growth expansion rather than a source of slack.",
-          "A 4.8% current account surplus reflects structural savings behavior and manufacturing competitiveness in export markets, providing a buffer against external imbalances while keeping yen dynamics favorable for sustained tourism and FDI inflows."
+          "Japan's GDP growth of 0.8% in 2026 reflects persistent demographic headwinds and low productivity growth, a structural challenge that contrasts sharply with the 2.8% rate in the US and suggests Japan's growth trajectory will remain constrained despite accommodative policy.",
+          "Inflation remaining at 1.8% gives the Bank of Japan the flexibility to hold its policy rate near 1.25%, the lowest among major economies, though this ultra-loose stance reflects decades of deflation scarring and the central bank's reluctance to normalize even as employment tightens to 2.5% unemployment.",
+          "Japan's 4.8% current account surplus is the only positive reading among major economies, powered by a structural trade surplus and foreign investment income, yet this strength masks domestic demand weakness that low rates and fiscal transfers cannot overcome without productivity gains."
         ],
         "expert": [
-          "Japan's central case scenario depends critically on GDP data due in the week of March 9, 2026, with the directional signal being whether Q1 momentum sustains the acceleration trajectory from late 2025 or reverts toward the 0.8% full-year consensus on trend growth.",
-          "The 2.5% unemployment rate creates a genuine Philips curve constraint at the tight end, meaning further growth acceleration without structural labor supply increases (immigration, participation) will trigger faster wage and service inflation, potentially forcing BoJ tightening sooner than current forward guidance suggests.",
-          "The 4.8% current account surplus and 1.25% policy rate imply Japan is the only major economy running a sustained external surplus with monetary accommodation, creating carry trade dynamics and JPY weakness that boost export competitiveness but increase financial stability risks if international funding conditions tighten."
+          "GDP growth at 0.8% represents a deterioration from 2025 performance, driven by aging population headwinds, weak business investment, and deflationary expectations that keep real interest rates high despite the Bank of Japan's 1.25% nominal rate, creating a policy trap.",
+          "The 1.8% inflation forecast sits significantly below the Bank of Japan's 2% target, signaling that demand remains chronically weak; the central bank's reluctance to exit accommodative policy despite 2.5% unemployment reflects institutional fear of demand destruction if rates normalize too rapidly.",
+          "Japan's 4.8% current account surplus will likely persist through 2026, but forward growth depends on whether productivity reforms can offset demographic decline, since fiscal stimulus will prove unsustainable if GDP growth does not accelerate above 1.5% and the central bank cannot credibly commit to rate normalization by 2028."
         ]
       },
       "fxRegime": {
@@ -6120,19 +6120,19 @@
       },
       "stories": {
         "beginner": [
-          "Germany's factories are slowing down because fewer people around the world are buying German goods, especially from China. This means fewer jobs and less money for German workers.",
-          "When other countries raise taxes on imports, Germany gets hit harder than most because it sells so many products abroad. Economists worry the economy could shrink again soon.",
-          "The government is spending more money to try to help, but inflation at 2.2% and unemployment at 3.8% show the economy is under real pressure."
+          "Germany is getting help from its government spending more money, which should push the economy forward slightly this year.",
+          "Trade tensions are easing up, which means German companies might sell more stuff abroad without worrying as much about tariffs.",
+          "The jobless rate should stay low at 3.8%, so most people who want to work can find a job."
         ],
         "moderate": [
-          "Manufacturing output and export orders have deteriorated as trade tensions escalate and China's demand weakens, creating a downside risk to the 1.2% growth forecast. Germany's export-dependent economy cannot easily pivot to domestic demand like France or Italy can.",
-          "The March 9 HICP release will reveal whether price pressures are easing enough to support ECB rate cuts, a key lever for reviving investment. Current account strength at 4.5% of GDP masks the underlying fragility of the manufacturing base.",
-          "With a budget deficit tracking near 2% of GDP and unemployment stable at 3.8%, fiscal space exists to cushion a downturn, but political resistance to deficit spending may constrain Berlin's response."
+          "Euro area growth forecast came in at 1.3% for 2026, driven by German fiscal expansion that contrasts sharply with the austerity of previous years. Reduced tariff threats from global trade negotiations are lifting business confidence after months of uncertainty.",
+          "Germany's current account surplus of 4.5% of GDP reflects its export-dependent economy, but domestic consumption will need to strengthen for growth to accelerate beyond the modest 1.3% forecast.",
+          "With unemployment at 3.8% and inflation near the ECB's 2% target, Germany has room to sustain higher government spending without overheating the labor market."
         ],
         "expert": [
-          "Recent PMI declines and export weakness signal Germany is underperforming the euro area consensus, with downside risk to the 1.2% growth projection. Manufacturing employment erosion could push unemployment above the 3.8% forecast if trade barriers persist through Q2.",
-          "The March HICP print is critical for ECB forward guidance, as German disinflation (tracking to 2.2%) may embolden rate cuts even as core pressures linger elsewhere in the euro area. A 25 basis point cut in April would provide modest relief but cannot offset the external demand shock.",
-          "Current account surpluses of 4.5% of GDP coupled with weak domestic investment signal that German capital is seeking higher returns abroad, reducing multiplier effects and leaving fiscal stimulus as the primary demand tool."
+          "The 1.3% euro area growth forecast reflects German fiscal multiplier effects from expanded spending, which should offset persistent weakness in southern Europe and France's structural stagnation. Current account surplus of 4.5% of GDP signals ongoing external imbalance within the currency union despite cyclical improvement.",
+          "German fiscal expansion operates in an environment where the ECB holds rates at 2.50% and core inflation remains anchored near 2%, creating space for demand-side stimulus without triggering monetary tightening. The tariff de-escalation removes downside risk to manufacturing output in 2026.",
+          "Forward momentum hinges on whether fiscal impulse translates to durable consumption growth rather than precautionary saving, given demographic headwinds and pension reform uncertainty that could constrain multiplier effects below historical precedent."
         ]
       },
       "fxRegime": {
@@ -7672,19 +7672,19 @@
       },
       "stories": {
         "beginner": [
-          "France's economy is growing slowly at around 1.4%, pulled down by weak trade across Europe and higher prices for imports. People are still spending money at home, which helps, but not enough to fully make up for the weakness.",
-          "While Germany suffers from factory slowdowns, France relies more on services and household spending, giving it a bit more resilience. But trade tensions are still hurting growth across the whole region.",
-          "The government is running a large budget deficit at 4.8% of GDP to support the economy, and unemployment sits at 7.7%, which is higher than Germany's rate."
+          "France's economy is expected to grow at the same slow pace it did last year, around 1.3%, which means not much is changing.",
+          "Consumer spending is holding up, so French people are still buying things and keeping the economy from getting worse.",
+          "Unemployment is higher here than in Germany at 7.7%, so finding a job is tougher for French workers."
         ],
         "moderate": [
-          "France's 1.4% growth forecast depends entirely on solid domestic consumption offsetting Europe's trade headwinds, a structural advantage over Germany's export model but still inadequate for meaningful job creation. The 7.7% unemployment rate and 4.8% deficit reflect both cyclical weakness and persistent structural rigidities in the labor market.",
-          "Trade tensions pose a symmetric risk to France as to the rest of the euro area, but French services exports (tourism, financial services, professional services) provide some insulation compared to manufacturing-heavy peers. The ECB's cautious rate-cut path at 2.50% may remain on hold until March data clarifies the inflation trajectory.",
-          "With current account balanced near 1% of GDP and inflation tracking to 2%, France has room for fiscal maneuver, but the 4.8% deficit already signals Berlin and Brussels are watching the sustainability question closely."
+          "Euro area growth forecast of 1.3% represents stagnation for France relative to its 1.4% full-year forecast, with structural labor market issues keeping unemployment at 7.7% despite resilient consumer spending. France lags Germany's fiscal firepower and Italy's recent reforms that are driving modest comparative outperformance.",
+          "Consumer spending resilience in France reflects purchasing power preserved by wage indexation and lower energy costs, but productivity growth remains subdued and the budget deficit at 4.8% of GDP constrains further stimulus room.",
+          "The current account deficit of 1% of GDP signals ongoing competitiveness challenges in tradable sectors, limiting France's ability to export its way out of low-growth equilibrium."
         ],
         "expert": [
-          "France's 1.4% growth forecast is predicated on domestic demand resilience as net exports remain a drag, a divergence from the pre-pandemic period when current account improvements amplified growth. The 7.7% unemployment rate reflects structural labor market issues (hiring costs, skills mismatches) that cyclical stimulus cannot fully remedy.",
-          "Recent euro area growth data at 2.4% combined with France's 1.4% projection signals relative underperformance, likely driven by weaker confidence and delayed multiplier effects from the elevated 4.8% fiscal deficit. The ECB's 2.50% policy rate provides limited ammunition if trade tensions deepen and demand deteriorates further in Q2.",
-          "Current account stability at 1% of GDP masks deteriorating service export momentum and rising debt servicing costs, suggesting that sustained fiscal support will eventually force either spending cuts or revenue measures if borrowing costs rise."
+          "France's 1.4% full-year growth forecast masks quarterly volatility driven by consumption volatility and volatile fiscal transfers, with the economy tracking near consensus despite structural headwinds in manufacturing and services tradables. The 4.8% budget deficit reflects both cyclical weakness and structural spending commitments that constrain fiscal space.",
+          "Labor market rigidity keeps unemployment at 7.7%, the highest in the euro area excluding non-core economies, even as consumer confidence holds firm. ECB rates at 2.50% provide limited relief for debt-servicing costs given France's elevated sovereign spreads relative to Germany.",
+          "Downside risk to 2026 growth concentrates on consumer confidence fragmentation across income deciles and potential fiscal retrenchment pressure if bond markets reassess France's deficit trajectory, particularly if euro area growth disappoints below 1.2%."
         ]
       },
       "fxRegime": {
@@ -9224,19 +9224,19 @@
       },
       "stories": {
         "beginner": [
-          "Italy's economy is expected to grow 1% this year, slightly better than Germany but weaker than France, because Italian families and businesses are still spending money despite trade problems. Unemployment is moderate at 5.6%, lower than France.",
-          "Unlike Germany, which relies on factories and exports, Italy has strong domestic demand from households that keeps the economy afloat. This gives it more protection when other countries buy fewer goods.",
-          "Italy's inflation sits at 2.3% and the budget deficit is 3.2% of GDP, which are manageable compared to France, giving the government some flexibility to support the economy if needed."
+          "Italy's economy will grow around 1.3% this year, helped by the government spending money and people continuing to buy things.",
+          "The jobless rate of 5.6% is reasonable and inflation is stable, so households have some security in their wallets.",
+          "Italy is earning more money from selling stuff abroad than it spends on imports, which strengthens its position in Europe."
         ],
         "moderate": [
-          "Italy's 1% growth forecast outperforms Germany despite both facing trade headwinds because domestic demand remains resilient and the labor market shows signs of tightening at 5.6% unemployment. The contrast reflects Italy's shift away from export dependence toward a more consumption-driven model over the past decade.",
-          "The 3.2% budget deficit is sustainable compared to France's 4.8%, leaving fiscal space for targeted support if the euro area downturn deepens. Current account near balance (0.8% of GDP) means Italy is not exporting capital as aggressively as Germany, a sign of healthier domestic investment demand.",
-          "March inflation data will be crucial for the ECB's rate path, as Italy's 2.3% CPI is slightly above the euro area target and may resist rate cuts longer than the consensus expects."
+          "Euro area growth forecast of 1.3% represents upside surprise for Italy relative to its 1% full-year GDP forecast, driven by fiscal stimulus and consumer spending resilience that outpace structural expectations. Italy's unemployment at 5.6% is lower than France but still higher than Germany, reflecting regional labor market segmentation.",
+          "Fiscal stimulus effectiveness in Italy depends on whether spending reaches productive investment or crowds into consumption and transfers, a pattern that has constrained multiplier effects historically. The current account surplus of 0.8% of GDP reflects tourism recovery and manufacturing strength in the north.",
+          "Italy's 3.2% budget deficit sits between Germany's restraint and France's excess, positioning Rome for modest confidence from bond markets while maintaining room for demand support."
         ],
         "expert": [
-          "Italy's 1% growth projection relies on domestic demand stability even as the euro area faces 2.4% growth, signaling a relative outperformance that hinges on household confidence and credit conditions remaining supportive. The 5.6% unemployment rate is the lowest among major euro area economies, reducing downside risks to consumption.",
-          "The 3.2% budget deficit provides fiscal headroom for countercyclical support if trade tensions trigger a sharper slowdown, unlike France where the 4.8% deficit already constrains options. March CPI at 2.3% will signal whether Italian labor markets are tightening faster than German and French counterparts, relevant for ECB calibration.",
-          "Current account near balance (0.8% of GDP) combined with modest deficit means Italy is not relying on large capital inflows to fund growth, reducing vulnerability to a sudden risk-off in euro area asset markets."
+          "Italy's growth forecast of 1.3% for the euro area (versus 1% domestic forecast) implies fiscal multiplier effects from stimulus packages are exceeding baseline expectations, particularly in tourism and domestic services where demand reacted sharply to spending announcements. Consumer spending remains resilient despite inflation squeeze from energy costs in late 2025.",
+          "The 5.6% unemployment rate masks significant regional divergence between the industrialized north and structurally weaker south, where fiscal transfers have concentrated but productivity gains remain elusive. Current account surplus of 0.8% of GDP reflects manufacturing competitiveness gains but narrows relative to 2024 due to import recovery.",
+          "Forward acceleration depends on whether fiscal stimulus locks in through capital formation or dissipates into transfer-dependent consumption, a distinction crucial for evaluating whether Italy's growth can sustain above 1.5% beyond 2026 without structural labor market reforms."
         ]
       },
       "fxRegime": {
@@ -10679,19 +10679,19 @@
       },
       "stories": {
         "beginner": [
-          "China's government has pumped money into the economy to keep it growing around 5%, which is slower than before but still solid. Factories are still exporting lots of goods to other countries, helping workers stay employed.",
-          "When the government spends money to support growth, it usually works, but the cost is that debt keeps piling up and companies become less efficient over time. China's growth is slowing because of this old trick running out of steam.",
-          "On March 9, new data on prices and trade will show whether China's stimulus is actually working or if the economy is stalling out beneath the surface."
+          "China's economy is expected to grow 4.8% this year, which is slower than the 5% most people think of as normal for China.",
+          "China is selling a lot more stuff to other countries than it buys from them, which means money is flowing in from abroad.",
+          "The government is controlling prices well with inflation at around 2%, so savers and workers aren't getting squeezed."
         ],
         "moderate": [
-          "China's 4.7% full-year growth projection trails the recent 5% pace, signaling that government stimulus is facing diminishing returns as debt accumulation accelerates and structural headwinds intensify. The March 9 CPI and trade data releases will reveal whether demand is holding or rolling over despite fiscal support.",
-          "Strong exports have offset weak domestic consumption, a pattern that cannot persist if developed economies raise tariffs further or recession hits demand. The 2.75% policy rate and 6.8% budget deficit already signal that Beijing has deployed most of its ammunition, leaving little room for aggressive easing if growth disappoints.",
-          "Unemployment near 5.1% is reported by the government and likely understates true joblessness in smaller cities and manufacturing hubs, creating political pressure for continued stimulus even as debt sustainability questions mount."
+          "China's real GDP growth projection of 4.8% for 2026 reflects structural deceleration from the property crisis and aging demographics, despite recent stimulus measures. Current account surplus expected to rise to 4.1% of GDP from 3.5% in 2025 signals export strength offsetting weak domestic demand.",
+          "The 4.8% growth forecast sits below China's 5% policy target, signaling that monetary and fiscal stimulus have not yet reignited investment-led expansion. Unemployment at 5.1% remains officially stable, though underemployment in youth cohorts exceeds reported figures.",
+          "China's external surplus widening to 4.1% of GDP despite domestic weakness reflects global trade shifts rather than competitive strength, as Chinese manufacturers absorb orders relocating from other Asian suppliers."
         ],
         "expert": [
-          "China's 5% growth in 2025 and projected 4.7% in 2026 reflect a structural deceleration as debt servicing costs rise, demographics deteriorate, and export-led growth hits capacity ceilings. March CPI and trade releases will signal whether the recent stimulus package (property tax breaks, infrastructure spending) is translating into actual demand or simply supporting inventory accumulation.",
-          "The 6.8% budget deficit combined with off-balance-sheet local government financing means true fiscal stimulus is substantially larger than headline numbers suggest, but the 2.75% policy rate shows Beijing is avoiding aggressive monetary easing, preferring targeted credit allocation to support strategic sectors. This two-speed approach risks misallocation and perpetuates zombie firm dynamics.",
-          "Current account surplus near 2.5% of GDP in a slowdown scenario points to demand destruction at home, with capital fleeing to higher-return markets, a scenario that would force either faster rate cuts or currency intervention if outflows accelerate in Q2."
+          "Real GDP growth projection of 4.8% reflects the output gap between structural potential (4.2% to 4.5%) and current momentum, where fiscal stimulus and credit easing are extending growth without reversing the property contraction's drag. Current account surplus rising to 4.1% of GDP versus 3.5% in 2025 signals demand destruction at home coupled with export market share gains from geopolitical trade redirection.",
+          "The policy rate at 2.75% provides 75 basis points of cut capacity relative to the prior cycle low, but further easing carries diminishing returns if debt-to-GDP ratios exceed 280% across the public and quasi-public sectors. Inflation anchored at 2% masks significant sectoral deflation in tradables and property services.",
+          "2026 growth trajectory depends critically on whether credit impulse from new stimulus packages (estimated 5% to 6% of GDP) sustains through year-end or front-loads into Q1, with downside risk if property stabilization remains elusive and youth unemployment accelerates beyond official 5.1% readings."
         ]
       },
       "fxRegime": {
@@ -12040,19 +12040,19 @@
       },
       "stories": {
         "beginner": [
-          "India's economy grew 8% in the first half of this fiscal year, which means jobs are being created and people are buying more things.",
-          "Strong spending by regular consumers and businesses investing in factories and equipment are what is driving this growth.",
-          "The government expects full-year growth to settle at 6.3%, which would still be one of the fastest rates in the world."
+          "India's economy is growing faster than almost any other major country right now, which means more jobs and higher paychecks for workers.",
+          "Tech companies in India are selling more products around the world, bringing money into the country and boosting growth.",
+          "When an economy grows this fast, prices can rise quickly, so the central bank will watch inflation carefully to make sure it does not get out of control."
         ],
         "moderate": [
-          "Real GDP expanded 8% year-over-year in the first half of fiscal 2025-26, with private consumption rising 7.5% and capital formation at 7.6%, showing broad-based momentum across the economy.",
-          "This pace outpaces the full-year forecast of 6.3%, suggesting India is running ahead of expectations as both household spending and business investment remain robust.",
-          "The combination of consumption-led growth and capital deepening typically creates a virtuous cycle, though the elevated 7.2% budget deficit means fiscal support is still fueling demand."
+          "India's 6.7% growth rate in 2026 outpaces most peer emerging markets and reflects strong exports in high-value tech sectors combined with real wage gains that are fueling domestic consumption.",
+          "This momentum contrasts sharply with Latin America's 2.3% expansion and Africa's subdued outlook, positioning India as a bright spot in a world economy clouded by trade tensions.",
+          "The fiscal deficit sits at 7.2% of GDP, which is elevated and suggests the government is spending aggressively to support growth, a strategy that works only as long as interest rates remain manageable."
         ],
         "expert": [
-          "Real GDP grew 8% YoY in H1 FY2025-26 with private consumption at 7.5% and GFCF at 7.6%, tracking well ahead of the 6.3% full-year forecast and signaling sustained momentum into the second half.",
-          "The dual pillars of consumption and investment growth reduce reliance on government spending, but the current account deficit of 1.2% GDP and policy rate at 6% suggest the Reserve Bank may need to monitor external stability if import growth accelerates further.",
-          "If consumption holds above 7% through Q4 FY26, India could post full-year growth materially above 6.3%, creating upside risk to the inflation forecast of 4.2% and potentially constraining rate cuts even as global conditions ease."
+          "India's 6.7% growth trajectory (tracking ahead of the 6.3% forecast) is being driven by tech export competitiveness and real wage expansion that has insulated domestic demand from global slowdown pressures, though the current account deficit of 1.2% GDP signals continued reliance on foreign capital inflows.",
+          "The policy rate of 6% remains restrictive relative to headline inflation expectations of 4.2%, suggesting the Reserve Bank of India retains room to ease if external pressures ease, a lever that could accelerate growth further into 2027.",
+          "The 7.2% fiscal deficit creates a medium-term vulnerability if capital flows reverse; India's ability to sustain high growth depends on continued inflows and export momentum in a deteriorating global trade environment where protectionism is rising."
         ]
       },
       "fxRegime": {
