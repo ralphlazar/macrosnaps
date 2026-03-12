@@ -303,11 +303,6 @@ Wait about 60 seconds, then open:
 https://ralphlazar.github.io/macrosnaps/macrosnaps-globe.html
 ```
 
-**Quick-reference one-liner (after sheet sync is done):**
-```bash
-cd ~/Downloads/macrosnaps && python3 fetch_market_data.py && python3 update_stories.py && python3 update_commodity_stories.py && python3 update_headlines.py && python3 build.py && git add -A && git commit -m "Daily update $(date +%Y-%m-%d)" && git push origin master
-```
-
 ---
 
 ### What the Google Sheet controls

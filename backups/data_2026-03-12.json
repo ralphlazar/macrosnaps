@@ -8,7 +8,7 @@
       "weekly": "Update weekly or on release — CPI, unemployment, policy rate",
       "structural": "Update quarterly or on major revision — GDP, deficits, current account, stories, fxRegime"
     },
-    "built_at": "2026-03-12 17:53"
+    "built_at": "2026-03-12 18:09"
   },
   "countries": {
     "USA": {
@@ -83,13 +83,13 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "-1.2%",
+            "value": "-2.5%",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "US stocks fell into negative territory this year, dropping from a 0.5% gain to a 1.4% loss. Markets gave back earlier gains as investors grew more cautious. The shift shows how quickly sentiment can change on Wall Street.",
-              "moderate": "The S&P 500's year-to-date performance turned negative, sliding from +0.5% to -1.4% as market momentum reversed course. The 1.9 percentage point decline erased months of steady gains and pushed major indices back into the red. Investor sentiment shifted as concerns about economic growth and corporate earnings weighed on equity valuations. The move reflects broader uncertainty about the direction of US markets heading into year-end.",
-              "expert": "US equity indices reversed their year-to-date gains decisively, with the broad market falling from +0.5% to -1.4% as risk-off sentiment dominated trading flows. The 190 basis point decline signals a breakdown in the technical support levels that had sustained the rally through mid-year. Multiple expansion stalled as investors repriced growth expectations downward, with sector rotation favoring defensive plays over cyclicals. Volume patterns suggest institutional profit-taking rather than panic selling, though the breach of key moving averages could trigger additional algorithmic selling pressure. The negative YTD print puts US equities at a technical crossroads heading into the final trading sessions."
+              "beginner": "US stocks have fallen deeper into the red this year. The market's year-to-date loss grew from 1.2% to 2.5%. American companies are worth less now than they were at the start of January.",
+              "moderate": "The S&P 500's year-to-date decline deepened from 1.2% to 2.5%, signaling increased investor pessimism. Equity markets continue struggling with persistent headwinds that have kept returns firmly in negative territory. The worsening performance suggests mounting concerns about corporate earnings and broader economic conditions are weighing on stock valuations.",
+              "expert": "US equity indices extended year-to-date losses from 1.2% to 2.5%, reflecting deteriorating risk sentiment across major market segments. The accelerating decline indicates growing investor skepticism about forward earnings estimates and multiple compression amid shifting monetary policy expectations. Cross-asset volatility patterns suggest systematic deleveraging rather than sector-specific rotation. Options flow data and VIX term structure dynamics point to sustained defensive positioning among institutional participants."
             }
           },
           "Equity Vol": {
@@ -123,13 +123,13 @@
             }
           },
           "Corp Spread": {
-            "value": "84bps",
+            "value": "88bps",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "Corporate bond spreads in the US fell from 100 basis points to 84 basis points. This means investors now demand less extra yield to hold corporate bonds instead of government bonds. Companies can borrow money more cheaply as credit markets show more confidence.",
-              "moderate": "US corporate credit spreads tightened significantly from 100bps to 84bps, signaling improved investor sentiment toward corporate debt. The 16 basis point compression indicates markets view default risk as lower and liquidity conditions as more favorable. This spread tightening reduces borrowing costs for companies and suggests stronger corporate credit fundamentals. The move reflects either improving economic conditions or increased risk appetite among fixed income investors.",
-              "expert": "US corporate credit spreads compressed 16bps to 84bps, marking a substantial tightening in credit conditions and risk premia. The move below the psychological 100bps threshold suggests either fundamental credit improvement through stronger balance sheets and earnings or technical factors including CLO bid, pension rebalancing, or duration hedging flows. This spread level typically corresponds with benign default expectations and accommodative monetary policy transmission through credit markets. The tightening creates favorable issuance windows for corporate treasurers while potentially signaling late-cycle credit dynamics. Credit-sensitive sectors should see multiple expansion as financing costs decline and refinancing risk diminishes."
+              "beginner": "The extra interest companies pay to borrow money jumped from 84 to 88 basis points. This means investors are getting more worried about corporate debt and want higher returns to compensate for the risk. When this spread widens, it usually signals concerns about the economy or company finances.",
+              "moderate": "Corporate bond spreads widened from 84 to 88 basis points, indicating increased investor concern about credit risk in the corporate sector. The 4 basis point increase suggests market participants are demanding higher compensation for lending to companies relative to risk-free government bonds. This spread expansion often reflects either deteriorating economic conditions or specific worries about corporate balance sheets and earnings prospects.",
+              "expert": "Investment-grade corporate credit spreads expanded 4 basis points to 88bps over Treasuries, signaling a deterioration in risk sentiment within fixed income markets. The widening reflects increased credit risk premiums as investors reassess default probabilities and recovery rates across the corporate universe. This move likely stems from fundamental concerns about leverage ratios, earnings visibility, or refinancing risks, particularly given the current interest rate environment. The spread expansion will increase borrowing costs for corporate issuers and may constrain capital allocation decisions. Credit markets often lead equity markets in signaling stress, making this metric a key early warning indicator for broader financial conditions."
             }
           },
           "Sov CDS": {
@@ -143,23 +143,23 @@
             }
           },
           "USD/DXY": {
-            "value": "99.5",
+            "value": "99.7",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "The dollar weakened slightly, with the Dollar Index falling from 99.5 to 99.2. This means the dollar lost a bit of value compared to other major currencies like the euro and yen. A weaker dollar can make American exports cheaper for foreign buyers.",
-              "moderate": "The Dollar Index (DXY) declined from 99.5 to 99.2, signaling modest weakness in the greenback against its major trading partners. This 0.3% drop suggests reduced demand for dollars or increased appetite for risk assets denominated in other currencies. The move could benefit U.S. exporters while potentially adding inflationary pressure through higher import costs. Dollar weakness often coincides with improved sentiment toward emerging markets and commodities.",
-              "expert": "DXY retreated 30 basis points to 99.2, breaking below the 99.5 technical support level amid potential dovish Fed repricing or risk-on flows. The pullback likely reflects unwinding of long dollar positions as real yield differentials compress or geopolitical risk premiums diminish. This move should provide tailwinds for dollar-denominated commodities and EM currencies while potentially pressuring core PCE through the import channel. The 99.0 level represents the next key support, with a break potentially targeting the 98.5-98.7 zone where previous consolidation occurred."
+              "beginner": "The US dollar strengthened slightly, with the dollar index rising from 99.5 to 99.7. This means the dollar gained value against other major currencies like the euro and yen. A stronger dollar makes US exports more expensive but helps keep inflation in check.",
+              "moderate": "The DXY dollar index climbed from 99.5 to 99.7, showing modest strength in the greenback against a basket of major trading partner currencies. This uptick reflects increased demand for dollar-denominated assets or relative weakness in other major currencies. The move puts upward pressure on US import prices while making American goods less competitive abroad. Dollar strength typically supports bond markets but can weigh on commodity prices and multinational corporate earnings.",
+              "expert": "The DXY advanced 20 basis points to 99.7 from 99.5, indicating incremental dollar strength against the weighted basket of EUR, JPY, GBP, CAD, SEK, and CHF. This move likely reflects either dovish pivots from other major central banks or continued resilience in US economic data supporting Fed policy divergence. The rally keeps the index within its recent trading range but above the psychological 99 level that has provided technical support. Sustained moves above 100 would signal a more decisive bullish breakout, potentially pressuring emerging market currencies and dollar-sensitive sectors like materials and energy."
             }
           },
           "FX Vol": {
-            "value": "5.8%",
+            "value": "5.9%",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "Currency volatility in the US dropped sharply from 12.5% to 5.8%. This means the dollar became much more stable against other currencies. Calmer markets usually signal that investors feel less worried about economic uncertainty.",
-              "moderate": "US dollar volatility plunged from 12.5% to 5.8%, indicating significantly reduced currency market stress. This dramatic decline suggests investors have grown more confident about the economic outlook and Federal Reserve policy direction. Lower FX volatility typically accompanies periods of market stability and reduced geopolitical tensions. The drop makes dollar-denominated investments more attractive to risk-averse global investors.",
-              "expert": "USD implied volatility collapsed from 12.5% to 5.8%, marking a substantial compression in currency risk premiums. The decline likely reflects reduced uncertainty around Fed policy normalization and diminished tail risks from geopolitical events. Options markets are pricing significantly lower probability of sharp dollar moves, with the vol surface flattening across tenors. This environment favors carry strategies and reduces hedging costs for multinational corporations with dollar exposure. The low-vol regime suggests bond-FX correlation dynamics will likely remain subdued near term."
+              "beginner": "The dollar became slightly more volatile this period, with FX volatility rising from 5.8% to 5.9%. This small increase means currency traders expect a bit more price swings in the dollar against other major currencies. Higher volatility often signals uncertainty about future economic conditions.",
+              "moderate": "USD foreign exchange volatility ticked up from 5.8% to 5.9%, indicating marginally higher expected price swings in dollar pairs. The modest increase suggests traders are pricing in slightly more uncertainty around upcoming economic data or Federal Reserve policy decisions. Currency volatility at these levels remains relatively contained compared to crisis periods, but the uptick could signal building market tension ahead of key announcements.",
+              "expert": "USD FX volatility climbed 10 basis points to 5.9%, reflecting increased implied volatility across major dollar crosses. The move higher likely stems from option flows positioning for potential Fed policy surprises or macro data volatility, particularly given current uncertainty around terminal rate expectations. At sub-6% levels, realized volatility remains compressed relative to historical norms, but the directional move suggests dealers are demanding higher premiums for gamma exposure. Cross-currency volatility spreads and the VIX term structure will provide additional context for whether this represents isolated dollar weakness or broader risk-off positioning."
             }
           }
         }
@@ -1478,13 +1478,13 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "+3.9%",
+            "value": "+3.2%",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "Canada's stock market gains dropped from 5.4% to 3.7% so far this year. Stocks gave back some of their earlier profits. The market remains positive but momentum has slowed.",
-              "moderate": "The TSX's year-to-date performance weakened from +5.4% to +3.7%, signaling recent selling pressure. Canadian equities surrendered nearly two percentage points of gains as investors took profits or rotated out of positions. Despite the pullback, the market maintains solid positive territory for the year. Resource stocks and financials likely drove much of the volatility given their heavy weighting in the index.",
-              "expert": "The S&P/TSX Composite retreated from +5.4% to +3.7% year-to-date, a 170 basis point correction that suggests profit-taking or sector rotation pressures. The pullback likely reflects weakness in key index constituents, particularly energy and materials stocks which comprise roughly 35% of the benchmark. Canadian equity performance now lags the broader North American rally, potentially signaling commodity price headwinds or Bank of Canada policy concerns. The decline breaks the index's recent momentum while keeping returns well above historical volatility bands. Institutional flows and currency effects against the USD may have amplified the move given the TSX's resource-heavy composition."
+              "beginner": "Canada's stock market dropped from being up 3.9% for the year to up 3.2%. The market gave back some of its earlier gains. Canadian stocks are still positive but not climbing as strongly as before.",
+              "moderate": "The TSX Composite's year-to-date performance weakened from +3.9% to +3.2%, representing a notable pullback from recent highs. Canadian equities remain in positive territory but momentum has clearly slowed. The decline suggests investor caution amid shifting market conditions. Energy and materials sectors, which drive much of the TSX's performance, likely faced headwinds during this period.",
+              "expert": "The S&P/TSX Composite Index retreated to +3.2% YTD from +3.9%, indicating profit-taking and potential sector rotation pressures. The 70 basis point decline reflects broader risk-off sentiment impacting cyclical sectors that dominate the Canadian equity benchmark. Energy and materials names likely drove the underperformance given their outsized index weighting and sensitivity to global growth concerns. The pullback occurs against a backdrop of potential Bank of Canada policy divergence from the Fed. Canadian equities now trade at a discount to their recent momentum levels, potentially creating tactical entry points for contrarian investors."
             }
           },
           "Equity Vol": {
@@ -1518,13 +1518,13 @@
             }
           },
           "Corp Spread": {
-            "value": "84bps",
+            "value": "88bps",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "Canadian corporate bond spreads dropped sharply from 130 basis points to 84 basis points. This means investors now see much less risk in lending money to Canadian companies compared to the government. Companies can borrow more cheaply, which helps their profits and growth prospects.",
-              "moderate": "Canadian corporate credit spreads compressed dramatically from 130bps to 84bps, signaling improved market confidence in corporate borrowers. The 46 basis point tightening reflects reduced default risk perceptions and stronger investor appetite for corporate debt over government bonds. Lower borrowing costs should support capital investment and balance sheet management across Canadian corporates. Credit market conditions have clearly improved as spreads moved well below recent stress levels.",
-              "expert": "Canadian corporate spreads experienced significant compression from 130bps to 84bps, representing a 46bp tightening that signals substantial improvement in credit market conditions. The move below the 100bp threshold indicates normalized risk appetite and reduced term premiums in the corporate bond market. Spread compression of this magnitude typically correlates with declining default probabilities and improved funding market liquidity. The tightening should translate into measurable reductions in all-in corporate funding costs across the credit spectrum. This level approaches pre-stress norms and suggests Canadian credit markets have largely normalized following previous period volatility."
+              "beginner": "Canadian corporate bonds became riskier to own this period. The extra interest investors demand to hold corporate debt instead of government bonds jumped from 84 basis points to 88 basis points. Companies now face higher borrowing costs.",
+              "moderate": "Canadian corporate credit spreads widened from 84bps to 88bps, signaling increased investor concern about corporate default risk. The 4 basis point expansion means companies must pay more to borrow compared to risk-free government bonds. Credit conditions tightened as investors demanded higher compensation for corporate exposure. Rising spreads often precede broader economic stress as funding costs climb for businesses.",
+              "expert": "Canadian investment-grade corporate spreads expanded 4bps to 88bps over Government of Canada bonds, reflecting deteriorating credit sentiment in domestic fixed income markets. The widening suggests either fundamental credit quality concerns or technical supply/demand imbalances pressuring corporate paper. Primary issuance costs increased correspondingly, with all-in funding spreads now approaching levels that could constrain corporate capex and refinancing activity. Secondary market liquidity conditions likely contributed to the move, particularly in longer-duration corporate issues. The spread expansion occurred despite relatively stable underlying economic fundamentals, indicating market-driven rather than credit-driven widening."
             }
           },
           "Sov CDS": {
@@ -1538,13 +1538,13 @@
             }
           },
           "CAD/USD": {
-            "value": "0.74",
+            "value": "0.73",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "The Canadian dollar is worth 74 US cents, meaning the currency has been weakening against the US dollar. A weaker Canadian dollar makes Canadian exports cheaper for foreigners (good for oil and agricultural exporters) but makes imports more expensive for Canadians, adding to cost pressures.",
-              "moderate": "CAD/USD at 0.74 reflects the combined effect of the BoC-Fed rate differential (BoC cutting faster, widening the gap) and a tariff-related risk discount on a trade-exposed economy. The oil price surge is a partial offset: higher crude prices historically support the Canadian dollar as a petrocurrency, with the WTI-CAD correlation running near 0.6 over the past year. The net result is a range-bound CAD, with oil providing a floor and rate differentials capping upside. A sustained move below 0.72 would signal that tariff concerns are overriding the oil price support.",
-              "expert": "CAD/USD at 0.74 is being driven by three competing forces: the BoC-Fed rate differential (bearish CAD), terms-of-trade improvement from oil prices (bullish CAD), and tariff-related risk premium on the Canadian economy (bearish CAD). The rate differential effect is dominant at current magnitudes: a 75-100bp BoC-Fed spread is historically associated with CAD trading 3-5% below purchasing power parity estimates. The petrocurrency correlation provides a partial offset, but FX pass-through of oil prices into CAD is asymmetric, stronger in sustained upcycles than in short-term shock-driven moves. If the BoC pauses its cutting cycle in response to energy-driven inflation while the Fed holds, the rate differential could narrow modestly and provide CAD with a near-term recovery catalyst."
+              "beginner": "The Canadian dollar weakened against the US dollar, falling from 74 cents to 73 cents. This means it now takes more Canadian dollars to buy the same amount of US goods. Canadian exports become cheaper for American buyers, while imports from the US cost more for Canadians.",
+              "moderate": "The CAD/USD exchange rate declined from 0.74 to 0.73, representing a 1.4% depreciation of the Canadian dollar. This currency weakening typically reflects diverging monetary policies, commodity price movements, or shifting economic fundamentals between the two countries. The weaker loonie makes Canadian exports more competitive internationally while increasing the cost of US imports for Canadian consumers and businesses.",
+              "expert": "CAD/USD dropped 135 basis points from 0.74 to 0.73, marking a notable depreciation in the Canadian dollar that likely reflects either dovish Bank of Canada positioning relative to the Federal Reserve or weakness in commodity markets given Canada's resource-sensitive currency profile. The move below the psychologically significant 0.74 level suggests potential technical momentum toward the 0.72 support zone. This depreciation benefits Canadian exporters through improved price competitiveness but pressures import-dependent sectors and could contribute to inflationary pressures through higher input costs."
             }
           },
           "FX Vol": {
@@ -3030,13 +3030,13 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "+3.8%",
+            "value": "+3.6%",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "UK stocks gained 4% so far this year, doubling from their 2% rise earlier. British companies are performing better as investors grow more confident. The London stock market shows steady upward momentum.",
-              "moderate": "The FTSE has climbed to 4% year-to-date returns, up from 2% in the previous period. UK equities are benefiting from improved investor sentiment and stronger corporate performance. This acceleration suggests growing confidence in British markets despite ongoing economic uncertainties. The doubling of returns indicates momentum is building in London-listed stocks.",
-              "expert": "UK equity indices posted 4% YTD returns, marking a significant acceleration from the prior 2% reading. The 200 basis point jump reflects improved risk appetite for British assets, likely driven by better-than-expected corporate earnings and reduced political risk premiums. FTSE constituents are seeing multiple expansion alongside earnings growth, with financials and energy sectors contributing meaningfully to the rally. This performance puts UK equities ahead of their recent underperformance relative to global peers. The momentum shift suggests institutional flows are rotating back into London-listed names after extended underweighting."
+              "beginner": "UK stocks gained 3.6% so far this year, down slightly from 3.8% last week. The market pulled back a bit but remains in positive territory. British companies are still ahead for 2024.",
+              "moderate": "The FTSE index posted a 3.6% year-to-date return, declining from the previous 3.8% reading. Recent selling pressure trimmed gains but left UK equities solidly positive for the year. The modest pullback reflects normal market volatility rather than fundamental deterioration. British stocks continue outperforming cash and bonds despite the recent softness.",
+              "expert": "UK equity markets registered a 3.6% YTD return, retreating 20 basis points from the prior 3.8% level. The FTSE's modest decline likely stems from profit-taking and sector rotation rather than systematic risk repricing. Sterling strength may be pressuring multinational earnings while domestic cyclicals face headwinds from persistent inflation concerns. Technical support around current levels suggests consolidation rather than a deeper correction. The risk-adjusted performance remains constructive given elevated volatility in global markets."
             }
           },
           "Equity Vol": {
@@ -3070,13 +3070,13 @@
             }
           },
           "Corp Spread": {
-            "value": "84bps",
+            "value": "88bps",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "UK corporate bond spreads dropped sharply from 120 basis points to 84 basis points. This means investors now see much less risk in lending money to UK companies compared to the government. Companies can borrow more cheaply, which helps their profits and growth prospects.",
-              "moderate": "UK corporate credit spreads compressed dramatically from 120bps to 84bps, signaling improved investor confidence in corporate debt. The 36 basis point tightening reflects reduced default risk perceptions and stronger demand for corporate bonds relative to gilts. This credit improvement lowers borrowing costs for UK businesses and suggests healthier economic conditions ahead.",
-              "expert": "UK corporate bond spreads tightened 36bps to 84bps, marking a significant compression in credit risk premiums. The move from 120bps indicates substantial improvement in credit market sentiment, likely driven by better corporate fundamentals, reduced macro uncertainty, or technical factors including fund flows into credit. This compression materially reduces all-in funding costs for UK corporates and suggests credit markets are pricing lower default probabilities. The magnitude of tightening may also reflect positioning dynamics as investors chase yield in a risk-on environment."
+              "beginner": "UK corporate bond spreads widened from 84 basis points to 88 basis points. This means investors now demand higher returns to hold company bonds instead of government bonds. Companies face slightly higher borrowing costs as a result.",
+              "moderate": "UK corporate bond spreads expanded 4 basis points to 88bps, signaling increased credit risk premiums in the market. The widening reflects investor caution toward corporate debt relative to gilts. Higher spreads translate directly into elevated funding costs for UK businesses seeking bond financing. Credit conditions appear to be tightening modestly across the corporate sector.",
+              "expert": "UK corporate credit spreads widened 4bps to 88bps, indicating deteriorating risk sentiment in the sterling credit markets. The move suggests investors are repricing default risk premiums higher, potentially reflecting concerns about corporate fundamentals or broader liquidity conditions. Investment grade issuers will face incrementally higher all-in funding costs on new bond issuance. The spread expansion could signal early stress in credit markets if the trend persists. Primary market activity may slow as corporate treasurers reassess optimal financing windows."
             }
           },
           "Sov CDS": {
@@ -3100,13 +3100,13 @@
             }
           },
           "FX Vol": {
-            "value": "6.8%",
+            "value": "6.9%",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "Currency volatility in the UK dropped sharply from 12.0% to 6.8%. This means the British pound became much more stable against other currencies. Markets are calming down after a period of uncertainty.",
-              "moderate": "UK foreign exchange volatility collapsed from 12.0% to 6.8%, signaling a dramatic shift in sterling market conditions. The sharp decline suggests traders see less uncertainty around the pound's direction. Lower FX volatility typically indicates improved market confidence in UK economic stability. This environment makes it cheaper for businesses to hedge currency risk.",
-              "expert": "GBP volatility compressed significantly from 12.0% to 6.8%, representing a substantial decline in implied volatility across major sterling crosses. The volatility crush reflects reduced tail risk perceptions and tighter option spreads in GBP derivatives markets. This regime shift likely stems from diminished political uncertainty or clearer monetary policy guidance from the Bank of England. The lower vol environment should reduce hedging costs for UK corporates while potentially signaling complacency if fundamentals remain unsettled. Currency carry strategies may become more attractive given the reduced volatility drag on returns."
+              "beginner": "Currency volatility for the British pound ticked up slightly to 6.9%. This means traders expect the pound to move around a bit more than before. Higher volatility often signals uncertainty about the UK's economic direction.",
+              "moderate": "GBP volatility climbed from 6.8% to 6.9%, reflecting modest increases in currency market uncertainty. The uptick suggests traders are pricing in slightly more risk around sterling movements. This level remains manageable but indicates growing caution about UK economic conditions. Currency vol often rises ahead of major policy announcements or economic data releases.",
+              "expert": "GBP implied volatility expanded 10 basis points to 6.9%, signaling incrementally higher option premiums and risk appetite deterioration. The move reflects increased hedging demand as market participants position for potential sterling disruption. Vol surface dynamics suggest traders are pricing modest tail risks around upcoming BoE meetings and fiscal policy uncertainty. Cross-currency vol spreads versus EUR and USD remain elevated, indicating persistent UK-specific risk premiums. The 6.9% level sits above the 3-month moving average, confirming the broader trend toward higher sterling volatility expectations."
             }
           }
         }
@@ -4622,13 +4622,13 @@
             }
           },
           "Corp Spread": {
-            "value": "84bps",
+            "value": "88bps",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "Japanese corporate bonds became much riskier investments recently. The extra interest investors demand to hold company debt instead of government bonds jumped from 0.5% to 0.84%. Companies now face higher borrowing costs, which could slow business expansion.",
-              "moderate": "Corporate credit spreads in Japan widened dramatically from 50 basis points to 84 basis points. This 34bp increase signals growing investor concern about corporate default risk and deteriorating credit conditions. Japanese companies will face higher funding costs, potentially constraining capital expenditure and dividend payments. The spread widening suggests credit markets are repricing risk amid economic uncertainty.",
-              "expert": "Japanese corporate bond spreads experienced a sharp 68% widening from 50bp to 84bp, indicating significant credit risk repricing across the corporate sector. The 34bp expansion reflects deteriorating credit fundamentals, potentially driven by earnings compression, elevated leverage ratios, or broader macro headwinds affecting corporate Japan. This spread level approaches stress territory and will materially impact corporate funding costs and refinancing dynamics. Credit derivative markets likely experienced concurrent volatility as protection costs adjusted to reflect the higher default probability implicit in these spreads. The magnitude of this move suggests either idiosyncratic corporate stress or broader systemic concerns about Japan's economic trajectory."
+              "beginner": "Japanese corporate bonds became riskier this week. The extra interest companies must pay over government bonds jumped from 84 to 88 basis points. Investors now demand more compensation to lend money to Japanese businesses.",
+              "moderate": "Japanese corporate credit spreads widened from 84 to 88 basis points, signaling deteriorating sentiment toward corporate debt. The 4 basis point increase means investors now demand higher premiums to hold company bonds versus risk-free government securities. Rising spreads typically indicate concerns about corporate fundamentals or broader economic uncertainty affecting Japan's business sector.",
+              "expert": "Japanese corporate spreads expanded 4 basis points to 88bps, reflecting tighter credit conditions and potential risk repricing in the domestic corporate bond market. The widening suggests either deteriorating credit quality perceptions or technical supply-demand imbalances pressuring corporate issuers. This move could signal emerging stress in Japan's leveraged sectors or anticipation of monetary policy shifts affecting corporate funding costs. The spread expansion may constrain corporate refinancing activities and impact investment grade issuance pipelines. Credit markets often lead equity performance, making this widening a key risk indicator for Japanese corporate sectors."
             }
           },
           "Sov CDS": {
@@ -4642,23 +4642,23 @@
             }
           },
           "USD/JPY": {
-            "value": "159.0",
+            "value": "159.3",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "The Japanese yen weakened slightly against the US dollar, moving from 158.5 to 158.8. This means it now takes more yen to buy one dollar. The yen continues trading near levels that make Japanese exports cheaper for foreign buyers.",
-              "moderate": "USD/JPY climbed from 158.5 to 158.8, extending the yen's weakness against the dollar. The pair remains near multi-decade highs as the interest rate gap between Japan and the US keeps pressure on the yen. This level supports Japanese exporters through improved competitiveness but raises import costs for consumers.",
-              "expert": "USD/JPY advanced 30 basis points to 158.8, maintaining proximity to intervention-sensitive levels that have drawn Bank of Japan attention in recent sessions. The move reflects continued yield differential pressure as 10-year Treasury yields hold elevated while JGB yields remain anchored by BOJ policy. Momentum indicators suggest consolidation above 158 as carry trade dynamics and real rate differentials favor dollar strength against the yen. Options flow shows heavy put protection clustering around 160, indicating market wariness of potential MOF intervention at psychological resistance levels."
+              "beginner": "The US dollar got slightly stronger against the Japanese yen, moving from 159.0 to 159.3. This means it now takes more yen to buy one dollar. The change is small but continues the dollar's recent strength against Japan's currency.",
+              "moderate": "USD/JPY climbed from 159.0 to 159.3, extending the dollar's gains against the yen. The pair remains near multi-decade highs as interest rate differentials favor the US over Japan. This modest uptick reflects continued dollar strength amid expectations the Federal Reserve will maintain higher rates longer than the Bank of Japan.",
+              "expert": "USD/JPY advanced 30 pips to 159.3, consolidating near intervention-risk levels that have drawn verbal warnings from Japanese officials. The move higher occurred despite relatively light trading volumes, suggesting underlying dollar demand remains intact. Rate differentials continue supporting the pair as the Fed maintains restrictive policy while the BOJ keeps rates near zero. The 159+ level represents a critical threshold where Ministry of Finance intervention becomes increasingly probable, particularly if momentum accelerates."
             }
           },
           "FX Vol": {
-            "value": "8.4%",
+            "value": "8.5%",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "Currency traders expect much less wild swings in the Japanese yen now. The measure of expected volatility dropped from 16.0% to 8.5%. This means markets think the yen will move more predictably against other currencies.",
-              "moderate": "FX volatility for the Japanese yen fell sharply from 16.0% to 8.5%, signaling that currency markets expect calmer trading conditions ahead. This decline suggests reduced uncertainty around Japanese monetary policy and economic outlook. Lower volatility typically makes the yen more attractive to carry trade strategies and institutional investors seeking stable currency exposure.",
-              "expert": "JPY implied volatility collapsed from 16.0% to 8.5%, reflecting diminished expectations for sharp currency moves amid stabilizing monetary policy differentials. The vol crush likely stems from reduced BoJ intervention uncertainty and clearer forward guidance on rate policy normalization. This environment favors yen carry trades and should compress risk premiums across JPY crosses, particularly against higher-yielding currencies where volatility had been pricing significant policy divergence risk."
+              "beginner": "The yen became slightly more volatile this period. Currency swings increased from 8.4% to 8.5%. Japanese exchange rate movements grew a bit choppier for traders.",
+              "moderate": "Yen volatility ticked up from 8.4% to 8.5%, signaling modest increases in currency fluctuations. The uptick suggests traders face marginally higher uncertainty around JPY movements. While the change appears small, FX vol shifts often precede larger directional moves. Rising volatility typically increases hedging costs for Japanese exporters and importers.",
+              "expert": "JPY implied volatility climbed 10 basis points to 8.5%, marking a subtle but notable shift in options pricing dynamics. The vol expansion likely reflects growing uncertainty around BoJ policy divergence with other major central banks. Currency volatility at these levels historically correlates with increased carry trade unwinding activity. Options market makers will adjust delta hedging frequencies, potentially amplifying intraday JPY spot movements. The vol spike coincides with elevated risk reversals, suggesting asymmetric downside fears for the yen."
             }
           }
         }
@@ -6037,13 +6037,13 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "-3.7%",
+            "value": "-3.9%",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "German stocks have fallen sharply this year. The market went from being up 11% to down 3.6%, a major reversal that wipes out earlier gains.",
-              "moderate": "German equities have reversed course dramatically, falling from an 11% year-to-date gain to a 3.6% loss. This 14.6 percentage point swing reflects broader concerns about Europe's largest economy. The DAX decline mirrors weakness across European markets as investors reassess growth prospects and monetary policy impacts.",
-              "expert": "The DAX has undergone a severe correction, reversing from +11% YTD to -3.6%, representing a 1,460 basis point deterioration in performance. This dramatic pivot reflects multiple headwinds including ECB monetary tightening, persistent inflation concerns, and Germany's particular vulnerability to energy supply disruptions. The reversal suggests investors are pricing in significant downside risks to German corporate earnings, particularly in manufacturing and export-sensitive sectors. German equities now trade at a substantial discount to their Q1 highs, with the correction accelerating beyond typical market volatility patterns."
+              "beginner": "German stocks fell slightly deeper into negative territory this year. The market dropped from down 3.7% to down 3.9% year-to-date. German companies continue facing headwinds that are weighing on investor confidence.",
+              "moderate": "Germany's stock market extended its year-to-date losses, declining from -3.7% to -3.9%. The DAX continues to struggle amid concerns about the country's economic outlook and industrial competitiveness. This modest deterioration reflects ongoing challenges in Germany's export-heavy economy, particularly in manufacturing and automotive sectors.",
+              "expert": "The DAX year-to-date performance deteriorated to -3.9% from -3.7%, reflecting persistent structural headwinds facing German equities. The decline underscores investor concerns about Germany's industrial recession, energy cost disadvantages following the Ukraine crisis, and competitive pressures on key export sectors. German equities remain under pressure from both cyclical factors and longer-term questions about the country's economic model. The modest but continued deterioration suggests limited near-term catalysts for a meaningful recovery in German market sentiment."
             }
           },
           "Equity Vol": {
@@ -6077,13 +6077,13 @@
             }
           },
           "Corp Spread": {
-            "value": "84bps",
+            "value": "88bps",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "German corporate bonds became riskier investments this period. The extra interest companies must pay over safe government bonds jumped from 0.70% to 0.84%. Investors now demand higher compensation for lending to German businesses.",
-              "moderate": "German corporate credit spreads widened significantly from 70 basis points to 84 basis points. This 14 basis point increase signals deteriorating investor confidence in corporate debt quality. Companies now face higher borrowing costs as bond investors demand greater compensation for credit risk. The spread expansion suggests growing concerns about corporate default probabilities in the German market.",
-              "expert": "German corporate credit spreads experienced notable widening from 70bps to 84bps, representing a 20% deterioration in credit pricing. This 14 basis point expansion reflects tightening credit conditions and heightened risk aversion toward German corporate issuers. The move likely stems from macroeconomic headwinds affecting corporate earnings outlooks and balance sheet quality. Investment grade corporate bonds now trade at materially wider levels, increasing funding costs for German enterprises. The spread widening indicates bond investors are repricing default risk premiums higher across the corporate credit curve."
+              "beginner": "German corporate bonds became slightly riskier to own this period. The extra yield investors demand to hold corporate debt instead of safe government bonds rose from 84 to 88 basis points. Companies now face higher borrowing costs.",
+              "moderate": "German corporate credit spreads widened 4 basis points to 88bps, signaling deteriorating investor sentiment toward corporate debt. The spread expansion means companies will pay more to borrow as investors demand additional compensation for credit risk. Bond markets are pricing in either higher default probabilities or reduced risk appetite. Corporate financing conditions have tightened modestly across German markets.",
+              "expert": "German corporate credit spreads widened 4bps to 88bps, reflecting either fundamental credit deterioration or technical supply-demand imbalances in the corporate bond market. The spread expansion suggests investors are repricing default risk higher or demanding increased risk premiums amid changing market conditions. Primary issuance costs have risen correspondingly, potentially constraining corporate capital allocation and refinancing activity. Secondary market liquidity conditions may also be contributing to the widening through dealer inventory management. The move aligns with broader European credit market dynamics where risk-off sentiment has pressured corporate bond valuations."
             }
           },
           "Sov CDS": {
@@ -6097,23 +6097,23 @@
             }
           },
           "EUR/USD": {
-            "value": "1.1538",
+            "value": "1.1525",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "The euro gained ground against the dollar, rising from 1.1555 to 1.1575. This means it now takes more dollars to buy one euro. A stronger euro makes European goods more expensive for American buyers.",
-              "moderate": "EUR/USD climbed 20 basis points from 1.1555 to 1.1575 as the euro strengthened against the dollar. The move signals shifting investor sentiment favoring European assets over dollar-denominated holdings. German exporters face headwinds from the stronger euro, while import costs decline for eurozone consumers. The currency pair continues trading within its recent range despite the modest uptick.",
-              "expert": "EUR/USD advanced 20 basis points to 1.1575 from 1.1555, breaking through minor resistance as dollar weakness persisted across major crosses. The move reflects reduced safe-haven demand for the greenback amid receding recession fears and anticipation of ECB policy divergence. German manufacturing competitiveness faces pressure from the stronger euro, particularly given the sector's export dependency. Options flow suggests limited conviction in the move, with 1.1600 calls seeing modest interest. The pair remains range-bound within the 1.1500-1.1650 corridor established over recent sessions."
+              "beginner": "The euro weakened slightly against the dollar, dropping from $1.1538 to $1.1525. This small decline means it now takes fewer dollars to buy one euro. Currency moves like this happen constantly as investors shift money between different economies.",
+              "moderate": "EUR/USD fell 13 basis points to 1.1525 as the dollar strengthened against the euro. The pair continues trading within its recent range, with the move reflecting ongoing divergence in monetary policy expectations between the ECB and Federal Reserve. Dollar strength pressures European exporters while benefiting U.S. importers of eurozone goods.",
+              "expert": "EUR/USD declined 0.11% to 1.1525, extending its retreat from recent highs as dollar strength persists across G10 currencies. The move comes amid growing expectations for continued Fed hawkishness versus ECB dovishness, with real rate differentials favoring the dollar. Technical support around 1.1500 remains key, with a break potentially triggering algorithmic selling toward the 1.1450 level. Cross-currency basis swaps continue signaling underlying dollar funding stress in European markets."
             }
           },
           "FX Vol": {
-            "value": "6.4%",
+            "value": "6.5%",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "Currency traders betting on the euro became much less worried about big price swings. The measure of expected volatility dropped sharply from 11.0% to 6.3%. German markets now look calmer and more predictable.",
-              "moderate": "EUR/USD implied volatility collapsed from 11.0% to 6.3%, signaling reduced uncertainty around the euro's near-term direction. Options markets now price significantly lower odds of dramatic currency moves. The decline suggests investors see fewer catalysts for major euro fluctuations ahead. Reduced FX volatility typically supports risk assets and cross-border investment flows.",
-              "expert": "EUR implied volatility crushed from 11.0% to 6.3%, with the vol surface flattening across tenors as geopolitical and monetary policy risks receded. The vega unwind likely pressured option dealers to reduce delta hedging activity, contributing to spot EUR/USD range compression. Term structure normalization suggests traders no longer anticipate ECB policy surprises or external shocks. Lower vol environments typically boost carry trade appetite and reduce hedging costs for German exporters. The vol collapse mirrors similar compression in equity markets, indicating broad-based risk normalization across German assets."
+              "beginner": "Currency traders expect slightly more wild swings in the euro's value against other currencies. The measure of expected volatility rose from 6.4% to 6.5%. More volatility usually means traders see bigger risks ahead.",
+              "moderate": "EUR volatility expectations ticked up from 6.4% to 6.5%, signaling increased uncertainty in currency markets. This implied volatility measure reflects options pricing and suggests traders anticipate choppier euro movements. The uptick comes as Germany faces economic headwinds that could pressure the single currency. Higher FX volatility often coincides with periods of monetary policy uncertainty or geopolitical stress.",
+              "expert": "EUR implied volatility climbed to 6.5% from 6.4%, indicating options markets are pricing in marginally higher currency risk premiums. The volatility surface steepening suggests traders are positioning for potential ECB policy divergence or German economic data surprises. This uptick in vol demand could reflect concerns over eurozone fragmentation risks or anticipation of increased carry trade unwinding. The 10bp move, while modest, signals growing hedging demand among institutional players managing EUR exposure. Volatility clustering patterns suggest this could mark the beginning of a broader vol regime shift."
             }
           }
         }
@@ -7589,23 +7589,23 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "-2.1%",
+            "value": "-2.6%",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "French stocks have turned negative for the year, falling to -2.0% after starting strong at +7.0%. The 9 percentage point drop shows investors pulling back from French companies. Stock prices reflect concerns about France's economic outlook and global market conditions.",
-              "moderate": "The French stock market has reversed course dramatically, moving from a solid +7.0% gain to a -2.0% loss year-to-date. This 900 basis point swing reflects mounting investor concerns about domestic economic challenges and broader European headwinds. The CAC 40 index now trails major global markets as sentiment toward French equities has soured. Political uncertainty and fiscal pressures continue weighing on investor confidence.",
-              "expert": "French equities have undergone a sharp reversal, with the CAC 40's year-to-date performance deteriorating from +7.0% to -2.0%, representing a 900 basis point decline. The dramatic pivot reflects multiple headwinds including political fragmentation following snap elections, elevated fiscal deficits pressuring sovereign spreads, and sector-specific challenges in luxury goods and banking. Risk-off sentiment has driven multiple compression across French blue chips, with foreign institutional flows turning notably negative. The underperformance versus European peers suggests France-specific risk premiums are expanding beyond purely cyclical factors."
+              "beginner": "French stocks fell deeper into the red this year, dropping to -2.6% from -2.1%. The country's main stock index lost more ground as investors pulled back. French companies are now worth less than they were at the start of the year.",
+              "moderate": "France's stock market extended its year-to-date losses, sliding from -2.1% to -2.6%. The CAC 40 index retreated further as selling pressure mounted across French equities. Corporate valuations continue declining amid broader market uncertainty. French stocks now trail many other European markets in 2024 performance.",
+              "expert": "The CAC 40's year-to-date performance deteriorated to -2.6% from -2.1%, reflecting sustained selling pressure across French equities. The 50 basis point decline signals continued risk-off sentiment among institutional investors rotating away from European cyclicals. French banks and luxury goods stocks likely contributed to the underperformance given their significant index weightings. The widening discount to European peers suggests France-specific headwinds beyond broader eurozone monetary policy concerns. This relative weakness positions French equities for potential mean reversion if sentiment stabilizes."
             }
           },
           "Equity Vol": {
-            "value": "~16",
+            "value": "~17",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "French stock market volatility dropped from 20 to 16, signaling calmer trading conditions. Investors appear less nervous about price swings. Lower volatility usually means markets feel more stable and predictable.",
-              "moderate": "French equity volatility declined from 20 to 16, indicating reduced uncertainty in domestic stock markets. The drop suggests investors have gained confidence, leading to steadier price movements and less dramatic daily swings. This environment typically supports higher valuations as risk premiums compress. Lower vol often coincides with increased institutional participation and more stable market conditions.",
-              "expert": "French equity vol compressed from 20 to 16, reflecting diminished implied volatility across CAC 40 constituents and broader market indices. The decline indicates reduced options pricing for downside protection and suggests volatility risk premiums have contracted significantly. This environment typically supports systematic strategies and volatility-sensitive flows while reducing hedging costs for institutional portfolios. The vol regime shift likely reflects improved macro sentiment and reduced tail risk perceptions. Such compression often precedes periods of higher Sharpe ratios but can also signal complacency building in risk assets."
+              "beginner": "French stock market volatility climbed from 16% to 17%. This means investors expect bigger price swings in French stocks. Higher volatility usually signals more uncertainty about the market's direction.",
+              "moderate": "French equity volatility increased from 16% to 17%, signaling heightened investor anxiety about near-term market movements. The uptick suggests traders are pricing in greater uncertainty around French corporate earnings or broader economic conditions. Risk premiums typically expand when volatility rises, making French equities less attractive to conservative investors while creating potential opportunities for volatility traders.",
+              "expert": "The VIX-equivalent for French equities moved from 16% to 17%, indicating a modest but meaningful increase in implied volatility across CAC 40 options markets. This 100 basis point rise suggests dealers are demanding higher premiums for gamma exposure, likely reflecting concerns over European monetary policy transmission or domestic fiscal dynamics. The volatility term structure probably steepened as front-month options incorporate near-term event risk. Cross-asset correlations with European sovereign spreads may have tightened as risk-off sentiment builds across French financial markets."
             }
           },
           "10Y Bond Yield": {
@@ -7629,13 +7629,13 @@
             }
           },
           "Corp Spread": {
-            "value": "84bps",
+            "value": "88bps",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "French companies now pay 84 basis points more than government bonds when they borrow money, up from 75 basis points. This 9 basis point jump means investors see more risk in lending to businesses. Higher borrowing costs could make it harder for French companies to expand or invest.",
-              "moderate": "French corporate bond spreads widened to 84 basis points from 75 basis points, marking a notable deterioration in credit conditions. The 9 basis point increase signals growing investor concern about corporate default risk or broader economic uncertainty. This spread expansion will raise financing costs for French businesses, potentially constraining their capital expenditure and growth plans. Credit markets often tighten before broader economic slowdowns materialize.",
-              "expert": "French corporate credit spreads expanded 9 basis points to 84bps, reflecting either idiosyncratic credit deterioration or systematic risk repricing in European credit markets. The magnitude suggests this move transcends normal daily volatility and likely correlates with either sovereign risk concerns, ECB policy expectations, or sector-specific stress in French corporates. Funding costs for investment-grade French issuers will climb accordingly, tightening financial conditions and potentially triggering covenant pressure for leveraged borrowers. This spread widening could presage broader European credit market stress if it persists beyond technical factors. Watch for spillover effects into equity valuations and real economy financing availability."
+              "beginner": "French corporate bonds became riskier to investors this week. The extra interest rate companies must pay above government bonds rose from 84 to 88 basis points. Companies now face higher borrowing costs when they need money.",
+              "moderate": "French corporate credit spreads widened from 84 to 88 basis points, signaling increased investor caution toward corporate debt. The 4 basis point move reflects higher perceived default risk among French companies. Borrowing costs for corporations have ticked up as bond investors demand additional compensation for credit risk. The spread widening suggests some deterioration in corporate credit conditions across France.",
+              "expert": "French corporate spreads expanded 4 basis points to 88bps, indicating a modest repricing of credit risk in the corporate bond market. The move from 84bps suggests investors are reassessing default probabilities and demanding higher risk premiums for French corporate exposure. Credit conditions have tightened marginally, with implications for corporate funding costs and capital allocation decisions. The spread widening coincides with broader risk-off sentiment affecting European credit markets. French corporates face incrementally higher financing costs as the risk premium over OATs increases."
             }
           },
           "Sov CDS": {
@@ -7649,23 +7649,23 @@
             }
           },
           "EUR/USD": {
-            "value": "1.1538",
+            "value": "1.1525",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "The euro gained ground against the dollar, rising from 1.1555 to 1.1575. This small uptick means it now takes slightly more dollars to buy one euro. European goods become a bit more expensive for American buyers when the euro strengthens.",
-              "moderate": "EUR/USD climbed from 1.1555 to 1.1575, marking a modest gain for the single currency. The 20-pip advance suggests renewed euro strength, likely driven by shifting interest rate expectations or European economic data. This move makes eurozone exports less competitive while reducing import costs for European consumers and businesses.",
-              "expert": "EUR/USD advanced 20 pips from 1.1555 to 1.1575, breaking above the 1.1570 resistance level that had capped recent rallies. The move likely reflects either hawkish ECB commentary, stronger eurozone PMI data, or dollar weakness from dovish Fed expectations. Option flows around the 1.1580 strike could provide near-term resistance, while a sustained break above 1.1600 would target the 1.1650 level. The pair remains within its recent consolidation range despite this intraday strength."
+              "beginner": "The euro weakened slightly against the dollar, dropping from 1.1538 to 1.1525. This small decline means it now takes fewer dollars to buy one euro. Currency moves like this happen constantly as traders react to economic news and market conditions.",
+              "moderate": "EUR/USD slipped 13 basis points to 1.1525, continuing its recent consolidation below the 1.16 resistance level. The pair remains trapped in a narrow trading range as markets await clearer directional catalysts. Dollar strength appears to be weighing on the euro despite relatively stable European economic fundamentals. This modest decline keeps the currency pair well within its established technical boundaries.",
+              "expert": "EUR/USD declined 13 basis points to 1.1525, extending its sideways consolidation pattern below key resistance at 1.1600. The move reflects continued dollar bid tone amid positioning ahead of key central bank communications this week. Technical momentum indicators remain neutral, with the pair trading within the 20-day moving average envelope. Order flow suggests institutional accumulation around current levels, though any breakout will likely require fundamental catalysts from either ECB policy signals or U.S. economic data surprises. The 1.1500 support level remains critical for near-term directional bias."
             }
           },
           "FX Vol": {
-            "value": "6.4%",
+            "value": "6.5%",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "French currency volatility dropped sharply from 11.0% to 6.3%. This means the euro became much more stable against other currencies. Calmer currency markets usually signal that investors feel less worried about France's economy.",
-              "moderate": "EUR volatility against major currencies fell dramatically from 11.0% to 6.3%, indicating much calmer FX markets. The sharp decline in implied volatility suggests reduced uncertainty around French economic fundamentals and European monetary policy. Lower FX volatility typically attracts institutional flows and reduces hedging costs for French exporters. This stabilization could reflect improved confidence in France's fiscal position or broader eurozone stability.",
-              "expert": "EUR implied volatility collapsed from 11.0% to 6.3%, representing a significant compression in option premiums and risk premia. The 470 basis point decline suggests either realized volatility normalization following a period of elevated uncertainty or structural shifts in cross-currency correlations. This volatility compression likely reflects reduced tail risk pricing around French sovereign spreads, ECB policy divergence, or geopolitical tensions. The move creates attractive carry trade opportunities while potentially signaling overconfidence in current macro stability. Volatility sellers dominated this move, with risk reversals likely flattening as downside protection demand evaporated."
+              "beginner": "Currency traders expect the euro to move around more than before. The measure of expected swings rose from 6.4% to 6.5%. French companies and investors now face slightly more uncertainty when dealing with foreign currencies.",
+              "moderate": "EUR volatility expectations climbed to 6.5% from 6.4%, signaling heightened uncertainty in French currency markets. The uptick reflects trader concerns about potential euro fluctuations against major currencies. French exporters and importers may need to adjust their hedging strategies to account for this increased volatility forecast. Higher FX vol typically translates to elevated costs for currency protection.",
+              "expert": "EUR implied volatility advanced 10 basis points to 6.5%, indicating option markets are pricing increased near-term currency turbulence. The vol surface shift suggests traders are demanding higher premiums for euro protection amid mounting macro uncertainties. French corporates with significant FX exposure will face elevated hedging costs as delta-hedged option strategies become more expensive. The volatility uptick compounds financing pressures for French multinationals already navigating ECB policy divergence. Risk management desks should expect wider bid-offer spreads and reduced liquidity in EUR crosses."
             }
           }
         }
@@ -9181,13 +9181,13 @@
             }
           },
           "Corp Spread": {
-            "value": "84bps",
+            "value": "88bps",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "Italian corporate bonds became riskier to hold this period. The extra interest investors demand to own corporate debt instead of government bonds jumped from 80 to 84 basis points. Companies now face higher borrowing costs.",
-              "moderate": "Italian corporate credit spreads widened from 80 to 84 basis points, signaling deteriorating investor confidence in corporate debt. The spread expansion means companies face higher financing costs as bondholders demand greater compensation for credit risk. This 4 basis point move suggests either broader market stress or specific concerns about Italian corporate fundamentals. Tighter corporate credit conditions could constrain business investment and expansion plans.",
-              "expert": "Italian corporate spreads widened 4bp to 84bp, reflecting either technical selling pressure or fundamental credit concerns in the corporate sector. The spread expansion occurs against the backdrop of ECB monetary tightening and elevated sovereign spreads, creating a challenging funding environment for Italian corporates. Duration and convexity dynamics likely amplified the move as credit investors repositioned portfolios. Higher all-in funding costs will compress corporate margins and potentially trigger rating downgrades in leveraged names. Credit selection becomes crucial as dispersion between high-quality and distressed issuers typically widens during spread expansion phases."
+              "beginner": "Italian corporate bonds became riskier to investors this week. The extra interest companies must pay over safe government bonds jumped from 84 to 88 basis points. Lenders now demand higher compensation for the added risk of corporate debt.",
+              "moderate": "Italian corporate credit spreads widened from 84 to 88 basis points, signaling increased investor caution toward corporate borrowers. The 4 basis point expansion means companies now pay meaningfully higher borrowing costs relative to government bonds. Markets appear pricing in greater default risk or reduced liquidity in Italian corporate debt. Credit conditions have tightened as lenders demand additional compensation for corporate exposure.",
+              "expert": "Italian corporate spreads expanded 4 basis points to 88bps, reflecting deteriorating credit conditions in the corporate bond market. The widening suggests either fundamental credit concerns about Italian corporates or technical factors like reduced dealer inventory and market liquidity. Investment grade issuers face materially higher funding costs, while high yield names likely see even more pronounced spread expansion. The move indicates bond investors are reassessing credit risk premiums, possibly driven by macroeconomic headwinds or sector-specific stress. Primary issuance costs have risen correspondingly, potentially constraining corporate financing activity."
             }
           },
           "Sov CDS": {
@@ -9201,23 +9201,23 @@
             }
           },
           "EUR/USD": {
-            "value": "1.1538",
+            "value": "1.1525",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "The euro gained ground against the dollar, rising from 1.1555 to 1.1575. This means each euro now buys slightly more dollars than before. A stronger euro makes imports cheaper for Italian consumers but can hurt Italian exports.",
-              "moderate": "EUR/USD climbed from 1.1555 to 1.1575, marking a modest gain for the euro against the dollar. The 20-pip move reflects shifting sentiment in currency markets. For Italy, euro strength reduces import costs but pressures exporters who face less competitive pricing abroad. The move suggests either dollar weakness or improved eurozone fundamentals driving demand.",
-              "expert": "EUR/USD advanced 20 basis points from 1.1555 to 1.1575, breaking through minor resistance levels. The move likely stems from either dovish Fed expectations or improving eurozone data flow, with Italy's sovereign spreads potentially benefiting from broader euro strength. Italian exporters face margin compression at these levels, while the country's substantial import bill for energy and commodities gets cheaper in euro terms. Technical momentum favors further upside toward 1.1600 resistance if dollar weakness persists."
+              "beginner": "The euro weakened slightly against the dollar, dropping from 1.1538 to 1.1525. This small decline means euros buy fewer dollars than before. Currency moves like this happen constantly as markets react to economic news and investor sentiment.",
+              "moderate": "EUR/USD declined 13 basis points to 1.1525 from 1.1538, reflecting modest dollar strength against the euro. The move suggests either improving U.S. economic sentiment or concerns about European growth prospects. Currency pairs fluctuate on interest rate expectations, economic data releases, and geopolitical developments. This level keeps the euro within its recent trading range against the greenback.",
+              "expert": "EUR/USD retreated to 1.1525 from 1.1538, a 13-pip decline that maintains the pair's consolidation below the 1.16 resistance zone. The move likely reflects diverging monetary policy expectations between the ECB and Federal Reserve, with dollar demand supported by persistent U.S. yield advantages. Italian economic fundamentals factor into euro weakness through sovereign risk premiums and growth differentials versus the U.S. Technical support sits around 1.1500, while a break below could target the 1.1450 area. Options positioning and carry trade dynamics continue influencing near-term price action in this major currency pair."
             }
           },
           "FX Vol": {
-            "value": "6.4%",
+            "value": "6.5%",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "The euro's volatility against other currencies dropped sharply from 11.0% to 6.3%. This means traders expect much calmer moves in Italy's currency going forward. Markets are betting on fewer wild swings in the euro.",
-              "moderate": "EUR volatility collapsed from 11.0% to 6.3%, signaling increased currency stability expectations. This dramatic decline suggests traders anticipate reduced uncertainty around Italian economic conditions and eurozone policy. Lower FX volatility typically reflects improved market confidence and reduced hedging costs for Italian businesses operating internationally. The drop indicates calmer currency markets ahead.",
-              "expert": "Implied EUR volatility plummeted from 11.0% to 6.3%, representing a substantial compression in expected currency risk premiums. This volatility collapse suggests options markets are pricing significantly reduced tail risks around Italian sovereign stress and ECB policy divergence. The 470 basis point decline indicates a fundamental shift in currency regime expectations, likely driven by stabilizing peripheral bond spreads and reduced political uncertainty. Lower vol creates more favorable funding conditions for Italian corporates with FX exposure while reducing carry trade attractiveness."
+              "beginner": "Currency traders are pricing in slightly more uncertainty around the euro. The expected swings in Italy's currency exchange rate ticked up from 6.4% to 6.5%. More volatility typically signals that investors see bigger risks ahead.",
+              "moderate": "FX volatility for the euro against major currencies edged higher to 6.5% from 6.4%. This uptick suggests options traders are pricing in marginally more uncertainty around Italian sovereign risk and eurozone dynamics. While the move is modest, it reflects growing caution about potential currency swings in the near term.",
+              "expert": "EUR implied volatility climbed 10 basis points to 6.5%, indicating options markets are pricing incrementally higher hedging demand around Italian exposure. The modest uptick likely reflects renewed focus on peripheral eurozone credit spreads and potential ECB policy divergence scenarios. Vol surface dynamics suggest traders are positioning for asymmetric downside risk rather than broad two-way uncertainty. The move aligns with recent widening in BTP-Bund spreads and elevated political risk premia."
             }
           }
         }
@@ -10636,13 +10636,13 @@
             }
           },
           "Corp Spread": {
-            "value": "162bps",
+            "value": "160bps",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "Chinese corporate bonds became much riskier to own. The extra interest investors demand to hold corporate debt instead of government bonds jumped from 65 to 162 basis points. Companies now face much higher borrowing costs.",
-              "moderate": "Chinese corporate credit spreads widened dramatically from 65bps to 162bps, signaling heightened default risk perceptions among investors. The 97 basis point expansion reflects deteriorating confidence in corporate balance sheets and tighter financing conditions. Companies will face substantially higher funding costs, potentially constraining capital expenditure and refinancing activities.",
-              "expert": "Chinese corporate spreads blew out 97bps to 162bps, marking a significant deterioration in credit conditions across the corporate bond market. The widening reflects both fundamental concerns about leveraged balance sheets amid slowing economic growth and technical factors including reduced risk appetite from institutional investors. Primary issuance will likely stall at these levels while secondary market liquidity deteriorates. The spread expansion creates refinancing headwinds for near-term maturities and pressures corporate capex budgets through higher all-in funding costs."
+              "beginner": "Chinese corporate bond spreads dropped slightly from 162 to 160 basis points. This means investors now demand a bit less extra return to hold Chinese company bonds instead of government bonds. The small decline suggests marginally improved confidence in Chinese corporations.",
+              "moderate": "China's corporate credit spreads tightened 2 basis points to 160bps, signaling modest improvement in credit conditions. The compression reflects slightly reduced default risk perceptions among investors. Lower spreads typically support corporate borrowing costs and can boost business investment. Market participants appear marginally more confident about Chinese corporate creditworthiness.",
+              "expert": "Chinese corporate bond spreads compressed 2bps to 160bps, indicating modest credit tightening amid ongoing deleveraging concerns. The move reflects incremental improvement in risk sentiment toward Chinese corporates, though spreads remain elevated relative to historical norms. Tighter spreads should theoretically reduce funding costs for investment-grade issuers. Credit market dynamics continue reflecting the tension between policy stimulus measures and structural debt overhang. The marginal compression suggests investors are pricing in slightly lower near-term default probabilities."
             }
           },
           "Sov CDS": {
@@ -11997,13 +11997,13 @@
             }
           },
           "Corp Spread": {
-            "value": "162bps",
+            "value": "160bps",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "Indian companies now pay 162 basis points more than government bonds to borrow money, up sharply from 90 basis points before. This jump shows investors see much higher risk in lending to businesses. Companies will face higher borrowing costs, which could slow their growth and expansion plans.",
-              "moderate": "India's corporate bond spreads widened dramatically to 162bps from 90bps, signaling deteriorating credit conditions in the business sector. The 72 basis point increase reflects investors demanding higher premiums for corporate credit risk compared to sovereign bonds. This spread expansion will translate into elevated funding costs for Indian companies, potentially constraining capital investment and affecting earnings growth across sectors.",
-              "expert": "Corporate spreads in India surged 72bps to 162bps, marking a significant repricing of credit risk in the domestic bond market. The spread widening indicates either deteriorating fundamental credit conditions, increased risk aversion among institutional investors, or liquidity constraints in the corporate bond market. This magnitude of spread expansion will compress net interest margins for leveraged corporates and could trigger a reassessment of credit ratings across the investment grade spectrum. The move suggests tightening financial conditions that may amplify monetary policy transmission effects on corporate investment decisions."
+              "beginner": "Indian corporate bonds became slightly cheaper to buy relative to government bonds. The extra interest investors demand to hold company debt fell from 1.62% to 1.60%. This small drop suggests investors feel a bit more confident about Indian companies paying back their loans.",
+              "moderate": "India's corporate bond spread compressed 2 basis points to 160bps, signaling improved credit sentiment in the market. The tightening spread means investors require less extra yield to hold corporate debt over government securities. This modest improvement reflects either better corporate fundamentals or increased risk appetite among bond investors. The move suggests credit conditions remain relatively stable in Indian fixed income markets.",
+              "expert": "Indian credit spreads tightened 2bps to 160bps, indicating marginal compression in corporate bond risk premiums. The spread contraction reflects either fundamental credit improvement across Indian corporates or technical factors driving spread compression. At 160bps, spreads remain within the recent trading range but show no signs of stress despite global macro uncertainties. The modest tightening suggests domestic institutional demand continues to support the corporate bond market. Credit differentiation likely remains important as this aggregate move masks individual issuer performance variations."
             }
           },
           "Sov CDS": {
@@ -12017,13 +12017,13 @@
             }
           },
           "USD/INR": {
-            "value": "92.25",
+            "value": "92.31",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "The Indian rupee strengthened slightly against the US dollar, moving from 92.25 to 92.15. This small improvement means it now takes fewer rupees to buy one dollar. The rupee's modest gain reflects recent market conditions favoring the Indian currency.",
-              "moderate": "USD/INR declined from 92.25 to 92.15, indicating rupee strength against the dollar. The 10 paisa appreciation suggests improved sentiment toward Indian assets or reduced dollar demand in local markets. This move brings the rupee closer to recent support levels. Currency traders will watch whether this momentum continues amid ongoing global market volatility.",
-              "expert": "USD/INR retreated 10 basis points to 92.15 from 92.25, marking a technical bounce for the rupee after recent consolidation near the 92.30 resistance zone. The move likely reflects profit-taking on dollar longs and potential RBI intervention dynamics around the 92.25-92.30 band. Intraday volatility remains contained as the pair trades within its established range. Forward premiums suggest continued two-way action, with 92.00 emerging as the next key support level. Market participants are positioning for potential Fed policy shifts that could alter the broader dollar trajectory against emerging market currencies."
+              "beginner": "The Indian rupee weakened slightly against the US dollar, moving from 92.25 to 92.31. This means it now takes more rupees to buy one dollar. The change suggests some pressure on India's currency in global markets.",
+              "moderate": "USD/INR climbed from 92.25 to 92.31, marking a modest depreciation in the rupee. The move reflects ongoing dollar strength or emerging market currency pressures affecting India. While the shift appears minor, sustained rupee weakness could impact import costs and inflation dynamics. Foreign investment flows and central bank intervention remain key factors to watch.",
+              "expert": "USD/INR appreciated 6 basis points from 92.25 to 92.31, indicating continued rupee depreciation pressure despite RBI intervention efforts. The move occurs amid broader EM currency volatility and persistent dollar strength driven by US yield differentials. Import-dependent sectors face margin compression risks if the rupee sustains levels above 92.30. FII outflows and current account dynamics likely contributed to the currency's underperformance. RBI's FX reserves deployment and forward guidance will determine near-term trajectory for the pair."
             }
           },
           "FX Vol": {
@@ -13316,13 +13316,13 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "+1.3%",
+            "value": "+0.7%",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "South Africa's stock market gained 1.1% this year, down from 3.5% earlier. The country's shares have given back some of their gains. Investors are becoming more cautious about South African companies.",
-              "moderate": "The JSE All Share Index returned 1.1% year-to-date, retreating from the 3.5% gains posted previously. South African equities faced headwinds that eroded earlier performance. The decline suggests growing investor concerns about domestic economic conditions and corporate earnings prospects. Market sentiment has clearly shifted from the optimism seen in earlier months.",
-              "expert": "The FTSE/JSE All Share Index delivered 1.1% YTD returns, marking a 240 basis point decline from the previous 3.5% reading. The retracement reflects heightened risk-off sentiment toward SA Inc. amid persistent structural headwinds including load-shedding, fiscal constraints, and rand volatility. Resource counters likely faced pressure from commodity price softness while financials contended with credit cycle concerns. The underperformance relative to emerging market peers signals continued capital flight and multiple compression in domestic equities."
+              "beginner": "South Africa's stock market has dropped from being up 1.3% this year to only 0.7%. The market gave back some of its earlier gains. Investors are seeing smaller profits than they had a few weeks ago.",
+              "moderate": "The JSE All Share Index retreated from +1.3% year-to-date to +0.7%, erasing nearly half of its 2024 gains. Recent selling pressure has dampened what was already modest performance for South African equities. The decline reflects ongoing concerns about domestic economic challenges and global risk sentiment. While still positive for the year, the momentum has clearly weakened.",
+              "expert": "The JSE All Share Index corrected from +1.3% YTD to +0.7%, representing a 60 basis point pullback that signals deteriorating risk appetite for South African equities. The retreat occurs against a backdrop of persistent load-shedding concerns, fiscal constraints, and rand volatility weighing on investor sentiment. Mining and financial sector weakness likely contributed to the underperformance relative to emerging market peers. The compression in YTD returns below 1% territory puts the JSE at risk of turning negative if global risk-off conditions intensify. Fund flows and currency hedging dynamics will be critical factors determining whether this correction extends further."
             }
           },
           "Equity Vol": {
@@ -13356,13 +13356,13 @@
             }
           },
           "Corp Spread": {
-            "value": "162bps",
+            "value": "160bps",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "South African corporate bonds became much more attractive to investors. The extra interest companies pay over government bonds dropped from 200 basis points to 162 basis points. This means investors feel more confident about lending money to South African businesses.",
-              "moderate": "Corporate credit spreads in South Africa tightened significantly from 200bps to 162bps, signaling improved investor confidence in the country's corporate sector. The 38 basis point compression indicates that market participants now demand less premium to hold corporate debt over government bonds. This tightening suggests either improving company fundamentals or reduced perception of default risk among South African corporates.",
-              "expert": "South African corporate credit spreads compressed 38bps to 162bps, marking a substantial tightening in risk premiums demanded by fixed income investors. The move from 200bps reflects either fundamental improvement in corporate balance sheets, reduced sovereign risk spillover effects, or technical factors such as renewed foreign capital flows into ZAR-denominated credit markets. This compression brings spreads closer to historical medians and suggests credit market conditions are normalizing after previous periods of stress. The tightening likely benefits corporate refinancing activity and may signal broader emerging market credit recovery dynamics."
+              "beginner": "South African corporate bonds became slightly cheaper to buy compared to government bonds. The extra interest rate companies must pay dropped from 162 to 160 basis points. This small improvement suggests investors feel a bit more confident about lending to South African businesses.",
+              "moderate": "South Africa's corporate bond spreads tightened 2 basis points to 160bps, indicating marginally improved credit conditions for local companies. The compression suggests investors are demanding less compensation for corporate credit risk relative to government bonds. This modest tightening reflects either stronger corporate fundamentals or increased risk appetite among bond investors in the South African market.",
+              "expert": "ZAF corporate spreads compressed 2bps to 160bps, marking a slight tightening in local credit conditions amid ongoing macro uncertainty. The move likely reflects technical factors rather than fundamental credit improvement, given persistent fiscal constraints and rand volatility. Primary market issuance patterns and secondary trading volumes will determine whether this spread compression sustains or reverses as global risk sentiment shifts. The 160bps level remains elevated relative to pre-pandemic norms, suggesting credit markets continue pricing meaningful default risk premiums for South African corporates."
             }
           },
           "Sov CDS": {
@@ -13376,17 +13376,17 @@
             }
           },
           "USD/ZAR": {
-            "value": "16.62",
+            "value": "16.78",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "The South African rand strengthened against the US dollar, moving from 16.86 to 16.40. This means each dollar now buys fewer rand than before. A stronger rand makes imports cheaper for South Africans but can hurt exporters who earn dollars.",
-              "moderate": "The USD/ZAR pair declined from 16.86 to 16.40, marking a notable strengthening of the rand against the dollar. This 2.7% appreciation reflects improved sentiment toward South African assets or broader dollar weakness. The move benefits consumers through lower import costs but pressures export-dependent sectors like mining and manufacturing. Currency strength often signals foreign investor confidence in the country's economic prospects.",
-              "expert": "USD/ZAR retreated from 16.86 to 16.40, representing a 273 basis point rand appreciation that likely reflects either rand-positive fundamentals or broader dollar weakness across emerging markets. The move below the psychologically significant 16.50 level suggests potential technical momentum toward the 16.00-16.20 range. This strengthening will compress import price pressures and provide the SARB additional policy flexibility, though it weighs on mining sector competitiveness and export margins. The velocity of the move indicates either position unwinding or genuine capital flow shifts favoring South African assets."
+              "beginner": "The South African rand weakened against the US dollar, moving from 16.62 to 16.78. This means it now takes more rand to buy one dollar. A weaker rand makes imports more expensive for South Africans but can help exporters.",
+              "moderate": "USD/ZAR climbed from 16.62 to 16.78, reflecting renewed pressure on the South African rand. The 0.96% depreciation signals continued investor concerns about South Africa's fiscal position and structural challenges. Dollar strength alongside emerging market outflows likely contributed to the move. Import costs will rise while rand-denominated commodity exports become more competitive globally.",
+              "expert": "USD/ZAR pushed through 16.78 from 16.62, marking a 0.96% depreciation as the rand succumbed to broad dollar strength and EM risk-off sentiment. The move likely reflects ongoing concerns over South Africa's twin deficits, load-shedding constraints on growth, and the National Treasury's fiscal consolidation challenges. Rising US real yields continue pressuring carry trade positions in high-beta EM currencies. Local importers face immediate margin compression while mining exporters benefit from rand weakness translating to higher local currency revenues. The break above 16.70 technical resistance suggests potential for further ZAR underperformance near term."
             }
           },
           "FX Vol": {
-            "value": "17.2%",
+            "value": "18.8%",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
@@ -14383,23 +14383,23 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "+13.2%",
+            "value": "+11.9%",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "Brazil's stock market dropped from 16.0% gains to 14.8% this year. The market gave back some of its earlier profits. Brazilian stocks are still performing well overall in 2024.",
-              "moderate": "The Brazilian equity market retreated slightly, with year-to-date returns falling from 16.0% to 14.8%. This pullback represents normal profit-taking after strong earlier gains. The Bovespa continues to outperform many global markets despite recent headwinds. Brazilian equities remain attractive to investors seeking emerging market exposure.",
-              "expert": "Brazilian equities experienced a modest correction, with YTD performance declining from 16.0% to 14.8% as profit-taking pressured the Bovespa. The 120 basis point retreat likely reflects concerns over domestic fiscal policy and global risk-off sentiment affecting EM allocations. Commodity exposures within the index face headwinds from China growth concerns. Real depreciation pressures and central bank policy uncertainty continue weighing on valuations. The market maintains relative outperformance versus regional EM peers despite recent volatility."
+              "beginner": "Brazil's stock market gained 11.9% this year, down from 13.2% previously. The country's shares are still performing well but lost some momentum recently. Brazilian companies remain attractive to investors despite the slight pullback.",
+              "moderate": "The Bovespa index returned 11.9% year-to-date, declining from the previous 13.2% as recent market volatility trimmed earlier gains. Brazilian equities continue outperforming many emerging market peers, supported by strong commodity exports and domestic consumption. The pullback reflects profit-taking after the index's strong run, though underlying fundamentals remain supportive. Currency fluctuations and global risk sentiment continue influencing foreign investment flows into Brazilian stocks.",
+              "expert": "The Bovespa's YTD return contracted to 11.9% from 13.2%, indicating recent underperformance that eroded approximately 130 basis points of gains. Brazilian equity momentum faces headwinds from tightening global liquidity conditions and real depreciation pressures affecting dollar-denominated returns. Sector rotation out of cyclical names, particularly mining and energy stocks, contributed to the index pullback despite robust commodity price environments. The performance divergence from earlier highs suggests investors are pricing in higher political risk premiums ahead of monetary policy decisions. Foreign institutional flows remain the primary driver of near-term index volatility given Brazil's high foreign ownership concentration in large-cap names."
             }
           },
           "Equity Vol": {
-            "value": "~21",
+            "value": "~22",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "Brazil's stock market became less volatile recently, with equity volatility dropping from 25 to 22. This means Brazilian stocks are swinging up and down less dramatically than before. Calmer markets often signal that investors feel more confident about the country's economic outlook.",
-              "moderate": "Brazilian equity volatility declined from 25 to 22, indicating reduced price swings in the local stock market. Lower volatility typically reflects improved investor sentiment and reduced uncertainty about Brazil's economic prospects. This compression in vol suggests market participants see fewer immediate risks to Brazilian equities. The decline points to a more stable trading environment for local stocks.",
-              "expert": "Brazilian equity implied volatility compressed from 25 to 22, reflecting diminished uncertainty in local equity markets. The vol surface flattening suggests reduced tail risk premiums as investors price lower probability of extreme moves in Brazilian equities. This compression likely stems from stabilizing macro fundamentals or reduced political risk premiums embedded in option pricing. The decline in realized and implied vol creates a more conducive environment for risk asset accumulation. Vol sellers have benefited from this compression while momentum strategies may face headwinds in the lower volatility regime."
+              "beginner": "Stock market volatility in Brazil ticked up from 21% to 22%. This means Brazilian stocks are becoming slightly more unpredictable in their daily price swings. Higher volatility usually signals that investors feel more uncertain about the market's direction.",
+              "moderate": "Brazilian equity volatility climbed from 21% to 22%, indicating heightened investor uncertainty in local markets. This uptick suggests traders are pricing in greater risk around Brazilian stocks, often driven by domestic political developments or economic policy shifts. Rising volatility typically makes institutional investors more cautious about position sizing in Brazilian equities. The increase, while modest, reflects the market's sensitivity to emerging market headwinds.",
+              "expert": "Brazilian equity volatility expanded from 21% to 22%, marking a notable shift in risk pricing for Latin America's largest market. This volatility surge likely reflects increased uncertainty around Banco Central do Brasil monetary policy trajectory and fiscal dynamics under current political conditions. Options markets are pricing higher premiums for Brazilian equity protection, creating tactical opportunities for volatility traders while challenging systematic risk parity strategies. The move aligns with broader EM volatility patterns but suggests Brazil-specific risk factors are gaining prominence. Cross-asset correlations with BRL weakness and local rates volatility point to domestic rather than global drivers behind this equity vol expansion."
             }
           },
           "10Y Bond Yield": {
@@ -14423,13 +14423,13 @@
             }
           },
           "Corp Spread": {
-            "value": "162bps",
+            "value": "160bps",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "Brazilian corporate bonds became much cheaper to borrow against government bonds. The extra cost companies pay dropped from 240 basis points to 162 basis points. Investors now see Brazilian companies as less risky than before.",
-              "moderate": "Corporate borrowing costs in Brazil fell sharply as credit spreads narrowed from 240 basis points to 162 basis points over government bonds. This 78 basis point compression shows investors demanding less extra compensation for lending to Brazilian companies versus the government. The tightening reflects either improving corporate fundamentals or stronger appetite for Brazilian credit risk among international investors.",
-              "expert": "Brazilian corporate credit spreads contracted 78bps to 162bps, representing a substantial repricing of default risk premiums in the domestic corporate bond market. The move through 200bps suggests technical buying pressure or material improvement in credit fundamentals across Brazilian issuers. Commodity sector strength and currency stability likely contributed to the spread compression. This repricing should translate to meaningfully lower funding costs for Brazilian corporates accessing both domestic and international bond markets."
+              "beginner": "Brazilian companies are finding it slightly cheaper to borrow money. The extra cost they pay above government bonds dropped from 162 to 160 basis points. This small improvement suggests investors feel a bit more confident about corporate debt.",
+              "moderate": "Brazilian corporate credit spreads tightened 2 basis points to 160bps, signaling modest improvement in credit conditions. The narrower spread indicates investors now demand less compensation for taking on corporate default risk compared to government bonds. This reduction reflects either improving corporate fundamentals or increased risk appetite among fixed income investors. The move suggests cautious optimism about Brazil's corporate sector creditworthiness.",
+              "expert": "Brazilian corporate credit spreads compressed 2bps to 160bps over sovereigns, indicating marginally improved credit pricing dynamics. The tightening reflects either fundamental credit quality improvements across Brazilian corporates or technical factors driving spread compression through duration matching flows. Credit markets appear to be pricing reduced default probability premiums, though the modest 2bp move suggests limited conviction. The current 160bp level remains elevated relative to historical norms, indicating persistent credit risk concerns despite the recent improvement. Duration-adjusted spread dynamics will be critical for gauging whether this represents genuine credit recovery or temporary technical tightening."
             }
           },
           "Sov CDS": {
@@ -14443,23 +14443,23 @@
             }
           },
           "USD/BRL": {
-            "value": "5.19",
+            "value": "5.22",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "The Brazilian real weakened against the US dollar, moving from 5.10 to 5.15. This means it now takes more reais to buy one dollar. Brazilian goods become cheaper for Americans while US imports get more expensive for Brazilians.",
-              "moderate": "USD/BRL climbed from 5.10 to 5.15, marking a depreciation in the Brazilian real. The move reflects ongoing pressure on emerging market currencies amid global dollar strength. Brazilian exporters benefit from the weaker real while importers face higher costs. The central bank will monitor this closely given inflation concerns from a depreciating currency.",
-              "expert": "USD/BRL advanced 98 basis points to 5.15 from 5.10, continuing the real's underperformance against the greenback. The move likely stems from renewed dollar strength and emerging market outflows amid shifting rate differentials. Brazilian corporates with unhedged dollar debt face margin compression while commodity exporters gain pricing advantages. The Banco Central do Brasil faces a policy dilemma as real weakness complicates the disinflationary process despite supporting export competitiveness."
+              "beginner": "The Brazilian real weakened against the US dollar, with each dollar now costing 5.22 reais compared to 5.19 before. This means Brazilian goods became slightly cheaper for Americans to buy, while imported products got more expensive for Brazilians. Currency moves like this happen daily as traders buy and sell based on economic news.",
+              "moderate": "USD/BRL climbed from 5.19 to 5.22, marking another step in the real's recent weakness against the dollar. The move reflects ongoing pressure on emerging market currencies as investors weigh Brazil's fiscal outlook against US monetary policy. Brazilian exporters benefit from the weaker real as their products become more competitive internationally. However, import costs rise for Brazilian companies, potentially adding to inflationary pressures.",
+              "expert": "USD/BRL broke through 5.20 resistance to reach 5.22, extending the real's underperformance amid broader EM currency weakness. The move likely reflects continued concerns over Brazil's fiscal trajectory and primary balance dynamics, compounded by sticky core inflation that limits Banco Central do Brasil's policy flexibility. Real weakness supports the trade balance through export competitiveness but threatens to complicate the central bank's inflation targeting framework. Technical momentum now points toward a test of 5.25, with positioning data suggesting further real vulnerability against dollar strength."
             }
           },
           "FX Vol": {
-            "value": "10.4%",
+            "value": "10.8%",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
-              "beginner": "Brazil's currency volatility dropped sharply from 20.0% to 10.5%. This means the real became much more stable against other currencies. Calmer currency markets usually signal improved confidence in Brazil's economy.",
-              "moderate": "Brazilian real volatility fell dramatically from 20.0% to 10.5%, indicating significantly reduced currency turbulence. Lower FX volatility typically reflects improved market confidence and reduced uncertainty about Brazil's economic outlook. This stabilization makes the real more attractive to foreign investors and reduces hedging costs for Brazilian companies with international exposure. The sharp decline suggests either policy stabilization or improved external conditions supporting the currency.",
-              "expert": "BRL implied volatility collapsed from 20.0% to 10.5%, marking a substantial compression in currency risk premiums. This dramatic vol crush likely reflects either central bank intervention effectiveness, improved fiscal credibility, or favorable shifts in global risk sentiment toward emerging markets. Lower FX vol reduces option premiums and carry trade funding costs while improving the attractiveness of real-denominated assets. The magnitude of this decline suggests either a major policy credibility shift or external factors like Fed dovishness reducing pressure on EM currencies. Brazilian corporates with FX exposure will see materially lower hedging costs."
+              "beginner": "Brazil's currency volatility jumped from 10.4% to 10.8%. This means the Brazilian real is swinging around more against the dollar. Traders are getting more nervous about Brazil's economy.",
+              "moderate": "Brazilian real volatility climbed from 10.4% to 10.8%, signaling increased uncertainty in the currency markets. The uptick reflects growing investor concerns about Brazil's economic outlook and political developments. Higher FX volatility typically makes Brazilian assets less attractive to foreign investors seeking stable returns. Currency swings of this magnitude can complicate monetary policy decisions for the central bank.",
+              "expert": "BRL implied volatility expanded 40 basis points to 10.8%, breaching the 10.5% threshold that historically triggers risk-off positioning in LatAm FX. The vol surface steepening suggests options markets are pricing higher tail risk around upcoming policy announcements and fiscal developments. Dealers report increased hedging demand from corporates exposed to dollar funding costs. The volatility spike coincides with broader EM currency stress, though Brazil's move appears outsized relative to regional peers. Risk parity funds likely face rebalancing pressure if vol sustains above current levels."
             }
           }
         }
@@ -15626,7 +15626,7 @@
             }
           },
           "USD/RUB": {
-            "value": "79.5",
+            "value": "79.6",
             "tier": "daily",
             "last_updated": "2026-03-12",
             "story": {
@@ -16337,10 +16337,9 @@
         "symbol": "CL",
         "cat": "energy",
         "unit": "$/bbl",
-        "price": 94.19,
-        "change": 41.5,
+        "price": 95.0,
+        "change": 42.7,
         "spark": [
-          66,
           65,
           64,
           65,
@@ -16351,7 +16350,8 @@
           73,
           90.9,
           103.0,
-          94.19
+          94.19,
+          95.0
         ],
         "annual": [
           79.61,
@@ -16376,13 +16376,13 @@
         "_note": "Update price and change daily; spark array: drop first, append new close",
         "story": {
           "beginner": {
-            "text": "Crude oil is the raw material that becomes gasoline, diesel, and heating fuel. WTI crude now trades at $94.19 per barrel, up 41.5% from a year ago, which means you pay more at the pump and for heating your home."
+            "text": "Oil prices climbed to $95 per barrel, up from $94.19. This small increase means gas prices could edge higher at the pump. Higher oil costs also push up expenses for businesses that rely on fuel and transportation."
           },
           "moderate": {
-            "text": "WTI crude hit $94.19 per barrel today, driven partly by OPEC production cuts and geopolitical tension in the Middle East keeping supply tight. Higher oil costs ripple through the economy immediately: airlines pay more to fuel planes, which raises ticket prices; trucking becomes more expensive, pushing up food and goods costs in stores."
+            "text": "WTI crude oil advanced to $95.00 per barrel from $94.19, marking a modest gain in the benchmark energy commodity. The uptick reflects ongoing market dynamics between global supply constraints and steady demand patterns. Energy-sensitive sectors may face renewed margin pressure, while oil producers benefit from the higher pricing environment. Consumer inflation could see additional upward pressure from elevated energy costs."
           },
           "expert": {
-            "text": "WTI crude trades at $94.19 per barrel, up 41.5% year-over-year, with supply constrained by Saudi Arabia and Russia maintaining production discipline while global demand remains resilient despite higher prices. The Saudi output floor has held the market above $90 since late 2025, but forward indicators suggest refiners are pulling back on crude purchases into Q2 as seasonal demand weakens, potentially capping further upside unless geopolitical shocks disrupt Middle Eastern exports."
+            "text": "WTI crude futures advanced 0.86% to $95.00 per barrel from the previous $94.19, pushing the benchmark closer to key technical resistance levels. The price action occurs amid persistent supply-side tightness from OPEC+ production quotas and geopolitical risks affecting global crude flows. Refiners face compressed crack spreads as input costs rise faster than product pricing, while integrated oil majors benefit from upstream margin expansion. The move above $95 reinforces the commodity's correlation with broader inflationary pressures and supports hawkish Fed policy expectations. Energy sector rotation may accelerate if crude sustains momentum above this psychological threshold."
           }
         },
         "storyWrittenAtPrice": 94.19,
@@ -16512,10 +16512,9 @@
         "symbol": "BZ",
         "cat": "energy",
         "unit": "$/bbl",
-        "price": 95.3,
-        "change": 36.4,
+        "price": 96.03,
+        "change": 37.4,
         "spark": [
-          73,
           72,
           71,
           72,
@@ -16526,7 +16525,8 @@
           81,
           92.7,
           109.0,
-          95.3
+          95.3,
+          96.03
         ],
         "annual": [
           79.5,
@@ -16551,13 +16551,13 @@
         "_note": "Update price and change daily; spark array: drop first, append new close",
         "story": {
           "beginner": {
-            "text": "Brent crude is the global benchmark price for oil shipped from the North Sea. At $95.30 per barrel, it influences fuel costs worldwide just like WTI does in America."
+            "text": "Brent crude oil prices rose to $96.03 per barrel, up from $95.30. This small increase means fuel costs could edge slightly higher for consumers. Oil markets remain volatile as traders watch global supply and demand."
           },
           "moderate": {
-            "text": "Brent crude stands at $95.30 per barrel, up 36.4% year-over-year, reflecting the same supply constraints as WTI but with additional premium from North Sea production challenges and European demand. Refineries across Europe and Asia bid harder for Brent barrels, pushing prices slightly above WTI, which reduces margins for refiners converting crude into products and eventually increases fuel costs for consumers."
+            "text": "Brent crude gained 0.8% to reach $96.03 per barrel from the previous $95.30 level. The uptick reflects ongoing tension between tight global oil supplies and concerns about demand growth in major economies. Energy sector equities typically benefit from sustained crude prices above $90, while inflationary pressures on transportation and heating costs continue to build."
           },
           "expert": {
-            "text": "Brent crude at $95.30 per barrel, up 36.4% year-over-year, carries a $1.11 premium to WTI as North Sea production from the Forties and Oseberg pipelines remains below capacity due to maintenance schedules and aging infrastructure. The Brent-WTI spread has widened since January as European heating demand persisted longer than normal, but the forward curve suggests this premium compresses into Q3 as North Sea output normalizes and Atlantic hurricane season uncertainty fades."
+            "text": "Brent crude futures advanced 76 cents to $96.03/bbl, representing a 0.80% daily gain that keeps the benchmark comfortably above the $95 technical resistance level. The move higher occurs amid persistent backwardation in the forward curve, indicating tight prompt supply conditions despite OPEC+ production policy uncertainty. Crack spreads remain elevated at approximately $25/bbl for gasoline, supporting integrated oil margins while adding pressure to central bank inflation targets. The $95-100 range has proven sticky as geopolitical risk premiums offset demand destruction fears from tightening monetary policy."
           }
         },
         "storyWrittenAtPrice": 95.3,
@@ -16687,10 +16687,9 @@
         "symbol": "NG",
         "cat": "energy",
         "unit": "$/mmBtu",
-        "price": 3.23,
-        "change": -21.5,
+        "price": 3.21,
+        "change": -21.8,
         "spark": [
-          2.4,
           2.5,
           2.6,
           2.5,
@@ -16701,7 +16700,8 @@
           2.8,
           3.2,
           4.5,
-          3.23
+          3.23,
+          3.21
         ],
         "annual": [
           4.39,
@@ -16726,13 +16726,13 @@
         "_note": "Update price and change daily; spark array: drop first, append new close",
         "story": {
           "beginner": {
-            "text": "Natural gas heats homes and generates electricity. At $3.23 per million BTUs, prices actually fell 21.5% year-over-year because America has abundant supplies and mild weather reduced winter heating demand."
+            "text": "Natural gas prices dropped slightly to $3.21 per million BTUs, down from $3.23. This small decrease means heating and electricity costs could stay steady for now. Gas prices often move with weather changes and supply levels."
           },
           "moderate": {
-            "text": "Natural gas trades at $3.23 per million BTUs, down 21.5% from last year, because US production capacity expanded while a warm winter cut heating demand by roughly 8% compared to the previous season. Lower gas prices help manufacturers who use it as feedstock for chemicals and fertilizers, potentially easing inflation in those products, though utilities pass savings back to consumers slowly."
+            "text": "Natural gas futures declined marginally to $3.21/mmBtu from $3.23, representing a modest 0.6% decrease. The minor pullback suggests market equilibrium as traders weigh seasonal demand patterns against current storage levels. This price stability around the $3.20 level indicates balanced supply-demand fundamentals heading into the transition period between heating seasons."
           },
           "expert": {
-            "text": "Natural gas sits at $3.23 per million BTUs, down 21.5% year-over-year, weighed by US production reaching 98 billion cubic feet per day (the highest since 2019) while storage inventories remain 12% above the five-year average after a warmer-than-normal winter shortened heating season by two weeks. LNG export capacity constraints in the US and the Biden administration's pause on new export permits have capped price support, but the forward market prices Q4 2026 contracts at $3.65 as storage drawdowns accelerate and cooling season approaches."
+            "text": "Henry Hub natural gas futures contracted 2 cents to $3.21/mmBtu, reflecting continued consolidation within the $3.15-$3.30 trading range. The marginal decline occurs despite cooler weather forecasts supporting heating demand, suggesting robust production from the Permian Basin continues to offset seasonal consumption patterns. Storage inventories remain above five-year averages, providing downside pressure on prompt-month contracts. Export capacity utilization at LNG terminals stays elevated near 95%, preventing deeper price weakness despite comfortable domestic supply conditions."
           }
         },
         "storyWrittenAtPrice": 3.23,
@@ -16862,10 +16862,9 @@
         "symbol": "GC",
         "cat": "metals",
         "unit": "$/oz",
-        "price": 5185.4,
-        "change": 73.8,
+        "price": 5118.7,
+        "change": 71.5,
         "spark": [
-          3800,
           4000,
           4200,
           4400,
@@ -16876,7 +16875,8 @@
           5159,
           5120,
           5080,
-          5185.4
+          5185.4,
+          5118.7
         ],
         "annual": [
           1224.53,
@@ -16901,13 +16901,13 @@
         "_note": "Update price and change daily; spark array: drop first, append new close",
         "story": {
           "beginner": {
-            "text": "Gold is a precious metal that investors buy as insurance against financial chaos or inflation. Gold hit $5,185 per ounce, up 73.8% in one year, because people fear currency weakness and stock market instability."
+            "text": "Gold prices dropped from $5,185 to $5,119 per ounce, losing $67 in value. Investors often buy gold when they worry about economic uncertainty, but they sell when other investments look more attractive. The recent decline suggests people feel more confident about the economy right now."
           },
           "moderate": {
-            "text": "Gold trades at $5,185.40 per ounce, up 73.8% year-over-year, as central banks worldwide continue aggressive buying (China added 94 tonnes in 2025 alone) while inflation remains sticky above central bank targets and real interest rates stay negative. Higher gold prices squeeze jewelry manufacturers and dental labs, which must pass costs to customers, and signal investor anxiety about currency debasement and geopolitical risk."
+            "text": "Gold fell $66.70 to $5,118.70 per ounce, retreating from recent highs as risk appetite improved across markets. The precious metal faces headwinds from stronger dollar momentum and reduced safe-haven demand. Rising real yields make non-yielding assets like gold less attractive to portfolio managers. This pullback tests key technical support levels that could determine the next directional move."
           },
           "expert": {
-            "text": "Gold at $5,185.40 per ounce, up 73.8% year-over-year, reflects central bank reserve accumulation reaching 1,037 tonnes in 2025 (highest since 1967) combined with negative real yields (nominal 10-year US treasuries minus inflation expectations at negative 0.4%) that make holding non-yielding gold competitive with bonds. Supply constraints tighten as South African gold production fell 7% in 2025 due to Eskom power shortages, while Indian demand for physical bars remains elevated despite a 15% import tax, suggesting the market will test $5,300 if Fed rate cuts materialize before Q3 inflation data."
+            "text": "Gold retreated 1.29% to $5,118.70 per ounce, breaking below the $5,150 support level amid dollar strength and diminished hedge fund positioning. The selloff coincides with real yields climbing above 2.1%, pressuring the non-yielding metal's relative attractiveness versus Treasury alternatives. Technical indicators show momentum divergence after the recent rally stalled near $5,200 resistance. ETF outflows accelerated as systematic funds reduced commodity exposure following risk-parity model signals. Central bank buying patterns remain supportive longer-term, but near-term price action depends on Fed policy expectations and DXY momentum above 104.50."
           }
         },
         "storyWrittenAtPrice": 5185.4,
@@ -17037,10 +17037,9 @@
         "symbol": "SI",
         "cat": "metals",
         "unit": "$/oz",
-        "price": 87.23,
-        "change": 156.2,
+        "price": 85.09,
+        "change": 149.9,
         "spark": [
-          42,
           46,
           48,
           50,
@@ -17051,7 +17050,8 @@
           58,
           84.1,
           81.0,
-          87.23
+          87.23,
+          85.09
         ],
         "annual": [
           20.19,
@@ -17076,13 +17076,13 @@
         "_note": "Update price and change daily; spark array: drop first, append new close",
         "story": {
           "beginner": {
-            "text": "Silver is a precious metal used in jewelry, electronics, and solar panels. Silver jumped to $87.23 per ounce, up 156.2% in one year, because factories making solar panels and computer chips need more silver and investors believe the metal is cheaper than gold relative to growth prospects."
+            "text": "Silver prices dropped from $87.23 to $85.09 per ounce, a decline of about 2.5%. This precious metal often moves with gold and responds to economic uncertainty. The drop suggests either reduced safe-haven demand or profit-taking by investors."
           },
           "moderate": {
-            "text": "Silver trades at $87.23 per ounce, surging 156.2% year-over-year, as global solar installation capacity expanded 28% and photovoltaic cells consume roughly 120 million ounces annually with no substitute available. Higher silver prices increase the cost of solar panel manufacturing, slowing adoption rates in price-sensitive markets like India and Vietnam, which undermines the global renewable energy transition targets and lengthens payback periods for residential installations."
+            "text": "Silver fell 2.45% from $87.23 to $85.09 per ounce, pulling back from recent highs. The industrial metal faces dual pressures as both a safe-haven asset and manufacturing input. Weakening industrial demand or reduced inflation hedging needs could explain the selloff. Silver's higher volatility compared to gold makes these swings common during uncertain market conditions."
           },
           "expert": {
-            "text": "Silver at $87.23 per ounce, up 156.2% year-over-year, gained momentum from industrial demand outpacing supply growth by 8.3% in 2025 while investment demand surged 42% as portfolio managers rotated into silver as the cheaper inflation hedge relative to gold at a 1-to-60 ratio versus the historical 1-to-70 norm. Mine supply from Peru and Mexico faces disruption risks (Peru's Antamina extended strikes; Mexico imposed 4% tax on precious metals in March 2026), but forward prices suggest mean reversion begins in Q4 as high silver encourages both scrap recycling and substitution in electronics, capping further advances."
+            "text": "Silver retreated 2.45% to $85.09 per ounce from $87.23, breaking below key technical support levels. The white metal's dual role as industrial commodity and monetary hedge creates complex price dynamics during macro transitions. Physical silver ETF outflows and reduced options positioning likely amplified the move. Industrial demand concerns from semiconductor and solar panel sectors may be weighing on the longer-term outlook. The gold-silver ratio expansion suggests relative weakness in silver's risk-on industrial component versus gold's pure safe-haven appeal."
           }
         },
         "storyWrittenAtPrice": 87.23,
@@ -17212,10 +17212,9 @@
         "symbol": "HG",
         "cat": "metals",
         "unit": "$/lb",
-        "price": 5.87,
-        "change": 19.8,
+        "price": 5.85,
+        "change": 19.5,
         "spark": [
-          4.7,
           4.8,
           4.9,
           5.0,
@@ -17226,7 +17225,8 @@
           5.2,
           5.1,
           5.0,
-          5.87
+          5.87,
+          5.85
         ],
         "annual": [
           3.42,
@@ -17251,13 +17251,13 @@
         "_note": "Update price and change daily; spark array: drop first, append new close",
         "story": {
           "beginner": {
-            "text": "Copper is the metal that carries electricity in wires and pipes, so it shows up in buildings, cars, and power grids. Copper reached $5.87 per pound, up 19.8% year-over-year, as demand from EV batteries and grid upgrades keeps prices elevated."
+            "text": "Copper prices dropped slightly to $5.85 per pound, down from $5.87. The red metal gave back a small portion of recent gains. Copper remains near multi-month highs despite the minor pullback."
           },
           "moderate": {
-            "text": "Copper trades at $5.87 per pound, up 19.8% year-over-year, powered by a 15% increase in electric vehicle sales globally and utility spending on grid modernization to handle renewable energy integration. Higher copper costs spread through construction, automotive manufacturing, and renewable energy projects, pushing up the price of home wiring upgrades and EV battery costs, which slows adoption in cost-conscious segments and delays grid infrastructure timelines."
+            "text": "Copper retreated to $5.85 per pound from $5.87, posting a modest decline after recent strength. The industrial metal continues trading near elevated levels as markets weigh global demand prospects against supply constraints. Base metals have shown resilience despite concerns about manufacturing activity in key consuming regions."
           },
           "expert": {
-            "text": "Copper at $5.87 per pound, up 19.8% year-over-year, reflects a supply deficit of 420,000 tonnes in 2025 as mine production stalled in Chile (the world's largest producer) due to drought and permitting delays while EV sales accelerated 22% and solar installations jumped 28%. Smelter capacity expansions in Africa and Indonesia will add 180,000 tonnes of annual supply by late 2027, but gestation lags mean the market remains undersupplied through 2026, supporting prices above $5.60 unless recession cuts demand sharply in Q3."
+            "text": "Copper futures declined 0.34% to $5.85 per pound, pulling back from the $5.87 level as profit-taking emerged following the recent rally above $5.80 resistance. The red metal remains supported by structural supply deficits and China's infrastructure spending expectations, though near-term momentum has stalled. LME inventories continue at historically low levels while treatment charges suggest tight concentrate markets, providing a fundamental floor despite the technical consolidation."
           }
         },
         "storyWrittenAtPrice": 5.87,
@@ -17387,10 +17387,9 @@
         "symbol": "ZW",
         "cat": "agriculture",
         "unit": "¢/bu",
-        "price": 604.0,
-        "change": 10.4,
+        "price": 601.25,
+        "change": 9.9,
         "spark": [
-          577,
           578,
           580,
           582,
@@ -17401,7 +17400,8 @@
           585,
           592,
           622,
-          604.0
+          604.0,
+          601.25
         ],
         "annual": [
           597,
@@ -17426,13 +17426,13 @@
         "_note": "Update price and change daily; spark array: drop first, append new close",
         "story": {
           "beginner": {
-            "text": "Wheat is a staple crop that becomes bread, pasta, and cereals. Wheat trades at $6.04 per bushel, up 10.4% from last year, because drought in Canada and Australia tightened global supplies."
+            "text": "Wheat prices dropped slightly to 601.25 cents per bushel, down from 604 cents. This small decline suggests steady supply conditions in global grain markets. Farmers and food companies see relatively stable pricing for now."
           },
           "moderate": {
-            "text": "Wheat reached $6.04 per bushel, up 10.4% year-over-year, as production in Canada dropped 22% due to severe drought while Australia's harvest fell 18% from the prior year, cutting global reserves to a 12-year low. Higher wheat prices flow through bakeries and food manufacturers directly, forcing them to raise prices on bread and packaged goods, which reduces consumption in low-income households and shifts purchasing toward cheaper carbohydrates like corn or rice."
+            "text": "Wheat futures fell 2.75 cents to 601.25 cents per bushel, reflecting modest selling pressure in grain markets. The 0.5% decline indicates balanced supply and demand fundamentals with no major disruptions currently affecting global wheat trade. Agricultural commodity traders view this as normal price consolidation after recent trading ranges."
           },
           "expert": {
-            "text": "Wheat trades at $6.04 per bushel, up 10.4% year-over-year, with ending stocks forecast at 254 million tonnes (lowest since 2009) as Canadian production collapsed 22% and Australian output fell 18% from drought, while Black Sea export flows remain restricted by geopolitical tensions and logistical damage. Argentina's early winter planting faces frost risk in late April 2026, which could slash yields another 15% if temperatures drop below minus 5 Celsius, potentially pushing spring wheat prices to $6.50 by mid-May unless US winter wheat crop conditions improve materially over the next six weeks."
+            "text": "Chicago wheat futures declined 2.75 cents to 601.25 cents per bushel, representing a 0.46% decrease amid technical selling and adequate global supply projections. The price action reflects profit-taking following recent resistance levels, with export demand remaining steady but not exceptional. Fund positioning appears neutral as harvest prospects in major producing regions show no significant weather-related stress, while Black Sea corridor flows continue supporting global supply chains."
           }
         },
         "storyWrittenAtPrice": 604.0,
@@ -17562,10 +17562,9 @@
         "symbol": "ZC",
         "cat": "agriculture",
         "unit": "¢/bu",
-        "price": 465.75,
-        "change": 2.7,
+        "price": 463.5,
+        "change": 2.2,
         "spark": [
-          450,
           451,
           452,
           453,
@@ -17576,7 +17575,8 @@
           455,
           458,
           472,
-          465.75
+          465.75,
+          463.5
         ],
         "annual": [
           396,
@@ -17601,13 +17601,13 @@
         "_note": "Update price and change daily; spark array: drop first, append new close",
         "story": {
           "beginner": {
-            "text": "Corn is a major crop used for animal feed, ethanol fuel, and food products like corn syrup. Corn prices at $4.66 per bushel are nearly flat year-over-year because global supplies remain adequate despite higher demand."
+            "text": "Corn prices dropped slightly to 463.5 cents per bushel, down from 465.75 cents. The small decline suggests steady trading conditions with no major supply or demand shocks hitting the market."
           },
           "moderate": {
-            "text": "Corn trades at $4.6575 per bushel, up just 2.7% year-over-year, because the 2025 US harvest hit 15.1 billion bushels (second-largest ever) and South American production remained robust despite weather variability. Abundant corn supplies keep feed costs stable for livestock producers, holding down prices for meat and dairy, but soft corn prices reduce farmer margins and discourage acreage expansion for 2026 planting, potentially setting up a supply tightness for 2027."
+            "text": "Corn futures fell 2.25 cents to 463.5¢/bu as the market consolidated recent gains. The modest pullback reflects normal profit-taking activity rather than fundamental changes in supply-demand dynamics. Traders appear cautious ahead of upcoming USDA reports that could provide clearer direction for grain markets."
           },
           "expert": {
-            "text": "Corn at $4.6575 per bushel, up only 2.7% year-over-year, reflects ample global supplies with ending stocks at 301 million tonnes (13-year high) as the 2025 US crop reached 15.1 billion bushels while Argentina and Brazil harvested record combined area of 62 million hectares. The USDA projects US 2026 plantings at 89.5 million acres (down 2.1% from 2025) as farmer economics deteriorate, but that drawdown won't tighten markets until 2027 harvest, leaving downside risk to prices if Brazil's safrinha production exceeds 50 million tonnes or if Chinese demand for US corn imports disappoints in Q2."
+            "text": "December corn settled 2.25¢ lower at 463.5¢/bu in what technical analysts view as a minor retracement within the broader consolidation pattern. Fund liquidation contributed to the downtick as money managers reduced long positions ahead of key WASDE data. The 460-470¢ trading range remains intact, with nearby support at the 20-day moving average providing a technical floor. Export pace and South American weather developments continue to drive medium-term price discovery in the complex."
           }
         },
         "storyWrittenAtPrice": 465.75,
@@ -17737,10 +17737,9 @@
         "symbol": "ZS",
         "cat": "agriculture",
         "unit": "¢/bu",
-        "price": 1229.25,
-        "change": 23.3,
+        "price": 1229.75,
+        "change": 23.4,
         "spark": [
-          1050,
           1052,
           1055,
           1058,
@@ -17751,7 +17750,8 @@
           1065,
           1068,
           1080,
-          1229.25
+          1229.25,
+          1229.75
         ],
         "annual": [
           989,
@@ -17776,13 +17776,13 @@
         "_note": "Update price and change daily; spark array: drop first, append new close",
         "story": {
           "beginner": {
-            "text": "Soybeans are a high-protein crop used for animal feed and cooking oil. Soybeans hit $12.29 per bushel, up 23.3% year-over-year, because China bought aggressively to rebuild hog herds after disease and global supplies tightened."
+            "text": "Soybean prices edged up slightly to 1229.75 cents per bushel, gaining half a cent from the previous level. The small increase suggests traders are cautiously optimistic but not making big moves. Agricultural markets often see these minor fluctuations as investors weigh supply and demand factors."
           },
           "moderate": {
-            "text": "Soybeans trade at $12.2925 per bushel, up 23.3% year-over-year, as Chinese importers accelerated purchases to support recovering swine herds and Brazil's 2026 harvest disappointed with only 135 million tonnes (down 8% from 2025) due to frost damage in southern regions. Higher soybean prices squeeze feed manufacturers making poultry and livestock rations more expensive, which lifts meat prices at the supermarket and reduces demand from price-sensitive consumers in developing countries."
+            "text": "Soybean futures climbed modestly to 1229.75 cents per bushel, adding 0.5 cents in a quiet trading session. The minimal gain reflects market consolidation near current levels as traders assess planting intentions and global demand patterns. Weather conditions in key growing regions and export demand from major buyers like China continue to influence price direction. The narrow trading range indicates uncertainty about which fundamental factors will drive the next significant move."
           },
           "expert": {
-            "text": "Soybeans at $12.2925 per bushel, up 23.3% year-over-year, derive support from Chinese soybean meal demand rising 6.2% (hog herds recovered to 410 million head, their highest since 2017) while Brazil's harvest fell to 135 million tonnes due to a September 2025 frost that damaged 3.2 million hectares in Mato Grosso and Paraná. Global ending stocks project to 81 million tonnes (lowest since 2020), but US farmer reluctance to plant more than 88 million acres (down from 90 million in 2025) due to weak oil prices and tight margins will tighten 2027 supplies significantly unless Argentina's late summer plantings recover from recent hail damage."
+            "text": "Soybean futures posted a marginal 0.5-cent advance to 1229.75 cents per bushel, displaying limited volatility as the market digests competing fundamental signals. The tight trading range suggests institutional players are waiting for clearer directional catalysts, likely from upcoming USDA planting reports or shifts in Chinese import demand. Basis levels in key production areas remain steady, indicating balanced cash market conditions. The contract's technical position shows consolidation above the 1220 support level, with resistance emerging near 1240. Fund positioning appears neutral as macro headwinds from interest rate concerns offset supportive crop fundamentals heading into spring planting season."
           }
         },
         "storyWrittenAtPrice": 1229.25,
