@@ -85,7 +85,7 @@ log = logging.getLogger(__name__)
 #   indexLabel  True for stock market charts
 #
 # Transforms
-#   monthly_120       last 120 monthly observations as-is
+#   monthly_120       last 120 monthly observations as-is (10 years)
 #   annual_10         last 10 annual observations as-is (direct annual series)
 #   qtr_sum_pct_gdp   sum quarterly CA to annual totals, divide by nominal GDP
 #                     to get % of GDP, last 10 matched years
@@ -157,6 +157,7 @@ STOCK_TICKERS = {
     "RUS": "IMOEX.ME",    # MOEX (may have post-2022 gaps)
 }
 
+
 # World Bank nominal GDP series via FRED (current USD, annual).
 # Used to convert Current Account from millions USD to % of GDP.
 # Pattern: MKTGDP + ISO-2 + A646NWDB
@@ -173,6 +174,20 @@ NOMINAL_GDP_SERIES = {
     "ZAF": "MKTGDPZAA646NWDB",
     "BRA": "MKTGDPBRA646NWDB",
     "RUS": "MKTGDPRUA646NWDB",
+}
+
+# Yahoo Finance tickers for commodity continuous futures contracts.
+# Written to each commodity item as _frozen_historical (120 monthly closes).
+COMMODITY_TICKERS = {
+    "WTI Crude":   "CL=F",
+    "Brent Crude": "BZ=F",
+    "Natural Gas": "NG=F",
+    "Gold":        "GC=F",
+    "Silver":      "SI=F",
+    "Copper":      "HG=F",
+    "Wheat":       "ZW=F",
+    "Corn":        "ZC=F",
+    "Soybeans":    "ZS=F",
 }
 
 # All metric names that are NOT the FX pair. Used to detect the FX label.
@@ -245,7 +260,7 @@ FRED_METRICS = {
         "Unemployment":    {"id": "LRUNTTTTCNM156S",  "transform": "monthly_120", "type": "line"},
         "Current Account": {"id": "BPBLTT01CNQ637S",  "transform": "qtr_sum_pct_gdp",  "type": "bar",  "annual": True},
         "Policy Rate":     {"id": "IRSTCI01CNM156N",  "transform": "monthly_120", "type": "line", "stepped": True},
-        "10Y Bond Yield":  {"id": "IRLTLT01CNM156N",  "transform": "monthly_120", "type": "line"},
+        "10Y Bond Yield":  {"id": "INTGSTCNM193N",    "transform": "monthly_120", "type": "line"},
     },
     "IND": {
         "GDP Growth":      {"id": "INDGDPNQDSMEI",    "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
@@ -253,7 +268,7 @@ FRED_METRICS = {
         "Unemployment":    {"id": "LRUNTTTTINM156S",  "transform": "monthly_120", "type": "line"},
         "Current Account": {"id": "BPBLTT01INQ637S",  "transform": "qtr_sum_pct_gdp",  "type": "bar",  "annual": True},
         "Policy Rate":     {"id": "IRSTCI01INM156N",  "transform": "monthly_120", "type": "line", "stepped": True},
-        "10Y Bond Yield":  {"id": "IRLTLT01INM156N",  "transform": "monthly_120", "type": "line"},
+        "10Y Bond Yield":  {"id": "INTGSTINM193N",    "transform": "monthly_120", "type": "line"},
     },
     "ZAF": {
         "GDP Growth":      {"id": "ZAFGDPNQDSMEI",    "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
@@ -269,7 +284,7 @@ FRED_METRICS = {
         "Unemployment":    {"id": "LRUNTTTTBRM156S", "transform": "monthly_120", "type": "line"},
         "Current Account": {"id": "BPBLTT01BRQ637S", "transform": "qtr_sum_pct_gdp",  "type": "bar",  "annual": True},
         "Policy Rate":     {"id": "IRSTCI01BRM156N", "transform": "monthly_120", "type": "line", "stepped": True},
-        "10Y Bond Yield":  {"id": "IRLTLT01BRM156N", "transform": "monthly_120", "type": "line"},
+        "10Y Bond Yield":  {"id": "INTGSTBRM193N",   "transform": "monthly_120", "type": "line"},
     },
     "RUS": {
         "GDP Growth":      {"id": "NGDPRSAXDCRUQ",   "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
@@ -483,7 +498,7 @@ def compute_yield_curve(long_pairs, short_pairs):
     Subtract short rate from 10Y rate on matching months.
     Normalizes dates to YYYY-MM to handle FRED series with different
     day-of-month conventions for the same reporting period.
-    Returns the last 60 monthly spread values.
+    Returns the last 120 monthly spread values (10 years).
     """
     if not long_pairs or not short_pairs:
         return None
@@ -503,7 +518,7 @@ def compute_yield_curve(long_pairs, short_pairs):
 def fetch_stock_monthly(ticker):
     """
     Fetch monthly closing prices for a stock index via yfinance.
-    Returns the last 60 monthly values, or None on failure.
+    Returns the last 120 monthly values (10 years), or None on failure.
     """
     try:
         hist = yf.Ticker(ticker).history(period="11y", interval="1mo")
@@ -542,13 +557,80 @@ def fetch_nominal_gdp(code):
 
 
 # ---------------------------------------------------------------------------
+# COMMODITIES (Yahoo Finance)
+# ---------------------------------------------------------------------------
+
+def fetch_commodity_historical(ticker):
+    """
+    Fetch monthly closing prices for a commodity futures contract via yfinance.
+    Returns the last 120 monthly values (10 years), or None on failure.
+    """
+    try:
+        hist = yf.Ticker(ticker).history(period="11y", interval="1mo")
+        if hist.empty:
+            log.warning(f"    Yahoo {ticker}: no data returned")
+            return None
+        vals = [r2(float(v)) for v in hist["Close"].dropna().tolist()]
+        return vals[-120:] if vals else None
+    except Exception as exc:
+        log.warning(f"    Yahoo {ticker}: {exc}")
+        return None
+
+
+def process_commodities(data):
+    """
+    Fetch and write _frozen_historical for each commodity item.
+    Writes {"v": [...], "type": "line"} to each item in data["commodities"]["items"].
+    Never touches price, change, spark, annual, or story fields.
+    """
+    items = data.get("commodities", {}).get("items", [])
+    if not items:
+        log.warning("No commodity items found in data.json")
+        return
+
+    log.info(f"\n{'='*52}")
+    log.info("  COMMODITIES")
+    log.info(f"{'='*52}")
+
+    fetched, skipped, failed = 0, 0, 0
+
+    for item in items:
+        name   = item.get("name", "?")
+        ticker = COMMODITY_TICKERS.get(name)
+
+        if not ticker:
+            log.warning(f"  No ticker configured for '{name}' - skipping")
+            skipped += 1
+            continue
+
+        if not FORCE_OVERWRITE and isinstance(item.get("_frozen_historical"), dict):
+            existing = item["_frozen_historical"].get("v", [])
+            if len(existing) >= MIN_POINTS:
+                log.info(f"  SKIP    {name} (already populated)")
+                skipped += 1
+                continue
+
+        log.info(f"  Fetch   {name}  [{ticker}]")
+        vals = fetch_commodity_historical(ticker)
+        if vals:
+            item["_frozen_historical"] = {"v": vals, "type": "line"}
+            log.info(f"    OK ({len(vals)} points)")
+            fetched += 1
+        else:
+            log.warning(f"    FAILED")
+            failed += 1
+
+    log.info(f"\n  Commodities: fetched={fetched}, skipped={skipped}, failed={failed}")
+
+
+# ---------------------------------------------------------------------------
 # FX (FRED daily, resampled to monthly)
 # ---------------------------------------------------------------------------
 
 def fetch_fx_monthly(fred_series):
     """
     Fetch daily FX rate from FRED, resample to monthly end-of-month values.
-    Returns the last 60 monthly values, or None on failure.
+    Returns the last 120 monthly values (10 years), or None on failure.
     """
     pairs = fred_fetch(fred_series, limit=3000, observation_start="2015-01-01")
     if not pairs:
@@ -815,6 +897,9 @@ def main():
         totals["failed_list"].extend(
             [f"{code}/{m}" for m in results["failed"]]
         )
+
+    # Commodity historical
+    process_commodities(data)
 
     # Write data.json back
     log.info(f"\nWriting {DATA_FILE} ...")
