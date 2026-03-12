@@ -6674,7 +6674,7 @@ function renderMTT(d) {
   // Render chart
   if (d.chart) {
     const chartContainer = tt.querySelector('#mttChart');
-    renderMetricChart(chartContainer, d.metricName, d.chart.code, d.chart.isAnnual ? null : 60);
+    renderMetricChart(chartContainer, d.metricName, d.chart.code, d.chart.isAnnual ? null : 120);
     if (!d.chart.isAnnual) {
       tt.querySelectorAll('.mcr-btn').forEach(btn => {
         btn.addEventListener('click', e => {
