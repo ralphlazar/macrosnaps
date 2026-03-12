@@ -8,7 +8,7 @@
       "weekly": "Update weekly or on release — CPI, unemployment, policy rate",
       "structural": "Update quarterly or on major revision — GDP, deficits, current account, stories, fxRegime"
     },
-    "built_at": "2026-03-12 17:36"
+    "built_at": "2026-03-12 17:49"
   },
   "countries": {
     "USA": {
@@ -729,7 +729,7 @@
             6845.5,
             6939.03,
             6878.88,
-            6699.81
+            6693.31
           ],
           "type": "line",
           "indexLabel": true
@@ -2732,7 +2732,7 @@
             31712.8,
             31923.5,
             34340.0,
-            32952.36
+            32935.36
           ],
           "type": "line",
           "indexLabel": true
@@ -15014,7 +15014,7 @@
             161125.0,
             181364.0,
             188787.0,
-            179725.64
+            179590.98
           ],
           "type": "line",
           "indexLabel": true
