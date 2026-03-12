@@ -1,5 +1,5 @@
 # MacroSnaps - Living Brief
-Last updated: March 12, 2026 (Tooling session - update_headlines.py extended with Sonnet+search harvest call for country stories; two-phase architecture: Call 1 global Sonnet+search, Call 2 Sonnet+search harvest for all 12 countries, Calls 3-5 Haiku x3 batches writing stories off recent data with forecasts as background context only; harvest capped at 2 search turns and 1500 max_tokens to control cost; call order fixed so global runs before harvest to avoid Sonnet rate limit exhaustion; Haiku bullet count enforcement strengthened with retry logic; first successful run 13/13 March 12, 2026)
+Last updated: March 12, 2026 (Tooling session - commodity price automation added to fetch_market_data.py; COMMODITY_TICKERS dict, yf_price_and_yoy helper, and process_commodities function added; updates price, change, spark, and asOf for all 9 commodities daily via Yahoo Finance continuous futures tickers; verified 9/9 March 12, 2026)
 
 ---
 
@@ -244,7 +244,7 @@ python3 sync_sheet.py --apply
 
 **Step 4. Fetch live market data**
 
-This pulls Stock Market YTD, 10Y Bond Yield, Yield Curve, FX pairs, Equity Vol, Corp Spread, Sov CDS, and FX Vol from Yahoo Finance and FRED and writes them into `data.json`.
+This pulls Stock Market YTD, 10Y Bond Yield, Yield Curve, FX pairs, Equity Vol, Corp Spread, Sov CDS, FX Vol, and all 9 commodity prices from Yahoo Finance and FRED and writes them into `data.json`.
 ```bash
 python3 fetch_market_data.py
 ```
@@ -343,7 +343,7 @@ All 168 per-metric stories are complete across all 12 countries and all 3 levels
 - fxRegime descriptions (3 levels): complete for all 12
 
 **Commodity stories (beginner / moderate / expert)**
-All 9 commodities have a `story` object with beginner, moderate, and expert keys. Last updated March 10, 2026. Update these whenever commodity prices move meaningfully, as part of the daily content session. Use the Commodities Session Prompt in Part 1C above.
+All 9 commodities have a `story` object with beginner, moderate, and expert keys. Last updated March 10, 2026. Commodity prices are now updated automatically by `fetch_market_data.py` daily. Stories still require a manual content session when prices move meaningfully. Use the Commodities Session Prompt in Part 1C above. **Next up: commodity story rewrite session.**
 
 **Global stories (March 10, 2026)**
 - Slot 1: Oil Swings Wildly as Iran War Dominates Markets (WTI $119 to $88 intraday)
@@ -441,6 +441,7 @@ The script lives in `~/Downloads/macrosnaps/`. It pulls all 8 market metrics and
 | Sov CDS | Derived proxy | Local 10Y minus UST (EM countries only) |
 | FX pair | Yahoo Finance | Varies by country |
 | FX Vol | Yahoo Finance (derived) | 30-day realized vol from daily FX returns |
+| Commodity prices (9) | Yahoo Finance | Continuous futures tickers (CL=F, BZ=F, NG=F, GC=F, SI=F, HG=F, ZW=F, ZC=F, ZS=F); updates price, change (YoY %), spark (rolling 12-point array), and asOf |
 
 **Known gaps (expected, not bugs):**
 - RUS: `IMOEX.ME` is delisted on Yahoo. Stock Market YTD and Equity Vol will always fail. FX and FX Vol come through.
@@ -576,7 +577,7 @@ The tooltip order is: metric name, country + value, story, chart, explanation/bl
 | Spurious git diffs from build timestamps | Fixed | Build script stamps `_meta` in memory only. `data.json` on disk is never written by the build. |
 | Daily backup only | Covered | Git provides full history. Build script saves daily backup to `backups/` and prunes after 30 days. |
 | Historical chart data incomplete | Largely resolved | `refetch_historical.py` restored all charts except genuine data voids. |
-| Stale or missing market data | Resolved | `fetch_market_data.py` built and verified March 11, 2026. 4 data-void metrics display as "not available." |
+| Stale or missing market data | Resolved | `fetch_market_data.py` built and verified March 11, 2026. 4 data-void metrics display as "not available." Commodity prices automated March 12, 2026. |
 | Manual story maintenance burden | Resolved | `update_stories.py` built March 11, 2026. Rewrites stories for any metric that moves past threshold. |
 | Weather Map showing stale forecast values | Fixed | Shell reads the 2026F column from live metrics at runtime. Historical years stay frozen. |
 | Value/story drift between daily market updates and story rewrites | Resolved | `update_stories.py` built March 11, 2026. Run after each data fetch to keep stories current. |
@@ -635,7 +636,9 @@ Key settings at the top of the script:
 
 ### Pending work (priority order)
 
-1. **Apply USA sheet changes.** `sync_sheet.py` preview on March 11 showed USA CPI 3.1% -> 2.3% and Unemployment 4.4% -> 4.2%. These were never applied. Run: `python3 sync_sheet.py --apply && python3 update_stories.py && python3 build.py`
+1. **Commodity story rewrite session.** Prices have moved significantly since March 10 (Gold +74% YoY, Silver +157% YoY, WTI at $93.61, Natural Gas down 22% YoY). Use the Commodities Session Prompt in Part 1C. Upload `LIVING_BRIEF.md` + `data.json`.
+
+2. **Apply USA sheet changes.** `sync_sheet.py` preview on March 11 showed USA CPI 3.1% -> 2.3% and Unemployment 4.4% -> 4.2%. These were never applied. Run: `python3 sync_sheet.py --apply && python3 update_stories.py && python3 build.py`
 
 2. **Manual stories session.** Use the Stories Session Prompt in Part 1B to rewrite all stale metric stories listed in "Known value/story drift" above. This is a content session - upload `LIVING_BRIEF.md` + `data.json`. Do this before building `update_stories.py` so there is a clean baseline.
 

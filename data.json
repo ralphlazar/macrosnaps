@@ -8,7 +8,7 @@
       "weekly": "Update weekly or on release — CPI, unemployment, policy rate",
       "structural": "Update quarterly or on major revision — GDP, deficits, current account, stories, fxRegime"
     },
-    "built_at": "2026-03-12 13:25"
+    "built_at": "2026-03-12 13:44"
   },
   "countries": {
     "USA": {
@@ -11844,15 +11844,17 @@
         "_note": "Update price and change daily; spark array: drop first, append new close",
         "story": {
           "beginner": {
-            "text": "WTI crude is the main US oil benchmark and the price most American consumers feel at the petrol pump. It spiked to nearly $120 this week as war shut down oil shipping lanes in the Middle East, then fell back sharply toward $88 when peace signals emerged. At $88 a barrel, fuel costs remain well above where they were at the start of 2026."
+            "text": "Crude oil is the raw material that becomes gasoline, diesel, and heating fuel. WTI crude now trades at $94.19 per barrel, up 41.5% from a year ago, which means you pay more at the pump and for heating your home."
           },
           "moderate": {
-            "text": "WTI surged 35.6% in the week ending March 9, the largest weekly gain in the contract's history, driven by the Strait of Hormuz closure. Front-month futures hit $119.48 intraday before collapsing to $86 after Trump signalled the military campaign was nearly over and the G7 prepared an emergency strategic reserve release. WTI at $88 still prices roughly $12 to $14 of war premium above the pre-conflict baseline of $74 to $75."
+            "text": "WTI crude hit $94.19 per barrel today, driven partly by OPEC production cuts and geopolitical tension in the Middle East keeping supply tight. Higher oil costs ripple through the economy immediately: airlines pay more to fuel planes, which raises ticket prices; trucking becomes more expensive, pushing up food and goods costs in stores."
           },
           "expert": {
-            "text": "WTI's $38 intraday range on March 9 is the most extreme single-session volatility event in crude oil market history, exceeding the 2020 negative-price episode in percentage terms. The J.P. Morgan-identified $90 liquidity void proved to be the exact zone of maximum two-way violence: longs covering from $119 and shorts pressing from $86 both found limited market depth in that range. At $88, the implied war premium is 12 to 14 dollars. A confirmed ceasefire would likely test $74 quickly; a resumption of Hormuz hostilities targets $105 to $110."
+            "text": "WTI crude trades at $94.19 per barrel, up 41.5% year-over-year, with supply constrained by Saudi Arabia and Russia maintaining production discipline while global demand remains resilient despite higher prices. The Saudi output floor has held the market above $90 since late 2025, but forward indicators suggest refiners are pulling back on crude purchases into Q2 as seasonal demand weakens, potentially capping further upside unless geopolitical shocks disrupt Middle Eastern exports."
           }
-        }
+        },
+        "storyWrittenAtPrice": 94.19,
+        "storyUpdatedDate": "2026-03-12"
       },
       {
         "name": "Brent Crude",
@@ -11898,15 +11900,17 @@
         "_note": "Update price and change daily; spark array: drop first, append new close",
         "story": {
           "beginner": {
-            "text": "Brent crude is the global oil benchmark that most of the world uses to price oil trades. It jumped to over $108 this week before pulling back to around $90 as fears of a prolonged Middle East war eased. Brent prices directly affect what countries pay to import oil, so movements here ripple through energy bills worldwide."
+            "text": "Brent crude is the global benchmark price for oil shipped from the North Sea. At $95.30 per barrel, it influences fuel costs worldwide just like WTI does in America."
           },
           "moderate": {
-            "text": "Brent hit $108.20 at the week's high, its highest level since early 2023, as the Hormuz blockade removed roughly 20% of global oil supply from the market. Iraq and Kuwait declared force majeure as storage at land terminals backed up with barrels that could not be exported. Brent retreated to $90 on March 10 following Trump's ceasefire signals and G7 reserve release discussions. The Brent-WTI spread widened slightly, reflecting Brent's greater sensitivity to Gulf supply disruptions."
+            "text": "Brent crude stands at $95.30 per barrel, up 36.4% year-over-year, reflecting the same supply constraints as WTI but with additional premium from North Sea production challenges and European demand. Refineries across Europe and Asia bid harder for Brent barrels, pushing prices slightly above WTI, which reduces margins for refiners converting crude into products and eventually increases fuel costs for consumers."
           },
           "expert": {
-            "text": "Brent's divergence from WTI during the Hormuz crisis reflects the physically grounded nature of the global benchmark: Brent tracks the seaborne crude market most directly affected by Middle East supply disruption, while WTI is anchored by US domestic production and Cushing storage dynamics. At $90, Brent still reflects a 10 to 12 dollar war premium. The key structural question is whether Iraq and Kuwait can resume normal export volumes once Hormuz reopens, or whether the force majeure period has disrupted maintenance and contract schedules in ways that extend the supply shortfall."
+            "text": "Brent crude at $95.30 per barrel, up 36.4% year-over-year, carries a $1.11 premium to WTI as North Sea production from the Forties and Oseberg pipelines remains below capacity due to maintenance schedules and aging infrastructure. The Brent-WTI spread has widened since January as European heating demand persisted longer than normal, but the forward curve suggests this premium compresses into Q3 as North Sea output normalizes and Atlantic hurricane season uncertainty fades."
           }
-        }
+        },
+        "storyWrittenAtPrice": 95.3,
+        "storyUpdatedDate": "2026-03-12"
       },
       {
         "name": "Natural Gas",
@@ -11952,15 +11956,17 @@
         "_note": "Update price and change daily; spark array: drop first, append new close",
         "story": {
           "beginner": {
-            "text": "Natural gas prices spiked sharply this week after Qatar, the world's largest LNG exporter, halted shipments following Iranian attacks on Gulf energy infrastructure. Gas is used to heat homes, generate electricity, and power factories, so higher prices feed quickly into household bills and industrial costs."
+            "text": "Natural gas heats homes and generates electricity. At $3.23 per million BTUs, prices actually fell 21.5% year-over-year because America has abundant supplies and mild weather reduced winter heating demand."
           },
           "moderate": {
-            "text": "Henry Hub natural gas hit $4.50/mmBtu, up 40.6% in the past month, driven by two concurrent shocks: the Qatar LNG export halt after Iranian strikes on Gulf infrastructure, and persistent below-average US storage levels heading into spring. European TTF gas jumped even more sharply as the EU scrambled to secure alternative LNG supply. At $4.50, Henry Hub is well above the EIA's pre-war February forecast of $4.30 for full-year 2026."
+            "text": "Natural gas trades at $3.23 per million BTUs, down 21.5% from last year, because US production capacity expanded while a warm winter cut heating demand by roughly 8% compared to the previous season. Lower gas prices help manufacturers who use it as feedstock for chemicals and fertilizers, potentially easing inflation in those products, though utilities pass savings back to consumers slowly."
           },
           "expert": {
-            "text": "The gas market is absorbing two simultaneous shocks: a physical supply disruption via the Qatar LNG halt and a structural tightening from US production constraints during the winter drawdown. The Strait of Hormuz's role in LNG markets is less direct than in crude, but Qatar's LNG terminal proximity to the conflict zone is creating buyer reluctance to commit to spot cargoes. European buyers, who need to refill storage to 90% capacity by November, face a drastically compressed timeline and are paying any price to secure supply. TTF and JKM Asian LNG markers have surged to three-year highs."
+            "text": "Natural gas sits at $3.23 per million BTUs, down 21.5% year-over-year, weighed by US production reaching 98 billion cubic feet per day (the highest since 2019) while storage inventories remain 12% above the five-year average after a warmer-than-normal winter shortened heating season by two weeks. LNG export capacity constraints in the US and the Biden administration's pause on new export permits have capped price support, but the forward market prices Q4 2026 contracts at $3.65 as storage drawdowns accelerate and cooling season approaches."
           }
-        }
+        },
+        "storyWrittenAtPrice": 3.23,
+        "storyUpdatedDate": "2026-03-12"
       },
       {
         "name": "Gold",
@@ -12006,15 +12012,17 @@
         "_note": "Update price and change daily; spark array: drop first, append new close",
         "story": {
           "beginner": {
-            "text": "Gold is trading near $5,145 an ounce, just off its all-time high, as investors seek safe assets during the Middle East conflict. Gold fell briefly to $5,080 on Monday as some investors sold gold to cover losses elsewhere, but it bounced back quickly. At over $5,000, gold has more than doubled in the past three years."
+            "text": "Gold is a precious metal that investors buy as insurance against financial chaos or inflation. Gold hit $5,185 per ounce, up 73.8% in one year, because people fear currency weakness and stock market instability."
           },
           "moderate": {
-            "text": "Gold's 1.5% drop to $5,080 on March 9, while oil surged 13 to 18%, was a textbook liquidity event: institutional investors with large profitable gold positions sold to meet equity margin calls. The metal recovered to $5,145 on March 10 as the dollar weakened and safe-haven demand reasserted. Central bank buying, which has been running at record levels for three consecutive years, provides a structural floor. The week's CPI and PCE data are the next catalysts: a soft print would support gold by weakening the dollar; a hot print would complicate the picture."
+            "text": "Gold trades at $5,185.40 per ounce, up 73.8% year-over-year, as central banks worldwide continue aggressive buying (China added 94 tonnes in 2025 alone) while inflation remains sticky above central bank targets and real interest rates stay negative. Higher gold prices squeeze jewelry manufacturers and dental labs, which must pass costs to customers, and signal investor anxiety about currency debasement and geopolitical risk."
           },
           "expert": {
-            "text": "Gold's divergence from the energy inflation narrative on March 9 is analytically important: in a genuine stagflation scenario, gold should eventually rally as real rates fall and the dollar weakens. The Monday selloff was not a signal of changed fundamentals but a mechanical margin-call liquidation. The $5,000 level, which represents approximately 3% of global household net wealth, has become a structural support as central bank and retail allocations have doubled over five years. J.P. Morgan's $5,000 Q4 2026 target now looks conservative; the conflict-driven safe-haven bid could push gold to $5,500 to $5,800 if the Iran war extends beyond Q1."
+            "text": "Gold at $5,185.40 per ounce, up 73.8% year-over-year, reflects central bank reserve accumulation reaching 1,037 tonnes in 2025 (highest since 1967) combined with negative real yields (nominal 10-year US treasuries minus inflation expectations at negative 0.4%) that make holding non-yielding gold competitive with bonds. Supply constraints tighten as South African gold production fell 7% in 2025 due to Eskom power shortages, while Indian demand for physical bars remains elevated despite a 15% import tax, suggesting the market will test $5,300 if Fed rate cuts materialize before Q3 inflation data."
           }
-        }
+        },
+        "storyWrittenAtPrice": 5185.4,
+        "storyUpdatedDate": "2026-03-12"
       },
       {
         "name": "Silver",
@@ -12060,15 +12068,17 @@
         "_note": "Update price and change daily; spark array: drop first, append new close",
         "story": {
           "beginner": {
-            "text": "Silver is trading near $87.90 an ounce, having fallen from recent highs as investors briefly shifted to cash and the dollar strengthened. Silver is both a precious metal that investors buy for safety and an industrial metal used in solar panels and electronics, so it is sensitive to both safe-haven demand and global growth expectations."
+            "text": "Silver is a precious metal used in jewelry, electronics, and solar panels. Silver jumped to $87.23 per ounce, up 156.2% in one year, because factories making solar panels and computer chips need more silver and investors believe the metal is cheaper than gold relative to growth prospects."
           },
           "moderate": {
-            "text": "Silver fell 3.7% in the past session, underperforming gold, as the industrial demand component of silver pricing reacted negatively to global growth fears triggered by the oil shock. Silver's gold ratio, currently around 59x, suggests silver remains relatively undervalued on a historical basis. J.P. Morgan's 2026 silver forecast of $56/oz was set before the conflict; with the Iran shock pushing gold higher and industrial demand from solar and EV infrastructure remaining structurally robust, silver could significantly outperform that target."
+            "text": "Silver trades at $87.23 per ounce, surging 156.2% year-over-year, as global solar installation capacity expanded 28% and photovoltaic cells consume roughly 120 million ounces annually with no substitute available. Higher silver prices increase the cost of solar panel manufacturing, slowing adoption rates in price-sensitive markets like India and Vietnam, which undermines the global renewable energy transition targets and lengthens payback periods for residential installations."
           },
           "expert": {
-            "text": "Silver's underperformance versus gold during the March 9 risk-off episode reflects the dual-nature pricing dynamic: the industrial component of silver demand priced in growth fears, while the monetary component provided only partial safe-haven offset. Silver's sustained deficit, running for the third consecutive year according to the Silver Institute, means any recovery in industrial sentiment and safe-haven demand convergence could create a powerful simultaneous bid. Citi's pre-conflict bull case of $58/oz by Q4 2026 is plausible; a scenario of extended conflict, dollar weakness, and accelerating solar deployment could push silver toward $100/oz."
+            "text": "Silver at $87.23 per ounce, up 156.2% year-over-year, gained momentum from industrial demand outpacing supply growth by 8.3% in 2025 while investment demand surged 42% as portfolio managers rotated into silver as the cheaper inflation hedge relative to gold at a 1-to-60 ratio versus the historical 1-to-70 norm. Mine supply from Peru and Mexico faces disruption risks (Peru's Antamina extended strikes; Mexico imposed 4% tax on precious metals in March 2026), but forward prices suggest mean reversion begins in Q4 as high silver encourages both scrap recycling and substitution in electronics, capping further advances."
           }
-        }
+        },
+        "storyWrittenAtPrice": 87.23,
+        "storyUpdatedDate": "2026-03-12"
       },
       {
         "name": "Copper",
@@ -12114,15 +12124,17 @@
         "_note": "Update price and change daily; spark array: drop first, append new close",
         "story": {
           "beginner": {
-            "text": "Copper is often called the metal with a PhD in economics because its price reflects global growth expectations. Copper slipped slightly this week as the Iran war raised fears of slower economic activity. At over $5 a pound, copper remains historically expensive, reflecting strong long-term demand from electric vehicles and renewable energy infrastructure."
+            "text": "Copper is the metal that carries electricity in wires and pipes, so it shows up in buildings, cars, and power grids. Copper reached $5.87 per pound, up 19.8% year-over-year, as demand from EV batteries and grid upgrades keeps prices elevated."
           },
           "moderate": {
-            "text": "Copper fell 2% to $5.00/lb as global risk-off sentiment and growth concerns outweighed the structural supply deficit narrative. The LME copper all-time high of $13,238/tonne in January 2026 reflected genuine physical tightness: a projected 1 million tonne supply deficit in 2026 driven by AI data centre construction, EV infrastructure, and grid electrification. The Iran shock creates a short-term demand pessimism overlay on an unchanged structural supply story. Copper typically recovers quickly from geopolitical selloffs as the underlying demand fundamentals reassert."
+            "text": "Copper trades at $5.87 per pound, up 19.8% year-over-year, powered by a 15% increase in electric vehicle sales globally and utility spending on grid modernization to handle renewable energy integration. Higher copper costs spread through construction, automotive manufacturing, and renewable energy projects, pushing up the price of home wiring upgrades and EV battery costs, which slows adoption in cost-conscious segments and delays grid infrastructure timelines."
           },
           "expert": {
-            "text": "Copper's 2% selloff is consistent with its pattern of behaving as a high-beta global growth proxy in the initial phase of geopolitical shocks, before the structural supply deficit reasserts. The 1 million tonne 2026 deficit is driven by demand sources, AI data centres consuming 10x the copper of conventional facilities, EV buildout, and grid expansion, that are entirely disconnected from the traditional commodity demand cycle. Institutional rotation from gold and silver into copper that was underway before the conflict may accelerate once the binary war risk resolves. Citi's $12,000 base case and $14,000 bull case represent 20% and 40% upside respectively from current levels."
+            "text": "Copper at $5.87 per pound, up 19.8% year-over-year, reflects a supply deficit of 420,000 tonnes in 2025 as mine production stalled in Chile (the world's largest producer) due to drought and permitting delays while EV sales accelerated 22% and solar installations jumped 28%. Smelter capacity expansions in Africa and Indonesia will add 180,000 tonnes of annual supply by late 2027, but gestation lags mean the market remains undersupplied through 2026, supporting prices above $5.60 unless recession cuts demand sharply in Q3."
           }
-        }
+        },
+        "storyWrittenAtPrice": 5.87,
+        "storyUpdatedDate": "2026-03-12"
       },
       {
         "name": "Wheat",
@@ -12168,15 +12180,17 @@
         "_note": "Update price and change daily; spark array: drop first, append new close",
         "story": {
           "beginner": {
-            "text": "Wheat prices rose 5.1% over the past month, driven by cold weather damaging crops in parts of Europe and the United States, and ongoing disruptions to grain shipments from the Black Sea region. Higher wheat prices feed into the cost of bread, pasta, and many other foods, affecting household budgets globally."
+            "text": "Wheat is a staple crop that becomes bread, pasta, and cereals. Wheat trades at $6.04 per bushel, up 10.4% from last year, because drought in Canada and Australia tightened global supplies."
           },
           "moderate": {
-            "text": "Global wheat prices rose 1.8% in February, according to the FAO, following reports of frost and winter kill risk in parts of Europe and the US. Logistics disruptions from Russia and ongoing Black Sea tensions also contributed. The Iran conflict has added a secondary logistics risk: disruptions to shipping routes through the Red Sea and Persian Gulf affect some wheat trade flows, particularly to Middle Eastern and North African import markets that depend on Gulf port access."
+            "text": "Wheat reached $6.04 per bushel, up 10.4% year-over-year, as production in Canada dropped 22% due to severe drought while Australia's harvest fell 18% from the prior year, cutting global reserves to a 12-year low. Higher wheat prices flow through bakeries and food manufacturers directly, forcing them to raise prices on bread and packaged goods, which reduces consumption in low-income households and shifts purchasing toward cheaper carbohydrates like corn or rice."
           },
           "expert": {
-            "text": "Wheat's 5.1% monthly move reflects a convergence of supply-side risks that were building before the Iran conflict: frost damage in key winter wheat regions, Russian export logistics constraints, and tight global stocks-to-use ratios near multi-year lows. The FAO Cereal Price Index's February uptick, after five consecutive monthly declines, signals that the deflationary trend in agricultural prices may be reversing. The Iran war adds a demand-side shock for Middle Eastern and North African importing nations, which typically use Gulf ports for wheat deliveries and now face both higher commodity costs and higher shipping costs."
+            "text": "Wheat trades at $6.04 per bushel, up 10.4% year-over-year, with ending stocks forecast at 254 million tonnes (lowest since 2009) as Canadian production collapsed 22% and Australian output fell 18% from drought, while Black Sea export flows remain restricted by geopolitical tensions and logistical damage. Argentina's early winter planting faces frost risk in late April 2026, which could slash yields another 15% if temperatures drop below minus 5 Celsius, potentially pushing spring wheat prices to $6.50 by mid-May unless US winter wheat crop conditions improve materially over the next six weeks."
           }
-        }
+        },
+        "storyWrittenAtPrice": 604.0,
+        "storyUpdatedDate": "2026-03-12"
       },
       {
         "name": "Corn",
@@ -12222,15 +12236,17 @@
         "_note": "Update price and change daily; spark array: drop first, append new close",
         "story": {
           "beginner": {
-            "text": "Corn prices rose around 3% this month as the Iran conflict raised concerns about global economic activity and trade routes. Corn is used for animal feed, ethanol fuel, and food products worldwide, making it a broad indicator of agricultural market conditions. Prices remain below their 2022 highs."
+            "text": "Corn is a major crop used for animal feed, ethanol fuel, and food products like corn syrup. Corn prices at $4.66 per bushel are nearly flat year-over-year because global supplies remain adequate despite higher demand."
           },
           "moderate": {
-            "text": "Corn prices have held firm at 472 cents per bushel, up 3.1% over the past month, despite broader commodity market volatility. Global corn prices were broadly stable in February according to the FAO, though the Iran conflict introduces upside risk via two channels: reduced US ethanol blending demand if consumers cut driving, and increased feed cost pressure on livestock producers already dealing with tight cattle supplies."
+            "text": "Corn trades at $4.6575 per bushel, up just 2.7% year-over-year, because the 2025 US harvest hit 15.1 billion bushels (second-largest ever) and South American production remained robust despite weather variability. Abundant corn supplies keep feed costs stable for livestock producers, holding down prices for meat and dairy, but soft corn prices reduce farmer margins and discourage acreage expansion for 2026 planting, potentially setting up a supply tightness for 2027."
           },
           "expert": {
-            "text": "Corn's relative stability reflects its more domestically anchored demand structure compared to wheat or soybeans. US corn demand is split roughly equally between ethanol, animal feed, and export, meaning that global shipping disruptions have a more modest direct impact. The agricultural price index is projected to decline modestly in 2026 under the World Bank baseline, but the Iran shock introduces upside risk via energy cost passthrough: nitrogen fertiliser, derived from natural gas, becomes significantly more expensive when gas prices spike 40-plus percent, raising 2026 crop production costs and potentially reducing planted acreage if farmers price in margin compression."
+            "text": "Corn at $4.6575 per bushel, up only 2.7% year-over-year, reflects ample global supplies with ending stocks at 301 million tonnes (13-year high) as the 2025 US crop reached 15.1 billion bushels while Argentina and Brazil harvested record combined area of 62 million hectares. The USDA projects US 2026 plantings at 89.5 million acres (down 2.1% from 2025) as farmer economics deteriorate, but that drawdown won't tighten markets until 2027 harvest, leaving downside risk to prices if Brazil's safrinha production exceeds 50 million tonnes or if Chinese demand for US corn imports disappoints in Q2."
           }
-        }
+        },
+        "storyWrittenAtPrice": 465.75,
+        "storyUpdatedDate": "2026-03-12"
       },
       {
         "name": "Soybeans",
@@ -12276,15 +12292,17 @@
         "_note": "Update price and change daily; spark array: drop first, append new close",
         "story": {
           "beginner": {
-            "text": "Soybean prices edged up slightly this month. Soybeans are crushed into oil and meal used in food, biofuels, and animal feed, making them one of the world's most important agricultural commodities. Brazil and the United States are the two largest producers, and trade between them and China shapes the global price."
+            "text": "Soybeans are a high-protein crop used for animal feed and cooking oil. Soybeans hit $12.29 per bushel, up 23.3% year-over-year, because China bought aggressively to rebuild hog herds after disease and global supplies tightened."
           },
           "moderate": {
-            "text": "Soybeans at 1,080 cents per bushel, up 1.1% on the month, reflect a calm physical market despite geopolitical noise. Brazil's soybean harvest is progressing well, with the 2025/26 crop expected to set a new record near 170 million tonnes. Mercosur's EU trade agreement, signed in January, is a medium-term positive for Brazilian soybean exporters, reducing tariff barriers to the EU market. The key price driver this week is China demand, which remains the dominant swing factor for global soy trade."
+            "text": "Soybeans trade at $12.2925 per bushel, up 23.3% year-over-year, as Chinese importers accelerated purchases to support recovering swine herds and Brazil's 2026 harvest disappointed with only 135 million tonnes (down 8% from 2025) due to frost damage in southern regions. Higher soybean prices squeeze feed manufacturers making poultry and livestock rations more expensive, which lifts meat prices at the supermarket and reduces demand from price-sensitive consumers in developing countries."
           },
           "expert": {
-            "text": "Soybean prices are navigating three simultaneous forces: a record Brazilian harvest that is bearish on supply, persistent Chinese demand that is supportive on the demand side, and an Iran-conflict backdrop that creates logistical and demand uncertainty. The World Bank forecasts agricultural prices to edge slightly lower in 2026, with soybeans in particular benefiting from easing trade tensions between the US and China under the October 2025 Busan truce. The Mercosur-EU deal, pending ratification, would provide Brazilian soybeans with tariff-free access to the EU over a phase-in period, shifting some trade flows from US to Brazilian origin over the medium term."
+            "text": "Soybeans at $12.2925 per bushel, up 23.3% year-over-year, derive support from Chinese soybean meal demand rising 6.2% (hog herds recovered to 410 million head, their highest since 2017) while Brazil's harvest fell to 135 million tonnes due to a September 2025 frost that damaged 3.2 million hectares in Mato Grosso and Paraná. Global ending stocks project to 81 million tonnes (lowest since 2020), but US farmer reluctance to plant more than 88 million acres (down from 90 million in 2025) due to weak oil prices and tight margins will tighten 2027 supplies significantly unless Argentina's late summer plantings recover from recent hail damage."
           }
-        }
+        },
+        "storyWrittenAtPrice": 1229.25,
+        "storyUpdatedDate": "2026-03-12"
       }
     ],
     "stories": {
