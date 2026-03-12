@@ -78,18 +78,19 @@ log = logging.getLogger(__name__)
 # Config fields:
 #   id          FRED series ID
 #   type        "line" or "bar" (how the chart renders)
-#   transform   one of: monthly_60 | annual_6 | qtr_sum_6 | gdp_qtr_6
+#   transform   one of: monthly_120 | annual_10 | qtr_sum_pct_gdp | gdp_qtr_10
 #   annual      True for annual bar charts
 #   stepped     True for policy rate charts
 #   zeroLine    True for yield curve
 #   indexLabel  True for stock market charts
 #
 # Transforms
-#   monthly_60   last 60 monthly observations as-is
-#   annual_6     last 6 annual observations as-is (direct annual series)
-#   qtr_sum_6    sum quarterly values to annual totals, last 6 complete years
-#   gdp_qtr_6    compute annual real GDP growth from quarterly level series,
-#                last 6 complete years
+#   monthly_120       last 120 monthly observations as-is
+#   annual_10         last 10 annual observations as-is (direct annual series)
+#   qtr_sum_pct_gdp   sum quarterly CA to annual totals, divide by nominal GDP
+#                     to get % of GDP, last 10 matched years
+#   gdp_qtr_10        compute annual real GDP growth from quarterly level series,
+#                     last 10 complete years
 # ---------------------------------------------------------------------------
 
 # Short-rate series used only to compute yield curve (10Y - short rate).
@@ -156,6 +157,24 @@ STOCK_TICKERS = {
     "RUS": "IMOEX.ME",    # MOEX (may have post-2022 gaps)
 }
 
+# World Bank nominal GDP series via FRED (current USD, annual).
+# Used to convert Current Account from millions USD to % of GDP.
+# Pattern: MKTGDP + ISO-2 + A646NWDB
+NOMINAL_GDP_SERIES = {
+    "USA": "MKTGDPUSA646NWDB",
+    "CAN": "MKTGDPCAA646NWDB",
+    "GBR": "MKTGDPGBA646NWDB",
+    "JPN": "MKTGDPJPA646NWDB",
+    "DEU": "MKTGDPDEA646NWDB",
+    "FRA": "MKTGDPFRA646NWDB",
+    "ITA": "MKTGDPITA646NWDB",
+    "CHN": "MKTGDPCNA646NWDB",
+    "IND": "MKTGDPINA646NWDB",
+    "ZAF": "MKTGDPZAA646NWDB",
+    "BRA": "MKTGDPBRA646NWDB",
+    "RUS": "MKTGDPRUA646NWDB",
+}
+
 # All metric names that are NOT the FX pair. Used to detect the FX label.
 KNOWN_NON_FX_METRICS = {
     "GDP Growth", "Inflation (CPI)", "Unemployment", "Budget Deficit",
@@ -165,100 +184,100 @@ KNOWN_NON_FX_METRICS = {
 
 FRED_METRICS = {
     "USA": {
-        "GDP Growth":      {"id": "A191RL1A225NBEA", "transform": "annual_6",   "type": "bar",  "annual": True},
-        "Inflation (CPI)": {"id": "CPALTT01USM659N", "transform": "monthly_60", "type": "line"},
-        "Unemployment":    {"id": "UNRATE",           "transform": "monthly_60", "type": "line"},
-        "Current Account": {"id": "BPBLTT01USQ637S",   "transform": "qtr_sum_6",  "type": "bar",  "annual": True},
-        "Policy Rate":     {"id": "FEDFUNDS",         "transform": "monthly_60", "type": "line", "stepped": True},
-        "10Y Bond Yield":  {"id": "GS10",             "transform": "monthly_60", "type": "line"},
+        "GDP Growth":      {"id": "A191RL1A225NBEA", "transform": "annual_10",   "type": "bar",  "annual": True},
+        "Inflation (CPI)": {"id": "CPALTT01USM659N", "transform": "monthly_120", "type": "line"},
+        "Unemployment":    {"id": "UNRATE",           "transform": "monthly_120", "type": "line"},
+        "Current Account": {"id": "BPBLTT01USQ637S",   "transform": "qtr_sum_pct_gdp",  "type": "bar",  "annual": True},
+        "Policy Rate":     {"id": "FEDFUNDS",         "transform": "monthly_120", "type": "line", "stepped": True},
+        "10Y Bond Yield":  {"id": "GS10",             "transform": "monthly_120", "type": "line"},
     },
     "CAN": {
-        "GDP Growth":      {"id": "NGDPRSAXDCCAQ",   "transform": "gdp_qtr_6",  "type": "bar",  "annual": True},
-        "Inflation (CPI)": {"id": "CPALTT01CAM659N", "transform": "monthly_60", "type": "line"},
-        "Unemployment":    {"id": "LRUNTTTTCAM156S", "transform": "monthly_60", "type": "line"},
-        "Current Account": {"id": "BPBLTT01CAQ637S", "transform": "qtr_sum_6",  "type": "bar",  "annual": True},
-        "Policy Rate":     {"id": "IRSTCI01CAM156N", "transform": "monthly_60", "type": "line", "stepped": True},
-        "10Y Bond Yield":  {"id": "IRLTLT01CAM156N", "transform": "monthly_60", "type": "line"},
+        "GDP Growth":      {"id": "NGDPRSAXDCCAQ",   "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
+        "Inflation (CPI)": {"id": "CPALTT01CAM659N", "transform": "monthly_120", "type": "line"},
+        "Unemployment":    {"id": "LRUNTTTTCAM156S", "transform": "monthly_120", "type": "line"},
+        "Current Account": {"id": "BPBLTT01CAQ637S", "transform": "qtr_sum_pct_gdp",  "type": "bar",  "annual": True},
+        "Policy Rate":     {"id": "IRSTCI01CAM156N", "transform": "monthly_120", "type": "line", "stepped": True},
+        "10Y Bond Yield":  {"id": "IRLTLT01CAM156N", "transform": "monthly_120", "type": "line"},
     },
     "GBR": {
-        "GDP Growth":      {"id": "NGDPRSAXDCGBQ",   "transform": "gdp_qtr_6",  "type": "bar",  "annual": True},
-        "Inflation (CPI)": {"id": "CPALTT01GBM659N", "transform": "monthly_60", "type": "line"},
-        "Unemployment":    {"id": "LRHUTTTTGBM156S", "transform": "monthly_60", "type": "line"},
-        "Current Account": {"id": "BPBLTT01GBQ637S", "transform": "qtr_sum_6",  "type": "bar",  "annual": True},
-        "Policy Rate":     {"id": "IRSTCI01GBM156N",  "transform": "monthly_60", "type": "line", "stepped": True},
-        "10Y Bond Yield":  {"id": "IRLTLT01GBM156N", "transform": "monthly_60", "type": "line"},
+        "GDP Growth":      {"id": "NGDPRSAXDCGBQ",   "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
+        "Inflation (CPI)": {"id": "CPALTT01GBM659N", "transform": "monthly_120", "type": "line"},
+        "Unemployment":    {"id": "LRHUTTTTGBM156S", "transform": "monthly_120", "type": "line"},
+        "Current Account": {"id": "BPBLTT01GBQ637S", "transform": "qtr_sum_pct_gdp",  "type": "bar",  "annual": True},
+        "Policy Rate":     {"id": "IRSTCI01GBM156N",  "transform": "monthly_120", "type": "line", "stepped": True},
+        "10Y Bond Yield":  {"id": "IRLTLT01GBM156N", "transform": "monthly_120", "type": "line"},
     },
     "JPN": {
-        "GDP Growth":      {"id": "NGDPRSAXDCJPQ",   "transform": "gdp_qtr_6",  "type": "bar",  "annual": True},
-        "Inflation (CPI)": {"id": "CPALTT01JPM659N", "transform": "monthly_60", "type": "line"},
-        "Unemployment":    {"id": "LRUNTTTTJPM156S", "transform": "monthly_60", "type": "line"},
-        "Current Account": {"id": "BPBLTT01JPQ637S", "transform": "qtr_sum_6",  "type": "bar",  "annual": True},
-        "Policy Rate":     {"id": "IRSTCI01JPM156N", "transform": "monthly_60", "type": "line", "stepped": True},
-        "10Y Bond Yield":  {"id": "IRLTLT01JPM156N", "transform": "monthly_60", "type": "line"},
+        "GDP Growth":      {"id": "NGDPRSAXDCJPQ",   "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
+        "Inflation (CPI)": {"id": "CPALTT01JPM659N", "transform": "monthly_120", "type": "line"},
+        "Unemployment":    {"id": "LRUNTTTTJPM156S", "transform": "monthly_120", "type": "line"},
+        "Current Account": {"id": "BPBLTT01JPQ637S", "transform": "qtr_sum_pct_gdp",  "type": "bar",  "annual": True},
+        "Policy Rate":     {"id": "IRSTCI01JPM156N", "transform": "monthly_120", "type": "line", "stepped": True},
+        "10Y Bond Yield":  {"id": "IRLTLT01JPM156N", "transform": "monthly_120", "type": "line"},
     },
     "DEU": {
-        "GDP Growth":      {"id": "CLVMNACSCAB1GQDE", "transform": "gdp_qtr_6",  "type": "bar",  "annual": True},
-        "Inflation (CPI)": {"id": "CPALTT01DEM659N",  "transform": "monthly_60", "type": "line"},
-        "Unemployment":    {"id": "LRHUTTTTDEM156S",  "transform": "monthly_60", "type": "line"},
-        "Current Account": {"id": "BPBLTT01DEQ637S",  "transform": "qtr_sum_6",  "type": "bar",  "annual": True},
-        "Policy Rate":     {"id": "ECBDFR",            "transform": "monthly_60", "type": "line", "stepped": True},
-        "10Y Bond Yield":  {"id": "IRLTLT01DEM156N",  "transform": "monthly_60", "type": "line"},
+        "GDP Growth":      {"id": "CLVMNACSCAB1GQDE", "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
+        "Inflation (CPI)": {"id": "CPALTT01DEM659N",  "transform": "monthly_120", "type": "line"},
+        "Unemployment":    {"id": "LRHUTTTTDEM156S",  "transform": "monthly_120", "type": "line"},
+        "Current Account": {"id": "BPBLTT01DEQ637S",  "transform": "qtr_sum_pct_gdp",  "type": "bar",  "annual": True},
+        "Policy Rate":     {"id": "ECBDFR",            "transform": "monthly_120", "type": "line", "stepped": True},
+        "10Y Bond Yield":  {"id": "IRLTLT01DEM156N",  "transform": "monthly_120", "type": "line"},
     },
     "FRA": {
-        "GDP Growth":      {"id": "CLVMNACSCAB1GQFR", "transform": "gdp_qtr_6",  "type": "bar",  "annual": True},
-        "Inflation (CPI)": {"id": "CPALTT01FRM659N",  "transform": "monthly_60", "type": "line"},
-        "Unemployment":    {"id": "LRHUTTTTFRM156S",  "transform": "monthly_60", "type": "line"},
-        "Current Account": {"id": "BPBLTT01FRQ637S",  "transform": "qtr_sum_6",  "type": "bar",  "annual": True},
-        "Policy Rate":     {"id": "ECBDFR",            "transform": "monthly_60", "type": "line", "stepped": True},
-        "10Y Bond Yield":  {"id": "IRLTLT01FRM156N",  "transform": "monthly_60", "type": "line"},
+        "GDP Growth":      {"id": "CLVMNACSCAB1GQFR", "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
+        "Inflation (CPI)": {"id": "CPALTT01FRM659N",  "transform": "monthly_120", "type": "line"},
+        "Unemployment":    {"id": "LRHUTTTTFRM156S",  "transform": "monthly_120", "type": "line"},
+        "Current Account": {"id": "BPBLTT01FRQ637S",  "transform": "qtr_sum_pct_gdp",  "type": "bar",  "annual": True},
+        "Policy Rate":     {"id": "ECBDFR",            "transform": "monthly_120", "type": "line", "stepped": True},
+        "10Y Bond Yield":  {"id": "IRLTLT01FRM156N",  "transform": "monthly_120", "type": "line"},
     },
     "ITA": {
-        "GDP Growth":      {"id": "CLVMNACSCAB1GQIT", "transform": "gdp_qtr_6",  "type": "bar",  "annual": True},
-        "Inflation (CPI)": {"id": "CPALTT01ITM659N",  "transform": "monthly_60", "type": "line"},
-        "Unemployment":    {"id": "LRHUTTTTITM156S",  "transform": "monthly_60", "type": "line"},
-        "Current Account": {"id": "BPBLTT01ITQ637S",  "transform": "qtr_sum_6",  "type": "bar",  "annual": True},
-        "Policy Rate":     {"id": "ECBDFR",            "transform": "monthly_60", "type": "line", "stepped": True},
-        "10Y Bond Yield":  {"id": "IRLTLT01ITM156N",  "transform": "monthly_60", "type": "line"},
+        "GDP Growth":      {"id": "CLVMNACSCAB1GQIT", "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
+        "Inflation (CPI)": {"id": "CPALTT01ITM659N",  "transform": "monthly_120", "type": "line"},
+        "Unemployment":    {"id": "LRHUTTTTITM156S",  "transform": "monthly_120", "type": "line"},
+        "Current Account": {"id": "BPBLTT01ITQ637S",  "transform": "qtr_sum_pct_gdp",  "type": "bar",  "annual": True},
+        "Policy Rate":     {"id": "ECBDFR",            "transform": "monthly_120", "type": "line", "stepped": True},
+        "10Y Bond Yield":  {"id": "IRLTLT01ITM156N",  "transform": "monthly_120", "type": "line"},
     },
     "CHN": {
-        "GDP Growth":      {"id": "CHNGDPNQDSMEI",    "transform": "gdp_qtr_6",  "type": "bar",  "annual": True},
-        "Inflation (CPI)": {"id": "CPALTT01CNM659N",  "transform": "monthly_60", "type": "line"},
-        "Unemployment":    {"id": "LRUNTTTTCNM156S",  "transform": "monthly_60", "type": "line"},
-        "Current Account": {"id": "BPBLTT01CNQ637S",  "transform": "qtr_sum_6",  "type": "bar",  "annual": True},
-        "Policy Rate":     {"id": "IRSTCI01CNM156N",  "transform": "monthly_60", "type": "line", "stepped": True},
-        "10Y Bond Yield":  {"id": "IRLTLT01CNM156N",  "transform": "monthly_60", "type": "line"},
+        "GDP Growth":      {"id": "CHNGDPNQDSMEI",    "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
+        "Inflation (CPI)": {"id": "CPALTT01CNM659N",  "transform": "monthly_120", "type": "line"},
+        "Unemployment":    {"id": "LRUNTTTTCNM156S",  "transform": "monthly_120", "type": "line"},
+        "Current Account": {"id": "BPBLTT01CNQ637S",  "transform": "qtr_sum_pct_gdp",  "type": "bar",  "annual": True},
+        "Policy Rate":     {"id": "IRSTCI01CNM156N",  "transform": "monthly_120", "type": "line", "stepped": True},
+        "10Y Bond Yield":  {"id": "IRLTLT01CNM156N",  "transform": "monthly_120", "type": "line"},
     },
     "IND": {
-        "GDP Growth":      {"id": "INDGDPNQDSMEI",    "transform": "gdp_qtr_6",  "type": "bar",  "annual": True},
-        "Inflation (CPI)": {"id": "CPALTT01INM659N",  "transform": "monthly_60", "type": "line"},
-        "Unemployment":    {"id": "LRUNTTTTINM156S",  "transform": "monthly_60", "type": "line"},
-        "Current Account": {"id": "BPBLTT01INQ637S",  "transform": "qtr_sum_6",  "type": "bar",  "annual": True},
-        "Policy Rate":     {"id": "IRSTCI01INM156N",  "transform": "monthly_60", "type": "line", "stepped": True},
-        "10Y Bond Yield":  {"id": "IRLTLT01INM156N",  "transform": "monthly_60", "type": "line"},
+        "GDP Growth":      {"id": "INDGDPNQDSMEI",    "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
+        "Inflation (CPI)": {"id": "CPALTT01INM659N",  "transform": "monthly_120", "type": "line"},
+        "Unemployment":    {"id": "LRUNTTTTINM156S",  "transform": "monthly_120", "type": "line"},
+        "Current Account": {"id": "BPBLTT01INQ637S",  "transform": "qtr_sum_pct_gdp",  "type": "bar",  "annual": True},
+        "Policy Rate":     {"id": "IRSTCI01INM156N",  "transform": "monthly_120", "type": "line", "stepped": True},
+        "10Y Bond Yield":  {"id": "IRLTLT01INM156N",  "transform": "monthly_120", "type": "line"},
     },
     "ZAF": {
-        "GDP Growth":      {"id": "ZAFGDPNQDSMEI",    "transform": "gdp_qtr_6",  "type": "bar",  "annual": True},
-        "Inflation (CPI)": {"id": "CPALTT01ZAM659N",  "transform": "monthly_60", "type": "line"},
-        "Unemployment":    {"id": "LRUNTTTTMZAM156S", "transform": "monthly_60", "type": "line"},
-        "Current Account": {"id": "BPBLTT01ZAQ637S",  "transform": "qtr_sum_6",  "type": "bar",  "annual": True},
-        "Policy Rate":     {"id": "IRSTCI01ZAM156N",  "transform": "monthly_60", "type": "line", "stepped": True},
-        "10Y Bond Yield":  {"id": "IRLTLT01ZAM156N",  "transform": "monthly_60", "type": "line"},
+        "GDP Growth":      {"id": "ZAFGDPNQDSMEI",    "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
+        "Inflation (CPI)": {"id": "CPALTT01ZAM659N",  "transform": "monthly_120", "type": "line"},
+        "Unemployment":    {"id": "LRUNTTTTMZAM156S", "transform": "monthly_120", "type": "line"},
+        "Current Account": {"id": "BPBLTT01ZAQ637S",  "transform": "qtr_sum_pct_gdp",  "type": "bar",  "annual": True},
+        "Policy Rate":     {"id": "IRSTCI01ZAM156N",  "transform": "monthly_120", "type": "line", "stepped": True},
+        "10Y Bond Yield":  {"id": "IRLTLT01ZAM156N",  "transform": "monthly_120", "type": "line"},
     },
     "BRA": {
-        "GDP Growth":      {"id": "NGDPRSAXDCBRQ",   "transform": "gdp_qtr_6",  "type": "bar",  "annual": True},
-        "Inflation (CPI)": {"id": "CPALTT01BRM659N", "transform": "monthly_60", "type": "line"},
-        "Unemployment":    {"id": "LRUNTTTTBRM156S", "transform": "monthly_60", "type": "line"},
-        "Current Account": {"id": "BPBLTT01BRQ637S", "transform": "qtr_sum_6",  "type": "bar",  "annual": True},
-        "Policy Rate":     {"id": "IRSTCI01BRM156N", "transform": "monthly_60", "type": "line", "stepped": True},
-        "10Y Bond Yield":  {"id": "IRLTLT01BRM156N", "transform": "monthly_60", "type": "line"},
+        "GDP Growth":      {"id": "NGDPRSAXDCBRQ",   "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
+        "Inflation (CPI)": {"id": "CPALTT01BRM659N", "transform": "monthly_120", "type": "line"},
+        "Unemployment":    {"id": "LRUNTTTTBRM156S", "transform": "monthly_120", "type": "line"},
+        "Current Account": {"id": "BPBLTT01BRQ637S", "transform": "qtr_sum_pct_gdp",  "type": "bar",  "annual": True},
+        "Policy Rate":     {"id": "IRSTCI01BRM156N", "transform": "monthly_120", "type": "line", "stepped": True},
+        "10Y Bond Yield":  {"id": "IRLTLT01BRM156N", "transform": "monthly_120", "type": "line"},
     },
     "RUS": {
-        "GDP Growth":      {"id": "NGDPRSAXDCRUQ",   "transform": "gdp_qtr_6",  "type": "bar",  "annual": True},
-        "Inflation (CPI)": {"id": "CPALTT01RUM659N", "transform": "monthly_60", "type": "line"},
-        "Unemployment":    {"id": "LRUNTTTTRUM156S", "transform": "monthly_60", "type": "line"},
-        "Current Account": {"id": "BPBLTT01RUQ637S", "transform": "qtr_sum_6",  "type": "bar",  "annual": True},
-        "Policy Rate":     {"id": "IRSTCI01RUM156N", "transform": "monthly_60", "type": "line", "stepped": True},
-        "10Y Bond Yield":  {"id": "IRLTLT01RUM156N", "transform": "monthly_60", "type": "line"},
+        "GDP Growth":      {"id": "NGDPRSAXDCRUQ",   "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
+        "Inflation (CPI)": {"id": "CPALTT01RUM659N", "transform": "monthly_120", "type": "line"},
+        "Unemployment":    {"id": "LRUNTTTTRUM156S", "transform": "monthly_120", "type": "line"},
+        "Current Account": {"id": "BPBLTT01RUQ637S", "transform": "qtr_sum_pct_gdp",  "type": "bar",  "annual": True},
+        "Policy Rate":     {"id": "IRSTCI01RUM156N", "transform": "monthly_120", "type": "line", "stepped": True},
+        "10Y Bond Yield":  {"id": "IRLTLT01RUM156N", "transform": "monthly_120", "type": "line"},
     },
 }
 
@@ -329,7 +348,7 @@ def oecd_fetch_unemployment(country_code):
         f"https://stats.oecd.org/SDMX-JSON/data/LFSRATE/"
         f"{country_code}.LR/all"
     )
-    params = {"startTime": "2019-01", "format": "jsondata"}
+    params = {"startTime": "2015-01", "format": "jsondata"}
     try:
         r = requests.get(url, params=params, timeout=30)
         time.sleep(REQUEST_DELAY)
@@ -369,26 +388,28 @@ def r2(v):
     return round(v, 2)
 
 
-def apply_monthly_60(pairs):
-    """Return the last 60 monthly values from the series."""
+def apply_monthly_120(pairs):
+    """Return the last 120 monthly values from the series (10 years)."""
     if not pairs:
         return None
     vals = [r2(v) for _, v in pairs]
-    return vals[-60:] if len(vals) >= 1 else None
+    return vals[-120:] if len(vals) >= 1 else None
 
 
-def apply_annual_6(pairs):
-    """Return the last 6 values from a directly annual series."""
+def apply_annual_10(pairs):
+    """Return the last 10 values from a directly annual series."""
     if not pairs:
         return None
     vals = [r2(v) for _, v in pairs]
-    return vals[-6:] if len(vals) >= 1 else None
+    return vals[-10:] if len(vals) >= 1 else None
 
 
-def apply_qtr_sum_6(pairs):
+def apply_qtr_sum_pct_gdp(pairs, gdp_by_year):
     """
-    Sum quarterly values into annual totals.
-    Returns the last 6 complete years (years with all 4 quarters present).
+    Sum quarterly CA values to annual totals (millions USD), then divide by
+    nominal GDP (also converted to millions USD) to get % of GDP.
+    Returns the last 10 matched years. Skips years where GDP is missing
+    (handles World Bank data lag gracefully).
     """
     if not pairs:
         return None
@@ -398,17 +419,24 @@ def apply_qtr_sum_6(pairs):
     complete = {y: vs for y, vs in by_year.items() if len(vs) >= 4}
     if not complete:
         return None
-    sorted_years = sorted(complete.keys())
-    annual = [r2(sum(complete[y])) for y in sorted_years]
-    return annual[-6:] if annual else None
+    results = []
+    for year in sorted(complete.keys()):
+        gdp_usd = gdp_by_year.get(year)
+        if not gdp_usd or gdp_usd == 0:
+            continue  # World Bank lag: skip years with no GDP data
+        ca_millions = sum(complete[year])
+        gdp_millions = gdp_usd / 1_000_000
+        pct = r2(ca_millions / gdp_millions * 100)
+        results.append(pct)
+    return results[-10:] if results else None
 
 
-def apply_gdp_qtr_6(pairs):
+def apply_gdp_qtr_10(pairs):
     """
     Compute annual real GDP growth from a quarterly level series.
     Averages the 4 quarters within each year to get an annual level,
     then computes year-over-year percentage change.
-    Returns the last 6 complete-year growth values.
+    Returns the last 10 complete-year growth values.
     """
     if not pairs or len(pairs) < 8:
         return None
@@ -429,19 +457,19 @@ def apply_gdp_qtr_6(pairs):
         if base and base != 0:
             pct = (annual_avg[y_curr] - base) / abs(base) * 100
             growth.append(r2(pct))
-    return growth[-6:] if growth else None
+    return growth[-10:] if growth else None
 
 
-def apply_transform(pairs, transform):
+def apply_transform(pairs, transform, gdp_by_year=None):
     """Dispatch to the correct transform function."""
-    if transform == "monthly_60":
-        return apply_monthly_60(pairs)
-    if transform == "annual_6":
-        return apply_annual_6(pairs)
-    if transform == "qtr_sum_6":
-        return apply_qtr_sum_6(pairs)
-    if transform == "gdp_qtr_6":
-        return apply_gdp_qtr_6(pairs)
+    if transform == "monthly_120":
+        return apply_monthly_120(pairs)
+    if transform == "annual_10":
+        return apply_annual_10(pairs)
+    if transform == "qtr_sum_pct_gdp":
+        return apply_qtr_sum_pct_gdp(pairs, gdp_by_year or {})
+    if transform == "gdp_qtr_10":
+        return apply_gdp_qtr_10(pairs)
     log.warning(f"    Unknown transform '{transform}'")
     return None
 
@@ -465,7 +493,7 @@ def compute_yield_curve(long_pairs, short_pairs):
     if not common:
         return None
     spread = [r2(long_dict[d] - short_dict[d]) for d in common]
-    return spread[-60:] if spread else None
+    return spread[-120:] if spread else None
 
 
 # ---------------------------------------------------------------------------
@@ -478,15 +506,39 @@ def fetch_stock_monthly(ticker):
     Returns the last 60 monthly values, or None on failure.
     """
     try:
-        hist = yf.Ticker(ticker).history(period="6y", interval="1mo")
+        hist = yf.Ticker(ticker).history(period="11y", interval="1mo")
         if hist.empty:
             log.warning(f"    Yahoo {ticker}: no data returned")
             return None
         vals = [r2(float(v)) for v in hist["Close"].dropna().tolist()]
-        return vals[-60:] if vals else None
+        return vals[-120:] if vals else None
     except Exception as exc:
         log.warning(f"    Yahoo {ticker}: {exc}")
         return None
+
+
+# ---------------------------------------------------------------------------
+# NOMINAL GDP (World Bank via FRED, for Current Account % GDP conversion)
+# ---------------------------------------------------------------------------
+
+def fetch_nominal_gdp(code):
+    """
+    Fetch annual nominal GDP in current USD from the World Bank series on FRED.
+    Returns a {year_str: gdp_usd_float} dict, or empty dict on failure.
+    Series are annual and typically lag by 1-2 years (World Bank publication delay).
+    """
+    series_id = NOMINAL_GDP_SERIES.get(code)
+    if not series_id:
+        log.warning(f"  No nominal GDP series configured for {code}")
+        return {}
+    pairs = fred_fetch(series_id, limit=20)
+    if not pairs:
+        log.warning(f"  Nominal GDP fetch failed for {code} [{series_id}]")
+        return {}
+    gdp_by_year = {date_str[:4]: val for date_str, val in pairs}
+    log.info(f"  Nominal GDP [{series_id}]: {len(gdp_by_year)} years "
+             f"({min(gdp_by_year)} to {max(gdp_by_year)})")
+    return gdp_by_year
 
 
 # ---------------------------------------------------------------------------
@@ -498,7 +550,7 @@ def fetch_fx_monthly(fred_series):
     Fetch daily FX rate from FRED, resample to monthly end-of-month values.
     Returns the last 60 monthly values, or None on failure.
     """
-    pairs = fred_fetch(fred_series, limit=3000, observation_start="2019-01-01")
+    pairs = fred_fetch(fred_series, limit=3000, observation_start="2015-01-01")
     if not pairs:
         return None
     # Keep only the last observation within each YYYY-MM month
@@ -507,7 +559,7 @@ def fetch_fx_monthly(fred_series):
         by_month[date_str[:7]] = val
     sorted_months = sorted(by_month.keys())
     vals = [r2(by_month[m]) for m in sorted_months]
-    return vals[-60:] if vals else None
+    return vals[-120:] if vals else None
 
 
 # ---------------------------------------------------------------------------
@@ -532,12 +584,6 @@ def build_entry(vals, cfg):
     return entry
 
 
-def detect_fx_label(country_data, frozen, code):
-    """
-    Find the FX metric key for a country.
-    Checks: (1) the metrics array in country_data, (2) existing frozen keys,
-    (3) the hardcoded default table.
-    """
 def detect_fx_label(country_data, frozen, code):
     """
     Find the FX metric key for a country.
@@ -597,6 +643,9 @@ def process_country(code, country_data):
     ten_y_pairs   = None
     short_pairs   = None
 
+    # Pre-fetch nominal GDP for Current Account % GDP conversion.
+    gdp_by_year = fetch_nominal_gdp(code)
+
     # Fetch FRED-sourced metrics
     for metric, cfg in metrics_cfg.items():
 
@@ -605,14 +654,14 @@ def process_country(code, country_data):
             results["skipped"].append(metric)
             # Still need 10Y pairs for yield curve even when skipping
             if metric == "10Y Bond Yield":
-                ten_y_pairs = fred_fetch(cfg["id"], limit=120, observation_start="2015-01-01")
+                ten_y_pairs = fred_fetch(cfg["id"], limit=130, observation_start="2015-01-01")
             continue
 
         log.info(f"  Fetch   {metric}  [{cfg['id']}]")
         pairs = fred_fetch(cfg["id"], limit=250)
 
         if metric == "10Y Bond Yield":
-            ten_y_pairs = pairs[-120:] if pairs else None  # keep only recent 120 for yield curve
+            ten_y_pairs = pairs[-130:] if pairs else None  # keep only recent 130 for yield curve
 
         if not pairs:
             # FRED has no monthly unemployment for many non-US countries.
@@ -629,7 +678,7 @@ def process_country(code, country_data):
             results["failed"].append(metric)
             continue
 
-        vals = apply_transform(pairs, cfg["transform"])
+        vals = apply_transform(pairs, cfg["transform"], gdp_by_year=gdp_by_year)
         if not vals:
             log.warning(f"    transform produced no values")
             results["failed"].append(metric)
@@ -642,7 +691,7 @@ def process_country(code, country_data):
     # Fetch short rate for yield curve
     short_series = SHORT_RATE_SERIES.get(code)
     if short_series:
-        short_pairs = fred_fetch(short_series, limit=120, observation_start="2015-01-01")
+        short_pairs = fred_fetch(short_series, limit=130, observation_start="2015-01-01")
         if short_pairs:
             log.info(f"  Short rate [{short_series}]: OK ({len(short_pairs)} points)")
         else:

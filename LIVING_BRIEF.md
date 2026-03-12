@@ -1,5 +1,5 @@
 # MacroSnaps - Living Brief
-Last updated: March 12, 2026 (Tooling session - update_commodity_stories.py built and verified; checks drift between current commodity prices and storyWrittenAtPrice in data.json; rewrites stories at all three levels for any commodity that has moved past threshold (10% for Natural Gas, 5% for all others); applies directly to data.json with no review step; bootstrapped all 9 commodities on first run March 12, 2026)
+Last updated: March 12, 2026 (UI session - social meta tags added; metric sources tightened to generic; Policy Rate card label changed to "Policy Rate (year-end)" via metricDisplayLabels map; first-visit welcome banner added pointing to What? footer tooltip; How? footer text corrected to reflect AI + review workflow; contact form left as-is for now, pre-launch decision)
 
 ---
 
@@ -603,6 +603,7 @@ The tooltip order is: metric name, country + value, story, chart, explanation/bl
 | Thing | Location |
 |---|---|
 | `.tt-metric-story` CSS | Line 165 |
+| `metricDisplayLabels` in `_frozen` | Line ~5229 |
 | `metricStories` object declaration | Line 5605 |
 | `parseLiveVal()` helper | Line 5613 |
 | `metricStories` populated from data | Line 5637 |
@@ -684,7 +685,7 @@ Key settings at the top of the script:
 
 2. **Manual stories session.** Use the Stories Session Prompt in Part 1B to rewrite all stale metric stories listed in "Known value/story drift" above. This is a content session - upload `LIVING_BRIEF.md` + `data.json`. Do this before building `update_stories.py` so there is a clean baseline.
 
-2. **Grey out 4 data-void metrics in the UI.** Equity Vol, Corp Spread, Sov CDS, and FX Vol should display as "not available" with a tooltip: "no reliable free data source - will be added post-launch." This is a UI session - upload `LIVING_BRIEF.md` + `macrosnaps-shell.html`.
+2. ~~**Grey out 4 data-void metrics in the UI.**~~ Resolved March 12, 2026. On inspection, `fetch_market_data.py` is supplying real values for these metrics for most countries. No greying-out needed. The brief note was stale.
 
 3. ~~**Build `update_stories.py`.**~~ Done March 11, 2026. Script diffs data.json against last git commit, applies per-metric thresholds, calls Claude API (claude-sonnet-4-20250514), and writes all three story levels back into data.json. Also rewrites stories for data-void metrics if their values are ever populated.
 
@@ -724,3 +725,7 @@ Implication for tooling: implemented March 12, 2026. See `update_headlines.py` a
 8. ~~**Enable web search for country stories in `update_headlines.py`.**~~ Done March 12, 2026. Two-phase architecture: a single Sonnet+search harvest call pulls recent data for all 12 countries (capped at 2 search turns, 1500 max_tokens), then 3 Haiku batches write stories with recent data leading and forecast values passed as background context only. Global runs first to avoid Sonnet rate limit exhaustion from the harvest call. Haiku prompt strengthened with explicit bullet count enforcement and one automatic retry per batch.
 
 9. **Post-launch:** revisit architecture if a second person joins to update data daily.
+
+10. **Post-launch:** replace fake contact form in "Ping Me" footer with a real form service (Formspree or similar). Currently the form shows a success message without sending anything.
+
+11. **Post-launch:** consider user alert emails (daily or weekly digest for chosen countries/metrics/commodities). Requires server-side infrastructure. A simple early version could use Buttondown or Mailchimp for a subscriber list before building anything custom.
