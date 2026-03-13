@@ -8,7 +8,7 @@
       "weekly": "Update weekly or on release — CPI, unemployment, policy rate",
       "structural": "Update quarterly or on major revision — GDP, deficits, current account, stories, fxRegime"
     },
-    "built_at": "2026-03-13 11:43"
+    "built_at": "2026-03-13 14:01"
   },
   "countries": {
     "USA": {
@@ -51,9 +51,9 @@
             }
           },
           "Budget Deficit": {
-            "value": "-7.5% GDP",
+            "value": "-6.9% GDP",
             "tier": "structural",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "The US government is borrowing heavily, spending about 7.5 cents more than it collects for every dollar it spends. That deficit is larger than last year, driven by tax cuts, rising interest payments on existing debt, and slower growth. At this pace, the national debt keeps climbing, which can push up borrowing costs across the whole economy.",
               "moderate": "The US fiscal deficit is running at 7.5% of GDP, wider than last year's 6.2% and well above the post-WW2 average of around 3%. The OBBBA's permanent tax cut provisions and rising debt service costs (Treasury yields near 4.1%) are the primary drivers. Tariff revenues provide partial offset but are insufficient to close the gap. The Congressional Budget Office projects debt-to-GDP continuing to rise through the decade, constraining the government's ability to respond to future downturns.",
@@ -61,9 +61,9 @@
             }
           },
           "Current Account": {
-            "value": "-3.8% GDP",
+            "value": "-3.7% GDP",
             "tier": "structural",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "The US buys far more from the rest of the world than it sells, a persistent trade deficit that tariffs were meant to reduce. Despite record tariff revenues, the deficit has remained wide, as a strong dollar offsets the competitiveness boost from tariffs.",
               "moderate": "The US current account deficit has remained stubbornly wide despite high tariffs, consistent with the Lerner symmetry theorem: import tariffs reduce the trade deficit in the short run but exchange rate appreciation and income effects offset the gain over time. The Tax Foundation estimates tariffs have 'not meaningfully altered the trade deficit'; the Iran oil shock could temporarily widen the energy component before domestic shale production responds.",
@@ -190,15 +190,31 @@
       "_frozen_historical": {
         "GDP Growth": {
           "v": [
-            1.8,
-            2.5,
+            2.9,
+            0.2,
+            2.0,
+            4.3,
+            3.4,
             3.0,
             2.6,
-            -2.1,
-            6.2,
-            2.5,
-            2.9,
+            2.1,
+            -2.5,
+            0.1,
             2.8,
+            1.5,
+            1.6,
+            3.0,
+            2.7,
+            2.1,
+            2.2,
+            3.0,
+            2.1,
+            3.4,
+            -0.9,
+            5.8,
+            1.3,
+            3.4,
+            2.4,
             2.2,
             2.2
           ],
@@ -457,34 +473,66 @@
         },
         "Budget Deficit": {
           "v": [
-            -3.21,
-            -3.85,
-            -2.96,
-            -4.81,
+            2.4,
+            1.3,
+            -1.5,
+            -3.4,
+            -3.5,
+            -2.6,
+            -1.9,
+            -1.2,
+            -3.2,
+            -9.8,
+            -8.7,
+            -8.5,
+            -6.8,
+            -4.1,
+            -2.8,
+            -2.4,
+            -3.1,
+            -3.4,
+            -3.8,
+            -4.6,
+            -14.9,
+            -12.4,
             -5.4,
-            -14.56,
-            -12.86,
-            -4.49,
-            -7.25,
-            -7.16,
-            -7.5
+            -6.3,
+            -6.4,
+            -6.5,
+            -6.9
           ],
           "type": "bar",
           "annual": true
         },
         "Current Account": {
           "v": [
-            -2.24,
-            -2.12,
-            -1.89,
-            -2.14,
-            -2.07,
-            -2.82,
-            -3.68,
-            -3.88,
+            -4.2,
+            -3.8,
+            -4.3,
+            -4.8,
+            -5.3,
+            -5.9,
+            -6.0,
+            -5.1,
+            -4.7,
+            -2.7,
+            -3.0,
+            -2.9,
+            -2.7,
+            -2.2,
+            -2.2,
+            -2.4,
+            -2.3,
+            -2.4,
+            -2.4,
+            -2.1,
+            -2.9,
+            -3.6,
+            -3.8,
+            -3.0,
+            -3.3,
             -3.4,
-            -4.12,
-            -3.8
+            -3.7
           ],
           "type": "bar",
           "annual": true
@@ -1423,9 +1471,9 @@
       "metrics": {
         "macro": {
           "GDP Growth": {
-            "value": "+1.7%",
+            "value": "+2.2%",
             "tier": "structural",
-            "last_updated": "2026-03-10",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Canada's economy is forecast to grow 1.7% in 2026, a meaningful pickup from 2025's sluggish 1.1%. The oil price surge from the Middle East conflict is giving the energy sector a boost, and some of the tariff uncertainty that held back businesses last year has started to ease. The recovery is real but uneven, with energy-rich provinces doing much better than manufacturing regions.",
               "moderate": "Canadian GDP is forecast at 1.7% for 2026, up from 1.1% in 2025 when US tariff uncertainty suppressed business investment. The improvement is partly mechanical: higher oil prices benefit Canada's energy-heavy export mix and add roughly 0.2-0.3pp through improved terms of trade. The pickup is geographically uneven, with Alberta and Saskatchewan capturing most of the energy upside while Ontario and Quebec manufacturers face margin pressure from higher input costs. A US demand slowdown remains the primary downside risk.",
@@ -1433,9 +1481,9 @@
             }
           },
           "Inflation (CPI)": {
-            "value": "2%",
+            "value": "2.3%",
             "tier": "weekly",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Canadian inflation is running at 2.7%, still above the Bank of Canada's 2% target but moving in the right direction. Higher fuel prices from the Iran conflict could push this number back up, making the Bank of Canada more cautious about cutting interest rates further.",
               "moderate": "Canadian CPI at 2.7% was on a credible path toward the 2% target before the Iran energy shock. Gasoline and home heating costs will add directly to the headline number in the coming months, with BoC models suggesting a $20/barrel crude increase adds roughly 0.3-0.4pp to headline CPI over two to three months. The BoC's next rate decision will hinge on whether the energy spike is treated as transitory or whether it begins feeding into core inflation expectations.",
@@ -1443,9 +1491,9 @@
             }
           },
           "Unemployment": {
-            "value": "6.5%",
+            "value": "4.2%",
             "tier": "weekly",
-            "last_updated": "2026-03-07",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Canada's unemployment rate has risen to 6.5%, among the highest in several years, as businesses have become more cautious about hiring due to uncertainty over US trade policy. The energy sector may add some jobs in oil-producing regions, but this is unlikely to offset weakness in manufacturing and other industries that rely heavily on US trade.",
               "moderate": "Canadian unemployment at 6.5% reflects the direct impact of tariff-driven investment suppression in manufacturing, particularly auto supply chains tightly integrated with US production. Labour force participation has held up, meaning the rise in unemployment reflects genuine job destruction rather than discouraged workers leaving the count. A sustained oil price above $85 could generate 20,000-30,000 net new resource sector jobs over 12 months, but geographic mismatch between Alberta job creation and Ontario job losses limits how much of the manufacturing shortfall can be absorbed.",
@@ -1453,9 +1501,9 @@
             }
           },
           "Budget Deficit": {
-            "value": "-1.5% GDP",
+            "value": "-6.9% GDP",
             "tier": "structural",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Canada's government is running a small budget deficit of about 1.4% of GDP, which is modest compared to most other G7 countries. This gives Ottawa room to increase spending to support the economy if the tariff situation worsens, without raising serious concerns about Canada's financial health.",
               "moderate": "Canada's -1.4% of GDP federal deficit is among the smallest in the G7, giving Ottawa meaningful fiscal space relative to peers. Higher oil prices are delivering a windfall through corporate tax revenues and Alberta Heritage Fund contributions that could reduce the deficit further. If tariff headwinds intensify and unemployment rises, Canada has room to deploy targeted fiscal support (employment insurance, manufacturing adjustment programs) without threatening fiscal credibility or triggering a rating agency response.",
@@ -1463,9 +1511,9 @@
             }
           },
           "Current Account": {
-            "value": "-0.5% GDP",
+            "value": "-3.7% GDP",
             "tier": "structural",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Canada is running a small current account deficit, meaning it is importing slightly more than it is exporting in total. However, soaring oil prices from the Iran conflict are boosting Canada's energy export revenues, which could push this toward surplus territory in the coming months.",
               "moderate": "Canada's current account deficit of -0.8% of GDP is narrow and likely to improve further as oil export revenues rise with crude prices. The goods trade surplus in energy is partially offset by a persistent services deficit, largely reflecting Canadian tourism spending in the US and profit repatriation by US-headquartered multinationals. The terms-of-trade improvement from a sustained oil price above $85 is mechanically supportive of the current account and provides a fundamental underpinning for the Canadian dollar that partially offsets the rate differential headwind versus the US.",
@@ -1473,9 +1521,9 @@
             }
           },
           "Policy Rate": {
-            "value": "2.25%",
+            "value": "3.25%",
             "tier": "weekly",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "The Bank of Canada has been cutting interest rates to support the slowing economy, bringing the rate down to 4.50% from a peak of 5.00%. With oil prices rising from the Iran conflict, the Bank may slow its rate-cutting plans to make sure inflation does not pick back up.",
               "moderate": "The BoC has cut rates by 50bps from its 5.00% peak, moving faster than the Fed and creating a widening rate differential that has weighed on the Canadian dollar. The Iran energy shock complicates the path forward: the BoC wants to ease further to address rising unemployment and tariff-dampened growth, but energy-driven CPI upside gives it reason to pause. Markets are pricing one to two additional cuts in 2026, but the probability of a pause at the next meeting has risen meaningfully following the oil shock.",
@@ -2088,17 +2136,33 @@
         },
         "GDP Growth": {
           "v": [
-            1.04,
-            3.03,
-            2.74,
-            1.91,
-            -5.04,
-            5.95,
-            4.7,
-            1.95,
-            2.05,
-            1.74,
-            1.7
+            2.9,
+            0.2,
+            2.0,
+            4.3,
+            3.4,
+            3.0,
+            2.6,
+            2.1,
+            -2.5,
+            0.1,
+            2.8,
+            1.5,
+            1.6,
+            3.0,
+            2.7,
+            2.1,
+            2.2,
+            3.0,
+            2.1,
+            3.4,
+            -0.9,
+            5.8,
+            1.3,
+            3.4,
+            2.4,
+            2.2,
+            2.2
           ],
           "type": "bar",
           "annual": true
@@ -2355,17 +2419,33 @@
         },
         "Current Account": {
           "v": [
-            1862174.83,
-            1356907.87,
-            759939.04,
-            230813.29,
-            -2933942.04,
-            -3501457.75,
-            -2737275.94,
-            -3405069.81,
-            -3169979.19,
-            -0.5,
-            -0.5
+            -4.2,
+            -3.8,
+            -4.3,
+            -4.8,
+            -5.3,
+            -5.9,
+            -6.0,
+            -5.1,
+            -4.7,
+            -2.7,
+            -3.0,
+            -2.9,
+            -2.7,
+            -2.2,
+            -2.2,
+            -2.4,
+            -2.3,
+            -2.4,
+            -2.4,
+            -2.1,
+            -2.9,
+            -3.6,
+            -3.8,
+            -3.0,
+            -3.3,
+            -3.4,
+            -3.7
           ],
           "type": "bar",
           "annual": true
@@ -2874,17 +2954,33 @@
         },
         "Budget Deficit": {
           "v": [
-            1.0,
-            0.41,
-            0.44,
-            0.89,
-            0.24,
-            -9.54,
-            -2.41,
-            0.56,
-            0.8,
-            -0.83,
-            -1.5
+            2.4,
+            1.3,
+            -1.5,
+            -3.4,
+            -3.5,
+            -2.6,
+            -1.9,
+            -1.2,
+            -3.2,
+            -9.8,
+            -8.7,
+            -8.5,
+            -6.8,
+            -4.1,
+            -2.8,
+            -2.4,
+            -3.1,
+            -3.4,
+            -3.8,
+            -4.6,
+            -14.9,
+            -12.4,
+            -5.4,
+            -6.3,
+            -6.4,
+            -6.5,
+            -6.9
           ],
           "type": "bar",
           "annual": true
@@ -2995,9 +3091,9 @@
       "metrics": {
         "macro": {
           "GDP Growth": {
-            "value": "+1.5%",
+            "value": "+2.2%",
             "tier": "structural",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "The UK economy is growing, but only just. After a rough stretch of high inflation and rising interest rates, growth has returned, though it remains too slow to feel like a recovery for most people. The economy is propped up mainly by consumer spending and the services sector, while manufacturing and construction continue to drag.",
               "moderate": "UK growth is grinding along at a pace that is low by historical standards and below what most forecasters consider the long-run trend rate. The services sector is doing the heavy lifting, but household budgets are still squeezed from the inflation years, and business investment has been tentative. Weak productivity growth is the structural problem underneath the cyclical story.",
@@ -3005,9 +3101,9 @@
             }
           },
           "Inflation (CPI)": {
-            "value": "2.1%",
+            "value": "2.3%",
             "tier": "weekly",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "UK inflation was one of the worst in the developed world during 2022 and 2023, peaking above 11%. It has come down significantly since then, but it is still taking longer to get back to the 2% target than the Bank of England expected. Services prices in particular, things like rent, insurance, and restaurant meals, are still rising faster than the Bank would like.",
               "moderate": "Goods inflation has largely unwound as global supply chains healed and energy prices fell, but services inflation has proved stubborn. This split matters because services inflation is more closely tied to domestic wage growth, which is still running above levels compatible with 2% CPI. The Bank of England is easing carefully, aware that loosening too quickly could allow services inflation to become entrenched.",
@@ -3015,9 +3111,9 @@
             }
           },
           "Unemployment": {
-            "value": "5.0%",
+            "value": "4.2%",
             "tier": "weekly",
-            "last_updated": "2026-03-07",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Unemployment in the UK has risen a little compared to a few years ago, when jobs were unusually plentiful after the pandemic. The job market is now more balanced, which is normal, but it means more people are taking longer to find work. Some sectors are hiring, particularly healthcare and tech, while others like retail and hospitality have been slower.",
               "moderate": "The UK labour market has loosened from its very tight post-pandemic peak. Vacancies have fallen steadily and the unemployment rate has drifted up, consistent with weaker demand and the lagged effect of higher interest rates. Wage growth is slowing but is still well above its pre-pandemic average, and inactivity due to long-term illness remains structurally elevated, which keeps the effective labour supply tighter than the headline unemployment rate suggests.",
@@ -3025,9 +3121,9 @@
             }
           },
           "Budget Deficit": {
-            "value": "-4.2% GDP",
+            "value": "-6.9% GDP",
             "tier": "structural",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "The UK government is spending significantly more than it collects in taxes. This gap has to be filled by borrowing, which adds to the national debt. The October 2024 budget increased spending on public services and infrastructure, which has widened the gap further, at least for now.",
               "moderate": "The UK's fiscal position deteriorated after the October 2024 Autumn Budget, which combined large increases in current spending with a revised set of fiscal rules that gave the government more headroom by reclassifying how debt is measured. Markets accepted the package, but the OBR's forecasts left very little buffer against any growth disappointment. Rising debt service costs and demand for public investment keep the deficit elevated for the foreseeable future.",
@@ -3035,9 +3131,9 @@
             }
           },
           "Current Account": {
-            "value": "-2.5% GDP",
+            "value": "-3.7% GDP",
             "tier": "structural",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "The UK buys a lot more from the rest of the world than it sells to it. This deficit is one of the largest among wealthy nations as a share of the economy. The UK makes up the gap by attracting investment from abroad, particularly into property and financial assets.",
               "moderate": "The UK runs a persistent and sizeable current account deficit, driven primarily by a goods trade deficit that financial services exports only partially offset. Post-Brexit trade frictions have added to the structural goods deficit. The UK funds this through the financial account, attracting foreign direct investment and portfolio flows, but this dependence makes sterling sensitive to global risk appetite. When investors pull back from risky assets, the pound typically weakens as the financing need becomes harder to meet cheaply.",
@@ -3045,9 +3141,9 @@
             }
           },
           "Policy Rate": {
-            "value": "3.5%",
+            "value": "3.25%",
             "tier": "weekly",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "The Bank of England sets the interest rate that ripples through to mortgages, savings, and loans across the whole economy. After raising rates sharply to fight the worst inflation in decades, the Bank has started cutting. The rate is coming down slowly because inflation, while much better, has not fully returned to the 2% target.",
               "moderate": "The Bank of England began cutting from the 5.25% peak in August 2024 and has been easing at a gradual pace since. The MPC is managing a careful balance between a services inflation rate that is still above target and a domestic economy that is clearly slowing. Rate cuts provide relief for mortgage holders, but the Bank does not want to signal that the inflation job is done before it truly is. The pace of future cuts depends heavily on how quickly services inflation retreats.",
@@ -3660,17 +3756,33 @@
         },
         "GDP Growth": {
           "v": [
-            2.21,
-            3.02,
-            1.55,
-            1.26,
-            -10.05,
-            8.54,
-            5.15,
-            0.27,
-            1.09,
-            1.32,
-            1.5
+            2.9,
+            0.2,
+            2.0,
+            4.3,
+            3.4,
+            3.0,
+            2.6,
+            2.1,
+            -2.5,
+            0.1,
+            2.8,
+            1.5,
+            1.6,
+            3.0,
+            2.7,
+            2.1,
+            2.2,
+            3.0,
+            2.1,
+            3.4,
+            -0.9,
+            5.8,
+            1.3,
+            3.4,
+            2.4,
+            2.2,
+            2.2
           ],
           "type": "bar",
           "annual": true
@@ -3802,17 +3914,33 @@
         },
         "Current Account": {
           "v": [
-            -4.92,
-            -5.46,
-            -3.47,
-            -3.89,
-            -2.66,
-            -2.93,
-            -0.75,
-            -2.07,
-            -3.58,
-            -2.19,
-            -2.5
+            -4.2,
+            -3.8,
+            -4.3,
+            -4.8,
+            -5.3,
+            -5.9,
+            -6.0,
+            -5.1,
+            -4.7,
+            -2.7,
+            -3.0,
+            -2.9,
+            -2.7,
+            -2.2,
+            -2.2,
+            -2.4,
+            -2.3,
+            -2.4,
+            -2.4,
+            -2.1,
+            -2.9,
+            -3.6,
+            -3.8,
+            -3.0,
+            -3.3,
+            -3.4,
+            -3.7
           ],
           "type": "bar",
           "annual": true
@@ -4446,17 +4574,33 @@
         },
         "Budget Deficit": {
           "v": [
-            -5.59,
-            -3.78,
-            -3.42,
-            -3.85,
-            -3.54,
-            -14.81,
-            -9.17,
-            -5.6,
-            -6.98,
-            -6.88,
-            -4.2
+            2.4,
+            1.3,
+            -1.5,
+            -3.4,
+            -3.5,
+            -2.6,
+            -1.9,
+            -1.2,
+            -3.2,
+            -9.8,
+            -8.7,
+            -8.5,
+            -6.8,
+            -4.1,
+            -2.8,
+            -2.4,
+            -3.1,
+            -3.4,
+            -3.8,
+            -4.6,
+            -14.9,
+            -12.4,
+            -5.4,
+            -6.3,
+            -6.4,
+            -6.5,
+            -6.9
           ],
           "type": "bar",
           "annual": true
@@ -4567,9 +4711,9 @@
       "metrics": {
         "macro": {
           "GDP Growth": {
-            "value": "+0.8%",
+            "value": "+2.2%",
             "tier": "structural",
-            "last_updated": "2026-03-10",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Japan's economy grows slowly compared to most wealthy nations, and that has been true for decades. The population is shrinking and ageing, which means fewer workers and less consumer spending over time. The economy gets bursts of activity from exports and tourism, but the underlying trend is modest. For most Japanese people, the economy feels stable rather than dynamic.",
               "moderate": "Japan's growth is constrained by demographic decline and weak domestic demand. Real wage growth has turned positive for the first time in years, which suggests the long deflationary cycle may finally be breaking. But the structural headwinds from a shrinking workforce are powerful, and productivity growth has been insufficient to compensate. Export competitiveness has been boosted by a weak yen, but that also raises import costs and squeezes real incomes.",
@@ -4577,9 +4721,9 @@
             }
           },
           "Inflation (CPI)": {
-            "value": "1.8%",
+            "value": "2.3%",
             "tier": "weekly",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Japan spent most of the past 30 years struggling with prices that barely moved or even fell, which is unusual and actually harmful to an economy. Now inflation is above 2% for the first time in a generation. For older Japanese people this is a shock, as rising prices is something they barely experienced in their adult lives. The Bank of Japan is now trying to manage this carefully without letting prices rise too fast.",
               "moderate": "Japan's inflation picture is the inverse of most developed economies right now. While other central banks are trying to bring inflation down, the Bank of Japan spent years trying to create it. Now that it has arrived, driven initially by import costs and a weak yen, the question is whether it becomes self-sustaining through wage growth. The BoJ is cautiously tightening policy, but it remains the most dovish major central bank by a wide margin.",
@@ -4587,9 +4731,9 @@
             }
           },
           "Unemployment": {
-            "value": "2.5%",
+            "value": "4.2%",
             "tier": "weekly",
-            "last_updated": "2026-03-07",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Japan has one of the lowest unemployment rates in the world. Finding a job in Japan is generally not the problem. The more significant issue is that many jobs, particularly for women and older workers, are part-time or low-paid. The shrinking population means there are actually labour shortages in many sectors, including construction, nursing, and hospitality.",
               "moderate": "Japan's unemployment rate is structurally low by international comparison, reflecting both cultural factors around lifetime employment and genuine labour scarcity from demographic decline. The labour market tightness is one of the conditions the BoJ needs to see to feel confident that wage growth will be sustained. Spring wage negotiations (Shunto) have become a closely watched indicator, as they set the tone for pay across the economy. Recent Shunto rounds have produced the strongest wage increases in decades.",
@@ -4597,9 +4741,9 @@
             }
           },
           "Budget Deficit": {
-            "value": "-1.2% GDP",
+            "value": "-6.9% GDP",
             "tier": "structural",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Japan has one of the largest government debt piles in the world relative to the size of its economy, built up over decades of stimulus spending to try to keep the economy growing. Despite this, Japan has not had a financial crisis, partly because most of its debt is owned by Japanese institutions and the Bank of Japan itself rather than foreign investors. The government continues to run a deficit, adding to this debt every year.",
               "moderate": "Japan's fiscal position is an anomaly in global finance. Gross government debt is above 250% of GDP, which by conventional metrics should be alarming, but Japan has maintained low borrowing costs for decades because domestic investors (banks, pension funds, the BoJ itself) absorb the supply. As the BoJ gradually reduces its bond purchases, the question is whether private domestic demand can fill the gap without yields rising to fiscally disruptive levels.",
@@ -4607,9 +4751,9 @@
             }
           },
           "Current Account": {
-            "value": "+4.8% GDP",
+            "value": "-3.7% GDP",
             "tier": "structural",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Japan typically earns more from the rest of the world than it spends, which makes it one of the world's biggest creditor nations. Much of this comes not from selling goods but from the income Japan earns on its enormous overseas investments, built up over decades. This means the yen tends to be seen as a safe haven currency that people buy when the world gets scary.",
               "moderate": "Japan's current account surplus is dominated by the primary income balance (returns on foreign assets) rather than goods trade, which has been squeezed by the high cost of energy imports. The size of Japan's net foreign asset position, the largest in the world in absolute terms, means that income flows home consistently regardless of trade conditions. This structural surplus is part of why the yen, despite being a low-yielding currency, is treated as a safe haven: in a global downturn, Japanese investors repatriate assets, which bids up the yen.",
@@ -4617,9 +4761,9 @@
             }
           },
           "Policy Rate": {
-            "value": "1.25%",
+            "value": "3.25%",
             "tier": "weekly",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Japan's interest rates were negative or near zero for years, which is almost unheard of anywhere in the world. The Bank of Japan finally raised rates in 2024 for the first time in 17 years. Rates are still very low compared to other countries, but the direction has changed for the first time in a generation. This is a big deal for Japan and also for global financial markets.",
               "moderate": "The Bank of Japan's exit from negative interest rates and yield curve control is one of the most significant policy shifts in global central banking in recent years. After decades of unconventional easing, the BoJ is now cautiously normalising. The pace is deliberately slow because the BoJ is wary of choking off the nascent inflation and wage growth it has spent years trying to create. Any significant yen appreciation triggered by rate expectations could tighten financial conditions faster than the BoJ intends.",
@@ -4736,17 +4880,33 @@
       "_frozen_historical": {
         "GDP Growth": {
           "v": [
-            0.67,
-            1.62,
-            0.85,
-            -0.31,
-            -4.33,
-            3.66,
-            1.29,
-            0.72,
-            -0.24,
-            1.06,
-            0.8
+            2.9,
+            0.2,
+            2.0,
+            4.3,
+            3.4,
+            3.0,
+            2.6,
+            2.1,
+            -2.5,
+            0.1,
+            2.8,
+            1.5,
+            1.6,
+            3.0,
+            2.7,
+            2.1,
+            2.2,
+            3.0,
+            2.1,
+            3.4,
+            -0.9,
+            5.8,
+            1.3,
+            3.4,
+            2.4,
+            2.2,
+            2.2
           ],
           "type": "bar",
           "annual": true
@@ -5003,32 +5163,66 @@
         },
         "Budget Deficit": {
           "v": [
-            -9.1,
-            -6.2,
-            -7.8,
-            -5.8,
-            -5.5,
-            -5.6,
+            2.4,
+            1.3,
+            -1.5,
+            -3.4,
+            -3.5,
+            -2.6,
+            -1.9,
             -1.2,
-            -1.2,
-            -1.2
+            -3.2,
+            -9.8,
+            -8.7,
+            -8.5,
+            -6.8,
+            -4.1,
+            -2.8,
+            -2.4,
+            -3.1,
+            -3.4,
+            -3.8,
+            -4.6,
+            -14.9,
+            -12.4,
+            -5.4,
+            -6.3,
+            -6.4,
+            -6.5,
+            -6.9
           ],
           "annual": true,
           "type": "bar"
         },
         "Current Account": {
           "v": [
-            3.07,
-            3.94,
-            4.12,
-            3.52,
-            3.45,
-            2.97,
-            3.9,
-            2.12,
-            3.72,
-            4.82,
-            4.8
+            -4.2,
+            -3.8,
+            -4.3,
+            -4.8,
+            -5.3,
+            -5.9,
+            -6.0,
+            -5.1,
+            -4.7,
+            -2.7,
+            -3.0,
+            -2.9,
+            -2.7,
+            -2.2,
+            -2.2,
+            -2.4,
+            -2.3,
+            -2.4,
+            -2.4,
+            -2.1,
+            -2.9,
+            -3.6,
+            -3.8,
+            -3.0,
+            -3.3,
+            -3.4,
+            -3.7
           ],
           "type": "bar",
           "annual": true
@@ -6027,9 +6221,9 @@
       "metrics": {
         "macro": {
           "GDP Growth": {
-            "value": "+1.2%",
+            "value": "+2.2%",
             "tier": "structural",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Germany's economy is forecast to grow 1.2% in 2026, a modest recovery after two years of contraction, driven largely by a historic 500 billion euro government spending package for defence and infrastructure.",
               "moderate": "Germany's 2026 GDP forecast of 1.2% reflects the early impulse from the constitutional debt-brake reform and the 500bn euro fiscal package; Goldman's higher forecast of 1.5% assumes faster defence procurement ramp-up, while the Iran energy shock creates downside risk by compressing manufacturing margins in an already weakened industrial sector.",
@@ -6037,9 +6231,9 @@
             }
           },
           "Inflation (CPI)": {
-            "value": "2.2%",
+            "value": "2.3%",
             "tier": "weekly",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "German inflation is sitting just above the European Central Bank's 2% target at 2.2%, but petrol and diesel prices jumped sharply after the Iran conflict began, which could push prices higher in the months ahead.",
               "moderate": "German HICP is at 2.2%, slightly above the ECB's target, with energy CPI the main near-term upside risk; diesel prices rose sharply in the first week of the Iran conflict, creating a potential 0.5-1.0pp HICP overshoot in Q2 2026 if sustained, which complicates the ECB's easing path.",
@@ -6047,9 +6241,9 @@
             }
           },
           "Unemployment": {
-            "value": "3.8%",
+            "value": "4.2%",
             "tier": "weekly",
-            "last_updated": "2026-03-07",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Germany's unemployment rate of 3.8% remains relatively low, but the number of people out of work has been rising as German factories and carmakers have struggled with high energy costs and competition from Chinese manufacturers.",
               "moderate": "Germany's 3.8% unemployment rate understates labour market stress in the industrial sector: auto industry employment (roughly 800,000 direct workers) is contracting as the EV transition accelerates and Chinese competition intensifies; the fiscal package's employment effect will be concentrated in construction and defence, with a 12-24 month lag from fiscal commitment to actual job creation.",
@@ -6057,9 +6251,9 @@
             }
           },
           "Budget Deficit": {
-            "value": "-2% GDP",
+            "value": "-6.9% GDP",
             "tier": "structural",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Germany is running a budget deficit of 2% of its economy, which is modest by international standards. The government changed its constitution to allow much more borrowing to fund a massive defence and infrastructure spending programme.",
               "moderate": "Germany's budget deficit of 2% of GDP reflects the early stages of fiscal expansion; the constitutional debt-brake reform enables the 500bn euro off-budget infrastructure fund and effectively unlimited defence borrowing above 1% of GDP; the federal budget totals 520.5bn euros in 2026 and debt-to-GDP remains around 63%, preserving fiscal credibility relative to eurozone peers.",
@@ -6067,9 +6261,9 @@
             }
           },
           "Current Account": {
-            "value": "+4.5% GDP",
+            "value": "-3.7% GDP",
             "tier": "structural",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Germany still sells significantly more to the rest of the world than it buys, giving it a current account surplus of 4.5% of its economy. This surplus has been shrinking as German manufacturing has weakened and energy import costs have risen.",
               "moderate": "Germany's current account surplus of 4.5% of GDP has narrowed materially from the 7-8% peaks of the 2010s as manufacturing competitiveness erodes and energy import costs remain elevated; the fiscal expansion may narrow it further by boosting domestic demand and imports, though domestically-oriented defence procurement partially offsets this via import substitution.",
@@ -6077,9 +6271,9 @@
             }
           },
           "Policy Rate": {
-            "value": "2.50%",
+            "value": "3.25%",
             "tier": "weekly",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Germany uses the European Central Bank's interest rate of 2.5%, which has been cut several times as European inflation came under control. The recent energy price spike from the Iran conflict has made further cuts less certain.",
               "moderate": "The ECB deposit rate of 2.5% reflects eight cuts from the June 2024 peak; Germany's fiscal expansion creates an inflationary impulse reinforcing ECB hawks, while the Iran oil shock creates a growth headwind supporting doves, producing what ING described as a genuine dilemma at the March 2026 meeting; Capital Economics has revised its ECB terminal rate forecast upward from 1.5% to above 2% in response to the fiscal shift.",
@@ -6692,17 +6886,33 @@
         },
         "GDP Growth": {
           "v": [
-            2.14,
-            3.1,
-            1.15,
-            1.01,
-            -4.49,
-            3.87,
-            1.89,
-            -0.67,
-            -0.47,
-            0.36,
-            1.2
+            2.9,
+            0.2,
+            2.0,
+            4.3,
+            3.4,
+            3.0,
+            2.6,
+            2.1,
+            -2.5,
+            0.1,
+            2.8,
+            1.5,
+            1.6,
+            3.0,
+            2.7,
+            2.1,
+            2.2,
+            3.0,
+            2.1,
+            3.4,
+            -0.9,
+            5.8,
+            1.3,
+            3.4,
+            2.4,
+            2.2,
+            2.2
           ],
           "type": "bar",
           "annual": true
@@ -6834,17 +7044,33 @@
         },
         "Current Account": {
           "v": [
-            8.1,
-            8.9,
-            8.08,
-            8.44,
-            7.87,
-            6.35,
-            6.92,
-            3.85,
-            5.51,
-            5.77,
-            4.5
+            -4.2,
+            -3.8,
+            -4.3,
+            -4.8,
+            -5.3,
+            -5.9,
+            -6.0,
+            -5.1,
+            -4.7,
+            -2.7,
+            -3.0,
+            -2.9,
+            -2.7,
+            -2.2,
+            -2.2,
+            -2.4,
+            -2.3,
+            -2.4,
+            -2.4,
+            -2.1,
+            -2.9,
+            -3.6,
+            -3.8,
+            -3.0,
+            -3.3,
+            -3.4,
+            -3.7
           ],
           "type": "bar",
           "annual": true
@@ -7478,17 +7704,33 @@
         },
         "Budget Deficit": {
           "v": [
-            0.68,
-            0.68,
-            0.74,
-            0.64,
-            1.11,
-            0.77,
-            -3.66,
-            -3.52,
-            -2.67,
-            -2.03,
-            -2.0
+            2.4,
+            1.3,
+            -1.5,
+            -3.4,
+            -3.5,
+            -2.6,
+            -1.9,
+            -1.2,
+            -3.2,
+            -9.8,
+            -8.7,
+            -8.5,
+            -6.8,
+            -4.1,
+            -2.8,
+            -2.4,
+            -3.1,
+            -3.4,
+            -3.8,
+            -4.6,
+            -14.9,
+            -12.4,
+            -5.4,
+            -6.3,
+            -6.4,
+            -6.5,
+            -6.9
           ],
           "type": "bar",
           "annual": true
@@ -7599,9 +7841,9 @@
       "metrics": {
         "macro": {
           "GDP Growth": {
-            "value": "+1.4%",
+            "value": "+2.2%",
             "tier": "structural",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "France's economy is growing, but not by much. At 1.4%, it's keeping its head above water while much of Europe struggles. The main drag is weak consumer spending and high public debt, which leaves less room to invest in things that would actually speed things up.",
               "moderate": "France's 1.4% growth forecast sits below the eurozone average and reflects the structural weight of a large public sector, sticky domestic consumption, and limited export dynamism outside aerospace and luxury goods. The Iran oil shock introduces a further headwind via energy costs, which disproportionately affect French industrial output given the country's limited domestic hydrocarbon production.",
@@ -7609,9 +7851,9 @@
             }
           },
           "Inflation (CPI)": {
-            "value": "2%",
+            "value": "2.3%",
             "tier": "weekly",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "French inflation is right at the European Central Bank's 2% target, which is good news after years of prices rising too fast. The worry now is whether higher oil prices from tensions in the Middle East push it back up before the ECB can cut interest rates further.",
               "moderate": "France's CPI at 2% sits on the ECB's target, offering a brief window for further rate cuts. The Iran oil shock is the key upside risk: energy is roughly 10% of France's CPI basket, and a sustained $20 per barrel increase in crude would likely add 0.5-0.8pp to headline inflation, complicating the ECB's easing path.",
@@ -7619,9 +7861,9 @@
             }
           },
           "Unemployment": {
-            "value": "7.7%",
+            "value": "4.2%",
             "tier": "weekly",
-            "last_updated": "2026-03-07",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "About 1 in 13 French workers is unemployed, which is higher than in Germany or the US but has been slowly improving. Youth unemployment is the bigger problem, running well above the national average and concentrated in the suburbs of major cities.",
               "moderate": "France's 7.7% unemployment rate understates labour market slack given the high share of part-time work and discouraged workers outside the headline measure. Structural unemployment remains elevated relative to northern European peers, reflecting labour market rigidities and skills mismatches in the services sector. The current oil shock is unlikely to move the headline rate quickly, but softer consumer demand through H2 2026 could stall the slow improvement seen over the past two years.",
@@ -7629,9 +7871,9 @@
             }
           },
           "Budget Deficit": {
-            "value": "-4.8% GDP",
+            "value": "-6.9% GDP",
             "tier": "structural",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "France is spending about 4.8% more than it earns each year. That puts it under official pressure from the EU, which has rules about how much governments can borrow. Cutting spending is politically hard in France, which has some of the largest public services in Europe.",
               "moderate": "France's -4.8% deficit places it firmly in the EU's Excessive Deficit Procedure, with Brussels requiring a credible path back toward the 3% Maastricht ceiling. The Iran oil shock complicates this directly: lower growth reduces tax revenues while pressure to subsidise fuel costs could add expenditure, compressing the consolidation path Finance Minister has outlined for 2026-2027.",
@@ -7639,9 +7881,9 @@
             }
           },
           "Current Account": {
-            "value": "+1% GDP",
+            "value": "-3.7% GDP",
             "tier": "structural",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "France is selling slightly more to the rest of the world than it's buying, which is a healthy sign. Its main earners abroad are luxury goods, aerospace, and tourism, which together more than cover the cost of the energy France has to import.",
               "moderate": "France's +1% current account surplus is modest and driven by services (tourism, financial services) and high-value goods exports including Airbus and luxury brands. The goods balance remains in deficit. The Iran oil shock puts pressure on the import bill: France is not energy self-sufficient, and a sustained rise in crude prices will compress the surplus, potentially pushing the current account to flat or marginally negative by year-end.",
@@ -7649,9 +7891,9 @@
             }
           },
           "Policy Rate": {
-            "value": "2.50%",
+            "value": "3.25%",
             "tier": "weekly",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "The European Central Bank sets interest rates for all eurozone countries including France. At 2.5%, rates have been coming down from their highs, which helps people with mortgages and businesses that need to borrow. Whether they fall further depends on whether inflation stays under control.",
               "moderate": "The ECB's 2.5% rate reflects a cutting cycle that began in late 2024 as eurozone inflation converged toward target. For France, lower rates ease the debt servicing burden on a large stock of public debt and provide some support to the domestic housing market. The Iran oil shock introduces an upside inflation risk that could force the ECB to pause or reverse, a scenario that would be particularly damaging for French fiscal arithmetic.",
@@ -8264,17 +8506,33 @@
         },
         "GDP Growth": {
           "v": [
-            0.73,
-            2.27,
-            1.59,
-            2.09,
-            -7.6,
-            6.8,
+            2.9,
+            0.2,
+            2.0,
+            4.3,
+            3.4,
+            3.0,
+            2.6,
+            2.1,
+            -2.5,
+            0.1,
             2.8,
-            1.62,
-            1.11,
-            0.93,
-            1.4
+            1.5,
+            1.6,
+            3.0,
+            2.7,
+            2.1,
+            2.2,
+            3.0,
+            2.1,
+            3.4,
+            -0.9,
+            5.8,
+            1.3,
+            3.4,
+            2.4,
+            2.2,
+            2.2
           ],
           "type": "bar",
           "annual": true
@@ -8406,17 +8664,33 @@
         },
         "Current Account": {
           "v": [
-            -0.33,
-            -0.54,
-            -0.47,
-            -0.74,
-            0.59,
-            -2.0,
-            0.24,
-            -1.43,
-            -1.04,
-            0.09,
-            1.0
+            -4.2,
+            -3.8,
+            -4.3,
+            -4.8,
+            -5.3,
+            -5.9,
+            -6.0,
+            -5.1,
+            -4.7,
+            -2.7,
+            -3.0,
+            -2.9,
+            -2.7,
+            -2.2,
+            -2.2,
+            -2.4,
+            -2.3,
+            -2.4,
+            -2.4,
+            -2.1,
+            -2.9,
+            -3.6,
+            -3.8,
+            -3.0,
+            -3.3,
+            -3.4,
+            -3.7
           ],
           "type": "bar",
           "annual": true
@@ -9050,17 +9324,33 @@
         },
         "Budget Deficit": {
           "v": [
-            -4.31,
-            -3.87,
-            -3.87,
-            -3.42,
-            -2.39,
-            -2.29,
-            -8.77,
-            -6.55,
-            -4.7,
-            -5.13,
-            -4.8
+            2.4,
+            1.3,
+            -1.5,
+            -3.4,
+            -3.5,
+            -2.6,
+            -1.9,
+            -1.2,
+            -3.2,
+            -9.8,
+            -8.7,
+            -8.5,
+            -6.8,
+            -4.1,
+            -2.8,
+            -2.4,
+            -3.1,
+            -3.4,
+            -3.8,
+            -4.6,
+            -14.9,
+            -12.4,
+            -5.4,
+            -6.3,
+            -6.4,
+            -6.5,
+            -6.9
           ],
           "type": "bar",
           "annual": true
@@ -9171,9 +9461,9 @@
       "metrics": {
         "macro": {
           "GDP Growth": {
-            "value": "+1%",
+            "value": "+2.2%",
             "tier": "structural",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Italy is growing at about 1% this year, one of its steadier performances in recent years. Tourism is booming, defence company revenues are rising sharply, and the broader European spending push is helping. The main risk is that higher energy prices from the Iran conflict squeeze businesses and households.",
               "moderate": "Italian GDP growth of 1% for 2026 rests on three pillars: strong tourism revenues, defence sector uplift via Leonardo and the broader European rearmament cycle, and indirect spillovers from Germany's fiscal expansion through northern Italian supply chains; the Iran energy shock is the key downside risk given Italy's near-total dependence on imported energy, which historically compresses domestic demand quickly when oil prices spike.",
@@ -9191,9 +9481,9 @@
             }
           },
           "Unemployment": {
-            "value": "5.6%",
+            "value": "4.2%",
             "tier": "weekly",
-            "last_updated": "2026-03-07",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Italy's unemployment rate has fallen to 5.6%, the lowest in years. Tourism, construction, and some manufacturing sectors have been hiring. Youth unemployment in southern Italy remains a serious long-term problem, but the headline number shows genuine improvement.",
               "moderate": "Italian unemployment at 5.6% is at a cyclical low, reflecting improvements in tourism, healthcare, and defence-related manufacturing; the structural north-south divide persists, with youth unemployment in the Mezzogiorno remaining well above the national headline; the Iran shock poses downside risk via its impact on energy-intensive manufacturing in the north, where the cassintegrazione short-time work scheme would buffer job losses but add fiscal cost.",
@@ -9201,9 +9491,9 @@
             }
           },
           "Budget Deficit": {
-            "value": "-3.2% GDP",
+            "value": "-6.9% GDP",
             "tier": "structural",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Italy is running a budget deficit of 3.2% of its economy and carries one of the largest government debt piles in the world relative to its size. The Meloni government is trying to gradually reduce this deficit, but higher energy prices could make that harder by slowing growth and forcing spending on energy support for households.",
               "moderate": "Italy's budget deficit of 3.2% of GDP sits above the EU's 3% reference threshold, keeping Italy under European Commission scrutiny; the Meloni government's consolidation plan targets a gradual reduction, but the Iran energy shock creates a dual fiscal squeeze: slower growth reduces tax revenues while household energy support measures increase spending, making the consolidation path more difficult to maintain without ECB rate relief.",
@@ -9211,9 +9501,9 @@
             }
           },
           "Current Account": {
-            "value": "+0.8% GDP",
+            "value": "-3.7% GDP",
             "tier": "structural",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Italy earns slightly more from international trade and investment than it spends, giving it a small current account surplus of 0.8% of its economy. The Iran conflict threatens to wipe this out by raising the cost of Italy's energy imports sharply.",
               "moderate": "Italy's small current account surplus of 0.8% of GDP is structurally fragile given near-complete energy import dependence; the Iran-driven oil and LNG price spike materially widens the trade deficit component, partially offset by Italy's substantial tourism surplus; a shift into current account deficit would add pressure on sovereign spreads by signalling external imbalance in an already high-debt economy.",
@@ -9221,9 +9511,9 @@
             }
           },
           "Policy Rate": {
-            "value": "2.50%",
+            "value": "3.25%",
             "tier": "weekly",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Italy uses the European Central Bank's interest rate of 2.50%, which has been cut several times from its peak. Italy's government pays billions in interest on its enormous debt, so lower ECB rates make a real difference to how much room the government has to spend on other things.",
               "moderate": "The ECB deposit rate of 2.50% is critically important for Italian fiscal dynamics: each 25bp of rate hold relative to the baseline cutting path adds roughly 3-4bn euros annually to Italy's debt servicing costs; the Iran shock's impact on ECB forward guidance therefore has a direct and material fiscal consequence for Italy that goes well beyond the usual monetary policy transmission channels.",
@@ -9340,17 +9630,33 @@
       "_frozen_historical": {
         "GDP Growth": {
           "v": [
-            1.35,
-            1.69,
-            0.68,
-            0.42,
-            -8.95,
-            8.8,
-            4.97,
-            1.02,
-            0.59,
-            0.66,
-            1.0
+            2.9,
+            0.2,
+            2.0,
+            4.3,
+            3.4,
+            3.0,
+            2.6,
+            2.1,
+            -2.5,
+            0.1,
+            2.8,
+            1.5,
+            1.6,
+            3.0,
+            2.7,
+            2.1,
+            2.2,
+            3.0,
+            2.1,
+            3.4,
+            -0.9,
+            5.8,
+            1.3,
+            3.4,
+            2.4,
+            2.2,
+            2.2
           ],
           "type": "bar",
           "annual": true
@@ -9607,34 +9913,66 @@
         },
         "Budget Deficit": {
           "v": [
-            -2.99,
-            -2.79,
-            -2.56,
-            -2.65,
-            -2.38,
-            -1.55,
-            -9.25,
-            -8.63,
-            -7.99,
-            -7.3,
-            -3.2
+            2.4,
+            1.3,
+            -1.5,
+            -3.4,
+            -3.5,
+            -2.6,
+            -1.9,
+            -1.2,
+            -3.2,
+            -9.8,
+            -8.7,
+            -8.5,
+            -6.8,
+            -4.1,
+            -2.8,
+            -2.4,
+            -3.1,
+            -3.4,
+            -3.8,
+            -4.6,
+            -14.9,
+            -12.4,
+            -5.4,
+            -6.3,
+            -6.4,
+            -6.5,
+            -6.9
           ],
           "type": "bar",
           "annual": true
         },
         "Current Account": {
           "v": [
-            1.23,
-            2.46,
-            2.48,
-            2.57,
-            3.23,
-            3.94,
-            2.04,
-            -1.83,
-            0.22,
-            1.08,
-            0.8
+            -4.2,
+            -3.8,
+            -4.3,
+            -4.8,
+            -5.3,
+            -5.9,
+            -6.0,
+            -5.1,
+            -4.7,
+            -2.7,
+            -3.0,
+            -2.9,
+            -2.7,
+            -2.2,
+            -2.2,
+            -2.4,
+            -2.3,
+            -2.4,
+            -2.4,
+            -2.1,
+            -2.9,
+            -3.6,
+            -3.8,
+            -3.0,
+            -3.3,
+            -3.4,
+            -3.7
           ],
           "type": "bar",
           "annual": true
@@ -10633,9 +10971,9 @@
       "metrics": {
         "macro": {
           "GDP Growth": {
-            "value": "+4.7%",
+            "value": "+2.2%",
             "tier": "structural",
-            "last_updated": "2026-03-10",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "China is targeting 4.5% growth this year, its lowest official target on record. The economy is dealing with falling prices, a property market that has been contracting for years, and trade tensions with the US. The government is trying to fill the gap with infrastructure spending and subsidies, but consumers remain cautious.",
               "moderate": "China's 4.5% GDP target for 2026 is a formal acknowledgement of structural deceleration: the property sector contracted 17% in 2025, fixed-asset investment fell 3.8%, and four years of deflationary pressure have suppressed private investment; the Iran shock adds a near-term energy cost headwind that could push growth to the lower end of the target range without additional fiscal stimulus.",
@@ -10643,9 +10981,9 @@
             }
           },
           "Inflation (CPI)": {
-            "value": "2%",
+            "value": "2.3%",
             "tier": "weekly",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Chinese consumer prices are up about 2% compared to a year ago, which looks normal but masks a more complicated picture. Factory prices are still falling, meaning businesses are struggling to make profits even as consumer prices have stabilised. This tension between rising consumer costs and falling producer prices is unusual and points to deep structural problems in the economy.",
               "moderate": "China's CPI at 2% represents a headline stabilisation, but PPI remains deeply negative at around -2.6%, signalling ongoing deflation in the industrial economy; the disconnect reflects government subsidies supporting consumer spending while industrial overcapacity suppresses factory-gate prices; the Iran shock could partially reflate PPI via higher energy input costs, but simultaneously compresses corporate margins, making the net effect on the deflation cycle ambiguous.",
@@ -10653,9 +10991,9 @@
             }
           },
           "Unemployment": {
-            "value": "5.1%",
+            "value": "4.2%",
             "tier": "weekly",
-            "last_updated": "2026-03-07",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "China's official unemployment rate is 5.1%, but youth unemployment is running above 16%, suggesting that recent graduates are struggling to find jobs in an economy where the private sector is contracting and the property sector has collapsed. Many young people are taking jobs well below their qualifications or giving up job-hunting entirely.",
               "moderate": "China's 5.1% headline unemployment understates labour market stress: youth unemployment at 16.3% reflects a structural mismatch between the oversupply of university graduates and the contraction of white-collar private sector roles in technology, finance, and property; the headline figure also excludes migrant workers without urban residency registration, whose employment has been more exposed to manufacturing and construction slowdowns.",
@@ -10663,9 +11001,9 @@
             }
           },
           "Budget Deficit": {
-            "value": "-6.8% GDP",
+            "value": "-6.9% GDP",
             "tier": "structural",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "China's government is running a budget deficit of 6.8% of its economy, borrowing heavily to fund infrastructure, consumer subsidies, and support for struggling local governments. This is the largest deficit China has run in recent decades and reflects how much stimulus the government needs to inject to keep growth on target.",
               "moderate": "China's official budget deficit of 6.8% of GDP is the headline figure, but the IMF estimates the augmented fiscal deficit including off-budget local government financing vehicles at 8-10% of GDP; the 2026 NPC maintained spending commitments while slightly trimming the consumer goods trade-in subsidy programme, signalling fiscal space preservation; the Iran shock creates additional pressure via potential energy support subsidies and slower growth reducing tax revenues.",
@@ -10673,9 +11011,9 @@
             }
           },
           "Current Account": {
-            "value": "+2.5% GDP",
+            "value": "-3.7% GDP",
             "tier": "structural",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "China sells much more to the rest of the world than it buys, generating a current account surplus of 2.5% of its economy. China's trade surplus hit a record .2 trillion in 2025 as manufacturers found new markets in Southeast Asia and Africa to replace lost sales to the US after tariffs were imposed. The Iran conflict threatens this by raising China's energy import bill.",
               "moderate": "China's current account surplus of 2.5% of GDP is underpinned by a record goods trade surplus, driven by export market diversification away from the US toward Southeast Asia, Africa, and Latin America; the Iran shock threatens via higher oil import costs (China imports around 1.6 million barrels per day from Iran) and disruption to yuan-denominated trade routes through the Gulf, potentially compressing the surplus materially if the shock is sustained.",
@@ -10683,9 +11021,9 @@
             }
           },
           "Policy Rate": {
-            "value": "2.75%",
+            "value": "3.25%",
             "tier": "weekly",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "China's central bank has set its main interest rate at 2.75%, and has been cutting rates to encourage more borrowing and investment. The problem is that businesses and consumers are not borrowing much even at low rates because confidence is weak and prices are falling. When people expect prices to fall further, they delay purchases, making the economic slowdown worse.",
               "moderate": "The PBOC's 2.75% policy rate reflects an easing cycle that has been undermined by deflation dynamics: nominal rate cuts are partially offset by falling prices, meaning real borrowing costs are not falling as fast as the PBOC intends; the confidence trap, where businesses defer investment expecting further price declines, limits the effectiveness of rate reductions and pushes the burden toward fiscal stimulus as the primary demand management tool.",
@@ -11358,17 +11696,33 @@
         },
         "GDP Growth": {
           "v": [
-            10.1,
-            8.53,
-            7.04,
-            8.35,
-            11.47,
-            10.49,
-            7.31,
-            2.74,
-            13.39,
-            5.31,
-            4.7
+            2.9,
+            0.2,
+            2.0,
+            4.3,
+            3.4,
+            3.0,
+            2.6,
+            2.1,
+            -2.5,
+            0.1,
+            2.8,
+            1.5,
+            1.6,
+            3.0,
+            2.7,
+            2.1,
+            2.2,
+            3.0,
+            2.1,
+            3.4,
+            -0.9,
+            5.8,
+            1.3,
+            3.4,
+            2.4,
+            2.2,
+            2.2
           ],
           "type": "bar",
           "annual": true
@@ -11500,17 +11854,33 @@
         },
         "Current Account": {
           "v": [
-            2.6,
-            1.67,
-            1.5,
-            0.17,
-            0.71,
-            1.66,
-            1.94,
-            2.42,
-            1.44,
-            2.26,
-            2.5
+            -4.2,
+            -3.8,
+            -4.3,
+            -4.8,
+            -5.3,
+            -5.9,
+            -6.0,
+            -5.1,
+            -4.7,
+            -2.7,
+            -3.0,
+            -2.9,
+            -2.7,
+            -2.2,
+            -2.2,
+            -2.4,
+            -2.3,
+            -2.4,
+            -2.4,
+            -2.1,
+            -2.9,
+            -3.6,
+            -3.8,
+            -3.0,
+            -3.3,
+            -3.4,
+            -3.7
           ],
           "type": "bar",
           "annual": true
@@ -11891,6 +12261,39 @@
             6.9
           ],
           "type": "line"
+        },
+        "Budget Deficit": {
+          "type": "bar",
+          "annual": true,
+          "v": [
+            2.4,
+            1.3,
+            -1.5,
+            -3.4,
+            -3.5,
+            -2.6,
+            -1.9,
+            -1.2,
+            -3.2,
+            -9.8,
+            -8.7,
+            -8.5,
+            -6.8,
+            -4.1,
+            -2.8,
+            -2.4,
+            -3.1,
+            -3.4,
+            -3.8,
+            -4.6,
+            -14.9,
+            -12.4,
+            -5.4,
+            -6.3,
+            -6.4,
+            -6.5,
+            -6.9
+          ]
         }
       },
       "_frozen_weatherGrid": {
@@ -11998,9 +12401,9 @@
       "metrics": {
         "macro": {
           "GDP Growth": {
-            "value": "+6.3%",
+            "value": "+2.2%",
             "tier": "structural",
-            "last_updated": "2026-03-10",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "India is one of the fastest growing major economies in the world, expanding at 6.5% this year. Strong consumer spending, government infrastructure investment, and a booming services sector are the main drivers. The main risk is that higher oil prices from the Iran conflict raise costs and slow this momentum.",
               "moderate": "India's 6.5% GDP growth for 2026 builds on real GDP growth of 8% in the first half of the financial year, supported by income tax cuts, GST rationalisation, and strong fixed investment; the Iran shock is a material adverse terms-of-trade shift, with the oil import cost increase equivalent to roughly 0.8-1.0% of GDP at sustained 0+ Brent, compressing real income growth and corporate margins.",
@@ -12008,9 +12411,9 @@
             }
           },
           "Inflation (CPI)": {
-            "value": "4.2%",
+            "value": "2.3%",
             "tier": "weekly",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Indian prices are rising at 4.2%, within the Reserve Bank of India's target range. Oil prices jumping sharply because of the Iran conflict will push fuel and transport costs higher, and India imports most of its oil, so it cannot avoid this pain. The RBI is watching closely to decide whether to continue cutting rates or pause.",
               "moderate": "India's CPI at 4.2% sits within the RBI's 2-6% tolerance band but the Iran shock introduces meaningful upside risk: oil is the single largest driver of India's import bill, and a 25-36% price increase adds 0.5pp or more to CPI via direct fuel price passthrough and logistics cost increases; the government's choice between absorbing the cost via excise duty cuts (fiscal hit) or passing it to consumers (CPI spike) will determine how much of the shock appears in the inflation data.",
@@ -12018,9 +12421,9 @@
             }
           },
           "Unemployment": {
-            "value": "4.7%",
+            "value": "4.2%",
             "tier": "weekly",
-            "last_updated": "2026-03-07",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "India's official unemployment rate is 4.7%, but this number does not capture the full picture. Many millions of Indians work in informal jobs with low and irregular pay that are not counted as unemployment. Creating enough good-quality formal jobs for a young population growing by tens of millions every year is one of India's biggest long-term challenges.",
               "moderate": "India's 4.7% unemployment headline masks significant underemployment in the informal sector, which employs roughly 90% of India's workforce; the Iran shock directly threatens employment in the basmati rice export supply chain, the oil-dependent logistics sector, and energy-intensive manufacturing; the structural challenge of generating sufficient formal sector employment for 8-10 million new labour market entrants annually is not addressed by cyclical growth and remains India's most pressing economic policy problem.",
@@ -12028,9 +12431,9 @@
             }
           },
           "Budget Deficit": {
-            "value": "-7.2% GDP",
+            "value": "-6.9% GDP",
             "tier": "structural",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "India's government runs a budget deficit of 7.2% of its economy when combining central and state government spending, meaning it borrows significantly more than it collects in taxes. Some of this borrowing funds important infrastructure, but it also means India has less room to absorb unexpected shocks like higher oil prices without borrowing even more.",
               "moderate": "India's combined central and state fiscal deficit of 7.2% of GDP reflects both structural spending pressures (subsidies, interest payments on a large debt stock) and the investment-heavy approach to boosting growth; the Iran oil shock creates upside fiscal risk via potential excise duty cuts to absorb fuel price increases, with a full reversal of recent duty increases costing roughly 0.3-0.5% of GDP annually, potentially delaying the consolidation path that rating agencies are monitoring for a potential sovereign upgrade.",
@@ -12038,9 +12441,9 @@
             }
           },
           "Current Account": {
-            "value": "-1.2% GDP",
+            "value": "-3.7% GDP",
             "tier": "structural",
-            "last_updated": "2026-01-31",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "India spends more abroad than it earns internationally, running a current account deficit of 1.2% of its economy. Oil is the main culprit, since India imports most of the energy it needs. When oil prices spike as they have with the Iran conflict, this deficit widens quickly, putting pressure on the rupee.",
               "moderate": "India's current account deficit of 1.2% of GDP faces a material widening from the Iran shock: oil accounts for 25-28% of India's import bill, and a sustained 25-36% oil price increase adds 0-30bn annually to import costs; simultaneously, basmati rice export disruption from Middle East shipping lanes reduces a key export revenue line, creating a twin shock that could push the current account deficit above 2.5-3% of GDP and trigger RBI intervention to support the rupee.",
@@ -12048,9 +12451,9 @@
             }
           },
           "Policy Rate": {
-            "value": "6%",
+            "value": "3.25%",
             "tier": "weekly",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "India's central bank has set interest rates at 6%, and had been cutting rates to support strong growth. The sharp rise in oil prices from the Iran conflict complicates this, since higher oil prices push up inflation, which normally calls for higher rather than lower rates. The RBI now faces a difficult choice between supporting growth and keeping inflation in check.",
               "moderate": "The RBI's 6% policy rate reflects a cautious easing bias that the Iran shock may force into a pause: India's flexible inflation targeting framework technically allows looking through supply shocks, but the political sensitivity of fuel and food prices and the risk of rupee depreciation (which amplifies imported inflation) create practical constraints on the RBI's ability to cut into an energy price spike; the duration of the Hormuz disruption will be the key determining variable for the timing of the next rate move.",
@@ -12723,17 +13126,33 @@
         },
         "GDP Growth": {
           "v": [
-            13.05,
-            11.95,
-            9.89,
-            11.87,
-            10.77,
-            11.81,
-            6.56,
-            -2.53,
-            18.11,
-            16.77,
-            6.3
+            2.9,
+            0.2,
+            2.0,
+            4.3,
+            3.4,
+            3.0,
+            2.6,
+            2.1,
+            -2.5,
+            0.1,
+            2.8,
+            1.5,
+            1.6,
+            3.0,
+            2.7,
+            2.1,
+            2.2,
+            3.0,
+            2.1,
+            3.4,
+            -0.9,
+            5.8,
+            1.3,
+            3.4,
+            2.4,
+            2.2,
+            2.2
           ],
           "type": "bar",
           "annual": true
@@ -12865,17 +13284,33 @@
         },
         "Current Account": {
           "v": [
-            -1.07,
-            -0.53,
-            -1.44,
-            -2.43,
-            -1.05,
-            1.22,
-            -1.06,
-            -2.36,
-            -0.88,
-            -0.82,
-            -1.2
+            -4.2,
+            -3.8,
+            -4.3,
+            -4.8,
+            -5.3,
+            -5.9,
+            -6.0,
+            -5.1,
+            -4.7,
+            -2.7,
+            -3.0,
+            -2.9,
+            -2.7,
+            -2.2,
+            -2.2,
+            -2.4,
+            -2.3,
+            -2.4,
+            -2.4,
+            -2.1,
+            -2.9,
+            -3.6,
+            -3.8,
+            -3.0,
+            -3.3,
+            -3.4,
+            -3.7
           ],
           "type": "bar",
           "annual": true
@@ -13259,17 +13694,33 @@
         },
         "Budget Deficit": {
           "v": [
-            -3.48,
-            -3.21,
-            -3.76,
-            -4.07,
-            -3.25,
-            -2.78,
-            -2.42,
-            -2.55,
-            -2.3,
-            -5.11,
-            -7.2
+            2.4,
+            1.3,
+            -1.5,
+            -3.4,
+            -3.5,
+            -2.6,
+            -1.9,
+            -1.2,
+            -3.2,
+            -9.8,
+            -8.7,
+            -8.5,
+            -6.8,
+            -4.1,
+            -2.8,
+            -2.4,
+            -3.1,
+            -3.4,
+            -3.8,
+            -4.6,
+            -14.9,
+            -12.4,
+            -5.4,
+            -6.3,
+            -6.4,
+            -6.5,
+            -6.9
           ],
           "type": "bar",
           "annual": true
@@ -13380,9 +13831,9 @@
       "metrics": {
         "macro": {
           "GDP Growth": {
-            "value": "+1.5%",
+            "value": "+2.2%",
             "tier": "structural",
-            "last_updated": "2026-03-10",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "South Africa's economy is growing at 1.6%, a modest but meaningful improvement after years of near-stagnation caused by chronic electricity blackouts. Power supplies are now far more reliable, removing a major drag on businesses. The gold price surge from the Iran conflict is a further boost, though high unemployment and weak consumer spending keep the recovery fragile.",
               "moderate": "South Africa's 1.6% growth reflects two converging positives: the structural improvement from the end of load-shedding (removing a constraint that cost the economy an estimated 2% of GDP annually) and the commodity windfall from gold above ,100 per ounce; the Iran shock is ambiguous for South Africa, as higher gold and platinum prices improve mining revenues while higher fuel costs and potential rand weakness add inflationary headwinds in an economy still constrained by Transnet rail and port dysfunction.",
@@ -13390,9 +13841,9 @@
             }
           },
           "Inflation (CPI)": {
-            "value": "3.5%",
+            "value": "2.3%",
             "tier": "weekly",
-            "last_updated": "2026-03-07",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "South African inflation is running at 3.5%, comfortably within the central bank's 3-6% target range. This relatively low level has allowed the Reserve Bank to cut interest rates. The Iran oil shock threatens to push it higher through fuel costs, and a weakening rand makes imports more expensive generally, since South Africa imports a wide range of goods.",
               "moderate": "South Africa's CPI at 3.5% sits near the lower end of the SARB's 3-6% target band, giving the central bank room to cut rates; the Iran shock introduces dual upside risk via the fuel price channel (petrol and diesel prices are partially regulated and will rise with crude) and the rand depreciation channel (risk-off episodes typically weaken the ZAR by 5-10%, directly passing through to imported goods prices); the combined effect could push CPI toward 5-5.5%, narrowing the room for further SARB easing.",
@@ -13400,9 +13851,9 @@
             }
           },
           "Unemployment": {
-            "value": "32.5%",
+            "value": "4.2%",
             "tier": "weekly",
-            "last_updated": "2026-03-07",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "South Africa has one of the highest unemployment rates in the world at 32.5%, meaning almost one in three people who want a job cannot find one. By the broader measure that includes people who have given up looking, the rate is above 40%. This is one of South Africa's most serious and persistent challenges, rooted in decades of structural economic problems that no commodity price cycle can fix.",
               "moderate": "South Africa's 32.5% unemployment rate (narrow definition, 42%+ expanded) is among the highest of any major economy and reflects structural roots that cyclical growth cannot address: spatial apartheid legacy creating long commutes, dysfunctional basic education producing skill mismatches, and bargaining council wage floors that price low-skill workers out of formal employment; the gold price windfall improves formal mining sector employment at the margin but has no meaningful impact on the broad labour market.",
@@ -13410,9 +13861,9 @@
             }
           },
           "Budget Deficit": {
-            "value": "-4.8% GDP",
+            "value": "-6.9% GDP",
             "tier": "structural",
-            "last_updated": "2026-01-31",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "South Africa's government is spending 4.8% more of its economy than it collects in taxes, building up debt that now approaches 75% of GDP. A large share of the budget goes to paying interest on this debt rather than on services or investment. The gold price surge provides some relief through higher mining taxes, but structural spending pressures persist.",
               "moderate": "South Africa's budget deficit of 4.8% of GDP reflects structural spending pressures that a commodity windfall only partially addresses: debt interest payments consume nearly 20% of expenditure, and Eskom and Transnet recapitalisation remain ongoing fiscal drains; the gold price surge above ,100 per ounce generates incremental royalty and corporate tax revenue on a formula basis, providing a temporary positive impulse, but the debt-to-GDP trajectory toward 75% is the primary concern for rating agencies.",
@@ -13420,9 +13871,9 @@
             }
           },
           "Current Account": {
-            "value": "-1.4% GDP",
+            "value": "-3.7% GDP",
             "tier": "structural",
-            "last_updated": "2026-01-31",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "South Africa spends slightly more internationally than it earns, running a small current account deficit of 1.4% of its economy. Gold and platinum exports are major earners, and with gold prices at record highs, this deficit should narrow. The offsetting risk is higher fuel import costs and the physical constraints on getting mining exports to port due to Transnet's rail problems.",
               "moderate": "South Africa's current account deficit of 1.4% of GDP is set to narrow mechanically from the gold price surge, with higher rand-denominated export revenues flowing directly into the trade balance; the partial offset comes from higher fuel import costs and the volume cap on mineral exports from Transnet rail disruption, which limits how much of the price windfall translates to additional export revenue; the net effect is likely a modest current account improvement that reduces ZAR depreciation pressure relative to a purely oil-importing EM.",
@@ -13430,9 +13881,9 @@
             }
           },
           "Policy Rate": {
-            "value": "6.25%",
+            "value": "3.25%",
             "tier": "weekly",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "South Africa's central bank has set interest rates at 6.25%, and had been gradually cutting them as inflation fell toward target. The Iran oil shock complicates this picture: higher oil prices push up inflation, while a potentially weaker rand makes imports more expensive. The Reserve Bank may pause its rate cuts until the picture becomes clearer.",
               "moderate": "The SARB's 6.25% repo rate reflects a cautious easing cycle that the Iran shock may pause: the dual inflationary pressure from fuel price increases and rand depreciation risk could push CPI from its current 3.5% toward the upper end of the 3-6% target band; historically the SARB pauses easing when ZAR weakness creates imported inflation risk, and the Iran-driven global risk-off environment creates exactly that scenario.",
@@ -13549,17 +14000,33 @@
       "_frozen_historical": {
         "GDP Growth": {
           "v": [
-            8.47,
-            6.86,
-            6.94,
-            7.66,
-            6.69,
-            5.61,
-            4.89,
-            -1.02,
-            11.51,
-            6.76,
-            1.5
+            2.9,
+            0.2,
+            2.0,
+            4.3,
+            3.4,
+            3.0,
+            2.6,
+            2.1,
+            -2.5,
+            0.1,
+            2.8,
+            1.5,
+            1.6,
+            3.0,
+            2.7,
+            2.1,
+            2.2,
+            3.0,
+            2.1,
+            3.4,
+            -0.9,
+            5.8,
+            1.3,
+            3.4,
+            2.4,
+            2.2,
+            2.2
           ],
           "type": "bar",
           "annual": true
@@ -14081,17 +14548,33 @@
         },
         "Current Account": {
           "v": [
-            -4.31,
-            -2.63,
-            -2.37,
+            -4.2,
+            -3.8,
+            -4.3,
+            -4.8,
+            -5.3,
+            -5.9,
+            -6.0,
+            -5.1,
+            -4.7,
+            -2.7,
             -3.0,
-            -2.62,
-            2.0,
-            3.77,
-            -0.3,
-            -1.1,
-            -0.64,
-            -1.4
+            -2.9,
+            -2.7,
+            -2.2,
+            -2.2,
+            -2.4,
+            -2.3,
+            -2.4,
+            -2.4,
+            -2.1,
+            -2.9,
+            -3.6,
+            -3.8,
+            -3.0,
+            -3.3,
+            -3.4,
+            -3.7
           ],
           "type": "bar",
           "annual": true
@@ -14349,17 +14832,33 @@
         },
         "Budget Deficit": {
           "v": [
-            -3.44,
-            -4.56,
-            -3.46,
-            -4.66,
-            -5.7,
-            -5.75,
-            -9.93,
-            -4.55,
-            -4.15,
-            -4.21,
-            -4.8
+            2.4,
+            1.3,
+            -1.5,
+            -3.4,
+            -3.5,
+            -2.6,
+            -1.9,
+            -1.2,
+            -3.2,
+            -9.8,
+            -8.7,
+            -8.5,
+            -6.8,
+            -4.1,
+            -2.8,
+            -2.4,
+            -3.1,
+            -3.4,
+            -3.8,
+            -4.6,
+            -14.9,
+            -12.4,
+            -5.4,
+            -6.3,
+            -6.4,
+            -6.5,
+            -6.9
           ],
           "type": "bar",
           "annual": true
@@ -14470,9 +14969,9 @@
       "metrics": {
         "macro": {
           "GDP Growth": {
-            "value": "+1.7%",
+            "value": "+2.2%",
             "tier": "structural",
-            "last_updated": "2026-01-31",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Brazil's economy is growing at 1.7%, supported by booming agricultural exports and rising oil revenues from Petrobras. With oil prices surging because of the Iran conflict, Brazil is one of the few large economies that stands to benefit rather than suffer. High domestic interest rates remain the main drag on growth.",
               "moderate": "Brazil's 1.7% GDP growth reflects a commodity export engine (oil, soybeans, corn, beef) that is directly benefiting from the Iran-driven price surge, partially offset by the world's highest real interest rates suppressing domestic investment and consumption; Petrobras pre-salt production at roughly 3.5 million barrels per day is highly profitable at 0+ oil, generating windfall fiscal contributions, but the Lula government's spending trajectory has kept the BCB in a cautious holding pattern.",
@@ -14480,9 +14979,9 @@
             }
           },
           "Inflation (CPI)": {
-            "value": "4.2%",
+            "value": "2.3%",
             "tier": "weekly",
-            "last_updated": "2026-03-07",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Brazilian inflation is running at 4.2%, above the central bank's 3% target. The weak real makes imports more expensive, which flows through to goods prices across the economy. Higher oil prices from the Iran conflict create additional upside risk, though Petrobras's domestic fuel pricing policy means the government has some control over how quickly pump prices rise.",
               "moderate": "Brazil's CPI at 4.2% sits above the BCB's 3% target, driven by BRL-related import cost passthrough and food price pressures; the Iran shock creates dual inflation risk via higher USD-denominated oil prices and potential BRL depreciation in a risk-off episode; the government's ability to influence Petrobras's domestic fuel pricing formula offers a partial buffer, but using it widens the fiscal deficit and reduces Petrobras dividend income.",
@@ -14490,9 +14989,9 @@
             }
           },
           "Unemployment": {
-            "value": "5.7%",
+            "value": "4.2%",
             "tier": "weekly",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Brazil's unemployment rate has fallen to 5.7%, near its lowest level in years. Agriculture, construction, and services have been hiring, and the oil sector provides well-paying jobs in Rio de Janeiro and Espirito Santo states. Many workers remain in the informal economy without social protections, but the headline number shows a genuine improvement.",
               "moderate": "Brazil's unemployment at 5.7% reflects a cyclical low driven by agricultural employment (record harvests), government-linked construction, and oil sector expansion; the Iran oil shock supports Petrobras employment and its supply chain, partially offsetting any weakness from BRL volatility affecting manufacturing competitiveness; structural informality (roughly 40% of the workforce) means the official rate understates underemployment and limits the wage-growth signal for inflation purposes.",
@@ -14500,9 +14999,9 @@
             }
           },
           "Budget Deficit": {
-            "value": "-0.8% GDP",
+            "value": "-6.9% GDP",
             "tier": "structural",
-            "last_updated": "2026-01-31",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Brazil's budget deficit is 0.8% of its economy on the headline measure, but the true fiscal picture including interest payments is much larger. The government under President Lula has been increasing social spending, which has made investors nervous about Brazil's long-term fiscal trajectory and contributed to keeping interest rates high. Higher Petrobras revenues from oil prices provide some temporary relief.",
               "moderate": "Brazil's headline deficit of 0.8% of GDP understates the fiscal challenge: on a consolidated basis including interest costs, the total fiscal deficit is near 7-8% of GDP, reflecting the enormous debt interest burden at 13%+ borrowing rates; the Petrobras dividend windfall at 0+ oil provides incremental fiscal revenue of roughly 0.3-0.5% of GDP, a temporary positive that does not alter the structural spending trajectory the market is monitoring.",
@@ -14510,9 +15009,9 @@
             }
           },
           "Current Account": {
-            "value": "-2.6% GDP",
+            "value": "-3.7% GDP",
             "tier": "structural",
-            "last_updated": "2026-01-31",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Brazil spends more internationally than it earns, running a current account deficit of 2.6% of its economy. Oil price surges are actually good news for this gap, since Brazil is a large and growing oil exporter. Higher Petrobras revenues from 0+ oil directly improve the trade balance, partially offsetting the deficit from services imports and profit remittances.",
               "moderate": "Brazil's current account deficit of 2.6% of GDP is set to narrow from the Iran-driven oil price surge: Petrobras pre-salt production at roughly 3.5 million barrels per day generates significantly more export revenue at 0+ versus 0 oil, improving the goods trade balance; agricultural export prices (soybeans, corn, beef) are also rising on global food inflation, providing a second commodity tailwind; the structural services deficit (profit remittances, travel, financial services) partially offsets these gains.",
@@ -14520,9 +15019,9 @@
             }
           },
           "Policy Rate": {
-            "value": "12%",
+            "value": "3.25%",
             "tier": "weekly",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Brazil has one of the highest interest rates in the world at 12%, making borrowing very expensive for businesses and consumers. The central bank has kept rates this high to fight stubborn inflation and prevent the real from weakening too much. This creates a difficult environment for economic growth, as companies cannot afford to invest and expand as freely as they would with lower rates.",
               "moderate": "Brazil's Selic rate at 12% reflects the BCB's tight stance in response to persistent inflation above target and BRL vulnerability; the Iran shock creates conflicting signals: positive terms-of-trade improvement from higher oil exports argues for eventual easing, but the risk-off BRL depreciation pressure and direct CPI upside from oil prices argue for holding; the BCB will almost certainly pause any nascent easing cycle until the BRL and inflation trajectories stabilise.",
@@ -14639,17 +15138,33 @@
       "_frozen_historical": {
         "GDP Growth": {
           "v": [
-            -3.49,
-            1.63,
-            1.67,
-            1.22,
-            -3.57,
-            5.1,
-            3.12,
-            3.25,
-            2.98,
-            2.59,
-            1.7
+            2.9,
+            0.2,
+            2.0,
+            4.3,
+            3.4,
+            3.0,
+            2.6,
+            2.1,
+            -2.5,
+            0.1,
+            2.8,
+            1.5,
+            1.6,
+            3.0,
+            2.7,
+            2.1,
+            2.2,
+            3.0,
+            2.1,
+            3.4,
+            -0.9,
+            5.8,
+            1.3,
+            3.4,
+            2.4,
+            2.2,
+            2.2
           ],
           "type": "bar",
           "annual": true
@@ -15283,17 +15798,33 @@
         },
         "Current Account": {
           "v": [
-            -3.52,
-            -1.7,
-            -1.22,
-            -2.81,
-            -3.41,
-            -1.64,
-            -2.36,
-            -2.15,
-            -1.24,
-            -3.03,
-            -2.6
+            -4.2,
+            -3.8,
+            -4.3,
+            -4.8,
+            -5.3,
+            -5.9,
+            -6.0,
+            -5.1,
+            -4.7,
+            -2.7,
+            -3.0,
+            -2.9,
+            -2.7,
+            -2.2,
+            -2.2,
+            -2.4,
+            -2.3,
+            -2.4,
+            -2.4,
+            -2.1,
+            -2.9,
+            -3.6,
+            -3.8,
+            -3.0,
+            -3.3,
+            -3.4,
+            -3.7
           ],
           "type": "bar",
           "annual": true
@@ -15551,17 +16082,33 @@
         },
         "Budget Deficit": {
           "v": [
-            -8.03,
-            -7.06,
-            -7.72,
-            -6.79,
-            -5.31,
-            -12.44,
-            -4.54,
-            -4.47,
-            -6.87,
-            -5.69,
-            -0.8
+            2.4,
+            1.3,
+            -1.5,
+            -3.4,
+            -3.5,
+            -2.6,
+            -1.9,
+            -1.2,
+            -3.2,
+            -9.8,
+            -8.7,
+            -8.5,
+            -6.8,
+            -4.1,
+            -2.8,
+            -2.4,
+            -3.1,
+            -3.4,
+            -3.8,
+            -4.6,
+            -14.9,
+            -12.4,
+            -5.4,
+            -6.3,
+            -6.4,
+            -6.5,
+            -6.9
           ],
           "type": "bar",
           "annual": true
@@ -15672,9 +16219,9 @@
       "metrics": {
         "macro": {
           "GDP Growth": {
-            "value": "+0.9%",
+            "value": "+2.2%",
             "tier": "structural",
-            "last_updated": "2026-03-10",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Russia's economy is officially growing at around 1%, kept afloat by massive military spending, energy export revenues, and government contracts for wartime production. The Iran conflict is pushing oil prices higher, which is good for Russian revenues, but the underlying economy is deeply distorted by war costs, sanctions, and a severe shortage of civilian workers. Historical chart data for this metric is unavailable due to data limitations after 2022 sanctions.",
               "moderate": "Russia's 1% GDP growth reflects a wartime economy where defence spending (officially 6-7% of GDP, likely higher including classified items) is the primary demand driver; higher oil prices from the Iran conflict push Urals revenues above the fiscal breakeven of roughly 0-80 per barrel, providing National Wealth Fund relief; but the civilian economy faces structural deterioration from labour mobilisation, technology import restrictions, and capital flight that official GDP figures obscure.",
@@ -15682,9 +16229,9 @@
             }
           },
           "Inflation (CPI)": {
-            "value": "4.7%",
+            "value": "2.3%",
             "tier": "weekly",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Russian inflation is running at 4.7%, above the central bank's 4% target, driven by the government's huge military spending programme, shortages of imported goods due to sanctions, and pressure on the rouble. The Iran conflict adds uncertainty in both directions: higher oil revenues could support the rouble and reduce import costs, while global risk-off could weaken it and push prices higher.",
               "moderate": "Russia's CPI at 4.7% represents the official figure, but inflation experienced by ordinary Russians is widely believed to be significantly higher, as sanctioned product categories disappear from the basket and price controls suppress measured prices in some sectors; the Iran oil shock is net ambiguous for Russian inflation: higher oil revenue is rouble-positive (reducing import costs) but also adds fiscal stimulus to an already overheated wartime economy.",
@@ -15692,9 +16239,9 @@
             }
           },
           "Unemployment": {
-            "value": "2.5%",
+            "value": "4.2%",
             "tier": "weekly",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Russia's official unemployment is only 2.5%, near a record low, but this number is deeply misleading. Hundreds of thousands of workers have been drafted into the military, and many others have emigrated to avoid mobilisation. Businesses across Russia report severe labour shortages, pushing up wages and adding to inflation. Historical chart data for this metric is unavailable due to data source limitations.",
               "moderate": "Russia's 2.5% unemployment is a wartime statistical artefact: military mobilisation of roughly 600,000-800,000 civilian workers creates a forced labour supply reduction that appears in GDP as a demand stimulus (defence spending) but removes productive capacity from the civilian economy; the resulting labour shortages in construction, agriculture, logistics, and manufacturing are generating double-digit wage inflation in some sectors, complicating the CBR's inflation management. Historical chart data for this metric is unavailable due to data source limitations.",
@@ -15702,9 +16249,9 @@
             }
           },
           "Budget Deficit": {
-            "value": "-2.5% GDP",
+            "value": "-6.9% GDP",
             "tier": "structural",
-            "last_updated": "2026-01-31",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Russia is running a budget deficit of 2.5% of its economy, spending more than it collects to fund its military operations. High oil prices from the Iran conflict help fill this gap since oil and gas taxes are a major source of government income. Russia has a sovereign wealth fund (the National Wealth Fund) built up from past energy revenues that it has been drawing down to bridge the gap.",
               "moderate": "Russia's 2.5% budget deficit is directly sensitive to Urals crude prices: the fiscal breakeven is estimated at 0-80 per barrel, and current price levels above that reduce the pace of National Wealth Fund drawdown; military spending estimated at 6-7% of GDP officially (with classified additional items) creates a structural deficit that requires either sustained high oil prices or NWF depletion to fund; the Iran windfall provides temporary relief but does not alter the long-run fiscal sustainability calculation.",
@@ -15712,9 +16259,9 @@
             }
           },
           "Current Account": {
-            "value": "+2% GDP",
+            "value": "-3.7% GDP",
             "tier": "structural",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Russia earns more from selling its oil, gas, and commodities abroad than it spends on imports, generating a current account surplus of 2% of its economy. China and India have become the main buyers of Russian oil at discounted prices since Western sanctions began. The Iran conflict is pushing oil prices higher, which means more revenue flowing into Russia, though the shadow tanker fleet that carries much of this oil faces increasing scrutiny.",
               "moderate": "Russia's current account surplus of 2% of GDP is underpinned by continued energy exports to China and India via the shadow fleet; higher oil prices from the Iran shock improve the export revenue line, but the Urals-Brent discount (historically 0-20 per barrel for sanctions-circumvention costs) means Russia captures less than the headline Brent gain; simultaneously, the Iran conflict creates risk for shadow fleet operations as US naval presence in the Gulf intensifies secondary sanction enforcement.",
@@ -15722,9 +16269,9 @@
             }
           },
           "Policy Rate": {
-            "value": "12%",
+            "value": "3.25%",
             "tier": "weekly",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-13",
             "story": {
               "beginner": "Russia's central bank has set its key interest rate at 12%, which is very high by international standards. The goal is to control inflation caused by massive military spending and to keep the rouble from weakening further. High interest rates are painful for Russian businesses, but the government has created separate subsidised lending channels for defence-related companies so they are not constrained by the high rate.",
               "moderate": "Russia's 12% policy rate reflects the CBR's attempt to control above-target inflation and support the rouble in a wartime economy where the normal fiscal-monetary relationship is inverted: government spending is expansionary and inflationary while the CBR tries to offset this with tight monetary policy; the effectiveness is limited because defence-sector borrowers access subsidised state credit rather than market rates, meaning the high policy rate primarily constrains the civilian economy while leaving the primary source of inflation (military spending) untouched.",
@@ -15841,16 +16388,33 @@
       "_frozen_historical": {
         "GDP Growth": {
           "v": [
-            -2.7,
-            5.6,
-            -1.2,
-            3.6,
-            4.1,
+            2.9,
+            0.2,
+            2.0,
+            4.3,
+            3.4,
+            3.0,
+            2.6,
+            2.1,
+            -2.5,
+            0.1,
+            2.8,
+            1.5,
+            1.6,
+            3.0,
+            2.7,
+            2.1,
+            2.2,
+            3.0,
+            2.1,
+            3.4,
+            -0.9,
+            5.8,
             1.3,
-            0.8,
-            0.9,
-            0.9,
-            0.9
+            3.4,
+            2.4,
+            2.2,
+            2.2
           ],
           "annual": true,
           "type": "bar"
@@ -16341,17 +16905,33 @@
         },
         "Current Account": {
           "v": [
-            4.97,
-            1.92,
-            2.04,
-            6.98,
-            3.88,
-            2.37,
-            6.83,
-            10.37,
-            2.38,
-            2.91,
-            2.0
+            -4.2,
+            -3.8,
+            -4.3,
+            -4.8,
+            -5.3,
+            -5.9,
+            -6.0,
+            -5.1,
+            -4.7,
+            -2.7,
+            -3.0,
+            -2.9,
+            -2.7,
+            -2.2,
+            -2.2,
+            -2.4,
+            -2.3,
+            -2.4,
+            -2.4,
+            -2.1,
+            -2.9,
+            -3.6,
+            -3.8,
+            -3.0,
+            -3.3,
+            -3.4,
+            -3.7
           ],
           "type": "bar",
           "annual": true
@@ -16406,17 +16986,33 @@
         },
         "Budget Deficit": {
           "v": [
-            -0.92,
-            -2.27,
-            -2.23,
-            -1.55,
-            3.0,
-            2.25,
-            -1.76,
-            1.22,
-            1.46,
-            3.32,
-            -2.5
+            2.4,
+            1.3,
+            -1.5,
+            -3.4,
+            -3.5,
+            -2.6,
+            -1.9,
+            -1.2,
+            -3.2,
+            -9.8,
+            -8.7,
+            -8.5,
+            -6.8,
+            -4.1,
+            -2.8,
+            -2.4,
+            -3.1,
+            -3.4,
+            -3.8,
+            -4.6,
+            -14.9,
+            -12.4,
+            -5.4,
+            -6.3,
+            -6.4,
+            -6.5,
+            -6.9
           ],
           "type": "bar",
           "annual": true

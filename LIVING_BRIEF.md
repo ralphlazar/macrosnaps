@@ -1,5 +1,5 @@
 # MacroSnaps - Living Brief
-Last updated: March 13, 2026 (build.py now auto-pushes to GitHub Pages after every successful commit; manual git push step removed from daily ritual)
+Last updated: March 13, 2026 (Google Sheet country data tables completed for all 12 countries as a separate research exercise; ZAF, BRA, RUS tables built and documented today; not yet integrated into data.json)
 
 ---
 
@@ -574,6 +574,41 @@ The tooltip order is: metric name, country + value, story, chart, explanation/bl
 
 ---
 
+### Google Sheet country data build (separate exercise, March 13, 2026)
+
+This was a standalone research session, distinct from the main pipeline. The goal was to build clean, sourced, audited data tables for all 12 countries covering the 6 macro metrics from 2000 to 2026F, ready to paste into the Google Sheet tab per country.
+
+**Status: complete for all 12 countries.**
+
+| Country | Completed | Notes |
+|---|---|---|
+| USA | March 13 (earlier session) | BLS, BEA, OMB sources; Q4-over-Q4 GDP |
+| CAN | March 13 (earlier session) | IMF WEO throughout; BoC overnight rate |
+| GBR | March 13 (earlier session) | IMF WEO; BoE base rate; ONS sources noted |
+| JPN | March 13 (earlier session) | IMF WEO; BoJ uncollateralised call rate; VAT flag 2014 |
+| DEU | March 13 (earlier session) | IMF WEO; ECB MRO; Hartz IV and Schwarze Null flags |
+| FRA | March 13 (earlier session) | IMF WEO; ECB MRO; bouclier tarifaire flag |
+| ITA | March 13 (earlier session) | IMF WEO; ECB MRO; Superbonus 110% flag |
+| CHN | March 13 (earlier session) | IMF WEO; PBoC LPR splice at 2019; major data quality flags |
+| IND | March 13 (earlier session) | IMF WEO; RBI repo rate; PLFS/WPI-CPI/CSO methodology breaks |
+| ZAF | March 13 | IMF WEO; SARB repo rate; rand crisis and narrow vs expanded unemployment flags |
+| BRA | March 13 | IMF WEO; BCB Selic rate (confirmed 15.00% at Dec 2025 COPOM); PME/PNADC unemployment break |
+| RUS | March 13 | IMF WEO; CBR key rate (confirmed 16.00% at Dec 19, 2025; cut to 15.50% Feb 13, 2026); refinancing/key rate splice at 2013; post-2022 data reliability flag |
+
+**Source methodology (standard for all countries unless noted in table above):**
+- GDP Growth: Annual real % change, calendar year average (IMF WEO)
+- Inflation: Annual average CPI, all-items (IMF WEO)
+- Unemployment: Annual average, ILO harmonized rate (IMF WEO)
+- Budget Deficit: General government net lending/borrowing % GDP; positive = surplus (IMF WEO)
+- Current Account: Current account balance % GDP (IMF WEO)
+- Policy Rate: Respective central bank official rate at year-end
+
+**Next step:** Paste each table into the corresponding tab in the Google Sheet. Once pasted and verified, the data will flow into data.json via `sync_sheet.py` as normal. The Google Sheet currently only holds 2026F forecast values; these tables would extend it to hold the full 2000-2026F historical series. Decision needed on whether to extend the sheet schema or handle pre-2026 history separately.
+
+**Not yet done:** AUS is not a MacroSnaps country. All 12 G7+BRICS countries are now covered.
+
+---
+
 ### Vulnerabilities and mitigations
 
 | Vulnerability | Status | Mitigation |
@@ -705,13 +740,19 @@ Key settings at the top of the script:
 
 2. ~~**Grey out 4 data-void metrics in the UI.**~~ Resolved March 12, 2026. On inspection, `fetch_market_data.py` is supplying real values for these metrics for most countries. No greying-out needed. The brief note was stale.
 
+2. ~~**Build Google Sheet country data tables (all 12 countries).**~~ Done March 13, 2026 as a separate exercise. Tab-separated tables covering GDP Growth, Inflation, Unemployment, Budget Deficit, Current Account, Policy Rate from 2000-2026F. All sourced from IMF WEO + central bank policy rates. Full methodology notes and data quality flags documented per country. See "Google Sheet country data build" section above.
+
+2. **Paste country tables into Google Sheet.** The 12 data tables built on March 13 need to be pasted into the corresponding country tabs. Schema decision needed first: the current sheet only holds 2026F single values per metric. Extending to full 2000-2026F series may require either a schema redesign or a separate reference tab structure. This is a pre-integration decision - do not paste until the approach is settled.
+
+2. **GDP Growth stories audit.** CAN, FRA, ITA, BRA confirmed mismatches between story text and current values. Run a targeted stories session for these four countries (upload LIVING_BRIEF.md + data.json, use Part 1B prompt).
+
 3. ~~**Build `update_stories.py`.**~~ Done March 11, 2026. Script diffs data.json against last git commit, applies per-metric thresholds, calls Claude API (claude-sonnet-4-20250514), and writes all three story levels back into data.json. Also rewrites stories for data-void metrics if their values are ever populated.
 
 4. ~~**Update `refetch_historical.py` to output Current Account as % of GDP natively.**~~ Done March 12, 2026. Uses World Bank nominal GDP series via FRED. No manual re-conversion needed after any future refetch run.
 
 5. ~~**Extend historical data to 10 years.**~~ Done March 12, 2026. All monthly series now return 120 points, annual series return 10 years. Commodity `_frozen_historical` added for all 9 commodities (114 points each via Yahoo Finance continuous futures). BRA 10Y/Yield Curve now resolved. Permanent gaps documented above.
 
-5. **Investigate IND and ZAF GDP Growth historical anomalies.** Some historical points appear to reflect nominal USD growth rather than real % growth (IND 2025: 16.77, ZAF 2025: 6.76). Verify the FRED series and correct if needed. This is a tooling session. (Note: now showing 10 annual points per country - worth re-checking whether anomalies persist.)
+5. **Investigate IND and ZAF GDP Growth historical anomalies.** Some historical points appear to reflect nominal USD growth rather than real % growth (IND 2025: 16.77, ZAF 2025: 6.76). Verify the FRED series and correct if needed. This is a tooling session. The March 13 country data build produced clean WEO-sourced GDP Growth arrays for both countries - use those as the reference to identify which FRED series is wrong.
 
 6. **Build `print_snapshot.py`.** Uses Playwright to open the built HTML file, loops through each country, expands it, and captures a full-height PDF. Output is a dated file in `snapshots/` (e.g. `macrosnaps-2026-03-09.pdf`). Audience level hardcoded to expert. For personal use only, not a public feature. Requires `pip3 install playwright` and `playwright install chromium`.
 

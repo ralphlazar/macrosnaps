@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
-sync_sheet.py - MacroSnaps Google Sheet sync
-Fetches your published CSV, maps values to data.json, writes in place.
+sync_sheet.py - MacroSnaps Macro-stats sheet sync
+Reads 12 country tabs from the Macro-stats Google Sheet.
+Writes 2026F card values and annual historical arrays into data.json.
 
 Usage:
     python3 sync_sheet.py              # preview changes only
@@ -19,179 +20,191 @@ from datetime import date
 
 # ── config ────────────────────────────────────────────────────────────────────
 
-SHEET_URL = (
-    "https://docs.google.com/spreadsheets/d/e/"
-    "2PACX-1vQgdfggKVeP6013PCtc3_L_hJGLE--b9jiGaU-yMHwKK_iO5o4lPg4dxHvq1hlO3uTb-q_KuiBB8Swj"
-    "/pub?output=csv"
-)
-
+SHEET_ID = "1f9Hwisg00iYk9WNoEqlkBztQlOm3Cl-WcfXQBYHqbLo"
 DATA_FILE = "data.json"
-
 TODAY = date.today().isoformat()
 
-# Maps sheet column name -> (data.json section, metric name, value formatter)
-# formatter: a function that takes the raw string and returns the display string
-COLUMN_MAP = {
-    "GDP_Growth_2026":     ("macro", "GDP Growth",       lambda v: f"+{v}%" if not v.startswith("-") else f"{v}%"),
-    "Inflation_2026":      ("macro", "Inflation (CPI)",  lambda v: f"{v}%"),
-    "Budget_Deficit_2026": ("macro", "Budget Deficit",   lambda v: f"{v}% GDP"),
-    "Current_Account_2026":("macro", "Current Account",  lambda v: f"+{v}% GDP" if not v.startswith("-") else f"{v}% GDP"),
-    "Unemployment_2026":   ("macro", "Unemployment",     lambda v: f"{v}%"),
-    "Policy_Rate_2026":    ("macro", "Policy Rate",      lambda v: f"{v}%"),
+COUNTRIES = [
+    "USA", "CAN", "GBR", "DEU", "FRA", "ITA",
+    "JPN", "CHN", "IND", "BRA", "RUS", "ZAF",
+]
+
+# Sheet row name to data.json display key
+METRIC_MAP = {
+    "GDP_Growth":      "GDP Growth",
+    "Inflation":       "Inflation (CPI)",
+    "Unemployment":    "Unemployment",
+    "Budget_Deficit":  "Budget Deficit",
+    "Current_Account": "Current Account",
+    "Policy_Rate":     "Policy Rate",
 }
 
-# ── helpers ───────────────────────────────────────────────────────────────────
+# These three get _frozen_historical written (annual bar charts in tooltips)
+WRITE_HISTORICAL = {"GDP Growth", "Budget Deficit", "Current Account"}
 
-def fetch_csv():
-    req = urllib.request.Request(SHEET_URL, headers={"User-Agent": "Mozilla/5.0"})
-    with urllib.request.urlopen(req, timeout=15) as resp:
-        return resp.read().decode("utf-8")
+# ── fetch and parse ───────────────────────────────────────────────────────────
 
-def parse_csv(raw):
-    reader = csv.DictReader(io.StringIO(raw))
-    rows = {}
-    for row in reader:
-        country = row.get("Country", "").strip().upper()
-        if country:
-            rows[country] = {k.strip(): v.strip() for k, v in row.items()}
-    return rows
-
-def clean_value(v):
-    """Strip % signs, spaces, commas so we can compare numerically."""
-    return v.replace("%", "").replace(",", "").strip()
-
-def values_differ(old, new):
-    """True if the values are meaningfully different (ignore trailing zeros etc.)."""
+def fetch_tab(sheet_id, tab_name):
+    url = (
+        f"https://docs.google.com/spreadsheets/d/{sheet_id}"
+        f"/export?format=csv&sheet={tab_name}"
+    )
     try:
-        return abs(float(clean_value(old)) - float(clean_value(new))) > 0.001
-    except ValueError:
-        return old.strip() != new.strip()
+        with urllib.request.urlopen(url) as resp:
+            return resp.read().decode("utf-8")
+    except Exception as e:
+        print(f"  ERROR fetching tab {tab_name}: {e}")
+        return None
 
-# ── main ──────────────────────────────────────────────────────────────────────
+
+def parse_tab(csv_text):
+    """
+    Parse a country tab CSV.
+    Returns (years_list, metrics_dict) where metrics_dict is:
+        { "GDP_Growth": { "2000": 2.9, "2001": 0.2, ..., "2026F": 2.2 }, ... }
+    """
+    reader = csv.reader(io.StringIO(csv_text))
+    rows = [r for r in reader if any(c.strip() for c in r)]
+    if not rows:
+        return None, None
+
+    # Row 0: [country_code, "2000", "2001", ..., "2026F"]
+    header = rows[0]
+    years = [y.strip() for y in header[1:]]
+
+    metrics = {}
+    for row in rows[1:]:
+        if not row or not row[0].strip():
+            continue
+        metric_name = row[0].strip()
+        values = {}
+        for i, year in enumerate(years):
+            raw = row[i + 1].strip() if (i + 1) < len(row) else ""
+            if raw in ("", "n/a", "N/A", "-"):
+                values[year] = None
+            else:
+                try:
+                    values[year] = float(raw)
+                except ValueError:
+                    values[year] = None
+        metrics[metric_name] = values
+
+    return years, metrics
+
+# ── formatting ────────────────────────────────────────────────────────────────
+
+def fmt_num(val):
+    """Format a number to up to 2 decimal places, stripping trailing zeros."""
+    s = f"{val:.2f}".rstrip("0").rstrip(".")
+    return s
+
+
+def fmt_card_value(display_key, val):
+    """Format a float as the card display string matching existing data.json conventions."""
+    if val is None:
+        return None
+    if display_key == "GDP Growth":
+        sign = "+" if val >= 0 else ""
+        return f"{sign}{fmt_num(val)}%"
+    elif display_key in ("Budget Deficit", "Current Account"):
+        sign = "+" if val > 0 else ""
+        return f"{sign}{fmt_num(val)}% GDP"
+    else:
+        # Inflation (CPI), Unemployment, Policy Rate
+        return f"{fmt_num(val)}%"
+
+# ── main ─────────────────────────────────────────────────────────────────────
 
 def main():
-    apply = "--apply" in sys.argv
+    apply_mode = "--apply" in sys.argv
+    print(f"\nSync mode: {'APPLY' if apply_mode else 'PREVIEW'}\n")
 
-    print("MacroSnaps sheet sync")
-    print(f"Mode: {'APPLY - will write data.json' if apply else 'PREVIEW - no files written'}")
-    print(f"Date: {TODAY}")
-    print()
-
-    # Fetch sheet
-    print("Fetching sheet...", end=" ", flush=True)
-    try:
-        raw = fetch_csv()
-        print("OK")
-    except Exception as e:
-        print(f"FAILED\nError: {e}")
-        sys.exit(1)
-
-    sheet_rows = parse_csv(raw)
-    if not sheet_rows:
-        print("ERROR: No rows parsed from sheet. Check the URL is published as CSV.")
-        sys.exit(1)
-
-    print(f"Sheet rows found: {list(sheet_rows.keys())}")
-    print()
-
-    # Load data.json
-    with open(DATA_FILE, encoding="utf-8") as f:
+    with open(DATA_FILE) as f:
         data = json.load(f)
 
-    changes = []
-    skipped = []
-    missing_countries = []
-    missing_columns = []
+    changes = []  # list of (code, field_label, old_value, new_value)
 
-    for country_code, row in sheet_rows.items():
-        if country_code not in data["countries"]:
-            missing_countries.append(country_code)
+    for code in COUNTRIES:
+        print(f"Fetching {code}...")
+        csv_text = fetch_tab(SHEET_ID, code)
+        if csv_text is None:
+            print(f"  Skipping {code} (fetch failed)\n")
             continue
 
-        for col, (section, metric_name, fmt) in COLUMN_MAP.items():
-            if col not in row:
-                if col not in missing_columns:
-                    missing_columns.append(col)
+        years, sheet_metrics = parse_tab(csv_text)
+        if sheet_metrics is None:
+            print(f"  Skipping {code} (parse failed)\n")
+            continue
+
+        if code not in data["countries"]:
+            print(f"  Skipping {code} (not found in data.json)\n")
+            continue
+
+        country = data["countries"][code]
+
+        for sheet_key, display_key in METRIC_MAP.items():
+            if sheet_key not in sheet_metrics:
+                print(f"  WARNING: {sheet_key} not found in {code} tab")
                 continue
 
-            raw_val = row[col].strip()
-            if not raw_val:
-                skipped.append(f"{country_code} / {metric_name}: blank in sheet, skipping")
-                continue
+            metric_data = sheet_metrics[sheet_key]
 
-            try:
-                new_display = fmt(raw_val)
-            except Exception as e:
-                skipped.append(f"{country_code} / {metric_name}: format error ({e}), skipping")
-                continue
+            # ── 1. card value (2026F) ─────────────────────────────────────
+            val_2026 = metric_data.get("2026F")
+            formatted = fmt_card_value(display_key, val_2026)
 
-            metric = data["countries"][country_code]["metrics"][section].get(metric_name)
-            if metric is None:
-                skipped.append(f"{country_code} / {metric_name}: not found in data.json, skipping")
-                continue
+            macro_block = country.get("metrics", {}).get("macro", {})
+            if display_key in macro_block:
+                old_val = macro_block[display_key].get("value")
+                if old_val != formatted:
+                    changes.append((
+                        code,
+                        f"card value: {display_key}",
+                        old_val,
+                        formatted,
+                    ))
+                    if apply_mode:
+                        macro_block[display_key]["value"] = formatted
+                        macro_block[display_key]["last_updated"] = TODAY
 
-            old_display = metric["value"]
+            # ── 2. _frozen_historical (annual chart metrics only) ─────────
+            if display_key in WRITE_HISTORICAL:
+                v_array = [metric_data.get(year) for year in years]
 
-            if values_differ(old_display, new_display):
-                changes.append({
-                    "country": country_code,
-                    "metric": metric_name,
-                    "old": old_display,
-                    "new": new_display,
-                    "metric_ref": metric,
-                })
-            # else: no change, silently skip
+                fh = country.get("_frozen_historical", {})
+                old_v = fh.get(display_key, {}).get("v", [])
 
-    # Print report
-    if missing_countries:
-        print(f"WARNING: Sheet has countries not in data.json: {missing_countries}")
+                if old_v != v_array:
+                    changes.append((
+                        code,
+                        f"historical: {display_key}",
+                        f"{len(old_v)} points",
+                        f"{len(v_array)} points (2000-2026F)",
+                    ))
+                    if apply_mode:
+                        if display_key not in fh:
+                            fh[display_key] = {"type": "bar", "annual": True}
+                        fh[display_key]["v"] = v_array
+                        country["_frozen_historical"] = fh
 
-    if missing_columns:
-        print(f"NOTE: Columns not found in sheet (will be skipped): {missing_columns}")
-        print()
-
-    if skipped:
-        print("Skipped (no action needed):")
-        for s in skipped:
-            print(f"  - {s}")
-        print()
-
+    # ── summary ───────────────────────────────────────────────────────────────
+    print(f"\n{'─' * 60}")
     if not changes:
-        print("No changes detected. data.json is already up to date with the sheet.")
-        return
+        print("No changes detected.")
+    else:
+        print(f"{len(changes)} change(s) detected:\n")
+        for code, field, old, new in changes:
+            print(f"  {code}  |  {field}")
+            print(f"    {old}  ->  {new}")
 
-    print(f"{'Changes to apply' if apply else 'Changes detected'} ({len(changes)}):")
+    if apply_mode and changes:
+        with open(DATA_FILE, "w") as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
+        print(f"\ndata.json updated ({TODAY}). Run build.py to rebuild the site.")
+    elif not apply_mode and changes:
+        print("\nRun with --apply to write these changes.")
+
     print()
-    col_w = max(len(c["country"]) + len(c["metric"]) + 3 for c in changes)
-    for c in changes:
-        label = f"{c['country']} / {c['metric']}"
-        print(f"  {label:<{col_w}}  {c['old']:<14} ->  {c['new']}")
-
-    print()
-
-    if not apply:
-        print("Run with --apply to write these changes to data.json.")
-        print("Then run: python3 build.py && git add -A && git commit -m \"Sheet sync $(date +%Y-%m-%d)\"")
-        return
-
-    # Apply changes
-    for c in changes:
-        c["metric_ref"]["value"] = c["new"]
-        c["metric_ref"]["last_updated"] = TODAY
-
-    # Update _meta
-    data["_meta"]["generated"] = TODAY
-    data["_meta"]["built_at"] = f"{TODAY} (sheet sync)"
-
-    with open(DATA_FILE, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2, ensure_ascii=False)
-        f.write("\n")
-
-    print(f"data.json updated with {len(changes)} change(s).")
-    print()
-    print("Next steps:")
-    print(f'  python3 build.py && git add -A && git commit -m "Sheet sync {TODAY}"')
-    print(f'  git push origin master')
 
 
 if __name__ == "__main__":
