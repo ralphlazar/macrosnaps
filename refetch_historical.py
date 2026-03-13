@@ -5,11 +5,16 @@ MacroSnaps - re-fetch historical chart data for all 12 countries.
 
 Sources
   FRED  (api.stlouisfed.org) for macro metrics and rates
-  Yahoo Finance (yfinance) for stock indices
+  Yahoo Finance (yfinance) for stock indices and commodities
 
 Writes updated _frozen_historical into data.json in place.
 Skips any metric that already has sufficient data, unless FORCE_OVERWRITE = True.
 Never touches _frozen_weatherGrid or any other field.
+
+NOTE: GDP Growth, Budget Deficit, and Current Account are intentionally NOT
+fetched here. Those three annual metrics are owned by sync_sheet.py, which
+writes 27-point arrays (2000-2026F) from the Macro-stats Google Sheet.
+Running this script will not touch those arrays.
 
 # Fetchable via FRED daily series (USA only):
 #   Equity Vol  -> VIXCLS (CBOE VIX)
@@ -22,12 +27,10 @@ Never touches _frozen_weatherGrid or any other field.
 # Permanently unfetchable for all non-USA countries:
 #   Equity Vol, Corp Spread
 #
-# Russia-specific gaps (sanctions-era data loss):
-#   Yield Curve  -> sparse FRED data post-2022; only 42 points; blanked to avoid
-#                   misleading chart artefact where displayed dates shift by view
-#   Stock Market -> Yahoo Finance MOEX data ends Jun 2023; left as-is (real data,
-#                   truncation is visually obvious)
-Budget Deficit is fetched from the World Bank API (no key required).
+# Country-specific voids:
+#   CHN Policy Rate -> PBOC rate not on FRED (non-OECD); blanked
+#   RUS Yield Curve -> sparse FRED data post-2022; only 42 points; blanked
+#   RUS USD/RUB     -> DEXRUUS discontinued post-sanctions; blanked
 
 After a successful run:
   python3 build.py && git add -A && git commit -m "Restore _frozen_historical"
@@ -50,7 +53,6 @@ import logging
 import os
 import sys
 import time
-from collections import defaultdict
 from pathlib import Path
 
 import requests
@@ -174,24 +176,6 @@ STOCK_TICKERS = {
 }
 
 
-# World Bank nominal GDP series via FRED (current USD, annual).
-# Used to convert Current Account from millions USD to % of GDP.
-# Pattern: MKTGDP + ISO-2 + A646NWDB
-NOMINAL_GDP_SERIES = {
-    "USA": "MKTGDPUSA646NWDB",
-    "CAN": "MKTGDPCAA646NWDB",
-    "GBR": "MKTGDPGBA646NWDB",
-    "JPN": "MKTGDPJPA646NWDB",
-    "DEU": "MKTGDPDEA646NWDB",
-    "FRA": "MKTGDPFRA646NWDB",
-    "ITA": "MKTGDPITA646NWDB",
-    "CHN": "MKTGDPCNA646NWDB",
-    "IND": "MKTGDPINA646NWDB",
-    "ZAF": "MKTGDPZAA646NWDB",
-    "BRA": "MKTGDPBRA646NWDB",
-    "RUS": "MKTGDPRUA646NWDB",
-}
-
 # Yahoo Finance tickers for commodity continuous futures contracts.
 # Written to each commodity item as _frozen_historical (120 monthly closes).
 COMMODITY_TICKERS = {
@@ -244,84 +228,72 @@ KNOWN_NON_FX_METRICS = {
 
 FRED_METRICS = {
     "USA": {
-        "GDP Growth":      {"id": "A191RL1A225NBEA", "transform": "annual_10",   "type": "bar",  "annual": True},
         "Inflation (CPI)": {"id": "CPALTT01USM659N", "transform": "monthly_120", "type": "line"},
         "Unemployment":    {"id": "UNRATE",           "transform": "monthly_120", "type": "line"},
         "Policy Rate":     {"id": "FEDFUNDS",         "transform": "monthly_120", "type": "line", "stepped": True},
         "10Y Bond Yield":  {"id": "GS10",             "transform": "monthly_120", "type": "line"},
     },
     "CAN": {
-        "GDP Growth":      {"id": "NGDPRSAXDCCAQ",   "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
         "Inflation (CPI)": {"id": "CPALTT01CAM659N", "transform": "monthly_120", "type": "line"},
         "Unemployment":    {"id": "LRUNTTTTCAM156S", "transform": "monthly_120", "type": "line"},
         "Policy Rate":     {"id": "IRSTCI01CAM156N", "transform": "monthly_120", "type": "line", "stepped": True},
         "10Y Bond Yield":  {"id": "IRLTLT01CAM156N", "transform": "monthly_120", "type": "line"},
     },
     "GBR": {
-        "GDP Growth":      {"id": "NGDPRSAXDCGBQ",   "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
         "Inflation (CPI)": {"id": "CPALTT01GBM659N", "transform": "monthly_120", "type": "line"},
         "Unemployment":    {"id": "LRHUTTTTGBM156S", "transform": "monthly_120", "type": "line"},
         "Policy Rate":     {"id": "IRSTCI01GBM156N",  "transform": "monthly_120", "type": "line", "stepped": True},
         "10Y Bond Yield":  {"id": "IRLTLT01GBM156N", "transform": "monthly_120", "type": "line"},
     },
     "JPN": {
-        "GDP Growth":      {"id": "NGDPRSAXDCJPQ",   "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
         "Inflation (CPI)": {"id": "CPALTT01JPM659N", "transform": "monthly_120", "type": "line"},
         "Unemployment":    {"id": "LRUNTTTTJPM156S", "transform": "monthly_120", "type": "line"},
         "Policy Rate":     {"id": "IRSTCI01JPM156N", "transform": "monthly_120", "type": "line", "stepped": True},
         "10Y Bond Yield":  {"id": "IRLTLT01JPM156N", "transform": "monthly_120", "type": "line"},
     },
     "DEU": {
-        "GDP Growth":      {"id": "CLVMNACSCAB1GQDE", "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
         "Inflation (CPI)": {"id": "CPALTT01DEM659N",  "transform": "monthly_120", "type": "line"},
         "Unemployment":    {"id": "LRHUTTTTDEM156S",  "transform": "monthly_120", "type": "line"},
         "Policy Rate":     {"id": "IRSTCI01EZM156N",   "transform": "monthly_120", "type": "line", "stepped": True},
         "10Y Bond Yield":  {"id": "IRLTLT01DEM156N",  "transform": "monthly_120", "type": "line"},
     },
     "FRA": {
-        "GDP Growth":      {"id": "CLVMNACSCAB1GQFR", "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
         "Inflation (CPI)": {"id": "CPALTT01FRM659N",  "transform": "monthly_120", "type": "line"},
         "Unemployment":    {"id": "LRHUTTTTFRM156S",  "transform": "monthly_120", "type": "line"},
         "Policy Rate":     {"id": "IRSTCI01EZM156N",   "transform": "monthly_120", "type": "line", "stepped": True},
         "10Y Bond Yield":  {"id": "IRLTLT01FRM156N",  "transform": "monthly_120", "type": "line"},
     },
     "ITA": {
-        "GDP Growth":      {"id": "CLVMNACSCAB1GQIT", "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
         "Inflation (CPI)": {"id": "CPALTT01ITM659N",  "transform": "monthly_120", "type": "line"},
         "Unemployment":    {"id": "LRHUTTTTITM156S",  "transform": "monthly_120", "type": "line"},
         "Policy Rate":     {"id": "IRSTCI01EZM156N",   "transform": "monthly_120", "type": "line", "stepped": True},
         "10Y Bond Yield":  {"id": "IRLTLT01ITM156N",  "transform": "monthly_120", "type": "line"},
     },
     "CHN": {
-        "GDP Growth":      {"id": "CHNGDPNQDSMEI",    "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
         "Inflation (CPI)": {"id": "CPALTT01CNM659N",  "transform": "monthly_120", "type": "line"},
         "Unemployment":    {"id": "LRUNTTTTCNM156S",  "transform": "monthly_120", "type": "line"},
         "Policy Rate":     {"id": "IRSTCI01CNM156N",  "transform": "monthly_120", "type": "line", "stepped": True},
         "10Y Bond Yield":  {"id": "INTGSTCNM193N",    "transform": "monthly_120", "type": "line"},
     },
     "IND": {
-        "GDP Growth":      {"id": "INDGDPNQDSMEI",    "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
         "Inflation (CPI)": {"id": "CPALTT01INM659N",  "transform": "monthly_120", "type": "line"},
         "Unemployment":    {"id": "LRUNTTTTINM156S",  "transform": "monthly_120", "type": "line"},
         "Policy Rate":     {"id": "IRSTCI01INM156N",  "transform": "monthly_120", "type": "line", "stepped": True},
         "10Y Bond Yield":  {"id": "INTGSTINM193N",    "transform": "monthly_120", "type": "line"},
     },
     "ZAF": {
-        "GDP Growth":      {"id": "ZAFGDPNQDSMEI",    "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
         "Inflation (CPI)": {"id": "CPALTT01ZAM659N",  "transform": "monthly_120", "type": "line"},
         "Unemployment":    {"id": "LRUNTTTTMZAM156S", "transform": "monthly_120", "type": "line"},
         "Policy Rate":     {"id": "IRSTCI01ZAM156N",  "transform": "monthly_120", "type": "line", "stepped": True},
         "10Y Bond Yield":  {"id": "IRLTLT01ZAM156N",  "transform": "monthly_120", "type": "line"},
     },
     "BRA": {
-        "GDP Growth":      {"id": "NGDPRSAXDCBRQ",   "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
         "Inflation (CPI)": {"id": "CPALTT01BRM659N", "transform": "monthly_120", "type": "line"},
         "Unemployment":    {"id": "LRUNTTTTBRM156S", "transform": "monthly_120", "type": "line"},
         "Policy Rate":     {"id": "IRSTCI01BRM156N", "transform": "monthly_120", "type": "line", "stepped": True},
         "10Y Bond Yield":  {"id": "INTGSTBRM193N",   "transform": "monthly_120", "type": "line"},
     },
     "RUS": {
-        "GDP Growth":      {"id": "NGDPRSAXDCRUQ",   "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
         "Inflation (CPI)": {"id": "CPALTT01RUM659N", "transform": "monthly_120", "type": "line"},
         "Unemployment":    {"id": "LRUNTTTTRUM156S", "transform": "monthly_120", "type": "line"},
         "Policy Rate":     {"id": "IRSTCI01RUM156N", "transform": "monthly_120", "type": "line", "stepped": True},
@@ -431,90 +403,9 @@ def oecd_fetch_unemployment(country_code):
 
 
 
-# ---------------------------------------------------------------------------
-# WORLD BANK FETCH (Budget Deficit - no key required)
-# ---------------------------------------------------------------------------
-
-def fetch_wb_budget_deficit(country_code):
-    """
-    Fetch general government net lending/borrowing (% GDP) from World Bank API.
-    Indicator: GC.NLD.TOTL.GD.ZS (negative = deficit).
-    Returns last 10 annual values sorted oldest first, or None on error.
-    No API key required.
-    """
-    url = f"https://api.worldbank.org/v2/country/{country_code}/indicator/GC.NLD.TOTL.GD.ZS"
-    try:
-        r = requests.get(url, params={"format": "json", "mrv": 10, "per_page": 10}, timeout=20)
-        time.sleep(REQUEST_DELAY)
-        if r.status_code != 200:
-            log.warning(f"    World Bank budget deficit {country_code}: HTTP {r.status_code}")
-            return None
-        data = r.json()
-        if not isinstance(data, list) or len(data) < 2 or not data[1]:
-            log.warning(f"    World Bank budget deficit {country_code}: unexpected response")
-            return None
-        pts = sorted(
-            [(x["date"], r2(x["value"])) for x in data[1] if x is not None and x["value"] is not None],
-            key=lambda x: x[0]
-        )
-        vals = [v for _, v in pts]
-        return vals[-10:] if vals else None
-    except Exception as exc:
-        log.warning(f"    World Bank budget deficit {country_code}: {exc}")
-        return None
-
-
-# World Bank ISO-2 codes mapped from MacroSnaps ISO-3 codes.
-WB_ISO2 = {
-    "USA": "US", "CAN": "CA", "GBR": "GB", "JPN": "JP",
-    "DEU": "DE", "FRA": "FR", "ITA": "IT", "CHN": "CN",
-    "IND": "IN", "ZAF": "ZA", "BRA": "BR", "RUS": "RU",
-}
-
-
-def fetch_wb_current_account(country_code):
-    """
-    Fetch current account balance (% of GDP) from World Bank API.
-    Indicator: BN.CAB.XOKA.GD.ZS (negative = deficit).
-    Returns last 10 annual values sorted oldest first, or None on error.
-    No API key required.
-    """
-    iso2 = WB_ISO2.get(country_code, country_code)
-    url = f"https://api.worldbank.org/v2/country/{iso2}/indicator/BN.CAB.XOKA.GD.ZS"
-    try:
-        r = requests.get(url, params={"format": "json", "mrv": 10, "per_page": 10}, timeout=20)
-        time.sleep(REQUEST_DELAY)
-        if r.status_code != 200:
-            log.warning(f"    World Bank current account {country_code}: HTTP {r.status_code}")
-            return None
-        data = r.json()
-        if not isinstance(data, list) or len(data) < 2 or not data[1]:
-            log.warning(f"    World Bank current account {country_code}: unexpected response")
-            return None
-        pts = sorted(
-            [(x["date"], r2(x["value"])) for x in data[1] if x is not None and x["value"] is not None],
-            key=lambda x: x[0]
-        )
-        vals = [v for _, v in pts]
-        return vals[-10:] if vals else None
-    except Exception as exc:
-        log.warning(f"    World Bank current account {country_code}: {exc}")
-        return None
-
-
 def r2(v):
     """Round to 2 decimal places."""
     return round(v, 2)
-
-
-def parse_forecast_value(s):
-    """
-    Extract a numeric float from a forecast string like '+2.2%' or '-7.5% GDP'.
-    Returns a rounded float, or None if no number is found.
-    """
-    import re
-    m = re.search(r'[-+]?\d+\.?\d*', str(s))
-    return r2(float(m.group())) if m else None
 
 
 def apply_monthly_120(pairs):
@@ -525,78 +416,10 @@ def apply_monthly_120(pairs):
     return vals[-120:] if len(vals) >= 1 else None
 
 
-def apply_annual_10(pairs):
-    """Return the last 10 values from a directly annual series."""
-    if not pairs:
-        return None
-    vals = [r2(v) for _, v in pairs]
-    return vals[-10:] if len(vals) >= 1 else None
-
-
-def apply_qtr_sum_pct_gdp(pairs, gdp_by_year):
-    """
-    Sum quarterly CA values to annual totals (millions USD), then divide by
-    nominal GDP (also converted to millions USD) to get % of GDP.
-    Returns the last 10 matched years. Skips years where GDP is missing
-    (handles World Bank data lag gracefully).
-    """
-    if not pairs:
-        return None
-    by_year = defaultdict(list)
-    for date_str, val in pairs:
-        by_year[date_str[:4]].append(val)
-    complete = {y: vs for y, vs in by_year.items() if len(vs) >= 4}
-    if not complete:
-        return None
-    results = []
-    for year in sorted(complete.keys()):
-        gdp_usd = gdp_by_year.get(year)
-        if not gdp_usd or gdp_usd == 0:
-            continue  # World Bank lag: skip years with no GDP data
-        ca_millions = sum(complete[year])
-        gdp_millions = gdp_usd / 1_000_000
-        pct = r2(ca_millions / gdp_millions * 100)
-        results.append(pct)
-    return results[-10:] if results else None
-
-
-def apply_gdp_qtr_10(pairs):
-    """
-    Compute annual real GDP growth from a quarterly level series.
-    Averages the 4 quarters within each year to get an annual level,
-    then computes year-over-year percentage change.
-    Returns the last 10 complete-year growth values.
-    """
-    if not pairs or len(pairs) < 8:
-        return None
-    by_year = defaultdict(list)
-    for date_str, val in pairs:
-        by_year[date_str[:4]].append(val)
-    # Only use years with all 4 quarters
-    complete = {y: vs for y, vs in by_year.items() if len(vs) >= 4}
-    if len(complete) < 2:
-        return None
-    sorted_years = sorted(complete.keys())
-    annual_avg = {y: sum(complete[y]) / len(complete[y]) for y in sorted_years}
-    growth = []
-    for i in range(1, len(sorted_years)):
-        y_prev = sorted_years[i - 1]
-        y_curr = sorted_years[i]
-        base = annual_avg[y_prev]
-        if base and base != 0:
-            pct = (annual_avg[y_curr] - base) / abs(base) * 100
-            growth.append(r2(pct))
-    return growth[-10:] if growth else None
-
-
 def apply_transform(pairs, transform):
     """Dispatch to the correct transform function."""
     if transform == "monthly_120":
         return apply_monthly_120(pairs)
-    if transform == "annual_10":
-        return apply_annual_10(pairs)
-    if transform == "gdp_qtr_10":
-        return apply_gdp_qtr_10(pairs)
     log.warning(f"    Unknown transform '{transform}'")
     return None
 
@@ -642,30 +465,6 @@ def fetch_stock_monthly(ticker):
     except Exception as exc:
         log.warning(f"    Yahoo {ticker}: {exc}")
         return None
-
-
-# ---------------------------------------------------------------------------
-# NOMINAL GDP (World Bank via FRED, for Current Account % GDP conversion)
-# ---------------------------------------------------------------------------
-
-def fetch_nominal_gdp(code):
-    """
-    Fetch annual nominal GDP in current USD from the World Bank series on FRED.
-    Returns a {year_str: gdp_usd_float} dict, or empty dict on failure.
-    Series are annual and typically lag by 1-2 years (World Bank publication delay).
-    """
-    series_id = NOMINAL_GDP_SERIES.get(code)
-    if not series_id:
-        log.warning(f"  No nominal GDP series configured for {code}")
-        return {}
-    pairs = fred_fetch(series_id, limit=20)
-    if not pairs:
-        log.warning(f"  Nominal GDP fetch failed for {code} [{series_id}]")
-        return {}
-    gdp_by_year = {date_str[:4]: val for date_str, val in pairs}
-    log.info(f"  Nominal GDP [{series_id}]: {len(gdp_by_year)} years "
-             f"({min(gdp_by_year)} to {max(gdp_by_year)})")
-    return gdp_by_year
 
 
 # ---------------------------------------------------------------------------
@@ -973,54 +772,10 @@ def process_country(code, country_data):
             log.info(f"  BLANK   {metric} (data quality void for {code})")
         frozen[metric] = {"v": []}
 
-    # Budget Deficit (World Bank API - no key required)
-    if not is_populated(frozen, "Budget Deficit") or FORCE_OVERWRITE:
-        log.info(f"  Fetch   Budget Deficit  [World Bank GC.NLD.TOTL.GD.ZS]")
-        vals = fetch_wb_budget_deficit(code)
-        if vals:
-            frozen["Budget Deficit"] = {"v": vals, "type": "bar", "annual": True}
-            log.info(f"    OK ({len(vals)} points)")
-            results["fetched"].append("Budget Deficit")
-        else:
-            results["failed"].append("Budget Deficit")
-    else:
-        log.info(f"  SKIP    Budget Deficit (already populated)")
-        results["skipped"].append("Budget Deficit")
-
-    # Current Account % GDP (World Bank API - no key required)
-    if not is_populated(frozen, "Current Account") or FORCE_OVERWRITE:
-        log.info(f"  Fetch   Current Account  [World Bank BN.CAB.XOKA.GD.ZS]")
-        vals = fetch_wb_current_account(code)
-        if vals:
-            frozen["Current Account"] = {"v": vals, "type": "bar", "annual": True}
-            log.info(f"    OK ({len(vals)} points)")
-            results["fetched"].append("Current Account")
-        else:
-            results["failed"].append("Current Account")
-    else:
-        log.info(f"  SKIP    Current Account (already populated)")
-        results["skipped"].append("Current Account")
-
     # Rename any wrongly stored "macro" FX entry to the correct label
     if "macro" in frozen and fx_label and fx_label != "macro":
         log.info(f"  Rename  'macro' -> '{fx_label}' in frozen historical")
         frozen[fx_label] = frozen.pop("macro")
-
-    # Append 2026F forecast as the final point for all annual metrics.
-    # The 'value' field in data.json holds the current year-end forecast.
-    # Convention: the last point in every annual array is always the 2026F.
-    ANNUAL_METRICS = ["GDP Growth", "Budget Deficit", "Current Account"]
-    macro = country_data.get("metrics", {}).get("macro", {})
-    for metric in ANNUAL_METRICS:
-        if metric not in frozen or not frozen[metric].get("v"):
-            continue
-        val_str = macro.get(metric, {}).get("value", "")
-        forecast = parse_forecast_value(val_str)
-        if forecast is None:
-            log.warning(f"  2026F append: could not parse value for {metric} ({val_str!r})")
-            continue
-        frozen[metric]["v"].append(forecast)
-        log.info(f"  2026F append: {metric} += {forecast}")
 
     return results
 

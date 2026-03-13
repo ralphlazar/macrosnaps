@@ -1,5 +1,5 @@
 # MacroSnaps - Living Brief
-Last updated: March 13, 2026 (tooling session: refetch_historical.py - ECB Policy Rate series fixed for DEU/FRA/ITA (ECBDFR daily replaced with IRSTCI01EZM156N monthly); CHN Policy Rate blanked via COUNTRY_VOID_METRICS; RUS USD/RUB blanked via COUNTRY_VOID_METRICS with COUNTRY_VOID blanking moved to after FX fetch so void always wins; OECD unemployment startTime extended to 2008-01; unfetchable series table updated)
+Last updated: March 13, 2026 (tooling session: refetch_historical.py - ECB Policy Rate fixed for DEU/FRA/ITA; CHN Policy Rate and RUS USD/RUB blanked; OECD unemployment start extended to 2008; GDP Growth, Budget Deficit, Current Account removed entirely from refetch_historical.py - all three annual metrics now exclusively owned by sync_sheet.py; World Bank fetch functions, NOMINAL_GDP_SERIES, and dead transforms removed)
 
 ---
 
@@ -501,7 +501,7 @@ python3 build.py && git add -A && git commit -m "Daily market update $(date +%Y-
 
 **Macro metric charts - annual series (GDP Growth, Budget Deficit, Current Account):**
 
-All three annual chart metrics now have 27-point `_frozen_historical` arrays covering 2000-2026F, sourced from the Macro-stats Google Sheet (IMF WEO methodology). This replaces the previous 11-point arrays (2015-2026F from FRED). The arrays are written and maintained by `sync_sheet.py` and should not be edited by hand. When forecasts change in Macro-stats, running `sync_sheet.py --apply` updates both the card value and the full array.
+All three annual chart metrics have 27-point `_frozen_historical` arrays covering 2000-2026F, sourced from the Macro-stats Google Sheet (IMF WEO methodology). These are written and maintained exclusively by `sync_sheet.py`. `refetch_historical.py` does not touch these three metrics. When forecasts change in Macro-stats, running `sync_sheet.py --apply` updates both the card value and the full array.
 
 **Macro metric charts - monthly series (Inflation, Unemployment, Policy Rate):**
 
