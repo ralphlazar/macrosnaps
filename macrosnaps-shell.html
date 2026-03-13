@@ -5493,7 +5493,11 @@ fetch('data.json')
     // Reconstruct countries array
     countries = Object.values(_countries).map(c => ({
       code: c.code, name: c.name, flag: c.flag,
-      lat: c.lat, lon: c.lon, weather: c.weather,
+      lat: c.lat, lon: c.lon, weather: (function(){
+        const gdp = parseLiveVal(((c.metrics&&c.metrics.macro&&c.metrics.macro['GDP Growth'])||{}).value);
+        if(gdp===null) return c.weather;
+        return gdp>=3 ? '☀️' : gdp>=0 ? '☁️' : '⛈️';
+      })(),
       metrics: _flattenMetrics(c.metrics)
     }));
 
