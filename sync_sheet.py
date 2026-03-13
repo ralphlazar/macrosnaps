@@ -47,7 +47,7 @@ WRITE_HISTORICAL = {"GDP Growth", "Budget Deficit", "Current Account"}
 def fetch_tab(sheet_id, tab_name):
     url = (
         f"https://docs.google.com/spreadsheets/d/{sheet_id}"
-        f"/export?format=csv&sheet={tab_name}"
+        f"/gviz/tq?tqx=out:csv&sheet={tab_name}"
     )
     try:
         with urllib.request.urlopen(url) as resp:
@@ -62,15 +62,43 @@ def parse_tab(csv_text):
     Parse a country tab CSV.
     Returns (years_list, metrics_dict) where metrics_dict is:
         { "GDP_Growth": { "2000": 2.9, "2001": 0.2, ..., "2026F": 2.2 }, ... }
+
+    The gviz CSV export does not include the "2026F" header label even though
+    the data exists in the next column. We detect it dynamically by checking
+    whether the column immediately after the last labelled year has data.
+    Trailing empty padding columns are ignored.
     """
     reader = csv.reader(io.StringIO(csv_text))
     rows = [r for r in reader if any(c.strip() for c in r)]
     if not rows:
         return None, None
 
-    # Row 0: [country_code, "2000", "2001", ..., "2026F"]
     header = rows[0]
-    years = [y.strip() for y in header[1:]]
+
+    # Collect only non-empty year columns from the header
+    year_indices = []
+    years = []
+    for i, cell in enumerate(header[1:], start=1):
+        if cell.strip():
+            year_indices.append(i)
+            years.append(cell.strip())
+
+    # Check if the column immediately after the last labelled year has data
+    # in any metric row - this is the 2026F forecast column
+    if years:
+        next_idx = year_indices[-1] + 1
+        has_forecast = any(
+            len(row) > next_idx and
+            row[next_idx].strip() not in ("", "n/a", "N/A", "-")
+            for row in rows[1:]
+        )
+        if has_forecast:
+            try:
+                forecast_label = f"{int(years[-1]) + 1}F"
+            except ValueError:
+                forecast_label = "2026F"
+            year_indices.append(next_idx)
+            years.append(forecast_label)
 
     metrics = {}
     for row in rows[1:]:
@@ -78,8 +106,8 @@ def parse_tab(csv_text):
             continue
         metric_name = row[0].strip()
         values = {}
-        for i, year in enumerate(years):
-            raw = row[i + 1].strip() if (i + 1) < len(row) else ""
+        for idx, year in zip(year_indices, years):
+            raw = row[idx].strip() if idx < len(row) else ""
             if raw in ("", "n/a", "N/A", "-"):
                 values[year] = None
             else:
