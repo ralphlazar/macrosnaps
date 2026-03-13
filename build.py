@@ -485,3 +485,8 @@ else:
             print(f"  ⚠  git commit failed: {result.stderr.strip()}")
     else:
         print(f"  ✓ git commit: {commit_msg}")
+        result = subprocess.run(["git", "push", "origin", "master"], capture_output=True, text=True)
+        if result.returncode != 0:
+            print(f"  ⚠  git push failed: {result.stderr.strip()}")
+        else:
+            print("  ✓ git push: origin master")

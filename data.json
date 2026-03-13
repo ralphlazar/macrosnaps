@@ -8,7 +8,7 @@
       "weekly": "Update weekly or on release — CPI, unemployment, policy rate",
       "structural": "Update quarterly or on major revision — GDP, deficits, current account, stories, fxRegime"
     },
-    "built_at": "2026-03-13 10:28"
+    "built_at": "2026-03-13 11:02"
   },
   "countries": {
     "USA": {
@@ -25,9 +25,9 @@
             "tier": "structural",
             "last_updated": "2026-03-10",
             "story": {
-              "beginner": "The US economy grew 2.8% in 2025, helped by consumer spending and a strong stock market. Growth is expected to slow in 2026 as tariffs raise costs and oil prices surge, squeezing household budgets and reducing business confidence.",
-              "moderate": "US GDP grew 2.8% in 2025, above the G7 average, supported by OBBBA fiscal stimulus and resilient consumer spending. For 2026, Goldman forecasts 2.6% (above consensus), but the Iran oil shock introduces a stagflationary headwind that could shave 0.3-0.5pp if Brent sustains above $90 through Q2.",
-              "expert": "US real GDP is tracking 2.6% for 2026 on Goldman's base case, outperforming consensus by 0.6pp on the OBBBA fiscal impulse and reduced tariff drag post-SCOTUS IEEPA ruling. The Iran oil shock introduces a supply-side stagflationary channel: a $20/barrel increase in crude historically reduces US real GDP by 0.2-0.4pp over 4-6 quarters via the consumption and investment channels, with the labour market impact lagging the inflation effect by two to three quarters."
+              "beginner": "The US economy grew 2.2% in 2025, solid but slower than the 2.8% pace of 2024. Household spending held up well, though high borrowing costs and rising import prices from tariffs began to bite. Growth is expected to stay around 2.2% in 2026, with tariffs and elevated oil prices acting as headwinds against any meaningful pickup.",
+              "moderate": "US GDP grew 2.2% in 2025, slowing from 2.8% in 2024 and broadly in line with consensus. OBBBA fiscal stimulus offset some drag from tariff pass-through, but consumer spending growth moderated. For 2026, Goldman forecasts 2.6% (above the 2.2% consensus), though the Iran oil shock introduces a stagflationary headwind that could shave 0.3-0.5pp if Brent sustains above $90 through Q2.",
+              "expert": "US real GDP grew 2.2% in 2025 (annual average), decelerating from 2.8% in 2024 as tariff drag and the Fed's restrictive stance weighed on investment and consumption. For 2026, Goldman's base case sits at 2.6%, outperforming consensus by 0.4pp on the OBBBA fiscal impulse and reduced tariff uncertainty post-SCOTUS IEEPA ruling. The Iran oil shock introduces a supply-side stagflationary channel: a $20/barrel increase in crude historically reduces US real GDP by 0.2-0.4pp over 4-6 quarters, with the labour market impact lagging the inflation effect by two to three quarters."
             }
           },
           "Inflation (CPI)": {
@@ -199,6 +199,7 @@
             2.5,
             2.9,
             2.8,
+            2.2,
             2.2
           ],
           "type": "bar",

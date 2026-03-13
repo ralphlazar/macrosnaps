@@ -1,5 +1,5 @@
 # MacroSnaps - Living Brief
-Last updated: March 13, 2026 (bug fix session - commodity stories [object Object] fixed in update_commodity_stories.py; cite tags stripped from global stories in update_headlines.py; UK English rule added to all story writing style guides)
+Last updated: March 13, 2026 (build.py now auto-pushes to GitHub Pages after every successful commit; manual git push step removed from daily ritual)
 
 ---
 
@@ -285,20 +285,13 @@ python3 update_headlines.py --apply stories_approved_YYYY-MM-DD.json
 
 **Step 8. Build the output file**
 
-This validates `data.json`, assembles `macrosnaps-globe.html`, and saves a dated backup.
+This validates `data.json`, assembles `macrosnaps-globe.html`, saves a dated backup, and automatically commits and pushes to GitHub Pages.
 ```bash
 python3 build.py
 ```
-The build must say `BUILD SUCCESSFUL` before you continue. If it fails, do not push.
+The build must say `BUILD SUCCESSFUL`. A successful build prints `✓ git commit` and `✓ git push` at the end. If either line shows a warning, push manually.
 
-**Step 9. Commit and push**
-
-```bash
-git add -A && git commit -m "Daily update $(date +%Y-%m-%d)"
-git push origin master
-```
-
-**Step 10. Verify the live site**
+**Step 9. Verify the live site**
 
 Wait about 60 seconds, then open:
 ```
@@ -307,7 +300,7 @@ https://ralphlazar.github.io/macrosnaps/macrosnaps-globe.html
 
 **Quick-reference one-liner (after sheet sync is done):**
 ```bash
-cd ~/Downloads/macrosnaps && python3 fetch_market_data.py && python3 update_stories.py && python3 update_commodity_stories.py && python3 update_headlines.py && python3 build.py && git add -A && git commit -m "Daily update $(date +%Y-%m-%d)" && git push origin master
+cd ~/Downloads/macrosnaps && python3 fetch_market_data.py && python3 update_stories.py && python3 update_commodity_stories.py && python3 update_headlines.py && python3 build.py
 ```
 
 ---
