@@ -1,5 +1,5 @@
 # MacroSnaps - Living Brief
-Last updated: March 13, 2026 (Google Sheet country data tables completed for all 12 countries as a separate research exercise; ZAF, BRA, RUS tables built and documented today; not yet integrated into data.json)
+Last updated: March 13, 2026 (Macro-stats sheet integrated as single source of truth for all 6 annual macro metrics; sync_sheet.py fully rewritten; old MacroSnaps_Forecasts_2026 sheet retired)
 
 ---
 
@@ -215,7 +215,7 @@ All files live in `~/Downloads/macrosnaps/`.
 
 **To validate only (no files written):** run `python3 build.py --validate-only`. Use this before editing `data.json`.
 
-**Never modify** `_frozen_historical` or `_frozen_weatherGrid` inside any country in `data.json` by hand. To restore or update them, run `refetch_historical.py` (see below). Exception: the 2026F forecast appending and Current Account % GDP conversion done on March 10 were deliberate one-time corrections and are now baked in.
+**Never modify** `_frozen_historical` or `_frozen_weatherGrid` inside any country in `data.json` by hand. Annual macro arrays (GDP Growth, Budget Deficit, Current Account) are maintained by `sync_sheet.py`. Monthly arrays are maintained by `refetch_historical.py`. To update annual data, edit the Macro-stats sheet and run `sync_sheet.py --apply`.
 
 ---
 
@@ -307,20 +307,30 @@ cd ~/Downloads/macrosnaps && python3 fetch_market_data.py && python3 update_stor
 
 ### What the Google Sheet controls
 
-The sheet is the single source of truth for the 6 macro metrics per country. These values are forecast-based and change infrequently. Update them in the sheet when consensus forecasts change, then run the daily ritual.
+**Macro-stats** is the single source of truth for all 6 annual macro metrics across all 12 countries. It is a separate Google Sheet from the old MacroSnaps_Forecasts_2026 sheet, which is now retired.
 
-**Important:** The `value` field for macro metrics holds the year-end forecast from the Google Sheet, not the current live reading. For example, USA Policy Rate shows 3.25% (year-end forecast) even though the Fed funds rate is currently higher. Stories should reference both the current reading and the forecast where relevant.
+**Sheet ID:** `1f9Hwisg00iYk9WNoEqlkBztQlOm3Cl-WcfXQBYHqbLo`
+**Sheet URL:** `https://docs.google.com/spreadsheets/d/1f9Hwisg00iYk9WNoEqlkBztQlOm3Cl-WcfXQBYHqbLo`
+**Access:** Anyone with the link can view (no auth required, enables unauthenticated CSV export)
 
-**Important:** When a forecast changes in the sheet, `sync_sheet.py` updates the `value` field. You must also manually update the last point in the corresponding `_frozen_historical` array to keep the chart in sync. The last point in every macro historical array is the 2026F forecast. This convention was established on March 10, 2026.
+**Layout:** 12 tabs, one per country, named by 3-letter country code (USA, CAN, GBR, etc.). Each tab has years 2000-2025 as labelled columns, plus one unlabelled column immediately after that holds the 2026F forecast. Row 1 is the year header. Rows 2-7 are GDP_Growth, Inflation, Budget_Deficit, Current_Account, Unemployment, Policy_Rate.
 
-**Sheet URL (published CSV):**
-```
-https://docs.google.com/spreadsheets/d/e/2PACX-1vQgdfggKVeP6013PCtc3_L_hJGLE--b9jiGaU-yMHwKK_iO5o4lPg4dxHvq1hlO3uTb-q_KuiBB8Swj/pub?output=csv
-```
+**What sync_sheet.py writes to data.json:**
 
-**Columns synced:** GDP_Growth_2026, Inflation_2026, Budget_Deficit_2026, Current_Account_2026, Unemployment_2026, Policy_Rate_2026.
+| Metric | Card value (2026F) | _frozen_historical written? |
+|---|---|---|
+| GDP Growth | Yes | Yes, 27 points (2000-2026F), bar chart |
+| Budget Deficit | Yes | Yes, 27 points (2000-2026F), bar chart |
+| Current Account | Yes | Yes, 27 points (2000-2026F), bar chart |
+| Inflation (CPI) | Yes | No (monthly sparkline stays) |
+| Unemployment | Yes | No (monthly sparkline stays) |
+| Policy Rate | Yes | No (monthly sparkline stays) |
 
-**What the sheet does NOT control:** Market metrics (handled by `fetch_market_data.py`) or stories (handled by `update_stories.py`). Commodity data, global stories, metricBriefs, and historical chart data are updated manually or via dedicated scripts.
+**Important:** The `value` field for macro metrics holds the 2026F year-end forecast, not the current live reading. For example, USA Policy Rate shows 3.25% (year-end forecast) even though the Fed funds rate is currently higher. Stories should reference both the current reading and the forecast where relevant.
+
+**Important:** When a forecast changes in the Macro-stats sheet, run `sync_sheet.py --apply`. It updates both the card value and the full 27-point historical array automatically. No manual array editing is needed.
+
+**What the sheet does NOT control:** Market metrics (handled by `fetch_market_data.py`), stories (handled by `update_stories.py`), commodity data, global stories, metricBriefs, or monthly/quarterly historical data.
 
 ---
 
@@ -468,6 +478,7 @@ pip3 install requests yfinance python-dotenv
 The `.env` file lives at `~/Downloads/macrosnaps/.env` and contains:
 ```
 FRED_API_KEY=your_key_here
+MACRO_STATS_SHEET_ID=1f9Hwisg00iYk9WNoEqlkBztQlOm3Cl-WcfXQBYHqbLo
 ```
 
 This file exists as of March 11, 2026.
@@ -486,48 +497,36 @@ python3 build.py && git add -A && git commit -m "Daily market update $(date +%Y-
 
 ---
 
-### Historical chart data state (March 10, 2026)
+### Historical chart data state (updated March 13, 2026)
 
-**Macro metric charts - structure as of March 10:**
+**Macro metric charts - annual series (GDP Growth, Budget Deficit, Current Account):**
 
-All macro historical arrays follow the same pattern: 6 points covering 2020-2025 actuals, plus a final 7th point which is the 2026F forecast from the Google Sheet. Current Account arrays were converted from absolute USD values to % of GDP on March 10 using IMF WEO denominators. When forecasts change in the sheet, update both the `value` field and the last point of the corresponding `_frozen_historical` array.
+All three annual chart metrics now have 27-point `_frozen_historical` arrays covering 2000-2026F, sourced from the Macro-stats Google Sheet (IMF WEO methodology). This replaces the previous 11-point arrays (2015-2026F from FRED). The arrays are written and maintained by `sync_sheet.py` and should not be edited by hand. When forecasts change in Macro-stats, running `sync_sheet.py --apply` updates both the card value and the full array.
 
-**GDP denominators used for Current Account conversion (IMF WEO, USD billions, 2020-2025):**
+**Macro metric charts - monthly series (Inflation, Unemployment, Policy Rate):**
 
-| Country | 2020 | 2021 | 2022 | 2023 | 2024 | 2025 |
-|---|---|---|---|---|---|---|
-| USA | 21,060 | 23,315 | 25,744 | 27,357 | 29,168 | 30,000 |
-| CAN | 1,647 | 1,988 | 2,140 | 2,140 | 2,178 | 2,150 |
-| GBR | 2,698 | 3,131 | 3,071 | 3,082 | 3,341 | 3,450 |
-| JPN | 5,040 | 4,940 | 4,232 | 4,213 | 4,109 | 4,390 |
-| DEU | 3,888 | 4,257 | 4,073 | 4,455 | 4,526 | 4,600 |
-| FRA | 2,703 | 2,957 | 2,786 | 3,031 | 3,130 | 3,200 |
-| ITA | 1,889 | 2,107 | 2,010 | 2,254 | 2,300 | 2,380 |
-| CHN | 14,688 | 17,734 | 17,963 | 17,795 | 18,530 | 19,500 |
-| IND | 2,671 | 3,150 | 3,386 | 3,730 | 3,943 | 4,270 |
-| ZAF | 335 | 420 | 405 | 378 | 373 | 390 |
-| BRA | 1,449 | 1,649 | 1,921 | 2,174 | 2,330 | 2,100 |
-| RUS | 1,483 | 1,829 | 2,241 | 1,914 | 2,100 | 2,100 |
+These three metrics keep their existing monthly `_frozen_historical` arrays (120 points, 10 years) from `refetch_historical.py`. The Macro-stats 2026F value controls the card display only. The annual data from Macro-stats is written to `data.json` but not yet displayed in tooltips (monthly sparklines remain the chart).
 
 **Per-country chart population (`_frozen_historical`):**
 
 | Country | Charts populated | Notes |
 |---|---|---|
-| USA | 14/14 | Yield Curve fixed 2026-03-09; CA converted to % GDP 2026-03-10 |
-| CAN | 14/14 | CA converted to % GDP 2026-03-10; Budget Deficit array empty |
-| GBR | 14/14 | CA converted to % GDP 2026-03-10; Budget Deficit array empty |
-| JPN | 14/14 | Yield Curve fixed 2026-03-09; CA converted to % GDP 2026-03-10 |
-| DEU | 14/14 | Yield Curve fixed 2026-03-09; CA converted to % GDP 2026-03-10; Budget Deficit array empty |
-| FRA | 14/14 | Yield Curve fixed 2026-03-09; CA converted to % GDP 2026-03-10; Budget Deficit array empty |
-| ITA | 14/14 | CA converted to % GDP 2026-03-10 |
-| CHN | 11/14 | Unemployment, 10Y Bond Yield, Yield Curve: no free source; Budget Deficit array empty; CA converted to % GDP 2026-03-10 |
-| IND | 11/14 | Unemployment, 10Y Bond Yield, Yield Curve: no free source; Budget Deficit array empty; CA converted to % GDP 2026-03-10 |
-| ZAF | 12/14 | Unemployment: no monthly source; Yield Curve populated; Budget Deficit array empty; CA converted to % GDP 2026-03-10 |
-| BRA | 12/14 | 10Y Bond Yield, Yield Curve: no free source; Budget Deficit array empty; CA converted to % GDP 2026-03-10 |
-| RUS | 10/14 | GDP Growth, Unemployment, USD/RUB discontinued post-2022 sanctions; Budget Deficit array empty; CA converted to % GDP 2026-03-10 |
+| USA | 14/14 | Annual charts now 27 points (2000-2026F) from Macro-stats |
+| CAN | 14/14 | Annual charts now 27 points (2000-2026F) from Macro-stats |
+| GBR | 14/14 | Annual charts now 27 points (2000-2026F) from Macro-stats |
+| JPN | 14/14 | Annual charts now 27 points (2000-2026F) from Macro-stats |
+| DEU | 14/14 | Annual charts now 27 points (2000-2026F) from Macro-stats |
+| FRA | 14/14 | Annual charts now 27 points (2000-2026F) from Macro-stats |
+| ITA | 14/14 | Annual charts now 27 points (2000-2026F) from Macro-stats |
+| CHN | 11/14 | Unemployment, 10Y Bond Yield, Yield Curve: no free source |
+| IND | 11/14 | Unemployment, 10Y Bond Yield, Yield Curve: no free source |
+| ZAF | 12/14 | Unemployment: no monthly source |
+| BRA | 12/14 | 10Y Bond Yield, Yield Curve: no free source |
+| RUS | 10/14 | GDP Growth, Unemployment, USD/RUB discontinued post-2022 sanctions |
 
 **Known data quality flags:**
-- IND and ZAF GDP Growth historical arrays show anomalously large values in some years (IND 2025: 16.77, ZAF 2025: 6.76), likely reflecting nominal USD growth from FRED rather than real % growth. The 2026F forecast has been appended as the correct final point. The historical points are a pre-existing issue to investigate separately.
+- IND and ZAF GDP Growth historical arrays previously showed anomalous values from FRED (nominal USD rather than real % growth). These are now replaced by clean IMF WEO data from Macro-stats.
+- Budget Deficit arrays were previously empty for most countries. Now populated 2000-2026F from Macro-stats for all 12 countries.
 - Budget Deficit arrays are empty for 9 countries (CAN, GBR, DEU, FRA, CHN, IND, ZAF, BRA, RUS). A single forecast point with no history would be meaningless as a chart, so these were left empty intentionally.
 
 ---
@@ -574,38 +573,34 @@ The tooltip order is: metric name, country + value, story, chart, explanation/bl
 
 ---
 
-### Google Sheet country data build (separate exercise, March 13, 2026)
+### Google Sheet country data build (complete and integrated, March 13, 2026)
 
-This was a standalone research session, distinct from the main pipeline. The goal was to build clean, sourced, audited data tables for all 12 countries covering the 6 macro metrics from 2000 to 2026F, ready to paste into the Google Sheet tab per country.
+This was a standalone research session that built clean, IMF WEO-sourced data tables for all 12 countries covering the 6 macro metrics from 2000 to 2026F. The tables were pasted into the Macro-stats Google Sheet and are now the live data source for all annual macro metrics via `sync_sheet.py`.
 
-**Status: complete for all 12 countries.**
+**Status: complete and integrated for all 12 countries.**
 
 | Country | Completed | Notes |
 |---|---|---|
-| USA | March 13 (earlier session) | BLS, BEA, OMB sources; Q4-over-Q4 GDP |
-| CAN | March 13 (earlier session) | IMF WEO throughout; BoC overnight rate |
-| GBR | March 13 (earlier session) | IMF WEO; BoE base rate; ONS sources noted |
-| JPN | March 13 (earlier session) | IMF WEO; BoJ uncollateralised call rate; VAT flag 2014 |
-| DEU | March 13 (earlier session) | IMF WEO; ECB MRO; Hartz IV and Schwarze Null flags |
-| FRA | March 13 (earlier session) | IMF WEO; ECB MRO; bouclier tarifaire flag |
-| ITA | March 13 (earlier session) | IMF WEO; ECB MRO; Superbonus 110% flag |
-| CHN | March 13 (earlier session) | IMF WEO; PBoC LPR splice at 2019; major data quality flags |
-| IND | March 13 (earlier session) | IMF WEO; RBI repo rate; PLFS/WPI-CPI/CSO methodology breaks |
+| USA | March 13 | BLS, BEA, OMB sources; Q4-over-Q4 GDP |
+| CAN | March 13 | IMF WEO throughout; BoC overnight rate |
+| GBR | March 13 | IMF WEO; BoE base rate; ONS sources noted |
+| JPN | March 13 | IMF WEO; BoJ uncollateralised call rate; VAT flag 2014 |
+| DEU | March 13 | IMF WEO; ECB MRO; Hartz IV and Schwarze Null flags |
+| FRA | March 13 | IMF WEO; ECB MRO; bouclier tarifaire flag |
+| ITA | March 13 | IMF WEO; ECB MRO; Superbonus 110% flag |
+| CHN | March 13 | IMF WEO; PBoC LPR splice at 2019; major data quality flags |
+| IND | March 13 | IMF WEO; RBI repo rate; PLFS/WPI-CPI/CSO methodology breaks |
 | ZAF | March 13 | IMF WEO; SARB repo rate; rand crisis and narrow vs expanded unemployment flags |
 | BRA | March 13 | IMF WEO; BCB Selic rate (confirmed 15.00% at Dec 2025 COPOM); PME/PNADC unemployment break |
 | RUS | March 13 | IMF WEO; CBR key rate (confirmed 16.00% at Dec 19, 2025; cut to 15.50% Feb 13, 2026); refinancing/key rate splice at 2013; post-2022 data reliability flag |
 
-**Source methodology (standard for all countries unless noted in table above):**
+**Source methodology (standard for all countries unless noted above):**
 - GDP Growth: Annual real % change, calendar year average (IMF WEO)
 - Inflation: Annual average CPI, all-items (IMF WEO)
 - Unemployment: Annual average, ILO harmonized rate (IMF WEO)
 - Budget Deficit: General government net lending/borrowing % GDP; positive = surplus (IMF WEO)
 - Current Account: Current account balance % GDP (IMF WEO)
 - Policy Rate: Respective central bank official rate at year-end
-
-**Next step:** Paste each table into the corresponding tab in the Google Sheet. Once pasted and verified, the data will flow into data.json via `sync_sheet.py` as normal. The Google Sheet currently only holds 2026F forecast values; these tables would extend it to hold the full 2000-2026F historical series. Decision needed on whether to extend the sheet schema or handle pre-2026 history separately.
-
-**Not yet done:** AUS is not a MacroSnaps country. All 12 G7+BRICS countries are now covered.
 
 ---
 
@@ -627,7 +622,7 @@ This was a standalone research session, distinct from the main pipeline. The goa
 | Value/story drift between daily market updates and story rewrites | Resolved | `update_stories.py` built March 11, 2026. Run after each data fetch to keep stories current. |
 | Current Account displayed in absolute dollars | Fixed 2026-03-10 | All CA historical arrays converted to % of GDP using IMF WEO denominators. 2026F appended as final point. |
 | Macro chart 2026F point missing | Fixed 2026-03-10 | 2026F forecast appended as final point to all macro historical arrays with existing data. |
-| refetch_historical.py overwrites CA % GDP conversion | Known risk | Running refetch restores raw dollar values. Re-run CA conversion after any refetch. Fix properly when updating refetch_historical.py (see Pending work). |
+| refetch_historical.py overwrites CA % GDP conversion | Resolved 2026-03-13 | CA historical is now sourced from Macro-stats (IMF WEO) via sync_sheet.py, not from refetch_historical.py. Running refetch no longer affects CA arrays. |
 | 10Y country chart range button appeared broken | Fixed 2026-03-12 | monthlyLabels in shell-frozen had 180 entries (Jan 2011–Dec 2025) but globe.html had been built when it was only 60 entries, so slice(-120) and slice(-60) returned identical arrays. Fixed by extending monthlyLabels to 192 entries (Jan 2011–Dec 2026). Whenever historical data is refetched into future months, extend monthlyLabels to match. |
 | Commodity tooltips showed only annual price bars | Fixed 2026-03-13 | showCommodityMTT was wired to item.annual (16 annual points) and ignored item._frozen_historical.v (114 monthly points). Fixed by adding renderCommodityMonthlyChart and wiring the tooltip to use _frozen_historical with 1Y/2Y/5Y/All range buttons. Annual chart retained as fallback. |
 | No .env file | Fixed 2026-03-11 | .env created at ~/Downloads/macrosnaps/.env with FRED_API_KEY. |
@@ -742,7 +737,7 @@ Key settings at the top of the script:
 
 2. ~~**Build Google Sheet country data tables (all 12 countries).**~~ Done March 13, 2026 as a separate exercise. Tab-separated tables covering GDP Growth, Inflation, Unemployment, Budget Deficit, Current Account, Policy Rate from 2000-2026F. All sourced from IMF WEO + central bank policy rates. Full methodology notes and data quality flags documented per country. See "Google Sheet country data build" section above.
 
-2. **Paste country tables into Google Sheet.** The 12 data tables built on March 13 need to be pasted into the corresponding country tabs. Schema decision needed first: the current sheet only holds 2026F single values per metric. Extending to full 2000-2026F series may require either a schema redesign or a separate reference tab structure. This is a pre-integration decision - do not paste until the approach is settled.
+2. ~~**Paste country tables into Google Sheet and integrate Macro-stats as data source.**~~ Done March 13, 2026. All 12 country tabs populated in Macro-stats sheet. `sync_sheet.py` fully rewritten to read from Macro-stats, writing 27-point annual historical arrays (2000-2026F) and per-country 2026F card values. Old `MacroSnaps_Forecasts_2026` sheet retired. `MACRO_STATS_SHEET_ID` added to `.env`.
 
 2. **GDP Growth stories audit.** CAN, FRA, ITA, BRA confirmed mismatches between story text and current values. Run a targeted stories session for these four countries (upload LIVING_BRIEF.md + data.json, use Part 1B prompt).
 
@@ -752,7 +747,7 @@ Key settings at the top of the script:
 
 5. ~~**Extend historical data to 10 years.**~~ Done March 12, 2026. All monthly series now return 120 points, annual series return 10 years. Commodity `_frozen_historical` added for all 9 commodities (114 points each via Yahoo Finance continuous futures). BRA 10Y/Yield Curve now resolved. Permanent gaps documented above.
 
-5. **Investigate IND and ZAF GDP Growth historical anomalies.** Some historical points appear to reflect nominal USD growth rather than real % growth (IND 2025: 16.77, ZAF 2025: 6.76). Verify the FRED series and correct if needed. This is a tooling session. The March 13 country data build produced clean WEO-sourced GDP Growth arrays for both countries - use those as the reference to identify which FRED series is wrong.
+5. ~~**Investigate IND and ZAF GDP Growth historical anomalies.**~~ Resolved March 13, 2026. IND and ZAF GDP Growth arrays now sourced from Macro-stats (IMF WEO real % growth), replacing the anomalous FRED nominal USD series. Clean data confirmed in preview output.
 
 6. **Build `print_snapshot.py`.** Uses Playwright to open the built HTML file, loops through each country, expands it, and captures a full-height PDF. Output is a dated file in `snapshots/` (e.g. `macrosnaps-2026-03-09.pdf`). Audience level hardcoded to expert. For personal use only, not a public feature. Requires `pip3 install playwright` and `playwright install chromium`.
 
