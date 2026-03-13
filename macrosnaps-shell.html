@@ -4234,38 +4234,6 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column}
       "Stock Market YTD"
     ]
   },
-  "Equity Vol": {
-    "complexity": 2,
-    "category": "equity",
-    "levels": {
-      "beginner": {
-        "bluf": "Equity volatility measures how wildly a stock market is swinging day to day. Higher volatility means bigger daily moves (both up and down) and more uncertainty. It is often called the market's \"fear gauge.\"",
-        "full": "<div class=\"ge-section\"><div class=\"ge-head\">Why it matters</div><div class=\"ge-body\">When volatility is low, investors are calm and confident. When it spikes, it means something unexpected has happened or markets are nervous about what is coming. High volatility makes it harder for businesses to plan, for investors to make decisions, and for ordinary people with retirement accounts to sleep well at night.</div></div><div class=\"ge-section\"><div class=\"ge-head\">Intuition</div><div class=\"ge-body\">Imagine the sea. Low volatility is calm water - smooth sailing. High volatility is a storm - big waves, hard to navigate. The stock market works the same way. In calm periods, stocks move 0.5-1% per day. In volatile periods, they can move 3-5% per day. The VIX index measures how much storm the market expects over the next 30 days.</div></div><div class=\"ge-section\"><div class=\"ge-head\">Example</div><div class=\"ge-body\">The VIX (US stock market volatility index) typically sits around 15-20. During the COVID crash in March 2020, it spiked to 82 - markets were in full panic. A VIX reading above 30 generally means serious fear. Below 15 signals complacency.</div></div><div class=\"ge-section\"><div class=\"ge-head\">What to watch</div><div class=\"ge-body\"><ul><li>VIX below 15: calm markets, possibly complacent - surprises hit harder from low-vol environments</li><li>VIX 20-30: elevated but functional - markets are pricing in some uncertainty</li><li>VIX above 30: fear regime - often coincides with rapid sell-offs</li><li>Volatility tends to spike suddenly (panic is fast) and decline slowly (confidence rebuilds gradually)</li></ul></div></div><div class=\"ge-formal\">The implied volatility of a country's benchmark equity index, derived from options prices, expressed as an annualised percentage. Higher values indicate greater expected price swings.</div>"
-      },
-      "moderate": {
-        "bluf": "Equity implied volatility, typically measured by the VIX or national equivalents, reflects options market pricing of expected future index moves. It is a mean-reverting risk premium - it overshoots in stress and undershoots in complacency, creating systematic trading opportunities.",
-        "full": "<div class=\"ge-section\"><div class=\"ge-head\">Why it matters</div><div class=\"ge-body\">Implied vol is the price of portfolio insurance. It maps directly to options premiums and sets the cost of hedging. Systematically, implied vol exceeds realised vol (the volatility risk premium) - selling vol is profitable on average but catastrophically wrong in tail events. The vol regime (low, medium, high) determines how much leverage the system can support via risk parity and Vol Targeting strategies.</div></div><div class=\"ge-section\"><div class=\"ge-head\">Intuition</div><div class=\"ge-body\">Volatility clusters - high-vol days follow high-vol days (GARCH effect). This means vol regime shifts are more important than point readings. The transition from low to high vol is typically violent (the \"vol event\") because it forces systematic deleveraging: risk parity funds, CTAs, and dealers all reduce exposure simultaneously, amplifying the move.</div></div><div class=\"ge-section\"><div class=\"ge-head\">Example</div><div class=\"ge-body\">August 2024: BOJ hiked rates, yen surged, and the Nikkei fell 12% in a day. VIX spiked from 16 to 65 intraday as yen carry trade unwinds cascaded across asset classes. The vol spike was driven not by equity fundamentals but by forced deleveraging - a textbook vol regime transition.</div></div><div class=\"ge-section\"><div class=\"ge-head\">What to watch</div><div class=\"ge-body\"><ul><li><strong>VIX term structure:</strong> backwardation (front > back) signals acute stress; contango (front < back) is normal</li><li><strong>Realised vs implied:</strong> when implied vol is well above realised, the market is overpaying for protection</li><li><strong>VVIX:</strong> the volatility of the VIX - extreme readings signal potential for chaotic moves</li><li><strong>Skew:</strong> put-call implied vol differential measures tail risk demand - steep skew means investors are paying up for crash protection</li></ul></div></div><div class=\"ge-formal\">30-day implied volatility of the benchmark equity index, derived from at-the-money options prices using the Black-Scholes framework (or model-free VIX methodology). Expressed as annualised standard deviation of returns.</div>"
-      },
-      "expert": {
-        "bluf": "Equity implied vol is the market-clearing price for gamma and convexity. The vol surface (strike x tenor) encodes the full distribution of expected returns. Key dynamics: the volatility risk premium (VRP), dealer gamma positioning, and the reflexive feedback between vol-targeting flows and realised volatility.",
-        "full": "<div class=\"ge-section\"><div class=\"ge-head\">Why it matters</div><div class=\"ge-body\">The vol regime determines the carrying capacity of leverage in the system. Sub-15 VIX enables risk parity to lever 3-4x, systematic vol selling to expand, and dealer gamma to be long (stabilising). The transition to 30+ VIX forces all of this into reverse simultaneously - creating the nonlinear crash dynamics that make vol spikes self-reinforcing. The 2018 volmageddon (XIV blow-up) demonstrated that short-vol strategies are systemically destabilising.</div></div><div class=\"ge-section\"><div class=\"ge-head\">Intuition</div><div class=\"ge-body\">The vol surface is a probability distribution. ATM vol is the centre; skew is the left tail; term structure is the time dimension. Persistent negative skew in equity options (puts cost more than calls) reflects structural demand for downside protection from pension funds and structured product hedging. This structural demand means put sellers (dealers, systematic funds) are the marginal price setters for tail risk.</div></div><div class=\"ge-section\"><div class=\"ge-head\">Example</div><div class=\"ge-body\">The VIX spike to 65 in August 2024 was amplified by 0DTE (zero-days-to-expiry) options gamma. Dealers who were short gamma from 0DTE calls found themselves needing to sell futures as the market fell, accelerating the decline. The intraday VIX spike was ~4x the move justified by the equity sell-off alone - the excess was gamma feedback. VIX normalised within a week as the mechanical flows reversed.</div></div><div class=\"ge-section\"><div class=\"ge-head\">What to watch</div><div class=\"ge-body\"><ul><li><strong>Dealer gamma exposure (GEX):</strong> positive gamma = dealers dampen moves; negative gamma = dealers amplify moves. The flip point is the critical level</li><li><strong>VRP (volatility risk premium):</strong> implied minus realised - systematically positive, mean ~3-4 vol points, but inverts in crises</li><li><strong>Variance swap vs VIX:</strong> variance swaps pay realised variance, VIX is an expectation - the basis trade between them is a core vol strategy</li><li><strong>Cross-asset vol correlation:</strong> when equity, rates, and FX vol spike simultaneously, it signals a funding/liquidity crisis, not a sector event</li></ul></div></div><div class=\"ge-formal\">Model-free implied volatility computed from a strip of OTM options prices (VIX methodology: σ² = (2/T)Σ(ΔK/K²)e^(rT)Q(K)). The vol surface encodes the risk-neutral probability distribution. Realised vol is computed as the annualised standard deviation of log returns over the lookback window.</div>"
-      }
-    },
-    "aliases": [
-      "VIX",
-      "implied volatility",
-      "equity implied vol"
-    ],
-    "relatedTerms": [
-      "volatility",
-      "implied volatility",
-      "VIX",
-      "options"
-    ],
-    "metricLinks": [
-      "Equity Vol"
-    ]
-  },
   "10Y Bond Yield": {
     "complexity": 1,
     "category": "macro",
@@ -4424,38 +4392,6 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column}
     ],
     "metricLinks": [
       "Exchange Rate"
-    ]
-  },
-  "FX Vol": {
-    "complexity": 2,
-    "category": "fx",
-    "levels": {
-      "beginner": {
-        "bluf": "FX volatility measures how much a currency's exchange rate swings day to day. Higher FX volatility means more uncertainty about what a currency will be worth tomorrow, making it harder for businesses to plan and more expensive to hedge international transactions.",
-        "full": "<div class=\"ge-section\"><div class=\"ge-head\">Why it matters</div><div class=\"ge-body\">Businesses that import or export goods need to convert currencies. If a currency is volatile, the price they pay or receive can change dramatically between when they agree a deal and when they settle it. High FX vol increases the cost of doing international business and can deter foreign investment - investors do not like uncertainty about what their returns will be worth when converted back to their home currency.</div></div><div class=\"ge-section\"><div class=\"ge-head\">Intuition</div><div class=\"ge-body\">Imagine planning a holiday abroad. If the exchange rate is stable, you know roughly what things will cost. If it is volatile, the same hotel room might cost you 20% more or less by the time you travel. Businesses face this uncertainty constantly, multiplied across millions of transactions. FX vol is the measure of this uncertainty.</div></div><div class=\"ge-section\"><div class=\"ge-head\">Example</div><div class=\"ge-body\">If EUR/USD implied vol is 8%, the market expects the euro-dollar rate to move roughly 8% over the next year. During calm periods, major currency vol is 5-8%. During crises, it can spike to 15-25%. Emerging market currencies are naturally more volatile - Turkish lira vol has exceeded 30% during its currency crises.</div></div><div class=\"ge-section\"><div class=\"ge-head\">What to watch</div><div class=\"ge-body\"><ul><li>G10 FX vol below 7%: calm - central bank policies are predictable, carry trades are profitable</li><li>G10 FX vol above 12%: stressed - usually coincides with monetary policy surprises or geopolitical shocks</li><li>EM FX vol tends to be 2-3x G10 levels and spikes more violently</li><li>When FX vol rises across all currencies simultaneously, it signals a global risk-off event</li></ul></div></div><div class=\"ge-formal\">The implied volatility of exchange rate options, typically quoted for 1-month or 3-month at-the-money options, expressed as an annualised percentage.</div>"
-      },
-      "moderate": {
-        "bluf": "FX implied volatility prices the expected magnitude of currency moves. It drives hedging costs, carry trade profitability (via the carry-to-vol ratio), and acts as a risk appetite indicator. Low FX vol compresses hedging costs and encourages leveraged carry - sowing the seeds of the next vol spike.",
-        "full": "<div class=\"ge-section\"><div class=\"ge-head\">Why it matters</div><div class=\"ge-body\">FX vol determines the cost of currency hedging for all cross-border investors and corporates. For a US investor in Japanese equities, the cost of hedging JPY exposure is directly proportional to USD/JPY implied vol. Low vol also makes carry trades more attractive (higher Sharpe ratio), increasing speculative positioning that amplifies the eventual unwind.</div></div><div class=\"ge-section\"><div class=\"ge-head\">Intuition</div><div class=\"ge-body\">FX vol exhibits two regimes: a low-vol regime where central banks are predictable and carry accrues steadily, and a high-vol regime where policy surprises or risk-off events trigger sharp repositioning. The transition between regimes is asymmetric - vol rises quickly (in days) and declines slowly (over weeks to months). The VIX equivalent for FX is the CVIX (Deutsche Bank) or the JPMorgan G7 Vol Index.</div></div><div class=\"ge-section\"><div class=\"ge-head\">Example</div><div class=\"ge-body\">EUR/USD 1-month implied vol was ~6% for most of early 2024 - low by historical standards. When the French snap election was called in June, it spiked to 9% as markets priced political uncertainty. After the election resolved, it drifted back. Political events are the most common trigger for FX vol spikes in developed markets.</div></div><div class=\"ge-section\"><div class=\"ge-head\">What to watch</div><div class=\"ge-body\"><ul><li><strong>Risk reversal (25-delta):</strong> the skew of FX options - measures directional fear (e.g. demand for USD puts vs calls)</li><li><strong>Implied-realised gap:</strong> when implied vol far exceeds realised, options are expensive and vol sellers step in</li><li><strong>Event pricing:</strong> FX vol tenors that straddle known events (elections, central bank meetings) embed event premiums</li><li><strong>Correlation:</strong> rising FX vol correlation across pairs signals systematic risk-off, not idiosyncratic moves</li></ul></div></div><div class=\"ge-formal\">The implied volatility of at-the-money FX options, typically 1-month or 3-month tenor, annualised. FX vol surfaces also quote 25-delta and 10-delta risk reversals (skew) and butterflies (kurtosis), providing a full implied distribution of expected exchange rate moves.</div>"
-      },
-      "expert": {
-        "bluf": "FX implied vol is the market-clearing price for currency optionality. The vol surface (delta x tenor) encodes the risk-neutral distribution of expected exchange rate paths. The carry-to-vol ratio determines the Sharpe ratio of the carry trade, and vol regime transitions are the primary driver of carry trade P&L dispersion.",
-        "full": "<div class=\"ge-section\"><div class=\"ge-head\">Why it matters</div><div class=\"ge-body\">FX vol is the key input into every cross-border portfolio decision. For leveraged carry traders, the vol regime determines position sizing (risk parity scales inversely to vol). For corporates, the hedging cost (option premium) is a direct function of implied vol. For sovereign reserve managers, the vol of their reserve currency basket affects the real diversification benefit of holding multiple currencies.</div></div><div class=\"ge-section\"><div class=\"ge-head\">Intuition</div><div class=\"ge-body\">The FX vol smile reveals market expectations beyond the central case. A steep smile (wings well above ATM) means the market expects fat tails - large moves are priced as more likely than a normal distribution would predict. A steep risk reversal (puts vs calls) means the market sees asymmetric risk in one direction. For the yen, persistent downside risk reversal meant the market consistently priced large yen depreciation as more likely than large appreciation - until the carry trade unwind proved the opposite tail was the real risk.</div></div><div class=\"ge-section\"><div class=\"ge-head\">Example</div><div class=\"ge-body\">Pre-August 2024, USD/JPY 3-month implied vol was ~9% with a risk reversal favouring USD calls (yen weakness). The carry trade was earning ~5% annualised with ~9% vol - a Sharpe ratio of ~0.55. After the BOJ hike triggered the unwind, vol spiked to 20%+ and the risk reversal flipped to favour USD puts. The carry-to-vol ratio collapsed, making the trade unattractive and preventing repositioning. This is the reflexive dynamic: vol spikes kill carry, which forces position liquidation, which increases vol further.</div></div><div class=\"ge-section\"><div class=\"ge-head\">What to watch</div><div class=\"ge-body\"><ul><li><strong>Cross-currency basis vol:</strong> the volatility of the covered interest parity (CIP) deviation - spikes signal dollar funding stress</li><li><strong>Gamma vs vega:</strong> short-dated gamma (exposure to realised moves) vs long-dated vega (exposure to implied vol level) have different risk profiles and different drivers</li><li><strong>Dealer positioning:</strong> bank risk reports show aggregate dealer gamma and vega exposure - when dealers are short gamma, their hedging amplifies moves</li><li><strong>EM-DM vol divergence:</strong> when EM FX vol spikes but G10 stays calm, risk is contained. When both spike, it is a global liquidity event</li></ul></div></div><div class=\"ge-formal\">ATM implied volatility from the FX options market, annualised. The full vol surface is parameterised by: ATM vol (level), 25Δ risk reversal (skew), 25Δ butterfly (kurtosis), across tenors from overnight to 1 year. Carry-to-vol ratio = (interest rate differential) / (implied vol) - the Sharpe ratio of the unhedged carry trade. Regime-dependent: mean ~0.5 in low-vol, negative in high-vol.</div>"
-      }
-    },
-    "aliases": [
-      "FX volatility",
-      "currency volatility",
-      "forex vol"
-    ],
-    "relatedTerms": [
-      "volatility",
-      "implied volatility",
-      "carry trade",
-      "risk reversal"
-    ],
-    "metricLinks": [
-      "FX Vol"
     ]
   },
   "Inflation (CPI)": {
@@ -5247,12 +5183,10 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column}
     "Current Account": "IMF BOP Statistics",
     "Policy Rate": "National central banks",
     "Stock Market YTD": "Exchange data",
-    "Equity Vol": "CBOE VIX (US) · Nikkei VI (JPN) · VSTOXX (EU) · Exchange data",
     "10Y Bond Yield": "Bloomberg · Refinitiv",
     "Yield Curve": "Bloomberg · Refinitiv",
     "Corp Spread": "ICE BofA · Bloomberg Barclays · Refinitiv",
     "Sov CDS": "ICE · DTCC · Bloomberg / Refinitiv",
-    "FX Vol": "Bloomberg · Refinitiv · CBOE",
     "FX": "WM/Refinitiv · Bloomberg · National central banks"
   },
   "metricDisplayLabels": {

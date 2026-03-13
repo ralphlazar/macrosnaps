@@ -1,5 +1,5 @@
 # MacroSnaps - Living Brief
-Last updated: March 13, 2026 (tooling session: Equity Vol and FX Vol removed from the product. Python scripts updated: fetch_market_data.py, refetch_historical.py, update_stories.py, build.py. Remaining: data.json and macrosnaps-shell.html - see Pending Work for exact instructions.)
+Last updated: March 13, 2026 (cleanup session: Equity Vol and FX Vol fully removed from data.json and macrosnaps-shell.html. All pipeline scripts, data, and shell references now clean. No pending Equity Vol / FX Vol work remains.)
 
 ---
 
@@ -737,23 +737,9 @@ Key settings at the top of the script:
 
 ### Pending work (priority order)
 
-1. **Remove Equity Vol and FX Vol from `data.json`.** This is a content/tooling session. Upload `LIVING_BRIEF.md` + `data.json`.
+1. ~~**Remove Equity Vol and FX Vol from `data.json`.**~~ Done March 13, 2026. Removed `"Equity Vol"` and `"FX Vol"` from `metrics.market` and `_frozen_historical` for all 12 countries (48 deletions total). No blanked stubs remain.
 
-   Each country has a `metrics.market` object. Remove the `"Equity Vol"` and `"FX Vol"` keys and their entire value objects from all 12 countries. Also remove any `_frozen_historical` entries keyed to `"Equity Vol"` or `"FX Vol"` if they exist (some will have `{"v": []}` blanked entries that should be deleted entirely).
-
-   The 12 country codes are: USA, CAN, GBR, JPN, DEU, FRA, ITA, CHN, IND, ZAF, BRA, RUS.
-
-   After editing, run `python3 build.py --validate-only` to confirm the JSON is valid before saving. Then run the full build: `python3 build.py`.
-
-1. **Remove Equity Vol and FX Vol from `macrosnaps-shell.html`.** This is a UI session. Upload `LIVING_BRIEF.md` + `macrosnaps-shell.html`.
-
-   Locations to update (search for "Equity Vol" and "FX Vol" in the file):
-   - `metricDisplayLabels` object (around line 5229): remove both keys and their display name strings.
-   - Any metric ordering arrays or explicit metric key lists: remove both keys.
-   - Data-void display logic: Corp Spread and Sov CDS remain as data-void, so any shared rendering logic for data-void metrics stays. Only remove references where Equity Vol and FX Vol are named explicitly.
-   - Check for any hardcoded metric counts (e.g. "8 market metrics" or similar) and update to 6.
-
-   After editing, run `python3 build.py` and verify the live site renders correctly for a country card.
+1. ~~**Remove Equity Vol and FX Vol from `macrosnaps-shell.html`.**~~ Done March 13, 2026. Removed both full glossary entries (beginner/moderate/expert bluf + full content, aliases, relatedTerms, metricLinks) and both `metricSources` lines. `metricDisplayLabels` had no entries for either metric. No hardcoded metric counts found. 17,016 characters removed.
 
 1. ~~**Automate monthlyLabels generation in the shell.**~~ Done March 13, 2026. Static `monthlyLabels` array removed from `_frozen.chartConfig`. `histMonthlyLabels` is now a `let` variable populated at runtime by a small IIFE inside the `data.json` fetch `.then()` block, anchored to `data._meta.generated` and counting back 240 months (20 years). No manual shell edit needed when `refetch_historical.py` advances the data window.
 
