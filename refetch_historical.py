@@ -11,8 +11,22 @@ Writes updated _frozen_historical into data.json in place.
 Skips any metric that already has sufficient data, unless FORCE_OVERWRITE = True.
 Never touches _frozen_weatherGrid or any other field.
 
-Cannot restore: Equity Vol, Corp Spread, Sov CDS, FX Vol.
-No free public source exists for these. They remain as gaps.
+# Fetchable via FRED daily series (USA only):
+#   Equity Vol  -> VIXCLS (CBOE VIX)
+#   Corp Spread -> BAMLC0A0CM (ICE BofA US IG OAS)
+#   USD/DXY     -> DTWEXBGS (Nominal Broad Dollar Index)
+#
+# Permanently unfetchable (no free public source for any country):
+#   Sov CDS, FX Vol
+#
+# Permanently unfetchable for all non-USA countries:
+#   Equity Vol, Corp Spread
+#
+# Russia-specific gaps (sanctions-era data loss):
+#   Yield Curve  -> sparse FRED data post-2022; only 42 points; blanked to avoid
+#                   misleading chart artefact where displayed dates shift by view
+#   Stock Market -> Yahoo Finance MOEX data ends Jun 2023; left as-is (real data,
+#                   truncation is visually obvious)
 Budget Deficit is fetched from the World Bank API (no key required).
 
 After a successful run:
@@ -112,8 +126,8 @@ SHORT_RATE_SERIES = {
 }
 
 # FX series on FRED (daily, resampled to monthly end-of-month values).
-# USA has no FX metric so it is omitted.
 FX_FRED_SERIES = {
+    "USA": "DTWEXBGS",  # Nominal Broad U.S. Dollar Index (DXY proxy)
     "CAN": "DEXCAUS",   # Canadian dollars per USD
     "GBR": "DEXUSUK",   # USD per British pound
     "JPN": "DEXJPUS",   # Yen per USD
@@ -129,6 +143,7 @@ FX_FRED_SERIES = {
 
 # Fallback FX metric labels if the label cannot be detected from data.json.
 FX_LABEL_DEFAULTS = {
+    "USA": "USD/DXY",
     "CAN": "USD/CAD",
     "GBR": "GBP/USD",
     "JPN": "USD/JPY",
@@ -191,6 +206,35 @@ COMMODITY_TICKERS = {
     "Soybeans":    "ZS=F",
 }
 
+# FRED daily series fetchable for specific countries only.
+# Uses the same fetch_fx_monthly daily-to-monthly resampler.
+# Add a country code here when a free FRED source exists for that country.
+DAILY_FRED_SERIES = {
+    "USA": {
+        "Equity Vol":  "VIXCLS",       # CBOE VIX (daily)
+        "Corp Spread": "BAMLC0A0CM",   # ICE BofA US Investment Grade OAS (daily)
+    },
+}
+
+# Metrics with no free data source for a given country.
+# The exempt set contains country codes that CAN be fetched (handled above).
+# All other countries get their _frozen_historical["v"] written to [] so the
+# chart shows blank instead of stale or misleading data.
+VOID_METRICS = {
+    "Equity Vol":  {"USA"},   # USA fetched via DAILY_FRED_SERIES; all others blank
+    "Corp Spread": {"USA"},   # USA fetched via DAILY_FRED_SERIES; all others blank
+    "Sov CDS":     set(),     # no free source for any country
+    "FX Vol":      set(),     # no free source for any country
+}
+
+# Metrics blanked per country for specific data quality reasons.
+# These have partial data that produces misleading chart artefacts.
+COUNTRY_VOID_METRICS = {
+    "RUS": {"Yield Curve", "USD/RUB"},  # Yield Curve: only 42 points post-sanctions (misleading);
+                                         # USD/RUB: DEXRUUS discontinued on FRED post-sanctions
+    "CHN": {"Policy Rate"},             # PBOC rate not available on FRED (non-OECD member)
+}
+
 # All metric names that are NOT the FX pair. Used to detect the FX label.
 KNOWN_NON_FX_METRICS = {
     "GDP Growth", "Inflation (CPI)", "Unemployment", "Budget Deficit",
@@ -231,21 +275,21 @@ FRED_METRICS = {
         "GDP Growth":      {"id": "CLVMNACSCAB1GQDE", "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
         "Inflation (CPI)": {"id": "CPALTT01DEM659N",  "transform": "monthly_120", "type": "line"},
         "Unemployment":    {"id": "LRHUTTTTDEM156S",  "transform": "monthly_120", "type": "line"},
-        "Policy Rate":     {"id": "ECBDFR",            "transform": "monthly_120", "type": "line", "stepped": True},
+        "Policy Rate":     {"id": "IRSTCI01EZM156N",   "transform": "monthly_120", "type": "line", "stepped": True},
         "10Y Bond Yield":  {"id": "IRLTLT01DEM156N",  "transform": "monthly_120", "type": "line"},
     },
     "FRA": {
         "GDP Growth":      {"id": "CLVMNACSCAB1GQFR", "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
         "Inflation (CPI)": {"id": "CPALTT01FRM659N",  "transform": "monthly_120", "type": "line"},
         "Unemployment":    {"id": "LRHUTTTTFRM156S",  "transform": "monthly_120", "type": "line"},
-        "Policy Rate":     {"id": "ECBDFR",            "transform": "monthly_120", "type": "line", "stepped": True},
+        "Policy Rate":     {"id": "IRSTCI01EZM156N",   "transform": "monthly_120", "type": "line", "stepped": True},
         "10Y Bond Yield":  {"id": "IRLTLT01FRM156N",  "transform": "monthly_120", "type": "line"},
     },
     "ITA": {
         "GDP Growth":      {"id": "CLVMNACSCAB1GQIT", "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
         "Inflation (CPI)": {"id": "CPALTT01ITM659N",  "transform": "monthly_120", "type": "line"},
         "Unemployment":    {"id": "LRHUTTTTITM156S",  "transform": "monthly_120", "type": "line"},
-        "Policy Rate":     {"id": "ECBDFR",            "transform": "monthly_120", "type": "line", "stepped": True},
+        "Policy Rate":     {"id": "IRSTCI01EZM156N",   "transform": "monthly_120", "type": "line", "stepped": True},
         "10Y Bond Yield":  {"id": "IRLTLT01ITM156N",  "transform": "monthly_120", "type": "line"},
     },
     "CHN": {
@@ -352,7 +396,7 @@ def oecd_fetch_unemployment(country_code):
         f"https://stats.oecd.org/SDMX-JSON/data/LFSRATE/"
         f"{country_code}.LR/all"
     )
-    params = {"startTime": "2015-01", "format": "jsondata"}
+    params = {"startTime": "2008-01", "format": "jsondata"}
     try:
         r = requests.get(url, params=params, timeout=30)
         time.sleep(REQUEST_DELAY)
@@ -882,6 +926,29 @@ def process_country(code, country_data):
             log.info(f"  SKIP    Stock Market YTD (already populated)")
             results["skipped"].append("Stock Market YTD")
 
+    # FRED daily series (Equity Vol, Corp Spread for countries that have them)
+    for metric, series_id in DAILY_FRED_SERIES.get(code, {}).items():
+        if not is_populated(frozen, metric) or FORCE_OVERWRITE:
+            log.info(f"  Fetch   {metric}  [{series_id}]")
+            vals = fetch_fx_monthly(series_id)
+            if vals:
+                frozen[metric] = {"v": vals, "type": "line"}
+                log.info(f"    OK ({len(vals)} points)")
+                results["fetched"].append(metric)
+            else:
+                results["failed"].append(metric)
+        else:
+            log.info(f"  SKIP    {metric} (already populated)")
+            results["skipped"].append(metric)
+
+    # Blank out void metrics - no free source exists for this country.
+    # Write {"v": []} so the chart shows blank rather than stale data.
+    for metric, exempt_codes in VOID_METRICS.items():
+        if code not in exempt_codes:
+            if frozen.get(metric, {}).get("v"):
+                log.info(f"  BLANK   {metric} (no free source for {code})")
+            frozen[metric] = {"v": []}
+
     # FX rate (FRED daily, resampled)
     fx_series = FX_FRED_SERIES.get(code)
     fx_label  = detect_fx_label(country_data, frozen, code)
@@ -898,6 +965,13 @@ def process_country(code, country_data):
         else:
             log.info(f"  SKIP    {fx_label} (already populated)")
             results["skipped"].append(fx_label)
+
+    # Blank out country-specific metrics with misleading partial data.
+    # Runs AFTER the FX fetch so these voids always win over any fetched data.
+    for metric in COUNTRY_VOID_METRICS.get(code, set()):
+        if frozen.get(metric, {}).get("v"):
+            log.info(f"  BLANK   {metric} (data quality void for {code})")
+        frozen[metric] = {"v": []}
 
     # Budget Deficit (World Bank API - no key required)
     if not is_populated(frozen, "Budget Deficit") or FORCE_OVERWRITE:

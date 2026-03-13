@@ -1,5 +1,5 @@
 # MacroSnaps - Living Brief
-Last updated: March 13, 2026 (UI session: chart label bugs fixed; welcome banner restyled; country card weather icon now computed live from GDP Growth value)
+Last updated: March 13, 2026 (tooling session: refetch_historical.py - ECB Policy Rate series fixed for DEU/FRA/ITA (ECBDFR daily replaced with IRSTCI01EZM156N monthly); CHN Policy Rate blanked via COUNTRY_VOID_METRICS; RUS USD/RUB blanked via COUNTRY_VOID_METRICS with COUNTRY_VOID blanking moved to after FX fetch so void always wins; OECD unemployment startTime extended to 2008-01; unfetchable series table updated)
 
 ---
 
@@ -700,11 +700,27 @@ Uses World Bank nominal GDP series `MKTGDP[ISO2]A646NWDB` via FRED. Annual CA su
 **Commodity historical (as of March 12, 2026):**
 All 9 commodities get `_frozen_historical` written to each item in `data.commodities.items`. Tickers: WTI=CL=F, Brent=BZ=F, NatGas=NG=F, Gold=GC=F, Silver=SI=F, Copper=HG=F, Wheat=ZW=F, Corn=ZC=F, Soybeans=ZS=F.
 
-**Permanent data gaps (no free source exists):**
-- CHN: Unemployment, 10Y Bond Yield, Yield Curve
-- IND: Unemployment, 10Y Bond Yield, Yield Curve
-- ZAF: Unemployment
-- RUS: GDP Growth, Unemployment, USD/RUB (sanctions-era gaps); Yield Curve only 42 points; Stock Market only 88 points
+**Unfetchable series (as of March 2026)**
+
+The table below is the definitive record of what `refetch_historical.py` cannot populate. All series marked "blanked" have `{"v": []}` written explicitly so the chart shows nothing rather than stale or misleading data.
+
+| Metric | Country | Status | Reason |
+|---|---|---|---|
+| Equity Vol | USA | FETCHED (VIXCLS) | CBOE VIX via FRED daily |
+| Equity Vol | All others | Blanked | No free public source |
+| Corp Spread | USA | FETCHED (BAMLC0A0CM) | ICE BofA US IG OAS via FRED daily |
+| Corp Spread | All others | Blanked | No free public source |
+| Sov CDS | All countries | Blanked | No free public source |
+| FX Vol | All countries | Blanked | No free public source |
+| Yield Curve | RUS | Blanked | Post-sanctions FRED gaps leave only 42 points; chart date labels shift by view length, producing a misleading display |
+| Stock Market | RUS | Truncated at Jun 2023 | Yahoo Finance stopped publishing MOEX data post-sanctions. 88 real months retained, truncation visually obvious |
+| Unemployment | CHN, IND | No data | Not available on FRED or OECD |
+| 10Y Bond Yield | CHN, IND | No data | Not available on FRED |
+| Yield Curve | CHN, IND | No data | Derived from 10Y - missing |
+| Policy Rate | CHN | Blanked | PBOC rate not on FRED (non-OECD member); IRSTCI01CNM156N returns no data |
+| GDP Growth | RUS | No data | FRED series unavailable post-sanctions |
+| Unemployment | RUS | No data | FRED series unavailable post-sanctions |
+| USD/RUB | RUS | Blanked | DEXRUUS discontinued on FRED post-sanctions; explicitly blanked via COUNTRY_VOID_METRICS |
 
 **Requirements (one-time setup):**
 ```
@@ -756,7 +772,7 @@ Key settings at the top of the script:
 
 4. ~~**Update `refetch_historical.py` to output Current Account as % of GDP natively.**~~ Done March 12, 2026. Uses World Bank nominal GDP series via FRED. No manual re-conversion needed after any future refetch run.
 
-5. ~~**Extend historical data to 10 years.**~~ Done March 12, 2026. All monthly series now return 120 points, annual series return 10 years. Commodity `_frozen_historical` added for all 9 commodities (114 points each via Yahoo Finance continuous futures). BRA 10Y/Yield Curve now resolved. Permanent gaps documented above.
+5. ~~**Extend historical data to 10 years.**~~ Done March 12, 2026. All monthly series now return 120 points, annual series return 10 years. Commodity `_frozen_historical` added for all 9 commodities (114 points each via Yahoo Finance continuous futures). BRA 10Y/Yield Curve now resolved. Updated March 13, 2026: USA Equity Vol (VIXCLS) and Corp Spread (BAMLC0A0CM) now fetched via FRED daily series. USA USD/DXY now fetched (DTWEXBGS). All other Equity Vol, Corp Spread, Sov CDS, FX Vol explicitly blanked to `{"v": []}`. RUS Yield Curve explicitly blanked (42-point artefact caused misleading date-shift by view length). Permanent gaps documented in "Unfetchable series" table above.
 
 5. ~~**Investigate IND and ZAF GDP Growth historical anomalies.**~~ Resolved March 13, 2026. IND and ZAF GDP Growth arrays now sourced from Macro-stats (IMF WEO real % growth), replacing the anomalous FRED nominal USD series. Clean data confirmed in preview output.
 
