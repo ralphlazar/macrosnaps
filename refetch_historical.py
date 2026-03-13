@@ -437,6 +437,16 @@ def r2(v):
     return round(v, 2)
 
 
+def parse_forecast_value(s):
+    """
+    Extract a numeric float from a forecast string like '+2.2%' or '-7.5% GDP'.
+    Returns a rounded float, or None if no number is found.
+    """
+    import re
+    m = re.search(r'[-+]?\d+\.?\d*', str(s))
+    return r2(float(m.group())) if m else None
+
+
 def apply_monthly_120(pairs):
     """Return the last 120 monthly values from the series (10 years)."""
     if not pairs:
@@ -886,6 +896,22 @@ def process_country(code, country_data):
     if "macro" in frozen and fx_label and fx_label != "macro":
         log.info(f"  Rename  'macro' -> '{fx_label}' in frozen historical")
         frozen[fx_label] = frozen.pop("macro")
+
+    # Append 2026F forecast as the final point for all annual metrics.
+    # The 'value' field in data.json holds the current year-end forecast.
+    # Convention: the last point in every annual array is always the 2026F.
+    ANNUAL_METRICS = ["GDP Growth", "Budget Deficit", "Current Account"]
+    macro = country_data.get("metrics", {}).get("macro", {})
+    for metric in ANNUAL_METRICS:
+        if metric not in frozen or not frozen[metric].get("v"):
+            continue
+        val_str = macro.get(metric, {}).get("value", "")
+        forecast = parse_forecast_value(val_str)
+        if forecast is None:
+            log.warning(f"  2026F append: could not parse value for {metric} ({val_str!r})")
+            continue
+        frozen[metric]["v"].append(forecast)
+        log.info(f"  2026F append: {metric} += {forecast}")
 
     return results
 
