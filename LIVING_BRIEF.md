@@ -1,5 +1,5 @@
 # MacroSnaps - Living Brief
-Last updated: March 13, 2026 (monthlyLabels generation automated in shell; static array removed from _frozen.chartConfig; labels now built dynamically from _meta.generated at runtime)
+Last updated: March 13, 2026 (UI session: chart label bugs fixed; welcome banner restyled; country card weather icon now computed live from GDP Growth value)
 
 ---
 
@@ -622,7 +622,9 @@ This was a standalone research session that built clean, IMF WEO-sourced data ta
 | Value/story drift between daily market updates and story rewrites | Resolved | `update_stories.py` built March 11, 2026. Run after each data fetch to keep stories current. |
 | Current Account displayed in absolute dollars | Fixed 2026-03-10 | All CA historical arrays converted to % of GDP using IMF WEO denominators. 2026F appended as final point. |
 | Macro chart 2026F point missing | Fixed 2026-03-10 | 2026F forecast appended as final point to all macro historical arrays with existing data. |
-| refetch_historical.py overwrites CA % GDP conversion | Resolved 2026-03-13 | CA historical is now sourced from Macro-stats (IMF WEO) via sync_sheet.py, not from refetch_historical.py. Running refetch no longer affects CA arrays. |
+| Country card weather icon was static (read from data.json `weather` field) | Fixed 2026-03-13 | Shell now computes weather at runtime from each country's live GDP Growth value. Thresholds match the GDP Weather Map: >=3% sunny, 0-3% cloudy, <0% stormy. Falls back to `data.json` field only if GDP is missing. The `weather` field in data.json is now a fallback only and does not need to be maintained. |
+| Chart tooltip title showed "True" on stock market charts | Fixed 2026-03-13 | `histEntry.indexLabel` is a boolean flag used for number formatting. It was being used as the chart title via a short-circuit `||`, so `true` rendered as "True". Removed `histEntry.indexLabel` from the title expression entirely. |
+| Chart tooltip title showed "5-Year History" despite 10-year data | Fixed 2026-03-13 | Fallback label in `renderMTT()` updated from "5-Year History" to "10-Year History" to match the actual data window. |
 | 10Y country chart range button appeared broken | Fixed 2026-03-12 | monthlyLabels in shell-frozen had 180 entries (Jan 2011–Dec 2025) but globe.html had been built when it was only 60 entries, so slice(-120) and slice(-60) returned identical arrays. Fixed by extending monthlyLabels to 192 entries (Jan 2011–Dec 2026). Whenever historical data is refetched into future months, extend monthlyLabels to match. |
 | Commodity tooltips showed only annual price bars | Fixed 2026-03-13 | showCommodityMTT was wired to item.annual (16 annual points) and ignored item._frozen_historical.v (114 monthly points). Fixed by adding renderCommodityMonthlyChart and wiring the tooltip to use _frozen_historical with 1Y/2Y/5Y/All range buttons. Annual chart retained as fallback. |
 | No .env file | Fixed 2026-03-11 | .env created at ~/Downloads/macrosnaps/.env with FRED_API_KEY. |
@@ -638,6 +640,7 @@ This was a standalone research session that built clean, IMF WEO-sourced data ta
 | `metricDisplayLabels` in `_frozen` | Line ~5229 |
 | `metricStories` object declaration | Line 5605 |
 | `parseLiveVal()` helper | Line 5613 |
+| Country card weather computed from GDP | Line 5496 (inline IIFE inside countries map) |
 | `metricStories` populated from data | Line 5637 |
 | `renderMTT()` function | Line 6542 |
 | Metric story HTML built | Line 6581-6582 |
@@ -728,6 +731,12 @@ Key settings at the top of the script:
 ### Pending work (priority order)
 
 1. ~~**Automate monthlyLabels generation in the shell.**~~ Done March 13, 2026. Static `monthlyLabels` array removed from `_frozen.chartConfig`. `histMonthlyLabels` is now a `let` variable populated at runtime by a small IIFE inside the `data.json` fetch `.then()` block, anchored to `data._meta.generated` and counting back 240 months (20 years). No manual shell edit needed when `refetch_historical.py` advances the data window.
+
+1. ~~**Fix chart tooltip title bugs.**~~ Done March 13, 2026. Two bugs in `renderMTT()`: (1) `histEntry.indexLabel` (a boolean) was being used as the chart title via `||`, rendering as "True" on stock market charts. Removed from title expression. (2) Fallback label was "5-Year History" despite data now spanning 10 years. Updated to "10-Year History".
+
+1. ~~**Automate country card weather icon from GDP Growth.**~~ Done March 13, 2026. Country card weather icon is now computed live at load time from each country's GDP Growth value, using the same thresholds as the GDP Weather Map (>=3% sunny, 0-3% cloudy, <0% stormy). The `weather` field in `data.json` is now a fallback only and does not need to be maintained. Implemented as an inline IIFE in the `countries` map (line 5496 of shell).
+
+1. ~~**Restyle welcome banner.**~~ Done March 13, 2026. "Find out what MacroSnaps is and how it works" link converted to a solid cyan pill button with dark text and a glow effect. Banner background strengthened with cyan tint and top/bottom border lines. Font bumped from 12px to 14px with taller padding.
 
 1. ~~**Commodity story rewrite session.**~~ Done March 12, 2026. `update_commodity_stories.py` built and added to daily ritual. Bootstrapped all 9 stories on first run. Prices have moved significantly since March 10 (Gold +74% YoY, Silver +157% YoY, WTI at $93.61, Natural Gas down 22% YoY) - all now rewritten automatically.
 
