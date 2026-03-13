@@ -203,7 +203,6 @@ FRED_METRICS = {
         "GDP Growth":      {"id": "A191RL1A225NBEA", "transform": "annual_10",   "type": "bar",  "annual": True},
         "Inflation (CPI)": {"id": "CPALTT01USM659N", "transform": "monthly_120", "type": "line"},
         "Unemployment":    {"id": "UNRATE",           "transform": "monthly_120", "type": "line"},
-        "Current Account": {"id": "BPBLTT01USQ637S",   "transform": "qtr_sum_pct_gdp",  "type": "bar",  "annual": True},
         "Policy Rate":     {"id": "FEDFUNDS",         "transform": "monthly_120", "type": "line", "stepped": True},
         "10Y Bond Yield":  {"id": "GS10",             "transform": "monthly_120", "type": "line"},
     },
@@ -211,7 +210,6 @@ FRED_METRICS = {
         "GDP Growth":      {"id": "NGDPRSAXDCCAQ",   "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
         "Inflation (CPI)": {"id": "CPALTT01CAM659N", "transform": "monthly_120", "type": "line"},
         "Unemployment":    {"id": "LRUNTTTTCAM156S", "transform": "monthly_120", "type": "line"},
-        "Current Account": {"id": "BPBLTT01CAQ637S", "transform": "qtr_sum_pct_gdp",  "type": "bar",  "annual": True},
         "Policy Rate":     {"id": "IRSTCI01CAM156N", "transform": "monthly_120", "type": "line", "stepped": True},
         "10Y Bond Yield":  {"id": "IRLTLT01CAM156N", "transform": "monthly_120", "type": "line"},
     },
@@ -219,7 +217,6 @@ FRED_METRICS = {
         "GDP Growth":      {"id": "NGDPRSAXDCGBQ",   "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
         "Inflation (CPI)": {"id": "CPALTT01GBM659N", "transform": "monthly_120", "type": "line"},
         "Unemployment":    {"id": "LRHUTTTTGBM156S", "transform": "monthly_120", "type": "line"},
-        "Current Account": {"id": "BPBLTT01GBQ637S", "transform": "qtr_sum_pct_gdp",  "type": "bar",  "annual": True},
         "Policy Rate":     {"id": "IRSTCI01GBM156N",  "transform": "monthly_120", "type": "line", "stepped": True},
         "10Y Bond Yield":  {"id": "IRLTLT01GBM156N", "transform": "monthly_120", "type": "line"},
     },
@@ -227,7 +224,6 @@ FRED_METRICS = {
         "GDP Growth":      {"id": "NGDPRSAXDCJPQ",   "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
         "Inflation (CPI)": {"id": "CPALTT01JPM659N", "transform": "monthly_120", "type": "line"},
         "Unemployment":    {"id": "LRUNTTTTJPM156S", "transform": "monthly_120", "type": "line"},
-        "Current Account": {"id": "BPBLTT01JPQ637S", "transform": "qtr_sum_pct_gdp",  "type": "bar",  "annual": True},
         "Policy Rate":     {"id": "IRSTCI01JPM156N", "transform": "monthly_120", "type": "line", "stepped": True},
         "10Y Bond Yield":  {"id": "IRLTLT01JPM156N", "transform": "monthly_120", "type": "line"},
     },
@@ -235,7 +231,6 @@ FRED_METRICS = {
         "GDP Growth":      {"id": "CLVMNACSCAB1GQDE", "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
         "Inflation (CPI)": {"id": "CPALTT01DEM659N",  "transform": "monthly_120", "type": "line"},
         "Unemployment":    {"id": "LRHUTTTTDEM156S",  "transform": "monthly_120", "type": "line"},
-        "Current Account": {"id": "BPBLTT01DEQ637S",  "transform": "qtr_sum_pct_gdp",  "type": "bar",  "annual": True},
         "Policy Rate":     {"id": "ECBDFR",            "transform": "monthly_120", "type": "line", "stepped": True},
         "10Y Bond Yield":  {"id": "IRLTLT01DEM156N",  "transform": "monthly_120", "type": "line"},
     },
@@ -243,7 +238,6 @@ FRED_METRICS = {
         "GDP Growth":      {"id": "CLVMNACSCAB1GQFR", "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
         "Inflation (CPI)": {"id": "CPALTT01FRM659N",  "transform": "monthly_120", "type": "line"},
         "Unemployment":    {"id": "LRHUTTTTFRM156S",  "transform": "monthly_120", "type": "line"},
-        "Current Account": {"id": "BPBLTT01FRQ637S",  "transform": "qtr_sum_pct_gdp",  "type": "bar",  "annual": True},
         "Policy Rate":     {"id": "ECBDFR",            "transform": "monthly_120", "type": "line", "stepped": True},
         "10Y Bond Yield":  {"id": "IRLTLT01FRM156N",  "transform": "monthly_120", "type": "line"},
     },
@@ -251,7 +245,6 @@ FRED_METRICS = {
         "GDP Growth":      {"id": "CLVMNACSCAB1GQIT", "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
         "Inflation (CPI)": {"id": "CPALTT01ITM659N",  "transform": "monthly_120", "type": "line"},
         "Unemployment":    {"id": "LRHUTTTTITM156S",  "transform": "monthly_120", "type": "line"},
-        "Current Account": {"id": "BPBLTT01ITQ637S",  "transform": "qtr_sum_pct_gdp",  "type": "bar",  "annual": True},
         "Policy Rate":     {"id": "ECBDFR",            "transform": "monthly_120", "type": "line", "stepped": True},
         "10Y Bond Yield":  {"id": "IRLTLT01ITM156N",  "transform": "monthly_120", "type": "line"},
     },
@@ -259,7 +252,6 @@ FRED_METRICS = {
         "GDP Growth":      {"id": "CHNGDPNQDSMEI",    "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
         "Inflation (CPI)": {"id": "CPALTT01CNM659N",  "transform": "monthly_120", "type": "line"},
         "Unemployment":    {"id": "LRUNTTTTCNM156S",  "transform": "monthly_120", "type": "line"},
-        "Current Account": {"id": "BPBLTT01CNQ637S",  "transform": "qtr_sum_pct_gdp",  "type": "bar",  "annual": True},
         "Policy Rate":     {"id": "IRSTCI01CNM156N",  "transform": "monthly_120", "type": "line", "stepped": True},
         "10Y Bond Yield":  {"id": "INTGSTCNM193N",    "transform": "monthly_120", "type": "line"},
     },
@@ -267,7 +259,6 @@ FRED_METRICS = {
         "GDP Growth":      {"id": "INDGDPNQDSMEI",    "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
         "Inflation (CPI)": {"id": "CPALTT01INM659N",  "transform": "monthly_120", "type": "line"},
         "Unemployment":    {"id": "LRUNTTTTINM156S",  "transform": "monthly_120", "type": "line"},
-        "Current Account": {"id": "BPBLTT01INQ637S",  "transform": "qtr_sum_pct_gdp",  "type": "bar",  "annual": True},
         "Policy Rate":     {"id": "IRSTCI01INM156N",  "transform": "monthly_120", "type": "line", "stepped": True},
         "10Y Bond Yield":  {"id": "INTGSTINM193N",    "transform": "monthly_120", "type": "line"},
     },
@@ -275,7 +266,6 @@ FRED_METRICS = {
         "GDP Growth":      {"id": "ZAFGDPNQDSMEI",    "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
         "Inflation (CPI)": {"id": "CPALTT01ZAM659N",  "transform": "monthly_120", "type": "line"},
         "Unemployment":    {"id": "LRUNTTTTMZAM156S", "transform": "monthly_120", "type": "line"},
-        "Current Account": {"id": "BPBLTT01ZAQ637S",  "transform": "qtr_sum_pct_gdp",  "type": "bar",  "annual": True},
         "Policy Rate":     {"id": "IRSTCI01ZAM156N",  "transform": "monthly_120", "type": "line", "stepped": True},
         "10Y Bond Yield":  {"id": "IRLTLT01ZAM156N",  "transform": "monthly_120", "type": "line"},
     },
@@ -283,7 +273,6 @@ FRED_METRICS = {
         "GDP Growth":      {"id": "NGDPRSAXDCBRQ",   "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
         "Inflation (CPI)": {"id": "CPALTT01BRM659N", "transform": "monthly_120", "type": "line"},
         "Unemployment":    {"id": "LRUNTTTTBRM156S", "transform": "monthly_120", "type": "line"},
-        "Current Account": {"id": "BPBLTT01BRQ637S", "transform": "qtr_sum_pct_gdp",  "type": "bar",  "annual": True},
         "Policy Rate":     {"id": "IRSTCI01BRM156N", "transform": "monthly_120", "type": "line", "stepped": True},
         "10Y Bond Yield":  {"id": "INTGSTBRM193N",   "transform": "monthly_120", "type": "line"},
     },
@@ -291,7 +280,6 @@ FRED_METRICS = {
         "GDP Growth":      {"id": "NGDPRSAXDCRUQ",   "transform": "gdp_qtr_10",  "type": "bar",  "annual": True},
         "Inflation (CPI)": {"id": "CPALTT01RUM659N", "transform": "monthly_120", "type": "line"},
         "Unemployment":    {"id": "LRUNTTTTRUM156S", "transform": "monthly_120", "type": "line"},
-        "Current Account": {"id": "BPBLTT01RUQ637S", "transform": "qtr_sum_pct_gdp",  "type": "bar",  "annual": True},
         "Policy Rate":     {"id": "IRSTCI01RUM156N", "transform": "monthly_120", "type": "line", "stepped": True},
         "10Y Bond Yield":  {"id": "IRLTLT01RUM156N", "transform": "monthly_120", "type": "line"},
     },
@@ -432,6 +420,44 @@ def fetch_wb_budget_deficit(country_code):
         return None
 
 
+# World Bank ISO-2 codes mapped from MacroSnaps ISO-3 codes.
+WB_ISO2 = {
+    "USA": "US", "CAN": "CA", "GBR": "GB", "JPN": "JP",
+    "DEU": "DE", "FRA": "FR", "ITA": "IT", "CHN": "CN",
+    "IND": "IN", "ZAF": "ZA", "BRA": "BR", "RUS": "RU",
+}
+
+
+def fetch_wb_current_account(country_code):
+    """
+    Fetch current account balance (% of GDP) from World Bank API.
+    Indicator: BN.CAB.XOKA.GD.ZS (negative = deficit).
+    Returns last 10 annual values sorted oldest first, or None on error.
+    No API key required.
+    """
+    iso2 = WB_ISO2.get(country_code, country_code)
+    url = f"https://api.worldbank.org/v2/country/{iso2}/indicator/BN.CAB.XOKA.GD.ZS"
+    try:
+        r = requests.get(url, params={"format": "json", "mrv": 10, "per_page": 10}, timeout=20)
+        time.sleep(REQUEST_DELAY)
+        if r.status_code != 200:
+            log.warning(f"    World Bank current account {country_code}: HTTP {r.status_code}")
+            return None
+        data = r.json()
+        if not isinstance(data, list) or len(data) < 2 or not data[1]:
+            log.warning(f"    World Bank current account {country_code}: unexpected response")
+            return None
+        pts = sorted(
+            [(x["date"], r2(x["value"])) for x in data[1] if x is not None and x["value"] is not None],
+            key=lambda x: x[0]
+        )
+        vals = [v for _, v in pts]
+        return vals[-10:] if vals else None
+    except Exception as exc:
+        log.warning(f"    World Bank current account {country_code}: {exc}")
+        return None
+
+
 def r2(v):
     """Round to 2 decimal places."""
     return round(v, 2)
@@ -519,14 +545,12 @@ def apply_gdp_qtr_10(pairs):
     return growth[-10:] if growth else None
 
 
-def apply_transform(pairs, transform, gdp_by_year=None):
+def apply_transform(pairs, transform):
     """Dispatch to the correct transform function."""
     if transform == "monthly_120":
         return apply_monthly_120(pairs)
     if transform == "annual_10":
         return apply_annual_10(pairs)
-    if transform == "qtr_sum_pct_gdp":
-        return apply_qtr_sum_pct_gdp(pairs, gdp_by_year or {})
     if transform == "gdp_qtr_10":
         return apply_gdp_qtr_10(pairs)
     log.warning(f"    Unknown transform '{transform}'")
@@ -769,9 +793,6 @@ def process_country(code, country_data):
     ten_y_pairs   = None
     short_pairs   = None
 
-    # Pre-fetch nominal GDP for Current Account % GDP conversion.
-    gdp_by_year = fetch_nominal_gdp(code)
-
     # Fetch FRED-sourced metrics
     for metric, cfg in metrics_cfg.items():
 
@@ -804,7 +825,7 @@ def process_country(code, country_data):
             results["failed"].append(metric)
             continue
 
-        vals = apply_transform(pairs, cfg["transform"], gdp_by_year=gdp_by_year)
+        vals = apply_transform(pairs, cfg["transform"])
         if not vals:
             log.warning(f"    transform produced no values")
             results["failed"].append(metric)
@@ -891,6 +912,20 @@ def process_country(code, country_data):
     else:
         log.info(f"  SKIP    Budget Deficit (already populated)")
         results["skipped"].append("Budget Deficit")
+
+    # Current Account % GDP (World Bank API - no key required)
+    if not is_populated(frozen, "Current Account") or FORCE_OVERWRITE:
+        log.info(f"  Fetch   Current Account  [World Bank BN.CAB.XOKA.GD.ZS]")
+        vals = fetch_wb_current_account(code)
+        if vals:
+            frozen["Current Account"] = {"v": vals, "type": "bar", "annual": True}
+            log.info(f"    OK ({len(vals)} points)")
+            results["fetched"].append("Current Account")
+        else:
+            results["failed"].append("Current Account")
+    else:
+        log.info(f"  SKIP    Current Account (already populated)")
+        results["skipped"].append("Current Account")
 
     # Rename any wrongly stored "macro" FX entry to the correct label
     if "macro" in frozen and fx_label and fx_label != "macro":
