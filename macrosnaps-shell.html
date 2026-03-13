@@ -6342,9 +6342,23 @@ function showCommodityMTT(idx) {
   const storyText = item.story ? (item.story[currentLevel] || item.story.beginner || '') : '';
   const storyHTML = storyText ? `<div class="tt-section tt-metric-story"><div class="tt-story" style="margin-bottom:0;padding-bottom:0;border-bottom:none">${storyText}</div></div>` : '';
 
-  // Chart HTML (annual history)
+  // Chart HTML (monthly history from _frozen_historical)
   let chartHTML = '';
-  if (item.annual && item.annual.length > 0) {
+  const commFH = item._frozen_historical;
+  if (commFH && commFH.v && commFH.v.length > 0) {
+    chartHTML = `<div class="metric-chart-wrap">
+      <div class="metric-chart-head">
+        <div class="metric-chart-title">${item.name} (${item.unit})</div>
+        <div class="metric-chart-range">
+          <button class="mcr-btn" data-r="12">1Y</button>
+          <button class="mcr-btn" data-r="24">2Y</button>
+          <button class="mcr-btn" data-r="60">5Y</button>
+          <button class="mcr-btn active" data-r="114">All</button>
+        </div>
+      </div>
+      <div class="metric-chart-canvas" id="commMTTChart"></div>
+    </div>`;
+  } else if (item.annual && item.annual.length > 0) {
     chartHTML = `<div class="metric-chart-wrap">
       <div class="metric-chart-head">
         <div class="metric-chart-title">${item.name} (${item.unit}) · Annual</div>
@@ -6376,8 +6390,20 @@ function showCommodityMTT(idx) {
     });
   });
 
-  // Render Chart.js chart for annual history
-  if (item.annual && item.annual.length > 0) {
+  // Render chart
+  const commFH2 = item._frozen_historical;
+  if (commFH2 && commFH2.v && commFH2.v.length > 0) {
+    const chartContainer = tt.querySelector('#commMTTChart');
+    renderCommodityMonthlyChart(chartContainer, item, 114);
+    tt.querySelectorAll('.mcr-btn').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        tt.querySelectorAll('.mcr-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderCommodityMonthlyChart(chartContainer, item, parseInt(btn.dataset.r));
+      });
+    });
+  } else if (item.annual && item.annual.length > 0) {
     const chartContainer = tt.querySelector('#commMTTChart');
     renderCommodityChart(chartContainer, item);
   }
@@ -6402,6 +6428,98 @@ function showCommodityMTT(idx) {
 
   // Outside click close
   setTimeout(() => { document.addEventListener('click', function cl(e) { if (!tt.contains(e.target)) { if (activeChart) { activeChart.destroy(); activeChart = null; } tt.remove(); document.removeEventListener('click', cl); } }); }, 100);
+}
+
+function renderCommodityMonthlyChart(container, item, rangeMonths) {
+  if (activeChart) { activeChart.destroy(); activeChart = null; }
+  const fh = item._frozen_historical;
+  if (!fh || !fh.v || fh.v.length === 0) { container.innerHTML = '<div class="metric-chart-nodata">No historical data</div>'; return; }
+
+  const n = Math.min(rangeMonths, fh.v.length);
+  const sliceVals = fh.v.slice(-n);
+  const sliceLabels = histMonthlyLabels.slice(-n);
+
+  const validVals = sliceVals.filter(v => v !== null && v !== undefined);
+  const mn = validVals.length ? Math.min(...validVals) : 0;
+  const mx = validVals.length ? Math.max(...validVals) : 0;
+  const range = mx - mn;
+  const pad = range * 0.15 || (Math.abs(mx) * 0.1) || 1;
+
+  container.innerHTML = '<canvas></canvas>';
+  const canvas = container.querySelector('canvas');
+  canvas.addEventListener('click', e => e.stopPropagation());
+  const ctx = canvas.getContext('2d');
+
+  const catColors = {energy: 'rgba(232,168,56,', metals: 'rgba(0,212,255,', agriculture: 'rgba(0,230,138,'};
+  const baseColor = catColors[item.cat] || 'rgba(232,168,56,';
+
+  const grad = ctx.createLinearGradient(0, 0, 0, 120);
+  grad.addColorStop(0, baseColor + '.18)');
+  grad.addColorStop(1, baseColor + '.01)');
+
+  activeChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: sliceLabels,
+      datasets: [{
+        data: sliceVals,
+        borderColor: baseColor + '.8)',
+        backgroundColor: grad,
+        borderWidth: 1.5,
+        pointRadius: 0,
+        pointHitRadius: 8,
+        pointHoverRadius: 3,
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderWidth: 1,
+        tension: .3,
+        fill: true
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: { duration: 300 },
+      events: ['mousemove', 'mouseout', 'touchstart', 'touchmove'],
+      layout: { padding: { left: 2, right: 2, top: 4, bottom: 0 } },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: 'rgba(20,22,28,.95)',
+          titleFont: { family: "'Space Mono',monospace", size: 10 },
+          bodyFont: { family: "'DM Sans',sans-serif", size: 12 },
+          borderColor: 'rgba(255,255,255,.1)',
+          borderWidth: 1,
+          padding: 8,
+          callbacks: {
+            label: function(ctx) { return formatCommPrice(ctx.parsed.y) + ' ' + item.unit; }
+          }
+        }
+      },
+      scales: {
+        x: {
+          display: true,
+          grid: { display: false },
+          ticks: {
+            font: { family: "'Space Mono',monospace", size: 8 },
+            color: '#888',
+            maxRotation: 0,
+            autoSkip: true,
+            maxTicksLimit: n <= 12 ? 6 : n <= 24 ? 8 : 10
+          },
+          border: { display: false }
+        },
+        y: {
+          display: true,
+          position: 'right',
+          min: mn - pad,
+          max: mx + pad,
+          ticks: { font: { family: "'Space Mono',monospace", size: 8 }, color: '#888', maxTicksLimit: 5 },
+          grid: { color: 'rgba(255,255,255,.03)' },
+          border: { display: false }
+        }
+      }
+    }
+  });
 }
 
 function renderCommodityChart(container, item) {

@@ -1,5 +1,5 @@
 # MacroSnaps - Living Brief
-Last updated: March 12, 2026 (tooling session - refetch_historical.py extended to 10-year windows for all monthly/annual series; Current Account now computed as % of GDP natively using World Bank nominal GDP series via FRED, no manual conversion needed; commodity historical data added for all 9 commodities via Yahoo Finance continuous futures; BRA 10Y Bond Yield fixed to INTGSTBRM193N; duplicate detect_fx_label stub removed)
+Last updated: March 12, 2026 (bug fix session - 10Y chart range button restored; root cause: monthlyLabels in shell-frozen had 180 entries covering Jan 2011 to Dec 2025, but globe.html had been built when it only had 60 entries, making slice(-120) and slice(-60) return identical arrays so 10Y looked identical to 5Y; fix: extended monthlyLabels to 192 entries covering Jan 2011 to Dec 2026; rebuilt and pushed)
 
 ---
 
@@ -598,6 +598,7 @@ The tooltip order is: metric name, country + value, story, chart, explanation/bl
 | Current Account displayed in absolute dollars | Fixed 2026-03-10 | All CA historical arrays converted to % of GDP using IMF WEO denominators. 2026F appended as final point. |
 | Macro chart 2026F point missing | Fixed 2026-03-10 | 2026F forecast appended as final point to all macro historical arrays with existing data. |
 | refetch_historical.py overwrites CA % GDP conversion | Known risk | Running refetch restores raw dollar values. Re-run CA conversion after any refetch. Fix properly when updating refetch_historical.py (see Pending work). |
+| 10Y chart range button appeared broken | Fixed 2026-03-12 | monthlyLabels in shell-frozen had 180 entries (Jan 2011 to Dec 2025) but globe.html had been built when it was only 60 entries, so slice(-120) and slice(-60) returned identical arrays. Fixed by extending monthlyLabels to 192 entries (Jan 2011 to Dec 2026). Note: whenever historical data is refetched into future months, extend monthlyLabels to match. |
 | No .env file | Fixed 2026-03-11 | .env created at ~/Downloads/macrosnaps/.env with FRED_API_KEY. |
 | .env committed to public repo | Resolved 2026-03-11 | .env and env removed from all git history via filter-branch, force pushed. .env and env added to .gitignore. Anthropic API key regenerated twice (exposed in git history, then again in chat). Always use interactive input or nano to set secrets, never paste into chat. |
 
