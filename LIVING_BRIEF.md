@@ -1,5 +1,5 @@
 # MacroSnaps - Living Brief
-Last updated: March 13, 2026 (tooling session: refetch_historical.py - ECB Policy Rate fixed for DEU/FRA/ITA; CHN Policy Rate and RUS USD/RUB blanked; OECD unemployment start extended to 2008; GDP Growth, Budget Deficit, Current Account removed entirely from refetch_historical.py - all three annual metrics now exclusively owned by sync_sheet.py; World Bank fetch functions, NOMINAL_GDP_SERIES, and dead transforms removed)
+Last updated: March 13, 2026 (tooling session: Equity Vol and FX Vol removed from the product. Python scripts updated: fetch_market_data.py, refetch_historical.py, update_stories.py, build.py. Remaining: data.json and macrosnaps-shell.html - see Pending Work for exact instructions.)
 
 ---
 
@@ -140,7 +140,7 @@ After all rewrites are done, output a summary table of every country/metric pair
 
 Then update `LIVING_BRIEF.md` to clear the rewritten entries from the "Known value/story drift" section and make it available for download.
 
-Do not rewrite stories for the 4 data-void metrics (Equity Vol, Corp Spread, Sov CDS, FX Vol). These are moving to "not available" display state.
+Do not rewrite stories for the 2 data-void metrics (Corp Spread, Sov CDS). These display as "not available". Equity Vol and FX Vol have been removed from the product entirely.
 
 **What I am working on today:** Rewriting stale metric stories. All current values are in data.json.
 
@@ -246,7 +246,7 @@ python3 sync_sheet.py --apply
 
 **Step 4. Fetch live market data**
 
-This pulls Stock Market YTD, 10Y Bond Yield, Yield Curve, FX pairs, Equity Vol, Corp Spread, Sov CDS, FX Vol, and all 9 commodity prices from Yahoo Finance and FRED and writes them into `data.json`.
+This pulls Stock Market YTD, 10Y Bond Yield, Yield Curve, FX pairs, Corp Spread, Sov CDS, and all 9 commodity prices from Yahoo Finance and FRED and writes them into `data.json`.
 ```bash
 python3 fetch_market_data.py
 ```
@@ -352,7 +352,7 @@ Then go to `http://localhost:8000/macrosnaps-globe.html`. Keep that terminal win
 
 **Per-metric stories (beginner / moderate / expert)**
 
-All 168 per-metric stories are complete across all 12 countries and all 3 levels. Stories for the 4 data-void metrics (Equity Vol, Corp Spread, Sov CDS, FX Vol) will not be maintained going forward as those metrics are moving to "not available" display state.
+All 144 per-metric stories are complete across all 12 countries and all 3 levels (12 metrics x 12 countries). Stories for the 2 remaining data-void metrics (Corp Spread, Sov CDS) will not be maintained going forward as those metrics display as "not available". Equity Vol and FX Vol have been removed from the product entirely.
 
 **Other content (all 12 countries)**
 - Country-level stories (3 bullets per level): complete for all 12, last updated March 10, 2026
@@ -378,12 +378,10 @@ These are metrics where the live value has been updated by `fetch_market_data.py
 | Metric | Current value | What stories say |
 |---|---|---|
 | Stock Market YTD | -1.1% | +2% |
-| Equity Vol (VIX) | ~25 | ~16 |
 | 10Y Bond Yield | 4.12% | 4.28% |
 | Yield Curve | +52bps | +8bps |
 | Corp Spread | 84bps | 85bps |
 | USD/DXY | 99.1 | 104.2 |
-| FX Vol | 5.8% | 8.5% |
 | Policy Rate | Rewritten March 11, 2026 | |
 | Budget Deficit | Rewritten March 11, 2026 | |
 
@@ -396,7 +394,6 @@ These are metrics where the live value has been updated by `fetch_market_data.py
 | 10Y Bond Yield | 3.40% | (check story) |
 | Yield Curve | +121bps | +30bps |
 | CAD/USD | 0.74 | (check story) |
-| FX Vol | 5.2% | 7.2% |
 
 **Other countries - live values as of March 11 dry run:**
 
@@ -407,7 +404,6 @@ These are metrics where the live value has been updated by `fetch_market_data.py
 | GBR | Yield Curve | +74bps |
 | GBR | GBP/USD | 1.34 |
 | JPN | Stock Market YTD | Rewritten March 11, 2026 |
-| JPN | Equity Vol | ~32 |
 | JPN | 10Y Bond Yield | 2.24% |
 | JPN | Yield Curve | +112bps |
 | JPN | USD/JPY | 158.6 |
@@ -429,7 +425,6 @@ These are metrics where the live value has been updated by `fetch_market_data.py
 | IND | Sov CDS | 261bps |
 | IND | USD/INR | 92.04 |
 | ZAF | Stock Market YTD | +0.5% |
-| ZAF | Equity Vol | ~29 |
 | ZAF | 10Y Bond Yield | 8.62% |
 | ZAF | Yield Curve | +187bps |
 | ZAF | Sov CDS | 450bps |
@@ -444,27 +439,24 @@ These are metrics where the live value has been updated by `fetch_market_data.py
 
 ### fetch_market_data.py
 
-The script lives in `~/Downloads/macrosnaps/`. It pulls all 8 market metrics and writes `value` and `last_updated` fields directly into `data.json`. It never touches historical arrays, stories, macro metrics, or any other field.
+The script lives in `~/Downloads/macrosnaps/`. It pulls all 6 market metrics and writes `value` and `last_updated` fields directly into `data.json`. It never touches historical arrays, stories, macro metrics, or any other field.
 
 **Metrics fetched:**
 
 | Metric | Source | Notes |
 |---|---|---|
 | Stock Market YTD | Yahoo Finance | YTD % change from Jan 1 close |
-| Equity Vol | Yahoo Finance | Implied vol index where available, 30-day realized vol as fallback |
 | 10Y Bond Yield | FRED | Daily series per country |
 | Yield Curve | FRED (derived) | 10Y minus short rate |
 | Corp Spread | FRED | ICE BofA IG/HY OAS series |
 | Sov CDS | Derived proxy | Local 10Y minus UST (EM countries only) |
 | FX pair | Yahoo Finance | Varies by country |
-| FX Vol | Yahoo Finance (derived) | 30-day realized vol from daily FX returns |
 | Commodity prices (9) | Yahoo Finance | Continuous futures tickers (CL=F, BZ=F, NG=F, GC=F, SI=F, HG=F, ZW=F, ZC=F, ZS=F); updates price, change (YoY %), spark (rolling 12-point array), and asOf |
 
 **Known gaps (expected, not bugs):**
-- RUS: `IMOEX.ME` is delisted on Yahoo. Stock Market YTD and Equity Vol will always fail. FX and FX Vol come through.
+- RUS: `IMOEX.ME` is delisted on Yahoo. Stock Market YTD will always fail. FX comes through.
 - CHN and BRA: No FRED 10Y series. 10Y Bond Yield, Yield Curve, and Sov CDS will always fail.
 - RUS: No Corp Spread series configured.
-- Bund 10Y pre-fetch returns unrounded (e.g. `2.80666666666667%`). Minor cosmetic issue, does not affect output values.
 
 **Dry run results (March 11, 2026):** 77 of 96 metrics fetched successfully. 19 failures all fall in the known gaps above.
 
@@ -511,18 +503,18 @@ These three metrics keep their existing monthly `_frozen_historical` arrays (120
 
 | Country | Charts populated | Notes |
 |---|---|---|
-| USA | 14/14 | Annual charts now 27 points (2000-2026F) from Macro-stats |
-| CAN | 14/14 | Annual charts now 27 points (2000-2026F) from Macro-stats |
-| GBR | 14/14 | Annual charts now 27 points (2000-2026F) from Macro-stats |
-| JPN | 14/14 | Annual charts now 27 points (2000-2026F) from Macro-stats |
-| DEU | 14/14 | Annual charts now 27 points (2000-2026F) from Macro-stats |
-| FRA | 14/14 | Annual charts now 27 points (2000-2026F) from Macro-stats |
-| ITA | 14/14 | Annual charts now 27 points (2000-2026F) from Macro-stats |
-| CHN | 11/14 | Unemployment, 10Y Bond Yield, Yield Curve: no free source |
-| IND | 11/14 | Unemployment, 10Y Bond Yield, Yield Curve: no free source |
-| ZAF | 12/14 | Unemployment: no monthly source |
-| BRA | 12/14 | 10Y Bond Yield, Yield Curve: no free source |
-| RUS | 10/14 | GDP Growth, Unemployment, USD/RUB discontinued post-2022 sanctions |
+| USA | 12/12 | Annual charts now 27 points (2000-2026F) from Macro-stats |
+| CAN | 12/12 | Annual charts now 27 points (2000-2026F) from Macro-stats |
+| GBR | 12/12 | Annual charts now 27 points (2000-2026F) from Macro-stats |
+| JPN | 12/12 | Annual charts now 27 points (2000-2026F) from Macro-stats |
+| DEU | 12/12 | Annual charts now 27 points (2000-2026F) from Macro-stats |
+| FRA | 12/12 | Annual charts now 27 points (2000-2026F) from Macro-stats |
+| ITA | 12/12 | Annual charts now 27 points (2000-2026F) from Macro-stats |
+| CHN | 9/12 | Unemployment, 10Y Bond Yield, Yield Curve: no free source |
+| IND | 9/12 | Unemployment, 10Y Bond Yield, Yield Curve: no free source |
+| ZAF | 11/12 | Unemployment: no monthly source |
+| BRA | 10/12 | 10Y Bond Yield, Yield Curve: no free source |
+| RUS | 8/12 | GDP Growth, Unemployment, USD/RUB discontinued post-2022 sanctions |
 
 **Known data quality flags:**
 - IND and ZAF GDP Growth historical arrays previously showed anomalous values from FRED (nominal USD rather than real % growth). These are now replaced by clean IMF WEO data from Macro-stats.
@@ -531,13 +523,15 @@ These three metrics keep their existing monthly `_frozen_historical` arrays (120
 
 ---
 
-### The 14 metrics per country
+### The 12 metrics per country
 
 **Macro (6):** GDP Growth, Inflation (CPI), Unemployment, Budget Deficit, Current Account, Policy Rate.
 
-**Market (8):** Stock Market YTD, Equity Vol, 10Y Bond Yield, Yield Curve, Corp Spread, Sov CDS, [FX pair - varies by country], FX Vol.
+**Market (6):** Stock Market YTD, 10Y Bond Yield, Yield Curve, Corp Spread, Sov CDS, [FX pair - varies by country].
 
-**Data-void metrics (4):** Equity Vol, Corp Spread, Sov CDS, FX Vol. No reliable free daily source exists for any of these. These will be displayed as "not available" in the UI with a tooltip explanation. Stories for these metrics will not be maintained going forward. This decision can be revisited post-launch if a paid data source is added.
+**Data-void metrics (2):** Corp Spread, Sov CDS. No reliable free daily source exists for either. These display as "not available" in the UI with a tooltip explanation. Stories for these metrics will not be maintained going forward. This decision can be revisited post-launch if a paid data source is added.
+
+Note: Equity Vol and FX Vol were removed from the product entirely in March 2026 due to data quality issues. They no longer exist in data.json, the shell, or any pipeline script.
 
 ---
 
@@ -559,7 +553,7 @@ The tooltip order is: metric name, country + value, story, chart, explanation/bl
 
 **Google Sheet for macro metrics.** The sheet holds the 6 macro metrics per country. `sync_sheet.py` pulls from the sheet and writes `data.json`. The sheet is updated manually but infrequently, when year-end consensus forecasts change.
 
-**fetch_market_data.py for live market metrics.** Pulls all 8 market metrics from Yahoo Finance and FRED daily. Built and verified March 11, 2026.
+**fetch_market_data.py for live market metrics.** Pulls all 6 market metrics from Yahoo Finance and FRED daily. Built and verified March 11, 2026. Equity Vol and FX Vol removed March 13, 2026.
 
 **update_stories.py for story maintenance.** Diffs data.json against the last git commit to detect meaningful value changes, then calls the Claude API to rewrite stories for affected metrics. Runs after both sync_sheet.py and fetch_market_data.py so it catches all changes in one pass. Built and verified March 11, 2026. Requires ANTHROPIC_API_KEY in .env.
 
@@ -706,12 +700,9 @@ The table below is the definitive record of what `refetch_historical.py` cannot 
 
 | Metric | Country | Status | Reason |
 |---|---|---|---|
-| Equity Vol | USA | FETCHED (VIXCLS) | CBOE VIX via FRED daily |
-| Equity Vol | All others | Blanked | No free public source |
 | Corp Spread | USA | FETCHED (BAMLC0A0CM) | ICE BofA US IG OAS via FRED daily |
 | Corp Spread | All others | Blanked | No free public source |
 | Sov CDS | All countries | Blanked | No free public source |
-| FX Vol | All countries | Blanked | No free public source |
 | Yield Curve | RUS | Blanked | Post-sanctions FRED gaps leave only 42 points; chart date labels shift by view length, producing a misleading display |
 | Stock Market | RUS | Truncated at Jun 2023 | Yahoo Finance stopped publishing MOEX data post-sanctions. 88 real months retained, truncation visually obvious |
 | Unemployment | CHN, IND | No data | Not available on FRED or OECD |
@@ -745,6 +736,24 @@ Key settings at the top of the script:
 ---
 
 ### Pending work (priority order)
+
+1. **Remove Equity Vol and FX Vol from `data.json`.** This is a content/tooling session. Upload `LIVING_BRIEF.md` + `data.json`.
+
+   Each country has a `metrics.market` object. Remove the `"Equity Vol"` and `"FX Vol"` keys and their entire value objects from all 12 countries. Also remove any `_frozen_historical` entries keyed to `"Equity Vol"` or `"FX Vol"` if they exist (some will have `{"v": []}` blanked entries that should be deleted entirely).
+
+   The 12 country codes are: USA, CAN, GBR, JPN, DEU, FRA, ITA, CHN, IND, ZAF, BRA, RUS.
+
+   After editing, run `python3 build.py --validate-only` to confirm the JSON is valid before saving. Then run the full build: `python3 build.py`.
+
+1. **Remove Equity Vol and FX Vol from `macrosnaps-shell.html`.** This is a UI session. Upload `LIVING_BRIEF.md` + `macrosnaps-shell.html`.
+
+   Locations to update (search for "Equity Vol" and "FX Vol" in the file):
+   - `metricDisplayLabels` object (around line 5229): remove both keys and their display name strings.
+   - Any metric ordering arrays or explicit metric key lists: remove both keys.
+   - Data-void display logic: Corp Spread and Sov CDS remain as data-void, so any shared rendering logic for data-void metrics stays. Only remove references where Equity Vol and FX Vol are named explicitly.
+   - Check for any hardcoded metric counts (e.g. "8 market metrics" or similar) and update to 6.
+
+   After editing, run `python3 build.py` and verify the live site renders correctly for a country card.
 
 1. ~~**Automate monthlyLabels generation in the shell.**~~ Done March 13, 2026. Static `monthlyLabels` array removed from `_frozen.chartConfig`. `histMonthlyLabels` is now a `let` variable populated at runtime by a small IIFE inside the `data.json` fetch `.then()` block, anchored to `data._meta.generated` and counting back 240 months (20 years). No manual shell edit needed when `refetch_historical.py` advances the data window.
 

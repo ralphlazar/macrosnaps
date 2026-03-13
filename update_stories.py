@@ -31,10 +31,10 @@ DATA_FILE = "data.json"
 TODAY = date.today().isoformat()
 MODEL = "claude-sonnet-4-20250514"
 
-# These 4 metrics have no reliable free data source and display as "not available".
+# These 2 metrics have no reliable free data source and display as "not available".
 # Stories are skipped while values remain void. If a paid source is added post-launch
 # and values start appearing, the script will detect the change and rewrite normally.
-DATA_VOID_METRICS = {"Equity Vol", "Corp Spread", "Sov CDS", "FX Vol"}
+DATA_VOID_METRICS = {"Corp Spread", "Sov CDS"}
 
 # FX metric key per country (varies)
 FX_KEYS = {

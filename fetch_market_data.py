@@ -3,19 +3,17 @@
 fetch_market_data.py
 MacroSnaps - fetch current market metric values for all 12 countries.
 
-Writes updated `value` and `last_updated` fields for all 8 market metrics
+Writes updated `value` and `last_updated` fields for all 6 market metrics
 into data.json in place. Never touches historical arrays, stories, macro
 metrics, or any other field.
 
 Metrics updated:
   Stock Market YTD   - Yahoo Finance (YTD % change from Jan 1 close)
-  Equity Vol         - Yahoo Finance implied vol indices, fallback to realized vol
   10Y Bond Yield     - FRED daily series
   Yield Curve        - Derived: 10Y minus 2Y (FRED)
   Corp Spread        - FRED ICE BofA IG/HY spread series
   Sov CDS            - Derived proxy: local 10Y minus UST or Bund 10Y
   FX pair            - Yahoo Finance
-  FX Vol             - Computed: 30-day realized vol from daily FX returns
 
 Run:
   cd ~/Downloads/macrosnaps
@@ -35,7 +33,6 @@ Setup:
 
 import json
 import logging
-import math
 import os
 import sys
 import time
@@ -147,25 +144,7 @@ CORP_SPREAD_SERIES = {
     "RUS": None,
 }
 
-# Yahoo Finance tickers for equity implied vol indices.
-# None = fall back to computing 30-day realized vol from stock index.
-# ^VFTSE and ^JNIV are delisted on Yahoo - realized vol fallback used for GBR/JPN.
-EQUITY_VOL_TICKERS = {
-    "USA": "^VIX",
-    "CAN": None,            # no liquid vol index - use realized vol
-    "GBR": None,            # ^VFTSE delisted - use realized vol
-    "JPN": None,            # ^JNIV delisted - use realized vol
-    "DEU": None,            # ^V2TX unreliable on Yahoo - use realized vol
-    "FRA": None,            # ^V2TX unreliable on Yahoo - use realized vol
-    "ITA": None,            # ^V2TX unreliable on Yahoo - use realized vol
-    "CHN": None,            # iVIX suspended 2018 - use realized vol
-    "IND": "^INDIAVIX",
-    "ZAF": None,            # use realized vol
-    "BRA": None,            # use realized vol
-    "RUS": None,            # use realized vol
-}
-
-# Yahoo Finance tickers for stock indices (for YTD and realized vol fallback).
+# Yahoo Finance tickers for stock indices (for YTD).
 STOCK_TICKERS = {
     "USA": "^GSPC",
     "CAN": "^GSPTSE",
@@ -346,46 +325,6 @@ def yf_ytd_return(ticker):
         log.warning(f"    Yahoo YTD {ticker}: {exc}")
         return None
 
-def yf_realized_vol_30d(ticker):
-    """
-    Compute 30-day realized (historical) volatility from daily returns,
-    annualized. Returns float (e.g. 18.5 for 18.5%) or None.
-    """
-    try:
-        end   = datetime.today()
-        start = end - timedelta(days=60)   # extra buffer for weekends/holidays
-        t = yf.Ticker(ticker)
-        hist = t.history(start=start.strftime("%Y-%m-%d"))
-        if hist.empty or len(hist) < 20:
-            return None
-        closes = hist["Close"].tail(31)
-        if len(closes) < 20:
-            return None
-        returns = closes.pct_change().dropna()
-        vol = float(returns.std() * math.sqrt(252) * 100)
-        return vol
-    except Exception as exc:
-        log.warning(f"    Yahoo realized vol {ticker}: {exc}")
-        return None
-
-def yf_fx_daily_returns(ticker, days=60):
-    """
-    Fetch daily FX closing prices for the last `days` calendar days.
-    Returns a list of daily % returns, or None.
-    """
-    try:
-        end   = datetime.today()
-        start = end - timedelta(days=days)
-        t = yf.Ticker(ticker)
-        hist = t.history(start=start.strftime("%Y-%m-%d"))
-        if hist.empty or len(hist) < 20:
-            return None
-        closes = hist["Close"]
-        returns = closes.pct_change().dropna().tolist()
-        return returns
-    except Exception as exc:
-        log.warning(f"    Yahoo FX returns {ticker}: {exc}")
-        return None
 
 def yf_price_and_ytd(ticker):
     """
@@ -428,27 +367,6 @@ def fetch_stock_ytd(code):
         return None
     sign = "+" if pct >= 0 else ""
     return f"{sign}{pct:.1f}%"
-
-def fetch_equity_vol(code):
-    """
-    Fetch Equity Vol. Tries implied vol index first, falls back to realized vol.
-    Returns formatted string like '~18' or None.
-    """
-    # Try implied vol ticker
-    vol_ticker = EQUITY_VOL_TICKERS.get(code)
-    if vol_ticker:
-        val = yf_latest_close(vol_ticker)
-        if val is not None:
-            return f"~{round(val)}"
-
-    # Fall back to realized vol from stock index
-    stock_ticker = STOCK_TICKERS.get(code)
-    if stock_ticker:
-        rv = yf_realized_vol_30d(stock_ticker)
-        if rv is not None:
-            return f"~{round(rv)}"
-
-    return None
 
 def fetch_bond_10y(code):
     """
@@ -540,34 +458,13 @@ def fetch_fx(code):
     formatted = f"{val:.{decimals}f}"
     return val, formatted
 
-def fetch_fx_vol(code):
-    """
-    Compute FX Vol as 30-day annualized realized vol from daily FX returns.
-    Returns formatted string like '12.5%' or None.
-    """
-    ticker = FX_TICKERS.get(code)
-    if not ticker:
-        return None
-
-    returns = yf_fx_daily_returns(ticker)
-    if not returns or len(returns) < 20:
-        return None
-
-    # Use last 30 trading days
-    recent = returns[-30:]
-    mean = sum(recent) / len(recent)
-    variance = sum((r - mean) ** 2 for r in recent) / len(recent)
-    daily_std = math.sqrt(variance)
-    annualized = daily_std * math.sqrt(252) * 100
-    return f"{annualized:.1f}%"
-
 # ---------------------------------------------------------------------------
 # PROCESS ONE COUNTRY
 # ---------------------------------------------------------------------------
 
 def process_country(code, country_data, ust_10y, bund_10y):
     """
-    Fetch all 8 market metrics for one country and return a dict of
+    Fetch all 6 market metrics for one country and return a dict of
     {metric_label: new_value_string} for metrics that were successfully fetched.
     """
     log.info(f"\n{'='*52}")
@@ -583,14 +480,6 @@ def process_country(code, country_data, ust_10y, bund_10y):
         log.info(f"  Stock Market YTD    {val}")
     else:
         log.warning(f"  Stock Market YTD    FAILED")
-
-    # Equity Vol
-    val = fetch_equity_vol(code)
-    if val:
-        updates["Equity Vol"] = val
-        log.info(f"  Equity Vol          {val}")
-    else:
-        log.warning(f"  Equity Vol          FAILED")
 
     # 10Y Bond Yield
     ten_y_float, ten_y_str = fetch_bond_10y(code)
@@ -635,14 +524,6 @@ def process_country(code, country_data, ust_10y, bund_10y):
         log.info(f"  {fx_label:<20}{fx_str}")
     else:
         log.warning(f"  FX                  FAILED")
-
-    # FX Vol
-    val = fetch_fx_vol(code)
-    if val:
-        updates["FX Vol"] = val
-        log.info(f"  FX Vol              {val}")
-    else:
-        log.warning(f"  FX Vol              FAILED")
 
     return updates
 
@@ -773,7 +654,7 @@ def main():
         updates = process_country(code, countries[code], ust_10y, bund_10y)
         all_updates[code] = updates
         total_ok     += len(updates)
-        total_failed += (8 - len(updates))
+        total_failed += (6 - len(updates))
 
     # Summary preview
     log.info(f"\n{'='*52}")

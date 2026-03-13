@@ -8,7 +8,7 @@
       "weekly": "Update weekly or on release — CPI, unemployment, policy rate",
       "structural": "Update quarterly or on major revision — GDP, deficits, current account, stories, fxRegime"
     },
-    "built_at": "2026-03-13 17:38"
+    "built_at": "2026-03-13 17:56"
   },
   "countries": {
     "USA": {
@@ -92,16 +92,6 @@
               "expert": "US equity indices extended year-to-date losses from -2.5% to -2.7%, with the deterioration reflecting persistent risk-off sentiment and technical breakdown below key support levels. The 20 basis point decline occurred amid elevated implied volatility metrics and continued outflows from growth-oriented sectors. Market microstructure indicators suggest algorithmic selling programs amplified the move, while options flow data points to defensive positioning through put spreads. The failure to reclaim positive territory despite multiple Federal Reserve policy pivots indicates deeper concerns about earnings revisions and credit market transmission mechanisms. Cross-asset correlations remain elevated, limiting traditional diversification benefits and forcing institutional rebalancing across risk parity frameworks."
             }
           },
-          "Equity Vol": {
-            "value": "~27",
-            "tier": "daily",
-            "last_updated": "2026-03-13",
-            "story": {
-              "beginner": "Stock market volatility just ticked up from 26 to 27. This means investors expect bigger price swings in the coming weeks. Higher volatility usually signals more uncertainty or worry about what's ahead.",
-              "moderate": "Equity volatility climbed from 26 to 27, indicating heightened uncertainty in stock markets. The VIX or similar volatility measures capture investor expectations for price swings over the next 30 days. This uptick suggests traders are pricing in greater potential for market turbulence, often driven by economic data, geopolitical events, or shifting monetary policy expectations.",
-              "expert": "Implied volatility rose from 26 to 27, reflecting increased options demand and higher risk premiums in equity markets. The move suggests institutional flows into protective puts or speculative calls ahead of potential catalysts. Volatility clustering typically accompanies this level, meaning we could see sustained elevated readings above 25. The term structure likely steepened as front-month contracts price in near-term event risk while longer-dated volatility remains anchored."
-            }
-          },
           "10Y Bond Yield": {
             "value": "4.21%",
             "tier": "daily",
@@ -150,16 +140,6 @@
               "beginner": "The dollar got stronger against other major currencies, with the Dollar Index rising from 99.7 to 100.1. This means it now costs more euros, yen, or pounds to buy the same amount of dollars. A stronger dollar makes American goods more expensive overseas but helps keep import prices down at home.",
               "moderate": "The US Dollar Index (DXY) climbed from 99.7 to 100.1, signaling renewed strength in the greenback against its major trading partners. The move above the psychologically important 100 level suggests investors are gaining confidence in dollar-denominated assets. This strength typically pressures commodity prices lower since most are priced in dollars, while making US exports less competitive globally. Multinationals with significant overseas revenue may face headwinds as foreign earnings translate back to fewer dollars.",
               "expert": "The DXY pushed through the 100 threshold, advancing from 99.7 to 100.1 in a technically significant move that breaks above key resistance. This rally likely reflects a combination of relative yield advantages as US real rates remain elevated and safe-haven demand amid global growth concerns. The breach of 100 puts focus on the 101-102 zone where previous rallies have stalled. Export-heavy sectors and EM currencies with dollar funding needs face increased pressure, while the move supports the Fed's disinflationary efforts through the import price channel. Options positioning around the 100 strike likely amplified the move as dealers hedged gamma exposure."
-            }
-          },
-          "FX Vol": {
-            "value": "5.9%",
-            "tier": "daily",
-            "last_updated": "2026-03-13",
-            "story": {
-              "beginner": "The dollar became slightly more volatile this period, with FX volatility rising from 5.8% to 5.9%. This small increase means currency traders expect a bit more price swings in the dollar against other major currencies. Higher volatility often signals uncertainty about future economic conditions.",
-              "moderate": "USD foreign exchange volatility ticked up from 5.8% to 5.9%, indicating marginally higher expected price swings in dollar pairs. The modest increase suggests traders are pricing in slightly more uncertainty around upcoming economic data or Federal Reserve policy decisions. Currency volatility at these levels remains relatively contained compared to crisis periods, but the uptick could signal building market tension ahead of key announcements.",
-              "expert": "USD FX volatility climbed 10 basis points to 5.9%, reflecting increased implied volatility across major dollar crosses. The move higher likely stems from option flows positioning for potential Fed policy surprises or macro data volatility, particularly given current uncertainty around terminal rate expectations. At sub-6% levels, realized volatility remains compressed relative to historical norms, but the directional move suggests dealers are demanding higher premiums for gamma exposure. Cross-currency volatility spreads and the VIX term structure will provide additional context for whether this represents isolated dollar weakness or broader risk-off positioning."
             }
           }
         }
@@ -741,131 +721,6 @@
           "type": "line",
           "indexLabel": true
         },
-        "Equity Vol": {
-          "v": [
-            15.7,
-            14.19,
-            15.63,
-            11.87,
-            13.42,
-            13.29,
-            17.06,
-            13.33,
-            14.04,
-            11.99,
-            12.92,
-            12.37,
-            10.82,
-            10.41,
-            11.18,
-            10.26,
-            10.59,
-            9.51,
-            10.18,
-            11.28,
-            11.04,
-            13.54,
-            19.85,
-            19.97,
-            15.93,
-            15.43,
-            16.09,
-            12.83,
-            12.86,
-            12.12,
-            21.23,
-            18.07,
-            25.42,
-            16.57,
-            14.78,
-            13.71,
-            13.12,
-            18.71,
-            15.08,
-            16.12,
-            18.98,
-            16.24,
-            13.22,
-            12.62,
-            13.78,
-            18.84,
-            40.11,
-            53.54,
-            34.15,
-            27.51,
-            30.43,
-            24.46,
-            26.41,
-            26.37,
-            38.02,
-            20.57,
-            22.75,
-            33.09,
-            27.95,
-            19.4,
-            18.61,
-            16.76,
-            15.83,
-            18.24,
-            16.48,
-            23.14,
-            16.26,
-            27.19,
-            17.22,
-            24.83,
-            30.15,
-            20.56,
-            33.4,
-            26.19,
-            28.71,
-            21.33,
-            25.87,
-            31.62,
-            25.88,
-            20.58,
-            21.67,
-            19.4,
-            20.7,
-            18.7,
-            15.78,
-            17.94,
-            13.59,
-            13.63,
-            13.57,
-            17.52,
-            18.14,
-            12.92,
-            12.45,
-            14.35,
-            13.4,
-            13.01,
-            15.65,
-            12.92,
-            12.44,
-            16.36,
-            15.0,
-            16.73,
-            23.16,
-            13.51,
-            17.35,
-            16.43,
-            19.63,
-            22.28,
-            24.7,
-            18.57,
-            16.73,
-            16.72,
-            15.36,
-            16.28,
-            17.44,
-            16.35,
-            14.95,
-            17.44,
-            19.86,
-            27.29
-          ],
-          "type": "line"
-        },
         "10Y Bond Yield": {
           "v": [
             1.89,
@@ -1369,9 +1224,6 @@
             119.49
           ],
           "type": "line"
-        },
-        "FX Vol": {
-          "v": []
         }
       },
       "_frozen_weatherGrid": {
@@ -1550,16 +1402,6 @@
               "expert": "The TSX Composite's YTD return contracted 20 basis points to 3.0% from 3.2%, signaling near-term consolidation in Canadian equity markets. The modest decline likely reflects portfolio rebalancing ahead of key economic data releases, with energy and financials potentially weighing on the index given commodity price volatility and rate sensitivity. Despite the marginal pullback, the positive YTD performance indicates continued foreign capital inflows and domestic institutional buying. The 3.0% gain remains well above historical volatility bands, suggesting underlying market structure remains constructive even as momentum moderates."
             }
           },
-          "Equity Vol": {
-            "value": "~20",
-            "tier": "daily",
-            "last_updated": "2026-03-13",
-            "story": {
-              "beginner": "Canadian stock market volatility jumped to around 20%. This means stock prices are swinging up and down much more than usual. Investors are feeling uncertain about the market's direction.",
-              "moderate": "Canadian equity volatility spiked to approximately 20%, signaling heightened market uncertainty. This level suggests investors are pricing in significant price swings as they react to economic or political developments. Higher volatility often accompanies periods of market stress or major policy shifts. Trading activity typically increases as investors adjust their positions more frequently.",
-              "expert": "Canadian equity implied volatility surged to ~20%, marking a substantial increase from recent levels and indicating elevated risk premiums in options markets. This volatility spike likely reflects investor uncertainty around monetary policy transmission effects, commodity price dynamics, or geopolitical developments affecting Canadian assets. The VIX-equivalent reading suggests market makers are pricing in roughly 6% monthly moves in Canadian equities. Institutional flows may be driving increased hedging demand, particularly in energy and financial sector exposures. Cross-asset correlations with US markets will determine whether this volatility persists or mean-reverts quickly."
-            }
-          },
           "10Y Bond Yield": {
             "value": "3.40%",
             "tier": "daily",
@@ -1608,16 +1450,6 @@
               "beginner": "The Canadian dollar weakened against the US dollar, falling from 74 cents to 73 cents. This means it now takes more Canadian dollars to buy the same amount of US goods. Canadian exports become cheaper for American buyers, while imports from the US cost more for Canadians.",
               "moderate": "The CAD/USD exchange rate declined from 0.74 to 0.73, representing a 1.4% depreciation of the Canadian dollar. This currency weakening typically reflects diverging monetary policies, commodity price movements, or shifting economic fundamentals between the two countries. The weaker loonie makes Canadian exports more competitive internationally while increasing the cost of US imports for Canadian consumers and businesses.",
               "expert": "CAD/USD dropped 135 basis points from 0.74 to 0.73, marking a notable depreciation in the Canadian dollar that likely reflects either dovish Bank of Canada positioning relative to the Federal Reserve or weakness in commodity markets given Canada's resource-sensitive currency profile. The move below the psychologically significant 0.74 level suggests potential technical momentum toward the 0.72 support zone. This depreciation benefits Canadian exporters through improved price competitiveness but pressures import-dependent sectors and could contribute to inflationary pressures through higher input costs."
-            }
-          },
-          "FX Vol": {
-            "value": "5.1%",
-            "tier": "daily",
-            "last_updated": "2026-03-13",
-            "story": {
-              "beginner": "The Canadian dollar became much less volatile, with price swings dropping from 10.0% to 5.8%. This means the currency moved around less dramatically in recent trading. Calmer currency markets typically signal that investors feel more confident about Canada's economic outlook.",
-              "moderate": "CAD volatility declined sharply from 10.0% to 5.8%, indicating reduced uncertainty in currency markets. Lower FX volatility typically reflects improved investor confidence and reduced hedging costs for Canadian businesses. The compression suggests that market participants see fewer risks to the Canadian dollar's stability. This environment generally supports increased cross-border investment flows and trade activity.",
-              "expert": "CAD implied volatility compressed from 10.0% to 5.8%, reflecting a significant reduction in option premiums and expected currency fluctuations. The volatility collapse likely stems from reduced macro uncertainty, potentially driven by clearer Bank of Canada policy guidance or improved risk sentiment toward Canadian assets. Lower vol creates favorable conditions for carry trades and reduces hedging costs for corporates with CAD exposure. The move suggests diminished tail risk perceptions and improved liquidity conditions in CAD derivatives markets. Realized volatility compression of this magnitude typically precedes periods of range-bound trading or directional moves with reduced intraday noise."
             }
           }
         }
@@ -2580,12 +2412,6 @@
           ],
           "type": "bar",
           "annual": true
-        },
-        "Equity Vol": {
-          "v": []
-        },
-        "FX Vol": {
-          "v": []
         }
       },
       "_frozen_weatherGrid": {
@@ -2764,16 +2590,6 @@
               "expert": "The FTSE 100's year-to-date performance contracted 50 basis points to 3.1%, indicating technical weakness after failing to sustain momentum above the 3.6% threshold. This retracement coincides with rotation pressures as investors reassess valuations amid shifting rate expectations and sterling volatility. The index's underperformance relative to global peers reflects structural headwinds including elevated energy costs and fiscal policy uncertainty. Sectoral divergence within the FTSE likely contributed to the pullback, with financials and consumer discretionary stocks particularly sensitive to macro shifts. The 3.1% level now represents a key support zone for UK equity momentum."
             }
           },
-          "Equity Vol": {
-            "value": "~15",
-            "tier": "daily",
-            "last_updated": "2026-03-13",
-            "story": {
-              "beginner": "UK stock market volatility dropped from 18% to 15%, showing investors are feeling calmer about British shares. When volatility falls like this, it usually means people expect smoother sailing ahead. Markets appear more stable right now.",
-              "moderate": "UK equity volatility declined from approximately 18% to 15%, signaling reduced investor anxiety about British stock market swings. Lower volatility typically indicates greater market confidence and expectations for more predictable price movements. This compression suggests traders are pricing in less uncertainty around UK equities. The move reflects improved sentiment toward British markets.",
-              "expert": "UK equity implied volatility contracted from ~18% to ~15%, indicating a meaningful decompression in option premiums and risk expectations. This volatility compression suggests reduced tail risk pricing and improved sentiment around UK equity positioning. Lower vol environments typically coincide with increased institutional flows and reduced hedging demand. The decline points to stabilizing macro conditions affecting British equities. Market makers are now pricing significantly lower realized volatility expectations going forward."
-            }
-          },
           "10Y Bond Yield": {
             "value": "4.45%",
             "tier": "daily",
@@ -2822,16 +2638,6 @@
               "beginner": "The British pound fell against the US dollar, dropping from $1.34 to $1.33. This means it now takes fewer dollars to buy one pound. The weaker pound makes British goods cheaper for American buyers but increases costs for UK imports.",
               "moderate": "GBP/USD declined from 1.34 to 1.33, marking a 0.7% depreciation for sterling. The move reflects either dollar strength or pound weakness driven by diverging monetary policy expectations or economic fundamentals. This depreciation benefits UK exporters through improved price competitiveness while raising import costs and potentially stoking inflationary pressures.",
               "expert": "Cable retreated from 1.34 to 1.33, breaching key technical support and signaling renewed bearish momentum for sterling. The 75-pip decline likely stems from dovish BoE repricing relative to Fed policy expectations or deteriorating UK economic data flow. Short-term resistance now sits at 1.3350 with downside targets at 1.3250, while options flow and positioning data will determine whether this marks a deeper correction or temporary consolidation."
-            }
-          },
-          "FX Vol": {
-            "value": "7.1%",
-            "tier": "daily",
-            "last_updated": "2026-03-13",
-            "story": {
-              "beginner": "The British pound became more volatile this period, with its swing measurement rising from 6.9% to 7.1%. This means traders expect bigger price swings in the currency. Higher volatility usually signals uncertainty about Britain's economic direction.",
-              "moderate": "Sterling volatility climbed to 7.1% from 6.9%, indicating increased uncertainty in GBP exchange rate expectations. The uptick suggests traders are pricing in greater potential for sharp currency moves ahead. This volatility increase often reflects shifting market sentiment around UK monetary policy, economic data, or political developments that could impact the pound's trajectory.",
-              "expert": "GBP implied volatility rose 20 basis points to 7.1%, signaling heightened uncertainty in sterling cross rates. The vol surface steepening likely reflects increased dispersion in market views on BoE policy path divergence from other major central banks. Options flow and risk reversals will bear watching as this volatility pickup could indicate positioning shifts ahead of key UK data releases or potential policy announcements. The move higher in realized vol expectations suggests dealers are demanding higher premium for GBP exposure."
             }
           }
         }
@@ -3794,12 +3600,6 @@
           ],
           "type": "bar",
           "annual": true
-        },
-        "Equity Vol": {
-          "v": []
-        },
-        "FX Vol": {
-          "v": []
         }
       },
       "_frozen_weatherGrid": {
@@ -3978,16 +3778,6 @@
               "expert": "Japanese equity indices retreated to 3.8% YTD from 5.1%, reflecting sector rotation out of cyclical positions and foreign outflows. The correction coincides with Bank of Japan policy normalization concerns and weakening export demand from China. Technical support levels around 32,000 on the Nikkei remain intact despite the pullback. Currency hedging costs and rising real yields are pressuring valuation multiples across Tokyo exchanges. Corporate earnings revisions and Q4 guidance will likely determine whether this consolidation extends further."
             }
           },
-          "Equity Vol": {
-            "value": "~32",
-            "tier": "daily",
-            "last_updated": "2026-03-13",
-            "story": {
-              "beginner": "Japanese stock market volatility jumped from 28 to 32, meaning investors expect bigger price swings ahead. When this number rises, it usually signals growing uncertainty about Japan's economic direction. Markets become choppier when traders can't agree on where prices should go.",
-              "moderate": "Japan's equity volatility spiked from 28 to 32, reflecting heightened investor uncertainty in domestic markets. This 14% increase in the VIX-equivalent measure suggests traders are pricing in larger potential price movements across Japanese equities. Rising volatility often accompanies periods of economic transition or policy shifts. The jump indicates decreased confidence in near-term market direction among institutional investors.",
-              "expert": "Japanese equity volatility surged from 28 to 32, marking a significant 14% increase that signals heightened risk premium demands across domestic equity markets. The Nikkei volatility index expansion reflects increased option skew and elevated gamma positioning as market makers adjust for wider expected price distributions. This volatility regime shift typically accompanies either BOJ policy uncertainty, yen carry trade unwinding, or broader risk-off sentiment affecting developed Asian markets. The move above 30 pushes Japanese vol into the upper quartile of its historical distribution, suggesting systematic deleveraging or hedge rebalancing may be underway."
-            }
-          },
           "10Y Bond Yield": {
             "value": "2.24%",
             "tier": "daily",
@@ -4036,16 +3826,6 @@
               "beginner": "The dollar got slightly stronger against the Japanese yen, moving from 159.3 to 159.4. This small change means it now takes a bit more yen to buy one dollar. The yen continues trading near levels not seen in decades.",
               "moderate": "USD/JPY edged higher to 159.4 from 159.3, marking another incremental move for the currency pair. The dollar's modest gain reflects ongoing pressure on the yen despite recent intervention threats from Japanese authorities. This level keeps the pair near multi-decade highs, with traders watching closely for any signs of coordinated intervention. The Bank of Japan's ultra-loose monetary policy continues to weigh on the yen relative to higher-yielding currencies.",
               "expert": "USD/JPY pushed marginally higher to 159.4 from 159.3, testing the upper bounds of the recent consolidation range. The pair remains within striking distance of intervention-risk levels, with the Ministry of Finance maintaining its verbal jawboning campaign against excessive yen weakness. Carry trade dynamics continue supporting the dollar given the 500+ basis point differential between Fed funds and the BOJ's negative policy rate. Options flow shows heavy put protection clustered around 160.00, suggesting market participants expect potential official pushback at psychologically significant levels. Real yield differentials and persistent safe-haven dollar demand keep structural headwinds intact for JPY crosses."
-            }
-          },
-          "FX Vol": {
-            "value": "8.5%",
-            "tier": "daily",
-            "last_updated": "2026-03-13",
-            "story": {
-              "beginner": "The yen became slightly more volatile this period. Currency swings increased from 8.4% to 8.5%. Japanese exchange rate movements grew a bit choppier for traders.",
-              "moderate": "Yen volatility ticked up from 8.4% to 8.5%, signaling modest increases in currency fluctuations. The uptick suggests traders face marginally higher uncertainty around JPY movements. While the change appears small, FX vol shifts often precede larger directional moves. Rising volatility typically increases hedging costs for Japanese exporters and importers.",
-              "expert": "JPY implied volatility climbed 10 basis points to 8.5%, marking a subtle but notable shift in options pricing dynamics. The vol expansion likely reflects growing uncertainty around BoJ policy divergence with other major central banks. Currency volatility at these levels historically correlates with increased carry trade unwinding activity. Options market makers will adjust delta hedging frequencies, potentially amplifying intraday JPY spot movements. The vol spike coincides with elevated risk reversals, suggesting asymmetric downside fears for the yen."
             }
           }
         }
@@ -4646,9 +4426,6 @@
           "type": "line",
           "indexLabel": true
         },
-        "Equity Vol": {
-          "v": []
-        },
         "10Y Bond Yield": {
           "v": [
             -0.07,
@@ -5030,9 +4807,6 @@
             157.64
           ],
           "type": "line"
-        },
-        "FX Vol": {
-          "v": []
         }
       },
       "_frozen_weatherGrid": {
@@ -5211,16 +4985,6 @@
               "expert": "The DAX year-to-date performance deteriorated to -4.6% from -3.9%, underscoring persistent headwinds facing German equities. This decline amplifies concerns about Germany's industrial base, particularly in automotive and manufacturing sectors grappling with Chinese competition and energy transition costs. The market's continued underperformance relative to European peers reflects structural challenges including demographic headwinds and reduced competitiveness in key export industries. Institutional flows suggest foreign investors remain underweight German equities amid questions about the country's ability to adapt its export-driven model. Technical levels show the DAX struggling to maintain support as macro fundamentals point to prolonged weakness in German corporate earnings."
             }
           },
-          "Equity Vol": {
-            "value": "~19",
-            "tier": "daily",
-            "last_updated": "2026-03-13",
-            "story": {
-              "beginner": "German stock market volatility dropped from 20 to 19, showing investors are slightly less nervous. When volatility falls, it usually means people expect calmer trading ahead. German stocks might see steadier price movements in the near term.",
-              "moderate": "German equity volatility declined from 20 to 19, signaling reduced uncertainty in the market. This drop suggests investors are pricing in less dramatic price swings for German stocks. Lower volatility often accompanies periods of market stability and can make equities more attractive to risk-averse investors. The decline indicates improving sentiment around German corporate performance and broader economic conditions.",
-              "expert": "German equity volatility compressed from 20 to 19, reflecting reduced implied volatility across DAX constituents and broader German equity indices. The decline suggests options markets are pricing lower expected realized volatility over the measurement horizon. This vol compression typically accompanies tightening credit spreads and reduced systematic risk premiums. The move indicates either genuinely lower expected volatility or potential vol selling pressure from institutional strategies. Market makers will likely adjust delta hedging frequency as gamma exposure decreases with lower implied vol levels."
-            }
-          },
           "10Y Bond Yield": {
             "value": "2.81%",
             "tier": "daily",
@@ -5269,16 +5033,6 @@
               "beginner": "The euro weakened against the dollar, dropping from 1.1525 to 1.1457. This means it now takes fewer dollars to buy one euro. The change suggests investors are favoring the dollar over the euro right now.",
               "moderate": "EUR/USD fell from 1.1525 to 1.1457, marking a 0.59% decline for the euro against the dollar. The move reflects shifting investor sentiment toward dollar strength, likely driven by expectations around Federal Reserve policy or economic data. German exporters may benefit from the weaker euro, while imports become more expensive for eurozone consumers.",
               "expert": "EUR/USD declined 68 basis points to 1.1457 from 1.1525, breaking below the 1.15 psychological level. The move likely reflects diverging monetary policy expectations between the ECB and Fed, with dollar strength driven by sticky US inflation data or hawkish Fed rhetoric. The breach of 1.15 support opens technical downside toward 1.14, while German DAX exporters should see positive earnings translation effects. Cross-currency flows and yield differentials continue pressuring the pair lower amid ongoing eurozone growth concerns."
-            }
-          },
-          "FX Vol": {
-            "value": "6.7%",
-            "tier": "daily",
-            "last_updated": "2026-03-13",
-            "story": {
-              "beginner": "Currency volatility for the German euro jumped from 6.5% to 6.7%. This means traders expect bigger price swings in the euro against other currencies. Higher volatility usually signals increased uncertainty about Germany's economic outlook.",
-              "moderate": "EUR volatility climbed from 6.5% to 6.7%, signaling heightened uncertainty in currency markets. The uptick reflects growing trader anxiety about European monetary policy and Germany's economic trajectory. Currency options markets are pricing in larger potential moves, which typically translates to higher hedging costs for multinational corporations with euro exposure.",
-              "expert": "EUR implied volatility expanded 20 basis points to 6.7%, reflecting increased options demand amid macro uncertainty. The vol surface steepening suggests heightened tail risk pricing around ECB policy pivots and German manufacturing data releases. Cross-currency basis swaps are likely widening as institutions adjust delta hedges, while the vol term structure indicates near-term event risk premium building ahead of upcoming eurozone policy announcements. German bund volatility correlation remains elevated, reinforcing the sovereign-FX risk nexus."
             }
           }
         }
@@ -6241,12 +5995,6 @@
           ],
           "type": "bar",
           "annual": true
-        },
-        "Equity Vol": {
-          "v": []
-        },
-        "FX Vol": {
-          "v": []
         }
       },
       "_frozen_weatherGrid": {
@@ -6425,16 +6173,6 @@
               "expert": "The CAC 40's year-to-date performance deteriorated 80 basis points from -2.6% to -3.4%, indicating persistent bearish momentum in French equities. The decline accelerated despite relatively stable sovereign spreads, suggesting company-specific fundamentals rather than broader risk-off sentiment drove the selloff. Sector rotation out of cyclicals and luxury names weighed heavily on the index's large-cap constituents. The underperformance relative to other major European indices reflects concerns about France's fiscal trajectory and structural competitiveness challenges. Technical indicators show the index breaking through key support levels established earlier in the quarter."
             }
           },
-          "Equity Vol": {
-            "value": "~17",
-            "tier": "daily",
-            "last_updated": "2026-03-13",
-            "story": {
-              "beginner": "French stock market volatility climbed from 16% to 17%. This means investors expect bigger price swings in French stocks. Higher volatility usually signals more uncertainty about the market's direction.",
-              "moderate": "French equity volatility increased from 16% to 17%, signaling heightened investor anxiety about near-term market movements. The uptick suggests traders are pricing in greater uncertainty around French corporate earnings or broader economic conditions. Risk premiums typically expand when volatility rises, making French equities less attractive to conservative investors while creating potential opportunities for volatility traders.",
-              "expert": "The VIX-equivalent for French equities moved from 16% to 17%, indicating a modest but meaningful increase in implied volatility across CAC 40 options markets. This 100 basis point rise suggests dealers are demanding higher premiums for gamma exposure, likely reflecting concerns over European monetary policy transmission or domestic fiscal dynamics. The volatility term structure probably steepened as front-month options incorporate near-term event risk. Cross-asset correlations with European sovereign spreads may have tightened as risk-off sentiment builds across French financial markets."
-            }
-          },
           "10Y Bond Yield": {
             "value": "3.53%",
             "tier": "daily",
@@ -6483,16 +6221,6 @@
               "beginner": "The euro weakened against the dollar, falling from 1.1525 to 1.1457. This means it now takes fewer dollars to buy one euro. The drop suggests investors are favoring the dollar over the euro right now.",
               "moderate": "EUR/USD declined from 1.1525 to 1.1457, marking a notable weakening in the euro's position against the dollar. The move reflects shifting investor sentiment toward dollar strength, likely driven by diverging monetary policy expectations between the Federal Reserve and European Central Bank. French exporters may benefit from the weaker euro as their goods become more competitive in international markets. However, import costs for French consumers and businesses will rise.",
               "expert": "EUR/USD dropped 68 basis points from 1.1525 to 1.1457, breaching the 1.15 psychological support level amid broad dollar strength. The decline likely reflects expectations of continued Fed hawkishness relative to ECB policy normalization, with real yield differentials favoring USD assets. French CAC 40 export names should see translation benefits, while energy and commodity importers face margin pressure. The move pushes the pair toward the 200-day moving average at 1.1420, with next support at the October lows near 1.1350."
-            }
-          },
-          "FX Vol": {
-            "value": "6.7%",
-            "tier": "daily",
-            "last_updated": "2026-03-13",
-            "story": {
-              "beginner": "Currency traders became more nervous about the euro this period. The measure of how much the euro bounces around against other currencies rose from 6.5% to 6.7%. When this number goes up, it usually means investors expect more dramatic swings in France's currency.",
-              "moderate": "EUR volatility climbed from 6.5% to 6.7%, signaling increased uncertainty in French currency markets. This uptick suggests traders are pricing in higher risks around eurozone monetary policy or broader economic developments. Higher FX volatility typically makes cross-border investments more expensive and can weigh on business confidence. The move reflects growing market jitters about potential currency swings ahead.",
-              "expert": "EUR implied volatility expanded 20 basis points to 6.7%, indicating heightened hedging demand and uncertainty premiums in French FX markets. The volatility surface likely steepened as options traders position for potential ECB policy divergence or geopolitical risk events. This vol expansion coincides with broader eurozone peripheral spread dynamics and reflects institutional rebalancing of currency exposure. Cross-gamma positioning suggests dealers expect continued elevated realized volatility in the near term. The move signals reduced carry trade attractiveness and increased hedging costs for French corporates with significant FX exposure."
             }
           }
         }
@@ -7455,12 +7183,6 @@
           ],
           "type": "bar",
           "annual": true
-        },
-        "Equity Vol": {
-          "v": []
-        },
-        "FX Vol": {
-          "v": []
         }
       },
       "_frozen_weatherGrid": {
@@ -7639,16 +7361,6 @@
               "expert": "The FTSE MIB's year-to-date performance deteriorated to -2.5% from -2.0%, signaling continued weakness in Italian equities. This 50 basis point decline reflects persistent headwinds including sovereign debt concerns, banking sector fragility, and sluggish GDP growth projections. Italian stocks trade at a discount to European peers, with the FTSE MIB's P/E ratio compressed by macro uncertainties. Foreign institutional flows remain tepid as investors favor German and French markets over Italian exposure. The underperformance versus the broader STOXX Europe 600 widens Italy's valuation gap."
             }
           },
-          "Equity Vol": {
-            "value": "~22",
-            "tier": "daily",
-            "last_updated": "2026-03-13",
-            "story": {
-              "beginner": "Italian stock market volatility jumped from 20 to 22, showing investors are getting more nervous. When this number goes up, it means stock prices are swinging around more than usual. Something has Italian traders on edge.",
-              "moderate": "Italy's equity volatility climbed from 20 to 22, signaling heightened market uncertainty. This 10% increase suggests investors are pricing in greater potential for sharp price movements in Italian stocks. The uptick could reflect concerns about domestic political developments or broader European market stress affecting Italian equities.",
-              "expert": "Italian equity vol spiked 200 basis points to 22, marking a notable shift in market expectations for realized volatility. The move suggests options markets are pricing increased tail risk in Italian names, potentially driven by sovereign spread dynamics or sector-specific pressures in financials and industrials. This vol expansion typically precedes either significant directional moves or extended periods of choppy trading ranges. The 22 level approaches the upper quartile of the recent distribution, indicating genuine stress rather than routine fluctuation."
-            }
-          },
           "10Y Bond Yield": {
             "value": "3.49%",
             "tier": "daily",
@@ -7697,16 +7409,6 @@
               "beginner": "The euro weakened against the dollar, falling from 1.1525 to 1.1457. This means it now takes fewer dollars to buy one euro. A weaker euro makes Italian exports cheaper for American buyers but increases the cost of imports from the US.",
               "moderate": "EUR/USD declined from 1.1525 to 1.1457, representing a 0.59% depreciation of the euro against the dollar. The move reflects broader dollar strength amid diverging monetary policy expectations between the ECB and Federal Reserve. For Italy, this currency shift improves export competitiveness while raising imported energy and commodity costs. The weaker euro could provide some economic stimulus through the trade channel despite inflationary pressures from higher import prices.",
               "expert": "EUR/USD dropped 68 pips from 1.1525 to 1.1457, marking a 0.59% decline as the dollar extended its recent rally. The move likely reflects widening rate differentials, with markets pricing in more aggressive Fed tightening relative to ECB policy normalization. Italy faces a mixed impact from this depreciation, with improved export competitiveness offset by higher energy import costs given the country's substantial current account deficit. The technical breakdown below 1.15 support suggests potential for further euro weakness, particularly if US data continues to support hawkish Fed positioning. Italian BTP spreads may face additional pressure if euro weakness accelerates, given concerns about the ECB's ability to simultaneously combat inflation and maintain peripheral bond market stability."
-            }
-          },
-          "FX Vol": {
-            "value": "6.7%",
-            "tier": "daily",
-            "last_updated": "2026-03-13",
-            "story": {
-              "beginner": "The euro's price swings against other currencies grew slightly more volatile this period, with Italy's FX volatility rising from 6.5% to 6.7%. Currency traders now expect bigger daily moves in the euro. Higher volatility often signals increased uncertainty about Italy's economic outlook or broader eurozone conditions.",
-              "moderate": "Italian FX volatility climbed from 6.5% to 6.7%, indicating traders expect larger price swings in the euro going forward. This uptick in implied volatility suggests market participants are pricing in greater uncertainty around Italy's fiscal position or broader eurozone monetary policy. Currency options are now more expensive as dealers demand higher premiums for the increased expected movement. The rise coincides with ongoing concerns about Italy's debt sustainability and political stability.",
-              "expert": "Italian FX vol spiked 20 basis points to 6.7%, with EUR/USD implied volatility surfaces showing increased skew toward downside protection. The move reflects heightened uncertainty around Italy's fiscal trajectory and potential ECB policy divergence from the Fed. Options flow data suggests institutional buyers are paying up for tail hedges, particularly in the 1-3 month tenor where political event risk is most pronounced. The vol expansion is modest compared to stress periods but signals growing concerns about Italy's bond-bund spreads widening further. Cross-currency basis swaps are also showing strain as dollar funding costs rise for Italian banks."
             }
           }
         }
@@ -8288,9 +7990,6 @@
           "type": "line",
           "indexLabel": true
         },
-        "Equity Vol": {
-          "v": []
-        },
         "10Y Bond Yield": {
           "v": [
             1.56,
@@ -8672,9 +8371,6 @@
             1.16
           ],
           "type": "line"
-        },
-        "FX Vol": {
-          "v": []
         }
       },
       "_frozen_weatherGrid": {
@@ -8853,16 +8549,6 @@
               "expert": "Chinese equity markets experienced a notable deceleration with YTD returns contracting from 2.6% to 1.8%, signaling weakening risk appetite among institutional investors. The 80 basis point decline indicates profit-taking activity and potentially dovish repositioning ahead of key economic data releases. Technical momentum appears to be stalling as the CSI 300 struggles to maintain earlier breakout levels. Foreign capital flows likely contributed to the pullback as global investors reassess China's structural growth challenges. The compression in returns suggests market participants are pricing in lower probability scenarios for aggressive stimulus measures."
             }
           },
-          "Equity Vol": {
-            "value": "~13",
-            "tier": "daily",
-            "last_updated": "2026-03-13",
-            "story": {
-              "beginner": "Chinese stock market volatility sits around 13%, showing moderate price swings. This level suggests investors feel neither extremely confident nor panicked about Chinese stocks. Markets appear relatively stable compared to periods of major uncertainty.",
-              "moderate": "China's equity volatility registers at approximately 13%, indicating measured market sentiment without extreme fear or complacency. This moderate vol environment suggests institutional investors can deploy capital without facing dramatic price dislocations. The reading falls within normal ranges for Chinese equities, allowing for strategic positioning without excessive hedging costs.",
-              "expert": "Chinese equity vol trades at ~13%, positioning below historical stress levels but above complacent thresholds. This vol regime enables delta-one strategies while keeping gamma costs manageable for structured products. The metric suggests underlying put-call skew remains balanced, with no significant tail hedging pressure from institutional flows. Option market makers can maintain tight spreads while systematic vol sellers face reasonable carry opportunities without extreme downside gaps."
-            }
-          },
           "10Y Bond Yield": {
             "value": "2.40%",
             "tier": "daily",
@@ -8911,16 +8597,6 @@
               "beginner": "The Chinese yuan weakened against the US dollar, with each dollar now buying 6.89 yuan compared to 6.87 before. This means the yuan lost value relative to the dollar. Chinese exports become cheaper for foreign buyers when the yuan weakens.",
               "moderate": "USD/CNY climbed from 6.87 to 6.89, marking a depreciation in the Chinese yuan against the dollar. The weaker yuan makes Chinese goods more competitive internationally but increases the cost of dollar-denominated imports. This shift could reflect diverging monetary policies between the Federal Reserve and People's Bank of China. Markets often view yuan weakness as a sign of either economic softness or deliberate policy accommodation.",
               "expert": "USD/CNY advanced 29 basis points to 6.89 from 6.87, pushing the yuan toward the weaker end of its managed float regime. The depreciation coincides with potential capital outflow pressures and divergent policy stances between the PBOC and Fed. China's export sector benefits from the competitive devaluation, though it complicates the central bank's inflation management given higher import costs. The move tests the PBOC's tolerance for yuan weakness against its broader financial stability objectives. Currency traders will watch whether this breach of 6.88 resistance signals a sustained weakening trend or temporary adjustment."
-            }
-          },
-          "FX Vol": {
-            "value": "3.2%",
-            "tier": "daily",
-            "last_updated": "2026-03-13",
-            "story": {
-              "beginner": "Currency traders expect bigger swings in China's yuan. The measure of expected volatility jumped from 2.9% to 3.2%. Markets are pricing in more uncertainty about where the yuan will trade.",
-              "moderate": "FX volatility for the Chinese yuan climbed from 2.9% to 3.2%, signaling increased market expectations for currency fluctuations. This uptick suggests traders are demanding higher premiums for yuan options and hedging products. The move reflects growing uncertainty about China's economic trajectory and potential policy responses. Higher FX vol typically accompanies periods of market stress or major policy transitions.",
-              "expert": "CNY implied volatility spiked 30 basis points to 3.2%, indicating elevated hedging demand and wider expected trading ranges for the yuan. The vol surface is likely steepening as market makers price in tail risks from potential PBOC intervention or shifts in capital flow dynamics. This reading puts CNY vol above its 6-month average, suggesting options markets are pricing meaningful event risk. The increase coincides with broader EM FX vol expansion, though China's move appears more pronounced given recent policy uncertainty. Vol traders are likely positioning for wider CNY trading bands against both the dollar and the trade-weighted basket."
             }
           }
         }
@@ -9589,12 +9265,6 @@
             -6.8,
             -6.8
           ]
-        },
-        "Equity Vol": {
-          "v": []
-        },
-        "FX Vol": {
-          "v": []
         }
       },
       "_frozen_weatherGrid": {
@@ -9773,16 +9443,6 @@
               "expert": "Indian equity markets suffered further deterioration with YTD losses expanding from -10.7% to -12.5%, reflecting accelerating institutional divestment and multiple compression. FII outflows have intensified amid dollar strength and elevated UST yields, while domestic mutual fund inflows prove insufficient to offset foreign selling. The Nifty 50's forward P/E multiple continues contracting from recent highs as earnings growth expectations moderate. Technical indicators suggest momentum remains firmly negative with key support levels failing to hold across large-cap indices."
             }
           },
-          "Equity Vol": {
-            "value": "~23",
-            "tier": "daily",
-            "last_updated": "2026-03-13",
-            "story": {
-              "beginner": "Indian stock market volatility ticked up from 22% to 23%. This means investors expect more dramatic price swings in the coming weeks. Higher volatility usually signals uncertainty about India's economic direction.",
-              "moderate": "India's equity volatility rose from 22% to 23%, indicating heightened investor anxiety about near-term market movements. The uptick suggests traders are pricing in greater uncertainty around corporate earnings, policy decisions, or global risk factors affecting Indian equities. Options premiums likely increased as market participants demand higher compensation for taking on additional risk.",
-              "expert": "Indian equity volatility climbed from approximately 22% to 23%, reflecting increased implied volatility in options pricing across major indices. The move signals heightened risk premiums as market makers adjust for potential policy uncertainty, earnings volatility, or external shocks from global risk-off sentiment. VIX-equivalent measures for Indian markets often correlate with FII flows and rupee stability. The magnitude suggests moderate stress rather than acute distress, but option skews likely shifted toward defensive positioning across banking and IT sectors."
-            }
-          },
           "10Y Bond Yield": {
             "value": "6.73%",
             "tier": "daily",
@@ -9831,16 +9491,6 @@
               "beginner": "The Indian rupee weakened against the US dollar, moving from 92.31 to 92.43. This means it now takes more rupees to buy one dollar. A weaker rupee makes imports more expensive for India while making Indian exports cheaper for foreign buyers.",
               "moderate": "USD/INR climbed from 92.31 to 92.43, indicating rupee depreciation against the dollar. The move reflects ongoing pressure on the Indian currency amid global dollar strength and domestic economic factors. This depreciation will likely increase import costs for Indian businesses, particularly for oil and commodities, while potentially boosting export competitiveness. The Reserve Bank of India may need to monitor this trend closely given inflation implications.",
               "expert": "USD/INR advanced 12 basis points from 92.31 to 92.43, extending the rupee's recent weakness against the greenback. The move likely reflects continued dollar demand from importers, potential FII outflows, and the broader DXY strength amid hawkish Fed expectations. This level approaches key technical resistance around 92.50, where RBI intervention historically intensifies. The depreciation adds pressure to India's current account dynamics and core inflation trajectory, potentially constraining RBI's monetary policy flexibility. Oil marketing companies face immediate margin compression at these levels."
-            }
-          },
-          "FX Vol": {
-            "value": "7.0%",
-            "tier": "daily",
-            "last_updated": "2026-03-13",
-            "story": {
-              "beginner": "India's currency volatility dropped slightly to 7.0%. This means the rupee became a bit more stable against other currencies. Lower volatility usually signals calmer market conditions.",
-              "moderate": "Indian rupee volatility declined to 7.0% from 7.1%, indicating marginally reduced price swings in the currency market. The modest drop suggests traders see slightly less uncertainty around India's economic outlook. Lower FX volatility typically benefits businesses planning international transactions and can attract foreign investment flows.",
-              "expert": "INR implied volatility compressed 10 basis points to 7.0%, reflecting diminished options pricing for rupee movements. The volatility decline coincides with reduced geopolitical risk premiums and stabilizing domestic fundamentals. Current levels remain elevated relative to the 6.5% long-term average, suggesting markets still price meaningful event risk. The vol compression may indicate consolidating carry trade positioning ahead of RBI policy meetings."
             }
           }
         }
@@ -10613,12 +10263,6 @@
           ],
           "type": "bar",
           "annual": true
-        },
-        "Equity Vol": {
-          "v": []
-        },
-        "FX Vol": {
-          "v": []
         }
       },
       "_frozen_weatherGrid": {
@@ -10797,16 +10441,6 @@
               "expert": "The FTSE/JSE All Share Index reversed course dramatically, sliding 120 basis points from +0.7% to -0.5% YTD. The move reflects deteriorating risk sentiment toward South African equities amid persistent structural headwinds. Load shedding disruptions, rand volatility, and fiscal constraints are compressing earnings multiples across sectors. Foreign portfolio flows likely turned negative as global investors reassess emerging market allocations. Mining and financial stocks, which dominate the index, face particular pressure from commodity price volatility and rising credit risks."
             }
           },
-          "Equity Vol": {
-            "value": "~26",
-            "tier": "daily",
-            "last_updated": "2026-03-13",
-            "story": {
-              "beginner": "South African stock market volatility dropped from 29 to 26, meaning share prices are moving around less than before. When volatility falls, it usually signals that investors feel calmer about the market. This suggests fewer wild price swings and more stable trading conditions.",
-              "moderate": "South African equity volatility declined from 29 to 26, indicating reduced uncertainty in the JSE market. Lower volatility typically reflects improved investor confidence and diminished fear of sudden price movements. This environment often encourages more institutional participation and can support steadier capital flows into South African equities.",
-              "expert": "South African equity volatility compressed from 29 to 26, suggesting a meaningful decline in implied volatility across JSE equity options and realized volatility measures. The drop indicates reduced risk premiums in equity derivatives and likely reflects either improved political stability, better commodity price outlooks, or reduced global risk-off sentiment affecting emerging markets. Lower vol environments typically coincide with tighter credit spreads and increased foreign portfolio flows, though they can also signal complacency ahead of potential rand or commodity shocks."
-            }
-          },
           "10Y Bond Yield": {
             "value": "8.62%",
             "tier": "daily",
@@ -10855,16 +10489,6 @@
               "beginner": "The South African rand weakened slightly against the US dollar, moving from 16.78 to 16.82. This means it now takes more rand to buy one dollar. The change suggests some pressure on South Africa's currency.",
               "moderate": "The USD/ZAR exchange rate climbed from 16.78 to 16.82, indicating mild rand weakness against the dollar. This 0.24% depreciation reflects ongoing pressure on the South African currency amid global dollar strength and domestic economic concerns. The move pushes the rand closer to recent highs against the greenback. Import costs for South African businesses may edge higher with this currency shift.",
               "expert": "USD/ZAR advanced 24 basis points to 16.82 from 16.78, extending the rand's underperformance against the dollar. The move likely reflects continued dollar strength amid Fed policy expectations and South Africa's persistent structural headwinds including load shedding and fiscal constraints. The rand remains vulnerable to risk-off sentiment given South Africa's current account dynamics and emerging market positioning. Technical resistance around the 17.00 level comes into focus if dollar strength persists. Local importers face marginally higher hedging costs as the currency tests recent ranges."
-            }
-          },
-          "FX Vol": {
-            "value": "17.6%",
-            "tier": "daily",
-            "last_updated": "2026-03-13",
-            "story": {
-              "beginner": "South Africa's currency became less volatile, with swings dropping from 18.8% to 17.6%. The rand is moving around less dramatically than before. This usually means traders feel more confident about the country's economic outlook.",
-              "moderate": "South African rand volatility declined from 18.8% to 17.6%, signaling reduced uncertainty in currency markets. Lower FX volatility typically indicates improved investor confidence and more stable capital flows. The rand's calmer trading environment suggests market participants see fewer immediate risks to South Africa's economic fundamentals. This environment often supports more predictable pricing for South African assets.",
-              "expert": "ZAF FX implied volatility contracted 120 basis points to 17.6%, reflecting diminished hedging demand and reduced tail risk pricing in rand options markets. The volatility compression suggests improved risk sentiment toward South African assets, likely driven by stabilizing current account dynamics or reduced political risk premiums. Lower vol environments typically correlate with increased carry trade activity and foreign portfolio inflows into local bonds. The move brings rand volatility closer to its historical median, indicating normalization from previously elevated stress levels. This should support tighter credit spreads and reduced funding costs for rand-denominated debt."
             }
           }
         }
@@ -11710,16 +11334,10 @@
           "type": "bar",
           "annual": true
         },
-        "Equity Vol": {
-          "v": []
-        },
         "Corp Spread": {
           "v": []
         },
         "Sov CDS": {
-          "v": []
-        },
-        "FX Vol": {
           "v": []
         }
       },
@@ -11899,16 +11517,6 @@
               "expert": "Brazil's Bovespa delivered an 11.7% YTD return, contracting 20 basis points from the prior 11.9% figure. The marginal compression likely reflects tactical rebalancing and profit-taking ahead of key monetary policy decisions from the BCB. Real-denominated equity returns remain robust despite currency headwinds and fiscal concerns weighing on the broader EM complex. Local pension funds and foreign institutional flows continue supporting underlying market structure even as momentum indicators show some near-term exhaustion."
             }
           },
-          "Equity Vol": {
-            "value": "~22",
-            "tier": "daily",
-            "last_updated": "2026-03-13",
-            "story": {
-              "beginner": "Stock market volatility in Brazil ticked up from 21% to 22%. This means Brazilian stocks are becoming slightly more unpredictable in their daily price swings. Higher volatility usually signals that investors feel more uncertain about the market's direction.",
-              "moderate": "Brazilian equity volatility climbed from 21% to 22%, indicating heightened investor uncertainty in local markets. This uptick suggests traders are pricing in greater risk around Brazilian stocks, often driven by domestic political developments or economic policy shifts. Rising volatility typically makes institutional investors more cautious about position sizing in Brazilian equities. The increase, while modest, reflects the market's sensitivity to emerging market headwinds.",
-              "expert": "Brazilian equity volatility expanded from 21% to 22%, marking a notable shift in risk pricing for Latin America's largest market. This volatility surge likely reflects increased uncertainty around Banco Central do Brasil monetary policy trajectory and fiscal dynamics under current political conditions. Options markets are pricing higher premiums for Brazilian equity protection, creating tactical opportunities for volatility traders while challenging systematic risk parity strategies. The move aligns with broader EM volatility patterns but suggests Brazil-specific risk factors are gaining prominence. Cross-asset correlations with BRL weakness and local rates volatility point to domestic rather than global drivers behind this equity vol expansion."
-            }
-          },
           "10Y Bond Yield": {
             "value": "13.80%",
             "tier": "daily",
@@ -11957,16 +11565,6 @@
               "beginner": "The Brazilian real weakened slightly against the US dollar, moving from 5.22 to 5.23. This means it now takes more reais to buy one dollar. Brazilian imports become a bit more expensive while exports get cheaper for foreign buyers.",
               "moderate": "USD/BRL climbed from 5.22 to 5.23, marking a modest depreciation in the Brazilian real. The currency faces ongoing pressure from global dollar strength and domestic fiscal concerns. Higher exchange rates typically boost inflation through imported goods while supporting Brazil's commodity exporters. Local equity markets often react negatively to real weakness due to increased foreign debt servicing costs.",
               "expert": "USD/BRL advanced 19 basis points to 5.23, extending the real's underperformance amid sustained dollar demand and limited central bank intervention appetite. The move reflects continued capital flow volatility and investor positioning ahead of key fiscal policy announcements. Real weakness amplifies inflationary pressures through the exchange rate pass-through mechanism, particularly impacting fuel and food prices. Corporate balance sheets with unhedged dollar exposure face margin compression, while commodity producers benefit from enhanced real-denominated revenues. The 5.25 technical resistance level remains in focus for momentum traders."
-            }
-          },
-          "FX Vol": {
-            "value": "11.2%",
-            "tier": "daily",
-            "last_updated": "2026-03-13",
-            "story": {
-              "beginner": "Currency traders expect more wild swings in the Brazilian real. The measure of expected volatility jumped from 10.8% to 11.2%. When this number rises, it means investors think the real's value will bounce around more against other currencies.",
-              "moderate": "FX volatility expectations for the Brazilian real climbed to 11.2% from 10.8%. This uptick signals traders are pricing in greater currency instability ahead. Higher vol typically reflects uncertainty around Brazil's economic policies, inflation trajectory, or global risk sentiment. The move suggests investors demand higher premiums to trade the real given elevated uncertainty.",
-              "expert": "Implied volatility on BRL currency pairs rose 40 basis points to 11.2%, indicating options traders are pricing in heightened exchange rate turbulence. The vol expansion likely reflects uncertainty around Brazil's fiscal trajectory, Copom policy signals, or broader emerging market flows. Market makers are widening bid-ask spreads as hedging costs increase. The higher vol regime creates opportunities for volatility sellers but signals potential stress in local fixed income and equity markets as FX uncertainty typically spills over into domestic asset pricing."
             }
           }
         }
@@ -12924,16 +12522,10 @@
           "type": "bar",
           "annual": true
         },
-        "Equity Vol": {
-          "v": []
-        },
         "Corp Spread": {
           "v": []
         },
         "Sov CDS": {
-          "v": []
-        },
-        "FX Vol": {
           "v": []
         }
       },
@@ -13113,16 +12705,6 @@
               "expert": "Russia's equity market is structurally isolated from global capital markets following the February 2022 sanctions and the NSD (National Settlement Depository) lock-out that froze foreign holdings; the MOEX operates as a closed domestic market where the primary price-setting investors are Russian retail investors, domestic pension funds, and state-controlled institutions; the 5% YTD nominal return in roubles provides limited information about fundamental value, as the market cannot clear at international prices given the convertibility restriction and as rouble-denominated returns cannot be realised in hard currency by most international benchmarks."
             }
           },
-          "Equity Vol": {
-            "value": "~32",
-            "tier": "daily",
-            "last_updated": "2026-03-09",
-            "story": {
-              "beginner": "Russian stock market volatility is running at about 32, one of the highest in this dashboard. This reflects the enormous uncertainty around Russia's economy, the war, sanctions, oil prices, and the possibility of a peace agreement or escalation. The market can swing sharply in both directions on news from the front lines or from diplomatic channels.",
-              "moderate": "Russian equity volatility at approximately 32 is the highest in this dashboard, reflecting the compound uncertainty of wartime geopolitics, sanctions risk, oil price sensitivity, and the binary optionality of a peace process that could either unlock significant asset revaluation or confirm permanent isolation; the elevated vol is also a function of the thin domestic-only investor base, where large positions create outsized price impacts.",
-              "expert": "MOEX implied vol at approximately 32 reflects a market with severely impaired price discovery: the absence of international arbitrageurs and market makers (sanctioned out since 2022), the dominance of retail sentiment over fundamental analysis, and the binary scenario distribution (peace vs. continued isolation) create a vol regime driven more by information asymmetry and positioning dynamics than conventional risk factor pricing; the vol surface also reflects the optionality embedded in peace process scenarios, where a ceasefire could trigger rapid re-rating but remains deeply uncertain in timing and structure."
-            }
-          },
           "10Y Bond Yield": {
             "value": "13.5%",
             "tier": "daily",
@@ -13171,16 +12753,6 @@
               "beginner": "The Russian ruble weakened against the US dollar, moving from 79.6 to 80.3 rubles per dollar. This means it now takes more rubles to buy one dollar. A weaker ruble makes imports more expensive for Russians while potentially helping Russian exporters.",
               "moderate": "USD/RUB climbed from 79.6 to 80.3, marking further depreciation in the ruble. The currency continues facing pressure from ongoing sanctions and reduced energy export revenues. This depreciation will likely fuel domestic inflation as import costs rise, while providing some competitive advantage to Russian exporters in international markets. The central bank may need to consider additional monetary tightening to stabilize the currency.",
               "expert": "USD/RUB advanced 88 basis points to 80.3, extending the ruble's downward trajectory amid persistent capital flow constraints. The move reflects continued sanctions-induced structural imbalances and reduced hard currency inflows from energy exports. This depreciation amplifies imported inflation risks, particularly given Russia's dependence on foreign technology and consumer goods. The CBR faces a complex policy trilemma between currency stability, growth support, and inflation control. Further weakness could trigger more aggressive FX interventions or force additional rate hikes despite already restrictive monetary policy."
-            }
-          },
-          "FX Vol": {
-            "value": "14.3%",
-            "tier": "daily",
-            "last_updated": "2026-03-13",
-            "story": {
-              "beginner": "The Russian ruble became slightly less volatile this period, with currency swings dropping from 15.0% to 14.3%. This means the ruble's price movements against other currencies became more predictable. Lower volatility often signals calmer market conditions for the Russian currency.",
-              "moderate": "Russian FX volatility declined from 15.0% to 14.3%, indicating reduced uncertainty around ruble exchange rate movements. The decrease suggests either improved market sentiment toward Russian assets or reduced external pressure on the currency. Lower volatility typically makes the ruble more attractive for international trade and investment, though geopolitical factors continue to influence currency stability.",
-              "expert": "Russian FX implied volatility compressed 70 basis points from 15.0% to 14.3%, reflecting diminished option premiums and reduced hedging demand for ruble exposures. The vol decline likely stems from either stabilized energy export flows or reduced speculative positioning against the currency. Market makers are pricing lower tail risks for extreme ruble moves, though the elevated absolute level still reflects structural uncertainty from sanctions and capital flow restrictions. The compression may signal technical rebalancing rather than fundamental improvement in Russia's external financing conditions."
             }
           }
         }
@@ -13766,16 +13338,10 @@
           "type": "bar",
           "annual": true
         },
-        "Equity Vol": {
-          "v": []
-        },
         "Corp Spread": {
           "v": []
         },
         "Sov CDS": {
-          "v": []
-        },
-        "FX Vol": {
           "v": []
         },
         "USD/RUB": {

@@ -17,15 +17,14 @@ writes 27-point arrays (2000-2026F) from the Macro-stats Google Sheet.
 Running this script will not touch those arrays.
 
 # Fetchable via FRED daily series (USA only):
-#   Equity Vol  -> VIXCLS (CBOE VIX)
 #   Corp Spread -> BAMLC0A0CM (ICE BofA US IG OAS)
 #   USD/DXY     -> DTWEXBGS (Nominal Broad Dollar Index)
 #
 # Permanently unfetchable (no free public source for any country):
-#   Sov CDS, FX Vol
+#   Sov CDS
 #
 # Permanently unfetchable for all non-USA countries:
-#   Equity Vol, Corp Spread
+#   Corp Spread
 #
 # Country-specific voids:
 #   CHN Policy Rate -> PBOC rate not on FRED (non-OECD); blanked
@@ -195,7 +194,6 @@ COMMODITY_TICKERS = {
 # Add a country code here when a free FRED source exists for that country.
 DAILY_FRED_SERIES = {
     "USA": {
-        "Equity Vol":  "VIXCLS",       # CBOE VIX (daily)
         "Corp Spread": "BAMLC0A0CM",   # ICE BofA US Investment Grade OAS (daily)
     },
 }
@@ -205,10 +203,8 @@ DAILY_FRED_SERIES = {
 # All other countries get their _frozen_historical["v"] written to [] so the
 # chart shows blank instead of stale or misleading data.
 VOID_METRICS = {
-    "Equity Vol":  {"USA"},   # USA fetched via DAILY_FRED_SERIES; all others blank
     "Corp Spread": {"USA"},   # USA fetched via DAILY_FRED_SERIES; all others blank
     "Sov CDS":     set(),     # no free source for any country
-    "FX Vol":      set(),     # no free source for any country
 }
 
 # Metrics blanked per country for specific data quality reasons.
@@ -222,8 +218,8 @@ COUNTRY_VOID_METRICS = {
 # All metric names that are NOT the FX pair. Used to detect the FX label.
 KNOWN_NON_FX_METRICS = {
     "GDP Growth", "Inflation (CPI)", "Unemployment", "Budget Deficit",
-    "Current Account", "Policy Rate", "Stock Market YTD", "Equity Vol",
-    "10Y Bond Yield", "Yield Curve", "Corp Spread", "Sov CDS", "FX Vol",
+    "Current Account", "Policy Rate", "Stock Market YTD",
+    "10Y Bond Yield", "Yield Curve", "Corp Spread", "Sov CDS",
 }
 
 FRED_METRICS = {
@@ -725,7 +721,7 @@ def process_country(code, country_data):
             log.info(f"  SKIP    Stock Market YTD (already populated)")
             results["skipped"].append("Stock Market YTD")
 
-    # FRED daily series (Equity Vol, Corp Spread for countries that have them)
+    # FRED daily series (Corp Spread for countries that have them)
     for metric, series_id in DAILY_FRED_SERIES.get(code, {}).items():
         if not is_populated(frozen, metric) or FORCE_OVERWRITE:
             log.info(f"  Fetch   {metric}  [{series_id}]")

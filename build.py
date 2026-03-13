@@ -38,10 +38,10 @@ MACRO_METRICS = [
     "Budget Deficit","Current Account","Policy Rate"
 ]
 
-# The 8 market metrics every country must have (FX key varies by country)
+# The 6 market metrics every country must have (FX key varies by country)
 MARKET_METRICS_BASE = [
-    "Stock Market YTD","Equity Vol","10Y Bond Yield","Yield Curve",
-    "Corp Spread","Sov CDS","FX Vol"
+    "Stock Market YTD","10Y Bond Yield","Yield Curve",
+    "Corp Spread","Sov CDS"
 ]
 
 # FX key per country
