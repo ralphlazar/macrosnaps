@@ -137,6 +137,14 @@ def extract_json(text):
     raise ValueError(f"Could not parse JSON after repair attempts. Tail: ...{text[-200:]}")
 
 
+# ── Strip citation tags leaked by web search ──────────────────────────────────
+def clean_cite_tags(s):
+    import re as _re
+    if not isinstance(s, str):
+        return s
+    return _re.sub(r'</?antml:cite[^>]*>', '', s).strip()
+
+
 # ── Build country batch prompt ────────────────────────────────────────────────
 def build_batch_prompt(countries_data):
     """
@@ -475,10 +483,12 @@ def generate_draft(client, data):
         for lv in LEVELS:
             if lv not in gs_parsed or len(gs_parsed[lv]) < 3:
                 raise ValueError(f"Missing or short level '{lv}' in global response")
+        def _clean_cards(cards):
+            return [{**c, "body": clean_cite_tags(c.get("body", ""))} for c in cards]
         draft["globalStories"] = {
-            "beginner": gs_parsed["beginner"][:3],
-            "moderate": gs_parsed["moderate"][:3],
-            "expert":   gs_parsed["expert"][:3],
+            "beginner": _clean_cards(gs_parsed["beginner"][:3]),
+            "moderate": _clean_cards(gs_parsed["moderate"][:3]),
+            "expert":   _clean_cards(gs_parsed["expert"][:3]),
             "sources":  gs_parsed.get("sources", []) + [
                 {"title": f"Web search: {s['query']}"} for s in gs_sources if s.get("query")
             ]

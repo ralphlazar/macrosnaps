@@ -233,9 +233,9 @@ def apply_stories(data, flagged_items, new_stories):
             continue
         stories = new_stories[sym]
         item["story"] = {
-            "beginner": {"text": stories["beginner"]},
-            "moderate": {"text": stories["moderate"]},
-            "expert":   {"text": stories["expert"]},
+            "beginner": stories["beginner"],
+            "moderate": stories["moderate"],
+            "expert":   stories["expert"],
         }
         item["storyWrittenAtPrice"] = item["price"]
         item["storyUpdatedDate"]    = TODAY

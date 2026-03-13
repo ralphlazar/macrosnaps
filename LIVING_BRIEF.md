@@ -1,5 +1,5 @@
 # MacroSnaps - Living Brief
-Last updated: March 12, 2026 (bug fix session - 10Y chart range button restored; root cause: monthlyLabels in shell-frozen had 180 entries covering Jan 2011 to Dec 2025, but globe.html had been built when it only had 60 entries, making slice(-120) and slice(-60) return identical arrays so 10Y looked identical to 5Y; fix: extended monthlyLabels to 192 entries covering Jan 2011 to Dec 2026; rebuilt and pushed)
+Last updated: March 13, 2026 (bug fix session - commodity stories [object Object] fixed in update_commodity_stories.py; cite tags stripped from global stories in update_headlines.py; UK English rule added to all story writing style guides)
 
 ---
 
@@ -76,6 +76,7 @@ The goal is for every story to read as if a knowledgeable human wrote it quickly
 - Write numbers as if they are real and specific. "Inflation hit 8.4%" reads better than "the inflation rate stands at 8.4%."
 - No filler conclusions. Never end a story with "overall," "in summary," or "taken together."
 - No committee language. Write as if explaining to a smart friend, not presenting a report.
+- Write in UK English. Use British spelling throughout (e.g. "analyse" not "analyze", "colour" not "color", "realise" not "realize").
 - Before outputting any story, scan it against every rule above and rewrite any sentence that fails. Output only the final corrected version.
 
 This style guide must also be included verbatim in the system prompt used by `update_stories.py` when calling the Claude API.
@@ -115,6 +116,7 @@ For each metric, rewrite all three levels (beginner, moderate, expert) so they a
 - Write numbers as real and specific. "Inflation hit 8.4%" not "the inflation rate stands at 8.4%."
 - No filler conclusions ("overall," "in summary," "taken together").
 - No committee language. Write as if explaining to a smart friend.
+- Write in UK English. Use British spelling throughout.
 - Scan every story against these rules before outputting. Output only the final corrected version.
 
 **Story length guidelines:**
@@ -164,7 +166,7 @@ Review the current `value` field for each of the 9 commodities in data.json and 
 - Show the current value vs what the story references
 - Wait for me to say "go"
 
-**Story writing rules:** Same as metric stories. No em dashes or en dashes. No passive voice. No hedging openers. Vary sentence length. Write numbers as real and specific. No filler conclusions. No committee language.
+**Story writing rules:** Same as metric stories. No em dashes or en dashes. No passive voice. No hedging openers. Vary sentence length. Write numbers as real and specific. No filler conclusions. No committee language. Write in UK English.
 
 **Story length guidelines:**
 - Beginner: 2-3 sentences. What this commodity is and why its price matters to ordinary people.
@@ -598,7 +600,8 @@ The tooltip order is: metric name, country + value, story, chart, explanation/bl
 | Current Account displayed in absolute dollars | Fixed 2026-03-10 | All CA historical arrays converted to % of GDP using IMF WEO denominators. 2026F appended as final point. |
 | Macro chart 2026F point missing | Fixed 2026-03-10 | 2026F forecast appended as final point to all macro historical arrays with existing data. |
 | refetch_historical.py overwrites CA % GDP conversion | Known risk | Running refetch restores raw dollar values. Re-run CA conversion after any refetch. Fix properly when updating refetch_historical.py (see Pending work). |
-| 10Y chart range button appeared broken | Fixed 2026-03-12 | monthlyLabels in shell-frozen had 180 entries (Jan 2011 to Dec 2025) but globe.html had been built when it was only 60 entries, so slice(-120) and slice(-60) returned identical arrays. Fixed by extending monthlyLabels to 192 entries (Jan 2011 to Dec 2026). Note: whenever historical data is refetched into future months, extend monthlyLabels to match. |
+| 10Y country chart range button appeared broken | Fixed 2026-03-12 | monthlyLabels in shell-frozen had 180 entries (Jan 2011–Dec 2025) but globe.html had been built when it was only 60 entries, so slice(-120) and slice(-60) returned identical arrays. Fixed by extending monthlyLabels to 192 entries (Jan 2011–Dec 2026). Whenever historical data is refetched into future months, extend monthlyLabels to match. |
+| Commodity tooltips showed only annual price bars | Fixed 2026-03-13 | showCommodityMTT was wired to item.annual (16 annual points) and ignored item._frozen_historical.v (114 monthly points). Fixed by adding renderCommodityMonthlyChart and wiring the tooltip to use _frozen_historical with 1Y/2Y/5Y/All range buttons. Annual chart retained as fallback. |
 | No .env file | Fixed 2026-03-11 | .env created at ~/Downloads/macrosnaps/.env with FRED_API_KEY. |
 | .env committed to public repo | Resolved 2026-03-11 | .env and env removed from all git history via filter-branch, force pushed. .env and env added to .gitignore. Anthropic API key regenerated twice (exposed in git history, then again in chat). Always use interactive input or nano to set secrets, never paste into chat. |
 
