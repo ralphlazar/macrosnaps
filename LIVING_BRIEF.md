@@ -1,5 +1,5 @@
 # MacroSnaps - Living Brief
-Last updated: March 13, 2026 (Macro-stats sheet integrated as single source of truth for all 6 annual macro metrics; sync_sheet.py fully rewritten; old MacroSnaps_Forecasts_2026 sheet retired)
+Last updated: March 13, 2026 (monthlyLabels generation automated in shell; static array removed from _frozen.chartConfig; labels now built dynamically from _meta.generated at runtime)
 
 ---
 
@@ -726,6 +726,8 @@ Key settings at the top of the script:
 ---
 
 ### Pending work (priority order)
+
+1. ~~**Automate monthlyLabels generation in the shell.**~~ Done March 13, 2026. Static `monthlyLabels` array removed from `_frozen.chartConfig`. `histMonthlyLabels` is now a `let` variable populated at runtime by a small IIFE inside the `data.json` fetch `.then()` block, anchored to `data._meta.generated` and counting back 240 months (20 years). No manual shell edit needed when `refetch_historical.py` advances the data window.
 
 1. ~~**Commodity story rewrite session.**~~ Done March 12, 2026. `update_commodity_stories.py` built and added to daily ritual. Bootstrapped all 9 stories on first run. Prices have moved significantly since March 10 (Gold +74% YoY, Silver +157% YoY, WTI at $93.61, Natural Gas down 22% YoY) - all now rewritten automatically.
 
