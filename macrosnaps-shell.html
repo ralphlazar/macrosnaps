@@ -25,6 +25,128 @@
 html{background:#000;color:#e8e8e8;font-family:var(--font-body)}
 body{height:100vh;overflow:hidden;display:flex;flex-direction:column}
 
+/* ── View Container ── */
+#main-views{flex:1;overflow:hidden;position:relative;display:flex;flex-direction:column}
+#globe-view{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden}
+#globe-view.hidden{display:none}
+#rankings-view{flex:1;overflow-y:auto;display:none;padding:0 0 80px}
+#rankings-view.active{display:block}
+
+/* ── View Toggle ── */
+.view-toggle{
+  display:flex;align-items:center;gap:4px;
+  position:absolute;right:24px;top:50%;transform:translateY(-50%);
+}
+.view-btn{
+  font-family:var(--font-display);font-size:10px;letter-spacing:1.2px;text-transform:uppercase;
+  padding:6px 14px;border:1px solid rgba(255,255,255,.14);border-radius:4px;
+  background:transparent;color:#777;cursor:pointer;transition:all .25s;
+}
+.view-btn:hover{border-color:rgba(255,255,255,.3);color:#bbb}
+.view-btn.active{
+  background:rgba(0,212,255,.1);border-color:var(--cyan);color:var(--cyan);
+  box-shadow:0 0 12px rgba(0,212,255,.1);
+}
+
+/* ── Geo Filter ── */
+.geo-filter{
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  padding:12px 16px 8px;
+}
+.geo-btn{
+  font-family:var(--font-display);font-size:10px;letter-spacing:1.2px;text-transform:uppercase;
+  padding:5px 16px;border:1px solid rgba(255,255,255,.12);border-radius:4px;
+  background:transparent;color:#777;cursor:pointer;transition:all .2s;
+}
+.geo-btn:hover{border-color:rgba(255,255,255,.25);color:#bbb}
+.geo-btn.active{background:rgba(0,212,255,.1);border-color:var(--cyan);color:var(--cyan)}
+
+/* ── Rankings Grid ── */
+.rk-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;padding:6px 10px 0;
+}
+@media(min-width:520px){.rk-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:900px){.rk-grid{grid-template-columns:repeat(4,1fr);gap:12px;padding:6px 16px 0}}
+@media(min-width:1200px){.rk-grid{grid-template-columns:repeat(5,1fr)}}
+
+/* ── Ranking Card ── */
+.rk-card{
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:10px;padding:14px 10px 12px;
+  display:flex;flex-direction:column;align-items:center;
+  gap:4px;cursor:pointer;transition:all .2s;position:relative;
+  text-align:center;
+}
+.rk-card:hover{background:rgba(255,255,255,.07);border-color:rgba(0,212,255,.3);transform:translateY(-2px);box-shadow:0 4px 20px rgba(0,212,255,.08)}
+.rk-card.sunny{border-color:rgba(232,196,56,.2)}
+.rk-card.sunny:hover{border-color:rgba(232,196,56,.5)}
+.rk-card.cloudy{border-color:rgba(180,180,180,.15)}
+.rk-card.cloudy:hover{border-color:rgba(180,180,180,.35)}
+.rk-card.stormy{border-color:rgba(100,100,100,.12)}
+.rk-card.stormy:hover{border-color:rgba(150,150,150,.25)}
+.rk-rank{
+  position:absolute;top:8px;left:10px;
+  font-family:var(--font-display);font-size:8px;letter-spacing:.5px;
+  color:#555;
+}
+.rk-hero{font-size:42px;line-height:1;margin-bottom:2px}
+.rk-hero.sunny{filter:none}
+.rk-hero.cloudy{filter:brightness(.65) contrast(1.05) saturate(.3)}
+.rk-hero.stormy{filter:brightness(.2) contrast(1.2) saturate(0) drop-shadow(0 0 6px rgba(255,255,255,.3))}
+.rk-flag{font-size:18px;line-height:1}
+.rk-name{font-size:12px;font-weight:600;color:#ddd;line-height:1.2;margin-top:1px}
+.rk-gdp{
+  font-family:var(--font-display);font-size:18px;font-weight:700;
+  line-height:1;margin-top:4px;
+}
+.rk-gdp.positive{color:var(--cyan)}
+.rk-gdp.negative{color:var(--hot)}
+.rk-gdp.neutral{color:#aaa}
+.rk-gdp-label{
+  font-family:var(--font-display);font-size:7px;letter-spacing:1px;
+  text-transform:uppercase;color:#555;margin-top:1px;
+}
+/* ── 2020-2026 Icon Strip ── */
+.rk-strip{
+  display:flex;gap:2px;margin-top:8px;padding-top:8px;
+  border-top:1px solid rgba(255,255,255,.06);width:100%;justify-content:center;
+}
+.rk-strip-cell{
+  display:flex;flex-direction:column;align-items:center;gap:1px;
+}
+.rk-strip-icon{font-size:13px;line-height:1}
+.rk-strip-icon.sunny{filter:none}
+.rk-strip-icon.cloudy{filter:brightness(.6) contrast(1.05) saturate(.3)}
+.rk-strip-icon.stormy{filter:brightness(.15) contrast(1.2) saturate(0) drop-shadow(0 0 3px rgba(255,255,255,.3))}
+.rk-strip-year{
+  font-family:var(--font-display);font-size:6px;letter-spacing:.3px;color:#555;
+}
+.rk-strip-year.forecast{color:rgba(0,212,255,.5)}
+.rk-asof{
+  text-align:center;padding:8px 16px 0;
+  font-family:var(--font-display);font-size:8px;letter-spacing:.8px;
+  color:#444;text-transform:uppercase;
+}
+/* Mobile top-bar adjustments for view toggle */
+@media(max-width:768px){
+  .view-toggle{position:static;transform:none;margin-top:4px}
+  .view-btn{font-size:9px;padding:5px 10px;letter-spacing:.8px}
+  .top-bar{flex-wrap:wrap;justify-content:center;gap:6px}
+  .rk-hero{font-size:36px}
+  .rk-gdp{font-size:16px}
+  .rk-name{font-size:11px}
+  .rk-strip-icon{font-size:11px}
+}
+@media(max-width:380px){
+  .rk-card{padding:12px 8px 10px}
+  .rk-hero{font-size:32px}
+  .rk-gdp{font-size:15px}
+  .rk-strip-icon{font-size:10px}
+}
+
 /* ── Top Bar ── */
 .top-bar{
   display:flex;align-items:center;justify-content:center;
@@ -86,11 +208,8 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column}
 .welcome-banner .wb-close:hover{color:#aaa}
 .welcome-banner.hidden{display:none}
 
-/* ── Hero ── */
-.hero{
-  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  position:relative;overflow:hidden;
-}
+/* ── Hero (legacy, kept for any external refs) ── */
+.hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden}
 
 /* ── News Icons ── */
 .news-icons{
@@ -554,7 +673,7 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column}
   .welcome-banner a{font-size:12px;padding:5px 14px;}
 
   /* ── Hero ── */
-  .hero{justify-content:flex-start;padding-top:6px}
+  #globe-view{justify-content:flex-start;padding-top:6px}
 
   /* ── News Icons ── */
   .news-icons{gap:20px;margin-bottom:10px}
@@ -690,6 +809,10 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column}
     <button class="exp-btn" data-level="moderate">Moderate</button>
     <button class="exp-btn" data-level="expert">Expert</button>
   </div>
+  <div class="view-toggle">
+    <button class="view-btn active" id="btnRankings">Rankings</button>
+    <button class="view-btn" id="btnGlobe">Globe</button>
+  </div>
 </div>
 
 <div class="tagline">Like learning a language - a little every day, and soon you'll be fluent.</div>
@@ -699,14 +822,17 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column}
   <button class="wb-close" id="welcomeClose" aria-label="Dismiss">✕</button>
 </div>
 
-<div class="hero">
-  <div class="news-icons">
-    <div class="news-icon hot" data-idx="0"><span class="ni-emoji">🔥</span><span class="ni-label">Today's Story</span></div>
-    <div class="news-icon movers" data-idx="1"><span class="ni-emoji">⚡</span><span class="ni-label">Biggest Movers</span></div>
-    <div class="news-icon connection" data-idx="2"><span class="ni-emoji">💡</span><span class="ni-label">The Connection</span></div>
+<div id="main-views">
+  <div id="globe-view" class="hero hidden">
+    <div class="news-icons">
+      <div class="news-icon hot" data-idx="0"><span class="ni-emoji">🔥</span><span class="ni-label">Today's Story</span></div>
+      <div class="news-icon movers" data-idx="1"><span class="ni-emoji">⚡</span><span class="ni-label">Biggest Movers</span></div>
+      <div class="news-icon connection" data-idx="2"><span class="ni-emoji">💡</span><span class="ni-label">The Connection</span></div>
+    </div>
+    <div class="globe-wrap" id="globeContainer"></div>
+    <div class="globe-hint"><span class="hint-desktop">Drag to rotate · Scroll to zoom · Click a country</span><span class="hint-mobile">Swipe to rotate · Pinch to zoom · Tap a country</span></div>
   </div>
-  <div class="globe-wrap" id="globeContainer"></div>
-  <div class="globe-hint"><span class="hint-desktop">Drag to rotate · Scroll to zoom · Click a country</span><span class="hint-mobile">Swipe to rotate · Pinch to zoom · Tap a country</span></div>
+  <div id="rankings-view" class="active"></div>
 </div>
 
 <div class="footer">
@@ -5345,6 +5471,8 @@ let gdpAllCountries={}, cpiAllCountries={}, unempAllCountries={}, budgetAllCount
 let newsData       = {beginner:[], moderate:[], expert:[]};
 let commoditiesData= {items:[], stories:{}, commentary:{}, weather:'', asOf:'', source:''};
 let _countries     = {};
+let _globeReady    = false;
+let _currentGeoFilter = 'all';
 
 // ── Helper: extract numeric value from a live metric string (e.g. "+2.2%", "-7.5% GDP") ──
 function parseLiveVal(s) {
@@ -5446,8 +5574,11 @@ fetch('data.json')
       histMonthlyLabels = labels;
     })();
 
-    // Kick off globe after data is ready
-    initGlobe();
+    // Kick off globe (lazy - only initialises WebGL when globe is first shown)
+    _globeReady = false;
+
+    // Build rankings view (default landing page)
+    buildRankingsView(data._meta && data._meta.generated);
   })
   .catch(err => {
     console.error('[MacroSnaps] Failed to load data.json:', err);
@@ -5846,6 +5977,147 @@ function initGlobe(){
   window.addEventListener('resize',()=>{const w=c.clientWidth,h=c.clientHeight;cam.aspect=w/h;cam.updateProjectionMatrix();ren.setSize(w,h);ren.setPixelRatio(Math.min(devicePixelRatio,2));});
 }
 function ll(lat,lon,r){const p=(90-lat)*Math.PI/180,t=(lon+180)*Math.PI/180;return new THREE.Vector3(-r*Math.sin(p)*Math.cos(t),r*Math.cos(p),r*Math.sin(p)*Math.sin(t));}
+
+// ── RANKINGS VIEW ──
+
+const G7_CODES   = new Set(['USA','CAN','GBR','JPN','DEU','FRA','ITA']);
+const BRICS_CODES = new Set(['CHN','IND','ZAF','BRA','RUS']);
+
+function gdpWeatherClass(v) {
+  if (v === null || v === undefined) return 'cloudy';
+  if (v >= 3)  return 'sunny';
+  if (v >= 0)  return 'cloudy';
+  return 'stormy';
+}
+
+function buildWeatherStrip(code) {
+  // Use last 7 points of GDP Growth historical array = 2020-2026F
+  const hist = historicalData[code] && historicalData[code]['GDP Growth'];
+  const annLabels = histAnnualLabels || [];
+  if (!hist || !hist.v || hist.v.length < 7) return '';
+
+  const allVals   = hist.v;
+  const allLabels = annLabels;
+  const stripVals   = allVals.slice(-7);
+  const stripLabels = allLabels.length >= 7 ? allLabels.slice(-7) : ['2020','2021','2022','2023','2024','2025','2026F'];
+
+  return stripVals.map((v, i) => {
+    const cls   = gdpWeatherClass(v);
+    const lbl   = stripLabels[i] || '';
+    const isFc  = String(lbl).includes('F');
+    const emoji = cls === 'sunny' ? '☀️' : cls === 'stormy' ? '⛈️' : '☁️';
+    return `<div class="rk-strip-cell">
+      <span class="rk-strip-icon ${cls}">${emoji}</span>
+      <span class="rk-strip-year${isFc ? ' forecast' : ''}">${lbl}</span>
+    </div>`;
+  }).join('');
+}
+
+function buildRankingsView(generatedDate) {
+  const view = document.getElementById('rankings-view');
+  if (!view) return;
+
+  // Sort countries descending by GDP growth
+  function gdpVal(co) {
+    const raw = co.metrics && co.metrics.macro && co.metrics.macro['GDP Growth'];
+    if (!raw) return -999;
+    const n = parseFloat(String(raw).replace(/[^0-9.\-]/g, ''));
+    return isNaN(n) ? -999 : n;
+  }
+
+  const sorted = countries.slice().sort((a, b) => gdpVal(b) - gdpVal(a));
+
+  const asOfStr = generatedDate
+    ? new Date(generatedDate).toLocaleDateString('en-GB', {day:'numeric', month:'short', year:'numeric'})
+    : '';
+
+  const geoFilterHTML = `
+    <div class="geo-filter">
+      <button class="geo-btn active" data-geo="all">All 12</button>
+      <button class="geo-btn" data-geo="g7">G7</button>
+      <button class="geo-btn" data-geo="brics">BRICS+</button>
+    </div>`;
+
+  const asofHTML = asOfStr ? `<div class="rk-asof">GDP Growth 2026F · as of ${asOfStr}</div>` : '';
+
+  view.innerHTML = geoFilterHTML + asofHTML + '<div class="rk-grid" id="rkGrid"></div>';
+
+  renderRankingCards(sorted, 'all');
+
+  // Geo filter buttons
+  view.querySelectorAll('.geo-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      view.querySelectorAll('.geo-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      _currentGeoFilter = btn.dataset.geo;
+      renderRankingCards(sorted, _currentGeoFilter);
+    });
+  });
+}
+
+function renderRankingCards(sorted, geo) {
+  const grid = document.getElementById('rkGrid');
+  if (!grid) return;
+
+  const visible = sorted.filter(co => {
+    if (geo === 'g7')    return G7_CODES.has(co.code);
+    if (geo === 'brics') return BRICS_CODES.has(co.code);
+    return true;
+  });
+
+  let rank = 0;
+  grid.innerHTML = visible.map(co => {
+    rank++;
+    const rawGDP = co.metrics && co.metrics.macro && co.metrics.macro['GDP Growth'];
+    const gdpNum = parseFloat(String(rawGDP || '').replace(/[^0-9.\-]/g, ''));
+    const weatherCls = gdpWeatherClass(isNaN(gdpNum) ? null : gdpNum);
+    const heroEmoji  = weatherCls === 'sunny' ? '☀️' : weatherCls === 'stormy' ? '⛈️' : '☁️';
+    const gdpSign    = (!isNaN(gdpNum) && gdpNum > 0) ? '+' : '';
+    const gdpDisplay = rawGDP ? `${gdpSign}${rawGDP}` : 'N/A';
+    const gdpColorCls = isNaN(gdpNum) ? 'neutral' : gdpNum > 0 ? 'positive' : gdpNum < 0 ? 'negative' : 'neutral';
+    const strip      = buildWeatherStrip(co.code);
+
+    return `<div class="rk-card ${weatherCls}" data-code="${co.code}">
+      <span class="rk-rank">#${rank}</span>
+      <span class="rk-hero ${weatherCls}">${heroEmoji}</span>
+      <span class="rk-flag">${co.flag}</span>
+      <span class="rk-name">${co.name}</span>
+      <span class="rk-gdp ${gdpColorCls}">${gdpDisplay}</span>
+      <span class="rk-gdp-label">GDP Growth</span>
+      ${strip ? `<div class="rk-strip">${strip}</div>` : ''}
+    </div>`;
+  }).join('');
+
+  // Click handler - open country card
+  grid.querySelectorAll('.rk-card').forEach(el => {
+    el.addEventListener('click', () => {
+      const co = countries.find(c => c.code === el.dataset.code);
+      if (co) showCard(co);
+    });
+  });
+}
+
+// ── VIEW TOGGLE ──
+function switchToGlobe() {
+  document.getElementById('globe-view').classList.remove('hidden');
+  document.getElementById('rankings-view').classList.remove('active');
+  document.getElementById('btnGlobe').classList.add('active');
+  document.getElementById('btnRankings').classList.remove('active');
+  // Lazy-init globe on first switch
+  if (!_globeReady) {
+    initGlobe();
+    _globeReady = true;
+  }
+}
+function switchToRankings() {
+  document.getElementById('globe-view').classList.add('hidden');
+  document.getElementById('rankings-view').classList.add('active');
+  document.getElementById('btnRankings').classList.add('active');
+  document.getElementById('btnGlobe').classList.remove('active');
+}
+
+document.getElementById('btnGlobe').addEventListener('click', switchToGlobe);
+document.getElementById('btnRankings').addEventListener('click', switchToRankings);
 
 // ── LEVEL TOGGLE HELPER ──
 function levelToggleHTML(){
@@ -6933,7 +7205,7 @@ function closeAll(){if(activeChart){activeChart.destroy();activeChart=null;}docu
 // ── EXPERTISE ──
 document.querySelectorAll('.exp-btn').forEach(btn=>{btn.addEventListener('click',()=>{setLevel(btn.dataset.level);closeAll();});});
 
-// initGlobe() is called by fetch('data.json').then() above
+// initGlobe() is called lazily on first switch to Globe view
 
 
 // ── Welcome Banner ──

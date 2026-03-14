@@ -1,5 +1,7 @@
 # MacroSnaps - Living Brief
-Last updated: March 14, 2026 (Session 7: investigated JPN CPI series swap. Both CPALTT01JPM657N and JPNCPIALLMINMEI stop at Jun 2021 on FRED - same OECD MEI source cutoff. e-Stat (Statistics Bureau of Japan) has current data but requires a free API registration. Decision: accept the JPN CPI gap for now. No code changes made. populate_monthly_actuals.py and update_monthly_actuals.py remain unchanged with CPALTT01JPM657N in CPI_YOY_SERIES. If JPN CPI gap is prioritised post-launch, register at e-stat.go.jp/api/en and build a fetcher against table ID 0003427113.)
+Last updated: March 14, 2026 (Session 9: kill globe, replace with ranked GDP growth landing page. Brand positioning decisions: weather icons as core USP, underplay AI, professional credibility over tech-demo aesthetics.)
+
+Last session note (Session 8): extended all tooltip charts to start from Jan 2000. (1) sync_monthly_historical.py and sync_market_historical.py: START_DATE changed to 2000-01-01. (2) macrosnaps-shell.html: histMonthlyLabels IIFE now anchors at Jan 2000 and counts forward to _meta.generated; isAnnual detection fixed to use cfg.type==='bar' instead of cfg.annual; slice direction fixed - full array uses slice(0,n) left-anchored, range buttons use slice(-n) right-anchored; annual charts have no range buttons and always show full array; both All buttons use data-r="0"; initial renders pass null; renderCommodityMonthlyChart treats falsy rangeMonths as full array; fallback title updated to "History since 2000". (3) sync_sheet.py --apply run to restore annual arrays to 27 points (2000-2026F) - they had regressed to 11 points. Root cause of "charts ending 2010": data arrays were only 11 points, not a JS bug.)
 
 ---
 
@@ -283,14 +285,14 @@ python3 sync_monthly_actuals.py --apply
 
 **Step 4e. Sync monthly historical arrays to data.json**
 
-This reads the MACRO-MONTHLY sheet from Jan 2020 and writes _frozen_historical for Inflation, Unemployment, and Policy Rate across all 12 countries.
+This reads the MACRO-MONTHLY sheet from Jan 2000 and writes _frozen_historical for Inflation, Unemployment, and Policy Rate across all 12 countries.
 ```bash
 python3 sync_monthly_historical.py --apply
 ```
 
 **Step 4f. Sync market historical arrays to data.json**
 
-This reads the MARKET-STATS sheet from Jan 2020, resamples daily to monthly, and writes _frozen_historical for Stock Market, FX Rate, 10Y Bond Yield, and Yield Curve across all 12 countries.
+This reads the MARKET-STATS sheet from Jan 2000, resamples daily to monthly, and writes _frozen_historical for Stock Market, FX Rate, 10Y Bond Yield, and Yield Curve across all 12 countries.
 ```bash
 python3 sync_market_historical.py --apply
 ```
@@ -635,13 +637,13 @@ python3 build.py && git add -A && git commit -m "Daily market update $(date +%Y-
 | GDP Growth | sync_sheet.py | 2000-2026F, 27 points | Annual bar |
 | Budget Deficit | sync_sheet.py | 2000-2026F, 27 points | Annual bar |
 | Current Account | sync_sheet.py | 2000-2026F, 27 points | Annual bar |
-| Inflation (CPI) | sync_monthly_historical.py | Jan 2020 onwards, ~63-75 points | Monthly line |
-| Unemployment | sync_monthly_historical.py | Jan 2020 onwards, ~70-73 points | Monthly line |
-| Policy Rate | sync_monthly_historical.py | Jan 2020 onwards, ~74-75 points | Monthly stepped line |
-| Stock Market YTD | sync_market_historical.py | Jan 2020 onwards, ~75 points | Monthly line (raw index, indexLabel:true) |
-| FX Rate | sync_market_historical.py | Jan 2020 onwards, ~75 points | Monthly line |
-| 10Y Bond Yield | sync_market_historical.py | Jan 2020 onwards, ~75 points | Monthly line |
-| Yield Curve | sync_market_historical.py | Jan 2020 onwards, ~75 points | Monthly line (zeroLine:true) |
+| Inflation (CPI) | sync_monthly_historical.py | Jan 2000 onwards, ~290-302 points | Monthly line |
+| Unemployment | sync_monthly_historical.py | Jan 2000 onwards, ~310-313 points | Monthly line |
+| Policy Rate | sync_monthly_historical.py | Jan 2000 onwards, ~208-314 points | Monthly stepped line |
+| Stock Market YTD | sync_market_historical.py | Jan 2000 onwards, ~136-315 points | Monthly line (raw index, indexLabel:true) |
+| FX Rate | sync_market_historical.py | Jan 2000 onwards, ~268-315 points | Monthly line |
+| 10Y Bond Yield | sync_market_historical.py | Jan 2000 onwards, ~315 points | Monthly line |
+| Yield Curve | sync_market_historical.py | Jan 2000 onwards, ~288-315 points | Monthly line (zeroLine:true) |
 
 **Important:** `refetch_historical.py` is no longer the source of truth for Inflation, Unemployment, Policy Rate, Stock Market, FX, Bond Yield, or Yield Curve. Do not run it for those metrics. It still owns the commodity _frozen_historical arrays.
 
@@ -651,11 +653,11 @@ All three have 27-point arrays covering 2000-2026F from Macro-stats (IMF WEO). W
 
 **Macro metric charts - monthly series (Inflation, Unemployment, Policy Rate):**
 
-Now sourced from MACRO-MONTHLY sheet via `sync_monthly_historical.py`. Data from Jan 2020 onwards (~63-75 points per country). Written daily at step 4e of the ritual.
+Now sourced from MACRO-MONTHLY sheet via `sync_monthly_historical.py`. Data from Jan 2000 onwards (~208-314 points per country). Written daily at step 4e of the ritual.
 
 **Market metric charts (Stock Market, FX, Bond Yield, Yield Curve):**
 
-Now sourced from MARKET-STATS sheet via `sync_market_historical.py`. Daily rows resampled to monthly end-of-month. Data from Jan 2020 onwards (75 points). Written daily at step 4f. sync_market_historical.py --apply completed March 14, 2026 (Session 6). FX Rate historical also populated in this run (was missing). NOTE: 75 months of history vs the previous 120-month refetch_historical.py arrays. To extend to 10 years, change START_DATE in sync_market_historical.py from 2020-01-01 to 2016-01-01 (sheet data exists from 2000-01-01).
+Now sourced from MARKET-STATS sheet via `sync_market_historical.py`. Daily rows resampled to monthly end-of-month. Data from Jan 2000 onwards (~136-315 points per country). Written daily at step 4f.
 
 **Tooltip chart range buttons (country metrics):**
 
@@ -841,11 +843,11 @@ python3 update_commodity_stories.py
 
 ### sync_monthly_historical.py
 
-The script lives in `~/Downloads/macrosnaps/`. Reads the MACRO-MONTHLY Google Sheet from Jan 2020 onwards and writes `_frozen_historical` arrays into `data.json` for Inflation (CPI), Unemployment, and Policy Rate across all 12 countries. Replaces `refetch_historical.py` as the source of truth for these three metrics.
+The script lives in `~/Downloads/macrosnaps/`. Reads the MACRO-MONTHLY Google Sheet from Jan 2000 onwards and writes `_frozen_historical` arrays into `data.json` for Inflation (CPI), Unemployment, and Policy Rate across all 12 countries. Replaces `refetch_historical.py` as the source of truth for these three metrics.
 
 **Auth:** same `market-stats-key.json` service account as `sync_market_sheet.py`. `MACRO_MONTHLY_SHEET_ID` must be in `.env`.
 
-**Data window:** Jan 2020 to latest available. Typically 63-75 points per country per metric.
+**Data window:** Jan 2000 to latest available. Typically 208-314 points per country per metric.
 
 **Known gaps written as empty arrays:**
 - CHN Unemployment, IND Unemployment, BRA Unemployment: no reliable source
@@ -861,11 +863,11 @@ python3 sync_monthly_historical.py --apply  # write to data.json
 
 ### sync_market_historical.py
 
-The script lives in `~/Downloads/macrosnaps/`. Reads the MARKET-STATS Google Sheet from Jan 2020 onwards, resamples daily rows to monthly end-of-month, and writes `_frozen_historical` arrays into `data.json` for Stock Market YTD (raw index, `indexLabel:true`), FX Rate, 10Y Bond Yield, and Yield Curve across all 12 countries. Replaces `refetch_historical.py` as the source of truth for these four metrics.
+The script lives in `~/Downloads/macrosnaps/`. Reads the MARKET-STATS Google Sheet from Jan 2000 onwards, resamples daily rows to monthly end-of-month, and writes `_frozen_historical` arrays into `data.json` for Stock Market YTD (raw index, `indexLabel:true`), FX Rate, 10Y Bond Yield, and Yield Curve across all 12 countries. Replaces `refetch_historical.py` as the source of truth for these four metrics.
 
 **Auth:** same `market-stats-key.json` service account. `MARKET_STATS_SHEET_ID` must be in `.env`.
 
-**Data window:** Jan 2020 to latest available. Typically 75 points per country per metric.
+**Data window:** Jan 2000 to latest available. Typically 136-315 points per country per metric.
 
 **Known gaps written as empty arrays:**
 - CHN/IND/BRA 10Y Bond Yield and Yield Curve: no FRED source
@@ -934,7 +936,37 @@ Key settings at the top of the script:
 
 ---
 
+### Brand positioning
+
+**The USP** is the combination of three things no single data site does together: opinionated simplicity at three audience depths, weather icons as editorial judgment (a stance, not a display), and stories that place recent data in context rather than restating a forecast number.
+
+**The weather icon is the brand asset.** It has 25 years of buy-side pedigree. It is graphic, iconic, and immediately legible. The goal is for MacroSnaps to be known as "that rigorous app with the weather icons." Every surface that can show a weather icon should show one.
+
+**BACKGROUND PRINCIPLE FOR ALL SESSIONS:** In every conversation, every feature decision, and every UI idea, always ask: "How can we leverage the weather icon brand identity? How can we weave it further into the UI and make this app go big?" The weather icon system is the product's most distinctive and defensible asset. Never let a session pass without considering whether the feature being built can express or reinforce it.
+
+**Three icons only, always.** Sunny, cloudy, stormy. Never add a fourth option. The moment you introduce "partly cloudy" or "thunderstorm" the system becomes decoration. Three options forces genuine editorial judgment. Every icon must be a clear call on a clearly defined question. Define the question first, assign the icon second. Never use an icon for visual variety.
+
+**Planned weather icon surfaces (in priority order):**
+- Country cards: card-level icon already exists. Add a per-metric icon for each of the 6 macro metrics, each a three-option call. Clicking a metric icon surfaces a comparison of all 12 countries on that metric over time.
+- Trend arrow companion: pair the country-level weather icon with a small up/down direction arrow. "Cloudy but improving" vs "cloudy and deteriorating." The icon stays three-option, the arrow adds a direction dimension without adding a fourth icon.
+- Global story cards: each of the three global story cards (Today's Story, Biggest Movers, The Connection) carries a single weather icon representing the overall global macro mood for that card. Assigned by the headline generation script.
+- Historical icon trail: on the country tooltip or detail view, a small row of past weather icons, one per quarter for the last 8 periods. See at a glance whether a country has been consistently sunny or recently turned stormy. No numbers needed.
+- Favicon: a weather icon, rotating daily based on global conditions.
+- OG social share image: leads with the relevant weather icon, big and prominent.
+- Global summary icon (under consideration): a single icon for the world, computed as an aggregate of all 12 country icons. Would live at the top of the page above everything. Held for now, revisit post-launch.
+- Commodity icons (future): nine commodities each with a three-option icon. Deferred until macro and markets are solid.
+
+**Underplay the AI.** "AI-generated" reads as a quality warning to many users and signals "tech demo" rather than "professional tool." The AI is the production method, not the product. Lead with the output: plain-English context, editorial calls, coverage of 12 countries daily. Never lead with the technology.
+
+**The landing page makes a statement.** Countries ranked by GDP growth, each with a weather icon and a one-line verdict. The icon is the call, the number is the evidence. That is a complete editorial thought in two seconds. This is what replaces the globe.
+
+**Do not position against Bloomberg or data terminals.** The audience is professionals and informed non-professionals who want a daily briefing at the depth they choose, not a research platform. The competition is a good morning read, not a data subscription.
+
+---
+
 ### Pending work (priority order)
+
+1. **Kill the globe. Replace with ranked GDP growth landing page.** This is a UI session: upload `LIVING_BRIEF.md` + `macrosnaps-shell.html`. The globe (Three.js) is to be removed entirely. The new default landing state is 12 country cards ranked by GDP growth (highest to lowest), each showing the GDP growth value and weather icon prominently. A toggle to switch to geographic layout should be available but ranked is the default. The weather icon should be the dominant visual element on each card. This is the single highest priority before launch. Key decisions: (1) ranked by GDP growth descending, (2) geographic toggle available, (3) no globe anywhere in the product, (4) weather icon is hero of each card.
 
 1. ~~**Build tooltip historical charts from Google Sheets (Jan 2020 onwards).**~~ Done March 14, 2026 (Session 5). Two scripts built: `sync_monthly_historical.py` reads MACRO-MONTHLY and writes _frozen_historical for Inflation, Unemployment, Policy Rate. `sync_market_historical.py` reads MARKET-STATS, resamples daily to monthly, and writes _frozen_historical for Stock Market, FX Rate, 10Y Bond Yield, Yield Curve. Shell tooltip range buttons updated from 1Y/2Y/5Y/10Y to 1Y/2Y/5Y/All (All default, data-r="999"). sync_monthly_historical.py --apply completed. sync_market_historical.py blocked pending Bond_Yield_3M fix (see next item).
 
@@ -952,7 +984,7 @@ Key settings at the top of the script:
 
 1. ~~**Remove Equity Vol and FX Vol from `macrosnaps-shell.html`.**~~ Done March 13, 2026. Removed both full glossary entries (beginner/moderate/expert bluf + full content, aliases, relatedTerms, metricLinks) and both `metricSources` lines. `metricDisplayLabels` had no entries for either metric. No hardcoded metric counts found. 17,016 characters removed.
 
-1. ~~**Automate monthlyLabels generation in the shell.**~~ Done March 13, 2026. Static `monthlyLabels` array removed from `_frozen.chartConfig`. `histMonthlyLabels` is now a `let` variable populated at runtime by a small IIFE inside the `data.json` fetch `.then()` block, anchored to `data._meta.generated` and counting back 240 months (20 years). No manual shell edit needed when `refetch_historical.py` advances the data window.
+1. ~~**Automate monthlyLabels generation in the shell.**~~ Done March 13, 2026. Updated March 14, 2026 (Session 8): IIFE now anchors at Jan 2000 and counts forward to _meta.generated. Both "All" range buttons changed to data-r="0"; initial chart render passes null; renderCommodityMonthlyChart treats 0/falsy as full array. All charts open on full data from Jan 2000, permanently data-anchored.
 
 1. ~~**Fix chart tooltip title bugs.**~~ Done March 13, 2026. Two bugs in `renderMTT()`: (1) `histEntry.indexLabel` (a boolean) was being used as the chart title via `||`, rendering as "True" on stock market charts. Removed from title expression. (2) Fallback label was "5-Year History" despite data now spanning 10 years. Updated to "10-Year History".
 
@@ -1006,6 +1038,8 @@ MacroSnaps has two distinct layers of truth that must not be conflated:
 The correct approach: stories comment on what is actually happening right now. If recent data is tracking ahead of or behind the annual forecast, the story can note that tension briefly (e.g. "February CPI came in at 2.6%, above the Fed target, but full-year inflation is still expected to settle at 2.3% as base effects kick in mid-year"). But the forecast is not the anchor of the story - recent data is.
 
 Implication for tooling: implemented March 12, 2026. See `update_headlines.py` architecture: Sonnet+search harvest call feeds recent data into Haiku writing batches as lead context.
+
+**Architectural constraint: write path separation.** `sync_sheet.py --apply` writes only annual forecast fields (GDP Growth, Inflation, Unemployment, Budget Deficit, Current Account, Policy Rate arrays and card values). `sync_monthly_actuals.py` writes only the `monthly_actuals` field. These two scripts must never touch each other's fields. This is currently enforced by construction but must be preserved in any future refactor. No other script writes to `monthly_actuals`.
 
 ---
 
