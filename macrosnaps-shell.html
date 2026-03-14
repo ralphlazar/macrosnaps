@@ -6201,8 +6201,7 @@ function computeFxYtd(co) {
   if (!fxKey) return null;
   const hist = historicalData[co.code] && historicalData[co.code][fxKey];
   if (!hist || !hist.v || !histMonthlyLabels.length) return null;
-  const genDate = _whAsOfStr ? new Date(_whAsOfStr.split(' ').reverse().join('-')) : new Date();
-  const curYear = String(genDate.getFullYear()).slice(-2);
+  const curYear = String(new Date().getFullYear()).slice(-2);
   const janIdx  = histMonthlyLabels.findIndex(l => l === 'Jan ' + curYear);
   if (janIdx < 0 || janIdx >= hist.v.length) return null;
   const janVal = hist.v[janIdx];
@@ -6243,9 +6242,24 @@ function renderRankedTable(wrap, cfg, titleHTML) {
 
   function getLocalVal(co) {
     if (!co.metrics) return null;
-    const pool = (_whMetric === 'Policy Rate') ? (co.metrics.macro||{}) : (co.metrics.market||{});
-    const raw = pool[_whMetric];
-    return (raw === undefined) ? null : raw;
+    // Try macro first for known macro metrics, then market, then other way round
+    const macro  = co.metrics.macro  || {};
+    const market = co.metrics.market || {};
+    // Policy Rate lives in macro; all market metrics live in market
+    // But search both to be safe - prefer macro for macro metrics
+    const MACRO_METRICS = new Set(['GDP Growth','Inflation (CPI)','Unemployment','Budget Deficit','Current Account','Policy Rate']);
+    if (MACRO_METRICS.has(_whMetric)) {
+      const v = macro[_whMetric];
+      return (v !== undefined) ? v : null;
+    }
+    // Market metric - look in market; for FX-keyed entries (contains '/') do a key scan
+    let v = market[_whMetric];
+    if (v === undefined) {
+      // fallback: scan for the key (handles any minor naming variation)
+      const k = Object.keys(market).find(k2 => k2 === _whMetric);
+      v = k ? market[k] : undefined;
+    }
+    return (v !== undefined) ? v : null;
   }
 
   function parseVal(s) {
@@ -6262,7 +6276,7 @@ function renderRankedTable(wrap, cfg, titleHTML) {
     }
     const raw = getLocalVal(co);
     return {co, raw, num: parseVal(raw)};
-  }).filter(r => r.raw !== null)
+  }).filter(r => r.raw != null && r.raw !== '')
     .sort((a, b) => {
       if (a.num === null && b.num === null) return 0;
       if (a.num === null) return 1; if (b.num === null) return -1;
