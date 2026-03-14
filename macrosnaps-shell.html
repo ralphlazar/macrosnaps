@@ -48,18 +48,11 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
   box-shadow:0 0 12px rgba(0,212,255,.1);
 }
 
-/* ── Geo Filter ── */
-.geo-filter{
-  display:flex;align-items:center;justify-content:center;gap:6px;
-  padding:10px 16px 0;
-}
-.geo-btn{
-  font-family:var(--font-display);font-size:9px;letter-spacing:1.2px;text-transform:uppercase;
-  padding:5px 14px;border:1px solid rgba(255,255,255,.12);border-radius:4px;
-  background:transparent;color:#666;cursor:pointer;transition:all .2s;
-}
-.geo-btn:hover{border-color:rgba(255,255,255,.25);color:#bbb}
-.geo-btn.active{background:rgba(0,212,255,.1);border-color:var(--cyan);color:var(--cyan)}
+/* ── Sortable headers ── */
+.wh-table thead th.wh-sortable{cursor:pointer;user-select:none;transition:color .15s}
+.wh-table thead th.wh-sortable:hover{color:#bbb}
+.wh-sort-arrow{font-size:8px;margin-left:3px;opacity:.25;vertical-align:middle}
+.wh-sort-arrow.active{opacity:1;color:var(--cyan)}
 
 /* ── Weather Homepage Table ── */
 .wh-wrap{
@@ -83,7 +76,7 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
   text-transform:uppercase;color:#555;padding:0 2px 8px;
   text-align:center;font-weight:400;
 }
-.wh-table thead th.wh-country-hd{text-align:left;color:#444;width:110px}
+.wh-table thead th.wh-country-hd{text-align:left;color:#555;width:110px}
 .wh-table thead th.wh-fc{color:var(--cyan)}
 .wh-table tbody tr{
   border-bottom:1px solid rgba(255,255,255,.04);
@@ -5979,9 +5972,6 @@ function ll(lat,lon,r){const p=(90-lat)*Math.PI/180,t=(lon+180)*Math.PI/180;retu
 
 // ── RANKINGS VIEW ──
 
-const G7_CODES    = new Set(['USA','CAN','GBR','JPN','DEU','FRA','ITA']);
-const BRICS_CODES = new Set(['CHN','IND','ZAF','BRA','RUS']);
-
 function gdpWeatherClass(v) {
   if (v === null || v === undefined) return 'cloudy';
   if (v >= 3) return 'sunny';
@@ -5989,102 +5979,119 @@ function gdpWeatherClass(v) {
   return 'stormy';
 }
 
+// Sort state: colIdx 0 = country name, 1-7 = year columns; null = unsorted
+let _whSortCol = 6; // default: last col (2026F), index 6 in the 7-col array
+let _whSortAsc = false; // default: descending
+
 function buildRankingsView(generatedDate) {
   const view = document.getElementById('rankings-view');
   if (!view) return;
 
-  function gdpNum(co) {
-    const raw = co.metrics && co.metrics.macro && co.metrics.macro['GDP Growth'];
-    if (!raw) return null;
-    const n = parseFloat(String(raw).replace(/[^0-9.\-]/g, ''));
-    return isNaN(n) ? null : n;
-  }
-
-  function gdpHistory(co) {
-    const hist = historicalData[co.code] && historicalData[co.code]['GDP Growth'];
-    if (!hist || !hist.v || hist.v.length < 7) return null;
-    const vals = hist.v.slice(-7);
-    const lbls = (histAnnualLabels && histAnnualLabels.length >= 7)
-      ? histAnnualLabels.slice(-7)
-      : ['2020','2021','2022','2023','2024','2025','2026F'];
-    return {vals, lbls};
-  }
+  const newsIconsHTML = `<div class="rk-news-icons">
+    <div class="news-icon hot" data-idx="0"><span class="ni-emoji">🔥</span><span class="ni-label">Today's Story</span></div>
+    <div class="news-icon movers" data-idx="1"><span class="ni-emoji">⚡</span><span class="ni-label">Biggest Movers</span></div>
+    <div class="news-icon connection" data-idx="2"><span class="ni-emoji">💡</span><span class="ni-label">The Connection</span></div>
+  </div>`;
 
   const asOfStr = generatedDate
     ? new Date(generatedDate).toLocaleDateString('en-GB', {day:'numeric', month:'short', year:'numeric'})
     : '';
 
-  const newsIconsHTML = `<div class="rk-news-icons">
-    <div class="news-icon hot" data-idx="0"><span class="ni-emoji">\u{1F525}</span><span class="ni-label">Today's Story</span></div>
-    <div class="news-icon movers" data-idx="1"><span class="ni-emoji">\u26A1</span><span class="ni-label">Biggest Movers</span></div>
-    <div class="news-icon connection" data-idx="2"><span class="ni-emoji">\u{1F4A1}</span><span class="ni-label">The Connection</span></div>
-  </div>`;
-
-  const geoFilterHTML = `<div class="geo-filter">
-    <button class="geo-btn active" data-geo="all">All 12</button>
-    <button class="geo-btn" data-geo="g7">G7</button>
-    <button class="geo-btn" data-geo="brics">BRICS+</button>
-  </div>`;
-
-  view.innerHTML = newsIconsHTML + geoFilterHTML + '<div class="wh-wrap" id="whWrap"></div>';
+  view.innerHTML = newsIconsHTML + '<div class="wh-wrap" id="whWrap"></div>';
 
   view.querySelectorAll('.news-icon').forEach(el => {
     el.addEventListener('click', () => { closeAll(); showNewsTooltip(+el.dataset.idx); });
   });
 
-  renderWeatherTable(countries, 'all', gdpNum, gdpHistory, asOfStr);
-
-  view.querySelectorAll('.geo-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      view.querySelectorAll('.geo-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      renderWeatherTable(countries, btn.dataset.geo, gdpNum, gdpHistory, asOfStr);
-    });
-  });
+  renderWeatherTable(asOfStr);
 }
 
-function renderWeatherTable(allCountries, geo, gdpNum, gdpHistory, asOfStr) {
+function renderWeatherTable(asOfStr) {
   const wrap = document.getElementById('whWrap');
   if (!wrap) return;
-
-  const visible = allCountries.filter(co => {
-    if (geo === 'g7')    return G7_CODES.has(co.code);
-    if (geo === 'brics') return BRICS_CODES.has(co.code);
-    return true;
-  });
 
   const colLabels = (histAnnualLabels && histAnnualLabels.length >= 7)
     ? histAnnualLabels.slice(-7)
     : ['2020','2021','2022','2023','2024','2025','2026F'];
 
-  const thCols = colLabels.map(lbl => {
+  // Build data rows with pre-parsed numeric values for sorting
+  const rows = countries.map(co => {
+    const hist = historicalData[co.code] && historicalData[co.code]['GDP Growth'];
+    const vals = (hist && hist.v && hist.v.length >= 7) ? hist.v.slice(-7) : Array(7).fill(null);
+    return {co, vals};
+  });
+
+  // Sort
+  const sorted = rows.slice().sort((a, b) => {
+    let av, bv;
+    if (_whSortCol === 0) {
+      // Country name alpha
+      av = a.co.name; bv = b.co.name;
+      return _whSortAsc ? av.localeCompare(bv) : bv.localeCompare(av);
+    }
+    av = a.vals[_whSortCol - 1];
+    bv = b.vals[_whSortCol - 1];
+    if (av === null && bv === null) return 0;
+    if (av === null) return 1;
+    if (bv === null) return -1;
+    return _whSortAsc ? av - bv : bv - av;
+  });
+
+  // Header arrows
+  function arrow(colIdx) {
+    if (_whSortCol !== colIdx) return '<span class="wh-sort-arrow">↕</span>';
+    return `<span class="wh-sort-arrow active">${_whSortAsc ? '↑' : '↓'}</span>`;
+  }
+
+  const thCols = colLabels.map((lbl, i) => {
     const isFc = String(lbl).includes('F');
-    return `<th class="${isFc ? 'wh-fc' : ''}">${lbl}</th>`;
+    const colIdx = i + 1;
+    return `<th class="wh-sortable${isFc ? ' wh-fc' : ''}" data-col="${colIdx}">${lbl}${arrow(colIdx)}</th>`;
   }).join('');
 
-  const rows = visible.map(co => {
-    const hist = gdpHistory(co);
+  const bodyRows = sorted.map(({co, vals}) => {
     const cells = colLabels.map((lbl, i) => {
-      const v     = hist ? hist.vals[i] : null;
+      const v     = vals[i];
       const cls   = gdpWeatherClass(v);
-      const emoji = cls === 'sunny' ? '\u2600\uFE0F' : cls === 'stormy' ? '\u26C8\uFE0F' : '\u2601\uFE0F';
-      const sign  = (v !== null && v > 0) ? '+' : '';
-      const valStr = v !== null ? `${sign}${v}%` : '';
-      const valCls = v === null ? 'neutral' : v > 0 ? 'positive' : v < 0 ? 'negative' : 'neutral';
+      const emoji = cls === 'sunny' ? '☀️' : cls === 'stormy' ? '⛈️' : '☁️';
       const isFc  = String(lbl).includes('F');
-      return `<td class="wh-cell${isFc ? ' wh-fc-col' : ''}"><div class="wh-cell-inner"><span class="wh-icon ${cls}">${emoji}</span><span class="wh-val ${valCls}">${valStr}</span></div></td>`;
+      return `<td class="wh-cell${isFc ? ' wh-fc-col' : ''}"><span class="wh-icon ${cls}">${emoji}</span></td>`;
     }).join('');
-
     return `<tr data-code="${co.code}"><td class="wh-country-cell"><div class="wh-country-inner"><span class="wh-flag">${co.flag}</span><span class="wh-name">${co.name}</span><span class="wh-code">${co.code}</span></div></td>${cells}</tr>`;
   }).join('');
 
   const asofHTML = asOfStr ? `<div class="wh-asof">Updated ${asOfStr}</div>` : '';
 
-  wrap.innerHTML = `<div class="wh-title"><h2>GDP Growth</h2><p>Weather Outlook &middot; 2020&ndash;2026F</p></div><table class="wh-table"><thead><tr><th class="wh-country-hd"></th>${thCols}</tr></thead><tbody>${rows}</tbody></table>${asofHTML}`;
+  wrap.innerHTML = `
+    <div class="wh-title"><h2>GDP Growth</h2></div>
+    <table class="wh-table">
+      <thead><tr>
+        <th class="wh-country-hd wh-sortable" data-col="0">Countries${arrow(0)}</th>
+        ${thCols}
+      </tr></thead>
+      <tbody>${bodyRows}</tbody>
+    </table>
+    ${asofHTML}`;
 
+  // Sort on header click
+  wrap.querySelectorAll('.wh-sortable').forEach(th => {
+    th.addEventListener('click', e => {
+      e.stopPropagation();
+      const col = +th.dataset.col;
+      if (_whSortCol === col) {
+        _whSortAsc = !_whSortAsc;
+      } else {
+        _whSortCol = col;
+        _whSortAsc = col === 0; // name sorts A-Z by default; years sort desc
+      }
+      renderWeatherTable(asOfStr);
+    });
+  });
+
+  // Row click - open country card
   wrap.querySelectorAll('tr[data-code]').forEach(row => {
     row.addEventListener('click', () => {
-      const co = allCountries.find(c => c.code === row.dataset.code);
+      const co = countries.find(c => c.code === row.dataset.code);
       if (co) showCard(co);
     });
   });
