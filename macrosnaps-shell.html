@@ -54,6 +54,57 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 .wh-sort-arrow{font-size:8px;margin-left:3px;opacity:.25;vertical-align:middle}
 .wh-sort-arrow.active{opacity:1;color:var(--cyan)}
 
+/* ── Cell hover tip ── */
+#wh-hover-tip{
+  position:fixed;pointer-events:none;z-index:300;display:none;
+  background:rgba(10,14,26,.96);border:1px solid rgba(0,212,255,.35);
+  border-radius:4px;padding:3px 9px;
+  font-family:var(--font-display);font-size:10px;letter-spacing:.5px;
+  color:#fff;white-space:nowrap;
+  box-shadow:0 4px 12px rgba(0,0,0,.4);
+}
+
+/* ── Metric picker button ── */
+.wh-metric-btn{
+  background:none;border:none;cursor:pointer;
+  font-family:var(--font-display);font-size:11px;letter-spacing:2.5px;
+  text-transform:uppercase;color:var(--cyan);padding:4px 8px;
+  display:inline-flex;align-items:center;gap:6px;
+  border-radius:4px;transition:background .15s,color .15s;
+}
+.wh-metric-btn:hover{background:rgba(0,212,255,.08);color:#fff}
+.wh-metric-arrow{font-size:10px;opacity:.5}
+
+/* ── Metric dropdown ── */
+.wh-metric-dropdown{
+  position:fixed;z-index:400;
+  background:rgba(10,14,26,.98);border:1px solid rgba(0,212,255,.25);
+  border-radius:8px;padding:6px 0;min-width:200px;
+  box-shadow:0 8px 32px rgba(0,0,0,.6);
+  animation:ttIn .15s ease-out;
+}
+.wh-metric-group{
+  font-family:var(--font-display);font-size:7px;letter-spacing:1.5px;
+  text-transform:uppercase;color:#444;padding:8px 14px 3px;
+}
+.wh-metric-group:first-child{padding-top:4px}
+.wh-metric-item{
+  font-family:var(--font-display);font-size:9px;letter-spacing:1px;
+  text-transform:uppercase;color:#888;padding:6px 14px;
+  cursor:pointer;transition:all .12s;
+}
+.wh-metric-item:hover{background:rgba(255,255,255,.06);color:#ddd}
+.wh-metric-item.active{color:var(--cyan)}
+
+/* ── Ranked (non-grid) table ── */
+.wh-table-ranked{max-width:320px;margin:0 auto}
+.wh-rank-val{text-align:right;padding-right:8px}
+.wh-rank-num{
+  font-family:var(--font-display);font-size:12px;letter-spacing:.5px;color:#ccc;
+}
+.wh-rank-num.positive{color:var(--cyan)}
+.wh-rank-num.negative{color:var(--hot)}
+
 /* ── Weather Homepage Table ── */
 .wh-wrap{
   width:100%;max-width:720px;margin:0 auto;
@@ -5979,112 +6030,221 @@ function gdpWeatherClass(v) {
   return 'stormy';
 }
 
-// Sort state: colIdx 0 = country name, 1-7 = year columns; null = unsorted
-let _whSortCol = 6; // default: last col (2026F), index 6 in the 7-col array
-let _whSortAsc = false; // default: descending
+// ── WEATHER TABLE STATE ──
+let _whSortCol = 6;      // 0=country, 1-7=year cols; default 2026F descending
+let _whSortAsc = false;
+let _whMetric  = 'GDP Growth';
+let _whAsOfStr = '';
+let _whDropOpen = false;
+
+// Metrics available in the picker: weather-grid macro metrics + ranked market metrics
+const METRIC_CONFIG = {
+  'GDP Growth':       { group:'Macro',   hasGrid:true,  data:()=>gdpAllCountries,    wFn:()=>gdpWeather,    unit:'%', sign:true  },
+  'Inflation (CPI)':  { group:'Macro',   hasGrid:true,  data:()=>cpiAllCountries,    wFn:()=>cpiWeather,    unit:'%', sign:false },
+  'Unemployment':     { group:'Macro',   hasGrid:true,  data:()=>unempAllCountries,  wFn:()=>unempWeather,  unit:'%', sign:false },
+  'Budget Deficit':   { group:'Macro',   hasGrid:true,  data:()=>budgetAllCountries, wFn:()=>budgetWeather, unit:'%', sign:true  },
+  'Current Account':  { group:'Macro',   hasGrid:true,  data:()=>caAllCountries,     wFn:()=>caWeather,     unit:'%', sign:true  },
+  'Policy Rate':      { group:'Macro',   hasGrid:false, unit:'%',   sign:false },
+  'Stock Market YTD': { group:'Markets', hasGrid:false, unit:'%',   sign:true  },
+  '10Y Bond Yield':   { group:'Markets', hasGrid:false, unit:'%',   sign:false },
+  'Yield Curve':      { group:'Markets', hasGrid:false, unit:' bps',sign:true  },
+};
+
+// Shared hover tip element (created once, reused)
+const _whTip = (function() {
+  const el = document.createElement('div');
+  el.id = 'wh-hover-tip';
+  document.body.appendChild(el);
+  return el;
+})();
 
 function buildRankingsView(generatedDate) {
   const view = document.getElementById('rankings-view');
   if (!view) return;
 
-  const newsIconsHTML = `<div class="rk-news-icons">
-    <div class="news-icon hot" data-idx="0"><span class="ni-emoji">🔥</span><span class="ni-label">Today's Story</span></div>
-    <div class="news-icon movers" data-idx="1"><span class="ni-emoji">⚡</span><span class="ni-label">Biggest Movers</span></div>
-    <div class="news-icon connection" data-idx="2"><span class="ni-emoji">💡</span><span class="ni-label">The Connection</span></div>
-  </div>`;
-
-  const asOfStr = generatedDate
+  _whAsOfStr = generatedDate
     ? new Date(generatedDate).toLocaleDateString('en-GB', {day:'numeric', month:'short', year:'numeric'})
     : '';
 
-  view.innerHTML = newsIconsHTML + '<div class="wh-wrap" id="whWrap"></div>';
+  view.innerHTML = `<div class="rk-news-icons">
+    <div class="news-icon hot" data-idx="0"><span class="ni-emoji">🔥</span><span class="ni-label">Today's Story</span></div>
+    <div class="news-icon movers" data-idx="1"><span class="ni-emoji">⚡</span><span class="ni-label">Biggest Movers</span></div>
+    <div class="news-icon connection" data-idx="2"><span class="ni-emoji">💡</span><span class="ni-label">The Connection</span></div>
+  </div><div class="wh-wrap" id="whWrap"></div>`;
 
   view.querySelectorAll('.news-icon').forEach(el => {
     el.addEventListener('click', () => { closeAll(); showNewsTooltip(+el.dataset.idx); });
   });
 
-  renderWeatherTable(asOfStr);
+  renderMetricTable();
 }
 
-function renderWeatherTable(asOfStr) {
+function renderMetricTable() {
   const wrap = document.getElementById('whWrap');
   if (!wrap) return;
 
+  const cfg = METRIC_CONFIG[_whMetric];
+
+  // ── Title with metric picker button ──
+  const titleHTML = `<div class="wh-title">
+    <button class="wh-metric-btn" id="whMetricBtn">
+      <span id="whMetricLabel">${_whMetric}</span>
+      <span class="wh-metric-arrow">▾</span>
+    </button>
+  </div>`;
+
+  if (cfg && cfg.hasGrid) {
+    renderGridTable(wrap, cfg, titleHTML);
+  } else {
+    renderRankedTable(wrap, cfg, titleHTML);
+  }
+
+  // Wire metric picker after render
+  const btn = document.getElementById('whMetricBtn');
+  if (btn) {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      toggleMetricDropdown(btn);
+    });
+  }
+}
+
+function renderGridTable(wrap, cfg, titleHTML) {
   const colLabels = (histAnnualLabels && histAnnualLabels.length >= 7)
     ? histAnnualLabels.slice(-7)
     : ['2020','2021','2022','2023','2024','2025','2026F'];
 
-  // Build data rows with pre-parsed numeric values for sorting
+  const dataObj = cfg.data();
+  const wFn     = cfg.wFn();
+
+  // Build rows with pre-parsed numeric values for sorting
   const rows = countries.map(co => {
-    const hist = historicalData[co.code] && historicalData[co.code]['GDP Growth'];
-    const vals = (hist && hist.v && hist.v.length >= 7) ? hist.v.slice(-7) : Array(7).fill(null);
+    const d    = dataObj[co.code];
+    const vals = (d && d.v && d.v.length >= 7) ? d.v.slice(-7) : Array(7).fill(null);
     return {co, vals};
   });
 
-  // Sort
   const sorted = rows.slice().sort((a, b) => {
-    let av, bv;
     if (_whSortCol === 0) {
-      // Country name alpha
-      av = a.co.name; bv = b.co.name;
-      return _whSortAsc ? av.localeCompare(bv) : bv.localeCompare(av);
+      const dir = _whSortAsc ? 1 : -1;
+      return dir * a.co.name.localeCompare(b.co.name);
     }
-    av = a.vals[_whSortCol - 1];
-    bv = b.vals[_whSortCol - 1];
+    const av = a.vals[_whSortCol - 1], bv = b.vals[_whSortCol - 1];
     if (av === null && bv === null) return 0;
-    if (av === null) return 1;
-    if (bv === null) return -1;
+    if (av === null) return 1; if (bv === null) return -1;
     return _whSortAsc ? av - bv : bv - av;
   });
 
-  // Header arrows
   function arrow(colIdx) {
-    if (_whSortCol !== colIdx) return '<span class="wh-sort-arrow">↕</span>';
-    return `<span class="wh-sort-arrow active">${_whSortAsc ? '↑' : '↓'}</span>`;
+    if (_whSortCol !== colIdx) return '<span class="wh-sort-arrow">\u2195</span>';
+    return `<span class="wh-sort-arrow active">${_whSortAsc ? '\u2191' : '\u2193'}</span>`;
   }
 
   const thCols = colLabels.map((lbl, i) => {
     const isFc = String(lbl).includes('F');
-    const colIdx = i + 1;
-    return `<th class="wh-sortable${isFc ? ' wh-fc' : ''}" data-col="${colIdx}">${lbl}${arrow(colIdx)}</th>`;
+    return `<th class="wh-sortable${isFc ? ' wh-fc' : ''}" data-col="${i+1}">${lbl}${arrow(i+1)}</th>`;
   }).join('');
 
   const bodyRows = sorted.map(({co, vals}) => {
     const cells = colLabels.map((lbl, i) => {
       const v     = vals[i];
-      const cls   = gdpWeatherClass(v);
+      const w     = wFn(v !== null ? v : 0);
+      const cls   = w.cls === 'storm' ? 'stormy' : w.cls;
       const emoji = cls === 'sunny' ? '☀️' : cls === 'stormy' ? '⛈️' : '☁️';
       const isFc  = String(lbl).includes('F');
-      return `<td class="wh-cell${isFc ? ' wh-fc-col' : ''}"><span class="wh-icon ${cls}">${emoji}</span></td>`;
+      const sign  = (cfg.sign && v !== null && v > 0) ? '+' : '';
+      const tipVal = v !== null ? `${sign}${v}${cfg.unit}` : '';
+      return `<td class="wh-cell${isFc ? ' wh-fc-col' : ''}" data-val="${tipVal}" data-country="${co.name}"><span class="wh-icon ${cls}">${emoji}</span></td>`;
     }).join('');
     return `<tr data-code="${co.code}"><td class="wh-country-cell"><div class="wh-country-inner"><span class="wh-flag">${co.flag}</span><span class="wh-name">${co.name}</span><span class="wh-code">${co.code}</span></div></td>${cells}</tr>`;
   }).join('');
 
-  const asofHTML = asOfStr ? `<div class="wh-asof">Updated ${asOfStr}</div>` : '';
+  const asofHTML = _whAsOfStr ? `<div class="wh-asof">Updated ${_whAsOfStr}</div>` : '';
 
-  wrap.innerHTML = `
-    <div class="wh-title"><h2>GDP Growth</h2></div>
+  wrap.innerHTML = `${titleHTML}
     <table class="wh-table">
       <thead><tr>
         <th class="wh-country-hd wh-sortable" data-col="0">Countries${arrow(0)}</th>
         ${thCols}
       </tr></thead>
       <tbody>${bodyRows}</tbody>
-    </table>
-    ${asofHTML}`;
+    </table>${asofHTML}`;
 
-  // Sort on header click
-  wrap.querySelectorAll('.wh-sortable').forEach(th => {
+  attachTableEvents(wrap);
+}
+
+function renderRankedTable(wrap, cfg, titleHTML) {
+  // Pull current values for this metric from countries
+  function getCurrentVal(co) {
+    if (!co.metrics) return null;
+    const pool = (_whMetric === 'Policy Rate') ? (co.metrics.macro||{}) : (co.metrics.market||{});
+    let raw = pool[_whMetric];
+    // FX-style market keys vary by country; try partial match for known market metrics
+    if (raw === undefined && co.metrics.market) {
+      const keys = Object.keys(co.metrics.market);
+      const k = keys.find(k2 => k2 === _whMetric);
+      if (k) raw = co.metrics.market[k];
+    }
+    if (raw === undefined) return null;
+    return raw;
+  }
+
+  function parseVal(s) {
+    if (s === null || s === undefined) return null;
+    const n = parseFloat(String(s).replace(/[^0-9.\-]/g,''));
+    return isNaN(n) ? null : n;
+  }
+
+  const rows = countries.map(co => ({co, raw: getCurrentVal(co), num: parseVal(getCurrentVal(co))}))
+    .filter(r => r.raw !== null)
+    .sort((a,b) => {
+      if (a.num === null && b.num === null) return 0;
+      if (a.num === null) return 1; if (b.num === null) return -1;
+      return _whSortAsc ? a.num - b.num : b.num - a.num;
+    });
+
+  const bodyRows = rows.map(({co, raw, num}, i) => {
+    const sign = (cfg && cfg.sign && num !== null && num > 0) ? '+' : '';
+    const valCls = num === null ? '' : num > 0 ? 'positive' : num < 0 ? 'negative' : '';
+    return `<tr data-code="${co.code}">
+      <td class="wh-country-cell"><div class="wh-country-inner"><span class="wh-flag">${co.flag}</span><span class="wh-name">${co.name}</span><span class="wh-code">${co.code}</span></div></td>
+      <td class="wh-cell wh-rank-val"><span class="wh-rank-num ${valCls}">${sign}${raw}</span></td>
+    </tr>`;
+  }).join('');
+
+  function arrow() {
+    return `<span class="wh-sort-arrow active">${_whSortAsc ? '\u2191' : '\u2193'}</span>`;
+  }
+
+  const asofHTML = _whAsOfStr ? `<div class="wh-asof">Updated ${_whAsOfStr}</div>` : '';
+
+  wrap.innerHTML = `${titleHTML}
+    <table class="wh-table wh-table-ranked">
+      <thead><tr>
+        <th class="wh-country-hd">Countries</th>
+        <th class="wh-sortable wh-fc" data-col="1">Current${arrow()}</th>
+      </tr></thead>
+      <tbody>${bodyRows}</tbody>
+    </table>${asofHTML}`;
+
+  wrap.querySelector('.wh-sortable') && wrap.querySelector('.wh-sortable').addEventListener('click', e => {
+    e.stopPropagation();
+    _whSortAsc = !_whSortAsc;
+    renderMetricTable();
+  });
+
+  attachTableEvents(wrap);
+}
+
+function attachTableEvents(wrap) {
+  // Sort header clicks (grid table)
+  wrap.querySelectorAll('.wh-sortable[data-col]').forEach(th => {
     th.addEventListener('click', e => {
       e.stopPropagation();
       const col = +th.dataset.col;
-      if (_whSortCol === col) {
-        _whSortAsc = !_whSortAsc;
-      } else {
-        _whSortCol = col;
-        _whSortAsc = col === 0; // name sorts A-Z by default; years sort desc
-      }
-      renderWeatherTable(asOfStr);
+      if (_whSortCol === col) { _whSortAsc = !_whSortAsc; }
+      else { _whSortCol = col; _whSortAsc = col === 0; }
+      renderMetricTable();
     });
   });
 
@@ -6095,6 +6255,87 @@ function renderWeatherTable(asOfStr) {
       if (co) showCard(co);
     });
   });
+
+  // Cell hover tip
+  wrap.querySelectorAll('.wh-cell[data-val]').forEach(cell => {
+    cell.addEventListener('mouseenter', e => {
+      const val = cell.dataset.val;
+      if (!val) return;
+      _whTip.textContent = val;
+      _whTip.style.display = 'block';
+      positionTip(e);
+    });
+    cell.addEventListener('mousemove', positionTip);
+    cell.addEventListener('mouseleave', () => { _whTip.style.display = 'none'; });
+    // Cell click should open country card, not propagate to nothing
+    cell.addEventListener('click', e => { e.stopPropagation(); const row = cell.closest('tr[data-code]'); if(row){const co=countries.find(c=>c.code===row.dataset.code);if(co)showCard(co);} });
+  });
+}
+
+function positionTip(e) {
+  const x = e.clientX, y = e.clientY;
+  const tw = _whTip.offsetWidth || 60;
+  const th = _whTip.offsetHeight || 24;
+  let left = x + 12, top = y - th - 8;
+  if (left + tw > window.innerWidth - 8) left = x - tw - 12;
+  if (top < 8) top = y + 16;
+  _whTip.style.left = left + 'px';
+  _whTip.style.top  = top + 'px';
+}
+
+// ── METRIC DROPDOWN ──
+function toggleMetricDropdown(anchorBtn) {
+  const existing = document.getElementById('whMetricDrop');
+  if (existing) { existing.remove(); _whDropOpen = false; return; }
+
+  _whDropOpen = true;
+  const drop = document.createElement('div');
+  drop.id = 'whMetricDrop';
+  drop.className = 'wh-metric-dropdown';
+
+  const groups = {};
+  Object.entries(METRIC_CONFIG).forEach(([name, cfg]) => {
+    if (!groups[cfg.group]) groups[cfg.group] = [];
+    groups[cfg.group].push(name);
+  });
+
+  let html = '';
+  Object.entries(groups).forEach(([grp, names]) => {
+    html += `<div class="wh-metric-group">${grp}</div>`;
+    names.forEach(name => {
+      html += `<div class="wh-metric-item${name === _whMetric ? ' active' : ''}" data-metric="${name}">${name}</div>`;
+    });
+  });
+  drop.innerHTML = html;
+
+  document.body.appendChild(drop);
+
+  // Position below the button
+  const r = anchorBtn.getBoundingClientRect();
+  let left = r.left;
+  const dropW = 200;
+  if (left + dropW > window.innerWidth - 8) left = window.innerWidth - dropW - 8;
+  drop.style.left = left + 'px';
+  drop.style.top  = (r.bottom + 6) + 'px';
+
+  // Item click
+  drop.querySelectorAll('.wh-metric-item').forEach(item => {
+    item.addEventListener('click', e => {
+      e.stopPropagation();
+      _whMetric  = item.dataset.metric;
+      _whSortCol = METRIC_CONFIG[_whMetric] && METRIC_CONFIG[_whMetric].hasGrid ? 6 : 1;
+      _whSortAsc = false;
+      drop.remove(); _whDropOpen = false;
+      renderMetricTable();
+    });
+  });
+
+  // Click outside closes
+  setTimeout(() => {
+    document.addEventListener('click', function cl(e) {
+      if (!drop.contains(e.target)) { drop.remove(); _whDropOpen = false; document.removeEventListener('click', cl); }
+    });
+  }, 10);
 }
 
 // ── VIEW TOGGLE ──
