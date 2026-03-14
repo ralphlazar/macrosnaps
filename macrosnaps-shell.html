@@ -6106,7 +6106,7 @@ function showCommodityMTT(idx) {
   const commFH2 = item._frozen_historical;
   if (commFH2 && commFH2.v && commFH2.v.length > 0) {
     const chartContainer = tt.querySelector('#commMTTChart');
-    renderCommodityMonthlyChart(chartContainer, item, 114);
+    renderCommodityMonthlyChart(chartContainer, item, 0);
     tt.querySelectorAll('.mcr-btn').forEach(btn => {
       btn.addEventListener('click', e => {
         e.stopPropagation();
