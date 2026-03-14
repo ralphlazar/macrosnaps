@@ -347,6 +347,21 @@ def draft_countries_batch(client, codes, countries_data, label, recent_data):
         else:
             lines.append(f"{code}: No recent data available. Use your knowledge of current conditions.")
     lines.append("")
+    lines.append("Monthly actuals (verified recent prints - use these where harvest data is missing or vague):")
+    lines.append("")
+    for code in codes:
+        cd = countries_data.get(code)
+        if not cd:
+            continue
+        ma = cd.get("monthly_actuals", {})
+        parts = []
+        for series_key, label in [("inflation", "CPI"), ("unemployment", "Unemployment"), ("policy_rate", "Policy Rate")]:
+            entries = ma.get(series_key, [])[:3]
+            if entries:
+                latest = entries[0]
+                parts.append(f"{label} {latest['month']}: {latest['value']}%")
+        lines.append(f"{code}: {', '.join(parts) if parts else 'no monthly actuals'}")
+    lines.append("")
     lines.append("Full-year forecast values (background context only):")
     lines.append("")
     for code in codes:

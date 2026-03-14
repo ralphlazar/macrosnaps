@@ -8,7 +8,7 @@
       "weekly": "Update weekly or on release — CPI, unemployment, policy rate",
       "structural": "Update quarterly or on major revision — GDP, deficits, current account, stories, fxRegime"
     },
-    "built_at": "2026-03-14 13:58"
+    "built_at": "2026-03-14 16:43"
   },
   "countries": {
     "USA": {
@@ -1171,6 +1171,86 @@
           "moderate": "The FOMC has been on hold at 4.25-4.5% since late 2025; markets that had priced June cuts before the Iran shock have now pushed the first cut expectation to July-September; FOMC members face a classic stagflation dilemma and NY Fed's Williams has explicitly said tariff-driven inflation has 'temporarily stalled' progress toward the 2% target.",
           "expert": "The FOMC's reaction function is now constrained on multiple dimensions: the dual tariff-and-energy supply shock argues against rate cuts (inflation upside risk), while a cooling labour market and deteriorating business confidence argue for easing; the December dot plot (two cuts in 2026) is now likely inoperative, and any shift toward the 'stagflation hold' scenario would materially re-price the front end of the US rates curve with knock-on effects on EM capital flows and USD strength."
         }
+      },
+      "monthly_actuals": {
+        "inflation": [
+          {
+            "month": "2026-02",
+            "value": 2.43
+          },
+          {
+            "month": "2026-01",
+            "value": 2.39
+          },
+          {
+            "month": "2025-12",
+            "value": 2.65
+          },
+          {
+            "month": "2025-11",
+            "value": 2.7
+          },
+          {
+            "month": "2025-09",
+            "value": 3.02
+          },
+          {
+            "month": "2025-08",
+            "value": 2.94
+          }
+        ],
+        "unemployment": [
+          {
+            "month": "2026-02",
+            "value": 4.4
+          },
+          {
+            "month": "2026-01",
+            "value": 4.3
+          },
+          {
+            "month": "2025-12",
+            "value": 4.4
+          },
+          {
+            "month": "2025-11",
+            "value": 4.5
+          },
+          {
+            "month": "2025-09",
+            "value": 4.4
+          },
+          {
+            "month": "2025-08",
+            "value": 4.3
+          }
+        ],
+        "policy_rate": [
+          {
+            "month": "2026-02",
+            "value": 3.64
+          },
+          {
+            "month": "2026-01",
+            "value": 3.64
+          },
+          {
+            "month": "2025-12",
+            "value": 3.72
+          },
+          {
+            "month": "2025-11",
+            "value": 3.88
+          },
+          {
+            "month": "2025-10",
+            "value": 4.09
+          },
+          {
+            "month": "2025-09",
+            "value": 4.22
+          }
+        ]
       }
     },
     "CAN": {
@@ -2333,6 +2413,86 @@
           "moderate": "The Bank of Canada has been more aggressive than the Fed in cutting rates to support a tariff-dampened economy; the Iran energy shock creates a classic external supply shock dilemma — the BoC wants to ease to support domestic demand but cannot ignore energy-driven CPI upside; the outcome depends critically on the duration of the Hormuz closure.",
           "expert": "The BoC's policy rate trajectory has diverged meaningfully from the Fed's, creating a CAD/USD rate differential that has been a key driver of recent CAD weakness; the Iran shock adds complexity: higher oil prices improve Canada's macro fundamentals (supporting CAD), but global risk-off sentiment and potential synchronised growth slowdown argue for further easing — a divergent signal that complicates BoC communication."
         }
+      },
+      "monthly_actuals": {
+        "inflation": [
+          {
+            "month": "2025-03",
+            "value": 2.32
+          },
+          {
+            "month": "2025-02",
+            "value": 2.64
+          },
+          {
+            "month": "2025-01",
+            "value": 1.9
+          },
+          {
+            "month": "2024-12",
+            "value": 1.83
+          },
+          {
+            "month": "2024-11",
+            "value": 1.89
+          },
+          {
+            "month": "2024-10",
+            "value": 2.02
+          }
+        ],
+        "unemployment": [
+          {
+            "month": "2026-01",
+            "value": 6.5
+          },
+          {
+            "month": "2025-12",
+            "value": 6.8
+          },
+          {
+            "month": "2025-11",
+            "value": 6.6
+          },
+          {
+            "month": "2025-10",
+            "value": 6.9
+          },
+          {
+            "month": "2025-09",
+            "value": 7.1
+          },
+          {
+            "month": "2025-08",
+            "value": 7.1
+          }
+        ],
+        "policy_rate": [
+          {
+            "month": "2026-02",
+            "value": 2.25
+          },
+          {
+            "month": "2026-01",
+            "value": 2.25
+          },
+          {
+            "month": "2025-12",
+            "value": 2.25
+          },
+          {
+            "month": "2025-11",
+            "value": 2.25
+          },
+          {
+            "month": "2025-10",
+            "value": 2.25
+          },
+          {
+            "month": "2025-09",
+            "value": 2.5
+          }
+        ]
       }
     },
     "GBR": {
@@ -3495,6 +3655,86 @@
           "moderate": "BoE Bank Rate at 3.75% (cut six times from 5.25% since August 2024); the March 19 MPC meeting was expected to deliver a seventh cut based on the January inflation data, but the Iran-driven energy price surge has repriced that probability from 84% to ~30%; the MPC's February vote split (5-4 hold vs. cut) now likely tilts further toward hold.",
           "expert": "The BoE's policy rate path is now the most sensitive to the Iran shock duration among major central banks: the UK's combined vulnerability (net energy importer, high services inflation, weak growth, limited fiscal space) means the rate-cutting cycle could be suspended for two to three quarters if energy prices remain elevated — materially worsening the housing market (variable rate mortgages) and squeezing consumer spending precisely when real incomes are already under pressure."
         }
+      },
+      "monthly_actuals": {
+        "inflation": [
+          {
+            "month": "2025-03",
+            "value": 3.42
+          },
+          {
+            "month": "2025-02",
+            "value": 3.67
+          },
+          {
+            "month": "2025-01",
+            "value": 3.92
+          },
+          {
+            "month": "2024-12",
+            "value": 3.52
+          },
+          {
+            "month": "2024-11",
+            "value": 3.54
+          },
+          {
+            "month": "2024-10",
+            "value": 3.15
+          }
+        ],
+        "unemployment": [
+          {
+            "month": "2025-10",
+            "value": 5.1
+          },
+          {
+            "month": "2025-09",
+            "value": 5.1
+          },
+          {
+            "month": "2025-08",
+            "value": 5.0
+          },
+          {
+            "month": "2025-07",
+            "value": 4.8
+          },
+          {
+            "month": "2025-06",
+            "value": 4.7
+          },
+          {
+            "month": "2025-05",
+            "value": 4.7
+          }
+        ],
+        "policy_rate": [
+          {
+            "month": "2026-02",
+            "value": 3.75
+          },
+          {
+            "month": "2026-01",
+            "value": 3.75
+          },
+          {
+            "month": "2025-12",
+            "value": 3.75
+          },
+          {
+            "month": "2025-11",
+            "value": 4.0
+          },
+          {
+            "month": "2025-10",
+            "value": 4.0
+          },
+          {
+            "month": "2025-09",
+            "value": 4.0
+          }
+        ]
       }
     },
     "JPN": {
@@ -4676,6 +4916,86 @@
           "moderate": "BOJ policy rate at 0.75% (hiked unanimously in December 2025); the next hike is expected in October 2026 (ING base case) or July 2026 (Goldman), contingent on 2026 Shunto wage outcome and core inflation trajectory; the Iran shock introduces near-term uncertainty — an energy-driven CPI spike gives superficial justification for hikes but BOJ has explicitly distinguished cost-push from demand-pull inflation.",
           "expert": "The BOJ's terminal rate debate (1.0-2.5% range per board members) is increasingly important for global asset allocation: as the G10's only central bank tightening, the JPY carry trade (estimated at $4-6tn notional) remains structurally vulnerable to BOJ normalisation; the Iran shock's yen-weakening (current account deterioration) vs. rate-hike expectation (yen-strengthening) creates uncertain JPY dynamics that could trigger disorderly carry trade unwinds if USD/JPY breaks above 160."
         }
+      },
+      "monthly_actuals": {
+        "inflation": [
+          {
+            "month": "2021-06",
+            "value": 0.1
+          },
+          {
+            "month": "2021-05",
+            "value": 0.3
+          },
+          {
+            "month": "2021-04",
+            "value": -0.8
+          },
+          {
+            "month": "2021-03",
+            "value": 0.1
+          },
+          {
+            "month": "2021-02",
+            "value": -0.1
+          },
+          {
+            "month": "2021-01",
+            "value": 0.5
+          }
+        ],
+        "unemployment": [
+          {
+            "month": "2025-12",
+            "value": 2.6
+          },
+          {
+            "month": "2025-11",
+            "value": 2.6
+          },
+          {
+            "month": "2025-10",
+            "value": 2.6
+          },
+          {
+            "month": "2025-09",
+            "value": 2.6
+          },
+          {
+            "month": "2025-08",
+            "value": 2.6
+          },
+          {
+            "month": "2025-07",
+            "value": 2.3
+          }
+        ],
+        "policy_rate": [
+          {
+            "month": "2026-02",
+            "value": 0.75
+          },
+          {
+            "month": "2026-01",
+            "value": 0.75
+          },
+          {
+            "month": "2025-12",
+            "value": 0.75
+          },
+          {
+            "month": "2025-11",
+            "value": 0.5
+          },
+          {
+            "month": "2025-10",
+            "value": 0.5
+          },
+          {
+            "month": "2025-09",
+            "value": 0.5
+          }
+        ]
       }
     },
     "DEU": {
@@ -5838,6 +6158,86 @@
           "moderate": "The ECB deposit rate is at 2.5% (cut eight times from June 2024-June 2025); German fiscal expansion adds inflation pressure supporting ECB hawks, while the Iran shock adds a growth headwind supporting doves — the 'genuine dilemma' (ING) that makes the March ECB meeting messaging particularly important for European financial markets.",
           "expert": "The ECB's reaction function to Germany's fiscal shift is structurally important: if German fiscal expansion raises neutral rates in the euro area (via capital demand and higher sovereign issuance), the ECB's r* estimate shifts upward, implying fewer cuts to reach neutral than previously modelled; Capital Economics has revised its ECB terminal rate forecast upward from 1.5% to 2.0%+ in response — a repricing affecting the entire EGB complex and EUR/USD fair value."
         }
+      },
+      "monthly_actuals": {
+        "inflation": [
+          {
+            "month": "2025-03",
+            "value": 2.19
+          },
+          {
+            "month": "2025-02",
+            "value": 2.29
+          },
+          {
+            "month": "2025-01",
+            "value": 2.3
+          },
+          {
+            "month": "2024-12",
+            "value": 2.64
+          },
+          {
+            "month": "2024-11",
+            "value": 2.22
+          },
+          {
+            "month": "2024-10",
+            "value": 2.04
+          }
+        ],
+        "unemployment": [
+          {
+            "month": "2025-12",
+            "value": 3.8
+          },
+          {
+            "month": "2025-11",
+            "value": 3.8
+          },
+          {
+            "month": "2025-10",
+            "value": 3.8
+          },
+          {
+            "month": "2025-09",
+            "value": 3.8
+          },
+          {
+            "month": "2025-08",
+            "value": 3.8
+          },
+          {
+            "month": "2025-07",
+            "value": 3.8
+          }
+        ],
+        "policy_rate": [
+          {
+            "month": "2026-03",
+            "value": 2.15
+          },
+          {
+            "month": "2026-02",
+            "value": 2.15
+          },
+          {
+            "month": "2026-01",
+            "value": 2.15
+          },
+          {
+            "month": "2025-12",
+            "value": 2.15
+          },
+          {
+            "month": "2025-11",
+            "value": 2.15
+          },
+          {
+            "month": "2025-10",
+            "value": 2.15
+          }
+        ]
       }
     },
     "FRA": {
@@ -7000,6 +7400,86 @@
           "moderate": "The ECB deposit rate at 2.5% reflects eight cumulative cuts since June 2024; ECB council member Wunsch's 'avoid reacting hastily' comment on energy prices signals the ECB will try to look through the oil shock as transitory — but if inflation expectations start rising, the ECB will be forced to pause cuts, directly impacting France's sovereign financing conditions.",
           "expert": "The ECB's reaction function to the Iran shock creates a critical transmission channel for French sovereign risk: each 25bp of unexpected rate hold extends the period of tight monetary conditions for France's €3tn+ sovereign debt, increasing the average cost of refinancing; simultaneously, higher energy prices compress French growth and tax revenues — a fiscal-monetary tightening interaction that is not offset by US-style fiscal dominance mechanisms available to euro area member states."
         }
+      },
+      "monthly_actuals": {
+        "inflation": [
+          {
+            "month": "2025-03",
+            "value": 0.76
+          },
+          {
+            "month": "2025-02",
+            "value": 0.8
+          },
+          {
+            "month": "2025-01",
+            "value": 1.65
+          },
+          {
+            "month": "2024-12",
+            "value": 1.32
+          },
+          {
+            "month": "2024-11",
+            "value": 1.26
+          },
+          {
+            "month": "2024-10",
+            "value": 1.23
+          }
+        ],
+        "unemployment": [
+          {
+            "month": "2025-12",
+            "value": 7.7
+          },
+          {
+            "month": "2025-11",
+            "value": 7.7
+          },
+          {
+            "month": "2025-10",
+            "value": 7.7
+          },
+          {
+            "month": "2025-09",
+            "value": 7.7
+          },
+          {
+            "month": "2025-08",
+            "value": 7.7
+          },
+          {
+            "month": "2025-07",
+            "value": 7.7
+          }
+        ],
+        "policy_rate": [
+          {
+            "month": "2026-03",
+            "value": 2.15
+          },
+          {
+            "month": "2026-02",
+            "value": 2.15
+          },
+          {
+            "month": "2026-01",
+            "value": 2.15
+          },
+          {
+            "month": "2025-12",
+            "value": 2.15
+          },
+          {
+            "month": "2025-11",
+            "value": 2.15
+          },
+          {
+            "month": "2025-10",
+            "value": 2.15
+          }
+        ]
       }
     },
     "ITA": {
@@ -8162,6 +8642,86 @@
           "moderate": "ECB rate policy is the single most important exogenous variable for Italy's fiscal sustainability and sovereign spread dynamics; the Iran shock's impact on ECB rate expectations (delayed cuts) directly raises Italian sovereign financing costs and could trigger a new BTP-Bund spread widening episode if markets lose confidence in Italy's fiscal adjustment path.",
           "expert": "Italy's sensitivity to ECB policy rate changes is non-linear: at current spread levels (~250bp BTP-Bund 10y), further widening toward 300-350bp would trigger systematic monitoring of TPI activation criteria; the Iran shock creates the conditions for this scenario by simultaneously raising inflation expectations (delaying ECB cuts) and weakening Italian growth (impairing fiscal consolidation) — a dual adverse shock the ECB's TPI was designed to address."
         }
+      },
+      "monthly_actuals": {
+        "inflation": [
+          {
+            "month": "2025-03",
+            "value": 1.91
+          },
+          {
+            "month": "2025-02",
+            "value": 1.58
+          },
+          {
+            "month": "2025-01",
+            "value": 1.5
+          },
+          {
+            "month": "2024-12",
+            "value": 1.25
+          },
+          {
+            "month": "2024-11",
+            "value": 1.34
+          },
+          {
+            "month": "2024-10",
+            "value": 0.92
+          }
+        ],
+        "unemployment": [
+          {
+            "month": "2025-12",
+            "value": 5.6
+          },
+          {
+            "month": "2025-11",
+            "value": 5.6
+          },
+          {
+            "month": "2025-10",
+            "value": 5.8
+          },
+          {
+            "month": "2025-09",
+            "value": 6.0
+          },
+          {
+            "month": "2025-08",
+            "value": 5.9
+          },
+          {
+            "month": "2025-07",
+            "value": 6.0
+          }
+        ],
+        "policy_rate": [
+          {
+            "month": "2026-03",
+            "value": 2.15
+          },
+          {
+            "month": "2026-02",
+            "value": 2.15
+          },
+          {
+            "month": "2026-01",
+            "value": 2.15
+          },
+          {
+            "month": "2025-12",
+            "value": 2.15
+          },
+          {
+            "month": "2025-11",
+            "value": 2.15
+          },
+          {
+            "month": "2025-10",
+            "value": 2.15
+          }
+        ]
       }
     },
     "CHN": {
@@ -9030,6 +9590,36 @@
           "moderate": "The PBOC's easing cycle (20bp rate cuts, 50bp RRR cuts planned for 2026) has been constrained in effectiveness by the confidence trap: with deflation expectations embedded and property prices still falling, the real interest rate is actually rising despite nominal cuts — a liquidity trap dynamic that monetary policy alone cannot resolve.",
           "expert": "China's monetary policy transmission is impaired by three structural factors: deflationary expectations trap; the bank lending channel's dysfunction as LGFV debt rollover operations crowd out productive lending; and the capital account constraint that limits PBOC easing relative to Fed rates (risk of CNY depreciation and capital outflows); the Iran shock adds energy cost pressure that could widen PPI deflation in non-energy sectors while marginally reflating energy-sector PPI."
         }
+      },
+      "monthly_actuals": {
+        "inflation": [
+          {
+            "month": "2025-04",
+            "value": -0.07
+          },
+          {
+            "month": "2025-03",
+            "value": -0.1
+          },
+          {
+            "month": "2025-02",
+            "value": -0.77
+          },
+          {
+            "month": "2025-01",
+            "value": 0.48
+          },
+          {
+            "month": "2024-12",
+            "value": 0.1
+          },
+          {
+            "month": "2024-11",
+            "value": 0.19
+          }
+        ],
+        "unemployment": [],
+        "policy_rate": []
       }
     },
     "IND": {
@@ -10002,6 +10592,61 @@
           "moderate": "The RBI has been on an easing trajectory; the Iran oil shock creates a classic external shock dilemma — higher inflation argues for holding, weaker growth outlook (oil cost drag) argues for cutting; the duration of the Hormuz closure will determine which consideration dominates the RBI's decision at its next meeting.",
           "expert": "The RBI's monetary policy framework (flexible inflation targeting, 4% CPI target, 2-6% band) should theoretically allow it to look through supply-shock inflation if temporary; however, India's experience with persistent fuel inflation passthrough and the political sensitivity of CPI during election cycles suggest the RBI will be cautious about cutting into an energy price spike — effectively pausing the easing cycle for at least one to two quarters."
         }
+      },
+      "monthly_actuals": {
+        "inflation": [
+          {
+            "month": "2025-03",
+            "value": 2.95
+          },
+          {
+            "month": "2025-02",
+            "value": 2.59
+          },
+          {
+            "month": "2025-01",
+            "value": 3.1
+          },
+          {
+            "month": "2024-12",
+            "value": 3.53
+          },
+          {
+            "month": "2024-11",
+            "value": 3.88
+          },
+          {
+            "month": "2024-10",
+            "value": 4.41
+          }
+        ],
+        "unemployment": [],
+        "policy_rate": [
+          {
+            "month": "2026-01",
+            "value": 5.25
+          },
+          {
+            "month": "2025-12",
+            "value": 5.25
+          },
+          {
+            "month": "2025-11",
+            "value": 5.5
+          },
+          {
+            "month": "2025-10",
+            "value": 5.5
+          },
+          {
+            "month": "2025-09",
+            "value": 5.5
+          },
+          {
+            "month": "2025-08",
+            "value": 5.5
+          }
+        ]
       }
     },
     "ZAF": {
@@ -11052,6 +11697,61 @@
           "moderate": "SARB has been cutting rates from 2023-24 highs, with inflation tracking toward the 4.5% midpoint; the Iran shock's dual impact (higher fuel CPI + weaker ZAR) argues for pausing cuts at the next MPC meeting, as the combined inflationary impulse could push CPI toward the upper 6% boundary — historically the trigger for SARB hawkishness.",
           "expert": "The SARB's reaction function is asymmetric relative to EM peers: given South Africa's investment-grade aspiration and the rand's structural volatility, the SARB tends to hold rates higher for longer than fundamentals alone would warrant to maintain the ZAR's attractiveness to carry traders; the Iran shock's ZAR depreciation pressure effectively tightens financial conditions regardless of the official rate, suggesting the SARB may hold rates and allow ZAR adjustment to do the work — a passive monetary tightening via currency channel."
         }
+      },
+      "monthly_actuals": {
+        "inflation": [
+          {
+            "month": "2025-01",
+            "value": 3.08
+          },
+          {
+            "month": "2024-12",
+            "value": 2.88
+          },
+          {
+            "month": "2024-11",
+            "value": 2.78
+          },
+          {
+            "month": "2024-10",
+            "value": 2.77
+          },
+          {
+            "month": "2024-09",
+            "value": 3.73
+          },
+          {
+            "month": "2024-08",
+            "value": 4.39
+          }
+        ],
+        "unemployment": [],
+        "policy_rate": [
+          {
+            "month": "2026-02",
+            "value": 6.75
+          },
+          {
+            "month": "2026-01",
+            "value": 6.75
+          },
+          {
+            "month": "2025-12",
+            "value": 6.75
+          },
+          {
+            "month": "2025-11",
+            "value": 6.75
+          },
+          {
+            "month": "2025-10",
+            "value": 7.0
+          },
+          {
+            "month": "2025-09",
+            "value": 7.0
+          }
+        ]
       }
     },
     "BRA": {
@@ -12214,6 +12914,61 @@
           "moderate": "Brazil's Selic rate above 13% reflects the BCB's response to persistent inflation and BRL weakness; the Iran shock creates conflicting signals for the BCB: higher oil-driven CPI argues for holding, but positive terms-of-trade improvement (oil revenues) argues for easing; the risk-off BRL depreciation typically tips the BCB toward holding to defend currency credibility.",
           "expert": "Brazil's real interest rate (Selic minus CPI) is among the world's highest, creating a significant competitiveness cost for the domestic economy; the BCB's rate-setting is constrained by the constant threat of capital outflows if real rates fall too quickly toward EM peer levels; the Iran shock that strengthens the current account (higher oil exports) but weakens the capital account (risk-off outflows) creates net BOP uncertainty the BCB will resolve by keeping rates elevated — effectively exporting the real income cost of the oil shock to Brazilian households and businesses through tight monetary conditions."
         }
+      },
+      "monthly_actuals": {
+        "inflation": [
+          {
+            "month": "2025-04",
+            "value": 5.53
+          },
+          {
+            "month": "2025-03",
+            "value": 5.48
+          },
+          {
+            "month": "2025-02",
+            "value": 5.06
+          },
+          {
+            "month": "2025-01",
+            "value": 4.56
+          },
+          {
+            "month": "2024-12",
+            "value": 4.83
+          },
+          {
+            "month": "2024-11",
+            "value": 4.87
+          }
+        ],
+        "unemployment": [],
+        "policy_rate": [
+          {
+            "month": "2026-02",
+            "value": 15.0
+          },
+          {
+            "month": "2026-01",
+            "value": 15.0
+          },
+          {
+            "month": "2025-12",
+            "value": 15.0
+          },
+          {
+            "month": "2025-11",
+            "value": 15.0
+          },
+          {
+            "month": "2025-10",
+            "value": 15.0
+          },
+          {
+            "month": "2025-09",
+            "value": 15.0
+          }
+        ]
       }
     },
     "RUS": {
@@ -13007,6 +13762,61 @@
           "moderate": "The CBR's policy rate (likely 16-21% based on recent history; FRED data available) is set in a wartime context where conventional monetary transmission is impaired: high rates are intended to control inflation and defend the ruble, but the military spending impulse is itself inflationary and not rate-sensitive, making the CBR's task difficult in both theory and practice.",
           "expert": "Russia's monetary policy operates in a command-economy hybrid: the CBR has maintained de jure independence but faces political pressure to balance war-financing needs (lower rates for state banks funding defence contracts) with inflation control (high rates) and ruble stability (high rates); the effective transmission of policy rate changes is severely impaired by the prevalence of subsidised state credit for defence-related production — creating a dual-rate economy where headline CBR rates reflect anti-inflation intent but actual financing conditions for strategic industries are materially lower."
         }
+      },
+      "monthly_actuals": {
+        "inflation": [
+          {
+            "month": "2022-03",
+            "value": 16.7
+          },
+          {
+            "month": "2022-02",
+            "value": 9.16
+          },
+          {
+            "month": "2022-01",
+            "value": 8.74
+          },
+          {
+            "month": "2021-12",
+            "value": 8.39
+          },
+          {
+            "month": "2021-11",
+            "value": 8.4
+          },
+          {
+            "month": "2021-10",
+            "value": 8.14
+          }
+        ],
+        "unemployment": [],
+        "policy_rate": [
+          {
+            "month": "2026-02",
+            "value": 15.5
+          },
+          {
+            "month": "2026-01",
+            "value": 16.0
+          },
+          {
+            "month": "2025-12",
+            "value": 16.0
+          },
+          {
+            "month": "2025-11",
+            "value": 16.5
+          },
+          {
+            "month": "2025-10",
+            "value": 16.5
+          },
+          {
+            "month": "2025-09",
+            "value": 17.0
+          }
+        ]
       }
     }
   },

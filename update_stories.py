@@ -40,6 +40,13 @@ FX_KEYS = {
 
 STORY_LEVELS = ["beginner", "moderate", "expert"]
 
+# Metrics that have monthly actuals in data.json - maps metric name to monthly_actuals series key
+MONTHLY_ACTUALS_MAP = {
+    "Inflation (CPI)": "inflation",
+    "Unemployment":    "unemployment",
+    "Policy Rate":     "policy_rate",
+}
+
 # ── Style guide (included verbatim in every Claude API call) ──────────────────
 
 STYLE_GUIDE = """
@@ -195,12 +202,22 @@ def call_claude_metric(client, item):
         else f"The current value is {item['new_value']}."
     )
 
+    monthly_context = ""
+    if item.get("monthly_actuals"):
+        formatted = ", ".join(
+            f"{e['month']}: {e['value']}%" for e in item["monthly_actuals"]
+        )
+        monthly_context = (
+            f"\nRecent monthly actuals (most recent first): {formatted}"
+            f"\nLead with the most recent print where relevant. The annual value above is the year-end forecast."
+        )
+
     prompt = f"""You are writing metric stories for MacroSnaps, a global macro dashboard.
 
 Country: {item['country_name']} ({item['code']})
 Metric: {item['metric']}
 Section: {item['section']}
-{change_desc}
+{change_desc}{monthly_context}
 
 Write three story variants for this metric at the value shown above.
 
@@ -368,6 +385,10 @@ def main():
         )
         try:
             if item["type"] == "metric":
+                series_key = MONTHLY_ACTUALS_MAP.get(item["metric"])
+                if series_key:
+                    ma = data.get("countries", {}).get(item["code"], {}).get("monthly_actuals", {})
+                    item["monthly_actuals"] = ma.get(series_key, [])[:3]
                 stories = call_claude_metric(client, item)
                 write_metric_story(data, item, stories)
             else:

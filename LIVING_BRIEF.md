@@ -1,5 +1,5 @@
 # MacroSnaps - Living Brief
-Last updated: March 14, 2026 (Corp Spread and Sov CDS fully removed from data.json, macrosnaps-shell.html, and fetch_market_data.py. 48 deletions in data.json, 17,066 chars removed from shell. Market metrics now 4: Stock Market YTD, 10Y Bond Yield, Yield Curve, FX pair.)
+Last updated: March 14, 2026 (Session 4: sync_monthly_actuals --preview then --apply completed. MACRO-MONTHLY sheet re-backfilled via populate_monthly_actuals.py after fixing stale FRED series: BIS WS_CBPOL replaces frozen IRSTCB01 family for CAN/GBR/JPN/IND/ZAF/BRA/RUS policy rates; JPN CPI switched to CPALTT01JPM657N pre-computed YoY; BRA unemployment blanked (PME dead, no monthly replacement). monthly_actuals now written into all 12 countries in data.json. update_stories.py and update_headlines.py updated to pass last 3 monthly actuals as context to story prompts. Daily ritual should add update_monthly_actuals.py as step 4c and sync_monthly_actuals.py as step 4d.)
 
 ---
 
@@ -244,16 +244,41 @@ This writes the macro metric changes to `data.json`.
 python3 sync_sheet.py --apply
 ```
 
-**Step 4. Fetch live market data**
+**Step 4. Append today's market data to MARKET-STATS sheet**
 
-This pulls Stock Market YTD, 10Y Bond Yield, Yield Curve, FX pairs, and all 9 commodity prices from Yahoo Finance and FRED and writes them into `data.json`.
+This fetches today's values for all 12 countries (equity index levels, FX rates, bond yields) and appends one row per country tab to the MARKET-STATS Google Sheet.
 ```bash
-python3 fetch_market_data.py
+python3 update_market_sheet.py
 ```
 
-Always run a dry run first on any new machine or after a long gap:
+Dry run first on any new machine or after a long gap:
 ```bash
-python3 fetch_market_data.py --dry-run
+python3 update_market_sheet.py --dry-run
+```
+
+**Step 4b. Sync market data from sheet to data.json**
+
+This reads the latest row per country from MARKET-STATS, computes Stock Market YTD from index levels, and writes all 4 market metric values into data.json.
+```bash
+python3 sync_market_sheet.py --preview
+python3 sync_market_sheet.py --apply
+```
+
+Always preview first. If the changes look correct, apply.
+
+**Step 4c. Append new months to MACRO-MONTHLY sheet**
+
+This checks the last date in each tab and appends any new months from FRED and BIS. Safe to run daily - exits cleanly if nothing is new.
+```bash
+python3 update_monthly_actuals.py
+```
+
+**Step 4d. Sync monthly actuals to data.json**
+
+This reads the last 6 non-null months per country per series and writes the monthly_actuals block into data.json. Always preview first.
+```bash
+python3 sync_monthly_actuals.py --preview
+python3 sync_monthly_actuals.py --apply
 ```
 
 **Step 5. Update commodity stories where prices moved**
@@ -300,7 +325,7 @@ https://ralphlazar.github.io/macrosnaps/macrosnaps-globe.html
 
 **Quick-reference one-liner (after sheet sync is done):**
 ```bash
-cd ~/Downloads/macrosnaps && python3 fetch_market_data.py && python3 update_stories.py && python3 update_commodity_stories.py && python3 update_headlines.py && python3 build.py
+cd ~/Downloads/macrosnaps && python3 update_market_sheet.py && python3 sync_market_sheet.py --apply && python3 update_monthly_actuals.py && python3 sync_monthly_actuals.py --apply && python3 update_commodity_stories.py && python3 update_stories.py && python3 update_headlines.py && python3 build.py
 ```
 
 ---
@@ -334,7 +359,85 @@ cd ~/Downloads/macrosnaps && python3 fetch_market_data.py && python3 update_stor
 
 ---
 
-### Data architecture decisions (March 13, 2026)
+### What the MARKET-STATS sheet controls
+
+**MARKET-STATS** is the source of truth for all 4 daily market metrics across all 12 countries. It replaces `fetch_market_data.py` for these series.
+
+**Sheet ID:** stored in `.env` as `MARKET_STATS_SHEET_ID`
+**Access:** via service account (key file at `~/Downloads/macrosnaps/market-stats-key.json`, never commit this file)
+
+**Layout:** 12 tabs, one per country, named by 3-letter country code. Each tab has daily rows from 2000-01-01 with 6 columns:
+
+```
+Date | Stock_Market_Index | FX_Rate | Bond_Yield_10Y | Bond_Yield_2Y | Yield_Curve
+```
+
+**Sources:**
+- Stock index levels: Yahoo Finance (raw closing price, not YTD %)
+- FX rates: Yahoo Finance
+- 10Y bond yields: FRED (DGS10 for USA, IRLTLT01XXM156N monthly series for G7, blank for CHN/IND/BRA/RUS)
+- 2Y bond yields: FRED DGS2 for USA only, blank for all others
+- Yield Curve: (Bond_Yield_10Y - Bond_Yield_2Y) * 100, in basis points. USA only.
+
+**Known gaps (expected, not bugs):**
+- 2Y yields and Yield Curve: blank for all non-US countries (no reliable FRED series)
+- CHN, IND, BRA: no bond yield data at all
+- RUS equity: truncates at June 2024 (MOEX delisted on Yahoo post-sanctions). No forward-fill past last real observation.
+- ZAF equity: yfinance history starts ~2013, earlier rows blank
+- FX: most countries start ~2003-2004, earlier rows blank
+
+**What sync_market_sheet.py writes to data.json:**
+- Stock Market YTD: computed at read time as (latest index - first trading day of year) / first trading day * 100
+- FX Rate: latest non-blank FX_Rate value
+- 10Y Bond Yield: latest non-blank Bond_Yield_10Y value
+- Yield Curve: latest non-blank Yield_Curve value (bps)
+
+**Three scripts:**
+
+| Script | Purpose | When to run |
+|---|---|---|
+| `populate_market_sheet.py` | One-time full backfill from 2000-01-01 | Once, or to re-backfill after changes |
+| `update_market_sheet.py` | Appends today's row to all 12 tabs | Daily (step 4 of ritual) |
+| `sync_market_sheet.py` | Reads sheet, writes values to data.json | Daily (step 4b of ritual) |
+
+**Security:** `market-stats-key.json` must never be committed. It is in `.gitignore`. If accidentally committed, delete the key in Google Cloud console, generate a new one, scrub history with `git filter-repo`, and force push.
+
+
+
+### What the MACRO-MONTHLY sheet controls
+
+**MACRO-MONTHLY** is the source of truth for monthly actuals for Inflation (CPI YoY %), Unemployment (%), and Policy Rate (%) across all 12 countries from Jan 2000.
+
+**Sheet ID:** `1-s4hppAkoTZbjGGEkHSUDK2H7E00RHhVuHrYKWLuHpI`
+**Access:** via service account (same market-stats-key.json as MARKET-STATS)
+**Env var:** `MACRO_MONTHLY_SHEET_ID`
+
+**Layout:** 3 tabs (Inflation, Unemployment, Policy_Rate). Column A = date (YYYY-MM-01), columns B-M = one per country in order: USA, CAN, GBR, JPN, DEU, FRA, ITA, CHN, IND, ZAF, BRA, RUS.
+
+**Sources:**
+- Inflation: FRED CPI index series per country, YoY % computed as (current / 12-months-ago - 1) x 100
+- Unemployment: FRED monthly harmonised series (UNRATE for USA, LRHU/LRUNN prefix for G7). CHN, IND, ZAF, RUS: no reliable monthly FRED series, columns blank.
+- Policy Rate: FEDFUNDS (USA), BOERUKM (GBR), ECBMRRFR daily resampled to monthly (DEU/FRA/ITA), IRSTCB01 series for others.
+
+**Three scripts:**
+
+| Script | Purpose | When to run |
+|---|---|---|
+| `populate_monthly_actuals.py` | One-time backfill from Jan 2000 | Done. Re-run only to rebuild from scratch. |
+| `update_monthly_actuals.py` | Appends new months from FRED | Daily (step 4c of ritual, after market sheet update) |
+| `sync_monthly_actuals.py` | Reads last 6 non-null months, writes monthly_actuals to data.json | Daily (step 4d of ritual) |
+
+**What sync_monthly_actuals.py writes to data.json (per country):**
+```json
+"monthly_actuals": {
+  "inflation": [{"month": "2026-02", "value": 3.1}, ...],
+  "unemployment": [...],
+  "policy_rate": [...]
+}
+```
+6 entries per series, newest first. Null/blank cells skipped. Field is story context only, never displayed in UI.
+
+---
 
 The following decisions were made in a planning session on March 13, 2026. Implementation starts March 14.
 
@@ -640,7 +743,8 @@ This was a standalone research session that built clean, IMF WEO-sourced data ta
 | 10Y country chart range button appeared broken | Fixed 2026-03-12 | monthlyLabels in shell-frozen had 180 entries (Jan 2011–Dec 2025) but globe.html had been built when it was only 60 entries, so slice(-120) and slice(-60) returned identical arrays. Fixed by extending monthlyLabels to 192 entries (Jan 2011–Dec 2026). Whenever historical data is refetched into future months, extend monthlyLabels to match. |
 | Commodity tooltips showed only annual price bars | Fixed 2026-03-13 | showCommodityMTT was wired to item.annual (16 annual points) and ignored item._frozen_historical.v (114 monthly points). Fixed by adding renderCommodityMonthlyChart and wiring the tooltip to use _frozen_historical with 1Y/2Y/5Y/All range buttons. Annual chart retained as fallback. |
 | No .env file | Fixed 2026-03-11 | .env created at ~/Downloads/macrosnaps/.env with FRED_API_KEY. |
-| .env committed to public repo | Resolved 2026-03-11 | .env and env removed from all git history via filter-branch, force pushed. .env and env added to .gitignore. Anthropic API key regenerated twice (exposed in git history, then again in chat). Always use interactive input or nano to set secrets, never paste into chat. |
+| market-stats-key.json committed to repo | Resolved 2026-03-14 | Key deleted and regenerated. File scrubbed from git history via filter-repo and force pushed. Added to .gitignore. Never commit this file. |
+| .env.save committed to repo | Resolved 2026-03-14 | Anthropic API key regenerated. .env.save scrubbed from git history. Added to .gitignore. |
 
 ---
 
@@ -754,9 +858,9 @@ Key settings at the top of the script:
 
 1. ~~**Remove Corp Spread and Sov CDS from the dashboard.**~~ Done March 14, 2026. Removed from `data.json` (48 deletions across all 12 countries), `macrosnaps-shell.html` (2 full glossary entries + 2 metricSources lines, 17,066 chars), `fetch_market_data.py` (CORP_SPREAD_SERIES dict, SOV_CDS constants, both fetch functions, pre-fetch block, call site), `update_stories.py` (dead DATA_VOID_METRICS constant), and `build.py` (MARKET_METRICS_BASE trimmed from 6 to 4). Build confirmed clean. Market metrics now 4: Stock Market YTD, 10Y Bond Yield, Yield Curve, FX pair.
 
-1. **Build Google Sheet for daily market data (4 series, 2020 onwards).** One tab per country, daily rows, 4 columns: Equity YTD, FX Rate, 10Y Bond Yield, Yield Curve. Source: yfinance. Extend `sync_sheet.py` to read from this sheet and write market metric values into data.json. Replaces `fetch_market_data.py` for these 4 series.
+1. ~~**Build Google Sheet for daily market data (4 series, 2020 onwards).**~~ Done March 14, 2026. MARKET-STATS sheet built with daily data from 2000-01-01 for all 12 countries. Three scripts built and verified: `populate_market_sheet.py` (one-time backfill), `update_market_sheet.py` (daily appender), `sync_market_sheet.py` (reads sheet, writes to data.json). Stock Market YTD computed at read time from index levels. 2Y yields blank for all non-US countries (no reliable FRED source). RUS equity truncates cleanly at June 2024 with no forward-fill. `fetch_market_data.py` retired. 32 market values updated, stories rewritten, build successful. Two secrets (market-stats-key.json, .env.save) scrubbed from git history and keys regenerated. **Pending:** delete `fetch_market_data.py` once new pipeline has a few more successful runs.
 
-1. **Build Google Sheet for monthly macro actuals (3 series, 2020 onwards).** Separate sheet from Macro-stats. Inflation, Unemployment, Policy Rate as monthly time series. Sources: FRED for most countries, ILO for ZAF/IND unemployment, central bank sites for edge cases. Extend `sync_sheet.py` to read latest monthly actuals and write them into data.json as a `monthly_actuals` field (story context only, never displayed in UI). Pass `monthly_actuals` as context in `update_stories.py` and `update_headlines.py` prompts.
+1. ~~**Build Google Sheet for monthly macro actuals (3 series, 2020 onwards).**~~ Done March 14, 2026. Separate sheet MACRO-MONTHLY (ID: 1-s4hppAkoTZbjGGEkHSUDK2H7E00RHhVuHrYKWLuHpI) with 3 tabs: Inflation, Unemployment, Policy_Rate. 315 rows from Jan 2000. Three scripts built: `populate_monthly_actuals.py` (one-time backfill, run and verified), `update_monthly_actuals.py` (daily appender), `sync_monthly_actuals.py` (reads last 6 non-null months per country per series, writes `monthly_actuals` field into data.json). Auth via same market-stats-key.json service account as MARKET-STATS. MACRO_MONTHLY_SHEET_ID added to .env. Re-backfilled March 14, 2026 (Session 4) after fixing stale FRED series: BIS WS_CBPOL for 7 policy rate countries, JPN CPI pre-computed YoY series, BRA unemployment blanked. monthly_actuals written into all 12 countries. update_stories.py and update_headlines.py updated to pass monthly actuals as story context.
 
 1. ~~**Remove Equity Vol and FX Vol from `data.json`.**~~ Done March 13, 2026. Removed `"Equity Vol"` and `"FX Vol"` from `metrics.market` and `_frozen_historical` for all 12 countries (48 deletions total). No blanked stubs remain.
 
