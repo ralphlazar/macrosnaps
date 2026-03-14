@@ -7,15 +7,15 @@ Pulls daily data from START_DATE to today for all 12 countries.
 Writes 12 tabs named by 3-letter country code (USA, CAN, GBR, etc.).
 
 Columns per tab:
-    Date | Stock_Market_Index | FX_Rate | Bond_Yield_10Y | Bond_Yield_2Y | Yield_Curve
+    Date | Stock_Market_Index | FX_Rate | Bond_Yield_10Y | Bond_Yield_3M | Yield_Curve
 
 Sources:
     Stock index levels  -- Yahoo Finance (yfinance)
     FX rates            -- Yahoo Finance (yfinance)
     10Y bond yields     -- FRED API (daily for USA, monthly forward-filled for others)
-    2Y bond yields      -- FRED API (daily for USA, monthly for others where available)
+    3M bond yields      -- FRED API (daily for USA, monthly for G7 + ZAF via IR3TIB01XXM156N)
 
-Yield_Curve = (Bond_Yield_10Y - Bond_Yield_2Y) * 100, stored in basis points.
+Yield_Curve = (Bond_Yield_10Y - Bond_Yield_3M) * 100, stored in basis points.
 Cells are left blank (not zero) where data is unavailable.
 
 Usage:
@@ -63,7 +63,7 @@ load_dotenv()
 
 START_DATE   = "2000-01-01"
 COUNTRIES    = ["USA", "CAN", "GBR", "JPN", "DEU", "FRA", "ITA", "CHN", "IND", "ZAF", "BRA", "RUS"]
-COLUMNS      = ["Date", "Stock_Market_Index", "FX_Rate", "Bond_Yield_10Y", "Bond_Yield_2Y", "Yield_Curve"]
+COLUMNS      = ["Date", "Stock_Market_Index", "FX_Rate", "Bond_Yield_10Y", "Bond_Yield_3M", "Yield_Curve"]
 
 FRED_API_KEY = os.getenv("FRED_API_KEY")
 SHEET_ID     = os.getenv("MARKET_STATS_SHEET_ID")
@@ -126,20 +126,20 @@ FRED_10Y = {
     "RUS": None,               # unavailable post-sanctions
 }
 
-# FRED series for 2Y government bond yield (percent).
-# DGS2 is daily. IRLTST01XXM156N series are monthly (OECD) -- forward-filled to daily.
-# Non-US coverage is limited. Gaps are left blank, not zero.
-FRED_2Y = {
-    "USA": "DGS2",  # daily, reliable
-    "CAN": None,    # no reliable FRED 2Y series for non-US countries
-    "GBR": None,
-    "JPN": None,
-    "DEU": None,
-    "FRA": None,
-    "ITA": None,
+# FRED series for 3M government bond yield (percent).
+# DGS3MO is daily for USA. IR3TIB01XXM156N series are monthly 3M interbank rates (OECD).
+# Coverage: USA + G7 + ZAF. CHN, IND, BRA, RUS not available on FRED.
+FRED_3M = {
+    "USA": "DGS3MO",            # daily 3M Treasury
+    "CAN": "IR3TIB01CAM156N",   # monthly
+    "GBR": "IR3TIB01GBM156N",   # monthly
+    "JPN": "IR3TIB01JPM156N",   # monthly
+    "DEU": "IR3TIB01DEM156N",   # monthly
+    "FRA": "IR3TIB01FRM156N",   # monthly
+    "ITA": "IR3TIB01ITM156N",   # monthly
     "CHN": None,
     "IND": None,
-    "ZAF": None,
+    "ZAF": "IR3TIB01ZAM156N",   # monthly
     "BRA": None,
     "RUS": None,
 }
@@ -193,7 +193,7 @@ def fetch_yfinance(ticker: str) -> pd.Series:
 def build_country_frame(code: str, verbose: bool = True) -> pd.DataFrame:
     """
     Fetch all 5 series for one country. Return a daily DataFrame with business-day index
-    and columns [Stock_Market_Index, FX_Rate, Bond_Yield_10Y, Bond_Yield_2Y, Yield_Curve].
+    and columns [Stock_Market_Index, FX_Rate, Bond_Yield_10Y, Bond_Yield_3M, Yield_Curve].
     Blanks where data is unavailable (empty string, not NaN, for sheet compatibility).
     """
 
@@ -222,17 +222,17 @@ def build_country_frame(code: str, verbose: bool = True) -> pd.DataFrame:
         y10 = pd.Series(dtype=float)
         print(f"    10Y: no series configured")
 
-    fred_2y_id = FRED_2Y.get(code)
-    if fred_2y_id:
+    fred_3m_id = FRED_3M.get(code)
+    if fred_3m_id:
         try:
-            y2 = fetch_fred(fred_2y_id)
-            _log(f"2Y  ({fred_2y_id})", y2)
+            y3m = fetch_fred(fred_3m_id)
+            _log(f"3M  ({fred_3m_id})", y3m)
         except Exception as exc:
-            y2 = pd.Series(dtype=float)
-            print(f"    2Y  ({fred_2y_id}): fetch failed -- {exc}")
+            y3m = pd.Series(dtype=float)
+            print(f"    3M  ({fred_3m_id}): fetch failed -- {exc}")
     else:
-        y2 = pd.Series(dtype=float)
-        print(f"    2Y: no series configured")
+        y3m = pd.Series(dtype=float)
+        print(f"    3M: no series configured")
 
     # Daily business-day spine
     spine = pd.date_range(start=START_DATE, end=date.today(), freq="B")
@@ -253,11 +253,11 @@ def build_country_frame(code: str, verbose: bool = True) -> pd.DataFrame:
 
     df["FX_Rate"]            = _align(fx).round(4)
     df["Bond_Yield_10Y"]     = _align(y10).round(3)
-    df["Bond_Yield_2Y"]      = _align(y2).round(3)
+    df["Bond_Yield_3M"]      = _align(y3m).round(3)
 
-    both_yields = (not y10.empty) and (not y2.empty)
+    both_yields = (not y10.empty) and (not y3m.empty)
     if both_yields:
-        df["Yield_Curve"] = ((df["Bond_Yield_10Y"] - df["Bond_Yield_2Y"]) * 100).round(1)
+        df["Yield_Curve"] = ((df["Bond_Yield_10Y"] - df["Bond_Yield_3M"]) * 100).round(1)
     else:
         df["Yield_Curve"] = float("nan")
 
@@ -268,7 +268,7 @@ def build_country_frame(code: str, verbose: bool = True) -> pd.DataFrame:
         "Equity":  equity.dropna().__len__() > 0,
         "FX":      fx.dropna().__len__() > 0,
         "10Y":     not y10.empty,
-        "2Y":      not y2.empty,
+        "3M":      not y3m.empty,
         "YC":      both_yields,
     }
     print(f"    Coverage: " + " | ".join(f"{k} {'ok' if v else '--'}" for k, v in coverage.items()))
@@ -356,7 +356,7 @@ def main():
     # Summary
     print("\n" + "=" * 64)
     print("SUMMARY")
-    print(f"{'Country':<8}  {'Equity':>8}  {'FX':>6}  {'10Y':>6}  {'2Y':>6}  {'YC':>6}  {'Rows':>6}")
+    print(f"{'Country':<8}  {'Equity':>8}  {'FX':>6}  {'10Y':>6}  {'3M':>6}  {'YC':>6}  {'Rows':>6}")
     print("-" * 64)
     for code in countries:
         df = results.get(code)
@@ -368,7 +368,7 @@ def main():
             return f"{int(non_blank / len(df) * 100)}%" if len(df) else "--"
         print(
             f"{code:<8}  {pct('Stock_Market_Index'):>8}  {pct('FX_Rate'):>6}  "
-            f"{pct('Bond_Yield_10Y'):>6}  {pct('Bond_Yield_2Y'):>6}  {pct('Yield_Curve'):>6}  "
+            f"{pct('Bond_Yield_10Y'):>6}  {pct('Bond_Yield_3M'):>6}  {pct('Yield_Curve'):>6}  "
             f"{len(df):>6}"
         )
 

@@ -67,12 +67,12 @@ SCOPES = [
 COUNTRIES = ["USA", "CAN", "GBR", "JPN", "DEU", "FRA", "ITA", "CHN", "IND", "ZAF", "BRA", "RUS"]
 
 # Sheet column indices (0-based after splitting each row)
-# Date | Stock_Market_Index | FX_Rate | Bond_Yield_10Y | Bond_Yield_2Y | Yield_Curve
+# Date | Stock_Market_Index | FX_Rate | Bond_Yield_10Y | Bond_Yield_3M | Yield_Curve
 COL_DATE    = 0
 COL_STOCK   = 1
 COL_FX      = 2
 COL_BOND10Y = 3
-# COL_BOND2Y = 4  (not used here)
+# COL_BOND3M = 4  (not used here)
 COL_YC      = 5
 
 # Known data gaps: these combos will be empty and written as empty arrays.
@@ -260,8 +260,7 @@ def main():
 
     # Apply to data.json
     print("--- Writes ---")
-    for country_data in data.get("countries", []):
-        code = country_data.get("code")
+    for code, country_data in data.get("countries", {}).items():
         if code not in all_writes:
             continue
 

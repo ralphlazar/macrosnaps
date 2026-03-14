@@ -38,7 +38,7 @@ load_dotenv()
 # ── Constants (must match populate_market_sheet.py) ───────────────────────────
 
 COUNTRIES = ["USA", "CAN", "GBR", "JPN", "DEU", "FRA", "ITA", "CHN", "IND", "ZAF", "BRA", "RUS"]
-COLUMNS   = ["Date", "Stock_Market_Index", "FX_Rate", "Bond_Yield_10Y", "Bond_Yield_2Y", "Yield_Curve"]
+COLUMNS   = ["Date", "Stock_Market_Index", "FX_Rate", "Bond_Yield_10Y", "Bond_Yield_3M", "Yield_Curve"]
 
 FRED_API_KEY = os.getenv("FRED_API_KEY")
 SHEET_ID     = os.getenv("MARKET_STATS_SHEET_ID")
@@ -70,9 +70,19 @@ FRED_10Y = {
     "ZAF": "IRLTLT01ZAM156N", "BRA": None,              "RUS": None,
 }
 
-FRED_2Y = {
-    "USA": "DGS2",
-    **{c: None for c in ["CAN","GBR","JPN","DEU","FRA","ITA","CHN","IND","ZAF","BRA","RUS"]},
+FRED_3M = {
+    "USA": "DGS3MO",
+    "CAN": "IR3TIB01CAM156N",
+    "GBR": "IR3TIB01GBM156N",
+    "JPN": "IR3TIB01JPM156N",
+    "DEU": "IR3TIB01DEM156N",
+    "FRA": "IR3TIB01FRM156N",
+    "ITA": "IR3TIB01ITM156N",
+    "CHN": None,
+    "IND": None,
+    "ZAF": "IR3TIB01ZAM156N",
+    "BRA": None,
+    "RUS": None,
 }
 
 # ── Fetch helpers ──────────────────────────────────────────────────────────────
@@ -127,19 +137,19 @@ def build_row(code: str) -> dict:
     fred_10y_id = FRED_10Y.get(code)
     y10 = fetch_latest_fred(fred_10y_id) if fred_10y_id else None
 
-    fred_2y_id = FRED_2Y.get(code)
-    y2  = fetch_latest_fred(fred_2y_id) if fred_2y_id else None
+    fred_3m_id = FRED_3M.get(code)
+    y3m  = fetch_latest_fred(fred_3m_id) if fred_3m_id else None
 
     yc = None
-    if y10 is not None and y2 is not None:
-        yc = round((y10 - y2) * 100, 1)
+    if y10 is not None and y3m is not None:
+        yc = round((y10 - y3m) * 100, 1)
 
     return {
         "Date":               TODAY,
         "Stock_Market_Index": equity if equity is not None else "",
         "FX_Rate":            fx     if fx     is not None else "",
         "Bond_Yield_10Y":     y10    if y10    is not None else "",
-        "Bond_Yield_2Y":      y2     if y2     is not None else "",
+        "Bond_Yield_3M":      y3m    if y3m    is not None else "",
         "Yield_Curve":        yc     if yc     is not None else "",
     }
 
@@ -205,7 +215,7 @@ def main():
         print(f"    Equity: {row['Stock_Market_Index']}  "
               f"FX: {row['FX_Rate']}  "
               f"10Y: {row['Bond_Yield_10Y']}  "
-              f"2Y: {row['Bond_Yield_2Y']}  "
+              f"3M: {row['Bond_Yield_3M']}  "
               f"YC: {row['Yield_Curve']}")
 
         if args.dry_run:

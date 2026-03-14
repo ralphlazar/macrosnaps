@@ -180,9 +180,7 @@ def main():
     print()
 
     # Apply to data.json
-    countries_missing = []
-    for country_data in data.get("countries", []):
-        code = country_data.get("code")
+    for code, country_data in data.get("countries", {}).items():
         if code not in writes:
             continue
 

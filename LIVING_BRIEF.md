@@ -1,5 +1,5 @@
 # MacroSnaps - Living Brief
-Last updated: March 14, 2026 (Session 4: sync_monthly_actuals --preview then --apply completed. MACRO-MONTHLY sheet re-backfilled via populate_monthly_actuals.py after fixing stale FRED series: BIS WS_CBPOL replaces frozen IRSTCB01 family for CAN/GBR/JPN/IND/ZAF/BRA/RUS policy rates; JPN CPI switched to CPALTT01JPM657N pre-computed YoY; BRA unemployment blanked (PME dead, no monthly replacement). monthly_actuals now written into all 12 countries in data.json. update_stories.py and update_headlines.py updated to pass last 3 monthly actuals as context to story prompts. Daily ritual should add update_monthly_actuals.py as step 4c and sync_monthly_actuals.py as step 4d.)
+Last updated: March 14, 2026 (Session 5: tooltip charts rebuilt from Google Sheets. Two new scripts built: sync_monthly_historical.py (reads MACRO-MONTHLY, writes _frozen_historical for Inflation/Unemployment/Policy Rate from Jan 2020) and sync_market_historical.py (reads MARKET-STATS, writes _frozen_historical for Stock Market/FX/Bond Yield/Yield Curve from Jan 2020). Shell updated: country metric tooltip range buttons changed from 1Y/2Y/5Y/10Y to 1Y/2Y/5Y/All (All=data-r="999", active by default). sync_monthly_historical.py --apply completed. sync_market_historical.py NOT yet applied - blocked on Yield Curve gap: MARKET-STATS sheet has Bond_Yield_2Y (USA only) but needs Bond_Yield_3M for all 12 countries. Next session: replace Bond_Yield_2Y with Bond_Yield_3M in populate_market_sheet.py, update_market_sheet.py, sync_market_sheet.py, re-backfill the sheet, then apply sync_market_historical.py. JPN inflation known gap: all FRED/IMF monthly series dead after June 2021, left as 18 points for now, revisit post-launch.)
 
 ---
 
@@ -281,6 +281,20 @@ python3 sync_monthly_actuals.py --preview
 python3 sync_monthly_actuals.py --apply
 ```
 
+**Step 4e. Sync monthly historical arrays to data.json**
+
+This reads the MACRO-MONTHLY sheet from Jan 2020 and writes _frozen_historical for Inflation, Unemployment, and Policy Rate across all 12 countries.
+```bash
+python3 sync_monthly_historical.py --apply
+```
+
+**Step 4f. Sync market historical arrays to data.json**
+
+This reads the MARKET-STATS sheet from Jan 2020, resamples daily to monthly, and writes _frozen_historical for Stock Market, FX Rate, 10Y Bond Yield, and Yield Curve across all 12 countries.
+```bash
+python3 sync_market_historical.py --apply
+```
+
 **Step 5. Update commodity stories where prices moved**
 
 This checks each commodity's current price against the price recorded when the story was last written. Any commodity that has moved past its threshold (10% for Natural Gas, 5% for all others) gets a fresh story written at all three levels. If nothing has moved, it exits in under a second.
@@ -325,7 +339,7 @@ https://ralphlazar.github.io/macrosnaps/macrosnaps-globe.html
 
 **Quick-reference one-liner (after sheet sync is done):**
 ```bash
-cd ~/Downloads/macrosnaps && python3 update_market_sheet.py && python3 sync_market_sheet.py --apply && python3 update_monthly_actuals.py && python3 sync_monthly_actuals.py --apply && python3 update_commodity_stories.py && python3 update_stories.py && python3 update_headlines.py && python3 build.py
+cd ~/Downloads/macrosnaps && python3 update_market_sheet.py && python3 sync_market_sheet.py --apply && python3 update_monthly_actuals.py && python3 sync_monthly_actuals.py --apply && python3 sync_monthly_historical.py --apply && python3 sync_market_historical.py --apply && python3 update_commodity_stories.py && python3 update_stories.py && python3 update_headlines.py && python3 build.py
 ```
 
 ---
@@ -612,37 +626,62 @@ python3 build.py && git add -A && git commit -m "Daily market update $(date +%Y-
 
 ---
 
-### Historical chart data state (updated March 13, 2026)
+### Historical chart data state (updated March 14, 2026)
+
+**Chart data ownership - which script writes which metric:**
+
+| Metric | Owner script | Data window | Format |
+|---|---|---|---|
+| GDP Growth | sync_sheet.py | 2000-2026F, 27 points | Annual bar |
+| Budget Deficit | sync_sheet.py | 2000-2026F, 27 points | Annual bar |
+| Current Account | sync_sheet.py | 2000-2026F, 27 points | Annual bar |
+| Inflation (CPI) | sync_monthly_historical.py | Jan 2020 onwards, ~63-75 points | Monthly line |
+| Unemployment | sync_monthly_historical.py | Jan 2020 onwards, ~70-73 points | Monthly line |
+| Policy Rate | sync_monthly_historical.py | Jan 2020 onwards, ~74-75 points | Monthly stepped line |
+| Stock Market YTD | sync_market_historical.py | Jan 2020 onwards, ~75 points | Monthly line (raw index, indexLabel:true) |
+| FX Rate | sync_market_historical.py | Jan 2020 onwards, ~75 points | Monthly line |
+| 10Y Bond Yield | sync_market_historical.py | Jan 2020 onwards, ~75 points | Monthly line |
+| Yield Curve | sync_market_historical.py | Jan 2020 onwards, ~75 points | Monthly line (zeroLine:true) |
+
+**Important:** `refetch_historical.py` is no longer the source of truth for Inflation, Unemployment, Policy Rate, Stock Market, FX, Bond Yield, or Yield Curve. Do not run it for those metrics. It still owns the commodity _frozen_historical arrays.
 
 **Macro metric charts - annual series (GDP Growth, Budget Deficit, Current Account):**
 
-All three annual chart metrics have 27-point `_frozen_historical` arrays covering 2000-2026F, sourced from the Macro-stats Google Sheet (IMF WEO methodology). These are written and maintained exclusively by `sync_sheet.py`. `refetch_historical.py` does not touch these three metrics. When forecasts change in Macro-stats, running `sync_sheet.py --apply` updates both the card value and the full array.
+All three have 27-point arrays covering 2000-2026F from Macro-stats (IMF WEO). Written exclusively by `sync_sheet.py`. When forecasts change, run `sync_sheet.py --apply`.
 
 **Macro metric charts - monthly series (Inflation, Unemployment, Policy Rate):**
 
-These three metrics keep their existing monthly `_frozen_historical` arrays (120 points, 10 years) from `refetch_historical.py`. The Macro-stats 2026F value controls the card display only. The annual data from Macro-stats is written to `data.json` but not yet displayed in tooltips (monthly sparklines remain the chart).
+Now sourced from MACRO-MONTHLY sheet via `sync_monthly_historical.py`. Data from Jan 2020 onwards (~63-75 points per country). Written daily at step 4e of the ritual.
+
+**Market metric charts (Stock Market, FX, Bond Yield, Yield Curve):**
+
+Now sourced from MARKET-STATS sheet via `sync_market_historical.py`. Daily rows resampled to monthly end-of-month. Data from Jan 2020 onwards (~75 points). Written daily at step 4f. NOTE: sync_market_historical.py --apply has NOT yet been run as of March 14 Session 5 - blocked on Bond_Yield_3M fix (see pending work).
+
+**Tooltip chart range buttons (country metrics):**
+
+Changed from 1Y/2Y/5Y/10Y to 1Y/2Y/5Y/All. All is active by default (data-r="999"). Commodity tooltip unchanged (1Y/2Y/5Y/All with All at 114 points).
 
 **Per-country chart population (`_frozen_historical`):**
 
 | Country | Charts populated | Notes |
 |---|---|---|
-| USA | 12/12 | Annual charts now 27 points (2000-2026F) from Macro-stats |
-| CAN | 12/12 | Annual charts now 27 points (2000-2026F) from Macro-stats |
-| GBR | 12/12 | Annual charts now 27 points (2000-2026F) from Macro-stats |
-| JPN | 12/12 | Annual charts now 27 points (2000-2026F) from Macro-stats |
-| DEU | 12/12 | Annual charts now 27 points (2000-2026F) from Macro-stats |
-| FRA | 12/12 | Annual charts now 27 points (2000-2026F) from Macro-stats |
-| ITA | 12/12 | Annual charts now 27 points (2000-2026F) from Macro-stats |
-| CHN | 9/12 | Unemployment, 10Y Bond Yield, Yield Curve: no free source |
-| IND | 9/12 | Unemployment, 10Y Bond Yield, Yield Curve: no free source |
-| ZAF | 11/12 | Unemployment: no monthly source |
-| BRA | 10/12 | 10Y Bond Yield, Yield Curve: no free source |
-| RUS | 8/12 | GDP Growth, Unemployment, USD/RUB discontinued post-2022 sanctions |
+| USA | 12/12 | All metrics covered |
+| CAN | 11/12 | Yield Curve: pending Bond_Yield_3M fix |
+| GBR | 11/12 | Yield Curve: pending Bond_Yield_3M fix |
+| JPN | 11/12 | Yield Curve: pending Bond_Yield_3M fix. Inflation: only 18 points (FRED series dead after Jun 2021) |
+| DEU | 11/12 | Yield Curve: pending Bond_Yield_3M fix |
+| FRA | 11/12 | Yield Curve: pending Bond_Yield_3M fix |
+| ITA | 11/12 | Yield Curve: pending Bond_Yield_3M fix |
+| CHN | 9/12 | Unemployment: no source. 10Y Bond Yield: no FRED source. Yield Curve: pending Bond_Yield_3M fix (3M interbank available at IR3TIB01CNM156N) |
+| IND | 9/12 | Unemployment: no source. 10Y Bond Yield: no FRED source. Yield Curve: pending Bond_Yield_3M fix (3M interbank available at INDIR3TIB01STM) |
+| ZAF | 10/12 | Unemployment: no monthly source. Yield Curve: pending Bond_Yield_3M fix |
+| BRA | 10/12 | Unemployment: PME dead, no replacement. Yield Curve: pending Bond_Yield_3M fix (Treasury Bills available at INTGSTBRM193N) |
+| RUS | 8/12 | Unemployment: no post-sanctions FRED source. Stock Market: truncates Jun 2024. Yield Curve: blank (no post-2022 data). FX: available |
 
 **Known data quality flags:**
-- IND and ZAF GDP Growth historical arrays previously showed anomalous values from FRED (nominal USD rather than real % growth). These are now replaced by clean IMF WEO data from Macro-stats.
-- Budget Deficit arrays were previously empty for most countries. Now populated 2000-2026F from Macro-stats for all 12 countries.
-- Budget Deficit arrays are empty for 9 countries (CAN, GBR, DEU, FRA, CHN, IND, ZAF, BRA, RUS). A single forecast point with no history would be meaningless as a chart, so these were left empty intentionally.
+- JPN Inflation: only 18 points (Jan 2020 to Jun 2021). CPALTT01JPM657N and JPNCPIALLMINMEI both dead on FRED after Jun 2021. IMF IFS API unreachable. Known gap, revisit post-launch with Japan Statistics Bureau API.
+- RUS Yield Curve: blank. No post-2022 short rate data anywhere.
+- Budget Deficit arrays are empty for 9 countries (CAN, GBR, DEU, FRA, CHN, IND, ZAF, BRA, RUS). A single forecast point with no history is meaningless as a chart, left empty intentionally.
 
 ---
 
@@ -800,7 +839,48 @@ python3 update_commodity_stories.py
 
 ---
 
-### refetch_historical.py
+### sync_monthly_historical.py
+
+The script lives in `~/Downloads/macrosnaps/`. Reads the MACRO-MONTHLY Google Sheet from Jan 2020 onwards and writes `_frozen_historical` arrays into `data.json` for Inflation (CPI), Unemployment, and Policy Rate across all 12 countries. Replaces `refetch_historical.py` as the source of truth for these three metrics.
+
+**Auth:** same `market-stats-key.json` service account as `sync_market_sheet.py`. `MACRO_MONTHLY_SHEET_ID` must be in `.env`.
+
+**Data window:** Jan 2020 to latest available. Typically 63-75 points per country per metric.
+
+**Known gaps written as empty arrays:**
+- CHN Unemployment, IND Unemployment, BRA Unemployment: no reliable source
+- JPN Inflation: only 18 points (Jan 2020 to Jun 2021). All FRED and IMF monthly series for JPN CPI are dead after Jun 2021. Known gap, post-launch fix needed.
+
+**To run:**
+```bash
+python3 sync_monthly_historical.py          # preview
+python3 sync_monthly_historical.py --apply  # write to data.json
+```
+
+---
+
+### sync_market_historical.py
+
+The script lives in `~/Downloads/macrosnaps/`. Reads the MARKET-STATS Google Sheet from Jan 2020 onwards, resamples daily rows to monthly end-of-month, and writes `_frozen_historical` arrays into `data.json` for Stock Market YTD (raw index, `indexLabel:true`), FX Rate, 10Y Bond Yield, and Yield Curve across all 12 countries. Replaces `refetch_historical.py` as the source of truth for these four metrics.
+
+**Auth:** same `market-stats-key.json` service account. `MARKET_STATS_SHEET_ID` must be in `.env`.
+
+**Data window:** Jan 2020 to latest available. Typically 75 points per country per metric.
+
+**Known gaps written as empty arrays:**
+- CHN/IND/BRA 10Y Bond Yield and Yield Curve: no FRED source
+- RUS Yield Curve: blank (no post-2022 short rate data)
+- RUS Stock Market: truncates at June 2024 (MOEX delisted on Yahoo post-sanctions)
+
+**NOTE:** As of March 14 Session 5, this script has NOT yet been applied. The Yield Curve column in MARKET-STATS is currently computed from Bond_Yield_2Y (USA only). The Bond_Yield_2Y column must be replaced with Bond_Yield_3M across the pipeline before applying this script. See pending work.
+
+**To run:**
+```bash
+python3 sync_market_historical.py          # preview
+python3 sync_market_historical.py --apply  # write to data.json
+```
+
+---
 
 The script lives in `~/Downloads/macrosnaps/`. It pulls data from FRED and Yahoo Finance and writes `_frozen_historical` into `data.json` in place. It never touches any other field.
 
@@ -855,6 +935,10 @@ Key settings at the top of the script:
 ---
 
 ### Pending work (priority order)
+
+1. ~~**Build tooltip historical charts from Google Sheets (Jan 2020 onwards).**~~ Done March 14, 2026 (Session 5). Two scripts built: `sync_monthly_historical.py` reads MACRO-MONTHLY and writes _frozen_historical for Inflation, Unemployment, Policy Rate. `sync_market_historical.py` reads MARKET-STATS, resamples daily to monthly, and writes _frozen_historical for Stock Market, FX Rate, 10Y Bond Yield, Yield Curve. Shell tooltip range buttons updated from 1Y/2Y/5Y/10Y to 1Y/2Y/5Y/All (All default, data-r="999"). sync_monthly_historical.py --apply completed. sync_market_historical.py blocked pending Bond_Yield_3M fix (see next item).
+
+1. **Replace Bond_Yield_2Y with Bond_Yield_3M in MARKET-STATS pipeline.** MARKET-STATS sheet currently only has 2Y yields for USA, so Yield Curve is only computed for USA. Fix: replace Bond_Yield_2Y column with Bond_Yield_3M across the full pipeline. Confirmed live FRED 3M series for all 12 countries: USA=TB3MS, CAN=IR3TIB01CAM156N, GBR=IR3TIB01GBM156N, JPN=IR3TIB01JPM156N, DEU/FRA/ITA=IR3TIB01EZM156N, ZAF=IR3TIB01ZAM156N, CHN=IR3TIB01CNM156N (to Dec 2025), IND=INDIR3TIB01STM (to Jan 2026), BRA=INTGSTBRM193N (to Jan 2026), RUS=no data. This gives Yield Curve for 11/12 countries. Scripts to edit: `populate_market_sheet.py`, `update_market_sheet.py`, `sync_market_sheet.py`. After edits: re-run populate_market_sheet.py to re-backfill the sheet, then run sync_market_historical.py --apply. This is a tooling session - upload LIVING_BRIEF.md + the three scripts.
 
 1. ~~**Remove Corp Spread and Sov CDS from the dashboard.**~~ Done March 14, 2026. Removed from `data.json` (48 deletions across all 12 countries), `macrosnaps-shell.html` (2 full glossary entries + 2 metricSources lines, 17,066 chars), `fetch_market_data.py` (CORP_SPREAD_SERIES dict, SOV_CDS constants, both fetch functions, pre-fetch block, call site), `update_stories.py` (dead DATA_VOID_METRICS constant), and `build.py` (MARKET_METRICS_BASE trimmed from 6 to 4). Build confirmed clean. Market metrics now 4: Stock Market YTD, 10Y Bond Yield, Yield Curve, FX pair.
 

@@ -73,7 +73,7 @@ def read_tab(sh, code: str) -> pd.DataFrame | None:
             return None
         df = pd.DataFrame(rows[1:], columns=rows[0])
         df["Date"] = pd.to_datetime(df["Date"], errors="coerce")
-        for col in ["Stock_Market_Index", "FX_Rate", "Bond_Yield_10Y", "Bond_Yield_2Y", "Yield_Curve"]:
+        for col in ["Stock_Market_Index", "FX_Rate", "Bond_Yield_10Y", "Bond_Yield_3M", "Yield_Curve"]:
             if col in df.columns:
                 df[col] = pd.to_numeric(df[col].replace("", float("nan")), errors="coerce")
         return df.dropna(subset=["Date"])
