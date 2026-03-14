@@ -6464,12 +6464,6 @@ function renderMTT(d) {
       chartHTML = `<div class="metric-chart-wrap">
         <div class="metric-chart-head">
           <div class="metric-chart-title">${d.chart.title}</div>
-          <div class="metric-chart-range">
-            <button class="mcr-btn" data-r="10">10Y</button>
-            <button class="mcr-btn" data-r="5">5Y</button>
-            <button class="mcr-btn" data-r="1">1Y</button>
-            <button class="mcr-btn active" data-r="0">All</button>
-          </div>
         </div>
         <div class="metric-chart-canvas" id="mttChart"></div>
       </div>`;
@@ -6523,7 +6517,8 @@ function renderMTT(d) {
   if (d.chart) {
     const chartContainer = tt.querySelector('#mttChart');
     renderMetricChart(chartContainer, d.metricName, d.chart.code, null);
-    tt.querySelectorAll('.mcr-btn').forEach(btn => {
+    if (!d.chart.isAnnual) {
+      tt.querySelectorAll('.mcr-btn').forEach(btn => {
         btn.addEventListener('click', e => {
           e.stopPropagation();
           tt.querySelectorAll('.mcr-btn').forEach(b => b.classList.remove('active'));
@@ -6532,6 +6527,7 @@ function renderMTT(d) {
           renderMetricChart(chartContainer, d.metricName, d.chart.code, r);
         });
       });
+    }
   }
 
   // Level toggle
