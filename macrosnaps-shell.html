@@ -362,10 +362,10 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 .c-stories li::before{content:"•";position:absolute;left:0;color:#00d4ff;font-weight:bold}
 .sec-head{margin:14px 0 8px;padding:6px 12px;background:linear-gradient(90deg,rgba(0,212,255,.2),transparent);border-left:3px solid #00d4ff;font-size:12px;color:#00d4ff;text-transform:uppercase;letter-spacing:2px;font-weight:700}
 .metrics{display:flex;flex-direction:column;margin-bottom:4px}
-.metrics.mkt{background:rgba(255,255,255,.02);border-radius:8px;padding:8px 0}
+.metrics.mkt{background:rgba(255,255,255,.015);border-radius:8px;padding:8px 0}
 .metric{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.1);cursor:pointer;transition:background .2s}
 .metric:last-child{border-bottom:none}
-.metric:hover{background:rgba(255,255,255,.05)}
+.metric:hover{background:rgba(255,255,255,.04)}
 .m-name{font-size:12px;color:#bbb;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
 .m-val{font-size:20px;font-weight:700;color:#fff}
 
@@ -5743,7 +5743,7 @@ function renderMetricChart(container, metricName, countryCode, rangeMonths){
       plugins:{
         legend:{display:false},
         tooltip:{
-          backgroundColor:'rgba(15,15,20,.95)',
+          backgroundColor:'rgba(8,12,24,.97)',
           borderColor:cfg.zeroLine?'rgba(150,150,150,.4)':'rgba(0,212,255,.4)',
           borderWidth:1,
           titleFont:{family:"'Space Mono',monospace",size:9},
@@ -6456,7 +6456,7 @@ function renderCommodityMonthlyChart(container, item, rangeMonths) {
       plugins: {
         legend: { display: false },
         tooltip: {
-          backgroundColor: 'rgba(20,22,28,.95)',
+          backgroundColor: 'rgba(8,12,24,.97)',
           titleFont: { family: "'Space Mono',monospace", size: 10 },
           bodyFont: { family: "'DM Sans',sans-serif", size: 12 },
           borderColor: 'rgba(255,255,255,.1)',
@@ -6539,7 +6539,7 @@ function renderCommodityChart(container, item) {
       plugins: {
         legend: { display: false },
         tooltip: {
-          backgroundColor: 'rgba(20,22,28,.95)',
+          backgroundColor: 'rgba(8,12,24,.97)',
           titleFont: { family: "'Space Mono',monospace", size: 10 },
           bodyFont: { family: "'DM Sans',sans-serif", size: 12 },
           borderColor: 'rgba(255,255,255,.1)',
