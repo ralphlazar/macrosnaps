@@ -3,7 +3,7 @@
 fetch_market_data.py
 MacroSnaps - fetch current market metric values for all 12 countries.
 
-Writes updated `value` and `last_updated` fields for all 6 market metrics
+Writes updated `value` and `last_updated` fields for all 4 market metrics
 into data.json in place. Never touches historical arrays, stories, macro
 metrics, or any other field.
 
@@ -11,8 +11,6 @@ Metrics updated:
   Stock Market YTD   - Yahoo Finance (YTD % change from Jan 1 close)
   10Y Bond Yield     - FRED daily series
   Yield Curve        - Derived: 10Y minus 2Y (FRED)
-  Corp Spread        - FRED ICE BofA IG/HY spread series
-  Sov CDS            - Derived proxy: local 10Y minus UST or Bund 10Y
   FX pair            - Yahoo Finance
 
 Run:
@@ -125,25 +123,6 @@ SHORT_RATE_SERIES = {
     "RUS": None,
 }
 
-# FRED corp spread series.
-# BAMLC0A0CM = ICE BofA US Corporate IG OAS (%), multiply by 100 for bps.
-# Used as a global IG proxy for all countries. Values on FRED are in percent.
-# Note: BAMLC0A0CM2EY and BAMLHE00EHYIEY are Effective Yield series, not OAS.
-CORP_SPREAD_SERIES = {
-    "USA": "BAMLC0A0CM",
-    "CAN": "BAMLC0A0CM",        # US IG as proxy
-    "GBR": "BAMLC0A0CM",        # US IG as proxy
-    "JPN": "BAMLC0A0CM",        # US IG as proxy
-    "DEU": "BAMLC0A0CM",        # US IG as proxy
-    "FRA": "BAMLC0A0CM",        # US IG as proxy
-    "ITA": "BAMLC0A0CM",        # US IG as proxy
-    "CHN": "BAMLEMCBPIOAS",     # ICE BofA EM Corporate OAS as proxy
-    "IND": "BAMLEMCBPIOAS",     # ICE BofA EM Corporate OAS as proxy
-    "ZAF": "BAMLEMCBPIOAS",     # ICE BofA EM Corporate OAS as proxy
-    "BRA": "BAMLEMCBPIOAS",     # ICE BofA EM Corporate OAS as proxy
-    "RUS": None,
-}
-
 # Yahoo Finance tickers for stock indices (for YTD).
 STOCK_TICKERS = {
     "USA": "^GSPC",
@@ -224,14 +203,6 @@ FX_INVERT = {
     "BRA": True,    # USD/BRL - Yahoo BRLUSD=X, invert to get BRL per USD
     "RUS": False,   # USD/RUB - Yahoo USDRUB=X already gives RUB per USD
 }
-
-# Sov CDS proxy: computed as local 10Y minus benchmark 10Y.
-# Only computed for EM countries where the spread is meaningful.
-# Developed markets (USA, CAN, GBR, JPN, DEU, FRA, ITA) are skipped - their
-# spreads vs UST/Bunds are near zero or negative, making the proxy uninformative.
-SOV_CDS_BENCHMARK = {"USA", "DEU"}
-SOV_CDS_EM_ONLY   = {"CHN", "IND", "ZAF", "BRA"}   # only these get a value
-SOV_CDS_VS_BUND   = {"FRA", "ITA"}   # unused now but kept for reference
 
 # Yahoo Finance continuous futures tickers for commodities.
 # Keyed by the symbol field in data.json commodities items.
@@ -406,38 +377,6 @@ def fetch_yield_curve(ten_y, short_rate):
     sign = "+" if spread_bps >= 0 else ""
     return f"{sign}{spread_bps}bps"
 
-def fetch_corp_spread(code):
-    """
-    Fetch Corp Spread from FRED ICE BofA series.
-    FRED values are in percent - multiply by 100 for bps.
-    Returns formatted string like '100bps' or None.
-    """
-    series = CORP_SPREAD_SERIES.get(code)
-    if not series:
-        return None
-    result = fred_fetch_latest(series)
-    if result is None:
-        return None
-    _, val_pct = result
-    bps = round(val_pct * 100)
-    return f"{bps}bps"
-
-def fetch_sov_cds_proxy(code, local_10y, ust_10y, bund_10y):
-    """
-    Compute Sov CDS proxy as sovereign spread over UST.
-    Only computed for EM countries (CHN, IND, ZAF, BRA).
-    All developed markets return None - the spread vs UST is near zero or
-    negative for safe-haven countries, making the proxy uninformative.
-    """
-    if code not in SOV_CDS_EM_ONLY:
-        return None
-    if local_10y is None or ust_10y is None:
-        return None
-
-    spread_bps = round((local_10y - ust_10y) * 100)
-    spread_bps = max(spread_bps, 0)
-    return f"{spread_bps}bps"
-
 def fetch_fx(code):
     """
     Fetch FX rate from Yahoo Finance.
@@ -462,9 +401,9 @@ def fetch_fx(code):
 # PROCESS ONE COUNTRY
 # ---------------------------------------------------------------------------
 
-def process_country(code, country_data, ust_10y, bund_10y):
+def process_country(code, country_data):
     """
-    Fetch all 6 market metrics for one country and return a dict of
+    Fetch all 4 market metrics for one country and return a dict of
     {metric_label: new_value_string} for metrics that were successfully fetched.
     """
     log.info(f"\n{'='*52}")
@@ -497,24 +436,6 @@ def process_country(code, country_data, ust_10y, bund_10y):
         log.info(f"  Yield Curve         {yc}")
     else:
         log.warning(f"  Yield Curve         FAILED")
-
-    # Corp Spread
-    val = fetch_corp_spread(code)
-    if val:
-        updates["Corp Spread"] = val
-        log.info(f"  Corp Spread         {val}")
-    else:
-        log.warning(f"  Corp Spread         FAILED")
-
-    # Sov CDS proxy
-    val = fetch_sov_cds_proxy(code, ten_y_float, ust_10y, bund_10y)
-    if val:
-        updates["Sov CDS"] = val
-        log.info(f"  Sov CDS             {val}")
-    elif code not in SOV_CDS_EM_ONLY:
-        log.info(f"  Sov CDS             (developed market - skipped)")
-    else:
-        log.warning(f"  Sov CDS             FAILED")
 
     # FX
     fx_float, fx_str = fetch_fx(code)
@@ -630,15 +551,6 @@ def main():
 
     countries = data["countries"]
 
-    # Pre-fetch UST and Bund 10Y - needed for all Sov CDS proxy calculations.
-    log.info("\nPre-fetching benchmark 10Y yields (UST and Bund)...")
-    ust_result  = fred_fetch_latest("DGS10")
-    bund_result = fred_fetch_latest("IRLTLT01DEM156N")
-    ust_10y  = ust_result[1]  if ust_result  else None
-    bund_10y = bund_result[1] if bund_result else None
-    log.info(f"  UST 10Y:  {ust_10y}%")
-    log.info(f"  Bund 10Y: {bund_10y}%")
-
     run_order = ["USA", "CAN", "GBR", "JPN", "DEU", "FRA", "ITA",
                  "CHN", "IND", "ZAF", "BRA", "RUS"]
 
@@ -651,10 +563,10 @@ def main():
             log.warning(f"\n[{code}] not found in data.json - skipping")
             continue
 
-        updates = process_country(code, countries[code], ust_10y, bund_10y)
+        updates = process_country(code, countries[code])
         all_updates[code] = updates
         total_ok     += len(updates)
-        total_failed += (6 - len(updates))
+        total_failed += (4 - len(updates))
 
     # Summary preview
     log.info(f"\n{'='*52}")
