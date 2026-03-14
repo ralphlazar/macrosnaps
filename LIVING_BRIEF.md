@@ -752,7 +752,7 @@ Key settings at the top of the script:
 
 ### Pending work (priority order)
 
-1. ~~**Remove Corp Spread and Sov CDS from the dashboard.**~~ Done March 14, 2026. Removed from `data.json` (48 deletions across all 12 countries), `macrosnaps-shell.html` (2 full glossary entries + 2 metricSources lines, 17,066 chars), and `fetch_market_data.py` (CORP_SPREAD_SERIES dict, SOV_CDS constants, both fetch functions, pre-fetch block, call site). Market metrics now 4: Stock Market YTD, 10Y Bond Yield, Yield Curve, FX pair.
+1. ~~**Remove Corp Spread and Sov CDS from the dashboard.**~~ Done March 14, 2026. Removed from `data.json` (48 deletions across all 12 countries), `macrosnaps-shell.html` (2 full glossary entries + 2 metricSources lines, 17,066 chars), `fetch_market_data.py` (CORP_SPREAD_SERIES dict, SOV_CDS constants, both fetch functions, pre-fetch block, call site), `update_stories.py` (dead DATA_VOID_METRICS constant), and `build.py` (MARKET_METRICS_BASE trimmed from 6 to 4). Build confirmed clean. Market metrics now 4: Stock Market YTD, 10Y Bond Yield, Yield Curve, FX pair.
 
 1. **Build Google Sheet for daily market data (4 series, 2020 onwards).** One tab per country, daily rows, 4 columns: Equity YTD, FX Rate, 10Y Bond Yield, Yield Curve. Source: yfinance. Extend `sync_sheet.py` to read from this sheet and write market metric values into data.json. Replaces `fetch_market_data.py` for these 4 series.
 
