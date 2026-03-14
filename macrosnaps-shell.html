@@ -5424,19 +5424,21 @@ fetch('data.json')
 
     console.log('[MacroSnaps] data.json loaded — generated: ' + (data._meta && data._meta.generated));
 
-    // Build monthly chart labels dynamically from _meta.generated.
-    // This replaces the old static monthlyLabels array in _frozen.chartConfig,
-    // so no manual edit is needed when refetch_historical.py advances the data window.
+    // Build monthly chart labels dynamically from Jan 2000 to _meta.generated.
+    // Anchored at Jan 2000 so the array covers all data going back to 2000.
+    // Count grows naturally as months pass - no manual edit ever needed.
     (function() {
       const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
       const genStr = data._meta && data._meta.generated;
       const anchor = genStr ? new Date(genStr) : new Date();
       const endYear = anchor.getFullYear();
       const endMonth = anchor.getMonth(); // 0-indexed
-      const COUNT = 240; // 20 years - safely exceeds any data window
+      const startYear = 2000;
+      const startMonth = 0; // Jan
+      const COUNT = (endYear - startYear) * 12 + (endMonth - startMonth) + 1;
       const labels = [];
-      for (let i = COUNT - 1; i >= 0; i--) {
-        const totalMonths = endYear * 12 + endMonth - i;
+      for (let i = 0; i < COUNT; i++) {
+        const totalMonths = startYear * 12 + startMonth + i;
         const y = Math.floor(totalMonths / 12);
         const m = totalMonths % 12;
         labels.push(MONTHS[m] + ' ' + String(y).slice(-2));
@@ -6426,7 +6428,7 @@ function assembleMTTData(n, v, co, sec) {
     const isAnnual = !!histEntry.annual;
     chart = {
       isAnnual,
-      title: isAnnual ? n + ' (Annual)' : '10-Year History',
+      title: isAnnual ? n + ' (Annual)' : 'History since 2000',
       code
     };
   }

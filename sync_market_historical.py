@@ -6,7 +6,7 @@ Reads the MARKET-STATS Google Sheet (one tab per country) and writes
 _frozen_historical arrays into data.json for all 12 countries for the four
 market metrics: Stock Market YTD, FX Rate, 10Y Bond Yield, Yield Curve.
 
-Data is read from 2020-01-01 onwards. Daily rows are resampled to monthly
+Data is read from 2000-01-01 onwards. Daily rows are resampled to monthly
 end-of-month values (last non-blank row in each calendar month).
 
 Stock Market is written as the raw index level (indexLabel: true).
@@ -49,7 +49,7 @@ except ImportError:
 # ---------------------------------------------------------------------------
 
 APPLY = "--apply" in sys.argv
-START_DATE = date(2020, 1, 1)
+START_DATE = date(2000, 1, 1)
 
 DATA_FILE = Path(__file__).parent / "data.json"
 KEY_FILE  = Path(__file__).parent / "market-stats-key.json"

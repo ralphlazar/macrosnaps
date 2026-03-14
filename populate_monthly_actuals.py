@@ -13,8 +13,7 @@ Policy rate sources:
   CHN: no reliable source, column left blank
 
 CPI sources:
-  JPN: FRED CPALTT01JPM657N (pre-computed YoY rate, avoids OECD index gap)
-  All others: FRED OECD index series, YoY computed from index levels
+  All countries: FRED OECD index series (JPNCPIALLMINMEI for JPN), YoY computed from index levels
 
 Unemployment sources:
   BRA: PME series discontinued 2016, no monthly FRED replacement, column left blank
@@ -53,11 +52,11 @@ BIS_RATE_COUNTRIES = {
 }
 
 # CPI index series - YoY computed as (current / 12-months-ago - 1) * 100
-# JPN is excluded here; it uses CPI_YOY_SERIES below
 CPI_SERIES = {
     "USA": "CPIAUCSL",
     "CAN": "CANCPIALLMINMEI",
     "GBR": "GBRCPIALLMINMEI",
+    "JPN": "JPNCPIALLMINMEI",
     "DEU": "DEUCPIALLMINMEI",
     "FRA": "FRACPIALLMINMEI",
     "ITA": "ITACPIALLMINMEI",
@@ -70,11 +69,8 @@ CPI_SERIES = {
 
 # Countries where FRED provides a pre-computed YoY CPI rate directly.
 # No index-level computation needed - use observations as-is.
-# JPN: JPNCPIALLMINMEI (OECD index) has a data gap that breaks YoY from mid-2021.
-#      CPALTT01JPM657N is the OECD growth rate series, current and clean.
-CPI_YOY_SERIES = {
-    "JPN": "CPALTT01JPM657N",
-}
+# Currently unused - retained for future use if a pre-computed series is needed.
+CPI_YOY_SERIES = {}
 
 # Unemployment - monthly harmonised series where available
 # BRA: LRUNTTTTBRM156S is the discontinued PME series (stopped 2016). No monthly replacement.

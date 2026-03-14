@@ -4,7 +4,7 @@ sync_monthly_historical.py
 
 Reads the MACRO-MONTHLY Google Sheet (Inflation, Unemployment, Policy_Rate tabs)
 and writes _frozen_historical arrays into data.json for all 12 countries for
-those three metrics, covering all rows from 2020-01-01 onwards.
+those three metrics, covering all rows from 2000-01-01 onwards.
 
 This replaces refetch_historical.py as the source of truth for these three
 monthly metrics. Annual metrics (GDP Growth, Budget Deficit, Current Account)
@@ -42,7 +42,7 @@ except ImportError:
 # ---------------------------------------------------------------------------
 
 APPLY = "--apply" in sys.argv
-START_DATE = date(2020, 1, 1)
+START_DATE = date(2000, 1, 1)
 
 DATA_FILE = Path(__file__).parent / "data.json"
 KEY_FILE  = Path(__file__).parent / "market-stats-key.json"

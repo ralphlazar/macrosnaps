@@ -13,8 +13,7 @@ Policy rate sources:
   CHN: no reliable source, column left blank
 
 CPI sources:
-  JPN: FRED CPALTT01JPM657N (pre-computed YoY, no index computation needed)
-  All others: FRED OECD index series, YoY computed from index levels
+  All countries: FRED OECD index series (JPNCPIALLMINMEI for JPN), YoY computed from index levels
 
 Unemployment sources:
   BRA/CHN/IND/ZAF/RUS: no reliable monthly source, columns left blank
@@ -51,11 +50,11 @@ BIS_RATE_COUNTRIES = {
 }
 
 # CPI index series - YoY computed from index levels
-# JPN excluded - uses CPI_YOY_SERIES
 CPI_SERIES = {
     "USA": "CPIAUCSL",
     "CAN": "CANCPIALLMINMEI",
     "GBR": "GBRCPIALLMINMEI",
+    "JPN": "JPNCPIALLMINMEI",
     "DEU": "DEUCPIALLMINMEI",
     "FRA": "FRACPIALLMINMEI",
     "ITA": "ITACPIALLMINMEI",
@@ -66,10 +65,9 @@ CPI_SERIES = {
     "RUS": "RUSCPIALLMINMEI",
 }
 
-# Countries where FRED provides a pre-computed YoY CPI rate directly
-CPI_YOY_SERIES = {
-    "JPN": "CPALTT01JPM657N",
-}
+# Countries where FRED provides a pre-computed YoY CPI rate directly.
+# Currently unused - retained for future use if a pre-computed series is needed.
+CPI_YOY_SERIES = {}
 
 UNEMP_SERIES = {
     "USA": "UNRATE",
