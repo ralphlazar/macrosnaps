@@ -105,6 +105,23 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 .wh-rank-num.positive{color:var(--cyan)}
 .wh-rank-num.negative{color:var(--hot)}
 
+/* ── USD toggle ── */
+.wh-usd-toggle{
+  display:flex;align-items:center;justify-content:center;gap:3px;margin-top:6px;
+}
+.wh-usd-btn{
+  font-family:var(--font-display);font-size:8px;letter-spacing:1px;text-transform:uppercase;
+  padding:3px 10px;border:1px solid rgba(255,255,255,.1);border-radius:3px;
+  background:transparent;color:#555;cursor:pointer;transition:all .15s;
+}
+.wh-usd-btn:hover{color:#bbb;border-color:rgba(255,255,255,.25)}
+.wh-usd-btn.active{background:rgba(0,212,255,.1);border-color:var(--cyan);color:var(--cyan)}
+.wh-usd-note{
+  text-align:center;padding:6px 16px 0;
+  font-family:var(--font-display);font-size:7px;letter-spacing:.5px;
+  color:#333;font-style:italic;
+}
+
 /* ── Weather Homepage Table ── */
 .wh-wrap{
   width:100%;max-width:720px;margin:0 auto;
@@ -6036,6 +6053,7 @@ let _whSortAsc = false;
 let _whMetric  = 'GDP Growth';
 let _whAsOfStr = '';
 let _whDropOpen = false;
+let _whStockUsd = false;  // toggle: show Stock Market YTD in USD terms
 
 // Metrics available in the picker: weather-grid macro metrics + ranked market metrics
 const METRIC_CONFIG = {
@@ -6173,38 +6191,86 @@ function renderGridTable(wrap, cfg, titleHTML) {
   attachTableEvents(wrap);
 }
 
+// ── FX YTD RETURN HELPER ──
+// Returns YTD % change of local currency vs USD, or null.
+// USD/XXX (e.g. USD/JPY): local per 1 USD. Rise = local weakened. Return = jan/cur - 1.
+// XXX/USD (e.g. GBP/USD): USD per 1 local. Rise = local strengthened. Return = cur/jan - 1.
+function computeFxYtd(co) {
+  if (!co.metrics || !co.metrics.market) return null;
+  const fxKey = Object.keys(co.metrics.market).find(k => k.includes('/'));
+  if (!fxKey) return null;
+  const hist = historicalData[co.code] && historicalData[co.code][fxKey];
+  if (!hist || !hist.v || !histMonthlyLabels.length) return null;
+  const genDate = _whAsOfStr ? new Date(_whAsOfStr.split(' ').reverse().join('-')) : new Date();
+  const curYear = String(genDate.getFullYear()).slice(-2);
+  const janIdx  = histMonthlyLabels.findIndex(l => l === 'Jan ' + curYear);
+  if (janIdx < 0 || janIdx >= hist.v.length) return null;
+  const janVal = hist.v[janIdx];
+  let curVal = null;
+  for (let i = hist.v.length - 1; i >= janIdx; i--) {
+    if (hist.v[i] !== null && hist.v[i] !== undefined) { curVal = hist.v[i]; break; }
+  }
+  if (!janVal || !curVal) return null;
+  const usdBase = fxKey.toUpperCase().startsWith('USD/');
+  return usdBase
+    ? (janVal / curVal - 1) * 100
+    : (curVal / janVal - 1) * 100;
+}
+
+function computeUsdReturn(co) {
+  const localRaw = co.metrics && co.metrics.market && co.metrics.market['Stock Market YTD'];
+  if (!localRaw) return null;
+  const localPct = parseFloat(String(localRaw).replace(/[^0-9.\-]/g, ''));
+  if (isNaN(localPct)) return null;
+  const fxYtd = computeFxYtd(co);
+  if (fxYtd === null) return null;
+  return Math.round(((1 + localPct / 100) * (1 + fxYtd / 100) - 1) * 1000) / 10;
+}
+
 function renderRankedTable(wrap, cfg, titleHTML) {
-  // Pull current values for this metric from countries
-  function getCurrentVal(co) {
+  const isStockYtd = (_whMetric === 'Stock Market YTD');
+
+  let fullTitleHTML = titleHTML;
+  if (isStockYtd) {
+    fullTitleHTML = titleHTML.replace(
+      '</div>',
+      `<div class="wh-usd-toggle">
+        <button class="wh-usd-btn${!_whStockUsd ? ' active' : ''}" id="btnLocalCcy">Local</button>
+        <button class="wh-usd-btn${_whStockUsd ? ' active' : ''}" id="btnUsdCcy">USD</button>
+      </div></div>`
+    );
+  }
+
+  function getLocalVal(co) {
     if (!co.metrics) return null;
     const pool = (_whMetric === 'Policy Rate') ? (co.metrics.macro||{}) : (co.metrics.market||{});
-    let raw = pool[_whMetric];
-    // FX-style market keys vary by country; try partial match for known market metrics
-    if (raw === undefined && co.metrics.market) {
-      const keys = Object.keys(co.metrics.market);
-      const k = keys.find(k2 => k2 === _whMetric);
-      if (k) raw = co.metrics.market[k];
-    }
-    if (raw === undefined) return null;
-    return raw;
+    const raw = pool[_whMetric];
+    return (raw === undefined) ? null : raw;
   }
 
   function parseVal(s) {
     if (s === null || s === undefined) return null;
-    const n = parseFloat(String(s).replace(/[^0-9.\-]/g,''));
+    const n = parseFloat(String(s).replace(/[^0-9.\-]/g, ''));
     return isNaN(n) ? null : n;
   }
 
-  const rows = countries.map(co => ({co, raw: getCurrentVal(co), num: parseVal(getCurrentVal(co))}))
-    .filter(r => r.raw !== null)
-    .sort((a,b) => {
+  const rows = countries.map(co => {
+    if (isStockYtd && _whStockUsd) {
+      const usd = computeUsdReturn(co);
+      const raw = usd !== null ? (usd > 0 ? '+' : '') + usd + '%' : null;
+      return {co, raw, num: usd};
+    }
+    const raw = getLocalVal(co);
+    return {co, raw, num: parseVal(raw)};
+  }).filter(r => r.raw !== null)
+    .sort((a, b) => {
       if (a.num === null && b.num === null) return 0;
       if (a.num === null) return 1; if (b.num === null) return -1;
       return _whSortAsc ? a.num - b.num : b.num - a.num;
     });
 
-  const bodyRows = rows.map(({co, raw, num}, i) => {
-    const sign = (cfg && cfg.sign && num !== null && num > 0) ? '+' : '';
+  const bodyRows = rows.map(({co, raw, num}) => {
+    const sign = (cfg && cfg.sign && num !== null && num > 0 && !String(raw).startsWith('+')) ? '+' : '';
     const valCls = num === null ? '' : num > 0 ? 'positive' : num < 0 ? 'negative' : '';
     return `<tr data-code="${co.code}">
       <td class="wh-country-cell"><div class="wh-country-inner"><span class="wh-flag">${co.flag}</span><span class="wh-name">${co.name}</span><span class="wh-code">${co.code}</span></div></td>
@@ -6212,30 +6278,35 @@ function renderRankedTable(wrap, cfg, titleHTML) {
     </tr>`;
   }).join('');
 
-  function arrow() {
-    return `<span class="wh-sort-arrow active">${_whSortAsc ? '\u2191' : '\u2193'}</span>`;
-  }
+  function arrow() { return `<span class="wh-sort-arrow active">${_whSortAsc ? '\u2191' : '\u2193'}</span>`; }
 
-  const asofHTML = _whAsOfStr ? `<div class="wh-asof">Updated ${_whAsOfStr}</div>` : '';
+  const colHeader = isStockYtd ? (_whStockUsd ? 'YTD (USD)' : 'YTD (Local)') : 'Current';
+  const noteHTML  = (isStockYtd && _whStockUsd)
+    ? `<div class="wh-usd-note">Approx: equity YTD x FX YTD, using monthly spot data.</div>` : '';
+  const asofHTML  = _whAsOfStr ? `<div class="wh-asof">Updated ${_whAsOfStr}</div>` : '';
 
-  wrap.innerHTML = `${titleHTML}
+  wrap.innerHTML = `${fullTitleHTML}
     <table class="wh-table wh-table-ranked">
       <thead><tr>
         <th class="wh-country-hd">Countries</th>
-        <th class="wh-sortable wh-fc" data-col="1">Current${arrow()}</th>
+        <th class="wh-sortable wh-fc" data-col="1">${colHeader}${arrow()}</th>
       </tr></thead>
       <tbody>${bodyRows}</tbody>
-    </table>${asofHTML}`;
+    </table>${noteHTML}${asofHTML}`;
 
   wrap.querySelector('.wh-sortable') && wrap.querySelector('.wh-sortable').addEventListener('click', e => {
-    e.stopPropagation();
-    _whSortAsc = !_whSortAsc;
-    renderMetricTable();
+    e.stopPropagation(); _whSortAsc = !_whSortAsc; renderMetricTable();
   });
+
+  if (isStockYtd) {
+    const btnLocal = wrap.querySelector('#btnLocalCcy');
+    const btnUsd   = wrap.querySelector('#btnUsdCcy');
+    if (btnLocal) btnLocal.addEventListener('click', e => { e.stopPropagation(); _whStockUsd = false; renderMetricTable(); });
+    if (btnUsd)   btnUsd.addEventListener('click',   e => { e.stopPropagation(); _whStockUsd = true;  renderMetricTable(); });
+  }
 
   attachTableEvents(wrap);
 }
-
 function attachTableEvents(wrap) {
   // Sort header clicks (grid table)
   wrap.querySelectorAll('.wh-sortable[data-col]').forEach(th => {
