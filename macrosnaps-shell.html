@@ -5472,7 +5472,7 @@ function renderMetricChart(container, metricName, countryCode, rangeMonths){
   const cfg=d[metricName];
   if(!cfg) { container.innerHTML='<div class="metric-chart-nodata">No historical data</div>'; return; }
 
-  const isAnnual=!!cfg.annual;
+  const isAnnual=cfg.type==='bar';
   const allLabels=isAnnual?histAnnualLabels:histMonthlyLabels;
   const allVals=cfg.v;
   const isRange=rangeMonths&&!isAnnual;
@@ -6426,10 +6426,10 @@ function assembleMTTData(n, v, co, sec) {
   const histEntry = (code && historicalData[code] && historicalData[code][n]) || null;
   let chart = null;
   if (histEntry) {
-    const isAnnual = !!histEntry.annual;
+    const isAnnual = histEntry.type === 'bar';
     chart = {
       isAnnual,
-      title: isAnnual ? n + ' (Annual)' : '10-Year History',
+      title: isAnnual ? n + ' (Annual)' : 'History since 2000',
       code
     };
   }
