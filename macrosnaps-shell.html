@@ -5475,7 +5475,7 @@ function renderMetricChart(container, metricName, countryCode, rangeMonths){
   const isAnnual=cfg.type==='bar';
   const allLabels=isAnnual?histAnnualLabels:histMonthlyLabels;
   const allVals=cfg.v;
-  const isRange=rangeMonths&&!isAnnual;
+  const isRange=!!rangeMonths;
   const n=isRange?rangeMonths:allVals.length;
   const sliceVals=isRange?allVals.slice(-n):allVals.slice(0,n);
   const sliceLabels=isRange?allLabels.slice(-n):allLabels.slice(0,n);
@@ -6464,6 +6464,12 @@ function renderMTT(d) {
       chartHTML = `<div class="metric-chart-wrap">
         <div class="metric-chart-head">
           <div class="metric-chart-title">${d.chart.title}</div>
+          <div class="metric-chart-range">
+            <button class="mcr-btn" data-r="10">10Y</button>
+            <button class="mcr-btn" data-r="5">5Y</button>
+            <button class="mcr-btn" data-r="1">1Y</button>
+            <button class="mcr-btn active" data-r="0">All</button>
+          </div>
         </div>
         <div class="metric-chart-canvas" id="mttChart"></div>
       </div>`;
@@ -6517,8 +6523,7 @@ function renderMTT(d) {
   if (d.chart) {
     const chartContainer = tt.querySelector('#mttChart');
     renderMetricChart(chartContainer, d.metricName, d.chart.code, null);
-    if (!d.chart.isAnnual) {
-      tt.querySelectorAll('.mcr-btn').forEach(btn => {
+    tt.querySelectorAll('.mcr-btn').forEach(btn => {
         btn.addEventListener('click', e => {
           e.stopPropagation();
           tt.querySelectorAll('.mcr-btn').forEach(b => b.classList.remove('active'));
