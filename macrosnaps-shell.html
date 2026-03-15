@@ -418,6 +418,20 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 .m-name{font-size:12px;color:#bbb;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
 .m-val{font-size:20px;font-weight:700;color:#fff}
 
+/* ── Per-metric weather strip ── */
+.m-strip{display:flex;gap:4px;margin-top:6px;align-items:center}
+.m-si{font-size:13px;line-height:1;cursor:default;position:relative;display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:3px;transition:background .15s}
+.m-si:hover{background:rgba(255,255,255,.08)}
+.m-si-fc{opacity:.6}
+.m-si-fc::after{content:'F';position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);font-size:6px;color:#888;letter-spacing:.5px;font-family:var(--font-display)}
+/* Hover tooltip */
+.m-si[data-tip]:hover::before{content:attr(data-tip);position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:rgba(8,12,24,.97);color:#e0e0e0;font-size:10px;font-family:var(--font-display);letter-spacing:.5px;white-space:nowrap;padding:4px 8px;border-radius:4px;border:1px solid rgba(255,255,255,.12);pointer-events:none;z-index:200}
+/* Mobile tap overlay */
+.m-strip-tip{position:absolute;bottom:calc(100% + 8px);left:0;background:rgba(8,12,24,.97);border:1px solid rgba(255,255,255,.14);border-radius:6px;padding:6px 10px;display:flex;gap:10px;z-index:201;pointer-events:none}
+.m-strip-tip-item{display:flex;flex-direction:column;align-items:center;gap:2px;font-family:var(--font-display)}
+.m-strip-tip-yr{font-size:8px;color:#888;letter-spacing:.5px}
+.m-strip-tip-val{font-size:10px;color:#e0e0e0;font-weight:600}
+
 
 /* ── Commodities Card ── */
 .comm-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.06);border-radius:8px;overflow:hidden;margin-top:4px}
@@ -6938,9 +6952,52 @@ function assembleCardData(co) {
   };
 }
 
+const STRIP_WEATHER_FN = {
+  'GDP Growth':      v => gdpWeather(v),
+  'Inflation (CPI)': v => cpiWeather(v),
+  'Unemployment':    v => unempWeather(v),
+  'Budget Deficit':  v => budgetWeather(v),
+  'Current Account': v => caWeather(v)
+};
+const STRIP_DATA_FN = {
+  'GDP Growth':      () => gdpAllCountries,
+  'Inflation (CPI)': () => cpiAllCountries,
+  'Unemployment':    () => unempAllCountries,
+  'Budget Deficit':  () => budgetAllCountries,
+  'Current Account': () => caAllCountries
+};
+
+function metricWeatherStrip(metricName, countryCode) {
+  const wFn   = STRIP_WEATHER_FN[metricName];
+  const dFn   = STRIP_DATA_FN[metricName];
+  if (!wFn || !dFn) return '';
+  const dataObj = dFn();
+  const entry   = dataObj && dataObj[countryCode];
+  if (!entry || !entry.v || entry.v.length < 2) return '';
+  const allVals   = entry.v;
+  const allLabels = (histAnnualLabels && histAnnualLabels.length) ? histAnnualLabels : [];
+  const n      = Math.min(5, allVals.length);
+  const vals   = allVals.slice(-n);
+  const labels = allLabels.slice(-n);
+  const cfg    = METRIC_CONFIG[metricName];
+  const unit   = (cfg && cfg.unit) || '';
+  const sign   = (cfg && cfg.sign);
+  const icons  = vals.map((v, i) => {
+    const lbl    = labels[i] || '';
+    const isFc   = String(lbl).includes('F');
+    const w      = v !== null ? wFn(v) : null;
+    const cls    = w ? (w.cls === 'storm' ? 'stormy' : w.cls) : 'cloudy';
+    const emoji  = cls === 'sunny' ? '☀️' : cls === 'stormy' ? '⛈️' : '☁️';
+    const dispV  = v !== null ? ((sign && v > 0 ? '+' : '') + v + unit) : '—';
+    const tip    = lbl ? `${lbl} · ${dispV}` : dispV;
+    return `<span class="m-si ${cls}${isFc ? ' m-si-fc' : ''}" data-tip="${tip}" data-yr="${lbl}" data-val="${dispV}">${emoji}</span>`;
+  }).join('');
+  return `<div class="m-strip" data-strip="1">${icons}</div>`;
+}
+
 function renderCard(d, co) {
   let mH = '', mkH = '';
-  d.macroMetrics.forEach(m => { const label = metricDisplayLabels[m.name] || m.name; mH += `<div class="metric" data-m="${m.name}" data-v="${m.val}" data-c="${d.name}" data-s="macro"><div class="m-name">${label}</div><div class="m-val">${m.val}</div></div>`; });
+  d.macroMetrics.forEach(m => { const label = metricDisplayLabels[m.name] || m.name; const strip = metricWeatherStrip(m.name, d.code); mH += `<div class="metric" data-m="${m.name}" data-v="${m.val}" data-c="${d.name}" data-s="macro"><div class="m-name">${label}</div><div class="m-val">${m.val}</div>${strip}</div>`; });
   d.marketMetrics.forEach(m => { const label = metricDisplayLabels[m.name] || m.name; mkH += `<div class="metric" data-m="${m.name}" data-v="${m.val}" data-c="${d.name}" data-s="market"><div class="m-name">${label}</div><div class="m-val">${m.val}</div></div>`; });
 
   const macroSection = d.macroMetrics.length > 0 ? `<div class="sec-head">MACRO FORECASTS (2026)</div><div class="metrics">${mH}</div>` : '';
@@ -6950,7 +7007,30 @@ function renderCard(d, co) {
   o.innerHTML = `<div class="country-card"><div class="card-close" onclick="this.closest('.card-overlay').remove()">✕</div>${levelToggleHTML()}<div class="card-head"><span class="c-flag">${d.flag}</span><span class="c-name">${d.name}</span>${cardNavHTML()}</div><div class="weather-sec"><div class="w-icon ${d.weatherClass}">${d.weather}</div><ul class="c-stories">${d.stories.map(s => `<li>${applyGlossary(s)}</li>`).join('')}</ul></div>${macroSection}${marketSection}</div>`;
   document.body.appendChild(o);
   o.addEventListener('click', e => { if (e.target === o) o.remove(); });
-  o.querySelectorAll('.metric').forEach(el => { el.addEventListener('click', e => { e.stopPropagation(); showMTT(el.dataset.m, el.dataset.v, el.dataset.c, el.dataset.s); }); });
+  o.querySelectorAll('.metric').forEach(el => {
+    el.addEventListener('click', e => {
+      if (e.target.closest('.m-strip')) return;
+      e.stopPropagation();
+      showMTT(el.dataset.m, el.dataset.v, el.dataset.c, el.dataset.s);
+    });
+  });
+  // Mobile: tap strip to show year/value overlay
+  o.querySelectorAll('.m-strip').forEach(strip => {
+    strip.addEventListener('click', e => {
+      e.stopPropagation();
+      const existing = strip.querySelector('.m-strip-tip');
+      if (existing) { existing.remove(); return; }
+      const items = [...strip.querySelectorAll('.m-si')].map(si =>
+        `<div class="m-strip-tip-item"><span class="m-strip-tip-yr">${si.dataset.yr}</span><span class="m-strip-tip-val">${si.dataset.val}</span></div>`
+      ).join('');
+      const tip = document.createElement('div');
+      tip.className = 'm-strip-tip';
+      tip.innerHTML = items;
+      strip.style.position = 'relative';
+      strip.appendChild(tip);
+      setTimeout(() => document.addEventListener('click', function h() { tip.remove(); document.removeEventListener('click', h); }), 0);
+    });
+  });
   attachCardNav(o, d.code);
   attachLevelToggle(o, () => { o.remove(); showCard(activeCardCountry); });
   attachGlossary(o);
