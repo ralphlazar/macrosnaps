@@ -6947,7 +6947,7 @@ function assembleCardData(co) {
   const macro = (co.metrics && co.metrics.macro) || {};
   const market = (co.metrics && co.metrics.market) || {};
   const macroMetrics = Object.entries(macro).map(([k, v]) => ({name: k, val: v, section: 'macro'}));
-  const marketMetrics = Object.entries(market).map(([k, v]) => ({name: k, val: v, section: 'market'}));
+  const marketMetrics = Object.entries(market).filter(([k]) => k !== 'Stock Market YTD (USD)').map(([k, v]) => ({name: k, val: v, section: 'market'}));
   return {
     code: co.code || '', name: co.name || 'Unknown', flag: co.flag || '',
     weather: co.weather || '', weatherClass, stories, macroMetrics, marketMetrics
