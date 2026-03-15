@@ -301,6 +301,9 @@ def run_market_sync(apply_mode: bool, data: dict) -> list:
 
             old_entry = market.get(display_key)
             old_val   = old_entry.get("value") if isinstance(old_entry, dict) else old_entry
+            # Never overwrite a good value with None (blank sheet cell)
+            if new_val is None and old_val is not None:
+                continue
             if old_val != new_val:
                 changes.append((code, display_key, old_val, new_val))
                 if apply_mode:
