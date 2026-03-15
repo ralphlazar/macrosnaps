@@ -8,7 +8,7 @@
       "weekly": "Update weekly or on release — CPI, unemployment, policy rate",
       "structural": "Update quarterly or on major revision — GDP, deficits, current account, stories, fxRegime"
     },
-    "built_at": "2026-03-15 12:13"
+    "built_at": "2026-03-15 12:30"
   },
   "countries": {
     "USA": {
@@ -27275,7 +27275,8 @@
         ]
       },
       "stock_market_index": 2871.86,
-      "fx_rate": 80.025
+      "fx_rate": 80.025,
+      "stock_market_ytd": 2.33
     }
   },
   "commodities": {

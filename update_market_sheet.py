@@ -357,15 +357,12 @@ def main():
         # For RUS: use MOEX-supplied Jan-1 level; USD return forced blank (RUB/USD unreliable)
         if code == "RUS" and row["_moex_jan1"] is not None:
             jan1_index = row["_moex_jan1"]
-            jan1_fx    = None   # intentionally blank — no USD adjustment
+            _, jan1_fx = read_jan1_from_tab(ws)   # use sheet FX for USD calc
         else:
             jan1_index, jan1_fx = read_jan1_from_tab(ws)
         index_today = row["Stock_Market_Index"] if row["Stock_Market_Index"] != "" else None
         fx_today    = row["FX_Rate"]            if row["FX_Rate"]            != "" else None
-        if code == "RUS":
-            ytd_usd = None   # suppress USD column for RUS
-        else:
-            ytd_usd = compute_ytd_usd(code, index_today, fx_today, jan1_index, jan1_fx)
+        ytd_usd = compute_ytd_usd(code, index_today, fx_today, jan1_index, jan1_fx)
         row["Stock_Market_YTD_USD"] = ytd_usd if ytd_usd is not None else ""
 
         # Check if any data came back at all (exclude the new derived column from this check)
