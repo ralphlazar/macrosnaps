@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 sync_monthly_actuals.py
-Reads the last 6 non-null values per country per series from the MACRO-MONTHLY
+Reads the last 36 non-null values per country per series from the MACRO-MONTHLY
 Google Sheet and writes a monthly_actuals block into each country in data.json.
 
 The monthly_actuals field is story context only - it is never displayed in the UI.
@@ -24,7 +24,7 @@ KEY_FILE = os.path.join(os.path.dirname(__file__), "market-stats-key.json")
 DATA_JSON = os.path.join(os.path.dirname(__file__), "data.json")
 
 COUNTRIES = ["USA", "CAN", "GBR", "JPN", "DEU", "FRA", "ITA", "CHN", "IND", "ZAF", "BRA", "RUS"]
-MONTHS_TO_KEEP = 6
+MONTHS_TO_KEEP = 36
 
 
 def get_sheets_service():
@@ -114,7 +114,7 @@ def main():
         }
 
     # preview output
-    print("Monthly actuals (last 6 non-null per series):")
+    print("Monthly actuals (last 36 non-null per series):")
     print("-" * 60)
     for country in COUNTRIES:
         ma = monthly_actuals[country]

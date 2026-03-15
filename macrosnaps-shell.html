@@ -6501,7 +6501,7 @@ function renderNews(d) {
   if (!d) return;
   document.querySelectorAll('.tooltip').forEach(t => t.remove()); closeBubble();
   const tt = document.createElement('div'); tt.className = 'tooltip';
-  tt.innerHTML = applyGlossary(`<div class="tt-close" onclick="this.parentElement.remove()">✕</div>${levelToggleHTML()}<div class="tt-title">${d.icon} ${d.label}</div><div class="tt-story">${d.body}</div>`);
+  tt.innerHTML = applyGlossary(`<div class="tt-close" onclick="this.parentElement.remove()">✕</div>${levelToggleHTML()}<div class="tt-title">${d.label}</div><div class="tt-story">${d.body}</div>`);
   document.body.appendChild(tt); tt.offsetHeight; tt.classList.add('active'); attachGlossary(tt);
   attachLevelToggle(tt, () => { tt.remove(); showNewsTooltip(activeNewsIdx); });
   setTimeout(() => { document.addEventListener('click', function cl(e) { if (!tt.contains(e.target)) { tt.remove(); document.removeEventListener('click', cl); } }); }, 100);
