@@ -73,7 +73,7 @@ def read_tab(sh, code: str) -> pd.DataFrame | None:
             return None
         df = pd.DataFrame(rows[1:], columns=rows[0])
         df["Date"] = pd.to_datetime(df["Date"], errors="coerce")
-        for col in ["Stock_Market_Index", "FX_Rate", "Bond_Yield_10Y", "Bond_Yield_3M", "Yield_Curve"]:
+        for col in ["Stock_Market_Index", "FX_Rate", "Bond_Yield_10Y", "Bond_Yield_3M", "Yield_Curve", "Stock_Market_YTD_USD"]:
             if col in df.columns:
                 df[col] = pd.to_numeric(df[col].replace("", float("nan")), errors="coerce")
         return df.dropna(subset=["Date"])
@@ -131,11 +131,36 @@ def find_market_metric(country_data: dict, label: str) -> str | None:
 def find_fx_key(country_data: dict) -> str | None:
     """FX metric key varies by country (e.g. GBP/USD, USD/JPY). Find it by exclusion."""
     market = country_data.get("metrics", {}).get("market", {})
-    known = {"stock market ytd", "10y bond yield", "yield curve"}
+    known = {"stock market ytd", "stock market ytd (usd)", "10y bond yield", "yield curve"}
     for key in market:
         if key.lower() not in known:
             return key
     return None
+
+
+def find_or_create_ytd_usd_key(country_data: dict) -> str:
+    """
+    Return the key for 'Stock Market YTD (USD)' in market metrics.
+    Creates it by cloning 'Stock Market YTD' if absent.
+    Also backfills any missing fields (e.g. story) if the key exists
+    but was created bare by a previous run.
+    """
+    import copy
+    market = country_data.get("metrics", {}).get("market", {})
+    target = "Stock Market YTD (USD)"
+    source = market.get("Stock Market YTD", {})
+    if target not in market:
+        new_entry = copy.deepcopy(source)
+        new_entry["value"] = None
+        new_entry["last_updated"] = None
+        market[target] = new_entry
+    else:
+        # Backfill any fields present in source but missing from existing entry
+        existing = market[target]
+        for field, val in source.items():
+            if field not in existing:
+                existing[field] = copy.deepcopy(val)
+    return target
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 
@@ -190,7 +215,9 @@ def main():
 
         # ── Stock Market YTD ──────────────────────────────────────────────────
         ytd, ytd_date = compute_ytd(df)
-        stock_key = find_market_metric(country_data, "stock market")
+        # Use exact match to avoid picking up 'Stock Market YTD (USD)'
+        market = country_data.get("metrics", {}).get("market", {})
+        stock_key = "Stock Market YTD" if "Stock Market YTD" in market else None
         if stock_key and ytd is not None:
             old = country_data["metrics"]["market"][stock_key].get("value")
             changes.append((code, stock_key, old, ytd, ytd_date))
@@ -227,6 +254,19 @@ def main():
             print(f"    Yield Curve: {old} -> {round(yc_val, 1)}bps  (as of {yc_date})")
         elif yc_key:
             print(f"    Yield Curve: no data in sheet")
+
+        # ── Stock Market YTD (USD) ────────────────────────────────────────────
+        if "Stock_Market_YTD_USD" not in df.columns:
+            print(f"    Stock Market YTD (USD): column not in sheet yet -- skipping")
+        else:
+            ytd_usd_val, ytd_usd_date = latest_value(df, "Stock_Market_YTD_USD")
+            ytd_usd_key = find_or_create_ytd_usd_key(country_data)
+            if ytd_usd_val is not None:
+                old = country_data["metrics"]["market"][ytd_usd_key].get("value")
+                changes.append((code, ytd_usd_key, old, round(ytd_usd_val, 2), ytd_usd_date))
+                print(f"    Stock Market YTD (USD): {old} -> {round(ytd_usd_val, 2)}%  (as of {ytd_usd_date})")
+            else:
+                print(f"    Stock Market YTD (USD): no data in sheet yet")
 
     # Summary table
     print("\n" + "=" * 64)

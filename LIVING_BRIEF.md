@@ -1,7 +1,21 @@
 # MacroSnaps - Living Brief
-Last updated: March 14, 2026 (Session 9: kill globe, replace with ranked GDP growth landing page. Brand positioning decisions: weather icons as core USP, underplay AI, professional credibility over tech-demo aesthetics.)
+Last updated: March 15, 2026 (Session 10 continued: USD stock market return feature partially built. Shell-side FX computation proved fragile - correct architecture is to compute Stock_Market_YTD_USD in MARKET-STATS sheet instead. Next session: tooling session to add this column.)
 
-Last session note (Session 8): extended all tooltip charts to start from Jan 2000. (1) sync_monthly_historical.py and sync_market_historical.py: START_DATE changed to 2000-01-01. (2) macrosnaps-shell.html: histMonthlyLabels IIFE now anchors at Jan 2000 and counts forward to _meta.generated; isAnnual detection fixed to use cfg.type==='bar' instead of cfg.annual; slice direction fixed - full array uses slice(0,n) left-anchored, range buttons use slice(-n) right-anchored; annual charts have no range buttons and always show full array; both All buttons use data-r="0"; initial renders pass null; renderCommodityMonthlyChart treats falsy rangeMonths as full array; fallback title updated to "History since 2000". (3) sync_sheet.py --apply run to restore annual arrays to 27 points (2000-2026F) - they had regressed to 11 points. Root cause of "charts ending 2010": data arrays were only 11 points, not a JS bug.)
+Last session note (Session 10): Full homepage redesign across two sessions (9 and 10). All changes are in macrosnaps-shell.html only. Key changes:
+
+(1) Default landing page is now a GDP Growth weather map table. Globe is hidden by default, lazy-initialised on first click of the Globe toggle in the top bar. Rankings/Globe toggle added to top-bar.
+
+(2) Weather table: 12 countries x 7 columns (2020-2026F). Icons only (no numbers in cells). Rows are clickable to open country card. Columns and country header are sortable by click. Default sort is descending by 2026F column. Icon hover shows the data value as a floating tooltip.
+
+(3) Metric picker: clicking the "GDP Growth" title opens a dropdown of all metrics in two groups - Macro (GDP Growth, Inflation, Unemployment, Budget Deficit, Current Account - all have full 7-year weather grid using existing weather functions and data objects) and Markets (Policy Rate, Stock Market YTD, 10Y Bond Yield, Yield Curve - show a single ranked column of current values).
+
+(4) USD equity toggle: when Stock Market YTD is selected, a Local/USD pill toggle appears. USD mode computes (1 + equity_ytd) x (1 + fx_ytd) - 1 using monthly FX historical data from historicalData. FX convention auto-detected from key name: USD/XXX = dollar base (rate rise = local weaker), XXX/USD = local base (rate rise = local stronger). A disclaimer note is shown in USD mode. USA (DXY) and RUS may fall out of USD list gracefully.
+
+(5) Geo filter (All 12/G7/BRICS+) was removed. Tagline "Like learning a language" was removed.
+
+(6) Colour scheme changed to deep navy: body #05080f, cards/overlays #0d1120, floating panels rgba(10,14,26,.98), chart hover tooltips rgba(8,12,24,.97). Globe inner sphere updated to match.
+
+Previous session note (Session 8): extended all tooltip charts to start from Jan 2000. (1) sync_monthly_historical.py and sync_market_historical.py: START_DATE changed to 2000-01-01. (2) macrosnaps-shell.html: histMonthlyLabels IIFE now anchors at Jan 2000 and counts forward to _meta.generated; isAnnual detection fixed to use cfg.type==='bar' instead of cfg.annual; slice direction fixed - full array uses slice(0,n) left-anchored, range buttons use slice(-n) right-anchored; annual charts have no range buttons and always show full array; both All buttons use data-r="0"; initial renders pass null; renderCommodityMonthlyChart treats falsy rangeMonths as full array; fallback title updated to "History since 2000". (3) sync_sheet.py --apply run to restore annual arrays to 27 points (2000-2026F) - they had regressed to 11 points. Root cause of "charts ending 2010": data arrays were only 11 points, not a JS bug.)
 
 ---
 
@@ -966,7 +980,7 @@ Key settings at the top of the script:
 
 ### Pending work (priority order)
 
-1. **Kill the globe. Replace with ranked GDP growth landing page.** This is a UI session: upload `LIVING_BRIEF.md` + `macrosnaps-shell.html`. The globe (Three.js) is to be removed entirely. The new default landing state is 12 country cards ranked by GDP growth (highest to lowest), each showing the GDP growth value and weather icon prominently. A toggle to switch to geographic layout should be available but ranked is the default. The weather icon should be the dominant visual element on each card. This is the single highest priority before launch. Key decisions: (1) ranked by GDP growth descending, (2) geographic toggle available, (3) no globe anywhere in the product, (4) weather icon is hero of each card.
+1. ~~**Kill the globe. Replace with ranked GDP growth landing page.**~~ Done March 14, 2026 (Sessions 9-10). Landing page is now a GDP Growth weather icon table (2020-2026F, sortable, with metric picker). Globe preserved as lazy-init toggle. Navy colour scheme applied.
 
 1. ~~**Build tooltip historical charts from Google Sheets (Jan 2020 onwards).**~~ Done March 14, 2026 (Session 5). Two scripts built: `sync_monthly_historical.py` reads MACRO-MONTHLY and writes _frozen_historical for Inflation, Unemployment, Policy Rate. `sync_market_historical.py` reads MARKET-STATS, resamples daily to monthly, and writes _frozen_historical for Stock Market, FX Rate, 10Y Bond Yield, Yield Curve. Shell tooltip range buttons updated from 1Y/2Y/5Y/10Y to 1Y/2Y/5Y/All (All default, data-r="999"). sync_monthly_historical.py --apply completed. sync_market_historical.py blocked pending Bond_Yield_3M fix (see next item).
 
@@ -1046,6 +1060,11 @@ Implication for tooling: implemented March 12, 2026. See `update_headlines.py` a
 7. ~~**Add country-level and global stories to the daily bash ritual.**~~ Done and verified March 11, 2026. `update_headlines.py` calls the Claude API, drafts 12 country story blocks (3 bullets x 3 levels) in 3 batches of 4 via Haiku (8000 tokens each) and global stories (3 items x 3 levels) via Sonnet with web search (5000 tokens). Saves to `stories_draft_YYYY-MM-DD.json`. `headline_review.html` is a browser-based review tool: tabs show Bullet 1/2/3, each tab shows all three levels stacked for easy comparison. Export `stories_approved_YYYY-MM-DD.json`, apply with `python3 update_headlines.py --apply`. First live run completed 13/13 March 11, 2026.
 
 8. ~~**Enable web search for country stories in `update_headlines.py`.**~~ Done March 12, 2026. Two-phase architecture: a single Sonnet+search harvest call pulls recent data for all 12 countries (capped at 2 search turns, 1500 max_tokens), then 3 Haiku batches write stories with recent data leading and forecast values passed as background context only. Global runs first to avoid Sonnet rate limit exhaustion from the harvest call. Haiku prompt strengthened with explicit bullet count enforcement and one automatic retry per batch.
+
+
+1. **Add Stock_Market_YTD_USD to MARKET-STATS and sync to data.json.** Tooling session: upload LIVING_BRIEF.md + update_market_sheet.py + sync_market_sheet.py. Approach: (1) update_market_sheet.py computes (latest_index/jan1_index) * (latest_fx/jan1_fx) - 1 and appends as new column to each country tab. USA uses local return only (DXY is not a bilateral pair). (2) sync_market_sheet.py reads the new column and writes 'Stock Market YTD (USD)' into data.json market metrics. (3) Shell: delete computeFxYtd and computeUsdReturn entirely - USD toggle reads co.metrics.market['Stock Market YTD (USD)'] directly like any other metric. This is the correct architecture: sheet computes, shell displays.
+
+1. ~~**Verify USD equity toggle for USA and RUS.**~~ Superseded by sheet-side computation approach above. USA FX is DXY (not a bilateral pair), so USD-adjusted return may be unavailable for USA. RUS equity history truncates June 2024. Both should fall out gracefully (null) rather than showing wrong numbers - confirm after next build.
 
 9. **Post-launch:** revisit architecture if a second person joins to update data daily.
 

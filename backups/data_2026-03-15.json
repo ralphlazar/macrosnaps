@@ -8,7 +8,7 @@
       "weekly": "Update weekly or on release — CPI, unemployment, policy rate",
       "structural": "Update quarterly or on major revision — GDP, deficits, current account, stories, fxRegime"
     },
-    "built_at": "2026-03-15 00:21"
+    "built_at": "2026-03-15 00:56"
   },
   "countries": {
     "USA": {
@@ -85,7 +85,7 @@
           "Stock Market YTD": {
             "value": -3.12,
             "tier": "daily",
-            "last_updated": "2026-03-14",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "U.S. stocks fell deeper into negative territory this year, dropping from -2.7% to -3.12%. The market continues losing ground as investors face ongoing economic uncertainties. American companies are worth less now than they were at the start of the year.",
               "moderate": "The U.S. stock market's year-to-date performance deteriorated further, sliding from -2.7% to -3.12%. Equity markets remain under pressure as investors grapple with persistent headwinds including inflation concerns and economic growth uncertainties. The deepening losses suggest market sentiment has yet to stabilize, with broad-based selling continuing to weigh on major indices.",
@@ -95,7 +95,7 @@
           "10Y Bond Yield": {
             "value": 4.27,
             "tier": "daily",
-            "last_updated": "2026-03-14",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "The 10-year Treasury yield jumped from 4.21% to 4.27%. Bond prices fall when yields rise, so investors are demanding higher returns to lend money to the government. This usually happens when people expect inflation or economic growth to pick up.",
               "moderate": "The 10-year Treasury yield climbed 6 basis points to 4.27%, signaling shifting investor sentiment about future economic conditions. Higher yields typically reflect expectations of stronger growth, persistent inflation, or increased government borrowing needs. This move puts upward pressure on mortgage rates and corporate borrowing costs. The yield curve dynamics suggest markets are repricing near-term Fed policy expectations.",
@@ -103,9 +103,9 @@
             }
           },
           "Yield Curve": {
-            "value": 51.0,
+            "value": 55.0,
             "tier": "daily",
-            "last_updated": "2026-03-14",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "The gap between long-term and short-term interest rates in the US narrowed to 51 basis points. This means the yield curve became less steep, showing investors expect slower economic growth ahead. A flatter curve often signals concerns about the economy's future.",
               "moderate": "The US yield curve flattened significantly, with the spread dropping to 51 basis points from 61 basis points. This 10 basis point compression reflects growing market expectations for Federal Reserve rate cuts as economic growth concerns mount. A steeper curve typically indicates optimism about future growth, while flattening suggests investors anticipate slower expansion or potential recession. The move signals shifting sentiment in bond markets about the economic outlook.",
@@ -115,11 +115,21 @@
           "USD/DXY": {
             "value": 100.495,
             "tier": "daily",
-            "last_updated": "2026-03-14",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "The US dollar got stronger against other major currencies, with the dollar index climbing from 100.1 to 100.495. This means it now costs more euros, yen, or pounds to buy one dollar. A stronger dollar makes imports cheaper for Americans but can hurt US companies that sell products overseas.",
               "moderate": "The Dollar Index (DXY) advanced to 100.495 from 100.1, signaling broad-based strength in the greenback against its major trading partners. This 0.39% gain reflects either improved US economic fundamentals, rising Treasury yields, or safe-haven demand during global uncertainty. The move above 100 suggests the dollar maintains its recent momentum, potentially pressuring emerging market currencies and commodities priced in dollars. US exporters may face headwinds while importers benefit from increased purchasing power abroad.",
               "expert": "DXY rallied 39 basis points to 100.495, breaking decisively above the psychologically significant 100 level with conviction. The move likely reflects a combination of Fed policy divergence expectations, real yield differentials favoring Treasuries, and potential risk-off positioning given global macro crosscurrents. Technical momentum now favors further dollar strength, with the next resistance cluster around 101.50-102.00 based on prior consolidation zones. This trajectory will amplify disinflationary pressures on tradable goods while tightening financial conditions for dollar-funded carry trades and EM corporate borrowers. Cross-asset implications include continued pressure on gold, base metals, and high-beta currencies like AUD and NZD."
+            }
+          },
+          "Stock Market YTD (USD)": {
+            "value": -3.12,
+            "last_updated": "2026-03-15",
+            "tier": "daily",
+            "story": {
+              "beginner": "U.S. stocks fell deeper into negative territory this year, dropping from -2.7% to -3.12%. The market continues losing ground as investors face ongoing economic uncertainties. American companies are worth less now than they were at the start of the year.",
+              "moderate": "The U.S. stock market's year-to-date performance deteriorated further, sliding from -2.7% to -3.12%. Equity markets remain under pressure as investors grapple with persistent headwinds including inflation concerns and economic growth uncertainties. The deepening losses suggest market sentiment has yet to stabilize, with broad-based selling continuing to weigh on major indices.",
+              "expert": "U.S. equity markets extended their year-to-date decline to -3.12% from -2.7%, indicating continued selling pressure across major indices. The 42 basis point deterioration reflects ongoing risk-off sentiment as investors reassess growth prospects and monetary policy implications. Technical momentum remains negative with the market failing to establish a sustainable floor above recent lows. Sector rotation patterns and elevated volatility metrics suggest institutional repositioning continues to drive price action. The persistent negative performance underscores structural headwinds that have yet to be fully priced into current valuations."
             }
           }
         }
@@ -2849,7 +2859,7 @@
           "Stock Market YTD": {
             "value": 2.61,
             "tier": "daily",
-            "last_updated": "2026-03-14",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "Canada's stock market gained 2.61% this year. Canadian companies have performed well despite global economic uncertainty. Investors continue to find value in Canadian stocks.",
               "moderate": "The TSX posted a 2.61% year-to-date return, showing resilience in a challenging global environment. Canadian equities benefited from strong commodity prices and steady corporate earnings. The modest gain reflects investor confidence in domestic fundamentals, though geopolitical tensions continue to create headwinds for risk assets.",
@@ -2857,9 +2867,9 @@
             }
           },
           "10Y Bond Yield": {
-            "value": 3.402,
+            "value": 3.401,
             "tier": "daily",
-            "last_updated": "2026-03-14",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "Canada's 10-year bond yield ticked up slightly to 3.402% from 3.40%. This tiny increase suggests investors demand just a bit more return to lend money to the Canadian government for a decade. Bond yields move constantly based on economic expectations and market sentiment.",
               "moderate": "Canadian 10-year government bond yields edged higher to 3.402% from 3.40%, a marginal increase of 0.2 basis points. The slight uptick reflects minor shifts in investor sentiment toward Canadian sovereign debt. Higher yields typically signal either increased inflation expectations or greater perceived risk in holding long-term government bonds. This movement remains well within normal daily trading ranges for Canadian Treasuries.",
@@ -2867,9 +2877,9 @@
             }
           },
           "Yield Curve": {
-            "value": "+121bps",
+            "value": 121.1,
             "tier": "daily",
-            "last_updated": "2026-03-13",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "Canada's yield curve steepened dramatically, jumping from 25 basis points to 121 basis points. This means long-term bonds now pay much more interest than short-term ones. Investors expect stronger economic growth or higher inflation ahead.",
               "moderate": "The Canadian yield curve steepened sharply from 25bps to 121bps, signaling a major shift in market expectations. Long-term government bonds now offer significantly higher yields relative to short-term paper. This steepening typically reflects investor bets on stronger future growth, rising inflation expectations, or both. The move suggests markets anticipate the Bank of Canada may need to maintain higher rates for longer than previously expected.",
@@ -2877,13 +2887,23 @@
             }
           },
           "CAD/USD": {
-            "value": 0.7335,
+            "value": 0.729,
             "tier": "daily",
-            "last_updated": "2026-03-14",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "The Canadian dollar strengthened against the US dollar, rising from 73 cents to 73.35 cents. This means it now costs less Canadian dollars to buy American goods. The loonie gained about half a cent in value.",
               "moderate": "CAD/USD climbed from 0.73 to 0.7335, marking a notable strengthening of the Canadian dollar. The 35-basis-point gain suggests improved sentiment toward Canadian assets or weakening US dollar dynamics. This appreciation benefits Canadian consumers purchasing US goods while potentially pressuring export-dependent sectors. The move brings the loonie closer to recent trading ranges after extended weakness.",
               "expert": "CAD/USD advanced 35 basis points to 0.7335 from 0.73, reflecting either Canadian dollar strength or broad-based US dollar weakness across G10 currencies. The move likely stems from commodity price dynamics given Canada's resource-heavy export profile, or diverging monetary policy expectations between the Bank of Canada and Federal Reserve. This appreciation toward the 0.74 resistance level could pressure TSX export-heavy sectors while supporting domestic consumption metrics. Cross-currency flows and oil price correlations warrant monitoring for sustainability of this CAD rally."
+            }
+          },
+          "Stock Market YTD (USD)": {
+            "value": 2.78,
+            "last_updated": "2026-03-15",
+            "tier": "daily",
+            "story": {
+              "beginner": "Canada's stock market gained 2.61% this year. Canadian companies have performed well despite global economic uncertainty. Investors continue to find value in Canadian stocks.",
+              "moderate": "The TSX posted a 2.61% year-to-date return, showing resilience in a challenging global environment. Canadian equities benefited from strong commodity prices and steady corporate earnings. The modest gain reflects investor confidence in domestic fundamentals, though geopolitical tensions continue to create headwinds for risk assets.",
+              "expert": "The S&P/TSX Composite delivered a 2.61% YTD return, outperforming several developed market peers amid volatile macro conditions. Energy and materials sectors provided significant support as commodity supercycles benefited Canadian resource companies. The index's performance reflects Canada's defensive characteristics and resource exposure, though multiple compression across growth names offset some cyclical gains. Relative outperformance versus global indices demonstrates the market's correlation with commodity flows and defensive positioning during periods of elevated uncertainty."
             }
           }
         }
@@ -5559,7 +5579,7 @@
           "Stock Market YTD": {
             "value": 3.32,
             "tier": "daily",
-            "last_updated": "2026-03-14",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "UK stocks gained 3.32% this year, up from 3.1% previously. British companies have delivered modest but steady returns to investors. The market continues its gradual climb despite economic uncertainties.",
               "moderate": "The FTSE index posted a 3.32% year-to-date return, improving from the previous 3.1% reading. UK equities maintain their positive trajectory as investors balance domestic economic concerns against corporate earnings resilience. The steady gains reflect cautious optimism in British markets. Portfolio managers see measured progress amid ongoing monetary policy adjustments.",
@@ -5569,7 +5589,7 @@
           "10Y Bond Yield": {
             "value": 4.451,
             "tier": "daily",
-            "last_updated": "2026-03-14",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "The UK government's 10-year borrowing costs ticked up slightly to 4.451%. This small increase means investors demand a bit more return to hold British government debt for a decade. Higher bond yields often signal concerns about inflation or government finances.",
               "moderate": "UK 10-year gilt yields edged higher to 4.451% from 4.45%. The minimal uptick reflects ongoing market scrutiny of Britain's fiscal position and inflation outlook. Bond markets remain sensitive to any shifts in Bank of England policy expectations or government spending plans. Even fractional moves in yields can signal changing investor sentiment toward UK sovereign debt.",
@@ -5577,9 +5597,9 @@
             }
           },
           "Yield Curve": {
-            "value": "+74bps",
+            "value": 74.1,
             "tier": "daily",
-            "last_updated": "2026-03-13",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "The UK yield curve jumped from 30 basis points to 74 basis points. This means the gap between short-term and long-term government borrowing costs widened significantly. Investors now demand much higher returns for lending money to the UK government over longer periods.",
               "moderate": "The UK yield curve steepened dramatically from 30 basis points to 74 basis points, indicating growing investor concerns about longer-term economic prospects. This widening spread between short and long-term gilt yields suggests markets expect either higher inflation or increased credit risk over time. The steepening typically signals that investors demand greater compensation for holding longer-duration UK government debt. Bond markets are pricing in potential economic headwinds that could affect the government's fiscal position.",
@@ -5587,13 +5607,23 @@
             }
           },
           "GBP/USD": {
-            "value": 1.3223,
+            "value": 1.322,
             "tier": "daily",
-            "last_updated": "2026-03-14",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "The British pound fell against the US dollar, dropping from 1.33 to 1.3223. This means it now takes fewer dollars to buy one pound. The pound weakened as investors moved money toward the stronger dollar.",
               "moderate": "GBP/USD declined from 1.33 to 1.3223, marking continued pressure on sterling. The move reflects broader dollar strength as markets price in divergent monetary policy paths between the Federal Reserve and Bank of England. UK economic headwinds, including persistent inflation concerns and growth uncertainties, weigh on the currency pair. Sterling faces additional challenges from ongoing fiscal policy debates in Westminster.",
               "expert": "Cable retreated to 1.3223 from 1.33, breaking below key technical support as the dollar index maintains its rally. The 77-pip decline reflects hawkish Fed repricing alongside dovish BoE expectations, with UK gilt yields underperforming Treasuries across the curve. Real yield differentials continue favoring USD positioning, while UK current account dynamics and energy import dependencies compound sterling's structural headwinds. Options flow suggests further downside targets around 1.32 psychological support. Risk reversals remain skewed toward puts as macro funds extend short GBP positions."
+            }
+          },
+          "Stock Market YTD (USD)": {
+            "value": 5.25,
+            "last_updated": "2026-03-15",
+            "tier": "daily",
+            "story": {
+              "beginner": "UK stocks gained 3.32% this year, up from 3.1% previously. British companies have delivered modest but steady returns to investors. The market continues its gradual climb despite economic uncertainties.",
+              "moderate": "The FTSE index posted a 3.32% year-to-date return, improving from the previous 3.1% reading. UK equities maintain their positive trajectory as investors balance domestic economic concerns against corporate earnings resilience. The steady gains reflect cautious optimism in British markets. Portfolio managers see measured progress amid ongoing monetary policy adjustments.",
+              "expert": "UK equity indices extended year-to-date gains to 3.32%, advancing from 3.1% in the prior period. The FTSE 100's performance reflects sector rotation dynamics and sterling-denominated earnings stability. Institutional flows continue supporting domestic equities despite elevated gilt yields constraining valuation multiples. The measured advance suggests market participants are pricing in gradual economic normalization. Technical momentum indicators remain constructive for British large-cap names."
             }
           }
         }
@@ -8263,7 +8293,7 @@
           "Stock Market YTD": {
             "value": 6.91,
             "tier": "daily",
-            "last_updated": "2026-03-14",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "Japan's stock market jumped to 6.9% gains for the year, up sharply from 3.8% earlier. Japanese companies are performing well as investors show renewed confidence in the market.",
               "moderate": "The Nikkei surged to 6.9% year-to-date returns, a significant jump from the previous 3.8% reading. This acceleration reflects growing investor optimism about Japanese corporate earnings and economic prospects. The sharp uptick suggests institutional money is flowing back into Japanese equities after a period of more modest gains.",
@@ -8273,7 +8303,7 @@
           "10Y Bond Yield": {
             "value": 2.24,
             "tier": "daily",
-            "last_updated": "2026-03-14",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "Japan's 10-year government bond yield held steady at 2.24%. This means investors are demanding the same return to lend money to the Japanese government for a decade. Bond yields reflect expectations about future interest rates and economic growth.",
               "moderate": "The Japanese 10-year government bond yield remained unchanged at 2.24%, signaling stable market expectations for the country's monetary policy trajectory. This yield level sits well above the Bank of Japan's previous ultra-low rate environment, reflecting the central bank's recent policy normalization efforts. The stability suggests investors have found equilibrium between Japan's shifting monetary stance and global rate dynamics. Bond market calm often indicates consensus around current economic conditions and policy direction.",
@@ -8281,9 +8311,9 @@
             }
           },
           "Yield Curve": {
-            "value": "+112bps",
+            "value": 112.0,
             "tier": "daily",
-            "last_updated": "2026-03-13",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "Japan's yield curve steepened significantly, jumping from 90 basis points to 112 basis points. This means the gap between short-term and long-term interest rates grew wider. Investors now expect bigger differences between what the government pays on short versus long bonds.",
               "moderate": "Japan's yield curve steepened sharply from 90 to 112 basis points, signaling shifting expectations about monetary policy and economic growth. The widening spread between short and long-term government bond yields suggests investors anticipate either higher future inflation or potential policy normalization by the Bank of Japan. This steepening typically reflects growing optimism about economic expansion. Bond traders are pricing in a scenario where short-term rates may rise less aggressively than longer-term rates.",
@@ -8293,11 +8323,21 @@
           "USD/JPY": {
             "value": 159.72,
             "tier": "daily",
-            "last_updated": "2026-03-14",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "The Japanese yen weakened against the US dollar, with each dollar now buying 159.72 yen compared to 159.4 yen before. This means the yen lost value while the dollar gained strength. Japanese goods become cheaper for Americans to buy when this happens.",
               "moderate": "USD/JPY climbed from 159.4 to 159.72, marking further yen weakness against the dollar. The move continues the yen's struggles near multi-decade lows as interest rate differentials favor the dollar. This currency depreciation pressures Japan's import costs while making Japanese exports more competitive globally. The Bank of Japan faces mounting pressure to intervene or adjust monetary policy.",
               "expert": "USD/JPY extended gains to 159.72 from 159.4, pushing deeper into intervention territory that historically triggers BOJ action. The 32-pip move reflects persistent carry trade dynamics as the Fed maintains restrictive policy while the BOJ keeps rates near zero. Yen weakness at these levels amplifies imported inflation concerns and strains Japan's terms of trade despite export competitiveness gains. Market participants watch for verbal or actual intervention signals as USD/JPY approaches the psychologically critical 160 level. Options positioning suggests heightened volatility expectations around potential policy divergence shifts."
+            }
+          },
+          "Stock Market YTD (USD)": {
+            "value": 4.7,
+            "last_updated": "2026-03-15",
+            "tier": "daily",
+            "story": {
+              "beginner": "Japan's stock market jumped to 6.9% gains for the year, up sharply from 3.8% earlier. Japanese companies are performing well as investors show renewed confidence in the market.",
+              "moderate": "The Nikkei surged to 6.9% year-to-date returns, a significant jump from the previous 3.8% reading. This acceleration reflects growing investor optimism about Japanese corporate earnings and economic prospects. The sharp uptick suggests institutional money is flowing back into Japanese equities after a period of more modest gains.",
+              "expert": "Japanese equities accelerated sharply to 6.9% YTD returns from 3.8%, indicating a substantial inflection in momentum across the Nikkei 225 and broader TOPIX. The 310 basis point jump signals renewed institutional appetite for Japanese risk assets, likely driven by improving corporate governance reforms and potential BOJ policy normalization expectations. This outperformance relative to earlier periods suggests Japan is benefiting from both domestic structural improvements and global rotation into undervalued developed market equities. The velocity of the move indicates strong technical momentum that could attract additional foreign institutional flows."
             }
           }
         }
@@ -10849,7 +10889,7 @@
           "Stock Market YTD": {
             "value": -4.26,
             "tier": "daily",
-            "last_updated": "2026-03-14",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "German stocks improved slightly, with losses shrinking from 4.6% to 4.26% for the year. The country's stock market remains in negative territory but showed small signs of recovery. Investors appear cautiously optimistic about Germany's economic prospects.",
               "moderate": "The German equity market posted modest gains, reducing year-to-date losses from 4.6% to 4.26%. This improvement suggests some investor confidence returning despite ongoing economic headwinds. German stocks continue underperforming many global markets, reflecting concerns about the country's industrial competitiveness and energy costs. The DAX's movement indicates cautious optimism among institutional investors.",
@@ -10859,7 +10899,7 @@
           "10Y Bond Yield": {
             "value": 2.807,
             "tier": "daily",
-            "last_updated": "2026-03-14",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "German government bonds are paying slightly less interest today. The 10-year bond yield dropped from 2.81% to 2.807%. This small decline suggests investors feel a bit more confident about Germany's economic stability.",
               "moderate": "Germany's 10-year bond yield edged down from 2.81% to 2.807%, a modest decline that reflects shifting investor sentiment. Lower yields indicate stronger demand for German government debt, often viewed as a safe haven during uncertain times. The move suggests bond markets are pricing in either reduced inflation expectations or increased flight-to-quality flows into German Bunds. This marginal decline keeps German yields well below recent peaks while maintaining their spread advantage over other European sovereigns.",
@@ -10867,9 +10907,9 @@
             }
           },
           "Yield Curve": {
-            "value": "+81bps",
+            "value": 77.9,
             "tier": "daily",
-            "last_updated": "2026-03-13",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "Germany's yield curve steepened dramatically, jumping from 35 basis points to 81 basis points. This means the gap between short-term and long-term interest rates widened significantly. Investors now demand much higher returns for lending money to Germany over longer periods.",
               "moderate": "Germany's yield curve steepened sharply to 81 basis points from 35 basis points, signaling a major shift in bond market dynamics. The widening spread between short and long-term yields suggests investors expect higher inflation or economic growth ahead. This steepening typically reflects growing optimism about Germany's economic prospects, though it also raises borrowing costs for long-term financing. The 46 basis point jump represents one of the more significant curve movements in recent months.",
@@ -10879,11 +10919,21 @@
           "EUR/USD": {
             "value": 1.1423,
             "tier": "daily",
-            "last_updated": "2026-03-14",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "The euro weakened against the dollar, dropping from 1.1457 to 1.1423. This means it now takes fewer dollars to buy one euro. The decline suggests investors are favoring the US dollar over the euro right now.",
               "moderate": "EUR/USD fell from 1.1457 to 1.1423, marking a 0.3% decline for the euro against the dollar. The move reflects continued dollar strength amid diverging monetary policy expectations between the ECB and Federal Reserve. European assets become relatively cheaper for dollar-based investors, while German exporters gain competitiveness in international markets.",
               "expert": "EUR/USD dropped 34 pips from 1.1457 to 1.1423, extending the euro's recent weakness against a resilient greenback. The decline likely stems from widening rate differentials as markets price in more aggressive Fed tightening relative to ECB policy normalization. German export sectors benefit from the weaker euro, though import-dependent industries face higher input costs. Technical levels suggest potential support around 1.1400, with a break below targeting the 1.1350 region. Cross-currency flows and German bund-Treasury yield spreads will drive near-term direction."
+            }
+          },
+          "Stock Market YTD (USD)": {
+            "value": -1.54,
+            "last_updated": "2026-03-15",
+            "tier": "daily",
+            "story": {
+              "beginner": "German stocks improved slightly, with losses shrinking from 4.6% to 4.26% for the year. The country's stock market remains in negative territory but showed small signs of recovery. Investors appear cautiously optimistic about Germany's economic prospects.",
+              "moderate": "The German equity market posted modest gains, reducing year-to-date losses from 4.6% to 4.26%. This improvement suggests some investor confidence returning despite ongoing economic headwinds. German stocks continue underperforming many global markets, reflecting concerns about the country's industrial competitiveness and energy costs. The DAX's movement indicates cautious optimism among institutional investors.",
+              "expert": "German equities rallied marginally, with the year-to-date performance improving 34 basis points from -4.6% to -4.26%. The modest recovery reflects tentative risk-on sentiment despite structural challenges facing German corporates, particularly in manufacturing and chemicals sectors. Export-dependent German equities remain vulnerable to global trade dynamics and ECB monetary policy shifts. This performance continues to lag the broader European equity complex, highlighting Germany-specific headwinds including elevated energy input costs and competitive pressures from Chinese manufacturing. The technical bounce suggests short-covering rather than fundamental re-rating."
             }
           }
         }
@@ -13457,7 +13507,7 @@
           "Stock Market YTD": {
             "value": -2.92,
             "tier": "daily",
-            "last_updated": "2026-03-14",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "French stocks improved slightly, with losses shrinking from -3.4% to -2.92% for the year. The market remains in negative territory but shows signs of recovery. Investors appear more optimistic about French companies than earlier in the year.",
               "moderate": "The CAC 40 index reduced its year-to-date losses from -3.4% to -2.92%, signaling modest market recovery. French equities remain under pressure but demonstrate resilience amid broader European market volatility. The improvement suggests investor sentiment toward French corporates has stabilized somewhat. Market participants are likely reassessing valuations after the earlier selloff.",
@@ -13467,7 +13517,7 @@
           "10Y Bond Yield": {
             "value": 3.53,
             "tier": "daily",
-            "last_updated": "2026-03-14",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "France's 10-year government bond yield stayed flat at 3.53%. This means investors aren't demanding higher returns to lend money to the French government for a decade. Bond yields often move when economic conditions or expectations change.",
               "moderate": "French 10-year government bond yields held steady at 3.53%, showing no change from the previous period. This stability suggests investors maintain consistent confidence in France's creditworthiness and inflation expectations remain anchored. Bond yields typically fluctuate based on economic data, central bank policy signals, and risk sentiment. The unchanged rate indicates equilibrium between supply and demand for French sovereign debt.",
@@ -13475,9 +13525,9 @@
             }
           },
           "Yield Curve": {
-            "value": "+153bps",
+            "value": 150.2,
             "tier": "daily",
-            "last_updated": "2026-03-13",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "France's yield curve steepened dramatically, jumping from 50 basis points to 153 basis points. This means long-term French government bonds now pay much more interest than short-term ones. Investors are pricing in higher inflation or economic growth expectations for the years ahead.",
               "moderate": "The French yield curve steepened sharply from 50 to 153 basis points, signaling a major shift in bond market sentiment. This widening spread between long and short-term government yields suggests investors expect higher inflation, stronger economic growth, or increased fiscal spending down the road. The steepening could pressure mortgage rates and corporate borrowing costs while potentially benefiting banks' net interest margins.",
@@ -13487,11 +13537,21 @@
           "EUR/USD": {
             "value": 1.1423,
             "tier": "daily",
-            "last_updated": "2026-03-14",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "The euro weakened against the dollar, dropping from 1.1457 to 1.1423. This means it now takes fewer dollars to buy one euro. The change suggests investors are favoring the dollar over the euro right now.",
               "moderate": "EUR/USD declined from 1.1457 to 1.1423, marking a 0.3% depreciation for the euro against the dollar. The move reflects strengthening dollar sentiment amid ongoing monetary policy divergence between the ECB and Federal Reserve. European assets become relatively cheaper for dollar-based investors, while French exporters gain competitiveness in global markets.",
               "expert": "EUR/USD dropped 34 pips from 1.1457 to 1.1423, breaching the 1.1450 technical support level that had held for the previous session. The decline accelerates the pair's retreat from last week's 1.1520 highs, with momentum indicators turning bearish on the 4-hour chart. Dollar strength stems from elevated Treasury yields and hawkish Fed expectations, while ECB dovishness weighs on euro positioning. French CAC 40 exporters should benefit from the weaker euro, particularly luxury goods and aerospace sectors. The pair now tests the 1.1400 psychological level, with a break potentially targeting 1.1350 support."
+            }
+          },
+          "Stock Market YTD (USD)": {
+            "value": -0.17,
+            "last_updated": "2026-03-15",
+            "tier": "daily",
+            "story": {
+              "beginner": "French stocks improved slightly, with losses shrinking from -3.4% to -2.92% for the year. The market remains in negative territory but shows signs of recovery. Investors appear more optimistic about French companies than earlier in the year.",
+              "moderate": "The CAC 40 index reduced its year-to-date losses from -3.4% to -2.92%, signaling modest market recovery. French equities remain under pressure but demonstrate resilience amid broader European market volatility. The improvement suggests investor sentiment toward French corporates has stabilized somewhat. Market participants are likely reassessing valuations after the earlier selloff.",
+              "expert": "French equity markets posted a marginal recovery with the CAC 40's YTD performance improving 48 basis points from -3.4% to -2.92%. The move reflects technical buying interest and potential mean reversion after oversold conditions earlier this year. Sectoral rotation within French blue chips likely contributed to the uplift, particularly if defensive names outperformed cyclicals. The persistence of negative YTD returns indicates structural headwinds remain, though the trajectory suggests accumulation at current levels. Risk-adjusted returns may be attracting institutional flows back into French large-cap exposure."
             }
           }
         }
@@ -16065,7 +16125,7 @@
           "Stock Market YTD": {
             "value": -1.4,
             "tier": "daily",
-            "last_updated": "2026-03-14",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "Italian stocks recovered some ground this year, with losses shrinking from 2.5% to 1.4%. The market moved closer to positive territory as investors regained confidence. Italy's main stock index still trades below where it started the year, but the gap continues to narrow.",
               "moderate": "Italy's equity market showed resilience as year-to-date losses compressed from 2.5% to 1.4%. The FTSE MIB's recovery reflects improving investor sentiment toward Italian assets amid stabilizing economic conditions. While still in negative territory for the year, the index demonstrates meaningful momentum. This performance puts Italian stocks ahead of several European peers who continue to struggle with deeper losses.",
@@ -16075,7 +16135,7 @@
           "10Y Bond Yield": {
             "value": 3.492,
             "tier": "daily",
-            "last_updated": "2026-03-14",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "Italy's 10-year government bond yield barely moved, staying flat at 3.49%. Bond yields show what investors demand to lend money to the government for a decade. The tiny change suggests investors see little new reason to worry about Italy's finances.",
               "moderate": "Italy's 10-year bond yield held steady at 3.49%, with only a negligible 0.002 percentage point uptick. This stability indicates investor sentiment toward Italian sovereign debt remains unchanged. The flat movement suggests no major shifts in risk perception or monetary policy expectations are affecting Italian government borrowing costs. Markets appear comfortable with current pricing given Italy's fiscal position and broader eurozone conditions.",
@@ -16083,9 +16143,9 @@
             }
           },
           "Yield Curve": {
-            "value": "+149bps",
+            "value": 146.4,
             "tier": "daily",
-            "last_updated": "2026-03-13",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "Italy's yield curve steepened dramatically, jumping from 80 basis points to 149 basis points. This means investors now demand much higher returns for holding long-term Italian bonds compared to short-term ones. The widening gap signals growing concerns about Italy's economic outlook.",
               "moderate": "Italy's yield curve steepened sharply to 149 basis points from 80 basis points, indicating increased term premium demands from bond investors. The 69 basis point widening reflects heightened concerns about Italy's fiscal position and long-term growth prospects. This steepening typically signals that markets expect either higher inflation or increased credit risk over the longer term. The move puts additional pressure on Italy's borrowing costs for future debt issuances.",
@@ -16095,11 +16155,21 @@
           "EUR/USD": {
             "value": 1.1423,
             "tier": "daily",
-            "last_updated": "2026-03-14",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "The euro weakened against the dollar, dropping from 1.1457 to 1.1423. This means each euro now buys fewer dollars than before. Currency movements like this affect everything from Italian exports to vacation costs for Americans visiting Rome.",
               "moderate": "EUR/USD declined 34 basis points to 1.1423, pressuring the single currency against its American counterpart. The move reflects shifting expectations around European Central Bank policy relative to Federal Reserve positioning. Italian exporters benefit from a weaker euro as their goods become more competitive globally, while import costs rise for Italian businesses buying dollar-denominated products.",
               "expert": "EUR/USD fell 0.30% to 1.1423, breaking below the 1.1450 support level amid diverging monetary policy expectations between the ECB and Fed. The decline coincides with Italian 10-year BTP spreads potentially widening against German Bunds, reflecting peripheral eurozone concerns. Short-term dollar strength appears driven by hawkish Fed rhetoric, while ECB dovishness weighs on euro positioning. Italian corporates with significant dollar-denominated debt face increased refinancing costs, though exporters gain competitive advantages in global markets."
+            }
+          },
+          "Stock Market YTD (USD)": {
+            "value": 1.4,
+            "last_updated": "2026-03-15",
+            "tier": "daily",
+            "story": {
+              "beginner": "Italian stocks recovered some ground this year, with losses shrinking from 2.5% to 1.4%. The market moved closer to positive territory as investors regained confidence. Italy's main stock index still trades below where it started the year, but the gap continues to narrow.",
+              "moderate": "Italy's equity market showed resilience as year-to-date losses compressed from 2.5% to 1.4%. The FTSE MIB's recovery reflects improving investor sentiment toward Italian assets amid stabilizing economic conditions. While still in negative territory for the year, the index demonstrates meaningful momentum. This performance puts Italian stocks ahead of several European peers who continue to struggle with deeper losses.",
+              "expert": "The FTSE MIB's year-to-date performance improved substantially, with losses contracting 110 basis points from -2.5% to -1.4%. This recovery trajectory outpaced the broader STOXX Europe 600 and reflects decreased political risk premiums following stable government formation. Italian equities benefited from sector rotation into financials and utilities, both overweight in the index composition. The narrowing discount to book value suggests institutional flows returned to Italian names. Technical resistance at flat YTD performance remains the next key level for sustained momentum."
             }
           }
         }
@@ -18673,7 +18743,7 @@
           "Stock Market YTD": {
             "value": 3.19,
             "tier": "daily",
-            "last_updated": "2026-03-14",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "Chinese stocks gained 3.19% this year after starting with a modest 1.8% increase. The market picked up momentum as investors grew more optimistic about China's economic recovery.",
               "moderate": "China's stock market accelerated from a tepid 1.8% year-to-date gain to 3.19%, signaling improving investor sentiment. The uptick reflects growing confidence in China's post-reopening economic trajectory and potential policy support measures. Market participants appear increasingly willing to price in recovery scenarios despite ongoing structural headwinds.",
@@ -18703,11 +18773,21 @@
           "USD/CNY": {
             "value": 6.8954,
             "tier": "daily",
-            "last_updated": "2026-03-14",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "The Chinese yuan weakened slightly against the US dollar, moving from 6.89 to 6.8954. This small change means it now takes a bit more yuan to buy one dollar. Currency movements like this happen constantly as traders buy and sell based on economic conditions.",
               "moderate": "USD/CNY edged higher from 6.89 to 6.8954, indicating modest yuan depreciation against the dollar. The move reflects typical intraday volatility in the currency pair, which remains within recent trading ranges. Markets continue monitoring China's economic data releases and policy signals from the People's Bank of China for directional cues on the exchange rate.",
               "expert": "USD/CNY climbed marginally to 6.8954 from 6.89, representing a 0.08% yuan depreciation that keeps the pair well within its recent consolidation band. The modest weakness comes as markets digest China's latest economic indicators while positioning ahead of potential PBOC intervention around key technical levels. Trading volumes remain subdued, suggesting the move lacks conviction amid ongoing uncertainty around China's growth trajectory and monetary policy divergence with the Federal Reserve."
+            }
+          },
+          "Stock Market YTD (USD)": {
+            "value": 4.7,
+            "last_updated": "2026-03-15",
+            "tier": "daily",
+            "story": {
+              "beginner": "Chinese stocks gained 3.19% this year after starting with a modest 1.8% increase. The market picked up momentum as investors grew more optimistic about China's economic recovery.",
+              "moderate": "China's stock market accelerated from a tepid 1.8% year-to-date gain to 3.19%, signaling improving investor sentiment. The uptick reflects growing confidence in China's post-reopening economic trajectory and potential policy support measures. Market participants appear increasingly willing to price in recovery scenarios despite ongoing structural headwinds.",
+              "expert": "Chinese equities extended year-to-date gains from 1.8% to 3.19%, indicating a shift in risk appetite amid evolving macro conditions. The acceleration suggests institutional flows are responding to improved earnings visibility and potential monetary accommodation from the PBOC. Technical momentum appears to be building as foreign investor positioning normalizes following the sharp derisking cycle. Market multiples remain compressed relative to historical averages, creating scope for further re-rating if growth stabilization materializes. The trajectory aligns with broader EM outperformance themes as global liquidity conditions ease."
             }
           }
         }
@@ -20099,7 +20179,7 @@
           "Stock Market YTD": {
             "value": -12.47,
             "tier": "daily",
-            "last_updated": "2026-03-14",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "India's stock market remains down 12.47% for the year, showing a tiny improvement from the previous 12.5% decline. The small uptick suggests some stabilization after earlier losses. Indian stocks continue struggling despite this marginal recovery.",
               "moderate": "The Nifty's year-to-date performance improved marginally to -12.47% from -12.5%, indicating modest stabilization in Indian equities. This incremental gain reflects reduced selling pressure rather than strong buying momentum. The benchmark remains deeply in negative territory as investors grapple with global headwinds and domestic concerns. Market sentiment shows signs of finding a floor at current levels.",
@@ -20129,11 +20209,21 @@
           "USD/INR": {
             "value": 92.45,
             "tier": "daily",
-            "last_updated": "2026-03-14",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "The Indian rupee weakened slightly against the US dollar, moving from 92.43 to 92.45. This small change means it now takes a bit more rupees to buy one dollar. Currency moves like this happen constantly as traders buy and sell based on economic news and market conditions.",
               "moderate": "USD/INR climbed marginally from 92.43 to 92.45, indicating modest pressure on the rupee. The move reflects ongoing dollar strength in global markets and India's current account dynamics. While the change appears small, it adds to concerns about import costs for energy and commodities. The Reserve Bank of India continues monitoring currency stability amid global volatility.",
               "expert": "USD/INR extended gains to 92.45 from 92.43, testing resistance near multi-month highs as dollar demand persists. The move coincides with elevated US Treasury yields and risk-off sentiment affecting emerging market currencies broadly. India's merchandise trade deficit and foreign portfolio investment flows remain key drivers of rupee volatility. RBI intervention capacity through forex reserves provides backstop support, though policy makers face the dual challenge of currency stability and export competitiveness. Technical momentum suggests further testing of the 92.50 level absent significant intervention or dovish Fed signals."
+            }
+          },
+          "Stock Market YTD (USD)": {
+            "value": -15.01,
+            "last_updated": "2026-03-15",
+            "tier": "daily",
+            "story": {
+              "beginner": "India's stock market remains down 12.47% for the year, showing a tiny improvement from the previous 12.5% decline. The small uptick suggests some stabilization after earlier losses. Indian stocks continue struggling despite this marginal recovery.",
+              "moderate": "The Nifty's year-to-date performance improved marginally to -12.47% from -12.5%, indicating modest stabilization in Indian equities. This incremental gain reflects reduced selling pressure rather than strong buying momentum. The benchmark remains deeply in negative territory as investors grapple with global headwinds and domestic concerns. Market sentiment shows signs of finding a floor at current levels.",
+              "expert": "Indian equity indices posted a marginal recovery with YTD performance improving to -12.47% from -12.5%, suggesting consolidation around current support levels. The 3 basis point improvement indicates diminishing volatility and potential technical stabilization after the broader correction. Foreign institutional investor flows and rupee dynamics continue weighing on the Nifty's recovery trajectory. Risk-off sentiment persists across emerging markets, keeping Indian equities range-bound despite attractive valuations. The incremental improvement suggests accumulation by domestic institutional investors offsetting foreign selling pressure."
             }
           }
         }
@@ -21833,7 +21923,7 @@
           "Stock Market YTD": {
             "value": -0.78,
             "tier": "daily",
-            "last_updated": "2026-03-14",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "South Africa's stock market fell 0.78% this year. The drop got worse from the previous reading of negative 0.5%. Local companies lost value as investors pulled money out.",
               "moderate": "The JSE All Share Index declined 0.78% year-to-date, deepening from the previous 0.5% loss. South African equities face headwinds from persistent load shedding, political uncertainty, and global risk-off sentiment. Foreign investors continue reducing their exposure to emerging market assets. The rand's weakness against major currencies adds another layer of complexity for international capital flows.",
@@ -21843,7 +21933,7 @@
           "10Y Bond Yield": {
             "value": 8.618,
             "tier": "daily",
-            "last_updated": "2026-03-14",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "South Africa's 10-year government bond yield dropped slightly to 8.618% from 8.62%. This small decline means investors are willing to accept marginally lower returns to lend money to the South African government for ten years. Lower bond yields generally signal improved confidence in the country's economic outlook.",
               "moderate": "South Africa's 10-year government bond yield edged down to 8.618% from 8.62%, a modest decline of 0.002 percentage points. The marginal improvement suggests slightly better investor sentiment toward South African sovereign debt, though yields remain elevated compared to developed market peers. This minor shift reflects ongoing market assessment of the country's fiscal position and economic prospects. Bond yields at these levels continue to indicate significant risk premiums demanded by investors for South African government debt.",
@@ -21851,9 +21941,9 @@
             }
           },
           "Yield Curve": {
-            "value": "+187bps",
+            "value": 186.8,
             "tier": "daily",
-            "last_updated": "2026-03-13",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "South Africa's yield curve steepened dramatically, jumping from 100 basis points to 187 basis points. This means long-term government bonds now pay much more interest than short-term ones. Investors are demanding higher compensation for lending money to South Africa for longer periods.",
               "moderate": "South Africa's yield curve steepened significantly to 187 basis points from 100 basis points, reflecting growing investor concerns about long-term risks. The widening spread between short and long-term government bond yields signals heightened inflation expectations and fiscal sustainability worries. Bond traders are demanding substantially higher premiums for holding longer-dated South African debt. This steepening typically indicates weakening confidence in the country's economic outlook.",
@@ -21861,13 +21951,23 @@
             }
           },
           "USD/ZAR": {
-            "value": 16.9403,
+            "value": 16.8775,
             "tier": "daily",
-            "last_updated": "2026-03-14",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "The South African rand weakened against the US dollar, moving from 16.82 to 16.94. This means it now takes more rand to buy one dollar. A weaker rand makes imports more expensive for South Africans but helps exporters who earn dollars.",
               "moderate": "The USD/ZAR exchange rate climbed from 16.82 to 16.94, marking a 0.7% depreciation in the rand. This move puts additional pressure on South Africa's import costs, particularly for fuel and food items priced in dollars. The weaker rand provides some relief to mining companies and other exporters who benefit from dollar revenues. Currency weakness often signals investor concerns about domestic economic conditions or relative attractiveness compared to US assets.",
               "expert": "USD/ZAR appreciated 120 basis points to 16.9403 from 16.82, reflecting renewed pressure on the rand amid global dollar strength and domestic headwinds. The move beyond the 16.90 resistance level suggests potential for further weakness toward the 17.00 psychological barrier. South African bond yields likely face upward pressure as rand depreciation reignites inflation concerns, particularly given the country's dependence on imported fuel and food. Mining equities may see offsetting benefits from improved rand-denominated revenues, though the net impact depends on input cost inflation dynamics. The Reserve Bank's policy stance becomes more complex as currency weakness complicates the inflation outlook despite cooling domestic demand pressures."
+            }
+          },
+          "Stock Market YTD (USD)": {
+            "value": -2.5,
+            "last_updated": "2026-03-15",
+            "tier": "daily",
+            "story": {
+              "beginner": "South Africa's stock market fell 0.78% this year. The drop got worse from the previous reading of negative 0.5%. Local companies lost value as investors pulled money out.",
+              "moderate": "The JSE All Share Index declined 0.78% year-to-date, deepening from the previous 0.5% loss. South African equities face headwinds from persistent load shedding, political uncertainty, and global risk-off sentiment. Foreign investors continue reducing their exposure to emerging market assets. The rand's weakness against major currencies adds another layer of complexity for international capital flows.",
+              "expert": "The FTSE/JSE All Share Total Return Index posted a 0.78% YTD decline, deteriorating from the prior 0.5% negative print. Structural challenges including Eskom's grid instability, elevated sovereign risk premiums, and constrained fiscal space continue weighing on equity valuations. The MSCI South Africa Index underperformed broader EM benchmarks as foreign institutional flows remained persistently negative. Resource sector volatility, particularly in platinum and gold miners, amplified the index drawdown amid shifting global commodity demand patterns and China's economic deceleration concerns."
             }
           }
         }
@@ -24054,7 +24154,7 @@
           "Stock Market YTD": {
             "value": 10.26,
             "tier": "daily",
-            "last_updated": "2026-03-14",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "Brazil's stock market gained 10.26% this year, down from the previous 11.7%. Brazilian stocks have given back some of their earlier gains but remain solidly positive for the year.",
               "moderate": "The Bovespa index posted a 10.26% year-to-date return, moderating from its previous 11.7% gain. Brazilian equities experienced some profit-taking after their strong early-year performance. The market continues to outperform many emerging market peers despite recent volatility. Investors remain cautiously optimistic about Brazil's economic outlook even as political uncertainties persist.",
@@ -24084,11 +24184,21 @@
           "USD/BRL": {
             "value": 5.3019,
             "tier": "daily",
-            "last_updated": "2026-03-14",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "The Brazilian real weakened against the US dollar, moving from 5.23 to 5.30 reais per dollar. This means it now takes more reais to buy one dollar. A weaker real makes imports more expensive for Brazilians but helps Brazilian exporters compete globally.",
               "moderate": "USD/BRL climbed from 5.23 to 5.30, marking a 1.4% depreciation in the Brazilian real. The move reflects ongoing pressure on emerging market currencies amid global risk sentiment shifts. Brazilian imports become costlier while exporters gain competitiveness, creating mixed implications for inflation and economic growth. Central bank intervention capacity remains a key watch point for further real weakness.",
               "expert": "USD/BRL advanced 71 basis points to 5.3019 from 5.23, breaching the 5.30 psychological level amid broad EM FX weakness. The real's underperformance likely stems from fiscal concerns, commodity price volatility, and Federal Reserve policy expectations affecting carry trade dynamics. Import price pressures will challenge BCB's disinflationary process while export sectors gain margin relief. Options flow and central bank FX intervention levels around 5.35 warrant close monitoring. Real money outflows and positioning data suggest further downside risks if global risk appetite deteriorates."
+            }
+          },
+          "Stock Market YTD (USD)": {
+            "value": 13.88,
+            "last_updated": "2026-03-15",
+            "tier": "daily",
+            "story": {
+              "beginner": "Brazil's stock market gained 10.26% this year, down from the previous 11.7%. Brazilian stocks have given back some of their earlier gains but remain solidly positive for the year.",
+              "moderate": "The Bovespa index posted a 10.26% year-to-date return, moderating from its previous 11.7% gain. Brazilian equities experienced some profit-taking after their strong early-year performance. The market continues to outperform many emerging market peers despite recent volatility. Investors remain cautiously optimistic about Brazil's economic outlook even as political uncertainties persist.",
+              "expert": "The Ibovespa retreated to a 10.26% YTD return from 11.7%, reflecting recent consolidation in Brazilian equities after the index's Q1 rally. The pullback coincides with renewed concerns over fiscal policy execution and global risk-off sentiment affecting EM assets. Brazilian ADRs trading in New York have underperformed the domestic market as foreign flows turned mixed. The real's recent weakness against the dollar has provided some tailwind for exporters in the index. Technical support levels around the 120,000 point mark will be critical for maintaining the year's positive momentum."
             }
           }
         }
@@ -25818,13 +25928,23 @@
             }
           },
           "USD/RUB": {
-            "value": 79.4975,
+            "value": 80.025,
             "tier": "daily",
-            "last_updated": "2026-03-14",
+            "last_updated": "2026-03-15",
             "story": {
               "beginner": "The Russian ruble strengthened against the US dollar, moving from 80.3 to 79.5 rubles per dollar. This means each dollar now buys fewer rubles than before. A stronger ruble makes imports cheaper for Russians but reduces the competitiveness of Russian exports.",
               "moderate": "USD/RUB declined from 80.3 to 79.5, marking a notable strengthening of the ruble against the dollar. The move suggests improved market sentiment toward Russian assets or potential central bank intervention to support the currency. This appreciation benefits domestic purchasing power but may pressure export revenues, which remain crucial for Russia's current account balance. The shift comes amid ongoing volatility in emerging market currencies.",
               "expert": "USD/RUB retreated from 80.3 to 79.5, representing a 1% appreciation in the ruble that breaks recent consolidation patterns. The strengthening likely reflects a combination of oil price dynamics, capital flow restrictions maintaining artificial demand for rubles, and possible CBR intervention through FX sales. This move pushes the pair further from the psychological 80 level, though structural sanctions-related distortions continue to dominate price discovery mechanisms. The appreciation may complicate the central bank's monetary policy transmission given the disconnect between nominal exchange rates and underlying economic fundamentals."
+            }
+          },
+          "Stock Market YTD (USD)": {
+            "value": null,
+            "last_updated": null,
+            "tier": "daily",
+            "story": {
+              "beginner": "Russian stocks have risen 5% this year on the Moscow Exchange, supported by higher oil prices and some cautious optimism about a possible peace process. Access to Russian stocks is effectively limited to Russian domestic investors, since Western sanctions prevent most international investors from buying or selling shares in Russian companies. The market is small and illiquid by global standards.",
+              "moderate": "The MOEX index's 5% YTD gain reflects the oil windfall (energy stocks are a dominant index weight) and some partial peace-process optimism that has intermittently lifted sentiment; the market is effectively a domestic Russian retail and institutional investor market, with Western capital locked out since 2022; the 5% gain in rouble terms may represent a real loss for investors who cannot convert gains to hard currency due to capital controls.",
+              "expert": "Russia's equity market is structurally isolated from global capital markets following the February 2022 sanctions and the NSD (National Settlement Depository) lock-out that froze foreign holdings; the MOEX operates as a closed domestic market where the primary price-setting investors are Russian retail investors, domestic pension funds, and state-controlled institutions; the 5% YTD nominal return in roubles provides limited information about fundamental value, as the market cannot clear at international prices given the convertibility restriction and as rouble-denominated returns cannot be realised in hard currency by most international benchmarks."
             }
           }
         }
