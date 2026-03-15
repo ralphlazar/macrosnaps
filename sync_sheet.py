@@ -61,10 +61,11 @@ MARKET_KEY_FILE = os.path.expanduser(
 
 # Sheet column name → data.json key
 MARKET_COL_MAP = {
-    "Stock_Market_Index":  "stock_market_index",
-    "Stock_Market_YTD_USD": "stock_market_ytd",
-    "FX_Rate":             "fx_rate",
-    "Bond_Yield_10Y":      "bond_yield_10y",
+    "Stock_Market_Index":   "stock_market_index",
+    "Stock_Market_YTD":     "stock_market_ytd",
+    "Stock_Market_YTD_USD": "stock_market_ytd_usd",
+    "FX_Rate":              "fx_rate",
+    "Bond_Yield_10Y":       "bond_yield_10y",
 }
 
 # ── fetch and parse ───────────────────────────────────────────────────────────
