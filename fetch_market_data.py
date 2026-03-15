@@ -50,6 +50,13 @@ try:
 except ImportError:
     pass
 
+try:
+    import gspread
+    from google.oauth2.service_account import Credentials
+    _GSPREAD_AVAILABLE = True
+except ImportError:
+    _GSPREAD_AVAILABLE = False
+
 # ---------------------------------------------------------------------------
 # SETTINGS
 # ---------------------------------------------------------------------------
@@ -61,6 +68,23 @@ DATA_FILE    = Path(__file__).parent / "data.json"
 FRED_BASE    = "https://api.stlouisfed.org/fred"
 FRED_API_KEY = os.environ.get("FRED_API_KEY", "")
 TODAY        = date.today().isoformat()
+
+# ---------------------------------------------------------------------------
+# MARKET-STATS SHEET CONFIG (commodity row append)
+# ---------------------------------------------------------------------------
+
+MARKET_SHEET_ID  = os.environ.get("MARKET_STATS_SHEET_ID", "")
+MARKET_KEY_FILE  = os.path.expanduser(
+    os.environ.get("MARKET_STATS_KEY_FILE", "~/Downloads/macrosnaps/market-stats-key.json")
+)
+COMMODITY_TAB = "Commodities"
+
+# Column order — must match the header row written by backfill_commodity_data.py
+COMMODITY_COL_ORDER = [
+    "WTI Crude", "Brent Crude", "Natural Gas",
+    "Gold", "Silver", "Copper",
+    "Wheat", "Corn", "Soybeans",
+]
 
 # ---------------------------------------------------------------------------
 # LOGGING
@@ -526,6 +550,65 @@ def process_commodities(data):
 
     log.info(f"\n  Commodities updated: {ok}  failed: {failed}")
 
+
+# ---------------------------------------------------------------------------
+# APPEND TODAY'S ROW TO MARKET-STATS COMMODITIES TAB
+# ---------------------------------------------------------------------------
+
+def append_commodity_row_to_sheet(items):
+    """
+    Append a single row for today's commodity prices to the Commodities tab
+    in the MARKET-STATS Google Sheet.
+
+    Row format: Date | WTI Crude | Brent Crude | ... (COMMODITY_COL_ORDER)
+
+    Skips silently if gspread is not installed, MARKET_STATS_SHEET_ID is not
+    set, or today's date is already the last row (idempotent).
+    Logs a warning (never raises) so a sheet failure never blocks data.json.
+    """
+    if not _GSPREAD_AVAILABLE:
+        log.warning("  Sheet append skipped: gspread not installed (pip3 install gspread google-auth)")
+        return
+    if not MARKET_SHEET_ID:
+        log.warning("  Sheet append skipped: MARKET_STATS_SHEET_ID not set in .env")
+        return
+    if not os.path.exists(MARKET_KEY_FILE):
+        log.warning(f"  Sheet append skipped: key file not found at {MARKET_KEY_FILE}")
+        return
+
+    price_map = {item["name"]: item["price"] for item in items
+                 if item.get("name") and item.get("price") is not None}
+
+    try:
+        scopes = [
+            "https://www.googleapis.com/auth/spreadsheets",
+            "https://www.googleapis.com/auth/drive",
+        ]
+        creds = Credentials.from_service_account_file(MARKET_KEY_FILE, scopes=scopes)
+        gc    = gspread.authorize(creds)
+        sh    = gc.open_by_key(MARKET_SHEET_ID)
+
+        try:
+            ws = sh.worksheet(COMMODITY_TAB)
+        except gspread.WorksheetNotFound:
+            log.warning(f"  Sheet append skipped: tab '{COMMODITY_TAB}' not found — run backfill first")
+            return
+
+        # Idempotency: skip if today's row is already the last row
+        all_values = ws.get_all_values()
+        if len(all_values) >= 2:
+            last_date = all_values[-1][0].strip() if all_values[-1] else ""
+            if last_date == TODAY:
+                log.info(f"  Sheet: today's row already present — skipping append")
+                return
+
+        row = [TODAY] + [price_map.get(col, "") for col in COMMODITY_COL_ORDER]
+        ws.append_row(row, value_input_option="USER_ENTERED")
+        log.info(f"  Sheet: appended row for {TODAY} to '{COMMODITY_TAB}' tab \u2713")
+
+    except Exception as exc:
+        log.warning(f"  Sheet append FAILED (data.json still updated): {exc}")
+
 # ---------------------------------------------------------------------------
 # MAIN
 # ---------------------------------------------------------------------------
@@ -591,12 +674,19 @@ def main():
 
     process_commodities(data)
 
+    # Append today's commodity prices to the MARKET-STATS Commodities tab
+    log.info(f"\n{'='*52}")
+    log.info("  COMMODITIES → SHEET APPEND")
+    log.info(f"{'='*52}")
+    append_commodity_row_to_sheet(data.get("commodities", {}).get("items", []))
+
     log.info(f"\nWriting {DATA_FILE} ...")
     with open(DATA_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
     log.info("Write complete.")
 
     log.info("\nNext steps:")
+    log.info("  python3 sync_commodity_data.py --apply  # derive spark/change from sheet")
     log.info("  python3 build.py && git add -A && git commit -m 'Daily market update' && git push origin master")
 
 
