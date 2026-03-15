@@ -1,5 +1,24 @@
 # MacroSnaps - Living Brief
-Last updated: March 15, 2026 (Session 15: tooling session. Commodity prices moved from black-box data.json into a new `Commodities` tab in MARKET-STATS Google Sheet. Daily history from 2000-07-17 backfilled. spark upgraded from 12 → 120 points. change is now day-over-day not YTD. Daily ritual updated.)
+Last updated: March 15, 2026 (Session 16: UI session. Major UI/UX overhaul — nav simplified to logo-only, navy palette applied, per-metric weather strips added to country cards, sort order defaulted to nominal GDP, multiple card/tooltip cleanup changes.)
+
+Session 16 changes in detail (all in macrosnaps-shell.html only):
+(1) Logo click from Globe view now calls switchToRankings() before renderMetricTable() — navigates back to homepage correctly from any view.
+(2) Nav simplified to logo-only. Rankings, Globe, and Commodities buttons hidden via `.view-toggle{display:none}`. All button code intact — do not delete. Globe remains lazy-init, accessible by restoring display if needed post-launch.
+(3) Commodities FAB: `<button id="btnCommFab">🛢️</button>` added fixed bottom-right (bottom:72px, right:20px). Amber emoji, cyan border, wired to switchToCommodities(). This is the sole entry point to the Commodities card from the homepage.
+(4) Yield Curve and 10Y Bond Yield rankings: ranked table now renders `num + cfg.unit` (parsed float + config unit string) instead of raw string. Eliminates mixed bps/no-bps and %/no-% inconsistency. Applies to all ranked metrics.
+(5) Mobile rankings grid: columns 0–1 (2020–2021) hidden via `.wh-col-old{display:none}` at ≤768px breakpoint. Shows 5 years (2022–2026F) on mobile, all 7 on desktop.
+(6) Per-metric weather strip added to country cards. 7 icons (2020–2026F) shown inline right of the metric value inside `.m-val-row` (flex, space-between). Appears on all 5 hasGrid macro metrics (GDP Growth, Inflation CPI, Unemployment, Budget Deficit, Current Account). Not on Policy Rate or market metrics. 2026F icon has `opacity:.6` and tiny `F` subscript. Desktop: CSS `::before` hover tooltip showing `2024 · +2.5%`. Mobile: tap strip to show/dismiss year+value overlay. Tapping strip does not open the metric tooltip.
+(7) Icon rule (FIXED, do not change): all weather icons site-wide must use the `.wh-icon` CSS filter pattern — a single ☀️ emoji styled via `filter: brightness/contrast/saturate`. Classes: `.wh-icon.sunny` (no filter), `.wh-icon.cloudy` (desaturated dim), `.wh-icon.stormy` (near-black with drop-shadow). This is the only permitted icon rendering method. Per-metric strip uses `☀️/☁️/⛈️` with `.wh-icon cls` wrapper — correct emoji per state, consistent with ranking tables.
+(8) Country cards: `Stock Market YTD (USD)`, `Stock Market Index`, and `FX Rate` excluded from card market metrics via `CARD_MARKET_EXCLUDE` set. Cards show: Stock Market YTD (local), FX cross vs USD, 10Y Bond Yield, Yield Curve, Policy Rate only.
+(9) Navy palette applied everywhere (body, cards, overlays, top bar, panels):
+  - `#05080f` → `#091426` (body/page background)
+  - `#0d1120` → `#0e1d35` (cards, comm items)
+  - `rgba(10,14,26,...)` → `rgba(9,20,38,...)` (all panels/overlays/tooltips)
+  - `#2a2e3d` → `#243650` (card borders)
+(10) Default rankings sort changed to nominal GDP order via `GDP_NOMINAL_ORDER` constant. `_whSortCol` initialised to `-1` (new state meaning nominal order). Handled in both `renderGridTable` and `renderRankedTable` sort functions. Logo click also resets `_whSortCol = -1`. User column-header clicks still override to dynamic sort. Nominal order: USA, CHN, DEU, JPN, IND, GBR, FRA, ITA, CAN, BRA, RUS, ZAF.
+(11) Compare All Countries and ☀️☁️☁️ Over Time buttons removed from macro metric tooltips. Both buttons now only appear for market metrics (`d.section === 'market'`). Rationale: weather strip and homepage grid make these redundant for macro. Compare button listener guarded with null check.
+
+---
 
 Session 15 changes in detail:
 (1) New tab `Commodities` in MARKET-STATS sheet. Columns: `Date | WTI Crude | Brent Crude | Natural Gas | Gold | Silver | Copper | Wheat | Corn | Soybeans`. Daily close prices. Actual date coverage starts 2000-07-17 (earliest yfinance has for these continuous futures contracts — Brent starts 2007-07-30).
@@ -17,42 +36,20 @@ Session 15 changes in detail:
   ```
 
 Session 14 changes in detail:
-(1) Root cause diagnosed: `sync_sheet.py` `run_market_sync()` was writing market values as top-level keys on the country object (e.g. `country["stock_market_ytd"]`) rather than into `country["metrics"]["market"]` with proper display keys. The shell reads exclusively from `co.metrics.market[...]`. Values were being written to the wrong location in data.json entirely.
-(2) `sync_sheet.py` — three fixes:
-  - `MARKET_COL_MAP` now maps sheet column names to display keys matching `metrics.market` (e.g. `"Stock_Market_YTD_USD"` → `"Stock Market YTD (USD)"`).
-  - `run_market_sync()` now writes into `country["metrics"]["market"]` with correct display keys, respecting existing `{value: ..., story: ...}` dict structure where present.
-  - Added `_jan1_index_from_rows()` and `_compute_local_ytd()` helpers. Local YTD is now computed from index history in the sheet (latest / jan1 - 1) and written to `metrics.market["Stock Market YTD"]`. The sheet has no `Stock_Market_YTD` column — this was always a computed value.
-  - Added None-guard: blank sheet cells never overwrite existing non-null values (protects CHN/IND/BRA/RUS bond yields which have no FRED series).
-  - `sh.worksheet()` call wrapped in retry-with-backoff (same pattern as `get_all_values_with_retry`) to handle 429 quota errors.
-(3) `macrosnaps-shell.html` — no net change. A fallback coalesce (`??`) was briefly added and then removed once the real fix was confirmed.
-(4) Bond yields for CHN (2.40%), IND (6.73%), BRA (13.80%), RUS (13.5%) were accidentally wiped by an intermediate bad run and manually restored via one-off inline Python before the None-guard was in place.
-(5) Daily refresh command confirmed clean:
-  `python3 update_market_sheet.py && sleep 60 && python3 sync_sheet.py --market --apply && python3 build.py --apply`
+(1) Root cause diagnosed: `sync_sheet.py` `run_market_sync()` was writing market values as top-level keys on the country object rather than into `country["metrics"]["market"]` with proper display keys.
+(2) `sync_sheet.py` — three fixes: MARKET_COL_MAP corrected; run_market_sync() writes to correct location; _jan1_index_from_rows() and _compute_local_ytd() helpers added; None-guard added; worksheet() call wrapped in retry-with-backoff.
+(3) Bond yields for CHN (2.40%), IND (6.73%), BRA (13.80%), RUS (13.5%) hand-maintained in data.json. None-guard protects them.
 
 Session 13 changes in detail:
-(1) `update_market_sheet.py`: added `fetch_moex_index()` which hits the MOEX public REST API (`iss.moex.com/iss/engines/stock/markets/index/securities/IMOEX/candles.json?interval=31`) for monthly candles. For RUS only, equity is now sourced from MOEX instead of yfinance (IMOEX.ME unreliable post-sanctions). `_moex_jan1` internal key carries the Jan-1 base level, bypassing sheet-history lookup. `Stock_Market_YTD_USD` is now computed for RUS using the MOEX local return adjusted by RUB/USD from the sheet.
-(2) `sync_sheet.py`: `--market` flag was silently ignored (it was never implemented). Added `run_market_sync()` function. `--market` and `--apply` (macro) modes are now mutually exclusive branches in `main()`. Macro path untouched.
-(3) `backfill_rus_index.py`: one-off script (keep for re-use). Fetched 6,554 MOEX daily candles from 2000-01-01. 200 blanks remain (genuine non-trading days). Script is idempotent — only writes to blank cells.
+(1) `update_market_sheet.py`: RUS equity now sourced from MOEX REST API via fetch_moex_index(). Stock_Market_YTD_USD computed for RUS using MOEX local return adjusted by RUB/USD.
+(2) `sync_sheet.py`: --market flag implemented via run_market_sync(). --market and --apply are mutually exclusive branches.
+(3) `backfill_rus_index.py`: one-off script, keep for re-use. 6,554 MOEX daily candles from 2000-01-01.
 
-Last session note (Session 12): UI session. All changes in macrosnaps-shell.html only. (1) Deleted computeFxYtd and computeUsdReturn — USD toggle now reads co.metrics.market['Stock Market YTD (USD)'] directly. (2) Stock Market YTD ranking redesigned: two columns (Local + USD) always visible side by side, both sortable, plus sortable Countries column. (3) Hover tooltip suppressed on touch devices via @media(hover:none). (4) Logo click resets to GDP Growth home state. (5) DISPLAY_NAMES map added: 'United Kingdom'->'UK', 'United States'->'USA' in all ranked and grid table renders. (6) Value columns thinned (width:58px) and centre-aligned. All dead CSS removed.
+Session 12: UI session. (1) computeFxYtd and computeUsdReturn deleted. (2) Stock Market YTD ranking: Local + USD columns always visible, both sortable. (3) Hover tooltip suppressed on touch devices. (4) Logo click resets to GDP Growth home state. (5) DISPLAY_NAMES map added. (6) Value columns thinned and centre-aligned.
 
-Last session note (Session 11): tooling session. Stock_Market_YTD_USD pipeline complete. update_market_sheet.py now appends a 7th column to each MARKET-STATS tab. 11 countries had values; RUS blank (no equity data at the time).
+Session 10–11: Full homepage redesign. Default landing page is GDP Growth weather grid. Globe lazy-init. Metric picker added. USD equity toggle removed.
 
-Previous session note (Session 10): Full homepage redesign across two sessions (9 and 10). All changes are in macrosnaps-shell.html only. Key changes:
-
-(1) Default landing page is now a GDP Growth weather map table. Globe is hidden by default, lazy-initialised on first click of the Globe toggle in the top bar. Rankings/Globe toggle added to top-bar.
-
-(2) Weather table: 12 countries x 7 columns (2020-2026F). Icons only (no numbers in cells). Rows are clickable to open country card. Columns and country header are sortable by click. Default sort is descending by 2026F column. Icon hover shows the data value as a floating tooltip.
-
-(3) Metric picker: clicking the "GDP Growth" title opens a dropdown of all metrics in two groups - Macro (GDP Growth, Inflation, Unemployment, Budget Deficit, Current Account - all have full 7-year weather grid using existing weather functions and data objects) and Markets (Policy Rate, Stock Market YTD, 10Y Bond Yield, Yield Curve - show a single ranked column of current values).
-
-(4) USD equity toggle removed. Stock Market YTD now shows Local and USD columns simultaneously, both sortable.
-
-(5) Geo filter (All 12/G7/BRICS+) was removed. Tagline "Like learning a language" was removed.
-
-(6) Colour scheme changed to deep navy: body #05080f, cards/overlays #0d1120, floating panels rgba(10,14,26,.98), chart hover tooltips rgba(8,12,24,.97). Globe inner sphere updated to match.
-
-Previous session note (Session 8): extended all tooltip charts to start from Jan 2000. (1) sync_monthly_historical.py and sync_market_historical.py: START_DATE changed to 2000-01-01. (2) macrosnaps-shell.html: histMonthlyLabels IIFE now anchors at Jan 2000 and counts forward to _meta.generated; isAnnual detection fixed to use cfg.type==='bar' instead of cfg.annual; slice direction fixed - full array uses slice(0,n) left-anchored, range buttons use slice(-n) right-anchored; annual charts have no range buttons and always show full array; both All buttons use data-r="0"; initial renders pass null; renderCommodityMonthlyChart treats falsy rangeMonths as full array; fallback title updated to "History since 2000". (3) sync_sheet.py --apply run to restore annual arrays to 27 points (2000-2026F).
+Session 8: All tooltip charts extended to Jan 2000.
 
 ---
 
@@ -235,13 +232,24 @@ Three levels per metric per country: `beginner`, `moderate`, `expert`. 168 per-m
 ### Shell key facts (macrosnaps-shell.html)
 
 - Market metrics read from `co.metrics.market[display_key]` — exact string match required
-- `Stock Market YTD (USD)` is read directly at line ~6230: `co.metrics.market['Stock Market YTD (USD)']`
+- `Stock Market YTD (USD)` read at rankings table only — excluded from country cards via `CARD_MARKET_EXCLUDE`
+- `Stock Market Index` and `FX Rate` also excluded from country cards via `CARD_MARKET_EXCLUDE`
 - Local YTD: `co.metrics.market['Stock Market YTD']`
 - `_flattenMetrics()` flattens `{value, story}` objects to bare values for the shell
 - `DISPLAY_NAMES` map: `'United Kingdom' → 'UK'`, `'United States' → 'USA'`
 - Weather icon computed live from GDP Growth thresholds: ≥3% ☀️, ≥0% ☁️, <0% ⛈️
 - `metricDisplayLabels`: `'Policy Rate' → 'Policy Rate (year-end)'`
-- Globe is lazy-init (WebGL only on first toggle click)
+- Globe is lazy-init (WebGL only on first toggle click). Nav buttons hidden, globe accessible by restoring `.view-toggle{display:flex}` if needed.
+- Default sort: `_whSortCol = -1` = nominal GDP order (GDP_NOMINAL_ORDER constant). Logo click resets to this.
+- `CARD_MARKET_EXCLUDE` set: `'Stock Market YTD (USD)'`, `'Stock Market Index'`, `'FX Rate'`
+
+### Weather icon rule (FIXED — do not change)
+
+All weather icons across the entire site must use the `.wh-icon` CSS filter pattern:
+- A single `☀️` emoji wrapped in `<span class="wh-icon sunny/cloudy/stormy">`
+- `.sunny`: no filter. `.cloudy`: `brightness(.6) contrast(1.05) saturate(.3)`. `.stormy`: `brightness(.15) contrast(1.2) saturate(0) drop-shadow(...)`
+- Exception: per-metric strip uses the correct emoji per state (`☀️` sunny, `☁️` cloudy, `⛈️` stormy) with the same `.wh-icon cls` wrapper — this is intentional so the filter still applies correctly
+- Never use differently-styled icons (raw emoji, SVG, different filter values) anywhere else on the site
 
 ---
 
