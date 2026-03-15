@@ -420,6 +420,7 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 .m-val-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:2px}
 
 /* ── Per-metric weather strip ── */
+.m-strip .wh-icon{font-size:18px;display:inline}
 .m-strip{display:flex;gap:4px;align-items:center;flex-shrink:0}
 .m-si{font-size:16px;line-height:1;cursor:default;position:relative;display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:3px;transition:background .15s}
 .m-si:hover{background:rgba(255,255,255,.08)}
@@ -6181,7 +6182,7 @@ function renderGridTable(wrap, cfg, titleHTML) {
 
   const thCols = colLabels.map((lbl, i) => {
     const isFc  = String(lbl).includes('F');
-    const isOld = i < 4;
+    const isOld = i < 2;
     return `<th class="wh-sortable${isFc ? ' wh-fc' : ''}${isOld ? ' wh-col-old' : ''}" data-col="${i+1}">${lbl}${arrow(i+1)}</th>`;
   }).join('');
 
@@ -6192,7 +6193,7 @@ function renderGridTable(wrap, cfg, titleHTML) {
       const cls   = w.cls === 'storm' ? 'stormy' : w.cls;
       const emoji = cls === 'sunny' ? '☀️' : cls === 'stormy' ? '⛈️' : '☁️';
       const isFc  = String(lbl).includes('F');
-      const isOld = i < 4;
+      const isOld = i < 2;
       const sign  = (cfg.sign && v !== null && v > 0) ? '+' : '';
       const tipVal = v !== null ? `${sign}${v}${cfg.unit}` : '';
       return `<td class="wh-cell${isFc ? ' wh-fc-col' : ''}${isOld ? ' wh-col-old' : ''}" data-val="${tipVal}" data-country="${co.name}"><span class="wh-icon ${cls}">${emoji}</span></td>`;
@@ -6977,7 +6978,7 @@ function metricWeatherStrip(metricName, countryCode) {
   if (!entry || !entry.v || entry.v.length < 2) return '';
   const allVals   = entry.v;
   const allLabels = (histAnnualLabels && histAnnualLabels.length) ? histAnnualLabels : [];
-  const n      = Math.min(5, allVals.length);
+  const n      = Math.min(7, allVals.length);
   const vals   = allVals.slice(-n);
   const labels = allLabels.slice(-n);
   const cfg    = METRIC_CONFIG[metricName];
@@ -6988,10 +6989,9 @@ function metricWeatherStrip(metricName, countryCode) {
     const isFc   = String(lbl).includes('F');
     const w      = v !== null ? wFn(v) : null;
     const cls    = w ? (w.cls === 'storm' ? 'stormy' : w.cls) : 'cloudy';
-    const emoji  = cls === 'sunny' ? '☀️' : cls === 'stormy' ? '⛈️' : '☁️';
     const dispV  = v !== null ? ((sign && v > 0 ? '+' : '') + v + unit) : '—';
     const tip    = lbl ? `${lbl} · ${dispV}` : dispV;
-    return `<span class="m-si ${cls}${isFc ? ' m-si-fc' : ''}" data-tip="${tip}" data-yr="${lbl}" data-val="${dispV}">${emoji}</span>`;
+    return `<span class="m-si${isFc ? ' m-si-fc' : ''}" data-tip="${tip}" data-yr="${lbl}" data-val="${dispV}"><span class="wh-icon ${cls}">☀️</span></span>`;
   }).join('');
   return `<div class="m-strip" data-strip="1">${icons}</div>`;
 }
