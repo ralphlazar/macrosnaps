@@ -6227,7 +6227,8 @@ function renderRankedTable(wrap, cfg, titleHTML) {
   const rows = countries.map(co => {
     if (isStockYtd) {
       const num1 = parseVal(getLocalVal(co));
-      const usdRaw = co.metrics && co.metrics.market && co.metrics.market['Stock Market YTD (USD)'];
+      const usdRaw = co.metrics && co.metrics.market &&
+        (co.metrics.market['Stock Market YTD (USD)'] ?? co.metrics.market['Stock Market YTD']);
       const num2 = (usdRaw != null) ? parseVal(usdRaw) : null;
       return {co, num1, num2};
     }

@@ -16,6 +16,9 @@ import json
 import sys
 import io
 import os
+import time
+import time
+import time
 import urllib.request
 from datetime import date
 
@@ -163,6 +166,43 @@ def fmt_card_value(display_key, val):
         # Inflation (CPI), Unemployment, Policy Rate
         return f"{fmt_num(val)}%"
 
+# ── Sheets API retry helper ───────────────────────────────────────────────────
+
+def get_all_values_with_retry(ws, max_retries: int = 4, base_wait: int = 15) -> list:
+    """
+    Call ws.get_all_values() with exponential backoff on 429 quota errors.
+    Waits base_wait, 2x, 4x, 8x seconds between attempts.
+    Raises the last exception if all retries are exhausted.
+    """
+    for attempt in range(max_retries):
+        try:
+            return ws.get_all_values()
+        except gspread.exceptions.APIError as e:
+            if e.response.status_code == 429 and attempt < max_retries - 1:
+                wait = base_wait * (2 ** attempt)
+                print(f"    [429] Quota hit — waiting {wait}s before retry "
+                      f"({attempt + 1}/{max_retries - 1})...")
+                time.sleep(wait)
+            else:
+                raise
+
+
+
+# ── Sheets API retry helper ───────────────────────────────────────────────────
+
+def get_all_values_with_retry(ws, max_retries: int = 4, base_wait: int = 15) -> list:
+    for attempt in range(max_retries):
+        try:
+            return ws.get_all_values()
+        except gspread.exceptions.APIError as e:
+            if e.response.status_code == 429 and attempt < max_retries - 1:
+                wait = base_wait * (2 ** attempt)
+                print(f"    [429] Quota hit — waiting {wait}s before retry ({attempt + 1}/{max_retries - 1})...")
+                import time; time.sleep(wait)
+            else:
+                raise
+
+
 # ── market sync ───────────────────────────────────────────────────────────────
 
 def run_market_sync(apply_mode: bool, data: dict) -> list:
@@ -193,7 +233,7 @@ def run_market_sync(apply_mode: bool, data: dict) -> list:
             print(f"  WARNING: tab '{code}' not found in MARKET-STATS sheet")
             continue
 
-        all_rows = ws.get_all_values()
+        all_rows = get_all_values_with_retry(ws)
         if len(all_rows) < 2:
             print(f"  WARNING: {code} tab has no data rows")
             continue
