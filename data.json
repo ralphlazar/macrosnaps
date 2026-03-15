@@ -8,7 +8,7 @@
       "weekly": "Update weekly or on release — CPI, unemployment, policy rate",
       "structural": "Update quarterly or on major revision — GDP, deficits, current account, stories, fxRegime"
     },
-    "built_at": "2026-03-15 13:11"
+    "built_at": "2026-03-15 13:13"
   },
   "countries": {
     "USA": {
@@ -18800,7 +18800,7 @@
             }
           },
           "10Y Bond Yield": {
-            "value": null,
+            "value": "2.40%",
             "tier": "daily",
             "last_updated": "2026-03-09",
             "story": {
@@ -20242,7 +20242,7 @@
             }
           },
           "10Y Bond Yield": {
-            "value": null,
+            "value": "6.73%",
             "tier": "daily",
             "last_updated": "2026-03-13",
             "story": {
@@ -24230,7 +24230,7 @@
             }
           },
           "10Y Bond Yield": {
-            "value": null,
+            "value": "13.80%",
             "tier": "daily",
             "last_updated": "2026-03-09",
             "story": {
@@ -25982,7 +25982,7 @@
             }
           },
           "10Y Bond Yield": {
-            "value": null,
+            "value": "13.5%",
             "tier": "daily",
             "last_updated": "2026-03-08",
             "story": {
