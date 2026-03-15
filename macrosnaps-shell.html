@@ -99,6 +99,7 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 
 /* ── Ranked (non-grid) table ── */
 .wh-table-ranked{max-width:320px;margin:0 auto}
+.wh-table-ranked-dual{max-width:420px}
 .wh-rank-val{text-align:right;padding-right:8px}
 .wh-rank-num{
   font-family:var(--font-display);font-size:12px;letter-spacing:.5px;color:#ccc;
@@ -107,16 +108,6 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 .wh-rank-num.negative{color:var(--hot)}
 
 /* ── USD toggle ── */
-.wh-usd-toggle{
-  display:flex;align-items:center;justify-content:center;gap:3px;margin-top:6px;
-}
-.wh-usd-btn{
-  font-family:var(--font-display);font-size:8px;letter-spacing:1px;text-transform:uppercase;
-  padding:3px 10px;border:1px solid rgba(255,255,255,.1);border-radius:3px;
-  background:transparent;color:#555;cursor:pointer;transition:all .15s;
-}
-.wh-usd-btn:hover{color:#bbb;border-color:rgba(255,255,255,.25)}
-.wh-usd-btn.active{background:rgba(0,212,255,.1);border-color:var(--cyan);color:var(--cyan)}
 
 /* ── Weather Homepage Table ── */
 .wh-wrap{
@@ -6049,7 +6040,6 @@ let _whSortAsc = false;
 let _whMetric  = 'GDP Growth';
 let _whAsOfStr = '';
 let _whDropOpen = false;
-let _whStockUsd = false;  // toggle: show Stock Market YTD in USD terms
 
 // Metrics available in the picker: weather-grid macro metrics + ranked market metrics
 const METRIC_CONFIG = {
@@ -6099,7 +6089,6 @@ function buildRankingsView(generatedDate) {
     logo.style.cursor = 'pointer';
     logo.addEventListener('click', () => {
       _whMetric = 'GDP Growth';
-      _whStockUsd = false;
       renderMetricTable();
     });
   }
@@ -6202,34 +6191,19 @@ function renderGridTable(wrap, cfg, titleHTML) {
 
 function renderRankedTable(wrap, cfg, titleHTML) {
   const isStockYtd = (_whMetric === 'Stock Market YTD');
-
-  let fullTitleHTML = titleHTML;
-  if (isStockYtd) {
-    fullTitleHTML = titleHTML.replace(
-      '</div>',
-      `<div class="wh-usd-toggle">
-        <button class="wh-usd-btn${!_whStockUsd ? ' active' : ''}" id="btnLocalCcy">Local</button>
-        <button class="wh-usd-btn${_whStockUsd ? ' active' : ''}" id="btnUsdCcy">USD</button>
-      </div></div>`
-    );
-  }
+  const sortCol    = (isStockYtd && _whSortCol === 2) ? 2 : 1;
 
   function getLocalVal(co) {
     if (!co.metrics) return null;
-    // Try macro first for known macro metrics, then market, then other way round
     const macro  = co.metrics.macro  || {};
     const market = co.metrics.market || {};
-    // Policy Rate lives in macro; all market metrics live in market
-    // But search both to be safe - prefer macro for macro metrics
     const MACRO_METRICS = new Set(['GDP Growth','Inflation (CPI)','Unemployment','Budget Deficit','Current Account','Policy Rate']);
     if (MACRO_METRICS.has(_whMetric)) {
       const v = macro[_whMetric];
       return (v !== undefined) ? v : null;
     }
-    // Market metric - look in market; for FX-keyed entries (contains '/') do a key scan
     let v = market[_whMetric];
     if (v === undefined) {
-      // fallback: scan for the key (handles any minor naming variation)
       const k = Object.keys(market).find(k2 => k2 === _whMetric);
       v = k ? market[k] : undefined;
     }
@@ -6242,24 +6216,48 @@ function renderRankedTable(wrap, cfg, titleHTML) {
     return isNaN(n) ? null : n;
   }
 
+  function fmtPct(num) {
+    return num !== null ? (num > 0 ? '+' : '') + num + '%' : null;
+  }
+
   const rows = countries.map(co => {
-    if (isStockYtd && _whStockUsd) {
-      const rawVal = co.metrics && co.metrics.market && co.metrics.market['Stock Market YTD (USD)'];
-      const num = (rawVal !== null && rawVal !== undefined) ? parseVal(rawVal) : null;
-      const raw = num !== null ? (num > 0 ? '+' : '') + num + '%' : null;
-      return {co, raw, num};
+    if (isStockYtd) {
+      const num1 = parseVal(getLocalVal(co));
+      const usdRaw = co.metrics && co.metrics.market && co.metrics.market['Stock Market YTD (USD)'];
+      const num2 = (usdRaw != null) ? parseVal(usdRaw) : null;
+      return {co, num1, num2};
     }
     const raw = getLocalVal(co);
     return {co, raw, num: parseVal(raw)};
-  }).filter(r => r.raw != null && r.raw !== '')
+  }).filter(r => isStockYtd ? r.num1 != null : (r.raw != null && r.raw !== ''))
     .sort((a, b) => {
-      if (a.num === null && b.num === null) return 0;
-      if (a.num === null) return 1; if (b.num === null) return -1;
-      return _whSortAsc ? a.num - b.num : b.num - a.num;
+      const av = isStockYtd ? (sortCol === 2 ? a.num2 : a.num1) : a.num;
+      const bv = isStockYtd ? (sortCol === 2 ? b.num2 : b.num1) : b.num;
+      if (av === null && bv === null) return 0;
+      if (av === null) return 1; if (bv === null) return -1;
+      return _whSortAsc ? av - bv : bv - av;
     });
 
-  const bodyRows = rows.map(({co, raw, num}) => {
-    const sign = (cfg && cfg.sign && num !== null && num > 0 && !String(raw).startsWith('+')) ? '+' : '';
+  function arrow(col) {
+    if (isStockYtd) {
+      if (sortCol !== col) return '<span class="wh-sort-arrow">\u2195</span>';
+    }
+    return `<span class="wh-sort-arrow active">${_whSortAsc ? '\u2191' : '\u2193'}</span>`;
+  }
+
+  const bodyRows = rows.map(({co, raw, num, num1, num2}) => {
+    if (isStockYtd) {
+      const cls1  = num1 === null ? '' : num1 > 0 ? 'positive' : num1 < 0 ? 'negative' : '';
+      const cls2  = num2 === null ? '' : num2 > 0 ? 'positive' : num2 < 0 ? 'negative' : '';
+      const disp1 = fmtPct(num1) || '—';
+      const disp2 = fmtPct(num2) || '—';
+      return `<tr data-code="${co.code}">
+        <td class="wh-country-cell"><div class="wh-country-inner"><span class="wh-flag">${co.flag}</span><span class="wh-name">${co.name}</span><span class="wh-code">${co.code}</span></div></td>
+        <td class="wh-rank-val${sortCol===1?' wh-fc':''}"><span class="wh-rank-num ${cls1}">${disp1}</span></td>
+        <td class="wh-rank-val${sortCol===2?' wh-fc':''}"><span class="wh-rank-num ${cls2}">${disp2}</span></td>
+      </tr>`;
+    }
+    const sign   = (cfg && cfg.sign && num !== null && num > 0 && !String(raw).startsWith('+')) ? '+' : '';
     const valCls = num === null ? '' : num > 0 ? 'positive' : num < 0 ? 'negative' : '';
     return `<tr data-code="${co.code}">
       <td class="wh-country-cell"><div class="wh-country-inner"><span class="wh-flag">${co.flag}</span><span class="wh-name">${co.name}</span><span class="wh-code">${co.code}</span></div></td>
@@ -6267,31 +6265,20 @@ function renderRankedTable(wrap, cfg, titleHTML) {
     </tr>`;
   }).join('');
 
-  function arrow() { return `<span class="wh-sort-arrow active">${_whSortAsc ? '\u2191' : '\u2193'}</span>`; }
+  const asofHTML = _whAsOfStr ? `<div class="wh-asof">Updated ${_whAsOfStr}</div>` : '';
 
-  const colHeader = isStockYtd ? (_whStockUsd ? 'YTD (USD)' : 'YTD (Local)') : 'Current';
-  const noteHTML  = '';
-  const asofHTML  = _whAsOfStr ? `<div class="wh-asof">Updated ${_whAsOfStr}</div>` : '';
+  const thead = isStockYtd
+    ? `<th class="wh-country-hd">Countries</th>
+       <th class="wh-sortable${sortCol===1?' wh-fc':''}" data-col="1">Local${arrow(1)}</th>
+       <th class="wh-sortable${sortCol===2?' wh-fc':''}" data-col="2">USD${arrow(2)}</th>`
+    : `<th class="wh-country-hd">Countries</th>
+       <th class="wh-sortable wh-fc" data-col="1">Current${arrow(1)}</th>`;
 
-  wrap.innerHTML = `${fullTitleHTML}
-    <table class="wh-table wh-table-ranked">
-      <thead><tr>
-        <th class="wh-country-hd">Countries</th>
-        <th class="wh-sortable wh-fc" data-col="1">${colHeader}${arrow()}</th>
-      </tr></thead>
+  wrap.innerHTML = `${titleHTML}
+    <table class="wh-table wh-table-ranked${isStockYtd ? ' wh-table-ranked-dual' : ''}">
+      <thead><tr>${thead}</tr></thead>
       <tbody>${bodyRows}</tbody>
-    </table>${noteHTML}${asofHTML}`;
-
-  wrap.querySelector('.wh-sortable') && wrap.querySelector('.wh-sortable').addEventListener('click', e => {
-    e.stopPropagation(); _whSortAsc = !_whSortAsc; renderMetricTable();
-  });
-
-  if (isStockYtd) {
-    const btnLocal = wrap.querySelector('#btnLocalCcy');
-    const btnUsd   = wrap.querySelector('#btnUsdCcy');
-    if (btnLocal) btnLocal.addEventListener('click', e => { e.stopPropagation(); _whStockUsd = false; renderMetricTable(); });
-    if (btnUsd)   btnUsd.addEventListener('click',   e => { e.stopPropagation(); _whStockUsd = true;  renderMetricTable(); });
-  }
+    </table>${asofHTML}`;
 
   attachTableEvents(wrap);
 }
