@@ -862,6 +862,7 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
   <div class="view-toggle">
     <button class="view-btn active" id="btnRankings">Rankings</button>
     <button class="view-btn" id="btnGlobe">Globe</button>
+    <button class="view-btn" id="btnCommodities">Commodities</button>
   </div>
 </div>
 
@@ -6093,6 +6094,7 @@ function buildRankingsView(generatedDate) {
     logo.style.cursor = 'pointer';
     logo.addEventListener('click', () => {
       _whMetric = 'GDP Growth';
+      switchToRankings();
       renderMetricTable();
     });
   }
@@ -6397,6 +6399,7 @@ function switchToGlobe() {
   document.getElementById('rankings-view').classList.remove('active');
   document.getElementById('btnGlobe').classList.add('active');
   document.getElementById('btnRankings').classList.remove('active');
+  document.getElementById('btnCommodities').classList.remove('active');
   if (!_globeReady) { initGlobe(); _globeReady = true; }
 }
 function switchToRankings() {
@@ -6404,9 +6407,17 @@ function switchToRankings() {
   document.getElementById('rankings-view').classList.add('active');
   document.getElementById('btnRankings').classList.add('active');
   document.getElementById('btnGlobe').classList.remove('active');
+  document.getElementById('btnCommodities').classList.remove('active');
+}
+function switchToCommodities() {
+  switchToRankings();
+  document.getElementById('btnRankings').classList.remove('active');
+  document.getElementById('btnCommodities').classList.add('active');
+  showCommoditiesCard();
 }
 document.getElementById('btnGlobe').addEventListener('click', switchToGlobe);
 document.getElementById('btnRankings').addEventListener('click', switchToRankings);
+document.getElementById('btnCommodities').addEventListener('click', switchToCommodities);
 
 // ── LEVEL TOGGLE HELPER ──
 function levelToggleHTML(){

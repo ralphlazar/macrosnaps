@@ -1,5 +1,20 @@
 # MacroSnaps - Living Brief
-Last updated: March 15, 2026 (Session 14: tooling session. Root cause of RUS USD column bug found and fixed across `sync_sheet.py` and `macrosnaps-shell.html`. Daily refresh command confirmed stable. No open pipeline issues.)
+Last updated: March 15, 2026 (Session 15: tooling session. Commodity prices moved from black-box data.json into a new `Commodities` tab in MARKET-STATS Google Sheet. Daily history from 2000-07-17 backfilled. spark upgraded from 12 → 120 points. change is now day-over-day not YTD. Daily ritual updated.)
+
+Session 15 changes in detail:
+(1) New tab `Commodities` in MARKET-STATS sheet. Columns: `Date | WTI Crude | Brent Crude | Natural Gas | Gold | Silver | Copper | Wheat | Corn | Soybeans`. Daily close prices. Actual date coverage starts 2000-07-17 (earliest yfinance has for these continuous futures contracts — Brent starts 2007-07-30).
+(2) New script `backfill_commodity_data.py` — one-time only, already run. Pulled full history via yfinance, wrote 6,466 rows to the sheet in batches of 500. Do not re-run unless rebuilding the tab from scratch.
+(3) Modified `fetch_market_data.py` — after `process_commodities()`, now calls new `append_commodity_row_to_sheet()` which appends today's prices as a new row. Idempotent (skips if today's row already present). Failure is non-fatal (logs warning, never blocks data.json write). Requires gspread + google-auth.
+(4) New script `sync_commodity_data.py` — reads the `Commodities` tab via gspread, derives three fields per commodity and writes to data.json: `price` (last row), `change` (% diff last two rows, day-over-day), `spark` (monthly last-close, last 120 months). Preview by default; `--apply` to write.
+(5) spark: upgraded from 12 → 120 points (10 years of monthly last-closes). Tooltip charts now have full history.
+(6) change: now day-over-day (e.g. Gold +0.2%) not YTD. Previous YTD values (e.g. +17.3%) were replaced on first sync_commodity_data.py --apply run.
+(7) Daily ritual is now:
+  ```
+  python3 fetch_market_data.py
+  python3 sync_commodity_data.py --apply
+  python3 update_commodity_stories.py
+  python3 build.py
+  ```
 
 Session 14 changes in detail:
 (1) Root cause diagnosed: `sync_sheet.py` `run_market_sync()` was writing market values as top-level keys on the country object (e.g. `country["stock_market_ytd"]`) rather than into `country["metrics"]["market"]` with proper display keys. The shell reads exclusively from `co.metrics.market[...]`. Values were being written to the wrong location in data.json entirely.
@@ -143,6 +158,14 @@ Three source files assemble into one output:
 - RUS equity: MOEX REST API (not yfinance). `fetch_moex_index()` in `update_market_sheet.py`
 - Permanent blanks (no FRED series): CHN/IND/BRA/RUS bond yields. Values hand-maintained in data.json. The None-guard in `sync_sheet.py` prevents blank sheet cells from overwriting them.
 
+**Commodity daily prices:**
+- Source: MARKET-STATS Google Sheet, `Commodities` tab (same sheet as daily market data)
+- Columns: `Date | WTI Crude | Brent Crude | Natural Gas | Gold | Silver | Copper | Wheat | Corn | Soybeans`
+- History from: 2000-07-17 (yfinance limit for continuous futures; Brent from 2007-07-30)
+- Script: `fetch_market_data.py` appends today's row; `sync_commodity_data.py --apply` reads tab, derives price/change/spark, writes to data.json
+- `price`: last row value. `change`: % diff last two rows (day-over-day). `spark`: monthly last-close array, last 120 months.
+- Backfill script: `backfill_commodity_data.py` — one-time, already run. Do not re-run.
+
 **Monthly actuals (story context only):**
 - Source: MACRO-MONTHLY Google Sheet
 - Script: `sync_monthly_actuals.py`
@@ -153,10 +176,13 @@ Three source files assemble into one output:
 ### Daily refresh command
 
 ```bash
-python3 update_market_sheet.py && sleep 60 && python3 sync_sheet.py --market --apply && python3 build.py --apply
+python3 fetch_market_data.py
+python3 sync_commodity_data.py --apply
+python3 update_commodity_stories.py
+python3 build.py
 ```
 
-The `sleep 60` prevents Sheets API 429 quota errors between the two scripts.
+Note: `fetch_market_data.py` handles all market + commodity price fetching and appends today's commodity row to the MARKET-STATS `Commodities` tab. `sync_commodity_data.py` then reads that tab to derive price/change/spark for data.json.
 
 ---
 
@@ -195,8 +221,8 @@ Three levels per metric per country: `beginner`, `moderate`, `expert`. 168 per-m
 
 | Script | Trigger | What it does |
 |--------|---------|--------------|
-| `update_market_sheet.py` | Daily | Fetches equity/FX/yields, appends row to MARKET-STATS sheet |
-| `sync_sheet.py --market --apply` | Daily | Reads latest MARKET-STATS row, writes to `metrics.market` in data.json |
+| `fetch_market_data.py` | Daily | Fetches equity/FX/yields via yfinance+FRED, updates data.json; also appends today's commodity prices to MARKET-STATS `Commodities` tab |
+| `sync_commodity_data.py --apply` | Daily | Reads `Commodities` tab, derives price/change/spark (120 monthly pts), writes to data.json |
 | `sync_sheet.py --apply` | When forecasts change | Reads Macro-stats sheet, writes macro card values and historical arrays |
 | `sync_monthly_actuals.py` | Monthly | Reads MACRO-MONTHLY sheet, writes `monthly_actuals` |
 | `update_headlines.py` | Daily | Calls Claude API, writes country and global stories to draft JSON |
