@@ -100,7 +100,8 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 /* ── Ranked (non-grid) table ── */
 .wh-table-ranked{max-width:320px;margin:0 auto}
 .wh-table-ranked-dual{max-width:420px}
-.wh-rank-val{text-align:right;padding-right:8px}
+.wh-rank-val{text-align:center;padding-right:0}
+.wh-rank-th-val{text-align:center!important;width:58px}
 .wh-rank-num{
   font-family:var(--font-display);font-size:12px;letter-spacing:.5px;color:#ccc;
 }
@@ -6041,6 +6042,9 @@ let _whMetric  = 'GDP Growth';
 let _whAsOfStr = '';
 let _whDropOpen = false;
 
+// Short display names for ranked/grid tables
+const DISPLAY_NAMES = {'United Kingdom':'UK','United States':'USA'};
+
 // Metrics available in the picker: weather-grid macro metrics + ranked market metrics
 const METRIC_CONFIG = {
   'GDP Growth':       { group:'Macro',   hasGrid:true,  data:()=>gdpAllCountries,    wFn:()=>gdpWeather,    unit:'%', sign:true  },
@@ -6171,7 +6175,7 @@ function renderGridTable(wrap, cfg, titleHTML) {
       const tipVal = v !== null ? `${sign}${v}${cfg.unit}` : '';
       return `<td class="wh-cell${isFc ? ' wh-fc-col' : ''}" data-val="${tipVal}" data-country="${co.name}"><span class="wh-icon ${cls}">${emoji}</span></td>`;
     }).join('');
-    return `<tr data-code="${co.code}"><td class="wh-country-cell"><div class="wh-country-inner"><span class="wh-flag">${co.flag}</span><span class="wh-name">${co.name}</span><span class="wh-code">${co.code}</span></div></td>${cells}</tr>`;
+    return `<tr data-code="${co.code}"><td class="wh-country-cell"><div class="wh-country-inner"><span class="wh-flag">${co.flag}</span><span class="wh-name">${DISPLAY_NAMES[co.name]||co.name}</span><span class="wh-code">${co.code}</span></div></td>${cells}</tr>`;
   }).join('');
 
   const asofHTML = _whAsOfStr ? `<div class="wh-asof">Updated ${_whAsOfStr}</div>` : '';
@@ -6231,6 +6235,10 @@ function renderRankedTable(wrap, cfg, titleHTML) {
     return {co, raw, num: parseVal(raw)};
   }).filter(r => isStockYtd ? r.num1 != null : (r.raw != null && r.raw !== ''))
     .sort((a, b) => {
+      if (sortCol === 0) {
+        const dir = _whSortAsc ? 1 : -1;
+        return dir * a.co.name.localeCompare(b.co.name);
+      }
       const av = isStockYtd ? (sortCol === 2 ? a.num2 : a.num1) : a.num;
       const bv = isStockYtd ? (sortCol === 2 ? b.num2 : b.num1) : b.num;
       if (av === null && bv === null) return 0;
@@ -6239,20 +6247,19 @@ function renderRankedTable(wrap, cfg, titleHTML) {
     });
 
   function arrow(col) {
-    if (isStockYtd) {
-      if (sortCol !== col) return '<span class="wh-sort-arrow">\u2195</span>';
-    }
+    if (sortCol !== col) return '<span class="wh-sort-arrow">\u2195</span>';
     return `<span class="wh-sort-arrow active">${_whSortAsc ? '\u2191' : '\u2193'}</span>`;
   }
 
   const bodyRows = rows.map(({co, raw, num, num1, num2}) => {
+    const dispName = DISPLAY_NAMES[co.name] || co.name;
     if (isStockYtd) {
       const cls1  = num1 === null ? '' : num1 > 0 ? 'positive' : num1 < 0 ? 'negative' : '';
       const cls2  = num2 === null ? '' : num2 > 0 ? 'positive' : num2 < 0 ? 'negative' : '';
       const disp1 = fmtPct(num1) || '—';
       const disp2 = fmtPct(num2) || '—';
       return `<tr data-code="${co.code}">
-        <td class="wh-country-cell"><div class="wh-country-inner"><span class="wh-flag">${co.flag}</span><span class="wh-name">${co.name}</span><span class="wh-code">${co.code}</span></div></td>
+        <td class="wh-country-cell"><div class="wh-country-inner"><span class="wh-flag">${co.flag}</span><span class="wh-name">${dispName}</span><span class="wh-code">${co.code}</span></div></td>
         <td class="wh-rank-val${sortCol===1?' wh-fc':''}"><span class="wh-rank-num ${cls1}">${disp1}</span></td>
         <td class="wh-rank-val${sortCol===2?' wh-fc':''}"><span class="wh-rank-num ${cls2}">${disp2}</span></td>
       </tr>`;
@@ -6260,7 +6267,7 @@ function renderRankedTable(wrap, cfg, titleHTML) {
     const sign   = (cfg && cfg.sign && num !== null && num > 0 && !String(raw).startsWith('+')) ? '+' : '';
     const valCls = num === null ? '' : num > 0 ? 'positive' : num < 0 ? 'negative' : '';
     return `<tr data-code="${co.code}">
-      <td class="wh-country-cell"><div class="wh-country-inner"><span class="wh-flag">${co.flag}</span><span class="wh-name">${co.name}</span><span class="wh-code">${co.code}</span></div></td>
+      <td class="wh-country-cell"><div class="wh-country-inner"><span class="wh-flag">${co.flag}</span><span class="wh-name">${dispName}</span><span class="wh-code">${co.code}</span></div></td>
       <td class="wh-cell wh-rank-val"><span class="wh-rank-num ${valCls}">${sign}${raw}</span></td>
     </tr>`;
   }).join('');
@@ -6268,11 +6275,11 @@ function renderRankedTable(wrap, cfg, titleHTML) {
   const asofHTML = _whAsOfStr ? `<div class="wh-asof">Updated ${_whAsOfStr}</div>` : '';
 
   const thead = isStockYtd
-    ? `<th class="wh-country-hd">Countries</th>
-       <th class="wh-sortable${sortCol===1?' wh-fc':''}" data-col="1">Local${arrow(1)}</th>
-       <th class="wh-sortable${sortCol===2?' wh-fc':''}" data-col="2">USD${arrow(2)}</th>`
+    ? `<th class="wh-country-hd wh-sortable" data-col="0">Countries${arrow(0)}</th>
+       <th class="wh-sortable wh-rank-th-val${sortCol===1?' wh-fc':''}" data-col="1">Local${arrow(1)}</th>
+       <th class="wh-sortable wh-rank-th-val${sortCol===2?' wh-fc':''}" data-col="2">USD${arrow(2)}</th>`
     : `<th class="wh-country-hd">Countries</th>
-       <th class="wh-sortable wh-fc" data-col="1">Current${arrow(1)}</th>`;
+       <th class="wh-sortable wh-rank-th-val wh-fc" data-col="1">Current${arrow(1)}</th>`;
 
   wrap.innerHTML = `${titleHTML}
     <table class="wh-table wh-table-ranked${isStockYtd ? ' wh-table-ranked-dual' : ''}">
