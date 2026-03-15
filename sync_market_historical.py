@@ -1,35 +1,52 @@
 #!/usr/bin/env python3
 """
 sync_market_historical.py
+Rebuilds all market metric spark arrays in data.json from Jan 2000 to the present.
 
-Reads the MARKET-STATS Google Sheet (one tab per country) and writes
-_frozen_historical arrays into data.json for all 12 countries for the four
-market metrics: Stock Market YTD, FX Rate, 10Y Bond Yield, Yield Curve.
+Rule
+----
+Every spark array must cover Jan 2000 → last available data point.
+"Last available" must be within the last 3 months of today's date.
+If a source stops updating, the chart shows a visible trailing gap rather than
+silently hiding stale frozen data. This is intentional: gaps are diagnostic.
 
-Data is read from 2000-01-01 onwards. Daily rows are resampled to monthly
-end-of-month values (last non-blank row in each calendar month).
+Metrics rebuilt
+---------------
+  Stock Market (index level)  — yfinance monthly last close
+  FX rate                     — yfinance monthly last close
+  10Y Bond Yield (%)          — FRED monthly (or daily resampled to month-end)
+  Yield Curve (bps)           — derived: 10Y monthly − short rate monthly
 
-Stock Market is written as the raw index level (indexLabel: true).
-The _frozen_historical array always contains the full series from Jan 2020.
-The chart range buttons (1Y / 2Y / All) handle how much is displayed.
+Commodities
+-----------
+NOT touched here. sync_commodity_data.py owns commodity sparks and already
+implements the correct full-history rebuild pattern from the Commodities sheet.
 
-This replaces refetch_historical.py as the source of truth for these four
-market metrics.
+NOTE: The rolling spark update (spark[1:] + [new_close]) in fetch_market_data.py
+is now superseded by this script. That block should be removed from
+fetch_market_data.py once this script is confirmed working.
 
-Usage:
-    python3 sync_market_historical.py             # dry run (preview only)
-    python3 sync_market_historical.py --apply     # write to data.json
-
-Auth: uses same market-stats-key.json service account as sync_market_sheet.py.
-Env:  MARKET_STATS_SHEET_ID must be set in .env
+Run
+---
+  python3 sync_market_historical.py             # preview (no writes)
+  python3 sync_market_historical.py --apply     # write to data.json
 """
 
 import json
+import logging
 import os
 import sys
-from collections import defaultdict
+import time
 from datetime import date, datetime
 from pathlib import Path
+
+import requests
+import pandas as pd
+
+try:
+    import yfinance as yf
+except ImportError:
+    sys.exit("ERROR: yfinance not installed.  pip3 install yfinance")
 
 try:
     from dotenv import load_dotenv
@@ -37,251 +54,363 @@ try:
 except ImportError:
     pass
 
-try:
-    import gspread
-    from google.oauth2.service_account import Credentials
-except ImportError:
-    print("Missing dependencies. Run: pip3 install gspread google-auth --break-system-packages")
-    sys.exit(1)
-
 # ---------------------------------------------------------------------------
-# Config
+# SETTINGS
 # ---------------------------------------------------------------------------
 
-APPLY = "--apply" in sys.argv
-START_DATE = date(2000, 1, 1)
+APPLY        = "--apply" in sys.argv
+DATA_FILE    = Path(__file__).parent / "data.json"
+FRED_BASE    = "https://api.stlouisfed.org/fred"
+FRED_API_KEY = os.environ.get("FRED_API_KEY", "")
+START_DATE   = "2000-01-01"
+STALE_MONTHS = 3   # warn if last spark point appears older than this
 
-DATA_FILE = Path(__file__).parent / "data.json"
-KEY_FILE  = Path(__file__).parent / "market-stats-key.json"
+logging.basicConfig(level=logging.INFO, format="%(message)s")
+log = logging.getLogger(__name__)
 
-SHEET_ID = os.environ.get("MARKET_STATS_SHEET_ID", "")
-if not SHEET_ID:
-    print("ERROR: MARKET_STATS_SHEET_ID not set in .env")
-    sys.exit(1)
+COUNTRIES = ["USA", "CAN", "GBR", "JPN", "DEU", "FRA", "ITA",
+             "CHN", "IND", "ZAF", "BRA", "RUS"]
 
-SCOPES = [
-    "https://www.googleapis.com/auth/spreadsheets.readonly",
-    "https://www.googleapis.com/auth/drive.readonly",
-]
+# ---------------------------------------------------------------------------
+# SOURCE CONFIG  (mirrors fetch_market_data.py — keep in sync if changed)
+# ---------------------------------------------------------------------------
 
-COUNTRIES = ["USA", "CAN", "GBR", "JPN", "DEU", "FRA", "ITA", "CHN", "IND", "ZAF", "BRA", "RUS"]
-
-# Sheet column indices (0-based after splitting each row)
-# Date | Stock_Market_Index | FX_Rate | Bond_Yield_10Y | Bond_Yield_3M | Yield_Curve
-COL_DATE    = 0
-COL_STOCK   = 1
-COL_FX      = 2
-COL_BOND10Y = 3
-# COL_BOND3M = 4  (not used here)
-COL_YC      = 5
-
-# Known data gaps: these combos will be empty and written as empty arrays.
-KNOWN_GAPS = {
-    ("CHN", "10Y Bond Yield"),
-    ("CHN", "Yield Curve"),
-    ("IND", "10Y Bond Yield"),
-    ("IND", "Yield Curve"),
-    ("BRA", "10Y Bond Yield"),
-    ("BRA", "Yield Curve"),
-    ("RUS", "Yield Curve"),   # Blanked - post-sanctions data gap causes misleading date shift
+STOCK_TICKERS = {
+    "USA": "^GSPC",      "CAN": "^GSPTSE",    "GBR": "^FTSE",
+    "JPN": "^N225",      "DEU": "^GDAXI",     "FRA": "^FCHI",
+    "ITA": "FTSEMIB.MI", "CHN": "000001.SS",  "IND": "^BSESN",
+    "ZAF": "^J203.JO",   "BRA": "^BVSP",      "RUS": "IMOEX.ME",
 }
 
-# RUS stock market truncates at June 2024 (MOEX delisted on Yahoo post-sanctions).
-# We just take whatever the sheet has and don't forward-fill past the last real value.
-RUS_STOCK_TRUNCATE_AFTER = date(2024, 7, 1)
+FX_TICKERS = {
+    "USA": "DX-Y.NYB",  "CAN": "CADUSD=X",  "GBR": "GBPUSD=X",
+    "JPN": "JPYUSD=X",  "DEU": "EURUSD=X",  "FRA": "EURUSD=X",
+    "ITA": "EURUSD=X",  "CHN": "CNYUSD=X",  "IND": "INRUSD=X",
+    "ZAF": "ZARUSD=X",  "BRA": "BRLUSD=X",  "RUS": "USDRUB=X",
+}
+
+FX_LABELS = {
+    "USA": "USD/DXY",  "CAN": "CAD/USD",  "GBR": "GBP/USD",
+    "JPN": "USD/JPY",  "DEU": "EUR/USD",  "FRA": "EUR/USD",
+    "ITA": "EUR/USD",  "CHN": "USD/CNY",  "IND": "USD/INR",
+    "ZAF": "USD/ZAR",  "BRA": "USD/BRL",  "RUS": "USD/RUB",
+}
+
+FX_INVERT = {
+    "USA": False, "CAN": False, "GBR": False, "JPN": True,
+    "DEU": False, "FRA": False, "ITA": False, "CHN": True,
+    "IND": True,  "ZAF": True,  "BRA": True,  "RUS": False,
+}
+
+FX_DECIMALS = {
+    "USA": 1, "CAN": 2, "GBR": 2, "JPN": 1,
+    "DEU": 4, "FRA": 4, "ITA": 4, "CHN": 2,
+    "IND": 2, "ZAF": 2, "BRA": 2, "RUS": 1,
+}
+
+# FRED 10Y bond yield series.  None = no series, spark will be empty.
+BOND_10Y_SERIES = {
+    "USA": "DGS10",            # daily → resampled
+    "CAN": "IRLTLT01CAM156N",  # monthly
+    "GBR": "IRLTLT01GBM156N",  # monthly
+    "JPN": "IRLTLT01JPM156N",  # monthly
+    "DEU": "IRLTLT01DEM156N",  # monthly
+    "FRA": "IRLTLT01FRM156N",  # monthly
+    "ITA": "IRLTLT01ITM156N",  # monthly
+    "CHN": None,
+    "IND": "INDIRLTLT01STM",   # monthly
+    "ZAF": "IRLTLT01ZAM156N",  # monthly
+    "BRA": None,
+    "RUS": None,
+}
+
+# FRED short rate series (3-month or policy rate proxy) for yield curve.
+SHORT_RATE_SERIES = {
+    "USA": "TB3MS",
+    "CAN": "IR3TIB01CAM156N",
+    "GBR": "IR3TIB01GBM156N",
+    "JPN": "IR3TIB01JPM156N",
+    "DEU": "ECBDFR",
+    "FRA": "ECBDFR",
+    "ITA": "ECBDFR",
+    "CHN": None,
+    "IND": "IRSTCI01INM156N",
+    "ZAF": "IRSTCI01ZAM156N",
+    "BRA": "IRSTCI01BRM156N",
+    "RUS": None,
+}
+
+# DGS10 is daily on FRED — resample to month-end.
+DAILY_FRED_SERIES = {"DGS10", "TB3MS"}
+
 
 # ---------------------------------------------------------------------------
-# Auth
+# STALENESS CHECK
 # ---------------------------------------------------------------------------
 
-def get_sheet_client():
-    if not KEY_FILE.exists():
-        print(f"ERROR: service account key not found at {KEY_FILE}")
-        sys.exit(1)
-    creds = Credentials.from_service_account_file(str(KEY_FILE), scopes=SCOPES)
-    return gspread.authorize(creds)
-
-
-# ---------------------------------------------------------------------------
-# Resample daily rows to monthly end-of-month
-# Returns: list of (year, month, value) tuples sorted ascending
-# ---------------------------------------------------------------------------
-
-def resample_monthly_last(daily_rows):
+def stale_check(arr, label):
     """
-    daily_rows: list of (date, value) pairs where value may be None.
-    Returns list of floats (one per calendar month, last non-None value).
-    Months with no data at all are skipped (not interpolated).
+    Warn if the array is empty or appears to have fewer points than expected.
+    Expected minimum = months from Jan 2000 to (today − STALE_MONTHS).
+    This catches sources that have quietly stopped updating.
     """
-    monthly = defaultdict(list)
-    for row_date, value in daily_rows:
-        if value is None:
-            continue
-        key = (row_date.year, row_date.month)
-        monthly[key].append((row_date, value))
+    today = date.today()
+    months_since_2000 = (today.year - 2000) * 12 + today.month
+    min_expected = months_since_2000 - STALE_MONTHS
 
-    result = []
-    for key in sorted(monthly.keys()):
-        # Take the last entry in the month
-        entries = sorted(monthly[key], key=lambda x: x[0])
-        result.append(entries[-1][1])
+    if not arr:
+        log.warning(f"    ⚠  {label}: EMPTY — no data returned")
+    elif len(arr) < min_expected:
+        shortfall = min_expected - len(arr)
+        log.warning(
+            f"    ⚠  {label}: {len(arr)} pts — ~{shortfall} months missing "
+            f"(source may have stopped updating)"
+        )
+    else:
+        log.info(f"    ✓  {label}: {len(arr)} pts")
+
+
+# ---------------------------------------------------------------------------
+# DATA FETCHERS
+# ---------------------------------------------------------------------------
+
+_yf_cache  = {}   # ticker → Series of monthly closes
+_fred_cache = {}  # series_id → Series of monthly values
+
+
+def yf_monthly(ticker):
+    """
+    Fetch monthly last closes for a yfinance ticker from START_DATE to present.
+    Cached per ticker — safe to call multiple times (e.g. shared FX tickers).
+    Returns pd.Series with DatetimeIndex, or empty Series on failure.
+    """
+    if ticker in _yf_cache:
+        return _yf_cache[ticker]
+
+    try:
+        t    = yf.Ticker(ticker)
+        hist = t.history(start=START_DATE, auto_adjust=True)
+        if hist.empty:
+            log.warning(f"    yfinance {ticker}: no data")
+            _yf_cache[ticker] = pd.Series(dtype=float)
+            return _yf_cache[ticker]
+        monthly = hist["Close"].resample("ME").last().dropna()
+        _yf_cache[ticker] = monthly
+        return monthly
+    except Exception as e:
+        log.warning(f"    yfinance {ticker}: {e}")
+        _yf_cache[ticker] = pd.Series(dtype=float)
+        return _yf_cache[ticker]
+
+
+def fred_monthly(series_id):
+    """
+    Fetch a FRED series from START_DATE to present as monthly pd.Series.
+    Daily series are resampled to month-end last observation.
+    Cached per series_id.
+    Returns pd.Series with DatetimeIndex, or empty Series on failure.
+    """
+    if not series_id:
+        return pd.Series(dtype=float)
+    if series_id in _fred_cache:
+        return _fred_cache[series_id]
+
+    params = {
+        "series_id":         series_id,
+        "api_key":           FRED_API_KEY,
+        "file_type":         "json",
+        "observation_start": START_DATE,
+    }
+    try:
+        r = requests.get(f"{FRED_BASE}/series/observations", params=params, timeout=30)
+        r.raise_for_status()
+        time.sleep(0.15)
+
+        records = {}
+        for o in r.json().get("observations", []):
+            if o["value"] not in (".", "", None):
+                try:
+                    records[o["date"]] = float(o["value"])
+                except ValueError:
+                    pass
+
+        if not records:
+            log.warning(f"    FRED {series_id}: no usable observations")
+            _fred_cache[series_id] = pd.Series(dtype=float)
+            return _fred_cache[series_id]
+
+        s = pd.Series(records)
+        s.index = pd.to_datetime(s.index)
+        monthly = s.resample("ME").last().dropna()
+        _fred_cache[series_id] = monthly
+        return monthly
+
+    except Exception as e:
+        log.warning(f"    FRED {series_id}: {e}")
+        _fred_cache[series_id] = pd.Series(dtype=float)
+        return _fred_cache[series_id]
+
+
+# ---------------------------------------------------------------------------
+# SPARK BUILDERS
+# ---------------------------------------------------------------------------
+
+def build_stock_spark(code):
+    """Monthly index level (not YTD%) from Jan 2000. Returns list of floats."""
+    ticker = STOCK_TICKERS.get(code)
+    if not ticker:
+        return []
+    monthly = yf_monthly(ticker)
+    return [round(float(v), 2) for v in monthly]
+
+
+def build_fx_spark(code):
+    """Monthly FX rate from Jan 2000. Inverts where needed. Returns list of floats."""
+    ticker  = FX_TICKERS.get(code)
+    invert  = FX_INVERT.get(code, False)
+    decimals = FX_DECIMALS.get(code, 2)
+    if not ticker:
+        return []
+    monthly = yf_monthly(ticker)
+    result  = []
+    for v in monthly:
+        v = float(v)
+        if invert and v != 0:
+            v = 1.0 / v
+        result.append(round(v, decimals))
     return result
 
 
-# ---------------------------------------------------------------------------
-# Read one country tab
-# Returns: {metric_name: [(date, value), ...]}
-# ---------------------------------------------------------------------------
-
-def read_country_tab(worksheet, code):
-    all_rows = worksheet.get_all_values()
-    if not all_rows:
-        return {}
-
-    series = {
-        "Stock Market YTD": [],
-        "FX Rate":          [],
-        "10Y Bond Yield":   [],
-        "Yield Curve":      [],
-    }
-
-    for row in all_rows:
-        if not row or not row[0]:
-            continue
-        try:
-            row_date = datetime.strptime(row[0].strip(), "%Y-%m-%d").date()
-        except ValueError:
-            continue
-
-        if row_date < START_DATE:
-            continue
-
-        # RUS stock: skip rows past the truncation date
-        if code == "RUS" and row_date >= RUS_STOCK_TRUNCATE_AFTER:
-            stock_val = None
-        else:
-            stock_val = _parse_cell(row, COL_STOCK)
-
-        fx_val     = _parse_cell(row, COL_FX)
-        bond_val   = _parse_cell(row, COL_BOND10Y)
-        yc_val     = _parse_cell(row, COL_YC)
-
-        series["Stock Market YTD"].append((row_date, stock_val))
-        series["FX Rate"].append((row_date, fx_val))
-        series["10Y Bond Yield"].append((row_date, bond_val))
-        series["Yield Curve"].append((row_date, yc_val))
-
-    return series
+def build_bond_spark(code):
+    """Monthly 10Y bond yield (%) from Jan 2000. Returns list of floats."""
+    series = BOND_10Y_SERIES.get(code)
+    if not series:
+        return []
+    monthly = fred_monthly(series)
+    return [round(float(v), 3) for v in monthly]
 
 
-def _parse_cell(row, col_idx):
-    if col_idx >= len(row):
-        return None
-    cell = row[col_idx].strip()
-    if not cell:
-        return None
-    try:
-        return float(cell)
-    except ValueError:
-        return None
+def build_yield_curve_spark(code):
+    """
+    Monthly yield curve spread in bps (10Y − short rate) from Jan 2000.
+    Returns list of floats (e.g. 22.5, -45.0).
+    Returns [] if either series is missing.
+    """
+    ten_y_series   = BOND_10Y_SERIES.get(code)
+    short_series   = SHORT_RATE_SERIES.get(code)
+    if not ten_y_series or not short_series:
+        return []
+
+    ten_y  = fred_monthly(ten_y_series)
+    short  = fred_monthly(short_series)
+
+    if ten_y.empty or short.empty:
+        return []
+
+    # Align on common dates
+    aligned = pd.concat([ten_y, short], axis=1, join="inner").dropna()
+    if aligned.empty:
+        return []
+
+    aligned.columns = ["ten_y", "short"]
+    spread_bps = ((aligned["ten_y"] - aligned["short"]) * 100).round(1)
+    return [float(v) for v in spread_bps]
 
 
 # ---------------------------------------------------------------------------
-# Build _frozen_historical entry for a metric
+# WRITE HELPERS
 # ---------------------------------------------------------------------------
 
-def build_entry(metric_label, values, code):
-    if (code, metric_label) in KNOWN_GAPS or not values:
-        return {"v": [], "type": "line"}
-
-    entry = {"v": values, "type": "line"}
-
-    if metric_label == "Stock Market YTD":
-        entry["indexLabel"] = True
-
-    if metric_label == "Yield Curve":
-        entry["zeroLine"] = True
-
-    if metric_label == "Policy Rate":
-        entry["stepped"] = True
-
-    return entry
+def set_spark(market_dict, label, spark):
+    """
+    Write spark into a market metric dict.
+    Creates the key if missing, preserves all other fields.
+    """
+    if label not in market_dict:
+        log.warning(f"    Label '{label}' not in market dict — skipping")
+        return
+    market_dict[label]["spark"] = spark
 
 
 # ---------------------------------------------------------------------------
-# Main
+# MAIN
 # ---------------------------------------------------------------------------
 
 def main():
-    mode = "APPLY" if APPLY else "PREVIEW (dry run)"
-    print(f"\nsync_market_historical.py [{mode}]")
-    print(f"Sheet ID: {SHEET_ID}")
-    print(f"Data from: {START_DATE} onwards\n")
+    mode = "[APPLY]" if APPLY else "[PREVIEW]"
+    log.info(f"{mode} sync_market_historical.py")
+    log.info(f"Start date: {START_DATE}  |  Stale threshold: {STALE_MONTHS} months")
+    log.info("")
 
-    with open(DATA_FILE) as f:
+    if not FRED_API_KEY:
+        sys.exit("ERROR: FRED_API_KEY not set")
+    if not DATA_FILE.exists():
+        sys.exit(f"ERROR: data.json not found at {DATA_FILE}")
+
+    with open(DATA_FILE, encoding="utf-8") as f:
         data = json.load(f)
 
-    client = get_sheet_client()
-    spreadsheet = client.open_by_key(SHEET_ID)
-
-    # Collect all writes: {code: {metric: entry}}
-    all_writes = {}
+    countries = data["countries"]
+    writes    = 0
 
     for code in COUNTRIES:
-        print(f"Reading tab: {code}")
-        try:
-            ws = spreadsheet.worksheet(code)
-        except gspread.exceptions.WorksheetNotFound:
-            print(f"  WARNING: tab '{code}' not found. Skipping.")
+        if code not in countries:
+            log.warning(f"\n[{code}] not found in data.json — skipping")
             continue
 
-        daily_series = read_country_tab(ws, code)
+        log.info(f"{'='*56}")
+        log.info(f"  {code}")
+        log.info(f"{'='*56}")
 
-        country_writes = {}
-        for metric_label, daily_rows in daily_series.items():
-            if (code, metric_label) in KNOWN_GAPS:
-                country_writes[metric_label] = {"v": [], "type": "line"}
-                print(f"  {metric_label}: known gap, writing empty array")
-                continue
-
-            monthly_values = resample_monthly_last(daily_rows)
-            entry = build_entry(metric_label, monthly_values, code)
-
-            if monthly_values:
-                print(f"  {metric_label}: {len(monthly_values)} months "
-                      f"({monthly_values[0]:.2f} ... {monthly_values[-1]:.2f})")
-            else:
-                print(f"  {metric_label}: no data")
-
-            country_writes[metric_label] = entry
-
-        all_writes[code] = country_writes
-        print()
-
-    # Apply to data.json
-    print("--- Writes ---")
-    for code, country_data in data.get("countries", {}).items():
-        if code not in all_writes:
+        market = countries[code].get("metrics", {}).get("market", {})
+        if not market:
+            log.warning(f"  No market metrics found — skipping")
             continue
 
-        frozen = country_data.setdefault("_frozen_historical", {})
+        # Stock Market
+        stock_spark = build_stock_spark(code)
+        stale_check(stock_spark, "Stock Market")
+        if APPLY:
+            set_spark(market, "Stock Market YTD", stock_spark)
+            writes += 1
 
-        for metric_label, entry in all_writes[code].items():
-            old_count = len(frozen.get(metric_label, {}).get("v", []))
-            new_count = len(entry["v"])
+        # FX
+        fx_label = FX_LABELS.get(code)
+        fx_spark  = build_fx_spark(code)
+        stale_check(fx_spark, f"FX ({fx_label})")
+        if APPLY and fx_label:
+            set_spark(market, fx_label, fx_spark)
+            writes += 1
 
-            if APPLY:
-                frozen[metric_label] = entry
-                print(f"  WRITE {code} / {metric_label}: {old_count} -> {new_count} points")
-            else:
-                print(f"  WOULD WRITE {code} / {metric_label}: {old_count} -> {new_count} points")
+        # 10Y Bond Yield
+        bond_spark = build_bond_spark(code)
+        stale_check(bond_spark, "10Y Bond Yield")
+        if APPLY:
+            set_spark(market, "10Y Bond Yield", bond_spark)
+            writes += 1
 
-    if APPLY:
-        with open(DATA_FILE, "w") as f:
-            json.dump(data, f, indent=2)
-        print(f"\ndata.json updated. Run: python3 build.py")
-    else:
-        print(f"\nDry run complete. Re-run with --apply to write changes.")
+        # Yield Curve
+        yc_spark = build_yield_curve_spark(code)
+        stale_check(yc_spark, "Yield Curve")
+        if APPLY:
+            set_spark(market, "Yield Curve", yc_spark)
+            writes += 1
+
+        log.info("")
+
+    if not APPLY:
+        log.info("Preview complete. Run with --apply to write to data.json.")
+        return
+
+    log.info(f"Writing {DATA_FILE} ...")
+    with open(DATA_FILE, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+    log.info(f"Done. {writes} spark arrays written across {len(COUNTRIES)} countries.")
+    log.info("")
+    log.info("Next: python3 build.py --apply")
+    log.info("")
+    log.info("NOTE: Remove the rolling spark update block (spark[1:] + [new_close])")
+    log.info("      from fetch_market_data.py — it is now superseded by this script.")
 
 
 if __name__ == "__main__":
