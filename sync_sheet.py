@@ -263,10 +263,22 @@ def run_market_sync(apply_mode: bool, data: dict) -> list:
 
     for code in COUNTRIES:
         print(f"Fetching {code}...")
-        try:
-            ws = sh.worksheet(code)
-        except gspread.WorksheetNotFound:
-            print(f"  WARNING: tab '{code}' not found in MARKET-STATS sheet")
+        for attempt in range(4):
+            try:
+                ws = sh.worksheet(code)
+                break
+            except gspread.WorksheetNotFound:
+                print(f"  WARNING: tab '{code}' not found in MARKET-STATS sheet")
+                ws = None
+                break
+            except gspread.exceptions.APIError as e:
+                if e.response.status_code == 429 and attempt < 3:
+                    wait = 15 * (2 ** attempt)
+                    print(f"    [429] Quota hit on worksheet() — waiting {wait}s before retry ({attempt+1}/3)...")
+                    time.sleep(wait)
+                else:
+                    raise
+        if ws is None:
             continue
 
         all_rows = get_all_values_with_retry(ws)
