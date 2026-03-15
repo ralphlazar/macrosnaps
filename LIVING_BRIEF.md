@@ -1,5 +1,24 @@
 # MacroSnaps - Living Brief
-Last updated: March 15, 2026 (Session 16: UI session. Major UI/UX overhaul — nav simplified to logo-only, navy palette applied, per-metric weather strips added to country cards, sort order defaulted to nominal GDP, multiple card/tooltip cleanup changes.)
+Last updated: March 15, 2026 (Session 17: Tooling/pipeline session. Full daily ritual run. Audit of Downloads/macrosnaps directory. Security fix: stale API key file deleted + scrubbed from git history. Sort order fix in macrosnaps-shell.html.)
+
+Session 17 changes in detail:
+
+(1) **Security — stale API key file deleted.** File `.envsk-ant-api03-...` (accidentally created by `touch $ANTHROPIC_API_KEY`) was deleted and scrubbed from git history using `git filter-repo`. Key was already rotated in a prior session. `.env.save` also deleted (stale shell backup of `.env`).
+
+(2) **Sort order fix in macrosnaps-shell.html.** When switching metric via the dropdown, `_whSortCol` was being reset to `6` or `1` (a year column), overriding nominal GDP order. Fixed: line 6428 now sets `_whSortCol = -1` on metric change. All ranking metrics (Inflation, Unemployment, etc.) now open in nominal GDP order, consistent with the homepage and logo-click behaviour. `_whSortAsc = false` also removed from that block (redundant).
+
+(3) **Daily ritual completed successfully.** All steps run in order:
+- `fetch_market_data.py` — 41 updated, 7 permanent failures (CHN/BRA/RUS yields, RUS equity), 9 commodities green. Sunday run = Friday closing prices, as expected.
+- `sync_commodity_data.py --apply` — 9/9 updated, change values flipped from YTD to day-over-day correctly.
+- `update_commodity_stories.py` — no rewrites triggered (all within threshold).
+- `update_headlines.py` — 13/13 OK in 214s (one rate limit pause, auto-recovered). Draft reviewed and applied.
+- `build.py --apply` — assembled, validated, committed, pushed.
+
+(4) **Redundant files identified** in Downloads/macrosnaps (not yet deleted — confirm before removing):
+- Safe to delete: `__pycache__/`, `.env.save` (done), stale API key file (done), `refetch_historical.py` (one-off, complete), `rebackfill_jpn_inflation.py` (superseded)
+- Probably redundant (check before deleting): `sync_market_historical.py`, `sync_market_sheet.py`, `sync_monthly_historical.py`, `update_market_sheet.py`, `populate_market_sheet.py`, `headline_review.html`
+
+---
 
 Session 16 changes in detail (all in macrosnaps-shell.html only):
 (1) Logo click from Globe view now calls switchToRankings() before renderMetricTable() — navigates back to homepage correctly from any view.
@@ -149,11 +168,10 @@ Three source files assemble into one output:
 **Daily market data:**
 - Source: MARKET-STATS Google Sheet (ID via `MARKET_STATS_SHEET_ID` env var)
 - Columns: `Date`, `Stock_Market_Index`, `FX_Rate`, `Bond_Yield_10Y`, `Bond_Yield_3M`, `Yield_Curve`, `Stock_Market_YTD_USD`
-- Script: `update_market_sheet.py` appends today's row; `sync_sheet.py --market --apply` reads latest row and writes to `metrics.market`
-- Local YTD computed in `sync_sheet.py` from `(latest_index / jan1_index - 1) * 100` using sheet history
-- USD YTD computed in `update_market_sheet.py` as `(index_today/jan1_index) * (jan1_fx/fx_today) - 1`
-- RUS equity: MOEX REST API (not yfinance). `fetch_moex_index()` in `update_market_sheet.py`
-- Permanent blanks (no FRED series): CHN/IND/BRA/RUS bond yields. Values hand-maintained in data.json. The None-guard in `sync_sheet.py` prevents blank sheet cells from overwriting them.
+- Script: `fetch_market_data.py` fetches and writes to data.json directly (yfinance + FRED); also appends today's commodity row to MARKET-STATS `Commodities` tab
+- Local YTD computed in `fetch_market_data.py` from Jan 1 index baseline
+- RUS equity: MOEX REST API (not yfinance). `fetch_moex_index()` in `fetch_market_data.py`
+- Permanent blanks (no FRED series): CHN/IND/BRA/RUS bond yields. Values hand-maintained in data.json. None-guard prevents blank values from overwriting them.
 
 **Commodity daily prices:**
 - Source: MARKET-STATS Google Sheet, `Commodities` tab (same sheet as daily market data)
@@ -162,6 +180,7 @@ Three source files assemble into one output:
 - Script: `fetch_market_data.py` appends today's row; `sync_commodity_data.py --apply` reads tab, derives price/change/spark, writes to data.json
 - `price`: last row value. `change`: % diff last two rows (day-over-day). `spark`: monthly last-close array, last 120 months.
 - Backfill script: `backfill_commodity_data.py` — one-time, already run. Do not re-run.
+- Weekend note: Sunday runs fetch Friday's closing prices. Monday's day-over-day change = Friday→Monday move. Correct behaviour.
 
 **Monthly actuals (story context only):**
 - Source: MACRO-MONTHLY Google Sheet
@@ -170,16 +189,21 @@ Three source files assemble into one output:
 
 ---
 
-### Daily refresh command
+### Daily ritual
 
 ```bash
 python3 fetch_market_data.py
 python3 sync_commodity_data.py --apply
 python3 update_commodity_stories.py
-python3 build.py
+python3 update_headlines.py
+python3 build.py --apply
 ```
 
-Note: `fetch_market_data.py` handles all market + commodity price fetching and appends today's commodity row to the MARKET-STATS `Commodities` tab. `sync_commodity_data.py` then reads that tab to derive price/change/spark for data.json.
+`update_headlines.py` has a manual review gate:
+1. Run `python3 update_headlines.py` — produces `stories_draft_YYYY-MM-DD.json`
+2. Open `headline_review.html`, load draft, review/edit, export `stories_approved_YYYY-MM-DD.json`
+3. Run `python3 update_headlines.py --apply stories_approved_YYYY-MM-DD.json`
+4. Run `python3 build.py --apply`
 
 ---
 
@@ -204,13 +228,14 @@ data._meta.generated                                        ← build date stamp
 | CHN, IND | Unemployment | No reliable monthly FRED series |
 | CHN, IND, BRA, RUS | 10Y Bond Yield | No FRED series — values hand-maintained |
 | CHN, IND, BRA, RUS | 3M Yield / Yield Curve | No FRED series — always blank |
-| RUS | Equity (yfinance) | IMOEX.ME delisted post-sanctions — MOEX REST API used instead |
+| ZAF | Unemployment | No reliable monthly FRED series |
+| RUS | All equity | IMOEX.ME delisted post-sanctions — MOEX REST API used instead |
 
 ---
 
 ### Story levels
 
-Three levels per metric per country: `beginner`, `moderate`, `expert`. 168 per-metric stories (12 countries × 6 macro metrics × 1 per level... wait, 3 levels = 216 metric stories + 9 commodity stories × 3 levels = 27 commodity stories). Country card stories (top-level) are separate and updated daily by `update_headlines.py`.
+Three levels per metric per country: `beginner`, `moderate`, `expert`. 216 per-metric stories (12 countries × 6 macro metrics × 3 levels) + 27 commodity stories (9 commodities × 3 levels). Country card stories (top-level) are separate and updated daily by `update_headlines.py`.
 
 ---
 
@@ -218,13 +243,13 @@ Three levels per metric per country: `beginner`, `moderate`, `expert`. 168 per-m
 
 | Script | Trigger | What it does |
 |--------|---------|--------------|
-| `fetch_market_data.py` | Daily | Fetches equity/FX/yields via yfinance+FRED, updates data.json; also appends today's commodity prices to MARKET-STATS `Commodities` tab |
+| `fetch_market_data.py` | Daily | Fetches equity/FX/yields via yfinance+FRED, updates data.json; appends today's commodity prices to MARKET-STATS `Commodities` tab |
 | `sync_commodity_data.py --apply` | Daily | Reads `Commodities` tab, derives price/change/spark (120 monthly pts), writes to data.json |
+| `update_commodity_stories.py` | Daily | Rewrites commodity stories when price moves exceed threshold |
+| `update_headlines.py` | Daily | Calls Claude API, writes country and global stories to draft JSON (manual review gate before --apply) |
 | `sync_sheet.py --apply` | When forecasts change | Reads Macro-stats sheet, writes macro card values and historical arrays |
 | `sync_monthly_actuals.py` | Monthly | Reads MACRO-MONTHLY sheet, writes `monthly_actuals` |
-| `update_headlines.py` | Daily | Calls Claude API, writes country and global stories to draft JSON |
 | `update_stories.py` | On metric change | Diff-driven per-metric story rewrites |
-| `update_commodity_stories.py` | On price threshold | Commodity story rewrites |
 | `build.py --apply` | Daily | Assembles globe.html, validates, diffs, auto-commits, pushes |
 
 ---
@@ -240,7 +265,7 @@ Three levels per metric per country: `beginner`, `moderate`, `expert`. 168 per-m
 - Weather icon computed live from GDP Growth thresholds: ≥3% ☀️, ≥0% ☁️, <0% ⛈️
 - `metricDisplayLabels`: `'Policy Rate' → 'Policy Rate (year-end)'`
 - Globe is lazy-init (WebGL only on first toggle click). Nav buttons hidden, globe accessible by restoring `.view-toggle{display:flex}` if needed.
-- Default sort: `_whSortCol = -1` = nominal GDP order (GDP_NOMINAL_ORDER constant). Logo click resets to this.
+- Default sort: `_whSortCol = -1` = nominal GDP order (GDP_NOMINAL_ORDER constant). Logo click resets to this. Metric dropdown change also resets to `-1` (Session 17 fix).
 - `CARD_MARKET_EXCLUDE` set: `'Stock Market YTD (USD)'`, `'Stock Market Index'`, `'FX Rate'`
 
 ### Weather icon rule (FIXED — do not change)
@@ -255,13 +280,15 @@ All weather icons across the entire site must use the `.wh-icon` CSS filter patt
 
 ### Pending work (priority order)
 
-1. **Fix JPN inflation gap (Session 7).** `CPALTT01JPM657N` stops June 2021. Replace with `JPNCPIALLMINMEI` (OECD index level, not pre-computed YoY) in `populate_monthly_actuals.py` and `update_monthly_actuals.py`. Add `.pct_change(12) * 100` transform before writing. Re-run JPN inflation backfill only. Upload LIVING_BRIEF.md + both monthly actuals scripts.
+1. **Fix JPN inflation gap.** `CPALTT01JPM657N` stops June 2021. Replace with `JPNCPIALLMINMEI` (OECD index level, not pre-computed YoY) in `populate_monthly_actuals.py` and `update_monthly_actuals.py`. Add `.pct_change(12) * 100` transform before writing. Re-run JPN inflation backfill only. Upload LIVING_BRIEF.md + both monthly actuals scripts. **Next session: audit all MACRO-MONTHLY gaps across all countries.**
 
-1. **Apply USA sheet changes.** `sync_sheet.py` preview on March 11 showed USA CPI 3.1% -> 2.3% and Unemployment 4.4% -> 4.2%. These were never applied. Run: `python3 sync_sheet.py --apply && python3 update_stories.py && python3 build.py`
+1. **Apply USA sheet changes.** `sync_sheet.py` preview on March 11 showed USA CPI 3.1% -> 2.3% and Unemployment 4.4% -> 4.2%. These were never applied. Run: `python3 sync_sheet.py --apply && python3 update_stories.py && python3 build.py --apply`
 
 1. **GDP Growth stories audit.** CAN, FRA, ITA, BRA confirmed mismatches between story text and current values. Run a targeted stories session for these four countries (upload LIVING_BRIEF.md + data.json, use Part 1B prompt).
 
 1. **Build `print_snapshot.py`.** Uses Playwright to open the built HTML file, loops through each country, expands it, and captures a full-height PDF. Output is a dated file in `snapshots/` (e.g. `macrosnaps-2026-03-09.pdf`). Audience level hardcoded to expert. For personal use only, not a public feature. Requires `pip3 install playwright` and `playwright install chromium`.
+
+1. **Clean up redundant scripts** (confirm contents before deleting): `sync_market_historical.py`, `sync_market_sheet.py`, `sync_monthly_historical.py`, `update_market_sheet.py`, `populate_market_sheet.py`, `headline_review.html`.
 
 1. **Post-launch:** revisit architecture if a second person joins to update data daily.
 

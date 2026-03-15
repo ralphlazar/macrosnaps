@@ -499,7 +499,7 @@ def generate_draft(client, data):
             if lv not in gs_parsed or len(gs_parsed[lv]) < 3:
                 raise ValueError(f"Missing or short level '{lv}' in global response")
         def _clean_cards(cards):
-            return [{**c, "body": clean_cite_tags(c.get("body", ""))} for c in cards]
+            return [{k: clean_cite_tags(v) if isinstance(v, str) else v for k, v in c.items()} for c in cards]
         draft["globalStories"] = {
             "beginner": _clean_cards(gs_parsed["beginner"][:3]),
             "moderate": _clean_cards(gs_parsed["moderate"][:3]),

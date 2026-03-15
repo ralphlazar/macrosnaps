@@ -6425,8 +6425,7 @@ function toggleMetricDropdown(anchorBtn) {
     item.addEventListener('click', e => {
       e.stopPropagation();
       _whMetric  = item.dataset.metric;
-      _whSortCol = METRIC_CONFIG[_whMetric] && METRIC_CONFIG[_whMetric].hasGrid ? 6 : 1;
-      _whSortAsc = false;
+      _whSortCol = -1;
       drop.remove(); _whDropOpen = false;
       renderMetricTable();
     });
