@@ -62,7 +62,6 @@ MARKET_KEY_FILE = os.path.expanduser(
 # Sheet column name → data.json key
 MARKET_COL_MAP = {
     "Stock_Market_Index":   "stock_market_index",
-    "Stock_Market_YTD":     "stock_market_ytd",
     "Stock_Market_YTD_USD": "stock_market_ytd_usd",
     "FX_Rate":              "fx_rate",
     "Bond_Yield_10Y":       "bond_yield_10y",
@@ -204,6 +203,42 @@ def get_all_values_with_retry(ws, max_retries: int = 4, base_wait: int = 15) -> 
                 raise
 
 
+# ── market sync helpers ───────────────────────────────────────────────────────
+
+def _jan1_index_from_rows(all_rows: list) -> float | None:
+    """Return Stock_Market_Index for first trading day of current year."""
+    from datetime import datetime
+    current_year = date.today().year
+    if len(all_rows) < 2:
+        return None
+    header = all_rows[0]
+    try:
+        date_col  = header.index("Date")
+        index_col = header.index("Stock_Market_Index")
+    except ValueError:
+        return None
+    for row in all_rows[1:]:
+        try:
+            row_date = datetime.strptime(row[date_col], "%Y-%m-%d").date()
+        except (ValueError, IndexError):
+            continue
+        if row_date.year != current_year:
+            continue
+        raw = row[index_col] if index_col < len(row) else ""
+        if raw not in ("", None):
+            try:
+                return float(raw)
+            except ValueError:
+                pass
+    return None
+
+
+def _compute_local_ytd(latest_index: float | None, jan1_index: float | None) -> float | None:
+    if latest_index is None or jan1_index is None or jan1_index == 0:
+        return None
+    return round((latest_index / jan1_index - 1) * 100, 2)
+
+
 # ── market sync ───────────────────────────────────────────────────────────────
 
 def run_market_sync(apply_mode: bool, data: dict) -> list:
@@ -269,6 +304,20 @@ def run_market_sync(apply_mode: bool, data: dict) -> list:
                 changes.append((code, json_key, old_val, new_val))
                 if apply_mode:
                     country[json_key] = new_val
+
+        # Compute local YTD from index history
+        latest_raw = row_dict.get("Stock_Market_Index", "")
+        try:
+            latest_index = float(latest_raw) if latest_raw not in ("", None) else None
+        except ValueError:
+            latest_index = None
+        jan1_index = _jan1_index_from_rows(all_rows)
+        local_ytd  = _compute_local_ytd(latest_index, jan1_index)
+        old_ytd    = country.get("stock_market_ytd")
+        if old_ytd != local_ytd:
+            changes.append((code, "stock_market_ytd", old_ytd, local_ytd))
+            if apply_mode:
+                country["stock_market_ytd"] = local_ytd
 
     return changes
 

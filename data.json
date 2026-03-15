@@ -8,7 +8,7 @@
       "weekly": "Update weekly or on release — CPI, unemployment, policy rate",
       "structural": "Update quarterly or on major revision — GDP, deficits, current account, stories, fxRegime"
     },
-    "built_at": "2026-03-15 13:02"
+    "built_at": "2026-03-15 13:06"
   },
   "countries": {
     "USA": {
@@ -2785,7 +2785,7 @@
         ]
       },
       "stock_market_index": 6632.1899,
-      "stock_market_ytd": null,
+      "stock_market_ytd": -3.12,
       "fx_rate": 100.495,
       "bond_yield_10y": 4.27,
       "stock_market_ytd_usd": -3.12
@@ -5510,7 +5510,7 @@
         ]
       },
       "stock_market_index": 32541.9297,
-      "stock_market_ytd": null,
+      "stock_market_ytd": 2.61,
       "fx_rate": 0.729,
       "bond_yield_10y": 3.401,
       "stock_market_ytd_usd": 2.78
@@ -8229,7 +8229,7 @@
         ]
       },
       "stock_market_index": 10261.1504,
-      "stock_market_ytd": null,
+      "stock_market_ytd": 3.32,
       "fx_rate": 1.322,
       "bond_yield_10y": 4.451,
       "stock_market_ytd_usd": 5.25
@@ -10830,7 +10830,7 @@
         ]
       },
       "stock_market_index": 53819.6094,
-      "stock_market_ytd": null,
+      "stock_market_ytd": 6.91,
       "fx_rate": 159.72,
       "bond_yield_10y": 2.24,
       "stock_market_ytd_usd": 4.7
@@ -13453,7 +13453,7 @@
         ]
       },
       "stock_market_index": 23447.2891,
-      "stock_market_ytd": null,
+      "stock_market_ytd": -4.26,
       "fx_rate": 1.1423,
       "bond_yield_10y": 2.807,
       "stock_market_ytd_usd": -1.54
@@ -16076,7 +16076,7 @@
         ]
       },
       "stock_market_index": 7911.5298,
-      "stock_market_ytd": null,
+      "stock_market_ytd": -2.92,
       "fx_rate": 1.1423,
       "bond_yield_10y": 3.53,
       "stock_market_ytd_usd": -0.17
@@ -18699,7 +18699,7 @@
         ]
       },
       "stock_market_index": 44316.9219,
-      "stock_market_ytd": null,
+      "stock_market_ytd": -1.4,
       "fx_rate": 1.1423,
       "bond_yield_10y": 3.492,
       "stock_market_ytd_usd": 1.4
@@ -20140,7 +20140,7 @@
         "policy_rate": []
       },
       "stock_market_index": 4095.4485,
-      "stock_market_ytd": null,
+      "stock_market_ytd": 3.19,
       "fx_rate": 6.8954,
       "stock_market_ytd_usd": 4.7
     },
@@ -21888,7 +21888,7 @@
         ]
       },
       "stock_market_index": 74563.9219,
-      "stock_market_ytd": null,
+      "stock_market_ytd": -12.47,
       "fx_rate": 92.45,
       "stock_market_ytd_usd": -15.01
     },
@@ -24123,7 +24123,7 @@
         ]
       },
       "stock_market_index": 114924.2109,
-      "stock_market_ytd": null,
+      "stock_market_ytd": -0.78,
       "fx_rate": 16.8775,
       "bond_yield_10y": 8.618,
       "stock_market_ytd_usd": -2.5
@@ -25874,7 +25874,7 @@
         ]
       },
       "stock_market_index": 177653.3125,
-      "stock_market_ytd": null,
+      "stock_market_ytd": 10.26,
       "fx_rate": 5.3019,
       "stock_market_ytd_usd": 13.88
     },
@@ -27287,7 +27287,7 @@
       },
       "stock_market_index": 2871.86,
       "fx_rate": 80.025,
-      "stock_market_ytd": null,
+      "stock_market_ytd": 4.16,
       "stock_market_ytd_usd": 2.33
     }
   },
