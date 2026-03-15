@@ -7018,7 +7018,8 @@ function metricWeatherStrip(metricName, countryCode) {
     const cls    = w ? (w.cls === 'storm' ? 'stormy' : w.cls) : 'cloudy';
     const dispV  = v !== null ? ((sign && v > 0 ? '+' : '') + v + unit) : '—';
     const tip    = lbl ? `${lbl} · ${dispV}` : dispV;
-    return `<span class="m-si${isFc ? ' m-si-fc' : ''}" data-tip="${tip}" data-yr="${lbl}" data-val="${dispV}"><span class="wh-icon ${cls}">☀️</span></span>`;
+    const emoji  = cls === 'sunny' ? '☀️' : cls === 'stormy' ? '⛈️' : '☁️';
+    return `<span class="m-si${isFc ? ' m-si-fc' : ''}" data-tip="${tip}" data-yr="${lbl}" data-val="${dispV}"><span class="wh-icon ${cls}">${emoji}</span></span>`;
   }).join('');
   return `<div class="m-strip" data-strip="1">${icons}</div>`;
 }
