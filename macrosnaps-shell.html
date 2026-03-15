@@ -833,6 +833,9 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 
   /* ── Regime tag ── */
   .cr-regime{font-size:7px;padding:2px 5px}
+
+  /* ── Rankings grid: hide 2020-2023 columns on mobile ── */
+  .wh-col-old{display:none}
 }
 
 /* Extra small screens (iPhone SE, 375px and below) */
@@ -6162,8 +6165,9 @@ function renderGridTable(wrap, cfg, titleHTML) {
   }
 
   const thCols = colLabels.map((lbl, i) => {
-    const isFc = String(lbl).includes('F');
-    return `<th class="wh-sortable${isFc ? ' wh-fc' : ''}" data-col="${i+1}">${lbl}${arrow(i+1)}</th>`;
+    const isFc  = String(lbl).includes('F');
+    const isOld = i < 4;
+    return `<th class="wh-sortable${isFc ? ' wh-fc' : ''}${isOld ? ' wh-col-old' : ''}" data-col="${i+1}">${lbl}${arrow(i+1)}</th>`;
   }).join('');
 
   const bodyRows = sorted.map(({co, vals}) => {
@@ -6173,9 +6177,10 @@ function renderGridTable(wrap, cfg, titleHTML) {
       const cls   = w.cls === 'storm' ? 'stormy' : w.cls;
       const emoji = cls === 'sunny' ? '☀️' : cls === 'stormy' ? '⛈️' : '☁️';
       const isFc  = String(lbl).includes('F');
+      const isOld = i < 4;
       const sign  = (cfg.sign && v !== null && v > 0) ? '+' : '';
       const tipVal = v !== null ? `${sign}${v}${cfg.unit}` : '';
-      return `<td class="wh-cell${isFc ? ' wh-fc-col' : ''}" data-val="${tipVal}" data-country="${co.name}"><span class="wh-icon ${cls}">${emoji}</span></td>`;
+      return `<td class="wh-cell${isFc ? ' wh-fc-col' : ''}${isOld ? ' wh-col-old' : ''}" data-val="${tipVal}" data-country="${co.name}"><span class="wh-icon ${cls}">${emoji}</span></td>`;
     }).join('');
     return `<tr data-code="${co.code}"><td class="wh-country-cell"><div class="wh-country-inner"><span class="wh-flag">${co.flag}</span><span class="wh-name">${DISPLAY_NAMES[co.name]||co.name}</span><span class="wh-code">${co.code}</span></div></td>${cells}</tr>`;
   }).join('');
@@ -6266,11 +6271,12 @@ function renderRankedTable(wrap, cfg, titleHTML) {
         <td class="wh-rank-val${sortCol===2?' wh-fc':''}"><span class="wh-rank-num ${cls2}">${disp2}</span></td>
       </tr>`;
     }
-    const sign   = (cfg && cfg.sign && num !== null && num > 0 && !String(raw).startsWith('+')) ? '+' : '';
+    const sign   = (cfg && cfg.sign && num !== null && num > 0) ? '+' : '';
     const valCls = num === null ? '' : num > 0 ? 'positive' : num < 0 ? 'negative' : '';
+    const disp   = num !== null ? `${sign}${num}${cfg.unit || ''}` : '—';
     return `<tr data-code="${co.code}">
       <td class="wh-country-cell"><div class="wh-country-inner"><span class="wh-flag">${co.flag}</span><span class="wh-name">${dispName}</span><span class="wh-code">${co.code}</span></div></td>
-      <td class="wh-cell wh-rank-val"><span class="wh-rank-num ${valCls}">${sign}${raw}</span></td>
+      <td class="wh-cell wh-rank-val"><span class="wh-rank-num ${valCls}">${disp}</span></td>
     </tr>`;
   }).join('');
 
