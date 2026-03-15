@@ -63,6 +63,7 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
   color:#fff;white-space:nowrap;
   box-shadow:0 4px 12px rgba(0,0,0,.4);
 }
+@media(hover:none){#wh-hover-tip{display:none!important}}
 
 /* ── Metric picker button ── */
 .wh-metric-btn{
@@ -6090,6 +6091,18 @@ function buildRankingsView(generatedDate) {
   });
 
   renderMetricTable();
+
+  // Logo click → reset to GDP Growth home state
+  const logo = document.querySelector('.logo');
+  if (logo && !logo._homeWired) {
+    logo._homeWired = true;
+    logo.style.cursor = 'pointer';
+    logo.addEventListener('click', () => {
+      _whMetric = 'GDP Growth';
+      _whStockUsd = false;
+      renderMetricTable();
+    });
+  }
 }
 
 function renderMetricTable() {
