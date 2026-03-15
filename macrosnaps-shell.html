@@ -417,10 +417,11 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 .metric:hover{background:rgba(255,255,255,.04)}
 .m-name{font-size:12px;color:#bbb;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
 .m-val{font-size:20px;font-weight:700;color:#fff}
+.m-val-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:2px}
 
 /* ── Per-metric weather strip ── */
-.m-strip{display:flex;gap:4px;margin-top:6px;align-items:center}
-.m-si{font-size:13px;line-height:1;cursor:default;position:relative;display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:3px;transition:background .15s}
+.m-strip{display:flex;gap:4px;align-items:center;flex-shrink:0}
+.m-si{font-size:16px;line-height:1;cursor:default;position:relative;display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:3px;transition:background .15s}
 .m-si:hover{background:rgba(255,255,255,.08)}
 .m-si-fc{opacity:.6}
 .m-si-fc::after{content:'F';position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);font-size:6px;color:#888;letter-spacing:.5px;font-family:var(--font-display)}
@@ -6997,7 +6998,7 @@ function metricWeatherStrip(metricName, countryCode) {
 
 function renderCard(d, co) {
   let mH = '', mkH = '';
-  d.macroMetrics.forEach(m => { const label = metricDisplayLabels[m.name] || m.name; const strip = metricWeatherStrip(m.name, d.code); mH += `<div class="metric" data-m="${m.name}" data-v="${m.val}" data-c="${d.name}" data-s="macro"><div class="m-name">${label}</div><div class="m-val">${m.val}</div>${strip}</div>`; });
+  d.macroMetrics.forEach(m => { const label = metricDisplayLabels[m.name] || m.name; const strip = metricWeatherStrip(m.name, d.code); mH += `<div class="metric" data-m="${m.name}" data-v="${m.val}" data-c="${d.name}" data-s="macro"><div class="m-name">${label}</div><div class="m-val-row"><div class="m-val">${m.val}</div>${strip}</div></div>`; });
   d.marketMetrics.forEach(m => { const label = metricDisplayLabels[m.name] || m.name; mkH += `<div class="metric" data-m="${m.name}" data-v="${m.val}" data-c="${d.name}" data-s="market"><div class="m-name">${label}</div><div class="m-val">${m.val}</div></div>`; });
 
   const macroSection = d.macroMetrics.length > 0 ? `<div class="sec-head">MACRO FORECASTS (2026)</div><div class="metrics">${mH}</div>` : '';
