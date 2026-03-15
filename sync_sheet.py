@@ -15,8 +15,15 @@ import csv
 import json
 import sys
 import io
+import os
 import urllib.request
 from datetime import date
+
+import gspread
+from google.oauth2.service_account import Credentials
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # ── config ────────────────────────────────────────────────────────────────────
 
@@ -41,6 +48,21 @@ METRIC_MAP = {
 
 # These three get _frozen_historical written (annual bar charts in tooltips)
 WRITE_HISTORICAL = {"GDP Growth", "Budget Deficit", "Current Account"}
+
+# ── market config ─────────────────────────────────────────────────────────────
+
+MARKET_SHEET_ID = os.getenv("MARKET_STATS_SHEET_ID")
+MARKET_KEY_FILE = os.path.expanduser(
+    os.getenv("MARKET_STATS_KEY_FILE", "~/Downloads/macrosnaps/market-stats-key.json")
+)
+
+# Sheet column name → data.json key
+MARKET_COL_MAP = {
+    "Stock_Market_Index":  "stock_market_index",
+    "Stock_Market_YTD_USD": "stock_market_ytd",
+    "FX_Rate":             "fx_rate",
+    "Bond_Yield_10Y":      "bond_yield_10y",
+}
 
 # ── fetch and parse ───────────────────────────────────────────────────────────
 
@@ -141,79 +163,153 @@ def fmt_card_value(display_key, val):
         # Inflation (CPI), Unemployment, Policy Rate
         return f"{fmt_num(val)}%"
 
+# ── market sync ───────────────────────────────────────────────────────────────
+
+def run_market_sync(apply_mode: bool, data: dict) -> list:
+    """
+    Read the latest row from each country tab in the MARKET-STATS sheet
+    and diff/write 4 fields into data.json country objects.
+    Returns a changes list in the same format as the macro sync.
+    """
+    if not MARKET_SHEET_ID:
+        print("ERROR: MARKET_STATS_SHEET_ID not set in .env")
+        sys.exit(1)
+    if not os.path.exists(MARKET_KEY_FILE):
+        print(f"ERROR: service account key not found at {MARKET_KEY_FILE}")
+        sys.exit(1)
+
+    scopes = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
+    creds  = Credentials.from_service_account_file(MARKET_KEY_FILE, scopes=scopes)
+    gc     = gspread.authorize(creds)
+    sh     = gc.open_by_key(MARKET_SHEET_ID)
+
+    changes = []
+
+    for code in COUNTRIES:
+        print(f"Fetching {code}...")
+        try:
+            ws = sh.worksheet(code)
+        except gspread.WorksheetNotFound:
+            print(f"  WARNING: tab '{code}' not found in MARKET-STATS sheet")
+            continue
+
+        all_rows = ws.get_all_values()
+        if len(all_rows) < 2:
+            print(f"  WARNING: {code} tab has no data rows")
+            continue
+
+        header   = all_rows[0]
+        last_row = all_rows[-1]
+
+        # Build a dict of column_name → value for the last row
+        row_dict = {}
+        for col_name, raw_val in zip(header, last_row):
+            row_dict[col_name] = raw_val.strip()
+
+        if code not in data["countries"]:
+            print(f"  WARNING: {code} not found in data.json")
+            continue
+
+        country = data["countries"][code]
+
+        for sheet_col, json_key in MARKET_COL_MAP.items():
+            raw = row_dict.get(sheet_col, "")
+            # Parse to float; treat empty string or missing as None
+            if raw in ("", None):
+                new_val = None
+            else:
+                try:
+                    new_val = float(raw)
+                except ValueError:
+                    new_val = None
+
+            old_val = country.get(json_key)
+            if old_val != new_val:
+                changes.append((code, json_key, old_val, new_val))
+                if apply_mode:
+                    country[json_key] = new_val
+
+    return changes
+
+
 # ── main ─────────────────────────────────────────────────────────────────────
 
 def main():
-    apply_mode = "--apply" in sys.argv
-    print(f"\nSync mode: {'APPLY' if apply_mode else 'PREVIEW'}\n")
+    apply_mode   = "--apply"  in sys.argv
+    market_mode  = "--market" in sys.argv
+    print(f"\nSync mode: {'APPLY' if apply_mode else 'PREVIEW'}"
+          f"{' | MARKET' if market_mode else ''}\n")
 
     with open(DATA_FILE) as f:
         data = json.load(f)
 
     changes = []  # list of (code, field_label, old_value, new_value)
 
-    for code in COUNTRIES:
-        print(f"Fetching {code}...")
-        csv_text = fetch_tab(SHEET_ID, code)
-        if csv_text is None:
-            print(f"  Skipping {code} (fetch failed)\n")
-            continue
-
-        years, sheet_metrics = parse_tab(csv_text)
-        if sheet_metrics is None:
-            print(f"  Skipping {code} (parse failed)\n")
-            continue
-
-        if code not in data["countries"]:
-            print(f"  Skipping {code} (not found in data.json)\n")
-            continue
-
-        country = data["countries"][code]
-
-        for sheet_key, display_key in METRIC_MAP.items():
-            if sheet_key not in sheet_metrics:
-                print(f"  WARNING: {sheet_key} not found in {code} tab")
+    if market_mode:
+        changes = run_market_sync(apply_mode, data)
+    else:
+        for code in COUNTRIES:
+            print(f"Fetching {code}...")
+            csv_text = fetch_tab(SHEET_ID, code)
+            if csv_text is None:
+                print(f"  Skipping {code} (fetch failed)\n")
                 continue
 
-            metric_data = sheet_metrics[sheet_key]
+            years, sheet_metrics = parse_tab(csv_text)
+            if sheet_metrics is None:
+                print(f"  Skipping {code} (parse failed)\n")
+                continue
 
-            # ── 1. card value (2026F) ─────────────────────────────────────
-            val_2026 = metric_data.get("2026F")
-            formatted = fmt_card_value(display_key, val_2026)
+            if code not in data["countries"]:
+                print(f"  Skipping {code} (not found in data.json)\n")
+                continue
 
-            macro_block = country.get("metrics", {}).get("macro", {})
-            if display_key in macro_block:
-                old_val = macro_block[display_key].get("value")
-                if old_val != formatted:
-                    changes.append((
-                        code,
-                        f"card value: {display_key}",
-                        old_val,
-                        formatted,
-                    ))
-                    if apply_mode:
-                        macro_block[display_key]["value"] = formatted
-                        macro_block[display_key]["last_updated"] = TODAY
+            country = data["countries"][code]
 
-            # ── 2. _frozen_historical (annual chart metrics only) ─────────
-            if display_key in WRITE_HISTORICAL:
-                v_array = [metric_data.get(year) for year in years]
+            for sheet_key, display_key in METRIC_MAP.items():
+                if sheet_key not in sheet_metrics:
+                    print(f"  WARNING: {sheet_key} not found in {code} tab")
+                    continue
 
-                fh = country.get("_frozen_historical", {})
-                old_v = fh.get(display_key, {}).get("v", [])
+                metric_data = sheet_metrics[sheet_key]
 
-                if old_v != v_array:
-                    changes.append((
-                        code,
-                        f"historical: {display_key}",
-                        f"{len(old_v)} points",
-                        f"{len(v_array)} points (2000-2026F)",
-                    ))
-                    if apply_mode:
-                        if display_key not in fh:
-                            fh[display_key] = {"type": "bar", "annual": True}
-                        fh[display_key]["v"] = v_array
-                        country["_frozen_historical"] = fh
+                # ── 1. card value (2026F) ─────────────────────────────────────
+                val_2026 = metric_data.get("2026F")
+                formatted = fmt_card_value(display_key, val_2026)
+
+                macro_block = country.get("metrics", {}).get("macro", {})
+                if display_key in macro_block:
+                    old_val = macro_block[display_key].get("value")
+                    if old_val != formatted:
+                        changes.append((
+                            code,
+                            f"card value: {display_key}",
+                            old_val,
+                            formatted,
+                        ))
+                        if apply_mode:
+                            macro_block[display_key]["value"] = formatted
+                            macro_block[display_key]["last_updated"] = TODAY
+
+                # ── 2. _frozen_historical (annual chart metrics only) ─────────
+                if display_key in WRITE_HISTORICAL:
+                    v_array = [metric_data.get(year) for year in years]
+
+                    fh = country.get("_frozen_historical", {})
+                    old_v = fh.get(display_key, {}).get("v", [])
+
+                    if old_v != v_array:
+                        changes.append((
+                            code,
+                            f"historical: {display_key}",
+                            f"{len(old_v)} points",
+                            f"{len(v_array)} points (2000-2026F)",
+                        ))
+                        if apply_mode:
+                            if display_key not in fh:
+                                fh[display_key] = {"type": "bar", "annual": True}
+                            fh[display_key]["v"] = v_array
+                            country["_frozen_historical"] = fh
 
     # ── summary ───────────────────────────────────────────────────────────────
     print(f"\n{'─' * 60}")

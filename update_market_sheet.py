@@ -127,11 +127,62 @@ def fetch_latest_fred(series_id: str) -> float | None:
         print(f"    [WARN] FRED {series_id}: {exc}")
         return None
 
+# ── MOEX fallback for RUS (yfinance IMOEX.ME unreliable post-sanctions) ──────
+
+def fetch_moex_index() -> tuple[float | None, float | None]:
+    """
+    Fetch IMOEX monthly candles from the MOEX public REST API.
+    Returns (jan1_close, latest_close) as index levels, or (None, None) on failure.
+    jan1_close = first candle close of the current calendar year.
+    latest_close = most recent candle close.
+    """
+    year  = date.today().year
+    till  = date.today().isoformat()
+    url   = (
+        f"https://iss.moex.com/iss/engines/stock/markets/index/securities/"
+        f"IMOEX/candles.json?from={year}-01-01&till={till}&interval=31"
+    )
+    try:
+        resp = requests.get(url, timeout=20)
+        resp.raise_for_status()
+        data = resp.json()
+        candles = data.get("candles", {})
+        columns = candles.get("columns", [])
+        rows    = candles.get("data", [])
+        if not rows or "close" not in columns:
+            print("    [WARN] MOEX: empty candles response")
+            return None, None
+        close_idx  = columns.index("close")
+        closes     = [r[close_idx] for r in rows if r[close_idx] is not None]
+        if not closes:
+            return None, None
+        jan1_close   = round(float(closes[0]),  2)
+        latest_close = round(float(closes[-1]), 2)
+        return jan1_close, latest_close
+    except Exception as exc:
+        print(f"    [WARN] MOEX fetch failed: {exc}")
+        return None, None
+
+
 # ── Build today's row for one country ─────────────────────────────────────────
 
 def build_row(code: str) -> dict:
-    """Fetch latest values for one country. Returns a dict keyed by column name."""
-    equity = fetch_latest_yfinance(EQUITY_TICKERS[code])
+    """Fetch latest values for one country. Returns a dict keyed by column name.
+    For RUS, Stock_Market_Index is sourced from the MOEX REST API instead of
+    yfinance (IMOEX.ME unreliable post-sanctions). An internal key '_moex_jan1'
+    carries the Jan-1 base level so the main loop can bypass sheet-history lookup.
+    """
+    moex_jan1 = None
+    if code == "RUS":
+        jan1_close, latest_close = fetch_moex_index()
+        equity    = latest_close
+        moex_jan1 = jan1_close
+        if equity is not None:
+            print(f"    [INFO] MOEX: jan1={jan1_close}  latest={latest_close}")
+        else:
+            print("    [WARN] MOEX returned no data for RUS")
+    else:
+        equity = fetch_latest_yfinance(EQUITY_TICKERS[code])
     fx     = fetch_latest_yfinance(FX_TICKERS[code])
 
     fred_10y_id = FRED_10Y.get(code)
@@ -151,6 +202,7 @@ def build_row(code: str) -> dict:
         "Bond_Yield_10Y":     y10    if y10    is not None else "",
         "Bond_Yield_3M":      y3m    if y3m    is not None else "",
         "Yield_Curve":        yc     if yc     is not None else "",
+        "_moex_jan1":         moex_jan1,   # internal; stripped before sheet write
     }
 
 # ── Duplicate check ───────────────────────────────────────────────────────────
@@ -302,10 +354,18 @@ def main():
             continue
 
         # Compute Stock_Market_YTD_USD from sheet history + today's live values
-        jan1_index, jan1_fx = read_jan1_from_tab(ws)
+        # For RUS: use MOEX-supplied Jan-1 level; USD return forced blank (RUB/USD unreliable)
+        if code == "RUS" and row["_moex_jan1"] is not None:
+            jan1_index = row["_moex_jan1"]
+            jan1_fx    = None   # intentionally blank — no USD adjustment
+        else:
+            jan1_index, jan1_fx = read_jan1_from_tab(ws)
         index_today = row["Stock_Market_Index"] if row["Stock_Market_Index"] != "" else None
         fx_today    = row["FX_Rate"]            if row["FX_Rate"]            != "" else None
-        ytd_usd = compute_ytd_usd(code, index_today, fx_today, jan1_index, jan1_fx)
+        if code == "RUS":
+            ytd_usd = None   # suppress USD column for RUS
+        else:
+            ytd_usd = compute_ytd_usd(code, index_today, fx_today, jan1_index, jan1_fx)
         row["Stock_Market_YTD_USD"] = ytd_usd if ytd_usd is not None else ""
 
         # Check if any data came back at all (exclude the new derived column from this check)
@@ -342,7 +402,7 @@ def main():
             continue
 
         # Append
-        row_values = [row[c] for c in COLUMNS]
+        row_values = [row[c] for c in COLUMNS]   # COLUMNS has no _moex_jan1
         ws.append_row(row_values, value_input_option="RAW")
         print(f"    Appended row for {TODAY}")
         results.append((code, "appended", TODAY))

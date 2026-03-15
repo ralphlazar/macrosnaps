@@ -8,7 +8,7 @@
       "weekly": "Update weekly or on release — CPI, unemployment, policy rate",
       "structural": "Update quarterly or on major revision — GDP, deficits, current account, stories, fxRegime"
     },
-    "built_at": "2026-03-15 11:42"
+    "built_at": "2026-03-15 12:13"
   },
   "countries": {
     "USA": {
@@ -2783,7 +2783,11 @@
             "value": 4.22
           }
         ]
-      }
+      },
+      "stock_market_index": 6632.1899,
+      "stock_market_ytd": -3.12,
+      "fx_rate": 100.495,
+      "bond_yield_10y": 4.27
     },
     "CAN": {
       "code": "CAN",
@@ -5503,7 +5507,11 @@
             "value": 2.5
           }
         ]
-      }
+      },
+      "stock_market_index": 32541.9297,
+      "stock_market_ytd": 2.78,
+      "fx_rate": 0.729,
+      "bond_yield_10y": 3.401
     },
     "GBR": {
       "code": "GBR",
@@ -8217,7 +8225,11 @@
             "value": 4.0
           }
         ]
-      }
+      },
+      "stock_market_index": 10261.1504,
+      "stock_market_ytd": 5.25,
+      "fx_rate": 1.322,
+      "bond_yield_10y": 4.451
     },
     "JPN": {
       "code": "JPN",
@@ -10813,7 +10825,11 @@
             "value": 0.5
           }
         ]
-      }
+      },
+      "stock_market_index": 53819.6094,
+      "stock_market_ytd": 4.7,
+      "fx_rate": 159.72,
+      "bond_yield_10y": 2.24
     },
     "DEU": {
       "code": "DEU",
@@ -13431,7 +13447,11 @@
             "value": 2.15
           }
         ]
-      }
+      },
+      "stock_market_index": 23447.2891,
+      "stock_market_ytd": -1.54,
+      "fx_rate": 1.1423,
+      "bond_yield_10y": 2.807
     },
     "FRA": {
       "code": "FRA",
@@ -16049,7 +16069,11 @@
             "value": 2.15
           }
         ]
-      }
+      },
+      "stock_market_index": 7911.5298,
+      "stock_market_ytd": -0.17,
+      "fx_rate": 1.1423,
+      "bond_yield_10y": 3.53
     },
     "ITA": {
       "code": "ITA",
@@ -18667,7 +18691,11 @@
             "value": 2.15
           }
         ]
-      }
+      },
+      "stock_market_index": 44316.9219,
+      "stock_market_ytd": 1.4,
+      "fx_rate": 1.1423,
+      "bond_yield_10y": 3.492
     },
     "CHN": {
       "code": "CHN",
@@ -20103,7 +20131,10 @@
         ],
         "unemployment": [],
         "policy_rate": []
-      }
+      },
+      "stock_market_index": 4095.4485,
+      "stock_market_ytd": 4.7,
+      "fx_rate": 6.8954
     },
     "IND": {
       "code": "IND",
@@ -21847,7 +21878,10 @@
             "value": 5.5
           }
         ]
-      }
+      },
+      "stock_market_index": 74563.9219,
+      "stock_market_ytd": -15.01,
+      "fx_rate": 92.45
     },
     "ZAF": {
       "code": "ZAF",
@@ -24078,7 +24112,11 @@
             "value": 7.0
           }
         ]
-      }
+      },
+      "stock_market_index": 114924.2109,
+      "stock_market_ytd": -2.5,
+      "fx_rate": 16.8775,
+      "bond_yield_10y": 8.618
     },
     "BRA": {
       "code": "BRA",
@@ -25824,7 +25862,10 @@
             "value": 15.0
           }
         ]
-      }
+      },
+      "stock_market_index": 177653.3125,
+      "stock_market_ytd": 13.88,
+      "fx_rate": 5.3019
     },
     "RUS": {
       "code": "RUS",
@@ -27232,7 +27273,9 @@
             "value": 17.0
           }
         ]
-      }
+      },
+      "stock_market_index": 2871.86,
+      "fx_rate": 80.025
     }
   },
   "commodities": {

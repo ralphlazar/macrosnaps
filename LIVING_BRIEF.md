@@ -1,7 +1,9 @@
 # MacroSnaps - Living Brief
-Last updated: March 15, 2026 (Session 11: tooling session. Stock_Market_YTD_USD pipeline complete. update_market_sheet.py now appends a 7th column to each MARKET-STATS tab. sync_market_sheet.py reads it and writes 'Stock Market YTD (USD)' into data.json. Build confirmed clean. Next session: UI session to wire USD toggle to read the new key directly and delete computeFxYtd / computeUsdReturn.)
+Last updated: March 15, 2026 (Session 12: UI session. All changes in macrosnaps-shell.html only. (1) Deleted computeFxYtd and computeUsdReturn — USD toggle now reads co.metrics.market['Stock Market YTD (USD)'] directly. (2) Stock Market YTD ranking redesigned: two columns (Local + USD) always visible side by side, both sortable, plus sortable Countries column. RUS USD shows — as expected. (3) Hover tooltip suppressed on touch devices via @media(hover:none). (4) Logo click resets to GDP Growth home state. (5) DISPLAY_NAMES map added: 'United Kingdom'->'UK', 'United States'->'USA' in all ranked and grid table renders. (6) Value columns thinned (width:58px) and centre-aligned. All dead CSS (wh-usd-toggle, wh-usd-btn, wh-usd-note) removed. Next session: tooling — add RUS MOEX index to update_market_sheet.py via iss.moex.com REST API.)
 
-Last session note (Session 10): Full homepage redesign across two sessions (9 and 10). All changes are in macrosnaps-shell.html only. Key changes:
+Last session note (Session 11): tooling session. Stock_Market_YTD_USD pipeline complete. update_market_sheet.py now appends a 7th column to each MARKET-STATS tab. sync_market_sheet.py reads it and writes 'Stock Market YTD (USD)' into data.json. Build confirmed clean. 11 countries have values; RUS blank (no equity data).
+
+Previous session note (Session 10): Full homepage redesign across two sessions (9 and 10). All changes are in macrosnaps-shell.html only. Key changes:
 
 (1) Default landing page is now a GDP Growth weather map table. Globe is hidden by default, lazy-initialised on first click of the Globe toggle in the top bar. Rankings/Globe toggle added to top-bar.
 
@@ -9,7 +11,7 @@ Last session note (Session 10): Full homepage redesign across two sessions (9 an
 
 (3) Metric picker: clicking the "GDP Growth" title opens a dropdown of all metrics in two groups - Macro (GDP Growth, Inflation, Unemployment, Budget Deficit, Current Account - all have full 7-year weather grid using existing weather functions and data objects) and Markets (Policy Rate, Stock Market YTD, 10Y Bond Yield, Yield Curve - show a single ranked column of current values).
 
-(4) USD equity toggle: when Stock Market YTD is selected, a Local/USD pill toggle appears. USD mode currently uses shell-side computeFxYtd / computeUsdReturn functions (fragile, stale). These will be deleted in the next UI session and replaced with a direct read of co.metrics.market['Stock Market YTD (USD)'].
+(4) USD equity toggle removed. Stock Market YTD now shows Local and USD columns simultaneously, both sortable.
 
 (5) Geo filter (All 12/G7/BRICS+) was removed. Tagline "Like learning a language" was removed.
 
@@ -917,9 +919,11 @@ It still owns the commodity `_frozen_historical` arrays (WTI, Brent, NatGas, Gol
 
 1. ~~**Build Google Sheet for monthly macro actuals (3 series, 2000 onwards).**~~ Done March 14, 2026. Separate sheet MACRO-MONTHLY. Three scripts built: `populate_monthly_actuals.py`, `update_monthly_actuals.py`, `sync_monthly_actuals.py`. monthly_actuals written into all 12 countries.
 
-1. ~~**Add Stock_Market_YTD_USD to MARKET-STATS and sync to data.json.**~~ Done March 15, 2026 (Session 11). `update_market_sheet.py` computes `(index_today/jan1_index) * (jan1_fx/fx_today) - 1` and appends as 7th column. USA uses local return only (DXY not a bilateral pair). `sync_market_sheet.py` reads the column and writes `'Stock Market YTD (USD)'` into data.json market metrics (cloning story structure from `'Stock Market YTD'`). Build confirmed clean. 11 countries have values; RUS blank (no equity data). **Next: UI session to wire USD toggle and delete shell-side compute functions.**
+1. ~~**Add Stock_Market_YTD_USD to MARKET-STATS and sync to data.json.**~~ Done March 15, 2026 (Session 11). `update_market_sheet.py` computes `(index_today/jan1_index) * (jan1_fx/fx_today) - 1` and appends as 7th column. USA uses local return only (DXY not a bilateral pair). `sync_market_sheet.py` reads the column and writes `'Stock Market YTD (USD)'` into data.json market metrics (cloning story structure from `'Stock Market YTD'`). Build confirmed clean. 11 countries have values; RUS blank (no equity data).
 
-1. **Wire USD equity toggle to new data key (UI session).** Upload `LIVING_BRIEF.md` + `macrosnaps-shell.html`. Delete `computeFxYtd` and `computeUsdReturn` functions entirely. Update the USD toggle to read `co.metrics.market['Stock Market YTD (USD)']` directly like any other metric. Handle null gracefully (RUS will have no USD value). Remove the disclaimer note about approximate FX computation.
+1. ~~**Wire USD equity toggle to new data key (UI session).**~~ Done March 15, 2026 (Session 12). computeFxYtd and computeUsdReturn deleted. Stock Market YTD now shows dual Local/USD columns, both sortable. RUS USD blank as expected.
+
+1. **Add RUS MOEX index to market pipeline (tooling session).** Upload `LIVING_BRIEF.md` + `update_market_sheet.py`. RUS currently has no Stock Market YTD because `IMOEX.ME` via yfinance is unreliable post-sanctions. Use the MOEX public REST API (`iss.moex.com`) as a fallback for RUS only. Endpoint: `https://iss.moex.com/iss/engines/stock/markets/index/securities/IMOEX/candles.json?from=YYYY-01-01&till=YYYY-MM-DD&interval=31`. Returns monthly candles; use `close` field. Jan 1 value = first candle close; latest value = most recent candle close. YTD = latest/jan1 - 1. Write into the Stock Market column for RUS only. USD column stays blank (RUB/USD rate not reliable post-sanctions). Goal: RUS appears in Local column of Stock Market YTD rankings.
 
 1. ~~**Add country-level and global stories to the daily bash ritual.**~~ Done and verified March 11, 2026. `update_headlines.py` calls the Claude API, drafts 12 country story blocks (3 bullets x 3 levels) in 3 batches of 4 via Haiku (8000 tokens each) and global stories (3 items x 3 levels) via Sonnet with web search (5000 tokens). Saves to `stories_draft_YYYY-MM-DD.json`. `headline_review.html` is a browser-based review tool.
 
