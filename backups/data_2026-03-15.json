@@ -8,7 +8,7 @@
       "weekly": "Update weekly or on release — CPI, unemployment, policy rate",
       "structural": "Update quarterly or on major revision — GDP, deficits, current account, stories, fxRegime"
     },
-    "built_at": "2026-03-15 13:06"
+    "built_at": "2026-03-15 13:10"
   },
   "countries": {
     "USA": {
@@ -131,7 +131,9 @@
               "moderate": "The U.S. stock market's year-to-date performance deteriorated further, sliding from -2.7% to -3.12%. Equity markets remain under pressure as investors grapple with persistent headwinds including inflation concerns and economic growth uncertainties. The deepening losses suggest market sentiment has yet to stabilize, with broad-based selling continuing to weigh on major indices.",
               "expert": "U.S. equity markets extended their year-to-date decline to -3.12% from -2.7%, indicating continued selling pressure across major indices. The 42 basis point deterioration reflects ongoing risk-off sentiment as investors reassess growth prospects and monetary policy implications. Technical momentum remains negative with the market failing to establish a sustainable floor above recent lows. Sector rotation patterns and elevated volatility metrics suggest institutional repositioning continues to drive price action. The persistent negative performance underscores structural headwinds that have yet to be fully priced into current valuations."
             }
-          }
+          },
+          "Stock Market Index": 6632.1899,
+          "FX Rate": 100.495
         }
       },
       "stories": {
@@ -2910,7 +2912,9 @@
               "moderate": "The TSX posted a 2.61% year-to-date return, showing resilience in a challenging global environment. Canadian equities benefited from strong commodity prices and steady corporate earnings. The modest gain reflects investor confidence in domestic fundamentals, though geopolitical tensions continue to create headwinds for risk assets.",
               "expert": "The S&P/TSX Composite delivered a 2.61% YTD return, outperforming several developed market peers amid volatile macro conditions. Energy and materials sectors provided significant support as commodity supercycles benefited Canadian resource companies. The index's performance reflects Canada's defensive characteristics and resource exposure, though multiple compression across growth names offset some cyclical gains. Relative outperformance versus global indices demonstrates the market's correlation with commodity flows and defensive positioning during periods of elevated uncertainty."
             }
-          }
+          },
+          "Stock Market Index": 32541.9297,
+          "FX Rate": 0.729
         }
       },
       "stories": {
@@ -5635,7 +5639,9 @@
               "moderate": "The FTSE index posted a 3.32% year-to-date return, improving from the previous 3.1% reading. UK equities maintain their positive trajectory as investors balance domestic economic concerns against corporate earnings resilience. The steady gains reflect cautious optimism in British markets. Portfolio managers see measured progress amid ongoing monetary policy adjustments.",
               "expert": "UK equity indices extended year-to-date gains to 3.32%, advancing from 3.1% in the prior period. The FTSE 100's performance reflects sector rotation dynamics and sterling-denominated earnings stability. Institutional flows continue supporting domestic equities despite elevated gilt yields constraining valuation multiples. The measured advance suggests market participants are pricing in gradual economic normalization. Technical momentum indicators remain constructive for British large-cap names."
             }
-          }
+          },
+          "Stock Market Index": 10261.1504,
+          "FX Rate": 1.322
         }
       },
       "stories": {
@@ -8354,7 +8360,9 @@
               "moderate": "The Nikkei surged to 6.9% year-to-date returns, a significant jump from the previous 3.8% reading. This acceleration reflects growing investor optimism about Japanese corporate earnings and economic prospects. The sharp uptick suggests institutional money is flowing back into Japanese equities after a period of more modest gains.",
               "expert": "Japanese equities accelerated sharply to 6.9% YTD returns from 3.8%, indicating a substantial inflection in momentum across the Nikkei 225 and broader TOPIX. The 310 basis point jump signals renewed institutional appetite for Japanese risk assets, likely driven by improving corporate governance reforms and potential BOJ policy normalization expectations. This outperformance relative to earlier periods suggests Japan is benefiting from both domestic structural improvements and global rotation into undervalued developed market equities. The velocity of the move indicates strong technical momentum that could attract additional foreign institutional flows."
             }
-          }
+          },
+          "Stock Market Index": 53819.6094,
+          "FX Rate": 159.72
         }
       },
       "stories": {
@@ -10955,7 +10963,9 @@
               "moderate": "The German equity market posted modest gains, reducing year-to-date losses from 4.6% to 4.26%. This improvement suggests some investor confidence returning despite ongoing economic headwinds. German stocks continue underperforming many global markets, reflecting concerns about the country's industrial competitiveness and energy costs. The DAX's movement indicates cautious optimism among institutional investors.",
               "expert": "German equities rallied marginally, with the year-to-date performance improving 34 basis points from -4.6% to -4.26%. The modest recovery reflects tentative risk-on sentiment despite structural challenges facing German corporates, particularly in manufacturing and chemicals sectors. Export-dependent German equities remain vulnerable to global trade dynamics and ECB monetary policy shifts. This performance continues to lag the broader European equity complex, highlighting Germany-specific headwinds including elevated energy input costs and competitive pressures from Chinese manufacturing. The technical bounce suggests short-covering rather than fundamental re-rating."
             }
-          }
+          },
+          "Stock Market Index": 23447.2891,
+          "FX Rate": 1.1423
         }
       },
       "stories": {
@@ -13578,7 +13588,9 @@
               "moderate": "The CAC 40 index reduced its year-to-date losses from -3.4% to -2.92%, signaling modest market recovery. French equities remain under pressure but demonstrate resilience amid broader European market volatility. The improvement suggests investor sentiment toward French corporates has stabilized somewhat. Market participants are likely reassessing valuations after the earlier selloff.",
               "expert": "French equity markets posted a marginal recovery with the CAC 40's YTD performance improving 48 basis points from -3.4% to -2.92%. The move reflects technical buying interest and potential mean reversion after oversold conditions earlier this year. Sectoral rotation within French blue chips likely contributed to the uplift, particularly if defensive names outperformed cyclicals. The persistence of negative YTD returns indicates structural headwinds remain, though the trajectory suggests accumulation at current levels. Risk-adjusted returns may be attracting institutional flows back into French large-cap exposure."
             }
-          }
+          },
+          "Stock Market Index": 7911.5298,
+          "FX Rate": 1.1423
         }
       },
       "stories": {
@@ -16201,7 +16213,9 @@
               "moderate": "Italy's equity market showed resilience as year-to-date losses compressed from 2.5% to 1.4%. The FTSE MIB's recovery reflects improving investor sentiment toward Italian assets amid stabilizing economic conditions. While still in negative territory for the year, the index demonstrates meaningful momentum. This performance puts Italian stocks ahead of several European peers who continue to struggle with deeper losses.",
               "expert": "The FTSE MIB's year-to-date performance improved substantially, with losses contracting 110 basis points from -2.5% to -1.4%. This recovery trajectory outpaced the broader STOXX Europe 600 and reflects decreased political risk premiums following stable government formation. Italian equities benefited from sector rotation into financials and utilities, both overweight in the index composition. The narrowing discount to book value suggests institutional flows returned to Italian names. Technical resistance at flat YTD performance remains the next key level for sustained momentum."
             }
-          }
+          },
+          "Stock Market Index": 44316.9219,
+          "FX Rate": 1.1423
         }
       },
       "stories": {
@@ -18786,7 +18800,7 @@
             }
           },
           "10Y Bond Yield": {
-            "value": "2.40%",
+            "value": null,
             "tier": "daily",
             "last_updated": "2026-03-09",
             "story": {
@@ -18824,7 +18838,9 @@
               "moderate": "China's stock market accelerated from a tepid 1.8% year-to-date gain to 3.19%, signaling improving investor sentiment. The uptick reflects growing confidence in China's post-reopening economic trajectory and potential policy support measures. Market participants appear increasingly willing to price in recovery scenarios despite ongoing structural headwinds.",
               "expert": "Chinese equities extended year-to-date gains from 1.8% to 3.19%, indicating a shift in risk appetite amid evolving macro conditions. The acceleration suggests institutional flows are responding to improved earnings visibility and potential monetary accommodation from the PBOC. Technical momentum appears to be building as foreign investor positioning normalizes following the sharp derisking cycle. Market multiples remain compressed relative to historical averages, creating scope for further re-rating if growth stabilization materializes. The trajectory aligns with broader EM outperformance themes as global liquidity conditions ease."
             }
-          }
+          },
+          "Stock Market Index": 4095.4485,
+          "FX Rate": 6.8954
         }
       },
       "stories": {
@@ -20226,7 +20242,7 @@
             }
           },
           "10Y Bond Yield": {
-            "value": "6.73%",
+            "value": null,
             "tier": "daily",
             "last_updated": "2026-03-13",
             "story": {
@@ -20264,7 +20280,9 @@
               "moderate": "The Nifty's year-to-date performance improved marginally to -12.47% from -12.5%, indicating modest stabilization in Indian equities. This incremental gain reflects reduced selling pressure rather than strong buying momentum. The benchmark remains deeply in negative territory as investors grapple with global headwinds and domestic concerns. Market sentiment shows signs of finding a floor at current levels.",
               "expert": "Indian equity indices posted a marginal recovery with YTD performance improving to -12.47% from -12.5%, suggesting consolidation around current support levels. The 3 basis point improvement indicates diminishing volatility and potential technical stabilization after the broader correction. Foreign institutional investor flows and rupee dynamics continue weighing on the Nifty's recovery trajectory. Risk-off sentiment persists across emerging markets, keeping Indian equities range-bound despite attractive valuations. The incremental improvement suggests accumulation by domestic institutional investors offsetting foreign selling pressure."
             }
-          }
+          },
+          "Stock Market Index": 74563.9219,
+          "FX Rate": 92.45
         }
       },
       "stories": {
@@ -22012,7 +22030,9 @@
               "moderate": "The JSE All Share Index declined 0.78% year-to-date, deepening from the previous 0.5% loss. South African equities face headwinds from persistent load shedding, political uncertainty, and global risk-off sentiment. Foreign investors continue reducing their exposure to emerging market assets. The rand's weakness against major currencies adds another layer of complexity for international capital flows.",
               "expert": "The FTSE/JSE All Share Total Return Index posted a 0.78% YTD decline, deteriorating from the prior 0.5% negative print. Structural challenges including Eskom's grid instability, elevated sovereign risk premiums, and constrained fiscal space continue weighing on equity valuations. The MSCI South Africa Index underperformed broader EM benchmarks as foreign institutional flows remained persistently negative. Resource sector volatility, particularly in platinum and gold miners, amplified the index drawdown amid shifting global commodity demand patterns and China's economic deceleration concerns."
             }
-          }
+          },
+          "Stock Market Index": 114924.2109,
+          "FX Rate": 16.8775
         }
       },
       "stories": {
@@ -24210,7 +24230,7 @@
             }
           },
           "10Y Bond Yield": {
-            "value": "13.80%",
+            "value": null,
             "tier": "daily",
             "last_updated": "2026-03-09",
             "story": {
@@ -24248,7 +24268,9 @@
               "moderate": "The Bovespa index posted a 10.26% year-to-date return, moderating from its previous 11.7% gain. Brazilian equities experienced some profit-taking after their strong early-year performance. The market continues to outperform many emerging market peers despite recent volatility. Investors remain cautiously optimistic about Brazil's economic outlook even as political uncertainties persist.",
               "expert": "The Ibovespa retreated to a 10.26% YTD return from 11.7%, reflecting recent consolidation in Brazilian equities after the index's Q1 rally. The pullback coincides with renewed concerns over fiscal policy execution and global risk-off sentiment affecting EM assets. Brazilian ADRs trading in New York have underperformed the domestic market as foreign flows turned mixed. The real's recent weakness against the dollar has provided some tailwind for exporters in the index. Technical support levels around the 120,000 point mark will be critical for maintaining the year's positive momentum."
             }
-          }
+          },
+          "Stock Market Index": 177653.3125,
+          "FX Rate": 5.3019
         }
       },
       "stories": {
@@ -25950,7 +25972,7 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "+5.0%",
+            "value": 4.16,
             "tier": "daily",
             "last_updated": "2026-03-09",
             "story": {
@@ -25960,7 +25982,7 @@
             }
           },
           "10Y Bond Yield": {
-            "value": "13.5%",
+            "value": null,
             "tier": "daily",
             "last_updated": "2026-03-08",
             "story": {
@@ -25990,7 +26012,7 @@
             }
           },
           "Stock Market YTD (USD)": {
-            "value": null,
+            "value": 2.33,
             "last_updated": null,
             "tier": "daily",
             "story": {
@@ -25998,7 +26020,9 @@
               "moderate": "The MOEX index's 5% YTD gain reflects the oil windfall (energy stocks are a dominant index weight) and some partial peace-process optimism that has intermittently lifted sentiment; the market is effectively a domestic Russian retail and institutional investor market, with Western capital locked out since 2022; the 5% gain in rouble terms may represent a real loss for investors who cannot convert gains to hard currency due to capital controls.",
               "expert": "Russia's equity market is structurally isolated from global capital markets following the February 2022 sanctions and the NSD (National Settlement Depository) lock-out that froze foreign holdings; the MOEX operates as a closed domestic market where the primary price-setting investors are Russian retail investors, domestic pension funds, and state-controlled institutions; the 5% YTD nominal return in roubles provides limited information about fundamental value, as the market cannot clear at international prices given the convertibility restriction and as rouble-denominated returns cannot be realised in hard currency by most international benchmarks."
             }
-          }
+          },
+          "Stock Market Index": 2871.86,
+          "FX Rate": 80.025
         }
       },
       "stories": {

@@ -61,10 +61,10 @@ MARKET_KEY_FILE = os.path.expanduser(
 
 # Sheet column name → data.json key
 MARKET_COL_MAP = {
-    "Stock_Market_Index":   "stock_market_index",
-    "Stock_Market_YTD_USD": "stock_market_ytd_usd",
-    "FX_Rate":              "fx_rate",
-    "Bond_Yield_10Y":       "bond_yield_10y",
+    "Stock_Market_Index":   "Stock Market Index",
+    "Stock_Market_YTD_USD": "Stock Market YTD (USD)",
+    "FX_Rate":              "FX Rate",
+    "Bond_Yield_10Y":       "10Y Bond Yield",
 }
 
 # ── fetch and parse ───────────────────────────────────────────────────────────
@@ -287,10 +287,10 @@ def run_market_sync(apply_mode: bool, data: dict) -> list:
             continue
 
         country = data["countries"][code]
+        market  = country.setdefault("metrics", {}).setdefault("market", {})
 
-        for sheet_col, json_key in MARKET_COL_MAP.items():
+        for sheet_col, display_key in MARKET_COL_MAP.items():
             raw = row_dict.get(sheet_col, "")
-            # Parse to float; treat empty string or missing as None
             if raw in ("", None):
                 new_val = None
             else:
@@ -299,13 +299,17 @@ def run_market_sync(apply_mode: bool, data: dict) -> list:
                 except ValueError:
                     new_val = None
 
-            old_val = country.get(json_key)
+            old_entry = market.get(display_key)
+            old_val   = old_entry.get("value") if isinstance(old_entry, dict) else old_entry
             if old_val != new_val:
-                changes.append((code, json_key, old_val, new_val))
+                changes.append((code, display_key, old_val, new_val))
                 if apply_mode:
-                    country[json_key] = new_val
+                    if isinstance(market.get(display_key), dict):
+                        market[display_key]["value"] = new_val
+                    else:
+                        market[display_key] = new_val
 
-        # Compute local YTD from index history
+        # Compute local YTD from index history and write to metrics.market
         latest_raw = row_dict.get("Stock_Market_Index", "")
         try:
             latest_index = float(latest_raw) if latest_raw not in ("", None) else None
@@ -313,11 +317,16 @@ def run_market_sync(apply_mode: bool, data: dict) -> list:
             latest_index = None
         jan1_index = _jan1_index_from_rows(all_rows)
         local_ytd  = _compute_local_ytd(latest_index, jan1_index)
-        old_ytd    = country.get("stock_market_ytd")
+
+        old_entry = market.get("Stock Market YTD")
+        old_ytd   = old_entry.get("value") if isinstance(old_entry, dict) else old_entry
         if old_ytd != local_ytd:
-            changes.append((code, "stock_market_ytd", old_ytd, local_ytd))
+            changes.append((code, "Stock Market YTD", old_ytd, local_ytd))
             if apply_mode:
-                country["stock_market_ytd"] = local_ytd
+                if isinstance(market.get("Stock Market YTD"), dict):
+                    market["Stock Market YTD"]["value"] = local_ytd
+                else:
+                    market["Stock Market YTD"] = local_ytd
 
     return changes
 
