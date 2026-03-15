@@ -22,8 +22,8 @@
   --font-display:'Space Mono',monospace;
   --font-body:'DM Sans',sans-serif;
 }
-html{background:#05080f;color:#e8e8e8;font-family:var(--font-body)}
-body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:#05080f}
+html{background:#091426;color:#e8e8e8;font-family:var(--font-body)}
+body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:#091426}
 
 /* ── View Container ── */
 #main-views{flex:1;overflow:hidden;position:relative;display:flex;flex-direction:column}
@@ -57,7 +57,7 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 /* ── Cell hover tip ── */
 #wh-hover-tip{
   position:fixed;pointer-events:none;z-index:300;display:none;
-  background:rgba(10,14,26,.96);border:1px solid rgba(0,212,255,.35);
+  background:rgba(9,20,38,.96);border:1px solid rgba(0,212,255,.35);
   border-radius:4px;padding:3px 9px;
   font-family:var(--font-display);font-size:10px;letter-spacing:.5px;
   color:#fff;white-space:nowrap;
@@ -79,7 +79,7 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 /* ── Metric dropdown ── */
 .wh-metric-dropdown{
   position:fixed;z-index:400;
-  background:rgba(10,14,26,.98);border:1px solid rgba(0,212,255,.25);
+  background:rgba(9,20,38,.98);border:1px solid rgba(0,212,255,.25);
   border-radius:8px;padding:6px 0;min-width:200px;
   box-shadow:0 8px 32px rgba(0,0,0,.6);
   animation:ttIn .15s ease-out;
@@ -337,7 +337,7 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 /* ── Tooltip ── */
 .tooltip{
   display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
-  background:rgba(10,14,26,0.98);border:1px solid #00d4ff;border-radius:8px;
+  background:rgba(9,20,38,.98);border:1px solid #00d4ff;border-radius:8px;
   padding:16px;z-index:1000;width:90%;max-width:400px;max-height:80vh;
   overflow-y:auto;box-shadow:0 8px 32px rgba(0,212,255,0.3);
   animation:ttIn .2s ease-out;
@@ -378,7 +378,7 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 }
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 .country-card{
-  width:92%;max-width:420px;background:#0d1120;border:2px solid #2a2e3d;border-radius:12px;
+  width:92%;max-width:420px;background:#0e1d35;border:2px solid #243650;border-radius:12px;
   padding:16px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.5);
   animation:cardIn .25s ease-out;margin:auto;
 }
@@ -437,7 +437,7 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 
 /* ── Commodities Card ── */
 .comm-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.06);border-radius:8px;overflow:hidden;margin-top:4px}
-.comm-item{background:#0d1120;padding:12px 14px;display:flex;flex-direction:column;gap:4px;transition:background .2s;cursor:pointer}
+.comm-item{background:#0e1d35;padding:12px 14px;display:flex;flex-direction:column;gap:4px;transition:background .2s;cursor:pointer}
 .comm-item:hover{background:rgba(255,255,255,.06)}
 .comm-head{display:flex;align-items:center;justify-content:space-between}
 .comm-name{font-size:10px;color:#999;text-transform:uppercase;letter-spacing:.8px;font-family:var(--font-display)}
@@ -447,7 +447,7 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 .comm-change.up{color:#00e68a}
 .comm-change.down{color:#ff3d5a}
 .comm-change.flat{color:#888}
-.comm-section-label{grid-column:1/-1;padding:8px 14px 4px;background:#0d1120;font-size:9px;color:#e8a838;text-transform:uppercase;letter-spacing:2px;font-family:var(--font-display);font-weight:700;border-top:1px solid rgba(232,168,56,.15)}
+.comm-section-label{grid-column:1/-1;padding:8px 14px 4px;background:#0e1d35;font-size:9px;color:#e8a838;text-transform:uppercase;letter-spacing:2px;font-family:var(--font-display);font-weight:700;border-top:1px solid rgba(232,168,56,.15)}
 .comm-section-label:first-child{border-top:none}
 .comm-unit{font-size:9px;color:#666;font-weight:400;margin-left:4px}
 .comm-footer{margin-top:8px;font-size:9px;color:#555;text-align:center;font-family:var(--font-display);letter-spacing:.5px}
@@ -457,13 +457,13 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 .glossary-term{color:#8ec8f0;text-decoration:underline;text-decoration-style:dotted;text-decoration-color:rgba(142,200,240,.45);text-underline-offset:2px;cursor:help;transition:color .15s;border-radius:2px}
 .glossary-term:hover{color:#b8dcf8;text-decoration-color:rgba(142,200,240,.8);background:rgba(142,200,240,.07)}
 .glossary-bubble{
-  position:fixed;z-index:2000;background:rgba(10,14,26,.98);
+  position:fixed;z-index:2000;background:rgba(9,20,38,.98);
   border:1px solid rgba(0,212,255,.45);border-radius:10px;padding:14px 16px 12px;
   max-width:320px;min-width:200px;box-shadow:0 6px 24px rgba(0,0,0,.6),0 0 12px rgba(0,212,255,.12);
   pointer-events:auto;animation:gbIn .15s ease-out;
 }
 @keyframes gbIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
-.glossary-bubble::before{content:'';position:absolute;top:-6px;left:24px;width:10px;height:10px;background:rgba(10,14,26,.98);border-left:1px solid rgba(0,212,255,.45);border-top:1px solid rgba(0,212,255,.45);transform:rotate(45deg)}
+.glossary-bubble::before{content:'';position:absolute;top:-6px;left:24px;width:10px;height:10px;background:rgba(9,20,38,.98);border-left:1px solid rgba(0,212,255,.45);border-top:1px solid rgba(0,212,255,.45);transform:rotate(45deg)}
 .glossary-bubble.arrow-bottom::before{top:auto;bottom:-6px;border-left:none;border-top:none;border-right:1px solid rgba(0,212,255,.45);border-bottom:1px solid rgba(0,212,255,.45)}
 .gb-term{font-size:11px;font-weight:700;color:#00d4ff;text-transform:uppercase;letter-spacing:.8px;margin-bottom:3px;display:flex;align-items:center;gap:6px;padding-right:28px}
 .gb-badge{display:inline-block;font-size:8px;font-weight:600;padding:1px 5px;border-radius:3px;letter-spacing:.5px;text-transform:uppercase}
@@ -670,7 +670,7 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 /* Footer tooltip overlay */
 .footer-tooltip{
   display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
-  background:rgba(10,14,26,.98);border:1px solid #00d4ff;border-radius:8px;
+  background:rgba(9,20,38,.98);border:1px solid #00d4ff;border-radius:8px;
   padding:20px;z-index:1000;width:90%;max-width:500px;max-height:80vh;
   overflow-y:auto;box-shadow:0 8px 32px rgba(0,212,255,.3);
   animation:ttIn .2s ease-out;
