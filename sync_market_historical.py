@@ -321,15 +321,16 @@ def build_yield_curve_spark(code):
 # WRITE HELPERS
 # ---------------------------------------------------------------------------
 
-def set_spark(market_dict, label, spark):
+def set_spark(frozen_historical, label, spark):
     """
-    Write spark into a market metric dict.
-    Creates the key if missing, preserves all other fields.
+    Write spark into _frozen_historical as {"type": "line", "v": [...]}.
+    This is the structure the shell reads via historicalData[code][label].v.
+    Preserves any existing keys on the entry other than type and v.
     """
-    if label not in market_dict:
-        log.warning(f"    Label '{label}' not in market dict — skipping")
-        return
-    market_dict[label]["spark"] = spark
+    if label not in frozen_historical:
+        frozen_historical[label] = {}
+    frozen_historical[label]["type"] = "line"
+    frozen_historical[label]["v"]    = spark
 
 
 # ---------------------------------------------------------------------------
@@ -362,16 +363,16 @@ def main():
         log.info(f"  {code}")
         log.info(f"{'='*56}")
 
-        market = countries[code].get("metrics", {}).get("market", {})
-        if not market:
-            log.warning(f"  No market metrics found — skipping")
+        fh = countries[code].get("_frozen_historical")
+        if fh is None:
+            log.warning(f"  No _frozen_historical found — skipping")
             continue
 
         # Stock Market
         stock_spark = build_stock_spark(code)
         stale_check(stock_spark, "Stock Market")
         if APPLY:
-            set_spark(market, "Stock Market YTD", stock_spark)
+            set_spark(fh, "Stock Market YTD", stock_spark)
             writes += 1
 
         # FX
@@ -379,21 +380,21 @@ def main():
         fx_spark  = build_fx_spark(code)
         stale_check(fx_spark, f"FX ({fx_label})")
         if APPLY and fx_label:
-            set_spark(market, fx_label, fx_spark)
+            set_spark(fh, fx_label, fx_spark)
             writes += 1
 
         # 10Y Bond Yield
         bond_spark = build_bond_spark(code)
         stale_check(bond_spark, "10Y Bond Yield")
         if APPLY:
-            set_spark(market, "10Y Bond Yield", bond_spark)
+            set_spark(fh, "10Y Bond Yield", bond_spark)
             writes += 1
 
         # Yield Curve
         yc_spark = build_yield_curve_spark(code)
         stale_check(yc_spark, "Yield Curve")
         if APPLY:
-            set_spark(market, "Yield Curve", yc_spark)
+            set_spark(fh, "Yield Curve", yc_spark)
             writes += 1
 
         log.info("")
