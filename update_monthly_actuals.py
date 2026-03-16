@@ -1,385 +1,311 @@
 #!/usr/bin/env python3
 """
-update_monthly_actuals.py  (v2)
-Reads the last date in each MACRO-MONTHLY tab and appends any new months.
-Safe to run daily — exits cleanly when nothing new is available.
+update_monthly_actuals.py — Incremental update to MACRO-MONTHLY sheet.
+Reads the last date in each tab, fetches only new months, appends new rows.
+Safe to run daily — idempotent, skips rows that already exist.
 
-Sources: identical to populate_monthly_actuals.py v2.
-  CPI           IMF IFS PCPI_IX  (all 12 countries, single API call)
-  Unemployment  IMF IFS LUR      (all 12 countries, single API call)
-  Policy Rate   FRED (USA, EUR zone) + BIS (CAN/GBR/JPN/IND/ZAF/BRA)
-                CHN and RUS: blank
+Sources: same as populate_monthly_actuals.py.
 
---dry-run  preview without writing.
+Usage:
+  python3 update_monthly_actuals.py           # dry run — print preview only
+  python3 update_monthly_actuals.py --apply   # append new rows to sheet
 """
 
-import csv
-import io
-import os
-import sys
-import requests
-from datetime import date, datetime
+import os, sys, csv, io, warnings
+from datetime import date
 from dateutil.relativedelta import relativedelta
-from dotenv import load_dotenv
+
+import requests
+import pandas as pd
+import gspread
 from google.oauth2.service_account import Credentials
-from googleapiclient.discovery import build
 
-load_dotenv()
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
 
-FRED_API_KEY           = os.getenv("FRED_API_KEY")
-MACRO_MONTHLY_SHEET_ID = os.getenv("MACRO_MONTHLY_SHEET_ID")
-KEY_FILE               = os.path.join(os.path.dirname(__file__), "market-stats-key.json")
+warnings.filterwarnings('ignore', message='.*structure.*')
+import sdmx
 
-COUNTRIES = ["USA", "CAN", "GBR", "JPN", "DEU", "FRA", "ITA", "CHN", "IND", "ZAF", "BRA", "RUS"]
+# ── Config ────────────────────────────────────────────────────────────────────
 
-IMF_COUNTRY_CODES = {
-    "USA": "US", "CAN": "CA", "GBR": "GB", "JPN": "JP",
-    "DEU": "DE", "FRA": "FR", "ITA": "IT", "CHN": "CN",
-    "IND": "IN", "ZAF": "ZA", "BRA": "BR", "RUS": "RU",
-}
+APPLY       = '--apply' in sys.argv
+TODAY       = date.today()
 
-# RUS excluded: BIS stopped publishing after Feb 2022
+COUNTRIES   = ['USA', 'CAN', 'GBR', 'JPN', 'DEU', 'FRA', 'ITA', 'CHN', 'IND', 'ZAF', 'BRA', 'RUS']
+
+SHEET_ID    = os.environ.get('MACRO_MONTHLY_SHEET_ID')
+KEY_FILE    = os.path.join(os.path.dirname(__file__), 'market-stats-key.json')
+FRED_KEY    = os.environ.get('FRED_API_KEY', '')
+
+UNEMP_IMF   = ['USA', 'CAN', 'JPN', 'DEU', 'FRA', 'ITA', 'BRA', 'RUS']
+UNEMP_BLANK = ['CHN', 'IND', 'ZAF']
+
 BIS_RATE_COUNTRIES = {
-    "CAN": "CA", "GBR": "GB", "JPN": "JP",
-    "IND": "IN", "ZAF": "ZA", "BRA": "BR",
+    'CAN': 'CA',
+    'GBR': 'GB',
+    'JPN': 'JP',
+    'IND': 'IN',
+    'ZAF': 'ZA',
+    'BRA': 'BR',
+    'RUS': 'RU',
 }
 
-RATE_SERIES = {
-    "USA": "FRED:FEDFUNDS",
-    "CAN": "BIS",
-    "GBR": "BIS",
-    "JPN": "BIS",
-    "DEU": "FRED:ECBMRRFR",
-    "FRA": "FRED:ECBMRRFR",
-    "ITA": "FRED:ECBMRRFR",
-    "CHN": None,
-    "IND": "BIS",
-    "ZAF": "BIS",
-    "BRA": "BIS",
-    "RUS": None,   # BIS sanctions gap from Mar 2022; no reliable free alternative
+RATE_SERIES_FRED = {
+    'USA': 'FEDFUNDS',
+    'DEU': 'ECBMRRFR',
+    'FRA': 'ECBMRRFR',
+    'ITA': 'ECBMRRFR',
+    'CHN': None,
 }
 
+# ── Utilities ─────────────────────────────────────────────────────────────────
 
-# ---------------------------------------------------------------------------
-# IMF IFS
-# ---------------------------------------------------------------------------
+def months_between(start, end):
+    result, d = [], start.replace(day=1)
+    while d <= end.replace(day=1):
+        result.append(d)
+        d += relativedelta(months=1)
+    return result
 
-def imf_fetch(indicator, start_period):
-    """
-    Fetch a monthly IMF IFS indicator for all 12 countries in a single API call.
+def fmt(d):
+    return d.strftime('%d/%m/%Y')
 
-    indicator    e.g. "PCPI_IX" or "LUR"
-    start_period YYYY-MM string
+def parse_sheet_date(s):
+    from datetime import datetime
+    return datetime.strptime(s.strip(), '%d/%m/%Y').date()
 
-    Returns {country_3letter: {YYYY-MM-01: float}}
-    """
-    codes = "+".join(IMF_COUNTRY_CODES.values())
-    url   = (
-        "https://dataservices.imf.org/REST/SDMX_JSON.svc/"
-        f"CompactData/IFS/M.{codes}.{indicator}"
-    )
-    resp = requests.get(url, params={"startPeriod": start_period}, timeout=60)
-    resp.raise_for_status()
+def parse_imf_period(tp):
+    y, m = tp.split('-M')
+    return date(int(y), int(m), 1)
 
-    imf_to_country = {v: k for k, v in IMF_COUNTRY_CODES.items()}
-    result = {c: {} for c in COUNTRIES}
-
-    series = resp.json()["CompactData"]["DataSet"].get("Series", [])
-    if isinstance(series, dict):
-        series = [series]
-
-    for s in series:
-        country = imf_to_country.get(s.get("@REF_AREA", ""))
-        if not country:
+def fred_fetch(series_id, start):
+    url = 'https://api.stlouisfed.org/fred/series/observations'
+    r = requests.get(url, params={
+        'series_id':          series_id,
+        'api_key':            FRED_KEY,
+        'file_type':          'json',
+        'frequency':          'm',
+        'aggregation_method': 'avg',
+        'observation_start':  start.strftime('%Y-%m-%d'),
+    }, timeout=30)
+    r.raise_for_status()
+    from datetime import datetime
+    out = {}
+    for obs in r.json().get('observations', []):
+        if obs['value'] == '.':
             continue
-        obs_list = s.get("Obs", [])
-        if isinstance(obs_list, dict):
-            obs_list = [obs_list]
-        for o in obs_list:
-            tp  = o.get("@TIME_PERIOD", "")   # "YYYY-MM"
-            val = o.get("@OBS_VALUE")
-            if tp and val is not None:
-                try:
-                    result[country][tp + "-01"] = float(val)
-                except (ValueError, TypeError):
-                    pass
+        d = datetime.strptime(obs['date'], '%Y-%m-%d').date().replace(day=1)
+        out[d] = float(obs['value'])
+    return out
 
-    return result
-
-
-# ---------------------------------------------------------------------------
-# FRED  (Policy Rate only)
-# ---------------------------------------------------------------------------
-
-def fred_fetch(series_id, observation_start):
-    """Fetch a FRED series.  Returns {YYYY-MM-01: float}."""
-    params = {
-        "series_id":        series_id,
-        "api_key":          FRED_API_KEY,
-        "file_type":        "json",
-        "observation_start": observation_start,
-    }
-    resp = requests.get(
-        "https://api.stlouisfed.org/fred/series/observations",
-        params=params, timeout=30,
-    )
-    resp.raise_for_status()
-    result = {}
-    for obs in resp.json().get("observations", []):
-        month_key = obs["date"][:7] + "-01"
-        val = obs["value"]
-        if val != ".":
-            try:
-                result[month_key] = float(val)
-            except ValueError:
-                pass
-    return result
-
-
-# ---------------------------------------------------------------------------
-# BIS  (Policy Rate)
-# ---------------------------------------------------------------------------
-
-def bis_fetch_policy_rates(observation_start):
-    """
-    Fetch monthly central bank policy rates from BIS WS_CBPOL.
-    Returns {country_3letter: {YYYY-MM-01: float}}.
-    """
-    codes = "+".join(BIS_RATE_COUNTRIES.values())
-    url   = f"https://stats.bis.org/api/v1/data/WS_CBPOL/M.{codes}/all"
-    params = {"format": "csv", "startPeriod": observation_start[:7]}
+def bis_fetch_policy_rates(start):
+    bis_codes = '+'.join(BIS_RATE_COUNTRIES.values())
+    url = f'https://stats.bis.org/api/v1/data/WS_CBPOL/M.{bis_codes}/all'
+    params = {'format': 'csv', 'startPeriod': start.strftime('%Y-%m')}
     resp = requests.get(url, params=params, timeout=60)
     resp.raise_for_status()
-
     bis_to_country = {v: k for k, v in BIS_RATE_COUNTRIES.items()}
     result = {c: {} for c in BIS_RATE_COUNTRIES}
-
-    for row in csv.DictReader(io.StringIO(resp.text)):
-        ref_area    = row.get("REF_AREA",    "").strip()
-        time_period = row.get("TIME_PERIOD", "").strip()
-        obs_value   = row.get("OBS_VALUE",   "").strip()
+    reader = csv.DictReader(io.StringIO(resp.text))
+    for row in reader:
+        ref_area    = row.get('REF_AREA',    '').strip()
+        time_period = row.get('TIME_PERIOD', '').strip()
+        obs_value   = row.get('OBS_VALUE',   '').strip()
         country = bis_to_country.get(ref_area)
         if country and time_period and obs_value:
             try:
-                result[country][time_period + "-01"] = round(float(obs_value), 2)
+                d = date(int(time_period[:4]), int(time_period[5:7]), 1)
+                result[country][d] = round(float(obs_value), 2)
             except (ValueError, TypeError):
                 pass
-
     return result
 
+def imf_fetch(dataset, key, start):
+    with warnings.catch_warnings():
+        warnings.simplefilter('ignore')
+        c = sdmx.Client('IMF_DATA')
+        msg = c.data(dataset, key=key, params={'startPeriod': start.strftime('%Y-%m')})
+    df = sdmx.to_pandas(msg).reset_index()
+    return df[df['value'].notna()]
 
-# ---------------------------------------------------------------------------
-# CPI helpers
-# ---------------------------------------------------------------------------
+# ── Sheet helpers ─────────────────────────────────────────────────────────────
 
-def compute_cpi_yoy_incremental(new_date, new_val, raw_base):
-    """
-    Compute CPI YoY for a single new month given a dict of historical index values.
-    raw_base must contain the value 12 months prior to new_date.
-    """
-    dt    = datetime.strptime(new_date, "%Y-%m-%d")
-    prior = (dt - relativedelta(months=12)).strftime("%Y-%m-%d")
-    prior_val = raw_base.get(prior)
-    if new_val and prior_val:
-        return round((new_val / prior_val - 1) * 100, 2)
-    return None
+def get_workbook():
+    creds = Credentials.from_service_account_file(
+        KEY_FILE, scopes=['https://www.googleapis.com/auth/spreadsheets'])
+    gc = gspread.authorize(creds)
+    return gc.open_by_key(SHEET_ID)
 
-
-# ---------------------------------------------------------------------------
-# Sheets helpers
-# ---------------------------------------------------------------------------
-
-def get_sheets_service():
-    scopes = ["https://www.googleapis.com/auth/spreadsheets"]
-    creds  = Credentials.from_service_account_file(KEY_FILE, scopes=scopes)
-    return build("sheets", "v4", credentials=creds)
-
-
-def get_last_date_in_tab(service, sheet_id, tab_name):
-    result = service.spreadsheets().values().get(
-        spreadsheetId=sheet_id, range=f"{tab_name}!A:A"
-    ).execute()
-    data_rows = [r[0] for r in result.get("values", [])[1:] if r]
-    return data_rows[-1] if data_rows else None
-
-
-def dates_to_append(last_date_str):
-    """Return list of YYYY-MM-01 strings from the month after last_date through today."""
-    last    = datetime.strptime(last_date_str, "%Y-%m-%d")
-    today   = date.today()
-    end     = date(today.year, today.month, 1)
-    new_dates = []
-    current   = last + relativedelta(months=1)
-    while current.date() <= end:
-        new_dates.append(current.strftime("%Y-%m-%d"))
-        current += relativedelta(months=1)
-    return new_dates
-
-
-def append_rows(service, sheet_id, tab_name, rows, dry_run=False):
-    if not rows:
-        print(f"  {tab_name}: nothing to append")
-        return
-    if dry_run:
-        print(f"  [DRY RUN] {tab_name}: would append {len(rows)} row(s): {[r[0] for r in rows]}")
-        return
-    service.spreadsheets().values().append(
-        spreadsheetId=sheet_id,
-        range=f"{tab_name}!A1",
-        valueInputOption="RAW",
-        insertDataOption="INSERT_ROWS",
-        body={"values": rows},
-    ).execute()
-    print(f"  {tab_name}: appended {len(rows)} row(s): {[r[0] for r in rows]}")
-
-
-# ---------------------------------------------------------------------------
-# Updaters
-# ---------------------------------------------------------------------------
-
-def update_inflation(service, dry_run):
-    print("Inflation:")
-    last_date = get_last_date_in_tab(service, MACRO_MONTHLY_SHEET_ID, "Inflation")
-    if not last_date:
-        print("  No data — run populate_monthly_actuals.py first")
-        return
-    new_dates = dates_to_append(last_date)
-    if not new_dates:
-        print(f"  Up to date (last: {last_date})")
-        return
-    print(f"  Last: {last_date}  →  fetching to {new_dates[-1]}")
-
-    # Fetch from 13 months before the first new date to support YoY computation
-    base_start = (
-        datetime.strptime(new_dates[0], "%Y-%m-%d") - relativedelta(months=13)
-    ).strftime("%Y-%m")
-    raw_by_country = imf_fetch("PCPI_IX", base_start)
-
-    rows = []
-    for d in new_dates:
-        row = [d]
-        for c in COUNTRIES:
-            raw  = raw_by_country[c]
-            yoy  = compute_cpi_yoy_incremental(d, raw.get(d), raw)
-            row.append(yoy if yoy is not None else "")
-        rows.append(row)
-
-    append_rows(service, MACRO_MONTHLY_SHEET_ID, "Inflation", rows, dry_run)
-
-
-def update_unemployment(service, dry_run):
-    print("Unemployment:")
-    last_date = get_last_date_in_tab(service, MACRO_MONTHLY_SHEET_ID, "Unemployment")
-    if not last_date:
-        print("  No data — run populate_monthly_actuals.py first")
-        return
-    new_dates = dates_to_append(last_date)
-    if not new_dates:
-        print(f"  Up to date (last: {last_date})")
-        return
-    print(f"  Last: {last_date}  →  fetching to {new_dates[-1]}")
-
-    data = imf_fetch("LUR", new_dates[0][:7])   # YYYY-MM
-
-    rows = []
-    for d in new_dates:
-        row = [d]
-        for c in COUNTRIES:
-            v = data[c].get(d)
-            row.append(round(v, 2) if v is not None else "")
-        rows.append(row)
-
-    append_rows(service, MACRO_MONTHLY_SHEET_ID, "Unemployment", rows, dry_run)
-
-
-def update_policy_rate(service, dry_run):
-    print("Policy Rate:")
-    last_date = get_last_date_in_tab(service, MACRO_MONTHLY_SHEET_ID, "Policy_Rate")
-    if not last_date:
-        print("  No data — run populate_monthly_actuals.py first")
-        return
-    new_dates = dates_to_append(last_date)
-    if not new_dates:
-        print(f"  Up to date (last: {last_date})")
-        return
-    print(f"  Last: {last_date}  →  fetching to {new_dates[-1]}")
-
-    data_by_country = {}
-    fetched_ecb     = None
-    bis_data        = None
-
-    for country in COUNTRIES:
-        spec = RATE_SERIES[country]
-
-        if spec is None:
-            data_by_country[country] = {}
-
-        elif spec == "BIS":
-            if bis_data is None:
-                try:
-                    bis_data = bis_fetch_policy_rates(new_dates[0])
-                except Exception as e:
-                    print(f"  BIS: FAILED ({e})")
-                    bis_data = {c: {} for c in BIS_RATE_COUNTRIES}
-            data_by_country[country] = bis_data.get(country, {})
-
-        elif spec == "FRED:ECBMRRFR":
-            if fetched_ecb is None:
-                try:
-                    raw = fred_fetch("ECBMRRFR", new_dates[0])
-                    fetched_ecb = {k: round(v, 2) for k, v in raw.items()}
-                except Exception as e:
-                    print(f"  ECB: FAILED ({e})")
-                    fetched_ecb = {}
-            data_by_country[country] = fetched_ecb
-
-        else:
-            fred_series = spec.split(":")[1]
+def get_last_date(wb, tab_name):
+    ws = wb.worksheet(tab_name)
+    col = ws.col_values(1)
+    dates = []
+    for v in col[1:]:
+        v = v.strip()
+        if v:
             try:
-                raw = fred_fetch(fred_series, new_dates[0])
-                data_by_country[country] = {k: round(v, 2) for k, v in raw.items()}
+                dates.append(parse_sheet_date(v))
+            except ValueError:
+                pass
+    return max(dates) if dates else None
+
+def append_rows(wb, tab_name, new_rows):
+    ws = wb.worksheet(tab_name)
+    ws.append_rows(new_rows, value_input_option='RAW')
+    print(f'  {tab_name}: appended {len(new_rows)} rows')
+
+# ── Fetch functions ───────────────────────────────────────────────────────────
+
+def fetch_inflation(fetch_start, new_dates):
+    print('Fetching CPI from IMF (dataset: CPI)...')
+    key = '+'.join(COUNTRIES) + '.CPI._T.IX.M'
+    df = imf_fetch('CPI', key, fetch_start)
+    result = {}
+    for country in COUNTRIES:
+        cdf = df[df['COUNTRY'] == country].copy()
+        if cdf.empty:
+            result[country] = {}
+            continue
+        cdf['date'] = cdf['TIME_PERIOD'].apply(parse_imf_period)
+        cdf = cdf.sort_values('date').set_index('date')['value']
+        yoy = {}
+        for d in new_dates:
+            prev = d - relativedelta(years=1)
+            if d in cdf.index and prev in cdf.index and cdf[prev] != 0:
+                yoy[d] = round((cdf[d] / cdf[prev] - 1) * 100, 2)
+        result[country] = yoy
+    any_new = {c: v for c, v in result.items() if v}
+    for country, yoy in any_new.items():
+        print(f'  {country}: {len(yoy)} new months  last={max(yoy)}')
+    if not any_new:
+        print('  No new data found.')
+    return result
+
+def fetch_unemployment(fetch_start, new_dates):
+    print('Fetching Unemployment from IMF (dataset: LS)...')
+    key = '+'.join(UNEMP_IMF) + '.U.PT.M'
+    df = imf_fetch('LS', key, fetch_start)
+    result = {}
+    for country in UNEMP_IMF:
+        cdf = df[df['COUNTRY'] == country].copy()
+        if cdf.empty:
+            result[country] = {}
+            continue
+        cdf['date'] = cdf['TIME_PERIOD'].apply(parse_imf_period)
+        series = {r['date']: round(r['value'], 2)
+                  for _, r in cdf.iterrows() if r['date'] in new_dates}
+        if series:
+            print(f'  {country}: {len(series)} new months  last={max(series)}')
+        result[country] = series
+    try:
+        gbr_all = fred_fetch('LRHUTTTTGBM156S', fetch_start)
+        gbr = {k: round(v, 2) for k, v in gbr_all.items() if k in new_dates}
+        if gbr:
+            print(f'  GBR: {len(gbr)} new months  last={max(gbr)}')
+        result['GBR'] = gbr
+    except Exception as e:
+        print(f'  GBR: FRED error — {e}')
+        result['GBR'] = {}
+    for country in UNEMP_BLANK:
+        result[country] = {}
+    return result
+
+def fetch_policy_rate(fetch_start, new_dates):
+    print('Fetching Policy Rates...')
+    result = {}
+    try:
+        bis_data = bis_fetch_policy_rates(fetch_start)
+        for country in BIS_RATE_COUNTRIES:
+            new = {k: v for k, v in bis_data.get(country, {}).items() if k in new_dates}
+            if new:
+                print(f'  BIS {country}: {len(new)} new months  last={max(new)}')
+            result[country] = new
+    except Exception as e:
+        print(f'  BIS: FAILED — {e}')
+        for country in BIS_RATE_COUNTRIES:
+            result[country] = {}
+    cache = {}
+    for country, sid in RATE_SERIES_FRED.items():
+        if sid is None:
+            result[country] = {}
+            continue
+        if sid not in cache:
+            try:
+                cache[sid] = fred_fetch(sid, fetch_start)
             except Exception as e:
-                print(f"  {country}: FAILED ({e})")
-                data_by_country[country] = {}
+                print(f'  {sid}: FRED error — {e}')
+                cache[sid] = {}
+        new = {k: round(v, 4) for k, v in cache[sid].items() if k in new_dates}
+        if new:
+            print(f'  {country} ({sid}): {len(new)} new months  last={max(new)}')
+        result[country] = new
+    return result
 
-    rows = []
-    for d in new_dates:
-        row = [d]
-        for c in COUNTRIES:
-            v = data_by_country[c].get(d)
-            row.append(v if v is not None else "")
-        rows.append(row)
-
-    append_rows(service, MACRO_MONTHLY_SHEET_ID, "Policy_Rate", rows, dry_run)
-
-
-# ---------------------------------------------------------------------------
-# Main
-# ---------------------------------------------------------------------------
+# ── Main ──────────────────────────────────────────────────────────────────────
 
 def main():
-    dry_run = "--dry-run" in sys.argv
+    print(f'update_monthly_actuals.py  [{"APPLY" if APPLY else "DRY run"}]\n')
 
-    if not FRED_API_KEY:
-        print("ERROR: FRED_API_KEY not set (required for Policy Rate)")
-        sys.exit(1)
-    if not MACRO_MONTHLY_SHEET_ID:
-        print("ERROR: MACRO_MONTHLY_SHEET_ID not set")
+    if not SHEET_ID:
+        print('ERROR: MACRO_MONTHLY_SHEET_ID env var not set.')
         sys.exit(1)
 
-    print(f"{'[DRY RUN] ' if dry_run else ''}update_monthly_actuals.py  v2")
-    print()
+    wb = get_workbook()
 
-    service = get_sheets_service()
+    last_dates = {}
+    for tab in ['Inflation', 'Unemployment', 'Policy_Rate']:
+        last_dates[tab] = get_last_date(wb, tab)
+        print(f'{tab}: last date = {last_dates[tab]}')
 
-    update_inflation(service, dry_run)
-    print()
-    update_unemployment(service, dry_run)
-    print()
-    update_policy_rate(service, dry_run)
-    print()
-    print("Done.")
+    ref_last = min(d for d in last_dates.values() if d is not None)
+    first_new = ref_last + relativedelta(months=1)
 
+    if first_new.replace(day=1) > TODAY.replace(day=1):
+        print('\nAll tabs up to date. Nothing to do.')
+        return
 
-if __name__ == "__main__":
+    new_dates = months_between(first_new, TODAY)
+    print(f'\nNew dates to add: {fmt(new_dates[0])} → {fmt(new_dates[-1])} ({len(new_dates)} months)\n')
+
+    fetch_start = first_new - relativedelta(months=13)
+
+    inflation    = fetch_inflation(fetch_start, set(new_dates));    print()
+    unemployment = fetch_unemployment(fetch_start, set(new_dates)); print()
+    policy_rate  = fetch_policy_rate(fetch_start, set(new_dates));  print()
+
+    def build_rows(data, dates):
+        rows = []
+        for d in dates:
+            row = [fmt(d)]
+            for c in COUNTRIES:
+                v = data.get(c, {}).get(d, '')
+                row.append('' if v == '' else str(v))
+            rows.append(row)
+        return rows
+
+    rows_inf   = build_rows(inflation,    new_dates)
+    rows_unemp = build_rows(unemployment, new_dates)
+    rows_rate  = build_rows(policy_rate,  new_dates)
+
+    print('Preview (new rows):')
+    header = ['Date'] + COUNTRIES
+    for name, rows in [('Inflation', rows_inf), ('Unemployment', rows_unemp), ('Policy_Rate', rows_rate)]:
+        print(f'\n{name}:')
+        df = pd.DataFrame(rows, columns=header)
+        print(df.to_string(index=False))
+
+    if not APPLY:
+        print('\nDry run complete — pass --apply to write to sheet.')
+        return
+
+    print('\nAppending to MACRO-MONTHLY sheet...')
+    append_rows(wb, 'Inflation',    rows_inf)
+    append_rows(wb, 'Unemployment', rows_unemp)
+    append_rows(wb, 'Policy_Rate',  rows_rate)
+    print('\nDone.')
+
+if __name__ == '__main__':
     main()

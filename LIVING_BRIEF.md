@@ -1,5 +1,42 @@
 # MacroSnaps - Living Brief
-Last updated: March 15, 2026 (Session 20: UI session. Three shell copy fixes. Two audit scripts written. MACRO-MONTHLY audit deferred to next session.)
+Last updated: March 16, 2026 (Session 22: Forecast CMS built. fetch_external_forecasts.py built. forecast_server.py built.)
+
+Session 22 changes in detail:
+
+(1) **`forecast_cms.html` built.** Standalone browser-based CMS for editing 2026 annual forecast values (Column AB) across all 12 country tabs in the Macro-stats Google Sheet. Shows a 12-country grid, 6 metrics each. Inputs save on blur with flash feedback (gold = saving, green = saved, red = error). Context column shows latest external consensus value, source, date, and revision badge (▲/▼) where available. Server connection status shown in header with auto-detect.
+
+(2) **`forecast_server.py` built.** Local Flask proxy running on `localhost:5050`. Authenticates via `market-stats-key.json` service account (same credential used by all other scripts). Endpoints: `GET /forecasts` (reads Column AB for all 12 countries in one batched column call per tab), `POST /forecast` (writes single cell), `GET /external_forecasts` (serves `external_forecasts.json`), `POST /run_fetch` + `GET /fetch_status` (triggers fetcher subprocess and polls progress). Requires `flask flask-cors` in addition to existing dependencies. Service account must have Editor access to Macro-stats sheet — confirmed working with `macrosnaps-sheets@macrosnaps.iam.gserviceaccount.com`.
+
+(3) **`fetch_external_forecasts.py` built.** Haiku 4.5 + web search, one API call per country, fetches latest 2026 forecasts from IMF, OECD, Goldman Sachs, JPMorgan, and other credible institutions published in the last 30 days. Returns structured JSON per metric: value, source, date, prior (if revised), notes. Writes to `external_forecasts.json`. `max_uses: 3` web searches per call. Cost: ~$0.73/run. Recommended cadence: weekly (or on-demand via CMS header button).
+
+(4) **Forecast CMS daily usage.** To use the CMS: (a) open terminal, run `python3 forecast_server.py` and leave running; (b) open `Downloads/macrosnaps/forecast_cms.html` in browser; (c) edit any forecast value — saves automatically on blur; (d) hit ⬇ Fetch External weekly or on-demand for fresh context data.
+
+(5) **`METRIC_ROWS` config in `forecast_server.py`.** Row mapping (1-indexed) assumes GDP_Growth=2, Inflation=3, Unemployment=4, Budget_Deficit=5, Current_Account=6, Policy_Rate=7 in each country tab. Verify this matches the actual Macro-stats tab layout if saves land in wrong rows.
+
+---
+
+
+Session 21 changes in detail:
+
+(1) **Daily ritual completed successfully.** All steps run in order:
+- `fetch_market_data.py` — 41 updated, 7 permanent failures (CHN/BRA/RUS yields, RUS equity), 9 commodities green. USA USD/DXY returned EMPTY from yfinance (`DX-Y.NYB`) — monitor tomorrow.
+- `sync_market_historical.py --apply` — 48 spark arrays written. All warnings are known permanent gaps per LIVING_BRIEF.
+- `sync_commodity_data.py --apply` — 9/9 updated. Change values correctly day-over-day. WTI, Brent, Silver rewrites triggered by `update_commodity_stories.py`.
+- `update_headlines.py` — 13/13 OK in 270s. Draft reviewed, cite tags stripped, approved, applied.
+- `build.py --apply` — 16 metric changes, 36 story changes, 9 commodity changes. Committed and pushed.
+
+(2) **Cite tag bug fixed in `update_headlines.py` (two parts).**
+- **Prompt-level fix:** Added hard rule to `build_global_system()` prompt: *"All story text must be plain prose only. Never include HTML tags, `<cite>` tags, citation markup, markdown, or any other formatting. No angle brackets of any kind in story text."* This prevents cite tags being generated.
+- **Scrubber fix (STILL PENDING):** `clean_cite_tags()` in `update_headlines.py` uses regex `r'</?antml:cite[^>]*>'` which does not match the actual escaped tags in JSON (`<cite index=\\"...\\">`). Correct regex is `r'</?cite[^>]*>'`. **Fix this in next pipeline session.**
+- **Today's draft:** cite tags stripped manually from `stories_draft_2026-03-16.json` using `re.sub(r'</?cite[^>]*>', '', raw)` directly on the raw file.
+
+(3) **`update_headlines.py`: harvest prompt broadened to include geopolitical events.** Previous prompt asked only for CPI prints, GDP reads, and central bank decisions — missing major news like conflicts, trade policy, elections, sanctions. New prompt explicitly asks for the most newsworthy thing happening for each country, including geopolitical developments. Also: `max_tokens` 1500 → 2000, search turns 2 → 3. Takes effect from tomorrow's run.
+
+(4) **`headline_review.html`: global detail textarea font fixed.** `.global-detail-textarea` had `font-size: 12px` and `color: var(--text-dim)` — smaller and grey vs country fields. Fixed to `font-size: 13px` and `color: var(--text)` to match `.bullet-textarea`.
+
+(5) **Editorial workflow clarified.** When re-editing stories mid-day: always load `stories_approved_YYYY-MM-DD.json` (not the draft) to preserve previous edits. Re-export overwrites the approved file. Re-run `update_headlines.py --apply` + `build.py --apply` to push updates live. Safe to do multiple times per day.
+
+---
 
 Session 20 changes in detail:
 
@@ -23,13 +60,13 @@ Session 19 changes in detail:
 
 Session 18 changes in detail:
 
-(1) **`populate_monthly_actuals.py` and `update_monthly_actuals.py` rewritten (v2).** Root cause: FRED was mirroring OECD MINMEI CPI index series for most countries, and that feed froze silently at various dates (CAN/GBR/DEU/FRA/ITA/CHN/IND/ZAF/BRA stopped around March 2025; JPN stopped June 2021; RUS stopped March 2022). Fix: switched CPI and Unemployment to **IMF IFS API** (`dataservices.imf.org`) using indicators `PCPI_IX` (CPI index, YoY computed from levels) and `LUR` (unemployment rate). Single API call per indicator covers all 12 countries simultaneously. FRED dependency now narrowed to Policy Rate only (FEDFUNDS + ECBMRRFR + BIS CBPOL). RUS removed from BIS CBPOL (sanctions gap from Mar 2022, no reliable free alternative) — `RATE_SERIES["RUS"] = None`. `RATE_SERIES` sentinel format changed to `"FRED:FEDFUNDS"` / `"FRED:ECBMRRFR"` for clarity. **Status: IMF API was down (timeout) on March 15. Scripts are correct — run tomorrow morning.**
+(1) **`populate_monthly_actuals.py` and `update_monthly_actuals.py` rewritten (v2).** Root cause: FRED was mirroring OECD MINMEI CPI index series for most countries, and that feed froze silently at various dates (CAN/GBR/DEU/FRA/ITA/CHN/IND/ZAF/BRA stopped around March 2025; JPN stopped June 2021; RUS stopped March 2022). Fix: switched CPI and Unemployment to **IMF IFS API** (`dataservices.imf.org`) using indicators `PCPI_IX` (CPI index, YoY computed from levels) and `LUR` (unemployment rate). Single API call per indicator covers all 12 countries simultaneously. FRED dependency now narrowed to Policy Rate only (FEDFUNDS + ECBMRRFR + BIS CBPOL). RUS removed from BIS CBPOL (sanctions gap from Mar 2022, no reliable free alternative) — `RATE_SERIES["RUS"] = None`. `RATE_SERIES` sentinel format changed to `"FRED:FEDFUNDS"` / `"FRED:ECBMRRFR"` for clarity. **Status: IMF API was down (timeout) on March 15. Scripts are correct — run when API is available.**
 
 (2) **New script `sync_market_historical.py`.** Architectural rule: all spark arrays must cover Jan 2000 → last available data point, where "last available" must be within the last 3 months. If a source stops updating, the chart shows a visible trailing gap rather than silently hiding stale frozen data. Gaps are diagnostic. Rebuilds all 4 market spark arrays for all 12 countries from scratch on every run: Stock Market (yfinance monthly last close), FX rate (yfinance monthly, inverted where needed), 10Y Bond Yield (FRED monthly), Yield Curve in bps (derived: 10Y − short rate). Writes to `_frozen_historical[label] = {"type": "line", "v": [...]}` — the correct location the shell reads via `historicalData[code][label].v`. Runs daily. Caches shared tickers (DEU/FRA/ITA share EURUSD=X; ECB series shared for yield curve). Staleness check warns if array is shorter than expected — note: current check counts total points vs Jan 2000 expected, which produces false positives where yfinance simply has shorter history (e.g. CAD/USD starts 2004, not 2000). Fix staleness check in next pipeline session to check last point date instead.
 
 (3) **Bug fix: spark arrays were writing to wrong location.** Previous `sync_market_historical.py` wrote to `metrics.market[label]["spark"]` — a field the shell never reads. Shell reads chart data exclusively from `_frozen_historical[label].v`. Fixed in same session. Confirmed working: USD/DXY Jan 2000 → March 2026, 10Y Bond Yield Jan 2000 → March 2026, Yield Curve Jan 2000 → March 2026.
 
-(4) **Monthly actuals audit findings.** `sync_monthly_actuals.py` has `MONTHS_TO_KEEP = 6` — only 6 data points written per series. This is too few and shows in the tooltip line charts. Increase to 36. Also confirmed: `monthly_actuals` IS rendered in tooltip charts (the script header comment saying "story context only" is wrong — do not rely on it). JPN inflation last point = Jan 2021 and RUS inflation last point = Oct 2021 are confirmed visible gaps in the live charts. Both fixed once `populate_monthly_actuals.py` runs successfully tomorrow.
+(4) **Monthly actuals audit findings.** `sync_monthly_actuals.py` has `MONTHS_TO_KEEP = 6` — only 6 data points written per series. This is too few and shows in the tooltip line charts. Increase to 36. Also confirmed: `monthly_actuals` IS rendered in tooltip charts (the script header comment saying "story context only" is wrong — do not rely on it). JPN inflation last point = Jan 2021 and RUS inflation last point = Oct 2021 are confirmed visible gaps in the live charts. Both fixed once `populate_monthly_actuals.py` runs successfully.
 
 (5) **`_frozen_historical` structure confirmed.** Shell populates `historicalData[code]` from `c._frozen_historical` (line 5595). All tooltip charts — both macro and market — read from this dict. Format per entry: `{"type": "bar"|"line", "v": [...]}`. Market metric sparks (`sync_market_historical.py`) and macro metric arrays (`sync_sheet.py`) both write here. `monthly_actuals` is a separate field written by `sync_monthly_actuals.py` and used for a different chart path.
 
@@ -244,6 +281,8 @@ python3 build.py --apply
 3. Run `python3 update_headlines.py --apply stories_approved_YYYY-MM-DD.json`
 4. Run `python3 build.py --apply`
 
+**Mid-day re-edit workflow:** Load `stories_approved_YYYY-MM-DD.json` (not the draft) to preserve previous edits. Re-export overwrites the approved file. Re-run steps 3 and 4. Safe to do multiple times per day.
+
 ---
 
 ### Key data.json paths
@@ -324,6 +363,8 @@ All weather icons across the entire site must use the `.wh-icon` CSS filter patt
 
 ### Pending work (priority order)
 
+1. **Fix `clean_cite_tags()` regex in `update_headlines.py`.** Current pattern `r'</?antml:cite[^>]*>'` does not match actual escaped tags in JSON. Correct pattern: `r'</?cite[^>]*>'`. Fix in next pipeline session.
+
 1. **Complete MACRO-MONTHLY backfill.** IMF API was down March 15. Next session: `python3 populate_monthly_actuals.py --dry-run` then `python3 populate_monthly_actuals.py`. Fixes JPN inflation (ends Jan 2021) and RUS inflation (ends Oct 2021) visible gaps in charts. Then run `sync_monthly_actuals.py --apply` and `build.py --apply`.
 
 1. **Run MACRO-MONTHLY audit.** `audit_macro_monthly.py` is written and ready. First: publish the MACRO-MONTHLY sheet via File → Share → Publish to web. Then run `python3 audit_macro_monthly.py`.
@@ -331,6 +372,8 @@ All weather icons across the entire site must use the `.wh-icon` CSS filter patt
 1. **Remove rolling spark update from `fetch_market_data.py`.** Lines 538–542: `spark = spark[1:] + [round(current, 2)]`. Superseded by `sync_market_historical.py`. Remove in next pipeline session.
 
 1. **Fix staleness check in `sync_market_historical.py`.** Current check counts total points vs Jan 2000 expected — produces false positives for tickers with shorter yfinance history. Change to check whether the last point date is within `STALE_MONTHS` of today instead.
+
+1. **Investigate USA USD/DXY EMPTY from `sync_market_historical.py`.** yfinance ticker `DX-Y.NYB` returned no data on March 16 run. Monitor tomorrow — may be a transient yfinance issue.
 
 1. **Investigate JPN Yield Curve gap.** `IR3TIB01JPM156N` produced 286 pts (~26 months short). Check if FRED stopped updating this series and find a replacement if so.
 

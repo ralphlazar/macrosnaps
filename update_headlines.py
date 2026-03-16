@@ -252,32 +252,36 @@ def fetch_recent_country_data(client, countries_data):
             country_list.append(f"{code} ({cd.get('name', code)})")
 
     system = (
-        "You are a macro data researcher. Use a single broad web search to find a "
-        "recent global macro roundup or data summary covering multiple economies. "
-        "Do not search per country. One search is enough. "
-        "Extract the most recent data point available for each country: latest CPI "
-        "or inflation print, latest GDP read, or most recent central bank decision. "
-        "Include the actual number and the period it covers. "
-        "Keep each country summary to 1-2 sentences. "
+        "You are a macro and markets researcher. Use web search to find what is "
+        "happening right now for each of the listed economies. You may use up to 2 "
+        "searches if needed. "
+        "For each country, capture the most important thing happening today or this "
+        "week. This includes: latest CPI or inflation print, latest GDP read, central "
+        "bank decisions — but also geopolitical developments, trade policy changes, "
+        "sanctions, conflicts, elections, political crises, or any other major event "
+        "that is moving markets or affecting the economy. Prioritise what is most "
+        "newsworthy, not just what has a data number. "
+        "Include specific numbers and dates where available. "
+        "Keep each country summary to 2-3 sentences. "
         "Output ONLY a JSON object with 3-letter country codes as keys and a single "
         "string value per country. No preamble, no markdown fences."
     )
 
     user = (
-        f"Today is {TODAY}. Search for a recent global macro data roundup and extract "
-        f"one short summary per country for these economies:\n"
+        f"Today is {TODAY}. Search for the latest macro, markets, and geopolitical "
+        f"developments for these economies and write a short current summary for each:\n"
         + "\n".join(country_list)
-        + "\n\nOutput format: {\"USA\": \"recent data summary...\", \"CAN\": \"...\", ...}"
+        + "\n\nOutput format: {{\"USA\": \"current summary...\", \"CAN\": \"...\", ...}}"
     )
 
     messages = [{"role": "user", "content": user}]
     sources = []
 
-    for turn in range(2):
+    for turn in range(3):
         try:
             response = client.messages.create(
                 model=MODEL_SEARCH,
-                max_tokens=1500,
+                max_tokens=2000,
                 system=system,
                 tools=[{"type": "web_search_20250305", "name": "web_search"}],
                 messages=messages

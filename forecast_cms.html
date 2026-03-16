@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MacroSnaps — Forecast CMS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ── Variables ────────────────────────────────────────────────── */
+:root {
+  --bg:          #07090f;
+  --bg-card:     #0d1321;
+  --bg-input:    #111827;
+  --bg-context:  #0a1428;
+  --border:      #1e2d45;
+  --border-dim:  #131e30;
+  --accent:      #2a6fdb;
+  --accent-glow: rgba(42,111,219,0.18);
+  --teal:        #0eacb5;
+  --gold:        #d4a843;
+  --red:         #e05252;
+  --green:       #3ec97e;
+  --text:        #e8ecf4;
+  --text-dim:    #5a6a82;
+  --text-mid:    #8a9ab8;
+  --mono:        'IBM Plex Mono', monospace;
+  --sans:        'DM Sans', sans-serif;
+  --radius:      6px;
+  --transition:  150ms ease;
+}
+
+/* ── Reset ────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 13px; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Header ───────────────────────────────────────────────────── */
+header {
+  border-bottom: 1px solid var(--border);
+  padding: 14px 28px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: sticky;
+  top: 0;
+  background: rgba(7,9,15,0.96);
+  backdrop-filter: blur(8px);
+  z-index: 100;
+}
+
+.header-logo {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.header-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-mid);
+}
+
+.header-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--text-dim);
+  transition: background var(--transition);
+}
+.status-dot.ok    { background: var(--green); box-shadow: 0 0 6px var(--green); }
+.status-dot.error { background: var(--red);   box-shadow: 0 0 6px var(--red); }
+.status-dot.busy  { background: var(--gold);  animation: pulse 1s infinite; }
+
+@keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.35; } }
+
+.status-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+}
+
+.btn {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-mid);
+  cursor: pointer;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+.btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-glow); }
+.btn:active { transform: scale(0.97); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn.primary:hover { background: #3580f0; }
+.btn:disabled { opacity: 0.35; pointer-events: none; }
+
+/* ── Layout ───────────────────────────────────────────────────── */
+main {
+  padding: 24px 28px 60px;
+  max-width: 1600px;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.toolbar-title {
+  font-size: 11px;
+  color: var(--text-dim);
+  font-family: var(--mono);
+  letter-spacing: 0.1em;
+}
+
+.fetch-meta {
+  font-size: 11px;
+  color: var(--text-dim);
+  font-family: var(--mono);
+}
+.fetch-meta.stale { color: var(--gold); }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+  gap: 12px;
+}
+
+/* ── Country Card ─────────────────────────────────────────────── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color var(--transition);
+}
+.card:hover { border-color: #2a3d5c; }
+
+.card-header {
+  padding: 10px 16px 9px;
+  border-bottom: 1px solid var(--border-dim);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-flag {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.card-code {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+}
+
+.card-name {
+  font-size: 12px;
+  color: var(--text-mid);
+  font-weight: 400;
+}
+
+.card-dirty-badge {
+  margin-left: auto;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.card-dirty-badge.visible { opacity: 1; }
+
+/* ── Metric Rows ──────────────────────────────────────────────── */
+.metric-row {
+  display: grid;
+  grid-template-columns: 130px 120px 1fr;
+  align-items: start;
+  border-bottom: 1px solid var(--border-dim);
+  min-height: 40px;
+}
+.metric-row:last-child { border-bottom: none; }
+
+.metric-label {
+  padding: 10px 14px 10px 16px;
+  font-size: 11px;
+  color: var(--text-mid);
+  font-weight: 500;
+  align-self: center;
+  white-space: nowrap;
+}
+
+.metric-unit {
+  display: block;
+  font-size: 9px;
+  color: var(--text-dim);
+  font-family: var(--mono);
+  margin-top: 1px;
+}
+
+/* ── Input cell ───────────────────────────────────────────────── */
+.input-cell {
+  padding: 8px 12px;
+  align-self: center;
+  position: relative;
+}
+
+.forecast-input {
+  width: 100%;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 12px;
+  padding: 6px 10px;
+  text-align: right;
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  -moz-appearance: textfield;
+}
+.forecast-input::-webkit-inner-spin-button,
+.forecast-input::-webkit-outer-spin-button { -webkit-appearance: none; }
+.forecast-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-glow);
+}
+.forecast-input.saving {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 2px rgba(212,168,67,0.15);
+}
+.forecast-input.saved {
+  border-color: var(--green);
+  box-shadow: 0 0 0 2px rgba(62,201,126,0.12);
+}
+.forecast-input.error {
+  border-color: var(--red);
+  box-shadow: 0 0 0 2px rgba(224,82,82,0.15);
+}
+
+/* ── Context cell ─────────────────────────────────────────────── */
+.context-cell {
+  padding: 8px 16px 8px 0;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.context-empty {
+  font-size: 10px;
+  color: var(--text-dim);
+  font-family: var(--mono);
+  opacity: 0.4;
+}
+
+.context-badge {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.ctx-source-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.ctx-value {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--teal);
+}
+
+.ctx-source {
+  font-size: 10px;
+  color: var(--text-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ctx-date {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--text-dim);
+  opacity: 0.6;
+}
+
+.ctx-revised {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 500;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: rgba(212,168,67,0.12);
+  color: var(--gold);
+  border: 1px solid rgba(212,168,67,0.2);
+  white-space: nowrap;
+}
+
+.ctx-revised.up   { background: rgba(62,201,126,0.1); color: var(--green); border-color: rgba(62,201,126,0.2); }
+.ctx-revised.down { background: rgba(224,82,82,0.1);  color: var(--red);   border-color: rgba(224,82,82,0.2); }
+
+.ctx-notes {
+  font-size: 10px;
+  color: var(--text-dim);
+  line-height: 1.4;
+  margin-top: 1px;
+  opacity: 0.85;
+}
+
+.ctx-delta-arrow { font-size: 10px; }
+
+/* ── Loading skeleton ─────────────────────────────────────────── */
+.skeleton {
+  background: linear-gradient(90deg, var(--border) 25%, #1e2d45 50%, var(--border) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: 4px;
+  height: 24px;
+}
+@keyframes shimmer { 0% { background-position:200% 0; } 100% { background-position:-200% 0; } }
+
+/* ── Error / empty states ─────────────────────────────────────── */
+.state-banner {
+  padding: 48px 24px;
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 12px;
+  font-family: var(--mono);
+}
+.state-banner strong { display: block; font-size: 14px; color: var(--text-mid); margin-bottom: 8px; }
+
+/* ── Toast ────────────────────────────────────────────────────── */
+#toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  padding: 10px 18px;
+  border-radius: var(--radius);
+  font-family: var(--mono);
+  font-size: 11px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 200ms, transform 200ms;
+  z-index: 200;
+  max-width: 340px;
+}
+#toast.show { opacity: 1; transform: translateY(0); }
+#toast.ok   { border-color: var(--green); color: var(--green); }
+#toast.err  { border-color: var(--red);   color: var(--red); }
+#toast.info { border-color: var(--accent); color: var(--accent); }
+</style>
+</head>
+
+<body>
+
+<!-- ── Header ── -->
+<header>
+  <span class="header-logo">MACROSNAPS</span>
+  <span class="header-title">Forecast CMS — 2026</span>
+  <div class="header-right">
+    <span class="status-dot" id="connDot"></span>
+    <span class="status-label" id="connLabel">connecting…</span>
+    <button class="btn" id="refreshBtn" onclick="loadAll()">↺ Reload</button>
+    <button class="btn" id="fetchBtn" onclick="runFetch()">⬇ Fetch External</button>
+  </div>
+</header>
+
+<!-- ── Main ── -->
+<main>
+  <div class="toolbar">
+    <span class="toolbar-title">12 COUNTRIES · 6 METRICS · COL AB</span>
+    <span class="fetch-meta" id="fetchMeta">context: —</span>
+  </div>
+  <div class="grid" id="grid">
+    <div class="state-banner"><strong>Loading forecasts…</strong>Connecting to localhost:5050</div>
+  </div>
+</main>
+
+<div id="toast"></div>
+
+<script>
+// ── Constants ──────────────────────────────────────────────────────────────
+const API     = 'http://localhost:5050';
+const FLAGS   = { USA:'🇺🇸', CHN:'🇨🇳', DEU:'🇩🇪', JPN:'🇯🇵', IND:'🇮🇳', GBR:'🇬🇧', FRA:'🇫🇷', ITA:'🇮🇹', BRA:'🇧🇷', CAN:'🇨🇦', RUS:'🇷🇺', ZAF:'🇿🇦' };
+const NAMES   = { USA:'United States', CHN:'China', DEU:'Germany', JPN:'Japan', IND:'India', GBR:'United Kingdom', FRA:'France', ITA:'Italy', BRA:'Brazil', CAN:'Canada', RUS:'Russia', ZAF:'South Africa' };
+const METRICS = ['GDP_Growth','Inflation','Unemployment','Budget_Deficit','Current_Account','Policy_Rate'];
+const LABELS  = { GDP_Growth:'GDP Growth', Inflation:'Inflation', Unemployment:'Unemployment', Budget_Deficit:'Budget Balance', Current_Account:'Current Account', Policy_Rate:'Policy Rate' };
+const UNITS   = { GDP_Growth:'% real', Inflation:'% avg', Unemployment:'% rate', Budget_Deficit:'% of GDP', Current_Account:'% of GDP', Policy_Rate:'% yr-end' };
+const COUNTRIES = ['USA','CHN','DEU','JPN','IND','GBR','FRA','ITA','BRA','CAN','RUS','ZAF'];
+
+// ── State ──────────────────────────────────────────────────────────────────
+let forecasts = {};        // {USA: {GDP_Growth: 2.3, ...}, ...}
+let external  = {};        // {USA: {GDP_Growth: {value, source, date, prior, notes}, ...}, ...}
+let fetchPollTimer = null;
+
+// ── Load ───────────────────────────────────────────────────────────────────
+async function loadAll() {
+  setConn('busy', 'loading…');
+  try {
+    const [fRes, eRes] = await Promise.all([
+      fetch(`${API}/forecasts`),
+      fetch(`${API}/external_forecasts`),
+    ]);
+    const fData = await fRes.json();
+    const eData = await eRes.json();
+
+    if (!fData.ok) throw new Error(fData.error);
+
+    forecasts = fData.data || {};
+    external  = eData.countries || {};
+
+    renderGrid();
+    updateFetchMeta(eData._meta);
+    setConn('ok', 'connected');
+  } catch (err) {
+    setConn('error', 'no server');
+    showGrid(`<div class="state-banner">
+      <strong>Cannot connect to forecast_server.py</strong>
+      Run: <code>python3 forecast_server.py</code> then reload.
+      <br><br>Error: ${err.message}
+    </div>`);
+  }
+}
+
+// ── Render ─────────────────────────────────────────────────────────────────
+function renderGrid() {
+  const grid = document.getElementById('grid');
+  grid.innerHTML = '';
+  for (const code of COUNTRIES) {
+    grid.appendChild(buildCard(code));
+  }
+}
+
+function buildCard(code) {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.id = `card-${code}`;
+
+  const header = document.createElement('div');
+  header.className = 'card-header';
+  header.innerHTML = `
+    <span class="card-flag">${FLAGS[code] || ''}</span>
+    <span class="card-code">${code}</span>
+    <span class="card-name">${NAMES[code]}</span>
+    <span class="card-dirty-badge" id="dirty-${code}">UNSAVED</span>
+  `;
+  card.appendChild(header);
+
+  for (const metric of METRICS) {
+    card.appendChild(buildMetricRow(code, metric));
+  }
+  return card;
+}
+
+function buildMetricRow(code, metric) {
+  const row = document.createElement('div');
+  row.className = 'metric-row';
+
+  // Label
+  const label = document.createElement('div');
+  label.className = 'metric-label';
+  label.innerHTML = `${LABELS[metric]}<span class="metric-unit">${UNITS[metric]}</span>`;
+
+  // Input
+  const inputCell = document.createElement('div');
+  inputCell.className = 'input-cell';
+  const val = forecasts[code]?.[metric];
+  const inp = document.createElement('input');
+  inp.type  = 'number';
+  inp.step  = '0.01';
+  inp.className = 'forecast-input';
+  inp.id    = `inp-${code}-${metric}`;
+  inp.value = val !== null && val !== undefined ? val : '';
+  inp.placeholder = '—';
+  inp.addEventListener('change', () => onInputChange(code, metric, inp));
+  inp.addEventListener('blur',   () => saveCell(code, metric, inp));
+  inputCell.appendChild(inp);
+
+  // Context
+  const ctxCell = document.createElement('div');
+  ctxCell.className = 'context-cell';
+  ctxCell.innerHTML = buildContextHTML(code, metric);
+
+  row.appendChild(label);
+  row.appendChild(inputCell);
+  row.appendChild(ctxCell);
+  return row;
+}
+
+function buildContextHTML(code, metric) {
+  const ext = external[code]?.[metric];
+  if (!ext || ext.source === 'Not found' || ext.source === 'Error' || ext.value === null) {
+    return `<span class="context-empty">—</span>`;
+  }
+
+  const valStr = ext.value !== null ? formatVal(ext.value, metric) : '?';
+  let revisedTag = '';
+  if (ext.prior !== null && ext.prior !== undefined) {
+    const delta = parseFloat(ext.value) - parseFloat(ext.prior);
+    const dir   = delta > 0 ? 'up' : 'down';
+    const arrow = delta > 0 ? '▲' : '▼';
+    revisedTag  = `<span class="ctx-revised ${dir}"><span class="ctx-delta-arrow">${arrow}</span> ${Math.abs(delta).toFixed(2)} from ${formatVal(ext.prior, metric)}</span>`;
+  }
+
+  const notesHTML = ext.notes ? `<div class="ctx-notes">${escHtml(ext.notes)}</div>` : '';
+
+  return `<div class="context-badge">
+    <div class="ctx-source-line">
+      <span class="ctx-value">${valStr}</span>
+      ${revisedTag}
+    </div>
+    <div class="ctx-source-line">
+      <span class="ctx-source">${escHtml(ext.source)}</span>
+      ${ext.date ? `<span class="ctx-date">${escHtml(ext.date)}</span>` : ''}
+    </div>
+    ${notesHTML}
+  </div>`;
+}
+
+function formatVal(v, metric) {
+  if (v === null || v === undefined) return '?';
+  const n = parseFloat(v);
+  if (isNaN(n)) return v;
+  return n.toFixed(2) + '%';
+}
+
+function escHtml(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// ── Save ───────────────────────────────────────────────────────────────────
+let pendingSaves = {};  // debounce map
+
+function onInputChange(code, metric, inp) {
+  // Mark card dirty immediately
+  document.getElementById(`dirty-${code}`)?.classList.add('visible');
+}
+
+function saveCell(code, metric, inp) {
+  const rawVal = inp.value.trim();
+  if (rawVal === '') return;
+
+  const num = parseFloat(rawVal);
+  if (isNaN(num)) { flashInput(inp, 'error'); return; }
+
+  // Dedupe rapid saves
+  const key = `${code}-${metric}`;
+  clearTimeout(pendingSaves[key]);
+  pendingSaves[key] = setTimeout(() => _doSave(code, metric, num, inp), 300);
+}
+
+async function _doSave(code, metric, value, inp) {
+  flashInput(inp, 'saving');
+  try {
+    const res  = await fetch(`${API}/forecast`, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ country: code, metric, value }),
+    });
+    const data = await res.json();
+    if (!data.ok) throw new Error(data.error);
+
+    flashInput(inp, 'saved');
+    forecasts[code] = forecasts[code] || {};
+    forecasts[code][metric] = value;
+
+    // Clear dirty badge if no other unsaved inputs in card
+    checkDirty(code);
+  } catch (err) {
+    flashInput(inp, 'error');
+    toast(`Save failed: ${err.message}`, 'err');
+  }
+}
+
+function flashInput(inp, state) {
+  inp.classList.remove('saving','saved','error');
+  inp.classList.add(state);
+  if (state !== 'saving') {
+    setTimeout(() => inp.classList.remove(state), state === 'saved' ? 2000 : 3000);
+  }
+}
+
+function checkDirty(code) {
+  const hasUnsaved = METRICS.some(m => {
+    const inp = document.getElementById(`inp-${code}-${m}`);
+    return inp && inp.classList.contains('saving');
+  });
+  if (!hasUnsaved) {
+    document.getElementById(`dirty-${code}`)?.classList.remove('visible');
+  }
+}
+
+// ── Fetch external ─────────────────────────────────────────────────────────
+async function runFetch() {
+  const btn = document.getElementById('fetchBtn');
+  btn.disabled = true;
+  toast('Fetching external forecasts — this takes ~3 min', 'info');
+
+  try {
+    const res  = await fetch(`${API}/run_fetch`, { method: 'POST' });
+    const data = await res.json();
+    if (!data.ok) throw new Error(data.error);
+    pollFetchStatus();
+  } catch (err) {
+    toast(`Fetch failed: ${err.message}`, 'err');
+    btn.disabled = false;
+  }
+}
+
+function pollFetchStatus() {
+  clearInterval(fetchPollTimer);
+  document.getElementById('fetchBtn').textContent = '⏳ Fetching…';
+  fetchPollTimer = setInterval(async () => {
+    try {
+      const res  = await fetch(`${API}/fetch_status`);
+      const data = await res.json();
+      if (!data.running) {
+        clearInterval(fetchPollTimer);
+        const btn = document.getElementById('fetchBtn');
+        btn.textContent = '⬇ Fetch External';
+        btn.disabled    = false;
+        if (data.last_error) {
+          toast(`Fetch error: ${data.last_error}`, 'err');
+        } else {
+          toast('External forecasts updated ✓ Reloading…', 'ok');
+          setTimeout(loadAll, 800);
+        }
+      }
+    } catch { /* ignore poll errors */ }
+  }, 4000);
+}
+
+// ── Helpers ────────────────────────────────────────────────────────────────
+function setConn(state, label) {
+  const dot = document.getElementById('connDot');
+  const lbl = document.getElementById('connLabel');
+  dot.className = `status-dot ${state}`;
+  lbl.textContent = label;
+}
+
+function updateFetchMeta(meta) {
+  const el = document.getElementById('fetchMeta');
+  if (!meta?.generated) {
+    el.textContent = 'context: not yet fetched';
+    el.className   = 'fetch-meta stale';
+    return;
+  }
+  const d     = new Date(meta.generated);
+  const now   = new Date();
+  const days  = Math.floor((now - d) / 86400000);
+  const label = days === 0 ? 'today' : days === 1 ? 'yesterday' : `${days}d ago`;
+  el.textContent = `context: fetched ${label} (${d.toLocaleDateString('en-GB', { day:'numeric', month:'short' })})`;
+  el.className   = `fetch-meta${days > 7 ? ' stale' : ''}`;
+}
+
+function showGrid(html) {
+  document.getElementById('grid').innerHTML = html;
+}
+
+let toastTimer;
+function toast(msg, type='info') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className   = `show ${type}`;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { t.className = ''; }, 4000);
+}
+
+// ── Boot ───────────────────────────────────────────────────────────────────
+loadAll();
+</script>
+
+</body>
+</html>
