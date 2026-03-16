@@ -1,5 +1,19 @@
 # MacroSnaps - Living Brief
-Last updated: March 15, 2026 (Session 19: Pipeline session. `sync_monthly_actuals.py` updated: MONTHS_TO_KEEP = 6 → 36. Marketing discussion — no code changes.)
+Last updated: March 15, 2026 (Session 20: UI session. Three shell copy fixes. Two audit scripts written. MACRO-MONTHLY audit deferred to next session.)
+
+Session 20 changes in detail:
+
+(1) **`macrosnaps-shell.html`: icon removed from global story tooltip title.** `${d.icon}` stripped from `renderNews()` tt-title line. Tooltip now shows label text only.
+
+(2) **`macrosnaps-shell.html`: "MSc Economics (LSE)," removed from WHO copy.** Bio now reads: *"Built by Ralph Lazar - formerly Global Equity Strategy at Goldman Sachs and Fixed-Income Prop Trading at CSFB. Old habits die hard."*
+
+(3) **`macrosnaps-shell.html`: HOW copy updated.** "Stories and briefings are drafted by AI and reviewed via a custom editorial tool before going live." → "Stories and briefings are generated from a custom automated pipeline and reviewed and edited before going live."
+
+(4) **`audit_market_data.py` written and run successfully.** Audits all 12 country tabs in MARKET-STATS sheet. Results clean — all permanent gaps (CHN, RUS all series; IND/BRA yields; ZAF stock ~2012 start; JPN 3M ~585 gaps) confirmed and match LIVING_BRIEF. No unexpected failures.
+
+(5) **`audit_macro_monthly.py` written but not yet run.** MACRO-MONTHLY sheet (`1-s4hppAkoTZbjGGEkHSUDK2H7E00RHhVuHrYKWLuHpI`) not yet published to web. **Next session: publish sheet via File → Share → Publish to web, then run `python3 audit_macro_monthly.py`.**
+
+---
 
 Session 19 changes in detail:
 
@@ -310,7 +324,9 @@ All weather icons across the entire site must use the `.wh-icon` CSS filter patt
 
 ### Pending work (priority order)
 
-1. **Complete MACRO-MONTHLY backfill.** IMF API was down March 15. Tomorrow: `python3 populate_monthly_actuals.py --dry-run` then `python3 populate_monthly_actuals.py`. Fixes JPN inflation (ends Jan 2021) and RUS inflation (ends Oct 2021) visible gaps in charts. Then run `sync_monthly_actuals.py --apply` and `build.py --apply`.
+1. **Complete MACRO-MONTHLY backfill.** IMF API was down March 15. Next session: `python3 populate_monthly_actuals.py --dry-run` then `python3 populate_monthly_actuals.py`. Fixes JPN inflation (ends Jan 2021) and RUS inflation (ends Oct 2021) visible gaps in charts. Then run `sync_monthly_actuals.py --apply` and `build.py --apply`.
+
+1. **Run MACRO-MONTHLY audit.** `audit_macro_monthly.py` is written and ready. First: publish the MACRO-MONTHLY sheet via File → Share → Publish to web. Then run `python3 audit_macro_monthly.py`.
 
 1. **Remove rolling spark update from `fetch_market_data.py`.** Lines 538–542: `spark = spark[1:] + [round(current, 2)]`. Superseded by `sync_market_historical.py`. Remove in next pipeline session.
 

@@ -206,6 +206,8 @@ CARD 3 - THE CONNECTION: The "so what." What ties cards 1 and 2 together. What i
 
 The three cards must tell one coherent story, not three unrelated headlines. A reader moving through all three should feel they understand not just what happened, but why it moved markets and what comes next.
 
+All story text must be plain prose only. Never include HTML tags, <cite> tags, citation markup, markdown, or any other formatting. No angle brackets of any kind in story text.
+
 Output ONLY a JSON object in this exact format with no preamble and no markdown fences:
 {{
   "beginner": [
