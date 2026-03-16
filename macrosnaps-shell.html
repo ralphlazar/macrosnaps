@@ -49,15 +49,9 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 }
 
 /* ── Commodities FAB ── */
-#btnCommFab{
-  position:fixed;bottom:72px;right:20px;z-index:900;
-  background:#091426;border:1px solid rgba(0,212,255,.35);
-  border-radius:50px;padding:8px 14px;
-  font-size:18px;cursor:pointer;color:#e8a838;
-  transition:border-color .2s,box-shadow .2s;
-  box-shadow:0 2px 12px rgba(0,0,0,.4);
-}
-#btnCommFab:hover{border-color:rgba(232,168,56,.6);box-shadow:0 2px 16px rgba(232,168,56,.2)}
+/* ── Commodity inline link ── */
+.comm-term{color:#e8a838;text-decoration:underline;text-decoration-style:dotted;text-decoration-color:rgba(232,168,56,.5);text-underline-offset:2px;cursor:pointer;transition:color .15s;border-radius:2px}
+.comm-term:hover{color:#f5c46a;text-decoration-color:rgba(232,168,56,.9);background:rgba(232,168,56,.07)}
 
 /* ── Sortable headers ── */
 .wh-table thead th.wh-sortable{cursor:pointer;user-select:none;transition:color .15s}
@@ -903,7 +897,7 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
   <button class="wb-close" id="welcomeClose" aria-label="Dismiss">✕</button>
 </div>
 
-<button id="btnCommFab" title="Commodities">🛢️</button>
+
 
 <div id="main-views">
   <div id="globe-view" class="hero hidden">
@@ -6556,7 +6550,7 @@ function switchToCommodities() {
 document.getElementById('btnGlobe').addEventListener('click', switchToGlobe);
 document.getElementById('btnRankings').addEventListener('click', switchToRankings);
 document.getElementById('btnCommodities').addEventListener('click', switchToCommodities);
-document.getElementById('btnCommFab').addEventListener('click', switchToCommodities);
+
 
 // ── LEVEL TOGGLE HELPER ──
 function levelToggleHTML(){
@@ -7602,14 +7596,59 @@ function showCompare(metricName, highlightCountry, sec) {
 }
 
 // ── GLOSSARY ──
+// ── COMMODITY INLINE LINKS ──
+// Terms processed longest-first to avoid partial-match issues
+const COMM_TERMS = [
+  {pat:'natural gas', type:'item', name:'Natural Gas'},
+  {pat:'commodities', type:'card'},
+  {pat:'commodity',   type:'card'},
+  {pat:'soybeans',    type:'item', name:'Soybeans'},
+  {pat:'soybean',     type:'item', name:'Soybeans'},
+  {pat:'copper',      type:'item', name:'Copper'},
+  {pat:'silver',      type:'item', name:'Silver'},
+  {pat:'wheat',       type:'item', name:'Wheat'},
+  {pat:'brent',       type:'item', name:'Brent Crude'},
+  {pat:'crude',       type:'card'},
+  {pat:'corn',        type:'item', name:'Corn'},
+  {pat:'gold',        type:'item', name:'Gold'},
+  {pat:'WTI',         type:'item', name:'WTI Crude'},
+  {pat:'oil',         type:'card'},
+];
+function applyCommLinks(h){
+  if(!h || typeof h !== 'string') return h || '';
+  COMM_TERMS.forEach(({pat, type, name})=>{
+    const escaped = pat.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+    const re = new RegExp(`(?<![\\w-])\\b(${escaped})\\b(?![^<]*>)`,'i');
+    h = h.replace(re, m=>`<span class="comm-term" data-comm-type="${type}"${name?` data-comm-name="${name}"`:''}>${m}</span>`);
+  });
+  return h;
+}
+function attachCommLinks(r){
+  r.querySelectorAll('.comm-term').forEach(el=>{
+    el.addEventListener('click', e=>{
+      e.stopPropagation();
+      const type = el.dataset.commType;
+      const name = el.dataset.commName;
+      if(type==='card'){ closeAll(); showCommoditiesCard(); return; }
+      if(type==='item' && name && commoditiesData.items){
+        const idx = commoditiesData.items.findIndex(it=>it.name===name);
+        if(idx>=0){ closeAll(); showCommodityMTT(idx); return; }
+      }
+      closeAll(); showCommoditiesCard();
+    });
+  });
+}
+
 function applyGlossary(h, skipTerm){
   if(!h || typeof h !== 'string') return h || '';
   h=h.replace(/<a data-term="([^"]+)">([^<]+)<\/a>/g,(_,t,x)=>`<span class="glossary-term" data-term="${t}">${x}</span>`);
   const skipSet=new Set();
   if(skipTerm){const sl=skipTerm.toLowerCase();skipSet.add(sl);skipSet.add(sl.replace(/\s*\(.*\)\s*/g,'').trim());}
-  Object.keys(glossary).forEach(t=>{const g=glossary[t];if(!g)return;const c=g.complexity||0;if(currentLevel==='moderate'&&c<2)return;if(currentLevel==='expert'&&c<3)return;if(skipSet.has(t.toLowerCase()))return;h=h.replace(new RegExp(`(?<![\\w-])\\b(${t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})\\b(?![^<]*>)`,'i'),m=>`<span class="glossary-term" data-term="${t}">${m}</span>`);});return h;
+  Object.keys(glossary).forEach(t=>{const g=glossary[t];if(!g)return;const c=g.complexity||0;if(currentLevel==='moderate'&&c<2)return;if(currentLevel==='expert'&&c<3)return;if(skipSet.has(t.toLowerCase()))return;h=h.replace(new RegExp(`(?<![\\w-])\\b(${t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})\\b(?![^<]*>)`,'i'),m=>`<span class="glossary-term" data-term="${t}">${m}</span>`);});
+  h=applyCommLinks(h);
+  return h;
 }
-function attachGlossary(r){r.querySelectorAll('.glossary-term').forEach(el=>{el.addEventListener('click',e=>{e.stopPropagation();showBubble(el);});});}
+function attachGlossary(r){r.querySelectorAll('.glossary-term').forEach(el=>{el.addEventListener('click',e=>{e.stopPropagation();showBubble(el);});});attachCommLinks(r);}
 // ── BLUF helpers ──
 function getBluf(entry){ return (typeof entry==='object' && entry.bluf) ? entry.bluf : entry; }
 function getFull(entry){ return (typeof entry==='object' && entry.full) ? entry.full : null; }
