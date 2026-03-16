@@ -582,35 +582,7 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
   background:rgba(0,212,255,.12);border-color:var(--cyan);color:var(--cyan);
 }
 
-/* ── News story: icon+level row & nav row ── */
-.news-level-row{
-  display:flex;align-items:center;gap:7px;
-  margin-bottom:12px;padding-bottom:10px;
-  border-bottom:1px solid rgba(255,255,255,.06);
-}
-.news-level-row .level-toggle{
-  margin-bottom:0;padding-bottom:0;border-bottom:none;flex:1;
-}
-.news-story-icon{font-size:.7em;opacity:.5;flex-shrink:0;line-height:1;user-select:none}
-.story-nav-row{
-  display:flex;align-items:center;justify-content:center;gap:10px;
-  margin-bottom:14px;
-}
-.story-nav-btn{
-  width:26px;height:26px;
-  background:rgba(255,255,255,.06);border:1px solid #333;border-radius:50%;
-  color:#999;font-size:14px;cursor:pointer;transition:all .2s;
-  display:flex;align-items:center;justify-content:center;
-}
-.story-nav-btn:hover{background:rgba(0,212,255,.1);color:var(--cyan);border-color:rgba(0,212,255,.3)}
-.story-dots{display:flex;gap:7px;align-items:center}
-.story-dot{
-  width:7px;height:7px;border-radius:50%;
-  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);
-  cursor:pointer;transition:all .2s;
-}
-.story-dot.active{background:var(--cyan);border-color:var(--cyan);box-shadow:0 0 6px rgba(0,212,255,.4)}
-.story-dot:hover:not(.active){background:rgba(0,212,255,.25);border-color:rgba(0,212,255,.4)}
+
 
 /* ── Policy Explainer ── */
 
@@ -891,11 +863,6 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
   /* ── Regime tag ── */
   .cr-regime{font-size:7px;padding:2px 5px}
 
-  /* ── Story nav ── */
-  .story-nav-btn{width:30px;height:30px;font-size:16px}
-  .story-dot{width:8px;height:8px}
-  .news-level-row .lt-btn{font-size:8px;padding:5px 10px;min-height:30px}
-
   /* ── Rankings grid: hide 2020-2023 columns on mobile ── */
   .wh-col-old{display:none}
 }
@@ -976,7 +943,7 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
     "category": "groups",
     "levels": {
       "beginner": {
-        "bluf": "The Group of Seven: the world's seven largest advanced economies — USA, UK, Germany, France, Japan, Italy, and Canada. They meet regularly to co-ordinate on economic and political issues.",
+        "bluf": "The Group of Seven: the world's seven largest advanced economies (USA, UK, Germany, France, Japan, Italy, and Canada). They meet regularly to co-ordinate on economic and political issues.",
         "full": null
       },
       "moderate": {
@@ -1018,11 +985,11 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
     "category": "institutions",
     "levels": {
       "beginner": {
-        "bluf": "One of the world's largest investment banks, based in New York. Advises companies on deals, manages large investment funds, and trades across global markets.",
+        "bluf": "One of the world's largest investment banks, based in New York. It advises companies on deals, manages large investment funds, and trades across global markets.",
         "full": null
       },
       "moderate": {
-        "bluf": "Global investment bank (NYSE: GS) with leading franchises in M&A advisory, equity and debt capital markets, sales & trading, and asset management. GS Research is one of the most widely followed macro forecast providers.",
+        "bluf": "Global investment bank (NYSE: GS) with leading franchises in M&A advisory, equity and debt capital markets, sales and trading, and asset management. GS Research is one of the most widely followed macro forecast providers.",
         "full": null
       },
       "expert": {
@@ -1039,11 +1006,11 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
     "category": "institutions",
     "levels": {
       "beginner": {
-        "bluf": "Credit Suisse First Boston — a major investment bank known for fixed-income and derivatives trading. Credit Suisse was acquired by UBS in 2023.",
+        "bluf": "Credit Suisse First Boston, a major investment bank known for fixed-income and derivatives trading. Credit Suisse was acquired by UBS in 2023.",
         "full": null
       },
       "moderate": {
-        "bluf": "Credit Suisse First Boston — the investment banking arm of Credit Suisse, long regarded as a top-tier fixed-income and structured products franchise. Credit Suisse was acquired by UBS in March 2023 following a liquidity crisis.",
+        "bluf": "Credit Suisse First Boston, the investment banking arm of Credit Suisse, long regarded as a top-tier fixed-income and structured products franchise. Credit Suisse was acquired by UBS in March 2023 following a liquidity crisis.",
         "full": null
       },
       "expert": {
@@ -6615,11 +6582,6 @@ function attachLevelToggle(container, refreshFn){
 
 // ── NEWS ICONS ──
 let activeNewsIdx = null;
-const STORY_META = [
-  {icon:'🔥', cls:'hot'},
-  {icon:'⚡', cls:'movers'},
-  {icon:'💡', cls:'connection'}
-];
 function assembleNewsData(idx) {
   const stories = newsData[currentLevel] || newsData.beginner || [];
   const story = stories[idx] || null;
@@ -6631,32 +6593,9 @@ function renderNews(d) {
   if (!d) return;
   document.querySelectorAll('.tooltip').forEach(t => t.remove()); closeBubble();
   const tt = document.createElement('div'); tt.className = 'tooltip';
-  const meta = STORY_META[d.idx] || STORY_META[0];
-  const levelRowHTML = `<div class="news-level-row"><span class="news-story-icon">${meta.icon}</span><div class="level-toggle">
-    <button class="lt-btn${currentLevel==='beginner'?' active':''}" data-lv="beginner">Beginner</button>
-    <button class="lt-btn${currentLevel==='moderate'?' active':''}" data-lv="moderate">Moderate</button>
-    <button class="lt-btn${currentLevel==='expert'?' active':''}" data-lv="expert">Expert</button>
-  </div></div>`;
-  const navRowHTML = `<div class="story-nav-row">
-    <button class="story-nav-btn" data-sdir="-1">&#8592;</button>
-    <div class="story-dots">
-      <span class="story-dot${d.idx===0?' active':''}" data-sidx="0"></span>
-      <span class="story-dot${d.idx===1?' active':''}" data-sidx="1"></span>
-      <span class="story-dot${d.idx===2?' active':''}" data-sidx="2"></span>
-    </div>
-    <button class="story-nav-btn" data-sdir="1">&#8594;</button>
-  </div>`;
-  tt.innerHTML = applyGlossary(`<div class="tt-close" onclick="this.parentElement.remove()">✕</div>${levelRowHTML}${navRowHTML}<div class="tt-title">${d.label}</div><div class="tt-story">${d.body}</div>`);
+  tt.innerHTML = applyGlossary(`<div class="tt-close" onclick="this.parentElement.remove()">✕</div>${levelToggleHTML()}<div class="tt-title">${d.label}</div><div class="tt-story">${d.body}</div>`);
   document.body.appendChild(tt); tt.offsetHeight; tt.classList.add('active'); attachGlossary(tt);
-  tt.querySelectorAll('.lt-btn').forEach(btn => {
-    btn.addEventListener('click', e => { e.stopPropagation(); setLevel(btn.dataset.lv); tt.remove(); showNewsTooltip(activeNewsIdx); });
-  });
-  tt.querySelectorAll('.story-nav-btn').forEach(btn => {
-    btn.addEventListener('click', e => { e.stopPropagation(); tt.remove(); showNewsTooltip((activeNewsIdx + 3 + +btn.dataset.sdir) % 3); });
-  });
-  tt.querySelectorAll('.story-dot').forEach(dot => {
-    dot.addEventListener('click', e => { e.stopPropagation(); tt.remove(); showNewsTooltip(+dot.dataset.sidx); });
-  });
+  attachLevelToggle(tt, () => { tt.remove(); showNewsTooltip(activeNewsIdx); });
   setTimeout(() => { document.addEventListener('click', function cl(e) { if (!tt.contains(e.target)) { tt.remove(); document.removeEventListener('click', cl); } }); }, 100);
 }
 
