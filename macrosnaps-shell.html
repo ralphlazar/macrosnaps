@@ -5682,7 +5682,7 @@ function renderMetricChart(container, metricName, countryCode, rangeMonths){
   const d=historicalData[countryCode];
   if(!d) { container.innerHTML='<div class="metric-chart-nodata">No historical data</div>'; return; }
   const cfg=d[metricName];
-  if(!cfg) { container.innerHTML='<div class="metric-chart-nodata">No historical data</div>'; return; }
+  if(!cfg||!cfg.v||!cfg.v.length) { container.innerHTML='<div class="metric-chart-nodata">No historical data</div>'; return; }
 
   const isAnnual=cfg.type==='bar';
   const allLabels=isAnnual?histAnnualLabels:histMonthlyLabels;
@@ -5697,6 +5697,7 @@ function renderMetricChart(container, metricName, countryCode, rangeMonths){
   const sliceVals=padded.slice(-n);
   const sliceLabels=allLabels.slice(-n);
   const validVals=sliceVals.filter(v=>v!==null&&v!==undefined);
+  if(!validVals.length) { container.innerHTML='<div class="metric-chart-nodata">No historical data</div>'; return; }
   const mn=validVals.length?Math.min(...validVals):0, mx=validVals.length?Math.max(...validVals):0;
   const range=mx-mn;
   const pad=range*0.15||(Math.abs(mx)*0.1)||1;
