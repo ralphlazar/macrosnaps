@@ -6965,6 +6965,7 @@ function attachCardNav(container, currentIdentifier) {
 }
 
 // ── CARD ──
+const CARD_MARKET_EXCLUDE = new Set(['Stock Market Index', 'FX Rate', 'Stock Market YTD (USD)']);
 let activeCardCountry = null;
 function assembleCardData(co) {
   const stories = (cardStories[currentLevel] && cardStories[currentLevel][co.code]) || ['Data loading...'];
@@ -6972,7 +6973,6 @@ function assembleCardData(co) {
   const macro = (co.metrics && co.metrics.macro) || {};
   const market = (co.metrics && co.metrics.market) || {};
   const macroMetrics = Object.entries(macro).map(([k, v]) => ({name: k, val: v, section: 'macro'}));
-  const CARD_MARKET_EXCLUDE = new Set(['Stock Market Index', 'FX Rate', 'Stock Market YTD (USD)']);
   const marketMetrics = Object.entries(market).filter(([k]) => !CARD_MARKET_EXCLUDE.has(k)).map(([k, v]) => ({name: k, val: v, section: 'market'}));
   return {
     code: co.code || '', name: co.name || 'Unknown', flag: co.flag || '',
@@ -7081,7 +7081,7 @@ function getMetricList(countryName){
   const macro = co.metrics.macro || {};
   const market = co.metrics.market || {};
   const macroKeys=Object.keys(macro).map(k=>({name:k,val:macro[k],sec:'macro'}));
-  const mktKeys=Object.keys(market).map(k=>({name:k,val:market[k],sec:'market'}));
+  const mktKeys=Object.keys(market).filter(k=>!CARD_MARKET_EXCLUDE.has(k)).map(k=>({name:k,val:market[k],sec:'market'}));
   return macroKeys.concat(mktKeys);
 }
 

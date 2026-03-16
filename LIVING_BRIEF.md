@@ -1,5 +1,35 @@
 # MacroSnaps - Living Brief
-Last updated: March 16, 2026 (Session 22: Forecast CMS built. fetch_external_forecasts.py built. forecast_server.py built.)
+Last updated: March 16, 2026 (Session 23: MACRO-MONTHLY backfill completed. IMF API migration to new SDMX endpoint. populate_monthly_actuals.py and update_monthly_actuals.py rewritten.)
+
+Session 23 changes in detail:
+
+(1) **Old IMF API permanently shut down.** `dataservices.imf.org` is not a temporary outage — the IMF decommissioned this endpoint in 2025 and replaced it with a new SDMX API accessible via the `sdmx1` Python library (`sdmx.Client('IMF_DATA')`). All scripts that used the old endpoint now use the new one. `sdmx1` is now a required dependency (`pip3 install sdmx1 --break-system-packages`).
+
+(2) **`populate_monthly_actuals.py` rewritten (v3).** New data sources:
+- **Inflation**: IMF `CPI` dataset, key `COUNTRY.CPI._T.IX.M`. Single call covers all 12 countries. YoY % computed from monthly index levels (fetched from Jan 1999 for overlap). All 12 countries current to Jan 2026, IND to Dec 2025.
+- **Unemployment**: IMF `LS` dataset, key `COUNTRY.U.PT.M`. Covers USA/CAN/JPN/DEU/FRA/ITA/BRA/RUS. GBR fallback: FRED `LRHUTTTTGBM156S`. CHN/IND/ZAF remain permanent blanks.
+- **Policy Rate**: BIS `WS_CBPOL` API for CAN/GBR/JPN/IND/ZAF/BRA/RUS. FRED `FEDFUNDS` for USA. FRED `ECBMRRFR` for DEU/FRA/ITA. CHN and RUS remain permanent blanks. Architecture identical to old script.
+
+(3) **`update_monthly_actuals.py` rewritten (v3).** Same source changes as populate. Incremental append logic unchanged.
+
+(4) **MACRO-MONTHLY backfill completed successfully.** `populate_monthly_actuals.py --apply` wrote 315 rows to all three tabs (Inflation, Unemployment, Policy_Rate). `sync_monthly_actuals.py --apply` and `build.py --apply` run successfully. All 12 countries now have current monthly actuals in tooltip charts.
+
+(5) **Known data gaps after backfill** (expected, not bugs):
+- USA unemployment: last=Dec 2024 (IMF LS lags ~3 months for USA)
+- GBR unemployment: last=Oct 2025 (FRED ONS series lags ~5 months)
+- DEU unemployment: 228 months (IMF LS coverage starts ~2007 for DEU)
+- FRA unemployment: 276 months (IMF LS coverage starts ~2003 for FRA)
+- BRA unemployment: 156 months (IMF LS coverage starts ~2013 for BRA)
+- JPN policy rate: 208 months (BIS WS_CBPOL JPN starts ~2008)
+
+(6) **Deprecation warning in `populate_monthly_actuals.py`.** `ws.update('A1', values)` triggers a gspread argument order warning. Harmless but fix in next pipeline session: change to `ws.update(values, 'A1')`.
+
+(7) **New IMF API country/dataset reference:**
+- CPI: `sdmx.Client('IMF_DATA').data('CPI', key='COUNTRY.CPI._T.IX.M', params={'startPeriod': 'YYYY-MM'})`
+- Unemployment: `sdmx.Client('IMF_DATA').data('LS', key='COUNTRY.U.PT.M', params={'startPeriod': 'YYYY-MM'})`
+- Country codes: ISO3 (USA, GBR, DEU, JPN, FRA, ITA, CAN, CHN, IND, ZAF, BRA, RUS)
+
+---
 
 Session 22 changes in detail:
 
@@ -250,11 +280,11 @@ Three source files assemble into one output:
 - Source: MACRO-MONTHLY Google Sheet (ID: `MACRO_MONTHLY_SHEET_ID` env var)
 - Tabs: `Inflation`, `Unemployment`, `Policy_Rate`
 - Columns: `Date | USA | CAN | GBR | JPN | DEU | FRA | ITA | CHN | IND | ZAF | BRA | RUS`
-- Backfill script: `populate_monthly_actuals.py` — run once to write full history from Jan 2000. CPI and Unemployment sourced from **IMF IFS API** (not FRED). Policy Rate from FRED + BIS.
+- Backfill script: `populate_monthly_actuals.py` — run to rewrite full history from Jan 2000. CPI and Unemployment from **new IMF SDMX API** (`sdmx.Client('IMF_DATA')`). Policy Rate from BIS WS_CBPOL + FRED.
 - Incremental script: `update_monthly_actuals.py` — appends new months only. Safe to run daily.
 - Sync script: `sync_monthly_actuals.py --apply` — reads last N non-null values per country per series, writes `monthly_actuals` field to data.json. `MONTHS_TO_KEEP = 36`.
 - Writes: `monthly_actuals` field only. Never touches metrics.
-- **IMF IFS API**: `dataservices.imf.org/REST/SDMX_JSON.svc/CompactData/IFS/M.{codes}.{indicator}`. Can be slow or temporarily unavailable. Add retry logic if needed.
+- **New IMF SDMX API**: `sdmx.Client('IMF_DATA')` via `sdmx1` library. CPI dataset: `COUNTRY.CPI._T.IX.M`. LS (unemployment) dataset: `COUNTRY.U.PT.M`. Old `dataservices.imf.org` endpoint is permanently dead.
 
 ---
 
@@ -327,7 +357,7 @@ data._meta.generated                                        ← build date stamp
 | `update_commodity_stories.py` | Daily | Rewrites commodity stories when price moves exceed threshold |
 | `update_headlines.py` | Daily | Calls Claude API, writes country and global stories to draft JSON (manual review gate before --apply) |
 | `sync_sheet.py --apply` | When forecasts change | Reads Macro-stats sheet, writes macro card values and `_frozen_historical` arrays |
-| `populate_monthly_actuals.py` | Once (backfill) | Writes full history Jan 2000 → present to MACRO-MONTHLY sheet. CPI+Unemployment via IMF IFS; Policy Rate via FRED+BIS |
+| `populate_monthly_actuals.py` | Once (backfill) | Writes full history Jan 2000 → present to MACRO-MONTHLY sheet. CPI+Unemployment via new IMF SDMX API (`sdmx1`); Policy Rate via BIS WS_CBPOL + FRED |
 | `update_monthly_actuals.py` | Monthly | Appends new months to MACRO-MONTHLY sheet. Same sources as populate. |
 | `sync_monthly_actuals.py --apply` | After update_monthly_actuals | Reads MACRO-MONTHLY sheet, writes `monthly_actuals` to data.json (36 most recent non-null per series) |
 | `update_stories.py` | On metric change | Diff-driven per-metric story rewrites |
@@ -365,9 +395,7 @@ All weather icons across the entire site must use the `.wh-icon` CSS filter patt
 
 1. **Fix `clean_cite_tags()` regex in `update_headlines.py`.** Current pattern `r'</?antml:cite[^>]*>'` does not match actual escaped tags in JSON. Correct pattern: `r'</?cite[^>]*>'`. Fix in next pipeline session.
 
-1. **Complete MACRO-MONTHLY backfill.** IMF API was down March 15. Next session: `python3 populate_monthly_actuals.py --dry-run` then `python3 populate_monthly_actuals.py`. Fixes JPN inflation (ends Jan 2021) and RUS inflation (ends Oct 2021) visible gaps in charts. Then run `sync_monthly_actuals.py --apply` and `build.py --apply`.
-
-1. **Run MACRO-MONTHLY audit.** `audit_macro_monthly.py` is written and ready. First: publish the MACRO-MONTHLY sheet via File → Share → Publish to web. Then run `python3 audit_macro_monthly.py`.
+1. **Fix gspread deprecation warning in `populate_monthly_actuals.py`.** Change `ws.update('A1', values)` to `ws.update(values, 'A1')`. One-line fix.
 
 1. **Remove rolling spark update from `fetch_market_data.py`.** Lines 538–542: `spark = spark[1:] + [round(current, 2)]`. Superseded by `sync_market_historical.py`. Remove in next pipeline session.
 
