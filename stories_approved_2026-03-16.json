@@ -4,7 +4,7 @@
     "USA": {
       "stories": {
         "beginner": [
-          "Testtttadfg,lfmgkfdgjdgfjxcfkjxkfjskzfkjfskfkv Testtttadfg,lfmgkfdgjdgfjxcfkjxkfjskzfkjfskfkv Testtttadfg,lfmgkfdgjdgfjxcfkjxkfjskzfkjfskfkv Testtttadfg,lfmgkfdgjdgfjxcfkjxkfjskzfkjfskfkv ",
+          "Inflation cooled to 2.43% in February, right where the Federal Reserve wants it, so prices should stop rising so fast at the grocery store. But now a spanner in the works. Oil prices have risen due to the war, so prices at the gas pump are up.",
           "The job market is holding steady with unemployment at 4.4%, meaning most people who want to work can find jobs without too much trouble.",
           "The economy is expected to grow faster this year than most experts predicted, which usually means more wage growth and business expansion ahead."
         ],
@@ -20,67 +20,5 @@
         ]
       }
     }
-  },
-  "globalStories": {
-    "beginner": [
-      {
-        "icon": "⚡",
-        "label": "War reshapes global finance",
-        "body": "Major central banks meet this week to decide interest rates while the Middle East war disrupts global oil supplies. Oil prices hit $120 a barrel as Iran closed the Strait of Hormuz, through which 20% of global oil flows. Countries like Saudi Arabia and UAE had to stop shipping 140 million barrels of oil.",
-        "source": "S&P Global Market Intelligence"
-      },
-      {
-        "icon": "📉",
-        "label": "Markets react to energy shock",
-        "body": "Global markets turned defensive as energy-dependent regions saw sharp drops while US stocks stayed steady. Gas (petrol) prices jumped 35 cents per gallon in one week, with oil trading near $120. The dollar and gold both strengthened as scared investors sought safety.",
-        "source": "Complete Intelligence"
-      },
-      {
-        "icon": "🏦",
-        "label": "Central banks face tough choices",
-        "body": "Central banks must decide whether to ignore short-term energy price spikes or turn more aggressive to fight inflation. The conflict makes many central banks want to pause rate cuts, with the Fed now more reluctant to lower rates. Seven major central banks announce decisions between March 16-19.",
-        "source": "Nomura"
-      }
-    ],
-    "moderate": [
-      {
-        "icon": "⚡",
-        "label": "War reshapes global finance",
-        "body": "Major central banks meet this week to decide interest rates while the Middle East war disrupts global oil supplies, with oil prices hitting $120 a barrel as Iran closed the Strait of Hormuz. The closure disrupted 20% of global oil supplies and significant LNG volumes, effectively suspending about a fifth of global crude and natural gas supply. Iran is targeting regional energy infrastructure and threatening shipping, with the US military costs becoming overstretched. Every major oil shock historically generates policy responses proportional to the pain it inflicts.",
-        "source": "S&P Global Market Intelligence"
-      },
-      {
-        "icon": "📉",
-        "label": "Markets react to energy shock",
-        "body": "Global markets turned defensive as the conflict upended recent trends, with international equities that had outperformed US stocks now sagging sharply while MSCI US stayed steady. US gas prices jumped 35 cents in a week to $3.60 per gallon, with individual stations seeing increases up to 85 cents as oil hit $120. The dollar strengthened as a safe haven despite weak US jobs data, while gold acted as a chaos hedge decoupling from traditional inverse correlations. European and Asian natural gas prices doubled after Qatar halted LNG production following Iranian attacks.",
-        "source": "Complete Intelligence"
-      },
-      {
-        "icon": "🏦",
-        "label": "Central banks face tough choices",
-        "body": "Central banks must decide whether to 'look through' near-term energy price inflation and support growth amid geopolitical uncertainty, or turn hawkish to prevent another inflation spike. The Iran conflict solidifies the case for many central banks to hold rates steady, with the Fed now more reluctant to cut rates and markets pricing a pause until mid-year. An unprecedented concentration of seven major central bank decisions occurs March 16-19, with four announcements on March 19 alone creating potentially the most difficult trading day of Q1 2026. Asian economies face particular exposure, with regional inflation potentially rising 0.7 percentage points if oil jumps to $85.",
-        "source": "Nomura"
-      }
-    ],
-    "expert": [
-      {
-        "icon": "⚡",
-        "label": "War reshapes global finance",
-        "body": "Major central banks convene this week for rate decisions while a Middle East war disrupts global oil supplies, with Brent crude surging 15% initially then hitting $120 as Iran effectively closed the Strait of Hormuz. The closure disrupted 20% of global oil supplies and significant LNG volumes, with 85% of Gulf export volumes remaining stranded despite bypass capacity of only 3 mb/d against 20 mb/d of halted exports. Iran, unable to match US-Israeli military power, is internationalizing war costs by targeting energy and shipping infrastructure to raise escalation prices until pressure for de-escalation builds. Allianz forecasts oil could reach $100 in a prolonged conflict but still end 2026 around $70 as markets adapt, though tail risks could push Brent above $130 if Iranian regime targets broader regional energy infrastructure. If oil prices remain elevated, global inflation will rise above pre-conflict forecasts while growth falls short.",
-        "source": "S&P Global Market Intelligence"
-      },
-      {
-        "icon": "📉",
-        "label": "Markets react to energy shock",
-        "body": "Global markets executed violent defensive recalibration as the conflict upended established relationships, with international equities that had walloped US stocks until US-Israeli strikes now sagging sharply while MSCI US remained steady. The kinetic rupture collides with February's severe US jobs contraction (-92K), yet gas prices surged 35 cents to $3.60 per gallon with some stations seeing 85-cent spikes. The dollar strengthened as the unrivaled safe-haven vehicle despite domestic weakness, while gold decoupled from traditional dollar inversions, with the yen emerging as the strongest currency confirming its growing safe-haven role in 2026. European and Asian natural gas prices doubled after Qatar, accounting for 20% of global LNG supply, halted production following Iranian drone attacks on facilities. Even where cargo still moves, the war imposes a global surcharge through elevated shipping costs and insurance, with investment decisions deferred and supply chains rerouted as trust in Gulf stability erodes.",
-        "source": "Complete Intelligence"
-      },
-      {
-        "icon": "🏦",
-        "label": "Central banks face tough choices",
-        "body": "Central banks confront the classic stagflationary dilemma of whether to 'look through' near-term energy price inflation and focus on growth support amid heightened geopolitical uncertainty, or adopt hawkish stances to prevent embedded inflation expectations. The Iran conflict solidifies the case for central bank holds, with former Treasury Secretary Yellen noting the Fed is 'even more on hold' and reluctant to cut rates with US inflation at 2.4% above the 2% target. An unprecedented concentration sees seven major central banks decide March 16-19, with four decisions (BoJ, ECB, BoE, SNB) within hours on March 19 creating overlapping signals and unusually wide bid/ask spreads. Asian economies face acute exposure as most Strait of Hormuz crude flows to China, India, Japan and South Korea, with Goldman Sachs modeling 0.7pp inflation increases under six-week closure assumptions, potentially forcing central bank pause decisions in Philippines, Indonesia, India and South Korea. The BoJ represents highest surprise potential with markets pricing real Q2 hike possibility, where any tightening signal could drive USD/JPY down 200-300 pips within a session.",
-        "source": "Nomura"
-      }
-    ]
   }
 }
