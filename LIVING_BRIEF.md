@@ -1,5 +1,15 @@
 # MacroSnaps - Living Brief
-Last updated: March 16, 2026 (Session 23: MACRO-MONTHLY backfill completed. IMF API migration to new SDMX endpoint. populate_monthly_actuals.py and update_monthly_actuals.py rewritten.)
+Last updated: March 16, 2026 (Session 24: Tooltip nav arrows now respect CARD_MARKET_EXCLUDE. Fixed-window chart rendering: all tooltip charts always span Jan 2000 → current month.)
+
+Session 24 changes in detail:
+
+(1) **Tooltip navigation arrows now respect `CARD_MARKET_EXCLUDE`.** `CARD_MARKET_EXCLUDE` was lifted from inside `assembleCardData()` to module scope. `getMetricList()` now applies the same filter, so the up/down arrows in a metric tooltip can only navigate to the same 10 metrics visible on the card. `Stock Market Index`, `FX Rate`, and `Stock Market YTD (USD)` are unreachable via arrows. Navigable sequence: GDP Growth → Inflation (CPI) → Unemployment → Budget Deficit → Current Account → Policy Rate → Stock Market YTD → 10Y Bond Yield → Yield Curve → FX cross.
+
+(2) **Fixed-window chart rendering in `renderMetricChart()`.** All tooltip charts — annual bar, monthly line, market line — now always span **Jan 2000 (left) → current month (right)**. The x-axis window is fixed; it never auto-fits to the extent of available data. Data is right-aligned into the full label array and left-padded with nulls where coverage is shorter than Jan 2000. Gaps (short yfinance histories, sanctioned series, stale feeds) are visible as blank regions in the chart rather than hidden by axis shrinkage. Range buttons (1Y, 3Y, etc.) still work correctly — they slice from the right of the padded array.
+
+(3) **Three-layer "no chart" guard in `renderMetricChart()`.** A blank chart must never render — if there is no data, the "No historical data" message is shown instead. Guards fire in sequence: (a) `!d` — no `_frozen_historical` object for the country; (b) `!cfg || !cfg.v || !cfg.v.length` — metric key missing or `v` array is empty; (c) `!validVals.length` — array exists but every value is null after padding. All three return early with the nodata message. This was added to fix BRA 10Y Bond Yield, BRA Yield Curve, and CHN Unemployment showing blank charts.
+
+---
 
 Session 23 changes in detail:
 
@@ -380,6 +390,7 @@ data._meta.generated                                        ← build date stamp
 - Default sort: `_whSortCol = -1` = nominal GDP order (GDP_NOMINAL_ORDER constant). Logo click resets to this. Metric dropdown change also resets to `-1` (Session 17 fix).
 - `CARD_MARKET_EXCLUDE` set: `'Stock Market YTD (USD)'`, `'Stock Market Index'`, `'FX Rate'`
 - `monthly_actuals` field is rendered in tooltip line charts for macro metrics — the script header comment saying "story context only" is wrong.
+- **Tooltip chart window rule:** All tooltip charts (annual bar, monthly line, market line) always span Jan 2000 (left) → current month (right). The axis is fixed — never auto-fitted to data extent. Missing data shows as visible gaps. Three-layer no-chart guard in `renderMetricChart()`: (a) no `_frozen_historical` object; (b) metric key missing or `v` array empty; (c) all values null after padding — all three show "No historical data" and skip the chart entirely. This rule applies to `renderMetricChart()` only; commodity charts are separate.
 
 ### Weather icon rule (FIXED — do not change)
 
