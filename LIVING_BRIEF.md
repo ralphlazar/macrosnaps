@@ -1,5 +1,22 @@
 # MacroSnaps - Living Brief
-Last updated: March 16, 2026 (Session 26: Glossary extended; floating commodities FAB removed; commodity inline links added.)
+Last updated: March 16, 2026 (Session 27: Global stories carousel nav; fixed tooltip height; Updated date visibility; copy tweaks.)
+
+Session 27 changes in detail:
+
+(1) **Global stories carousel navigation added.** Clicking any story icon now opens the tooltip and fades the two inactive story icons/labels in the background menu to 0.3 opacity, with the active one at full opacity. Two nav arrow buttons (`◀` `▶`) appear in the tooltip header between the BME buttons and the X close, using the existing `.tt-nav` / `.tt-nav-btn` CSS. Left arrow hidden on story 0, right arrow hidden on story 2 (no wrap). Clicking an arrow navigates to the adjacent story and updates the background menu state. Closing the tooltip (X or outside-click) resets all icon opacities.
+- New functions: `setActiveNewsIcon(idx)`, `clearActiveNewsIcon()`, both targeting all `.news-icon` elements (header + rankings view simultaneously).
+- `renderNews()` rewritten to build `navHTML` conditionally, attach nav arrow listeners, call `setActiveNewsIcon()` on mount, and call `clearActiveNewsIcon()` on close.
+
+(2) **Global stories tooltip fixed height.** All three story tooltips lock to the height of the tallest story so nav arrows never shift position between stories.
+- New variable: `newsTTHeight` (module-level cache, `null` on init).
+- New function: `measureNewsTTHeight()` — renders all 3 stories into a hidden off-screen probe tooltip, returns max `offsetHeight`. Called once on first open per session.
+- `renderNews()` applies `tt.style.minHeight` after measuring. `clearActiveNewsIcon()` resets `newsTTHeight = null` so it re-measures on the next open (picks up daily content changes).
+
+(3) **`Updated` date label made more visible.** `.wh-asof` CSS: `color:#333 → #777`, `font-size:7px → 9px`.
+
+(4) **Copy tweaks in WHAT? footer.** "seasoned professionals" → "finance professionals". "AI-generated story bullets" → "story bullets".
+
+---
 
 Session 26 changes in detail:
 
@@ -415,6 +432,7 @@ data._meta.generated                                        <- build date stamp
 - **Tooltip chart window rule:** All tooltip charts (annual bar, monthly line, market line) always span Jan 2000 (left) → current month (right). The axis is fixed — never auto-fitted to data extent. Missing data shows as visible gaps. Three-layer no-chart guard in `renderMetricChart()`: (a) no `_frozen_historical` object; (b) metric key missing or `v` array empty; (c) all values null after padding — all three show "No historical data" and skip the chart entirely. This rule applies to `renderMetricChart()` only; commodity charts are separate.
 - **Commodity inline links:** `applyCommLinks()` runs at end of every `applyGlossary()` call. `attachCommLinks()` runs at end of every `attachGlossary()` call. Gold colour `#e8a838`, class `.comm-term`. Generic terms (oil, crude, commodity, commodities) → `showCommoditiesCard()`. Specific terms (WTI, Brent, natural gas, gold, silver, copper, wheat, corn, soybeans) → `showCommodityMTT(idx)` by name lookup. First occurrence only per term per block. Do not add separate call sites — the wiring into `applyGlossary`/`attachGlossary` covers all surfaces automatically.
 - **No floating commodities FAB.** The `#btnCommFab` button was removed in Session 26. Do not re-add it.
+- **Global stories carousel.** `renderNews()` drives the three-story carousel. `activeNewsIdx` tracks current story (0/1/2). `newsTTHeight` caches the tallest story height (reset to `null` on close, re-measured on next open). `setActiveNewsIcon(idx)` / `clearActiveNewsIcon()` control background menu opacity. Nav arrows use existing `.tt-nav` / `.tt-nav-btn` CSS. No new CSS added.
 
 ### Weather icon rule (FIXED — do not change)
 

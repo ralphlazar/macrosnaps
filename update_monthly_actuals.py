@@ -7,8 +7,10 @@ Safe to run daily — idempotent, skips rows that already exist.
 Sources: same as populate_monthly_actuals.py.
 
 Usage:
-  python3 update_monthly_actuals.py           # dry run — print preview only
-  python3 update_monthly_actuals.py --apply   # append new rows to sheet
+  python3 update_monthly_actuals.py                     # dry run — print preview only
+  python3 update_monthly_actuals.py --apply             # append new rows to sheet
+  python3 update_monthly_actuals.py --backfill          # scan for blank cells in existing rows, preview fills
+  python3 update_monthly_actuals.py --backfill --apply  # scan and write blank cell fills to sheet
 """
 
 import os, sys, csv, io, warnings
@@ -31,7 +33,8 @@ import sdmx
 
 # ── Config ────────────────────────────────────────────────────────────────────
 
-APPLY       = '--apply' in sys.argv
+APPLY       = '--apply'    in sys.argv
+BACKFILL    = '--backfill' in sys.argv
 TODAY       = date.today()
 
 COUNTRIES   = ['USA', 'CAN', 'GBR', 'JPN', 'DEU', 'FRA', 'ITA', 'CHN', 'IND', 'ZAF', 'BRA', 'RUS']
@@ -40,17 +43,25 @@ SHEET_ID    = os.environ.get('MACRO_MONTHLY_SHEET_ID')
 KEY_FILE    = os.path.join(os.path.dirname(__file__), 'market-stats-key.json')
 FRED_KEY    = os.environ.get('FRED_API_KEY', '')
 
-UNEMP_IMF   = ['USA', 'CAN', 'JPN', 'DEU', 'FRA', 'ITA', 'BRA', 'RUS']
+# USA and BRA removed from IMF LS — they use FRED instead (see fetch_unemployment)
+UNEMP_IMF   = ['CAN', 'JPN', 'DEU', 'FRA', 'ITA', 'RUS']
 UNEMP_BLANK = ['CHN', 'IND', 'ZAF']
+
+# FRED series for unemployment countries not covered by IMF LS
+UNEMP_FRED = {
+    'USA': 'UNRATE',              # BLS — current to within weeks
+    'GBR': 'LRHUTTTTGBM156S',    # ONS via FRED — ~5mo lag
+    'BRA': 'BRAURAGSAM157S',     # IBGE PNAD via FRED
+}
 
 BIS_RATE_COUNTRIES = {
     'CAN': 'CA',
     'GBR': 'GB',
     'JPN': 'JP',
-    'IND': 'IN',
     'ZAF': 'ZA',
     'BRA': 'BR',
     'RUS': 'RU',
+    # IND removed — BIS WS_CBPOL stops Aug 2016; using FRED instead
 }
 
 RATE_SERIES_FRED = {
@@ -58,6 +69,7 @@ RATE_SERIES_FRED = {
     'DEU': 'ECBMRRFR',
     'FRA': 'ECBMRRFR',
     'ITA': 'ECBMRRFR',
+    'IND': 'INTDSRINM193N',  # RBI repo rate — replaces BIS which stops Aug 2016
     'CHN': None,
 }
 
@@ -200,15 +212,19 @@ def fetch_unemployment(fetch_start, new_dates):
         if series:
             print(f'  {country}: {len(series)} new months  last={max(series)}')
         result[country] = series
-    try:
-        gbr_all = fred_fetch('LRHUTTTTGBM156S', fetch_start)
-        gbr = {k: round(v, 2) for k, v in gbr_all.items() if k in new_dates}
-        if gbr:
-            print(f'  GBR: {len(gbr)} new months  last={max(gbr)}')
-        result['GBR'] = gbr
-    except Exception as e:
-        print(f'  GBR: FRED error — {e}')
-        result['GBR'] = {}
+
+    # FRED fallbacks: USA (BLS), GBR (ONS), BRA (IBGE PNAD)
+    for country, sid in UNEMP_FRED.items():
+        try:
+            all_data = fred_fetch(sid, fetch_start)
+            new = {k: round(v, 2) for k, v in all_data.items() if k in new_dates}
+            if new:
+                print(f'  {country} ({sid}): {len(new)} new months  last={max(new)}')
+            result[country] = new
+        except Exception as e:
+            print(f'  {country} ({sid}): FRED error — {e}')
+            result[country] = {}
+
     for country in UNEMP_BLANK:
         result[country] = {}
     return result
@@ -244,16 +260,173 @@ def fetch_policy_rate(fetch_start, new_dates):
         result[country] = new
     return result
 
+# ── Backfill helpers ──────────────────────────────────────────────────────────
+
+# Maps tab name → which countries are permanently blank (never fill these)
+KNOWN_BLANKS = {
+    'Inflation':    [],
+    'Unemployment': ['CHN', 'IND', 'ZAF'],
+    'Policy_Rate':  ['CHN'],
+}
+
+def col_letter(n):
+    """Convert 1-based column index to A1 letter notation."""
+    result = ''
+    while n > 0:
+        n, rem = divmod(n - 1, 26)
+        result = chr(65 + rem) + result
+    return result
+
+def scan_blanks(wb):
+    """
+    Scan all three tabs for blank cells in existing rows.
+    Returns dict: { tab_name: { country: [(sheet_row_1based, date), ...] } }
+    Skips countries in KNOWN_BLANKS for that tab.
+    """
+    print('\nScanning MACRO-MONTHLY for blank cells in existing rows...')
+    gaps = {}
+
+    for tab_name in ['Inflation', 'Unemployment', 'Policy_Rate']:
+        ws        = wb.worksheet(tab_name)
+        all_vals  = ws.get_all_values()
+        if not all_vals:
+            continue
+
+        headers   = all_vals[0]
+        data_rows = all_vals[1:]
+
+        col_idx = {}
+        for country in COUNTRIES:
+            if country in headers:
+                col_idx[country] = headers.index(country)
+
+        tab_gaps = {}
+        skip     = KNOWN_BLANKS.get(tab_name, [])
+
+        for country in COUNTRIES:
+            if country in skip:
+                continue
+            if country not in col_idx:
+                continue
+            cidx         = col_idx[country]
+            country_gaps = []
+            for i, row in enumerate(data_rows):
+                cell_val = row[cidx].strip() if cidx < len(row) else ''
+                date_val = row[0].strip()    if row else ''
+                if not date_val:
+                    continue
+                if cell_val == '':
+                    try:
+                        d         = parse_sheet_date(date_val)
+                        sheet_row = i + 2   # +1 for header, +1 for 1-based
+                        country_gaps.append((sheet_row, d))
+                    except ValueError:
+                        pass
+            if country_gaps:
+                tab_gaps[country] = country_gaps
+
+        if tab_gaps:
+            gaps[tab_name] = tab_gaps
+            total              = sum(len(v) for v in tab_gaps.values())
+            countries_affected = list(tab_gaps.keys())
+            print(f'  {tab_name}: {total} blank cell(s) across {countries_affected}')
+        else:
+            print(f'  {tab_name}: no gaps found')
+
+    return gaps
+
+def fetch_for_backfill(gaps):
+    """Fetch data to fill identified gaps. One fetch call per data source."""
+    fetched = {}
+
+    for tab_name, tab_gaps in gaps.items():
+        all_dates = sorted({d for gaps_list in tab_gaps.values() for _, d in gaps_list})
+        if not all_dates:
+            continue
+
+        fetch_start = all_dates[0] - relativedelta(months=13)
+        date_set    = set(all_dates)
+        print(f'\nFetching {tab_name} ({all_dates[0]} → {all_dates[-1]})...')
+
+        if tab_name == 'Inflation':
+            fetched['Inflation']    = fetch_inflation(fetch_start, date_set)
+        elif tab_name == 'Unemployment':
+            fetched['Unemployment'] = fetch_unemployment(fetch_start, date_set)
+        elif tab_name == 'Policy_Rate':
+            fetched['Policy_Rate']  = fetch_policy_rate(fetch_start, date_set)
+
+    return fetched
+
+def apply_backfill(wb, gaps, fetched, apply=False):
+    """Write (or preview) values for every blank cell identified in gaps."""
+    print()
+    total_fills  = 0
+    total_blanks = 0
+
+    for tab_name, tab_gaps in gaps.items():
+        ws      = wb.worksheet(tab_name)
+        headers = ws.row_values(1)
+        updates  = []
+        previews = []
+
+        for country, gap_list in tab_gaps.items():
+            if country not in headers:
+                continue
+            col_num  = headers.index(country) + 1
+            col_ltr  = col_letter(col_num)
+            tab_data = fetched.get(tab_name, {}).get(country, {})
+
+            for sheet_row, d in gap_list:
+                val = tab_data.get(d)
+                if val is not None and val != '':
+                    cell_ref = f'{col_ltr}{sheet_row}'
+                    updates.append({'range': cell_ref, 'values': [[str(val)]]})
+                    previews.append((country, d, sheet_row, col_ltr, val))
+                    total_fills += 1
+                else:
+                    previews.append((country, d, sheet_row, col_ltr, None))
+                    total_blanks += 1
+
+        if previews:
+            print(f'{tab_name}:')
+            for (c, d, row, col, v) in previews:
+                status = f'→ {v}' if v is not None else '(no data from source)'
+                print(f'  {c:<6} {d}  row {row:<5} {col}  {status}')
+
+        if apply and updates:
+            ws.batch_update(updates, value_input_option='RAW')
+            print(f'  ✓ {tab_name}: wrote {len(updates)} cell(s)')
+
+    print(f'\nBackfill summary: {total_fills} cell(s) filled, {total_blanks} cell(s) had no source data.')
+    if not apply:
+        print('Dry run — pass --apply to write.')
+
+def run_backfill(wb):
+    gaps = scan_blanks(wb)
+    if not any(gaps.values()):
+        print('\nNo gaps found. Nothing to backfill.')
+        return
+    fetched = fetch_for_backfill(gaps)
+    apply_backfill(wb, gaps, fetched, apply=APPLY)
+
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main():
-    print(f'update_monthly_actuals.py  [{"APPLY" if APPLY else "DRY run"}]\n')
+    mode = 'APPLY' if APPLY else 'DRY run'
+    if BACKFILL:
+        print(f'update_monthly_actuals.py  [BACKFILL — {mode}]\n')
+    else:
+        print(f'update_monthly_actuals.py  [{mode}]\n')
 
     if not SHEET_ID:
         print('ERROR: MACRO_MONTHLY_SHEET_ID env var not set.')
         sys.exit(1)
 
     wb = get_workbook()
+
+    if BACKFILL:
+        run_backfill(wb)
+        return
 
     last_dates = {}
     for tab in ['Inflation', 'Unemployment', 'Policy_Rate']:

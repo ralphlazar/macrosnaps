@@ -8,7 +8,7 @@
       "weekly": "Update weekly or on release — CPI, unemployment, policy rate",
       "structural": "Update quarterly or on major revision — GDP, deficits, current account, stories, fxRegime"
     },
-    "built_at": "2026-03-16 19:43"
+    "built_at": "2026-03-16 23:46"
   },
   "countries": {
     "USA": {
@@ -4317,6 +4317,58 @@
         ],
         "unemployment": [
           {
+            "month": "01/02/2",
+            "value": 4.4
+          },
+          {
+            "month": "01/01/2",
+            "value": 4.3
+          },
+          {
+            "month": "01/12/2",
+            "value": 4.4
+          },
+          {
+            "month": "01/11/2",
+            "value": 4.5
+          },
+          {
+            "month": "01/09/2",
+            "value": 4.4
+          },
+          {
+            "month": "01/08/2",
+            "value": 4.3
+          },
+          {
+            "month": "01/07/2",
+            "value": 4.3
+          },
+          {
+            "month": "01/06/2",
+            "value": 4.1
+          },
+          {
+            "month": "01/05/2",
+            "value": 4.3
+          },
+          {
+            "month": "01/04/2",
+            "value": 4.2
+          },
+          {
+            "month": "01/03/2",
+            "value": 4.2
+          },
+          {
+            "month": "01/02/2",
+            "value": 4.2
+          },
+          {
+            "month": "01/01/2",
+            "value": 4.0
+          },
+          {
             "month": "01/12/2",
             "value": 4.1
           },
@@ -4407,58 +4459,6 @@
           {
             "month": "01/02/2",
             "value": 3.6
-          },
-          {
-            "month": "01/01/2",
-            "value": 3.4
-          },
-          {
-            "month": "01/12/2",
-            "value": 3.5
-          },
-          {
-            "month": "01/11/2",
-            "value": 3.6
-          },
-          {
-            "month": "01/10/2",
-            "value": 3.7
-          },
-          {
-            "month": "01/09/2",
-            "value": 3.5
-          },
-          {
-            "month": "01/08/2",
-            "value": 3.7
-          },
-          {
-            "month": "01/07/2",
-            "value": 3.5
-          },
-          {
-            "month": "01/06/2",
-            "value": 3.6
-          },
-          {
-            "month": "01/05/2",
-            "value": 3.6
-          },
-          {
-            "month": "01/04/2",
-            "value": 3.6
-          },
-          {
-            "month": "01/03/2",
-            "value": 3.6
-          },
-          {
-            "month": "01/02/2",
-            "value": 3.8
-          },
-          {
-            "month": "01/01/2",
-            "value": 4.0
           }
         ],
         "policy_rate": [
@@ -13221,6 +13221,10 @@
         ],
         "unemployment": [
           {
+            "month": "01/11/2",
+            "value": 5.2
+          },
+          {
             "month": "01/10/2",
             "value": 5.1
           },
@@ -13358,10 +13362,6 @@
           },
           {
             "month": "01/12/2",
-            "value": 3.9
-          },
-          {
-            "month": "01/11/2",
             "value": 3.9
           }
         ],
