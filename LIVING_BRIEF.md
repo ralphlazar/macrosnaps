@@ -1,5 +1,22 @@
 # MacroSnaps - Living Brief
-Last updated: March 16, 2026 (Session 25: `sync_market_historical.py` rewritten to read exclusively from MARKET-STATS sheet. Pipeline architecture rule established.)
+Last updated: March 16, 2026 (Session 26: Glossary extended; floating commodities FAB removed; commodity inline links added.)
+
+Session 26 changes in detail:
+
+(1) **Glossary extended with four new entries:** G7, BRICS, Goldman Sachs, CSFB. All three levels written for each. Footer tooltips (WHAT? and WHO?) now run `applyGlossary()` + `attachGlossary()` so these terms auto-link inside footer panels.
+
+(2) **Floating commodities FAB removed.** `#btnCommFab` (the 🛢️ button, fixed bottom-right) is gone entirely — CSS block, HTML element, and JS event listener all deleted.
+
+(3) **Commodity inline links added.** `applyCommLinks()` and `attachCommLinks()` added and wired into `applyGlossary()` / `attachGlossary()`. Every call site that already used those functions (global stories, country card bullets, metric tooltips, footer panels) now also gets commodity links automatically — no new call sites needed.
+- Colour: gold `#e8a838` with dotted underline — visually distinct from glossary blue (`#8ec8f0`)
+- Generic terms (oil, crude, commodity, commodities) → opens full commodities card
+- Specific terms (WTI, Brent, natural gas, gold, silver, copper, wheat, corn, soybeans, soybean) → opens individual commodity tooltip by item name lookup; fallback to full card if name not found
+- First occurrence only per term per text block, longest-match first to avoid partial matches
+- CSS classes: `.comm-term` (link), hover brightens to `#f5c46a`
+
+(4) **Style guide rule established: no em-dashes anywhere.** Em-dashes (—) are a signal of AI-generated writing and are banned from all story text, glossary definitions, and any other copy in the product. Use commas, colons, parentheses, or restructure the sentence instead.
+
+---
 
 Session 25 changes in detail:
 
@@ -78,7 +95,7 @@ Session 22 changes in detail:
 
 (3) **`fetch_external_forecasts.py` built.** Haiku 4.5 + web search, one API call per country, fetches latest 2026 forecasts from IMF, OECD, Goldman Sachs, JPMorgan, and other credible institutions published in the last 30 days. Returns structured JSON per metric: value, source, date, prior (if revised), notes. Writes to `external_forecasts.json`. `max_uses: 3` web searches per call. Cost: ~$0.73/run. Recommended cadence: weekly.
 
-(4) **Forecast CMS daily usage.** To use: (a) run `python3 forecast_server.py`; (b) open `forecast_cms.html` in browser; (c) edit any forecast value — saves on blur; (d) hit ⬇ Fetch External weekly for fresh context data.
+(4) **Forecast CMS daily usage.** To use: (a) run `python3 forecast_server.py`; (b) open `forecast_cms.html` in browser; (c) edit any forecast value — saves on blur; (d) hit Fetch External weekly for fresh context data.
 
 (5) **`METRIC_ROWS` config in `forecast_server.py`.** Row mapping (1-indexed): GDP_Growth=2, Inflation=3, Unemployment=4, Budget_Deficit=5, Current_Account=6, Policy_Rate=7. Verify this matches Macro-stats tab layout if saves land in wrong rows.
 
@@ -126,7 +143,7 @@ Session 18 changes in detail:
 
 (4) **`_frozen_historical` structure confirmed.** Shell populates `historicalData[code]` from `c._frozen_historical` (line 5595). Format per entry: `{"type": "bar"|"line", "v": [...]}`.
 
-(5) **Rolling spark update in `fetch_market_data.py` is superseded.** Lines 538–542 (`spark = spark[1:] + [round(current, 2)]`) are architecturally wrong. Remove in next pipeline session.
+(5) **Rolling spark update in `fetch_market_data.py` is superseded.** Lines 538-542 (`spark = spark[1:] + [round(current, 2)]`) are architecturally wrong. Remove in next pipeline session.
 
 ---
 
@@ -141,15 +158,15 @@ Session 17 changes in detail:
 Session 16 changes in detail (all in macrosnaps-shell.html only):
 (1) Logo click from Globe view navigates back to homepage correctly.
 (2) Nav simplified to logo-only. All button code intact — do not delete.
-(3) Commodities FAB: `<button id="btnCommFab">🛢️</button>` fixed bottom-right.
+(3) Commodities FAB introduced this session. **Removed in Session 26.**
 (4) Yield Curve and 10Y Bond Yield rankings render `num + cfg.unit` correctly.
-(5) Mobile rankings grid: columns 0–1 hidden at ≤768px.
+(5) Mobile rankings grid: columns 0-1 hidden at ≤768px.
 (6) Per-metric weather strip added to country cards (5 macro metrics, 7 icons).
 (7) Icon rule (FIXED — do not change): all weather icons use `.wh-icon` CSS filter pattern.
 (8) `CARD_MARKET_EXCLUDE` set: `Stock Market YTD (USD)`, `Stock Market Index`, `FX Rate`.
 (9) Navy palette applied everywhere.
 (10) Default rankings sort: nominal GDP order via `GDP_NOMINAL_ORDER` constant, `_whSortCol = -1`.
-(11) Compare All Countries and ☀️☁️☁️ Over Time buttons removed from macro metric tooltips.
+(11) Compare All Countries and Over Time buttons removed from macro metric tooltips.
 
 ---
 
@@ -161,7 +178,7 @@ Session 15 changes in detail:
 (5) spark upgraded from 12 → 120 points.
 (6) change is now day-over-day, not YTD.
 
-Session 14–8: See previous brief versions.
+Session 14-8: See previous brief versions.
 
 ---
 
@@ -206,6 +223,7 @@ Never upload `macrosnaps-globe.html`. It is a build output, not a source file.
 - Always present a plan before writing any code or making any changes. Wait for explicit confirmation ("go") before proceeding.
 - Make surgical, minimal changes. Do not refactor, rename, or reorganise anything not directly related to the task.
 - UK English spelling throughout all story content (realise, colour, behaviour, etc.).
+- No em-dashes (—) anywhere in story text, glossary definitions, or any other copy. They are a signal of AI-generated writing. Use commas, colons, parentheses, or restructure the sentence instead.
 - When in doubt, ask. Do not assume.
 
 ### ...to here
@@ -258,8 +276,8 @@ Three source files assemble into one output:
 
 | Layer | Scripts | Contacts external APIs? | Reads sheets? | Writes sheets? | Writes data.json? |
 |-------|---------|------------------------|---------------|----------------|-------------------|
-| Fetch | `fetch_market_data.py`, `update_monthly_actuals.py` | ✅ Yes | No | ✅ Yes | current values only |
-| Sync | `sync_market_historical.py`, `sync_commodity_data.py`, `sync_monthly_actuals.py` | ❌ Never | ✅ Yes | No | ✅ Yes |
+| Fetch | `fetch_market_data.py`, `update_monthly_actuals.py` | Yes | No | Yes | current values only |
+| Sync | `sync_market_historical.py`, `sync_commodity_data.py`, `sync_monthly_actuals.py` | Never | Yes | No | Yes |
 
 This ensures chart rendering is never broken by a transient external API failure.
 
@@ -334,14 +352,14 @@ python3 build.py --apply
 ### Key data.json paths
 
 ```
-data.countries[code].metrics.macro[metric_name].value       ← card display value (string)
-data.countries[code].metrics.macro[metric_name].story       ← per-metric story object
-data.countries[code].metrics.market[metric_name].value      ← current market value (string)
-data.countries[code]._frozen_historical[metric_name].type   ← "bar" or "line"
-data.countries[code]._frozen_historical[metric_name].v      ← chart data array (all tooltip charts)
-data.countries[code].monthly_actuals                        ← {inflation, unemployment, policy_rate} arrays
-data.commodities.items[n].price                             ← commodity price
-data._meta.generated                                        ← build date stamp
+data.countries[code].metrics.macro[metric_name].value       <- card display value (string)
+data.countries[code].metrics.macro[metric_name].story       <- per-metric story object
+data.countries[code].metrics.market[metric_name].value      <- current market value (string)
+data.countries[code]._frozen_historical[metric_name].type   <- "bar" or "line"
+data.countries[code]._frozen_historical[metric_name].v      <- chart data array (all tooltip charts)
+data.countries[code].monthly_actuals                        <- {inflation, unemployment, policy_rate} arrays
+data.commodities.items[n].price                             <- commodity price
+data._meta.generated                                        <- build date stamp
 ```
 
 ---
@@ -388,20 +406,22 @@ data._meta.generated                                        ← build date stamp
 - Local YTD: `co.metrics.market['Stock Market YTD']`
 - `_flattenMetrics()` flattens `{value, story}` objects to bare values for the shell
 - `DISPLAY_NAMES` map: `'United Kingdom' → 'UK'`, `'United States' → 'USA'`
-- Weather icon computed live from GDP Growth thresholds: ≥3% ☀️, ≥0% ☁️, <0% ⛈️
+- Weather icon computed live from GDP Growth thresholds: ≥3% sunny, ≥0% cloudy, <0% stormy
 - `metricDisplayLabels`: `'Policy Rate' → 'Policy Rate (year-end)'`
 - Globe is lazy-init (WebGL only on first toggle click). Nav buttons hidden, globe accessible by restoring `.view-toggle{display:flex}` if needed.
 - Default sort: `_whSortCol = -1` = nominal GDP order (GDP_NOMINAL_ORDER constant). Logo click resets to this. Metric dropdown change also resets to `-1` (Session 17 fix).
 - `CARD_MARKET_EXCLUDE` set: `'Stock Market YTD (USD)'`, `'Stock Market Index'`, `'FX Rate'`
 - `monthly_actuals` field is rendered in tooltip line charts for macro metrics — the script header comment saying "story context only" is wrong.
 - **Tooltip chart window rule:** All tooltip charts (annual bar, monthly line, market line) always span Jan 2000 (left) → current month (right). The axis is fixed — never auto-fitted to data extent. Missing data shows as visible gaps. Three-layer no-chart guard in `renderMetricChart()`: (a) no `_frozen_historical` object; (b) metric key missing or `v` array empty; (c) all values null after padding — all three show "No historical data" and skip the chart entirely. This rule applies to `renderMetricChart()` only; commodity charts are separate.
+- **Commodity inline links:** `applyCommLinks()` runs at end of every `applyGlossary()` call. `attachCommLinks()` runs at end of every `attachGlossary()` call. Gold colour `#e8a838`, class `.comm-term`. Generic terms (oil, crude, commodity, commodities) → `showCommoditiesCard()`. Specific terms (WTI, Brent, natural gas, gold, silver, copper, wheat, corn, soybeans) → `showCommodityMTT(idx)` by name lookup. First occurrence only per term per block. Do not add separate call sites — the wiring into `applyGlossary`/`attachGlossary` covers all surfaces automatically.
+- **No floating commodities FAB.** The `#btnCommFab` button was removed in Session 26. Do not re-add it.
 
 ### Weather icon rule (FIXED — do not change)
 
 All weather icons across the entire site must use the `.wh-icon` CSS filter pattern:
-- A single `☀️` emoji wrapped in `<span class="wh-icon sunny/cloudy/stormy">`
+- A single emoji wrapped in `<span class="wh-icon sunny/cloudy/stormy">`
 - `.sunny`: no filter. `.cloudy`: `brightness(.6) contrast(1.05) saturate(.3)`. `.stormy`: `brightness(.15) contrast(1.2) saturate(0) drop-shadow(...)`
-- Exception: per-metric strip uses the correct emoji per state (`☀️` sunny, `☁️` cloudy, `⛈️` stormy) with the same `.wh-icon cls` wrapper — intentional, filter still applies correctly
+- Exception: per-metric strip uses the correct emoji per state with the same `.wh-icon cls` wrapper — intentional, filter still applies correctly
 - Never use differently-styled icons (raw emoji, SVG, different filter values) anywhere else on the site
 
 ---
@@ -412,11 +432,9 @@ All weather icons across the entire site must use the `.wh-icon` CSS filter patt
 
 1. **Fix gspread deprecation warning in `populate_monthly_actuals.py`.** Change `ws.update('A1', values)` to `ws.update(values, 'A1')`. One-line fix.
 
-1. **Remove rolling spark update from `fetch_market_data.py`.** Lines 538–542: `spark = spark[1:] + [round(current, 2)]`. Superseded. Remove in next pipeline session.
+1. **Remove rolling spark update from `fetch_market_data.py`.** Lines 538-542: `spark = spark[1:] + [round(current, 2)]`. Superseded. Remove in next pipeline session.
 
 1. **GDP Growth stories audit.** CAN, FRA, ITA, BRA confirmed mismatches between story text and current values. Run a targeted stories session for these four countries (upload LIVING_BRIEF.md + data.json, use Part 1B prompt).
-
-1. **Add glossary to footer (UI session).** Add tooltip or expandable glossary entries for: G7, BRICS, Goldman Sachs, CSFB. Link from the WHAT? and WHO? footer sections. Upload LIVING_BRIEF.md + macrosnaps-shell.html.
 
 1. **Build `print_snapshot.py`.** Uses Playwright to open the built HTML file, loops through each country, expands it, and captures a full-height PDF. Output is a dated file in `snapshots/` (e.g. `macrosnaps-2026-03-09.pdf`). Audience level hardcoded to expert. Requires `pip3 install playwright` and `playwright install chromium`.
 

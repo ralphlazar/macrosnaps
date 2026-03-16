@@ -6583,14 +6583,32 @@ function assembleNewsData(idx) {
   return {icon: story.icon || '', label: story.label || 'Story', body: story.body || '', idx};
 }
 
+function setActiveNewsIcon(idx) {
+  document.querySelectorAll('.news-icon').forEach(el => {
+    el.style.opacity = +el.dataset.idx === idx ? '1' : '0.3';
+  });
+}
+function clearActiveNewsIcon() {
+  document.querySelectorAll('.news-icon').forEach(el => { el.style.opacity = ''; });
+}
+
 function renderNews(d) {
   if (!d) return;
   document.querySelectorAll('.tooltip').forEach(t => t.remove()); closeBubble();
+  const navHTML = `<div class="tt-nav">
+    ${d.idx > 0 ? `<button class="tt-nav-btn" data-news-dir="-1">◀</button>` : ''}
+    ${d.idx < 2 ? `<button class="tt-nav-btn" data-news-dir="1">▶</button>` : ''}
+  </div>`;
   const tt = document.createElement('div'); tt.className = 'tooltip';
-  tt.innerHTML = applyGlossary(`<div class="tt-close" onclick="this.parentElement.remove()">✕</div>${levelToggleHTML()}<div class="tt-title">${d.label}</div><div class="tt-story">${d.body}</div>`);
+  tt.innerHTML = applyGlossary(`${navHTML}<div class="tt-close">✕</div>${levelToggleHTML()}<div class="tt-title">${d.label}</div><div class="tt-story">${d.body}</div>`);
   document.body.appendChild(tt); tt.offsetHeight; tt.classList.add('active'); attachGlossary(tt);
+  tt.querySelector('.tt-close').addEventListener('click', e => { e.stopPropagation(); tt.remove(); clearActiveNewsIcon(); });
+  tt.querySelectorAll('.tt-nav-btn').forEach(btn => {
+    btn.addEventListener('click', e => { e.stopPropagation(); showNewsTooltip(activeNewsIdx + +btn.dataset.newsDir); });
+  });
   attachLevelToggle(tt, () => { tt.remove(); showNewsTooltip(activeNewsIdx); });
-  setTimeout(() => { document.addEventListener('click', function cl(e) { if (!tt.contains(e.target)) { tt.remove(); document.removeEventListener('click', cl); } }); }, 100);
+  setActiveNewsIcon(d.idx);
+  setTimeout(() => { document.addEventListener('click', function cl(e) { if (!tt.contains(e.target)) { tt.remove(); clearActiveNewsIcon(); document.removeEventListener('click', cl); } }); }, 100);
 }
 
 function showNewsTooltip(idx) {
