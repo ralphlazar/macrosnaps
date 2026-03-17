@@ -480,6 +480,13 @@ All weather icons across the entire site must use the `.wh-icon` CSS filter patt
 - Exception: per-metric strip uses the correct emoji per state with the same `.wh-icon cls` wrapper — intentional, filter still applies correctly
 - Never use differently-styled icons (raw emoji, SVG, different filter values) anywhere else on the site
 
+**Canonical emoji set (LOCKED — do not substitute):**
+- ☀️ sunny state
+- ☁️ cloudy state
+- ⛈️ stormy state
+
+These three and only these three may be used anywhere in the product — in code, copy, tooltips, prompts, or documentation. ⛅, 🌩, 🌧, 🌤 and all other weather variants are banned. This applies to all future UI changes, story writing, and pipeline updates.
+
 ---
 
 ### Pending work (priority order)
