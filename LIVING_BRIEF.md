@@ -487,6 +487,14 @@ All weather icons across the entire site must use the `.wh-icon` CSS filter patt
 
 These three and only these three may be used anywhere in the product — in code, copy, tooltips, prompts, or documentation. ⛅, 🌩, 🌧, 🌤 and all other weather variants are banned. This applies to all future UI changes, story writing, and pipeline updates.
 
+**Icon rendering rule (FIXED — no exceptions):** Every weather icon displayed in the UI must be wrapped in a `.wh-icon sunny/cloudy/stormy` span so the CSS filter is applied. Raw emoji, bare text, or any other rendering method is forbidden. This includes footer tooltips, glossary entries, story text, and any future UI component.
+
+---
+
+### Em-dash rule (FIXED — no exceptions)
+
+Em-dashes (—) are banned everywhere in the product without exception. This includes story text, glossary definitions, footer copy, UI labels, tooltips, code comments, prompts, and the living brief itself. Use commas, colons, parentheses, or restructure the sentence instead. There are no edge cases where an em-dash is acceptable.
+
 ---
 
 ### Pending work (priority order)
