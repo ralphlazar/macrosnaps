@@ -372,6 +372,9 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 .tt-section:last-child{border-bottom:none;margin-bottom:0}
 .tt-label{font-size:10px;color:#aaa;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
 .tt-value{font-size:16px;font-weight:600;color:#fff}
+.tt-header-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.tt-header-row .m-strip{gap:3px}
+.tt-header-row .m-strip .wh-icon{font-size:13px}
 .tt-explanation{font-size:11px;color:#aaa;line-height:1.4;margin-top:6px}
 .tt-source{font-size:10px;color:#888;margin-top:6px}
 
@@ -7297,8 +7300,15 @@ function renderMTT(d) {
   const navHTML = d.metricList.length > 0 ? `<div class="tt-nav"><button class="tt-nav-btn" data-dir="up" title="Previous metric">▲</button><button class="tt-nav-btn" data-dir="down" title="Next metric">▼</button></div>` : '';
 
   const compareHTML = d.section === 'market' ? `<button class="compare-btn" data-metric="${d.metricName}" data-country="${d.countryName}" data-sec="${d.section}"><span class="cb-icon">⇅</span> Compare All Countries</button>` : '';
+  const stripHTML = (d.section === 'macro' && d.code) ? metricWeatherStrip(d.metricName, d.code) : '';
+  const headerSectionHTML = stripHTML
+    ? `<div class="tt-section"><div class="tt-header-row"><div><div class="tt-label">${d.countryName}</div><div class="tt-value">${d.value}</div></div>${stripHTML}</div></div>`
+    : `<div class="tt-section"><div class="tt-label">${d.countryName}</div><div class="tt-value">${d.value}</div></div>`;
+
   const tt = document.createElement('div'); tt.className = 'tooltip';
-  tt.innerHTML = applyGlossary(`${navHTML}<div class="tt-close">✕</div>${levelToggleHTML()}<div class="tt-title">${d.metricName}</div><div class="tt-section"><div class="tt-label">${d.countryName}</div><div class="tt-value">${d.value}</div></div>${metricStoryHTML}${chartHTML}${exHTML ? `<div class="tt-story">${exHTML}</div>` : ''}${regimeHTML}${d.source ? `<div class="tt-source">Source: ${d.source}</div>` : ''}${compareHTML}`, d.metricName);
+  const innerContent = applyGlossary(`${navHTML}<div class="tt-close">✕</div>${levelToggleHTML()}<div class="tt-title">${d.metricName}</div>${metricStoryHTML}${chartHTML}${exHTML ? `<div class="tt-story">${exHTML}</div>` : ''}${regimeHTML}${d.source ? `<div class="tt-source">Source: ${d.source}</div>` : ''}${compareHTML}`, d.metricName);
+  tt.innerHTML = innerContent;
+  tt.querySelector('.tt-title').insertAdjacentHTML('afterend', headerSectionHTML);
   document.body.appendChild(tt); tt.offsetHeight; tt.classList.add('active'); attachGlossary(tt);
 
   // Close
