@@ -87,8 +87,9 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
   background:rgba(9,20,38,.98);border:1px solid rgba(0,212,255,.25);
   border-radius:8px;padding:6px 0;min-width:200px;
   box-shadow:0 8px 32px rgba(0,0,0,.6);
-  animation:ttIn .15s ease-out;
+  animation:dropIn .15s ease-out;
 }
+@keyframes dropIn{from{opacity:0}to{opacity:1}}
 .wh-metric-group{
   font-family:var(--font-display);font-size:7px;letter-spacing:1.5px;
   text-transform:uppercase;color:#444;padding:8px 14px 3px;
@@ -6534,15 +6535,15 @@ function toggleMetricDropdown(anchorBtn) {
   });
   drop.innerHTML = html;
 
-  // Position below the button before appending to avoid top-left flash
+  document.body.appendChild(drop);
+
+  // Position below the button
   const r = anchorBtn.getBoundingClientRect();
   let left = r.left;
   const dropW = 200;
   if (left + dropW > window.innerWidth - 8) left = window.innerWidth - dropW - 8;
   drop.style.left = left + 'px';
   drop.style.top  = (r.bottom + 6) + 'px';
-
-  document.body.appendChild(drop);
 
   // Item click
   drop.querySelectorAll('.wh-metric-item').forEach(item => {
