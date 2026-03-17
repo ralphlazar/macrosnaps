@@ -211,17 +211,17 @@ All story text must be plain prose only. Never include HTML tags, <cite> tags, c
 Output ONLY a JSON object in this exact format with no preamble and no markdown fences:
 {{
   "beginner": [
-    {{"icon": "emoji", "label": "Short headline max 8 words", "body": "2-3 plain-English sentences.", "source": "Source name"}},
+    {{"icon": "emoji", "label": "Short headline max 8 words", "body": "2-3 plain-English sentences. Max 55 words.", "source": "Source name"}},
     {{"icon": "emoji", "label": "...", "body": "...", "source": "..."}},
     {{"icon": "emoji", "label": "...", "body": "...", "source": "..."}}
   ],
   "moderate": [
-    {{"icon": "emoji", "label": "Short headline max 8 words", "body": "3-4 sentences with one piece of context.", "source": "Source name"}},
+    {{"icon": "emoji", "label": "Short headline max 8 words", "body": "3-4 sentences with one piece of context. Max 80 words.", "source": "Source name"}},
     {{"icon": "emoji", "label": "...", "body": "...", "source": "..."}},
     {{"icon": "emoji", "label": "...", "body": "...", "source": "..."}}
   ],
   "expert": [
-    {{"icon": "emoji", "label": "Short headline max 8 words", "body": "4-5 sentences with specific numbers and a forward implication.", "source": "Source name"}},
+    {{"icon": "emoji", "label": "Short headline max 8 words", "body": "4-5 sentences. Specific numbers and a forward implication. Max 110 words.", "source": "Source name"}},
     {{"icon": "emoji", "label": "...", "body": "...", "source": "..."}},
     {{"icon": "emoji", "label": "...", "body": "...", "source": "..."}}
   ],
