@@ -6588,22 +6588,6 @@ function attachLevelToggle(container, refreshFn){
 
 // ── NEWS ICONS ──
 let activeNewsIdx = null;
-let newsTTHeight = null;
-function measureNewsTTHeight() {
-  const probe = document.createElement('div');
-  probe.className = 'tooltip active';
-  probe.style.cssText = 'visibility:hidden;pointer-events:none;position:fixed;top:-9999px;left:-9999px;';
-  document.body.appendChild(probe);
-  let max = 0;
-  for (let i = 0; i < 3; i++) {
-    const d = assembleNewsData(i);
-    if (!d) continue;
-    probe.innerHTML = `<div class="tt-nav"></div><div class="tt-close">✕</div>${levelToggleHTML()}<div class="tt-title">${d.label}</div><div class="tt-story">${d.body}</div>`;
-    max = Math.max(max, probe.offsetHeight);
-  }
-  probe.remove();
-  return max || null;
-}
 function assembleNewsData(idx) {
   const stories = newsData[currentLevel] || newsData.beginner || [];
   const story = stories[idx] || null;
@@ -6618,25 +6602,15 @@ function setActiveNewsIcon(idx) {
 }
 function clearActiveNewsIcon() {
   document.querySelectorAll('.news-icon').forEach(el => { el.style.opacity = ''; });
-  newsTTHeight = null;
 }
 
 function renderNews(d) {
   if (!d) return;
   document.querySelectorAll('.tooltip').forEach(t => t.remove()); closeBubble();
-  const navHTML = `<div class="tt-nav">
-    ${d.idx > 0 ? `<button class="tt-nav-btn" data-news-dir="-1">◀</button>` : ''}
-    ${d.idx < 2 ? `<button class="tt-nav-btn" data-news-dir="1">▶</button>` : ''}
-  </div>`;
   const tt = document.createElement('div'); tt.className = 'tooltip';
-  tt.innerHTML = applyGlossary(`${navHTML}<div class="tt-close">✕</div>${levelToggleHTML()}<div class="tt-title">${d.label}</div><div class="tt-story">${d.body}</div>`);
+  tt.innerHTML = applyGlossary(`<div class="tt-close">✕</div>${levelToggleHTML()}<div class="tt-title">${d.label}</div><div class="tt-story">${d.body}</div>`);
   document.body.appendChild(tt); tt.offsetHeight; tt.classList.add('active'); attachGlossary(tt);
-  if (!newsTTHeight) newsTTHeight = measureNewsTTHeight();
-  if (newsTTHeight) tt.style.minHeight = newsTTHeight + 'px';
   tt.querySelector('.tt-close').addEventListener('click', e => { e.stopPropagation(); tt.remove(); clearActiveNewsIcon(); });
-  tt.querySelectorAll('.tt-nav-btn').forEach(btn => {
-    btn.addEventListener('click', e => { e.stopPropagation(); showNewsTooltip(activeNewsIdx + +btn.dataset.newsDir); });
-  });
   attachLevelToggle(tt, () => { tt.remove(); showNewsTooltip(activeNewsIdx); });
   setActiveNewsIcon(d.idx);
   setTimeout(() => { document.addEventListener('click', function cl(e) { if (!tt.contains(e.target)) { tt.remove(); clearActiveNewsIcon(); document.removeEventListener('click', cl); } }); }, 100);
