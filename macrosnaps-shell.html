@@ -56,8 +56,6 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 /* ── Sortable headers ── */
 .wh-table thead th.wh-sortable{cursor:pointer;user-select:none;transition:color .15s}
 .wh-table thead th.wh-sortable:hover{color:#bbb}
-.wh-glossary{margin-top:14px;padding-top:12px;border-top:1px solid #222;font-size:12px;color:#aaa;line-height:1.6}
-.wh-gl-bluf{color:#ccc}
 
 .wh-sort-arrow.active{opacity:1;color:var(--cyan)}
 
@@ -6353,7 +6351,6 @@ function renderGridTable(wrap, cfg, titleHTML) {
     </table>`;
 
   attachTableEvents(wrap);
-  appendTableGlossary(wrap, cfg);
 }
 
 
@@ -6462,28 +6459,6 @@ function renderRankedTable(wrap, cfg, titleHTML) {
     </table>`;
 
   attachTableEvents(wrap);
-  appendTableGlossary(wrap, cfg);
-}
-function appendTableGlossary(wrap, cfg) {
-  const metricName = _whMetric;
-  const gEntry = glossary[metricName] || null;
-  if (!gEntry) return;
-  const levelContent = gEntry[currentLevel] || gEntry.beginner;
-  if (!levelContent) return;
-  const bluf = getBluf(levelContent);
-  if (!bluf) return;
-  const full = getFull(levelContent);
-  const div = document.createElement('div');
-  div.className = 'wh-glossary';
-  div.innerHTML = applyGlossary(
-    `<div class="wh-gl-bluf">${bluf}</div>` +
-    (full ? `<div class="ge-expand">Read more ›</div><div class="ge-full">${full}</div>` : ''),
-    metricName
-  );
-  wrap.appendChild(div);
-  const exp = div.querySelector('.ge-expand');
-  if (exp) exp.addEventListener('click', e => { e.stopPropagation(); div.querySelector('.ge-full').classList.toggle('open'); exp.textContent = exp.textContent.includes('›') ? 'Read less ‹' : 'Read more ›'; });
-  attachGlossary(div);
 }
 
 function attachTableEvents(wrap) {
