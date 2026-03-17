@@ -1,5 +1,43 @@
 # MacroSnaps - Living Brief
-Last updated: March 17, 2026 (Session 34: print_snapshot.py built. Standalone script; no existing files modified.)
+Last updated: March 17, 2026 (Session 36: audit_ritual.py corrected to match actual data.json structure; pre-launch checklist closed.)
+
+Session 36 changes in detail:
+
+(1) **Pre-launch checklist closed.** All blocking items resolved:
+- `clean_cite_tags()` regex (`r'</?cite[^>]*>'`) confirmed fixed prior to this session.
+- `audit_macro_monthly.py` marked redundant — superseded by `audit_sheets.py` (Session 28), which covers the same gap audit. Never needs to be run.
+- Corp Spread and Sov CDS confirmed removed from `data.json`.
+- `audit_ritual.py` corrected and verified with a clean green run (see below).
+
+(2) **`audit_ritual.py` corrected (three fixes).** The script was written against a stale assumption of the data.json schema and had three bugs:
+
+- **Check 3 (spark arrays): wrong skip set.** `check_spark_arrays()` was using `KNOWN_BLANK_MARKET` to skip permanent gaps in `_frozen_historical`, but that dict only covers market metric display values. Added a dedicated `KNOWN_BLANK_HISTORICAL` dict:
+```python
+KNOWN_BLANK_HISTORICAL = {
+    "CHN": {"Policy Rate", "Unemployment", "10Y Bond Yield", "Yield Curve"},
+    "IND": {"Unemployment", "10Y Bond Yield", "Yield Curve"},
+    "BRA": {"Unemployment", "10Y Bond Yield", "Yield Curve"},
+    "RUS": {"Unemployment", "10Y Bond Yield", "Yield Curve"},
+    "ZAF": {"Unemployment"},
+}
+```
+These match the confirmed permanent data gaps in the known gaps table.
+
+- **Check 6 (story freshness): wrong field path.** `country.last_updated` does not exist in data.json. The `last_updated` field lives on individual metrics (`metrics.macro[x].last_updated`, `metrics.market[x].last_updated`). Rewritten to use `metrics.market['Stock Market YTD'].last_updated` as the daily-updated proxy, with fallback to any market metric that has the field.
+
+- **Check 8 (global stories): wrong key and wrong structure.** Script used `data.get("global_stories", [])` but the actual key is `globalStories` and it is a dict keyed by tier (`beginner`, `moderate`, `expert`), each containing a list of 3 cards. Rewritten accordingly.
+
+- **`KNOWN_BLANK_MARKET` for RUS also corrected.** `"Stock Market YTD"` was in the skip list for RUS, leftover from before Session 33 fixed the MOEX fetch. Removed — RUS Stock Market YTD is now live data and should be audited.
+
+(3) **`audit_ritual.py` verified clean.** All 8 checks passed against today's `data.json` (2026-03-17 build).
+
+---
+
+Session 35 changes in detail:
+
+(1) **Metric dropdown flash-to-top-left fixed in `macrosnaps-shell.html`.** The `.wh-metric-dropdown` was using the shared `ttIn` keyframe animation, which applies `transform: translate(-50%, -50%)`. This is correct for centred tooltips but wrong for the dropdown, which uses fixed `left`/`top` positioning, causing a one-frame jump to the wrong position on every open. Fixed by replacing `animation: ttIn .15s ease-out` with a dedicated `dropIn` keyframe (`@keyframes dropIn{from{opacity:0}to{opacity:1}}`), a simple fade with no transform. Fix applies on both desktop and mobile.
+
+---
 
 Session 34 changes in detail:
 
@@ -52,28 +90,28 @@ python3 update_stories.py --stale-only
 python3 build.py --apply
 ```
 
-(3) **GDP Growth stories audit closed as false alarm.** CAN, FRA, ITA, BRA stories were audited against current values. All four stories are consistent with their current values. The earlier suspicion of mismatches was not borne out. All four have `value_at_generation: MISSING` (field predates Session 29) — this is harmless; `build.py` only blocks when the field is present and mismatches. These will self-heal the next time `update_stories.py` rewrites them. Part 1B prompt removed from this brief.
+(3) **GDP Growth stories audit closed as false alarm.** CAN, FRA, ITA, BRA stories were audited against current values. All four stories are consistent with their current values. The earlier suspicion of mismatches was not borne out. All four have `value_at_generation: MISSING` (field predates Session 29) — this is harmless; `build.py` only blocks when the field is present and mismatches. These will self-heal the next time `update_stories.py` rewrites them.
 
 ---
 
 Session 31 changes in detail:
 
 (1) **Daily ritual run successfully.** Build 2026-03-17 committed and pushed to ralphlazar.github.io/macrosnaps. Three known issues surfaced:
-- **RUS Stock Market YTD failed** — `fetch_moex_index()` not being called correctly in `fetch_market_data.py`. yfinance hit instead and returned no data (`$IMOEX.ME possibly delisted`). Russia carried yesterday's value. Fix pending.
-- **JPN missing from `update_headlines.py --apply` output** — 11/12 countries applied, JPN absent. Japan carried yesterday's stories. Root cause unknown. Fix pending.
-- **USA/JPN/DEU/FRA/ITA 10Y Bond Yield and Yield Curve failed** — FRED HTTP 500s, transient outage. Values stale by one day. Will self-correct when FRED recovers.
+- **RUS Stock Market YTD failed** — `fetch_moex_index()` not being called correctly in `fetch_market_data.py`. yfinance hit instead and returned no data (`$IMOEX.ME possibly delisted`). Russia carried yesterday's value. Fixed in Session 33.
+- **JPN missing from `update_headlines.py --apply` output** — 11/12 countries applied, JPN absent. Japan carried yesterday's stories. Fixed in Session 33.
+- **USA/JPN/DEU/FRA/ITA 10Y Bond Yield and Yield Curve failed** — FRED HTTP 500s, transient outage. Values stale by one day. Self-corrected when FRED recovered.
 
 (2) **`audit_ritual.py` built.** Final step of the daily ritual. Reads `data.json` from the project directory and produces a terminal health report. Eight checks:
 - Build date matches today (`_meta.generated`)
 - Market values non-blank (skips known permanent gaps per `KNOWN_BLANK_MARKET`)
-- Spark arrays non-empty
+- Spark arrays non-empty (skips known permanent gaps per `KNOWN_BLANK_HISTORICAL`)
 - All 9 commodities have price, change, and 120-pt spark
 - All 12 countries have stories at all 3 tiers
-- All country stories have `last_updated` = today (catches skipped countries like JPN)
+- All countries have market data updated today (checks `metrics.market['Stock Market YTD'].last_updated`)
 - No `value_at_generation` mismatches on macro metrics
-- All 3 global story cards present at all 3 tiers
+- All 3 global story cards present at all 3 tiers (reads `data.globalStories[tier]` list of 3)
 
-Writes dated plain-text log to `logs/audit_YYYY-MM-DD.txt`. Creates `logs/` directory if needed. Exits with code 1 if any issues found. Add as step 9 of the daily ritual: `python3 audit_ritual.py`.
+Writes dated plain-text log to `logs/audit_YYYY-MM-DD.txt`. Creates `logs/` directory if needed. Exits with code 1 if any issues found. Run as final step of the daily ritual: `python3 audit_ritual.py`.
 
 (3) **Daily ritual expanded to 9 steps.** See updated Daily ritual section below.
 
@@ -226,8 +264,6 @@ Session 23 changes in detail:
 
 (4) **MACRO-MONTHLY backfill completed successfully.** `populate_monthly_actuals.py --apply` wrote 315 rows to all three tabs (Inflation, Unemployment, Policy_Rate). All 12 countries now have current monthly actuals in tooltip charts.
 
-(5) **Deprecation warning in `populate_monthly_actuals.py`.** `ws.update('A1', values)` triggers a gspread argument order warning. Harmless — fix in next pipeline session: change to `ws.update(values, 'A1')`.
-
 (6) **New IMF API country/dataset reference:**
 - CPI: `sdmx.Client('IMF_DATA').data('CPI', key='COUNTRY.CPI._T.IX.M', params={'startPeriod': 'YYYY-MM'})`
 - Unemployment: `sdmx.Client('IMF_DATA').data('LS', key='COUNTRY.U.PT.M', params={'startPeriod': 'YYYY-MM'})`
@@ -255,7 +291,7 @@ Session 21 changes in detail:
 
 (2) **Cite tag bug fixed in `update_headlines.py` (two parts).**
 - **Prompt-level fix:** Added hard rule to `build_global_system()` prompt: *"All story text must be plain prose only. Never include HTML tags, `<cite>` tags, citation markup, markdown, or any other formatting. No angle brackets of any kind in story text."*
-- **Scrubber fix (STILL PENDING):** `clean_cite_tags()` uses regex `r'</?antml:cite[^>]*>'` which does not match actual escaped tags in JSON. Correct pattern: `r'</?cite[^>]*>'`. Fix in next pipeline session.
+- **Scrubber fix:** `clean_cite_tags()` regex corrected to `r'</?cite[^>]*>'` (was `r'</?antml:cite[^>]*>'` which did not match actual escaped tags in JSON). Confirmed resolved prior to Session 36.
 
 (3) **`update_headlines.py`: harvest prompt broadened to include geopolitical events.** `max_tokens` 1500 → 2000, search turns 2 → 3.
 
@@ -271,7 +307,7 @@ Session 20 changes in detail:
 (2) **`macrosnaps-shell.html`: "MSc Economics (LSE)," removed from WHO copy.**
 (3) **`macrosnaps-shell.html`: HOW copy updated.**
 (4) **`audit_market_data.py` written and run successfully.** Results clean.
-(5) **`audit_macro_monthly.py` written but not yet run.** MACRO-MONTHLY sheet not yet published to web. Next session: publish via File → Share → Publish to web, then run.
+(5) **`audit_macro_monthly.py` written but never run.** Superseded by `audit_sheets.py` (Session 28). Do not run.
 
 ---
 
@@ -290,8 +326,6 @@ Session 18 changes in detail:
 (3) **Bug fix: spark arrays were writing to wrong location.** Previous script wrote to `metrics.market[label]["spark"]` — a field the shell never reads. Fixed. Shell reads exclusively from `_frozen_historical[label].v`.
 
 (4) **`_frozen_historical` structure confirmed.** Shell populates `historicalData[code]` from `c._frozen_historical` (line 5595). Format per entry: `{"type": "bar"|"line", "v": [...]}`.
-
-(5) **Rolling spark update in `fetch_market_data.py` is superseded.** Lines 538-542 (`spark = spark[1:] + [round(current, 2)]`) are architecturally wrong. Remove in next pipeline session.
 
 ---
 
@@ -446,7 +480,7 @@ This ensures chart rendering is never broken by a transient external API failure
 
 **Market metric spark arrays (historical line charts):**
 - Script: `sync_market_historical.py --apply`
-- **Source: MARKET-STATS sheet only. Never contacts yfinance or FREQ.**
+- **Source: MARKET-STATS sheet only. Never contacts yfinance or FRED.**
 - Sheet columns: `Stock_Market_Index`, `FX_Rate`, `Bond_Yield_10Y`, `Yield_Curve`
 - FX values stored in display format in sheet — no inversion needed.
 - Yield curve stored in bps in sheet — no derivation needed.
@@ -509,12 +543,15 @@ python3 audit_ritual.py
 data.countries[code].metrics.macro[metric_name].value                <- card display value (string)
 data.countries[code].metrics.macro[metric_name].story                <- per-metric story object
 data.countries[code].metrics.macro[metric_name].value_at_generation  <- value story was written for
+data.countries[code].metrics.macro[metric_name].last_updated         <- date story was written
 data.countries[code].metrics.market[metric_name].value               <- current market value (string)
+data.countries[code].metrics.market[metric_name].last_updated        <- date market value was fetched
 data.countries[code]._frozen_historical[metric_name].type            <- "bar" or "line"
 data.countries[code]._frozen_historical[metric_name].v               <- chart data array (all tooltip charts)
 data.countries[code].monthly_actuals                                 <- {inflation, unemployment, policy_rate} arrays
 data.commodities.items[n].price                                      <- commodity price
 data._meta.generated                                                 <- build date stamp
+data.globalStories[tier]                                             <- list of 3 cards, each {icon, label, body, source}
 ```
 
 ---
@@ -552,7 +589,7 @@ data._meta.generated                                                 <- build da
 | `audit_sheets.py` | Ad hoc | Read-only gap audit of MARKET-STATS and MACRO-MONTHLY. Flags stale or blank series. No writes. |
 | `update_stories.py` | On metric change / after sync_sheet.py | Diff-driven per-metric story rewrites. Saves `value_at_generation` alongside each story. `--stale-only` rewrites only macro metrics where `value_at_generation` mismatches `value`. |
 | `build.py --apply` | Daily | Assembles globe.html, validates schema (incl. story mismatch guard), diffs, auto-commits, pushes |
-| `audit_ritual.py` | Daily (final step) | Reads data.json, runs 8 health checks, prints terminal report, writes logs/audit_YYYY-MM-DD.txt. Exits 1 if issues found. |
+| `audit_ritual.py` | Daily (final step) | Reads data.json, runs 8 health checks, prints terminal report, writes logs/audit_YYYY-MM-DD.txt. Exits 1 if issues found. Uses `KNOWN_BLANK_HISTORICAL` to skip permanent gaps in spark check. |
 
 ---
 
@@ -575,7 +612,7 @@ data._meta.generated                                                 <- build da
 - **hasChartData guard:** `hasChartData(metricName, countryCode)` runs before building chart HTML. If it returns false, the entire `.metric-chart-wrap` section (title, range buttons, canvas) is omitted from the tooltip entirely. No "No historical data" message is shown — the chart section simply does not exist. Applies to metric tooltips only; commodity charts are separate and use `renderCommodityMonthlyChart()` / `renderCommodityChart()`.
 - **Commodity inline links:** `applyCommLinks()` runs at end of every `applyGlossary()` call. `attachCommLinks()` runs at end of every `attachGlossary()` call. Gold colour `#e8a838`, class `.comm-term`. Generic terms (oil, crude, commodity, commodities) → `showCommoditiesCard()`. Specific terms (WTI, Brent, natural gas, gold, silver, copper, wheat, corn, soybeans) → `showCommodityMTT(idx)` by name lookup. First occurrence only per term per block. Do not add separate call sites — the wiring into `applyGlossary`/`attachGlossary` covers all surfaces automatically.
 - **No floating commodities FAB.** The `#btnCommFab` button was removed in Session 26. Do not re-add it.
-- **Global stories carousel.** `renderNews()` drives the three-story carousel. `activeNewsIdx` tracks current story (0/1/2). `setActiveNewsIcon(idx)` / `clearActiveNewsIcon()` control background menu icon opacity (inactive icons fade to 0.3). No nav arrows in the global stories tooltip — story icons in the background menu are the navigation. `measureNewsTTHeight()` and `newsTTHeight` were removed in Session 29.
+- **Global stories carousel.** `renderNews()` drives the three-story carousel. `activeNewsIdx` tracks current story (0/1/2). `setActiveNewsIcon(idx)` / `clearActiveNewsIcon()` are empty stubs — icons are fully static. No nav arrows in the global stories tooltip — story icons in the background menu are the navigation. `measureNewsTTHeight()` and `newsTTHeight` were removed in Session 29.
 
 ### Weather icon rule (FIXED — do not change)
 

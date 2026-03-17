@@ -24,7 +24,7 @@ from copy import deepcopy
 # ── Config ──────────────────────────────────────────────────────────────────
 SHELL_FILE   = "macrosnaps-shell.html"
 DATA_FILE    = "data.json"
-OUTPUT_FILE  = "macrosnaps-globe.html"
+OUTPUT_FILE  = "index.html"
 BACKUP_DIR   = "backups"
 TODAY        = date.today().isoformat()          # e.g. "2026-03-08"
 NOW          = datetime.now().strftime("%Y-%m-%d %H:%M")

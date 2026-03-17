@@ -34,7 +34,16 @@ KNOWN_BLANK_MARKET = {
     "CHN": {"10Y Bond Yield", "Yield Curve"},
     "IND": {"10Y Bond Yield", "Yield Curve"},
     "BRA": {"10Y Bond Yield", "Yield Curve"},
-    "RUS": {"10Y Bond Yield", "Yield Curve", "Stock Market YTD"},
+    "RUS": {"10Y Bond Yield", "Yield Curve"},
+}
+
+# Permanent blank _frozen_historical entries per country (known gaps -- not flagged)
+KNOWN_BLANK_HISTORICAL = {
+    "CHN": {"Policy Rate", "Unemployment", "10Y Bond Yield", "Yield Curve"},
+    "IND": {"Unemployment", "10Y Bond Yield", "Yield Curve"},
+    "BRA": {"Unemployment", "10Y Bond Yield", "Yield Curve"},
+    "RUS": {"Unemployment", "10Y Bond Yield", "Yield Curve"},
+    "ZAF": {"Unemployment"},
 }
 
 COMMODITIES = ["WTI Crude", "Brent Crude", "Natural Gas", "Gold", "Silver", "Copper", "Wheat", "Corn", "Soybeans"]
@@ -129,7 +138,7 @@ def check_spark_arrays(data, issues):
     for code in COUNTRIES:
         country = data["countries"].get(code, {})
         fh = country.get("_frozen_historical", {})
-        known_blanks = KNOWN_BLANK_MARKET.get(code, set())
+        known_blanks = KNOWN_BLANK_HISTORICAL.get(code, set())
 
         for label, entry in fh.items():
             if label in known_blanks:
@@ -195,23 +204,33 @@ def check_story_completeness(data, issues):
     return issues
 
 def check_story_freshness(data, issues):
-    section("6. Story freshness (last_updated = today)")
+    section("6. Story freshness (market metrics updated today)")
     today_str = date.today().strftime("%Y-%m-%d")
     stale = []
+    # Use Stock Market YTD as the daily-updated proxy; fall back to any market metric
+    PROXY_METRIC = "Stock Market YTD"
 
     for code in COUNTRIES:
         country = data["countries"].get(code, {})
-        lu = country.get("last_updated", "")
+        market = country.get("metrics", {}).get("market", {})
+        proxy = market.get(PROXY_METRIC, {})
+        lu = proxy.get("last_updated", "") if isinstance(proxy, dict) else ""
         if not lu:
-            stale.append((code, "no last_updated field"))
+            # fall back to first available market metric with a last_updated
+            for v in market.values():
+                if isinstance(v, dict) and v.get("last_updated"):
+                    lu = v["last_updated"]
+                    break
+        if not lu:
+            stale.append((code, "no last_updated found on any market metric"))
         elif not lu.startswith(today_str):
             stale.append((code, lu))
 
     if not stale:
-        ok("All 12 country stories updated today")
+        ok("All 12 countries have market data updated today")
     else:
         for code, val in stale:
-            issues += fail(f"{code}  last_updated = {val!r} (expected {today_str})")
+            issues += fail(f"{code}  last market update = {val!r} (expected {today_str})")
     return issues
 
 def check_story_mismatches(data, issues):
@@ -237,19 +256,24 @@ def check_story_mismatches(data, issues):
 
 def check_global_stories(data, issues):
     section("8. Global stories (3 cards x 3 tiers)")
-    global_stories = data.get("global_stories", [])
+    global_stories = data.get("globalStories", {})
     clean = True
 
-    if len(global_stories) < 3:
-        issues += fail(f"Only {len(global_stories)} global story card(s) found (expected 3)")
+    if not global_stories:
+        issues += fail("globalStories missing from data.json")
         return issues
 
-    for i, card in enumerate(global_stories[:3]):
-        label = card.get("label", f"Card {i+1}")
-        for tier in TIERS:
-            body = card.get("body", {}).get(tier, "") if isinstance(card.get("body"), dict) else card.get(tier, "")
+    for tier in TIERS:
+        cards = global_stories.get(tier, [])
+        if len(cards) < 3:
+            issues += fail(f"globalStories[{tier}] has {len(cards)} card(s) (expected 3)")
+            clean = False
+            continue
+        for card in cards[:3]:
+            label = card.get("label", "unlabelled")
+            body = card.get("body", "")
             if is_blank(body):
-                issues += fail(f"Global story [{label}] [{tier}] missing")
+                issues += fail(f"Global story [{tier}] [{label}] body missing")
                 clean = False
 
     if clean:
@@ -334,9 +358,15 @@ def main():
             if is_blank(val):
                 _issues += collect(f"{code}  {label}  = {val!r}", "✗")
 
-        lu = country.get("last_updated", "")
+        proxy = market.get("Stock Market YTD", {})
+        lu = proxy.get("last_updated", "") if isinstance(proxy, dict) else ""
+        if not lu:
+            for v in market.values():
+                if isinstance(v, dict) and v.get("last_updated"):
+                    lu = v["last_updated"]
+                    break
         if not lu or not lu.startswith(_today):
-            _issues += collect(f"{code}  last_updated = {lu!r}", "⚠")
+            _issues += collect(f"{code}  last market update = {lu!r}", "⚠")
 
         macro = country.get("metrics", {}).get("macro", {})
         for metric_name, metric in macro.items():
