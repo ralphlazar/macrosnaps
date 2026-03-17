@@ -7,9 +7,12 @@ values changed, calls the Claude API to rewrite stories for those metrics,
 and writes the results back into data.json.
 
 Usage:
-    python3 update_stories.py             - run normally
-    python3 update_stories.py --dry-run   - show what would change, no API calls, no writes
-    python3 update_stories.py --force-all - rewrite every metric regardless of changes
+    python3 update_stories.py              - run normally
+    python3 update_stories.py --dry-run    - show what would change, no API calls, no writes
+    python3 update_stories.py --force-all  - rewrite every metric regardless of changes
+    python3 update_stories.py --stale-only - rewrite only metrics where value_at_generation
+                                             does not match current value (macro only).
+                                             Run after sync_sheet.py, before build.py.
 
 Requires:
     ANTHROPIC_API_KEY in .env (same folder as this script)
@@ -189,7 +192,41 @@ def all_metrics(current):
     return items
 
 
-# ── Claude API calls ──────────────────────────────────────────────────────────
+def find_stale_metrics(data):
+    """
+    Scan all macro metrics in data.json for value_at_generation mismatches.
+    Returns items in the same structure as find_changed_metrics, scoped to
+    macro metrics only (matching the build.py story mismatch guard).
+    Only includes metrics where value_at_generation is present and differs
+    from the current value.
+    """
+    stale = []
+
+    for code, country in data.get("countries", {}).items():
+        macro = country.get("metrics", {}).get("macro", {})
+        for metric_name, entry in macro.items():
+            if not isinstance(entry, dict):
+                continue
+            current_val = entry.get("value")
+            vag = entry.get("value_at_generation")
+            if vag is None:
+                continue
+            if str(vag).strip() != str(current_val).strip():
+                stale.append({
+                    "type": "metric",
+                    "code": code,
+                    "country_name": country.get("name", code),
+                    "section": "macro",
+                    "metric": metric_name,
+                    "old_value": vag,
+                    "new_value": current_val,
+                    "tier": entry.get("tier", "daily"),
+                })
+
+    return stale
+
+
+
 
 def call_claude_metric(client, item):
     """
@@ -309,10 +346,12 @@ def write_commodity_story(data, item, stories):
 
 def main():
     parser = argparse.ArgumentParser(description="MacroSnaps story updater")
-    parser.add_argument("--dry-run",   action="store_true",
+    parser.add_argument("--dry-run",    action="store_true",
                         help="Show what would be rewritten without calling the API or writing anything")
-    parser.add_argument("--force-all", action="store_true",
+    parser.add_argument("--force-all",  action="store_true",
                         help="Rewrite every metric regardless of value changes")
+    parser.add_argument("--stale-only", action="store_true",
+                        help="Rewrite only macro metrics where value_at_generation != current value")
     args = parser.parse_args()
 
     print("\n" + "="*60)
@@ -322,6 +361,8 @@ def main():
         print("  MODE: DRY RUN - no API calls, no writes")
     elif args.force_all:
         print("  MODE: FORCE ALL - rewriting every metric")
+    elif args.stale_only:
+        print("  MODE: STALE ONLY - rewriting macro metrics with value_at_generation mismatches")
     print("="*60)
 
     # Load API key
@@ -340,6 +381,12 @@ def main():
     if args.force_all:
         items_to_rewrite = all_metrics(data)
         print(f"\n  Force-all mode: queuing all {len(items_to_rewrite)} rewritable metrics.")
+    elif args.stale_only:
+        items_to_rewrite = find_stale_metrics(data)
+        if not items_to_rewrite:
+            print("\n  No value_at_generation mismatches found. Nothing to rewrite.\n")
+            sys.exit(0)
+        print(f"\n  Stale-only mode: {len(items_to_rewrite)} mismatch(es) found.")
     else:
         committed = get_committed_data()
         if committed is None:

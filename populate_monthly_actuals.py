@@ -256,7 +256,7 @@ def write_tab(wb, tab_name, df):
         [str(v) if v != '' else '' for v in row]
         for row in df.values.tolist()
     ]
-    ws.update('A1', values)
+    ws.update(values, 'A1')
     print(f'  {tab_name}: wrote {len(df)} rows')
 
 # ── Main ──────────────────────────────────────────────────────────────────────

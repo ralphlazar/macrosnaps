@@ -1,5 +1,60 @@
 # MacroSnaps - Living Brief
-Last updated: March 17, 2026 (Session 31: Daily ritual run; audit_ritual.py built.)
+Last updated: March 17, 2026 (Session 34: print_snapshot.py built. Standalone script; no existing files modified.)
+
+Session 34 changes in detail:
+
+(1) **`print_snapshot.py` built.** Standalone script generating a dated, print-friendly PDF snapshot of the full MacroSnaps dashboard. Reads `data.json` directly; does not open the live site. Output: `00-snapshots/macrosnaps-YYYY-MM-DD.pdf` (directory created automatically).
+
+PDF structure: one page per country in GDP_NOMINAL_ORDER, each with a metrics table (6 macro + visible market metrics) and one Chart.js chart per metric with historical data. Charts annotate the last non-null data point with a filled circle and a label (e.g. "Mar 2026: 2.4%") - the key pipeline audit feature. Monthly actuals insets (3 most recent rows) appear below the Inflation, Unemployment, and Policy Rate charts. A commodities section follows all 12 countries with a 120-pt sparkline per commodity.
+
+Chart.js 4.4.1 and chartjs-plugin-datalabels 2.2.0 are fetched from cdnjs at runtime and inlined into the HTML (not loaded via `<script src>` - headless Chromium cannot fetch external scripts when the page has no origin). Playwright uses `wait_for_function("window.allChartsRendered === true")` before exporting.
+
+Usage:
+```bash
+python3 print_snapshot.py
+python3 print_snapshot.py --date 2026-03-15   # override date label only
+```
+
+One-time setup (already done on this machine):
+```bash
+pip3 install playwright --break-system-packages
+python3 -m playwright install chromium
+```
+
+---
+
+Session 33 changes in detail:
+
+(1) **RUS Stock Market YTD fixed in `fetch_market_data.py`.** `fetch_moex_index()` function added. Uses the public MOEX ISS REST API (`iss.moex.com/iss/history/engines/stock/markets/index/boards/SNDX/securities/IMOEX.json`) to fetch all IMOEX daily closes from Jan 1 to today and compute YTD %. `fetch_stock_ytd()` now returns early for RUS via `if code == "RUS": return fetch_moex_index()`, bypassing yfinance entirely.
+
+(2) **USA Stock Market YTD NaN fixed in `fetch_market_data.py`.** `yf_ytd_return()` now calls `.dropna()` on the Close series before slicing with `iloc[0]` / `iloc[-1]`, preventing NaN rows from producing `nan%`.
+
+(3) **USD/DXY FX fetch fixed in `fetch_market_data.py`.** `yf_latest_close()` rewritten to use `yf.download()` with `progress=False, auto_adjust=True` and `.squeeze().dropna()` to handle MultiIndex columns in newer yfinance. Falls back to `Ticker.fast_info["lastPrice"]` for tickers that fail `yf.download()` (e.g. DX-Y.NYB).
+
+(4) **Rolling spark update removed from `fetch_market_data.py`.** Lines that did `spark = spark[1:] + [round(current, 2)]` on commodity items were deleted. Superseded by `sync_commodity_data.py` which rebuilds sparks from the sheet.
+
+(5) **JPN headlines skip fixed in `update_headlines.py`.** `draft_countries_batch()` validation now checks for countries missing entirely from the parsed batch response (not just short bullet counts). A missing country triggers a retry with message `(missing: JPN, retrying...)`. `apply_draft()` now prints `[WARN] JPN not in approved file` at apply time if any country is absent from the approved JSON.
+
+(6) **gspread deprecation warning fixed in `populate_monthly_actuals.py`.** `ws.update('A1', values)` changed to `ws.update(values, 'A1')` in `write_tab()`.
+
+(7) **Redundant scripts deleted.** Removed from repo: `sync_market_sheet.py`, `sync_monthly_historical.py`, `update_market_sheet.py`, `populate_market_sheet.py`. (`headline_review.html` retained.)
+
+---
+
+Session 32 changes in detail:
+
+(1) **Mobile header second separator dot added.** On mobile, the header collapses to one line. A dot already existed between "Macro & Market Snapshots" and the date. A matching dot was added before "Macro & Market Snapshots" so the line reads: `MACROSNAPS · MACRO & MARKET SNAPSHOTS · UPDATED 17 MAR 2026`. Fix: added `.logo .sub1::before{content:' · '}` inside the mobile `@media` block in `macrosnaps-shell.html`, directly above the existing `::after` rule. Desktop layout unaffected.
+
+(2) **`update_stories.py --stale-only` mode added.** New flag scans all macro metrics in `data.json` for entries where `value_at_generation` is present and does not match `value`. Rewrites only those metrics via the Claude API. Scoped to macro only, matching the `build.py` mismatch guard. Exits cleanly with a "nothing to rewrite" message if no mismatches found. Use between `sync_sheet.py --apply` and `build.py` whenever forecasts are updated:
+```bash
+python3 sync_sheet.py --apply
+python3 update_stories.py --stale-only
+python3 build.py --apply
+```
+
+(3) **GDP Growth stories audit closed as false alarm.** CAN, FRA, ITA, BRA stories were audited against current values. All four stories are consistent with their current values. The earlier suspicion of mismatches was not borne out. All four have `value_at_generation: MISSING` (field predates Session 29) — this is harmless; `build.py` only blocks when the field is present and mismatches. These will self-heal the next time `update_stories.py` rewrites them. Part 1B prompt removed from this brief.
+
+---
 
 Session 31 changes in detail:
 
@@ -495,7 +550,7 @@ data._meta.generated                                                 <- build da
 | `update_monthly_actuals.py` | Monthly | Appends new months to MACRO-MONTHLY sheet. `--backfill` mode fills blank cells in existing rows. Same sources as populate. |
 | `sync_monthly_actuals.py --apply` | After update_monthly_actuals | Reads MACRO-MONTHLY sheet only, writes `monthly_actuals` to data.json (36 most recent non-null per series). No external API calls. |
 | `audit_sheets.py` | Ad hoc | Read-only gap audit of MARKET-STATS and MACRO-MONTHLY. Flags stale or blank series. No writes. |
-| `update_stories.py` | On metric change | Diff-driven per-metric story rewrites. Saves `value_at_generation` alongside each story. |
+| `update_stories.py` | On metric change / after sync_sheet.py | Diff-driven per-metric story rewrites. Saves `value_at_generation` alongside each story. `--stale-only` rewrites only macro metrics where `value_at_generation` mismatches `value`. |
 | `build.py --apply` | Daily | Assembles globe.html, validates schema (incl. story mismatch guard), diffs, auto-commits, pushes |
 | `audit_ritual.py` | Daily (final step) | Reads data.json, runs 8 health checks, prints terminal report, writes logs/audit_YYYY-MM-DD.txt. Exits 1 if issues found. |
 
@@ -549,57 +604,11 @@ Em-dashes (—) are banned everywhere in the product without exception. This inc
 
 ### Pending work (priority order)
 
-1. **Fix RUS MOEX fetch.** `fetch_moex_index()` exists in `fetch_market_data.py` but is not being called for the Stock Market YTD field — yfinance is hit instead and fails. Investigate and fix. Pipeline session: upload `LIVING_BRIEF.md` + `fetch_market_data.py`.
-
-1. **Fix JPN headlines skip.** `update_headlines.py --apply` applied 11/12 countries on 2026-03-17 with JPN absent. Root cause unknown — could be a missing key in the approved JSON or a silent skip in the apply loop. Pipeline session: upload `LIVING_BRIEF.md` + `update_headlines.py`.
-
-1. **Fix stale-story timing gap.** `sync_sheet.py` can update a forecast value without triggering a story rewrite, causing `value_at_generation` mismatches that block the build. Preferred fix: add `--stale-only` mode to `update_stories.py` that scans `data.json`, compares `value` vs `value_at_generation` for all macro metrics, and rewrites only mismatched ones. Add to ritual order: `sync_sheet.py → update_stories.py --stale-only → build.py`. Pipeline session.
-
-1. **GDP Growth stories audit.** CAN, FRA, ITA, BRA confirmed mismatches between story text and current values. Content session: upload `LIVING_BRIEF.md` + `data.json`. Use the Part 1B prompt below.
-
-1. **Fix `clean_cite_tags()` regex in `update_headlines.py`.** Current pattern `r'</?antml:cite[^>]*>'` does not match actual escaped tags in JSON. Correct pattern: `r'</?cite[^>]*>'`. Fix in next pipeline session.
-
-1. **Fix gspread deprecation warning in `populate_monthly_actuals.py`.** Change `ws.update('A1', values)` to `ws.update(values, 'A1')`. One-line fix.
-
-1. **Remove rolling spark update from `fetch_market_data.py`.** Lines 538-542: `spark = spark[1:] + [round(current, 2)]`. Superseded. Remove in next pipeline session.
-
-1. **Build `print_snapshot.py`.** Uses Playwright to open the built HTML file, loops through each country, expands it, and captures a full-height PDF. Output is a dated file in `snapshots/` (e.g. `macrosnaps-2026-03-09.pdf`). Audience level hardcoded to expert. Requires `pip3 install playwright` and `playwright install chromium`.
-
-1. **Clean up redundant scripts** (confirm contents before deleting): `sync_market_sheet.py`, `sync_monthly_historical.py`, `update_market_sheet.py`, `populate_market_sheet.py`, `headline_review.html`.
-
 1. **Post-launch:** revisit architecture if a second person joins to update data daily.
 
 1. **Post-launch:** replace fake contact form in "Ping Me" footer with a real form service (Formspree or similar).
 
 1. **Post-launch:** consider user alert emails (daily or weekly digest). A simple early version could use Buttondown or Mailchimp.
-
----
-
-## PART 1B — GDP STORIES AUDIT PROMPT
-### Copy from here...
-
-This is a content session. I am uploading `LIVING_BRIEF.md` and `data.json`.
-
-The task is a targeted GDP Growth stories audit for four countries: **CAN, FRA, ITA, BRA**.
-
-For each of these four countries:
-1. Read the current `GDP Growth` value from `data.json` (`data.countries[code].metrics.macro["GDP Growth"].value`)
-2. Read the existing story text at all three levels (beginner, moderate, expert)
-3. Check whether the story text is consistent with the current value
-4. If there is a mismatch (story references a different number, or contradicts the current value), rewrite all three levels
-
-Write new stories following the style guide:
-- No em-dashes anywhere
-- UK English spelling
-- No hedging openers, no AI-typical sentence starters, no filler conclusions
-- beginner: 2-3 plain-English sentences
-- moderate: 3-4 sentences with standard financial terms
-- expert: 4-5 sentences, technical language, specific data and market implications
-- Stories should reflect what is actually happening now, not just restate the forecast value
-
-Present the proposed rewrites for all four countries before making any changes. Wait for explicit confirmation ("go") before writing anything to data.json.
-
-### ...to here
 
 ---
 

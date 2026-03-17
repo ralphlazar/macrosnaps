@@ -287,14 +287,21 @@ def fred_fetch_latest(series_id):
 def yf_latest_close(ticker):
     """
     Return the most recent closing price for a Yahoo Finance ticker.
+    Uses yf.download() rather than Ticker.history() for reliability with
+    index tickers like DX-Y.NYB which can return malformed responses.
     Returns float or None.
     """
     try:
-        t = yf.Ticker(ticker)
-        hist = t.history(period="5d")
-        if hist.empty:
-            return None
-        return float(hist["Close"].iloc[-1])
+        hist = yf.download(ticker, period="5d", progress=False, auto_adjust=True)
+        if not hist.empty:
+            closes = hist["Close"].squeeze().dropna()
+            if not closes.empty:
+                return float(closes.iloc[-1])
+        # Fallback for tickers that fail yf.download (e.g. DX-Y.NYB)
+        price = yf.Ticker(ticker).fast_info.get("lastPrice")
+        if price is not None:
+            return float(price)
+        return None
     except Exception as exc:
         log.warning(f"    Yahoo {ticker}: {exc}")
         return None
@@ -309,10 +316,11 @@ def yf_ytd_return(ticker):
         start = f"{date.today().year}-01-01"
         t = yf.Ticker(ticker)
         hist = t.history(start=start)
+        hist = hist["Close"].dropna()
         if hist.empty or len(hist) < 2:
             return None
-        open_price = float(hist["Close"].iloc[0])
-        last_price = float(hist["Close"].iloc[-1])
+        open_price = float(hist.iloc[0])
+        last_price = float(hist.iloc[-1])
         if open_price == 0:
             return None
         return (last_price - open_price) / open_price * 100
@@ -349,11 +357,55 @@ def yf_price_and_ytd(ticker):
 # METRIC FETCHERS
 # ---------------------------------------------------------------------------
 
+def fetch_moex_index():
+    """
+    Fetch IMOEX YTD % return via the public MOEX ISS REST API.
+    Used for RUS instead of yfinance, which cannot access IMOEX post-sanctions.
+    Returns formatted string like '+4.2%' or None.
+    """
+    year = date.today().year
+    url = (
+        "https://iss.moex.com/iss/history/engines/stock/markets/index"
+        "/boards/SNDX/securities/IMOEX.json"
+    )
+    params = {
+        "from": f"{year}-01-01",
+        "iss.meta": "off",
+        "history.columns": "TRADEDATE,CLOSE",
+        "limit": 100,
+    }
+    try:
+        r = requests.get(url, params=params, timeout=20)
+        if r.status_code != 200:
+            log.warning(f"    MOEX ISS: HTTP {r.status_code}")
+            return None
+        rows = r.json().get("history", {}).get("data", [])
+        # rows are [TRADEDATE, CLOSE] - filter out any with null CLOSE
+        closes = [row[1] for row in rows if row[1] is not None]
+        if len(closes) < 2:
+            log.warning("    MOEX ISS: insufficient data for YTD calculation")
+            return None
+        base  = float(closes[0])
+        latest = float(closes[-1])
+        if base == 0:
+            return None
+        pct = (latest - base) / base * 100
+        sign = "+" if pct >= 0 else ""
+        return f"{sign}{pct:.1f}%"
+    except Exception as exc:
+        log.warning(f"    MOEX ISS: {exc}")
+        return None
+
+
 def fetch_stock_ytd(code):
     """
     Fetch Stock Market YTD % change.
     Returns formatted string like '+2.5%' or None.
+    RUS bypasses yfinance (IMOEX.ME delisted post-sanctions) and uses the
+    public MOEX ISS REST API instead.
     """
+    if code == "RUS":
+        return fetch_moex_index()
     ticker = STOCK_TICKERS.get(code)
     if not ticker:
         return None
@@ -535,11 +587,6 @@ def process_commodities(data):
         if ytd is not None:
             item["change"] = round(ytd, 1)
 
-        # Update spark: drop oldest point, append new close
-        spark = item.get("spark", [])
-        if isinstance(spark, list) and len(spark) > 0:
-            spark = spark[1:] + [round(current, 2)]
-            item["spark"] = spark
 
         change_str = f"{ytd:+.1f}%" if ytd is not None else "YTD n/a"
         log.info(f"  {name:<16} {current:.2f}  ({change_str} YTD)")

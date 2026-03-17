@@ -8,7 +8,7 @@
       "weekly": "Update weekly or on release — CPI, unemployment, policy rate",
       "structural": "Update quarterly or on major revision — GDP, deficits, current account, stories, fxRegime"
     },
-    "built_at": "2026-03-17 12:29"
+    "built_at": "2026-03-17 17:49"
   },
   "countries": {
     "USA": {
@@ -83,7 +83,7 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "-2.3%",
+            "value": "-2.0%",
             "tier": "daily",
             "last_updated": "2026-03-17",
             "story": {
@@ -410,9 +410,9 @@
             ]
           },
           "10Y Bond Yield": {
-            "value": "4.27%",
+            "value": "4.28%",
             "tier": "daily",
-            "last_updated": "2026-03-16",
+            "last_updated": "2026-03-17",
             "story": {
               "beginner": "The 10-year Treasury yield jumped from 4.21% to 4.27%. Bond prices fall when yields rise, so investors are demanding higher returns to lend money to the government. This usually happens when people expect inflation or economic growth to pick up.",
               "moderate": "The 10-year Treasury yield climbed 6 basis points to 4.27%, signaling shifting investor sentiment about future economic conditions. Higher yields typically reflect expectations of stronger growth, persistent inflation, or increased government borrowing needs. This move puts upward pressure on mortgage rates and corporate borrowing costs. The yield curve dynamics suggest markets are repricing near-term Fed policy expectations.",
@@ -737,9 +737,9 @@
             ]
           },
           "Yield Curve": {
-            "value": "+67bps",
+            "value": "+68bps",
             "tier": "daily",
-            "last_updated": "2026-03-16",
+            "last_updated": "2026-03-17",
             "story": {
               "beginner": "The gap between long-term and short-term interest rates in the US narrowed to 51 basis points. This means the yield curve became less steep, showing investors expect slower economic growth ahead. A flatter curve often signals concerns about the economy's future.",
               "moderate": "The US yield curve flattened significantly, with the spread dropping to 51 basis points from 61 basis points. This 10 basis point compression reflects growing market expectations for Federal Reserve rate cuts as economic growth concerns mount. A steeper curve typically indicates optimism about future growth, while flattening suggests investors anticipate slower expansion or potential recession. The move signals shifting sentiment in bond markets about the economic outlook.",
@@ -1063,7 +1063,7 @@
             ]
           },
           "USD/DXY": {
-            "value": "100.5",
+            "value": "100.4",
             "tier": "daily",
             "last_updated": "2026-03-17",
             "story": {
@@ -4686,7 +4686,7 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "+3.1%",
+            "value": "+3.6%",
             "tier": "daily",
             "last_updated": "2026-03-17",
             "story": {
@@ -9144,7 +9144,7 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "+4.3%",
+            "value": "+4.6%",
             "tier": "daily",
             "last_updated": "2026-03-17",
             "story": {
@@ -13917,9 +13917,9 @@
             ]
           },
           "10Y Bond Yield": {
-            "value": "2.24%",
+            "value": "2.11%",
             "tier": "daily",
-            "last_updated": "2026-03-16",
+            "last_updated": "2026-03-17",
             "story": {
               "beginner": "Japan's 10-year government bond yield held steady at 2.24%. This means investors are demanding the same return to lend money to the Japanese government for a decade. Bond yields reflect expectations about future interest rates and economic growth.",
               "moderate": "The Japanese 10-year government bond yield remained unchanged at 2.24%, signaling stable market expectations for the country's monetary policy trajectory. This yield level sits well above the Bank of Japan's previous ultra-low rate environment, reflecting the central bank's recent policy normalization efforts. The stability suggests investors have found equilibrium between Japan's shifting monetary stance and global rate dynamics. Bond market calm often indicates consensus around current economic conditions and policy direction.",
@@ -14242,9 +14242,9 @@
             ]
           },
           "Yield Curve": {
-            "value": "+112bps",
+            "value": "+88bps",
             "tier": "daily",
-            "last_updated": "2026-03-16",
+            "last_updated": "2026-03-17",
             "story": {
               "beginner": "Japan's yield curve steepened significantly, jumping from 90 basis points to 112 basis points. This means the gap between short-term and long-term interest rates grew wider. Investors now expect bigger differences between what the government pays on short versus long bonds.",
               "moderate": "Japan's yield curve steepened sharply from 90 to 112 basis points, signaling shifting expectations about monetary policy and economic growth. The widening spread between short and long-term government bond yields suggests investors anticipate either higher future inflation or potential policy normalization by the Bank of Japan. This steepening typically reflects growing optimism about economic expansion. Bond traders are pricing in a scenario where short-term rates may rise less aggressively than longer-term rates.",
@@ -14540,7 +14540,7 @@
             ]
           },
           "USD/JPY": {
-            "value": "159.1",
+            "value": "158.9",
             "tier": "daily",
             "last_updated": "2026-03-17",
             "story": {
@@ -17985,7 +17985,7 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "-3.9%",
+            "value": "-3.3%",
             "tier": "daily",
             "last_updated": "2026-03-17",
             "story": {
@@ -18314,7 +18314,7 @@
           "10Y Bond Yield": {
             "value": "2.81%",
             "tier": "daily",
-            "last_updated": "2026-03-16",
+            "last_updated": "2026-03-17",
             "story": {
               "beginner": "German government bonds are paying slightly less interest today. The 10-year bond yield dropped from 2.81% to 2.807%. This small decline suggests investors feel a bit more confident about Germany's economic stability.",
               "moderate": "Germany's 10-year bond yield edged down from 2.81% to 2.807%, a modest decline that reflects shifting investor sentiment. Lower yields indicate stronger demand for German government debt, often viewed as a safe haven during uncertain times. The move suggests bond markets are pricing in either reduced inflation expectations or increased flight-to-quality flows into German Bunds. This marginal decline keeps German yields well below recent peaks while maintaining their spread advantage over other European sovereigns.",
@@ -18639,7 +18639,7 @@
           "Yield Curve": {
             "value": "+81bps",
             "tier": "daily",
-            "last_updated": "2026-03-16",
+            "last_updated": "2026-03-17",
             "story": {
               "beginner": "Germany's yield curve steepened dramatically, jumping from 35 basis points to 81 basis points. This means the gap between short-term and long-term interest rates widened significantly. Investors now demand much higher returns for lending money to Germany over longer periods.",
               "moderate": "Germany's yield curve steepened sharply to 81 basis points from 35 basis points, signaling a major shift in bond market dynamics. The widening spread between short and long-term yields suggests investors expect higher inflation or economic growth ahead. This steepening typically reflects growing optimism about Germany's economic prospects, though it also raises borrowing costs for long-term financing. The 46 basis point jump represents one of the more significant curve movements in recent months.",
@@ -18962,7 +18962,7 @@
             ]
           },
           "EUR/USD": {
-            "value": "1.1509",
+            "value": "1.1533",
             "tier": "daily",
             "last_updated": "2026-03-17",
             "story": {
@@ -22662,9 +22662,9 @@
             ]
           },
           "10Y Bond Yield": {
-            "value": "3.53%",
+            "value": "3.40%",
             "tier": "daily",
-            "last_updated": "2026-03-16",
+            "last_updated": "2026-03-17",
             "story": {
               "beginner": "France's 10-year government bond yield stayed flat at 3.53%. This means investors aren't demanding higher returns to lend money to the French government for a decade. Bond yields often move when economic conditions or expectations change.",
               "moderate": "French 10-year government bond yields held steady at 3.53%, showing no change from the previous period. This stability suggests investors maintain consistent confidence in France's creditworthiness and inflation expectations remain anchored. Bond yields typically fluctuate based on economic data, central bank policy signals, and risk sentiment. The unchanged rate indicates equilibrium between supply and demand for French sovereign debt.",
@@ -22987,9 +22987,9 @@
             ]
           },
           "Yield Curve": {
-            "value": "+153bps",
+            "value": "+140bps",
             "tier": "daily",
-            "last_updated": "2026-03-16",
+            "last_updated": "2026-03-17",
             "story": {
               "beginner": "France's yield curve steepened dramatically, jumping from 50 basis points to 153 basis points. This means long-term French government bonds now pay much more interest than short-term ones. Investors are pricing in higher inflation or economic growth expectations for the years ahead.",
               "moderate": "The French yield curve steepened sharply from 50 to 153 basis points, signaling a major shift in bond market sentiment. This widening spread between long and short-term government yields suggests investors expect higher inflation, stronger economic growth, or increased fiscal spending down the road. The steepening could pressure mortgage rates and corporate borrowing costs while potentially benefiting banks' net interest margins.",
@@ -23312,7 +23312,7 @@
             ]
           },
           "EUR/USD": {
-            "value": "1.1509",
+            "value": "1.1533",
             "tier": "daily",
             "last_updated": "2026-03-17",
             "story": {
@@ -26685,7 +26685,7 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "-1.5%",
+            "value": "-1.0%",
             "tier": "daily",
             "last_updated": "2026-03-17",
             "story": {
@@ -27012,9 +27012,9 @@
             ]
           },
           "10Y Bond Yield": {
-            "value": "3.49%",
+            "value": "3.39%",
             "tier": "daily",
-            "last_updated": "2026-03-16",
+            "last_updated": "2026-03-17",
             "story": {
               "beginner": "Italy's 10-year government bond yield barely moved, staying flat at 3.49%. Bond yields show what investors demand to lend money to the government for a decade. The tiny change suggests investors see little new reason to worry about Italy's finances.",
               "moderate": "Italy's 10-year bond yield held steady at 3.49%, with only a negligible 0.002 percentage point uptick. This stability indicates investor sentiment toward Italian sovereign debt remains unchanged. The flat movement suggests no major shifts in risk perception or monetary policy expectations are affecting Italian government borrowing costs. Markets appear comfortable with current pricing given Italy's fiscal position and broader eurozone conditions.",
@@ -27337,9 +27337,9 @@
             ]
           },
           "Yield Curve": {
-            "value": "+149bps",
+            "value": "+139bps",
             "tier": "daily",
-            "last_updated": "2026-03-16",
+            "last_updated": "2026-03-17",
             "story": {
               "beginner": "Italy's yield curve steepened dramatically, jumping from 80 basis points to 149 basis points. This means investors now demand much higher returns for holding long-term Italian bonds compared to short-term ones. The widening gap signals growing concerns about Italy's economic outlook.",
               "moderate": "Italy's yield curve steepened sharply to 149 basis points from 80 basis points, indicating increased term premium demands from bond investors. The 69 basis point widening reflects heightened concerns about Italy's fiscal position and long-term growth prospects. This steepening typically signals that markets expect either higher inflation or increased credit risk over the longer term. The move puts additional pressure on Italy's borrowing costs for future debt issuances.",
@@ -27662,7 +27662,7 @@
             ]
           },
           "EUR/USD": {
-            "value": "1.1509",
+            "value": "1.1533",
             "tier": "daily",
             "last_updated": "2026-03-17",
             "story": {
@@ -34078,7 +34078,7 @@
             ]
           },
           "USD/INR": {
-            "value": "92.39",
+            "value": "92.37",
             "tier": "daily",
             "last_updated": "2026-03-17",
             "story": {
@@ -36456,7 +36456,7 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "-0.0%",
+            "value": "+1.0%",
             "tier": "daily",
             "last_updated": "2026-03-17",
             "story": {
@@ -37288,7 +37288,7 @@
             ]
           },
           "USD/ZAR": {
-            "value": "16.76",
+            "value": "16.68",
             "tier": "daily",
             "last_updated": "2026-03-17",
             "story": {
@@ -40154,7 +40154,7 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "+12.0%",
+            "value": "+12.8%",
             "tier": "daily",
             "last_updated": "2026-03-17",
             "story": {
@@ -40503,7 +40503,7 @@
             "spark": []
           },
           "USD/BRL": {
-            "value": "5.23",
+            "value": "5.20",
             "tier": "daily",
             "last_updated": "2026-03-17",
             "story": {
@@ -43010,9 +43010,9 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": 4.16,
+            "value": "+3.5%",
             "tier": "daily",
-            "last_updated": "2026-03-09",
+            "last_updated": "2026-03-17",
             "story": {
               "beginner": "Russian stocks have risen 5% this year on the Moscow Exchange, supported by higher oil prices and some cautious optimism about a possible peace process. Access to Russian stocks is effectively limited to Russian domestic investors, since Western sanctions prevent most international investors from buying or selling shares in Russian companies. The market is small and illiquid by global standards.",
               "moderate": "The MOEX index's 5% YTD gain reflects the oil windfall (energy stocks are a dominant index weight) and some partial peace-process optimism that has intermittently lifted sentiment; the market is effectively a domestic Russian retail and institutional investor market, with Western capital locked out since 2022; the 5% gain in rouble terms may represent a real loss for investors who cannot convert gains to hard currency due to capital controls.",
@@ -43180,7 +43180,7 @@
             "spark": []
           },
           "USD/RUB": {
-            "value": "82.3",
+            "value": "82.5",
             "tier": "daily",
             "last_updated": "2026-03-17",
             "story": {
@@ -45604,11 +45604,9 @@
         "symbol": "CL",
         "cat": "energy",
         "unit": "$/bbl",
-        "price": 95.79,
-        "change": -4.4,
+        "price": 93.95,
+        "change": 63.9,
         "spark": [
-          45.92,
-          49.1,
           48.33,
           41.6,
           44.7,
@@ -45726,7 +45724,9 @@
           57.42,
           65.21,
           67.02,
-          95.79
+          95.79,
+          94.65,
+          93.95
         ],
         "annual": [
           79.61,
@@ -45881,11 +45881,9 @@
         "symbol": "BZ",
         "cat": "energy",
         "unit": "$/bbl",
-        "price": 103.11,
-        "change": 2.2,
+        "price": 101.71,
+        "change": 67.4,
         "spark": [
-          48.13,
-          49.69,
           49.68,
           42.46,
           47.04,
@@ -46003,7 +46001,9 @@
           60.85,
           70.69,
           72.48,
-          103.11
+          103.11,
+          102.49,
+          101.71
         ],
         "annual": [
           79.5,
@@ -46158,11 +46158,9 @@
         "symbol": "NG",
         "cat": "energy",
         "unit": "$/mmBtu",
-        "price": 3.05,
-        "change": -2.2,
+        "price": 3.03,
+        "change": -16.3,
         "spark": [
-          2.178,
-          2.288,
           2.924,
           2.876,
           2.887,
@@ -46280,7 +46278,9 @@
           3.686,
           4.354,
           2.859,
-          3.05
+          3.05,
+          3.04,
+          3.03
         ],
         "annual": [
           4.39,
@@ -46441,11 +46441,9 @@
         "symbol": "GC",
         "cat": "metals",
         "unit": "$/oz",
-        "price": 5003.4,
-        "change": 0.3,
+        "price": 5005.5,
+        "change": 16.0,
         "spark": [
-          1289.2,
-          1214.8,
           1318.4,
           1349.0,
           1306.9,
@@ -46563,7 +46561,9 @@
           4325.6,
           4713.9,
           5230.5,
-          5003.4
+          5003.4,
+          4999.4,
+          5005.5
         ],
         "annual": [
           1224.53,
@@ -46724,11 +46724,9 @@
         "symbol": "SI",
         "cat": "metals",
         "unit": "$/oz",
-        "price": 80.21,
-        "change": 2.0,
+        "price": 79.35,
+        "change": 12.5,
         "spark": [
-          17.789,
-          15.972,
           18.582,
           20.312,
           18.622,
@@ -46846,7 +46844,9 @@
           70.134,
           78.29,
           92.682,
-          80.21
+          80.21,
+          79.15,
+          79.35
         ],
         "annual": [
           20.19,
@@ -47001,11 +47001,9 @@
         "symbol": "HG",
         "cat": "metals",
         "unit": "$/lb",
-        "price": 5.76,
-        "change": 0.5,
+        "price": 5.77,
+        "change": 2.3,
         "spark": [
-          2.279,
-          2.098,
           2.194,
           2.22,
           2.069,
@@ -47123,7 +47121,9 @@
           5.63,
           5.897,
           6.004,
-          5.76
+          5.76,
+          5.76,
+          5.77
         ],
         "annual": [
           3.42,
@@ -47284,11 +47284,9 @@
         "symbol": "ZW",
         "cat": "agriculture",
         "unit": "¢/bu",
-        "price": 599.5,
-        "change": -1.5,
+        "price": 590.25,
+        "change": 16.5,
         "spark": [
-          478.0,
-          464.5,
           431.25,
           407.75,
           361.0,
@@ -47406,7 +47404,9 @@
           507.0,
           538.0,
           591.25,
-          599.5
+          599.5,
+          591.25,
+          590.25
         ],
         "annual": [
           597,
@@ -47567,11 +47567,9 @@
         "symbol": "ZC",
         "cat": "agriculture",
         "unit": "¢/bu",
-        "price": 455.25,
-        "change": -2.0,
+        "price": 452.75,
+        "change": 3.5,
         "spark": [
-          390.25,
-          404.75,
           358.75,
           334.5,
           301.5,
@@ -47689,7 +47687,9 @@
           440.25,
           428.25,
           438.75,
-          455.25
+          455.25,
+          453.0,
+          452.75
         ],
         "annual": [
           396,
@@ -47850,11 +47850,9 @@
         "symbol": "ZS",
         "cat": "agriculture",
         "unit": "¢/bu",
-        "price": 1152.5,
-        "change": -3.8,
+        "price": 1161.5,
+        "change": 12.8,
         "spark": [
-          1021.0,
-          1078.5,
           1175.0,
           1032.5,
           960.0,
@@ -47972,7 +47970,9 @@
           1030.5,
           1064.25,
           1157.25,
-          1152.5
+          1152.5,
+          1160.5,
+          1161.5
         ],
         "annual": [
           989,

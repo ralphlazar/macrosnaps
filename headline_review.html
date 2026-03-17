@@ -210,6 +210,7 @@
   .btn-export { background: var(--amber); color: #000; }
   .btn-export:disabled { opacity: 0.35; cursor: not-allowed; }
   .btn-export:disabled:hover { opacity: 0.35; }
+  .btn-print { background: var(--border); color: var(--text); }
 
   /* ── Top toolbar ─────────────────────────────────────── */
   #toolbar {
@@ -260,6 +261,69 @@
     transition: background 0.12s;
   }
   .nav-btn:hover { background: var(--muted); }
+
+  /* ── Print view (hidden in browser, shown when printing) ── */
+  #print-view {
+    display: none;
+    font-family: var(--sans); color: #000; background: #fff;
+  }
+  .pv-page {
+    padding: 36px 48px;
+    background: #fff;
+  }
+  .pv-page-header {
+    display: flex; align-items: center; gap: 14px;
+    border-bottom: 2px solid #000; padding-bottom: 12px; margin-bottom: 24px;
+  }
+  .pv-flag { font-size: 26px; line-height: 1; }
+  .pv-title { font-size: 20px; font-weight: 700; color: #000; }
+  .pv-subtitle { font-size: 11px; color: #555; margin-top: 3px; letter-spacing: 0.04em; }
+  .pv-bullet { margin-bottom: 22px; }
+  .pv-bullet + .pv-bullet { border-top: 1px solid #ddd; padding-top: 18px; }
+  .pv-bullet-num {
+    font-family: var(--mono); font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: #555; margin-bottom: 8px;
+    border-bottom: 1px solid #ddd; padding-bottom: 4px;
+  }
+  .pv-level {
+    display: flex; gap: 0; margin-bottom: 7px; align-items: flex-start;
+  }
+  .pv-level-label {
+    font-family: var(--mono); font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: #888; flex-shrink: 0; width: 76px; padding-top: 2px;
+  }
+  .pv-level-text { font-size: 12px; line-height: 1.55; color: #111; flex: 1; }
+  .pv-global-label { font-weight: 700; font-size: 12px; margin-bottom: 2px; }
+  .pv-global-body { font-size: 12px; line-height: 1.55; color: #111; }
+
+  .pv-page-global {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  .pv-page-global .pv-bullet {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .pv-page-global .pv-level {
+    flex: 1;
+    align-items: flex-start;
+    border-top: 1px solid #ddd;
+    padding-top: 12px;
+  }
+
+  @media print {
+    html, body { background: #fff !important; color: #000 !important; }
+    #app  { display: none !important; }
+    #toast { display: none !important; }
+    #print-view { display: block !important; }
+    .pv-page { page-break-after: always; }
+    .pv-page:last-child { page-break-after: avoid; }
+  }
 </style>
 </head>
 <body>
@@ -280,6 +344,7 @@
       <button class="nav-btn" onclick="navigate(1)" title="Next">&#8594;</button>
     </div>
     <button class="btn btn-export" id="btn-export" onclick="exportApproved()">Export Approved JSON</button>
+    <button class="btn btn-print" id="btn-print" onclick="printPDF()" title="Print all content as PDF (black on white, one page per section)">Print PDF</button>
   </div>
 
   <div id="main">
@@ -302,6 +367,7 @@
 </div>
 
 <div id="toast"></div>
+<div id="print-view"></div>
 
 <script>
 // ── State ────────────────────────────────────────────────────────────────────
@@ -348,6 +414,15 @@ function initDraft(filename) {
   editedData = {};
   approved = {};
 
+  // Global stories first so GLOBAL is the default selection and first in print order
+  const gs = draft.globalStories || {};
+  editedData['GLOBAL'] = {
+    beginner: (gs.beginner || []).map(x => ({icon: x.icon||'', label: x.label||'', body: x.body||'', source: x.source||''})),
+    moderate: (gs.moderate || []).map(x => ({icon: x.icon||'', label: x.label||'', body: x.body||'', source: x.source||''})),
+    expert:   (gs.expert   || []).map(x => ({icon: x.icon||'', label: x.label||'', body: x.body||'', source: x.source||''})),
+    sources:  gs.sources || []
+  };
+
   const countries = draft.countries || {};
   for (const code of Object.keys(countries)) {
     const s = countries[code].stories || {};
@@ -358,15 +433,6 @@ function initDraft(filename) {
       sources:  countries[code].sources || []
     };
   }
-
-  // Global stories
-  const gs = draft.globalStories || {};
-  editedData['GLOBAL'] = {
-    beginner: (gs.beginner || []).map(x => ({icon: x.icon||'', label: x.label||'', body: x.body||'', source: x.source||''})),
-    moderate: (gs.moderate || []).map(x => ({icon: x.icon||'', label: x.label||'', body: x.body||'', source: x.source||''})),
-    expert:   (gs.expert   || []).map(x => ({icon: x.icon||'', label: x.label||'', body: x.body||'', source: x.source||''})),
-    sources:  gs.sources || []
-  };
 
   // Show UI
   document.getElementById('draft-meta').textContent =
@@ -666,7 +732,100 @@ function exportApproved() {
   showToast(`Exported ${approvedKeys.length} approved items.`);
 }
 
-// ── Helpers ──────────────────────────────────────────────────────────────────
+// ── Print PDF ────────────────────────────────────────────────────────────────
+function printPDF() {
+  if (!draft) { showToast('Load a draft first.'); return; }
+  saveEditsFromDom();
+  buildPrintView();
+  window.print();
+}
+
+function buildPrintView() {
+  const pv = document.getElementById('print-view');
+  const date = draft ? (draft.date || '') : '';
+  let html = '';
+
+  for (const key of Object.keys(editedData)) {
+    const data = editedData[key];
+    const isGlobal = key === 'GLOBAL';
+    const meta = COUNTRY_META[key] || {};
+    const flag = isGlobal ? '🌐' : (meta.flag || '');
+    const title = isGlobal ? 'Global Stories' : key;
+    const subtitle = isGlobal ? '3 stories x 3 levels' : '3 bullets x 3 levels';
+    const approvedMark = approved[key] ? ' (Approved)' : '';
+
+    const GLOBAL_STORY_LABELS = ['Today\'s Story', 'Biggest Movers', 'The Connection'];
+    const itemLabel = isGlobal ? 'Story' : 'Bullet';
+    const numItems = 3;
+
+    for (let bi = 0; bi < numItems; bi++) {
+      html += `<div class="pv-page${isGlobal ? ' pv-page-global' : ''}">`;
+
+      // Page header
+      const pageTitle = isGlobal
+        ? `Global Stories &middot; ${escHtml(GLOBAL_STORY_LABELS[bi])}`
+        : escHtml(title) + escHtml(approvedMark);
+      const pageSubtitle = isGlobal
+        ? `MacroSnaps${date ? ' &middot; ' + escHtml(date) : ''} &middot; Story ${bi + 1} of 3`
+        : `MacroSnaps${date ? ' &middot; ' + escHtml(date) : ''} &middot; ${escHtml(subtitle)}`;
+
+      html += `<div class="pv-page-header">
+        <span class="pv-flag">${flag}</span>
+        <div>
+          <div class="pv-title">${pageTitle}</div>
+          <div class="pv-subtitle">${pageSubtitle}</div>
+        </div>
+      </div>`;
+
+      html += `<div class="pv-bullet">`;
+      if (isGlobal) html += `<div class="pv-bullet-num">${itemLabel} ${bi + 1}</div>`;
+
+      for (const lv of LEVELS) {
+        html += `<div class="pv-level">`;
+        html += `<span class="pv-level-label">${lv}</span>`;
+
+        if (isGlobal) {
+          const item = (data[lv] || [])[bi] || {};
+          const icon  = item.icon  || '';
+          const label = item.label || '';
+          const body  = item.body  || '';
+          html += `<div class="pv-level-text">
+            <div class="pv-global-label">${escHtml(icon)} ${escHtml(label)}</div>
+            <div class="pv-global-body">${escHtml(body)}</div>
+          </div>`;
+        } else {
+          const bullet = (data[lv] || [])[bi] || '';
+          html += `<span class="pv-level-text">${escHtml(bullet)}</span>`;
+        }
+
+        html += `</div>`;
+      }
+
+      html += `</div>`;
+
+      // For country pages, render all 3 bullets on the same page
+      if (!isGlobal && bi === 0) {
+        for (let bj = 1; bj < numItems; bj++) {
+          html += `<div class="pv-bullet">`;
+          for (const lv of LEVELS) {
+            const bullet = (data[lv] || [])[bj] || '';
+            html += `<div class="pv-level"><span class="pv-level-label">${lv}</span><span class="pv-level-text">${escHtml(bullet)}</span></div>`;
+          }
+          html += `</div>`;
+        }
+      }
+
+      html += `</div>`;
+
+      // Country: only one page needed, break after first iteration
+      if (!isGlobal) break;
+    }
+  }
+
+  pv.innerHTML = html;
+}
+
+
 function escHtml(str) {
   return String(str)
     .replace(/&/g, '&amp;')

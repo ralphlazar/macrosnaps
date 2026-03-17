@@ -403,7 +403,8 @@ def draft_countries_batch(client, codes, countries_data, label, recent_data):
         text = response.content[0].text
         parsed = extract_json(text)
 
-        # Validate bullet counts before accepting
+        # Validate: check for missing countries and short bullet counts
+        missing = [code for code in codes if code not in parsed]
         short = [
             f"{code}/{lv}"
             for code in codes
@@ -411,16 +412,20 @@ def draft_countries_batch(client, codes, countries_data, label, recent_data):
             for lv in LEVELS
             if not isinstance(parsed[code].get(lv), list) or len(parsed[code][lv]) < 3
         ]
+        problems = (
+            ([f"missing: {', '.join(missing)}"] if missing else []) +
+            ([f"short bullets: {', '.join(short)}"] if short else [])
+        )
 
-        if not short:
+        if not problems:
             print("OK")
             return parsed
 
         if attempt == 0:
-            print(f"(short bullets: {', '.join(short)}, retrying...)", end=" ", flush=True)
+            print(f"({'; '.join(problems)}, retrying...)", end=" ", flush=True)
             time.sleep(5)
         else:
-            raise ValueError(f"Batch {label} still short after retry: {', '.join(short)}")
+            raise ValueError(f"Batch {label} still invalid after retry: {'; '.join(problems)}")
 
     raise ValueError(f"Batch {label} failed validation")
 
@@ -571,6 +576,11 @@ def apply_draft(approved_file, data):
 
     applied_countries = []
     applied_global    = False
+
+    approved_codes = set(approved.get("countries", {}).keys())
+    for code in COUNTRY_ORDER:
+        if code not in approved_codes:
+            print(f"  [WARN] {code} not in approved file - stories will not be updated")
 
     for code, entry in approved.get("countries", {}).items():
         if code not in data.get("countries", {}):
