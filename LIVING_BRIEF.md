@@ -1,5 +1,23 @@
 # MacroSnaps - Living Brief
-Last updated: March 16, 2026 (Session 28: Sheet audit tooling; USA unemployment backfill; source fixes in update_monthly_actuals.py; new permanent gaps documented.)
+Last updated: March 17, 2026 (Session 29: hasChartData guard hides empty chart sections; global stories nav arrows removed; commodity chart x-axis fixed to Jan 2000→now; value_at_generation story mismatch guard added to update_stories.py + build.py.)
+
+Session 29 changes in detail:
+
+(1) **`hasChartData(metricName, countryCode)` helper added to `macrosnaps-shell.html`.** When a metric has no historical data at all (missing `_frozen_historical`, empty `v` array, or all-null values after padding), the entire chart section is now hidden from the tooltip — including the title, range buttons, and canvas. Previously a "No historical data" placeholder rendered, which looked like a broken state. The helper uses the same three-layer guard as `renderMetricChart()` and correctly handles both bar (annual) and line (monthly) chart types by selecting the appropriate label array. Both the `chartHTML` build block and the render block are gated on `d.chart && hasChartData(d.metricName, d.chart.code)`.
+
+(2) **Global stories nav arrows removed from `renderNews()`.** The ◀ ▶ arrows in the global stories tooltip were redundant — story icons in the background menu already serve as navigation. Removed: `navHTML` construction, nav btn click listeners, `measureNewsTTHeight()` function, `newsTTHeight` module-level variable, and `newsTTHeight = null` from `clearActiveNewsIcon()`. Kept: `activeNewsIdx`, `setActiveNewsIcon()`, `clearActiveNewsIcon()`, and all icon opacity fade behaviour. The `.tt-nav` / `.tt-nav-btn` CSS is retained — still used by metric and commodity tooltips.
+
+(3) **Commodity chart x-axis fixed to Jan 2000 → current month.** `renderCommodityMonthlyChart()` previously used a broken slice pattern: on "All" view it took the first 120 labels from `histMonthlyLabels`, mapping commodity data to Jan 2000–Dec 2009 regardless of actual dates. Fixed by replacing with the same right-align + null-pad pattern used in `renderMetricChart()`: the 120-point spark array is right-aligned into the full `histMonthlyLabels` window (~303 months), left-padded with nulls. Charts now correctly span Jan 2000 → current month, with data appearing right-aligned from ~2015 and a visible gap to the left.
+
+(4) **`value_at_generation` field added to `update_stories.py`.** `write_metric_story()` now saves `entry["value_at_generation"] = item["new_value"]` alongside `last_updated` every time a metric story is written. This records the value the story was written for.
+
+(5) **Story mismatch guard added to `build.py`.** In the macro metrics validation loop (Section 2), after the existing tier/value checks, `build.py` now checks: if `value_at_generation` is present and does not match the current `value`, the build fails with a clear error:
+```
+✗ [BRA] macro['GDP Growth'] story mismatch — written for '2.8%', current value is '2.1%'. Re-run update_stories.py for this metric.
+```
+Guard scoped to macro metrics only (forecast values drift; market values update in the same daily ritual). The guard only fires when `value_at_generation` is present — existing metrics without the field pass silently. The field populates organically as stories are regenerated.
+
+---
 
 Session 28 changes in detail:
 
@@ -36,18 +54,11 @@ MACRO_MONTHLY_SHEET_ID=<id> python3 update_monthly_actuals.py --backfill --apply
 
 Session 27 changes in detail:
 
-(1) **Global stories carousel navigation added.** Clicking any story icon now opens the tooltip and fades the two inactive story icons/labels in the background menu to 0.3 opacity, with the active one at full opacity. Two nav arrow buttons (`◀` `▶`) appear in the tooltip header between the BME buttons and the X close, using the existing `.tt-nav` / `.tt-nav-btn` CSS. Left arrow hidden on story 0, right arrow hidden on story 2 (no wrap). Clicking an arrow navigates to the adjacent story and updates the background menu state. Closing the tooltip (X or outside-click) resets all icon opacities.
-- New functions: `setActiveNewsIcon(idx)`, `clearActiveNewsIcon()`, both targeting all `.news-icon` elements (header + rankings view simultaneously).
-- `renderNews()` rewritten to build `navHTML` conditionally, attach nav arrow listeners, call `setActiveNewsIcon()` on mount, and call `clearActiveNewsIcon()` on close.
+(1) **Global stories carousel navigation added then partially removed.** Session 27 added ◀ ▶ nav arrows to the global stories tooltip. Session 29 removed them as redundant (story icons in the background menu already serve as navigation). What remains from Session 27: `setActiveNewsIcon(idx)` / `clearActiveNewsIcon()` icon opacity fade behaviour, `activeNewsIdx` tracker. What was removed in Session 29: `navHTML`, nav btn listeners, `measureNewsTTHeight()`, `newsTTHeight`.
 
-(2) **Global stories tooltip fixed height.** All three story tooltips lock to the height of the tallest story so nav arrows never shift position between stories.
-- New variable: `newsTTHeight` (module-level cache, `null` on init).
-- New function: `measureNewsTTHeight()` — renders all 3 stories into a hidden off-screen probe tooltip, returns max `offsetHeight`. Called once on first open per session.
-- `renderNews()` applies `tt.style.minHeight` after measuring. `clearActiveNewsIcon()` resets `newsTTHeight = null` so it re-measures on the next open (picks up daily content changes).
+(2) **`Updated` date label made more visible.** `.wh-asof` CSS: `color:#333 → #777`, `font-size:7px → 9px`.
 
-(3) **`Updated` date label made more visible.** `.wh-asof` CSS: `color:#333 → #777`, `font-size:7px → 9px`.
-
-(4) **Copy tweaks in WHAT? footer.** "seasoned professionals" → "finance professionals". "AI-generated story bullets" → "story bullets".
+(3) **Copy tweaks in WHAT? footer.** "seasoned professionals" → "finance professionals". "AI-generated story bullets" → "story bullets".
 
 ---
 
@@ -90,20 +101,15 @@ This ensures chart rendering is never broken by a transient external API failure
 
 (8) **Preview and apply run clean.** 48 spark arrays written across 12 countries, all current to 2026-03. Build successful, committed, pushed.
 
-(9) **Pending items resolved this session:**
-- ✅ USA USD/DXY EMPTY — fixed (sheet had full data; old script was bypassing it)
-- ✅ Staleness check false positives — fixed (last-point-date check)
-- ✅ JPN Yield Curve gap — not a bug (sheet has correct data; old FRED series gap irrelevant)
-
 ---
 
 Session 24 changes in detail:
 
-(1) **Tooltip navigation arrows now respect `CARD_MARKET_EXCLUDE`.** `CARD_MARKET_EXCLUDE` was lifted from inside `assembleCardData()` to module scope. `getMetricList()` now applies the same filter, so the up/down arrows in a metric tooltip can only navigate to the same 10 metrics visible on the card. `Stock Market Index`, `FX Rate`, and `Stock Market YTD (USD)` are unreachable via arrows. Navigable sequence: GDP Growth → Inflation (CPI) → Unemployment → Budget Deficit → Current Account → Policy Rate → Stock Market YTD → 10Y Bond Yield → Yield Curve → FX cross.
+(1) **Tooltip navigation arrows now respect `CARD_MARKET_EXCLUDE`.** `CARD_MARKET_EXCLUDE` was lifted from inside `assembleCardData()` to module scope. `getMetricList()` now applies the same filter, so the up/down arrows in a metric tooltip can only navigate to the same 10 metrics visible on the card. Navigable sequence: GDP Growth → Inflation (CPI) → Unemployment → Budget Deficit → Current Account → Policy Rate → Stock Market YTD → 10Y Bond Yield → Yield Curve → FX cross.
 
-(2) **Fixed-window chart rendering in `renderMetricChart()`.** All tooltip charts — annual bar, monthly line, market line — now always span **Jan 2000 (left) → current month (right)**. The x-axis window is fixed; it never auto-fits to the extent of available data. Data is right-aligned into the full label array and left-padded with nulls where coverage is shorter than Jan 2000. Gaps are visible as blank regions rather than hidden by axis shrinkage. Range buttons (1Y, 3Y, etc.) still work correctly — they slice from the right of the padded array.
+(2) **Fixed-window chart rendering in `renderMetricChart()`.** All tooltip charts — annual bar, monthly line, market line — now always span **Jan 2000 (left) → current month (right)**. The x-axis window is fixed; it never auto-fits to the extent of available data. Data is right-aligned into the full label array and left-padded with nulls where coverage is shorter than Jan 2000. Gaps are visible as blank regions rather than hidden by axis shrinkage.
 
-(3) **Three-layer "no chart" guard in `renderMetricChart()`.** A blank chart must never render — if there is no data, the "No historical data" message is shown instead. Guards fire in sequence: (a) `!d` — no `_frozen_historical` object for the country; (b) `!cfg || !cfg.v || !cfg.v.length` — metric key missing or `v` array is empty; (c) `!validVals.length` — array exists but every value is null after padding. All three return early with the nodata message. This was added to fix BRA 10Y Bond Yield, BRA Yield Curve, and CHN Unemployment showing blank charts.
+(3) **Three-layer "no chart" guard in `renderMetricChart()`.** Guards fire in sequence: (a) `!d` — no `_frozen_historical` object; (b) `!cfg || !cfg.v || !cfg.v.length` — metric key missing or `v` array empty; (c) `!validVals.length` — all values null after padding. Session 29 extended this concept with `hasChartData()` to hide the entire chart section rather than show a placeholder message.
 
 ---
 
@@ -396,14 +402,15 @@ python3 build.py --apply
 ### Key data.json paths
 
 ```
-data.countries[code].metrics.macro[metric_name].value       <- card display value (string)
-data.countries[code].metrics.macro[metric_name].story       <- per-metric story object
-data.countries[code].metrics.market[metric_name].value      <- current market value (string)
-data.countries[code]._frozen_historical[metric_name].type   <- "bar" or "line"
-data.countries[code]._frozen_historical[metric_name].v      <- chart data array (all tooltip charts)
-data.countries[code].monthly_actuals                        <- {inflation, unemployment, policy_rate} arrays
-data.commodities.items[n].price                             <- commodity price
-data._meta.generated                                        <- build date stamp
+data.countries[code].metrics.macro[metric_name].value                <- card display value (string)
+data.countries[code].metrics.macro[metric_name].story                <- per-metric story object
+data.countries[code].metrics.macro[metric_name].value_at_generation  <- value story was written for
+data.countries[code].metrics.market[metric_name].value               <- current market value (string)
+data.countries[code]._frozen_historical[metric_name].type            <- "bar" or "line"
+data.countries[code]._frozen_historical[metric_name].v               <- chart data array (all tooltip charts)
+data.countries[code].monthly_actuals                                 <- {inflation, unemployment, policy_rate} arrays
+data.commodities.items[n].price                                      <- commodity price
+data._meta.generated                                                 <- build date stamp
 ```
 
 ---
@@ -439,8 +446,8 @@ data._meta.generated                                        <- build date stamp
 | `update_monthly_actuals.py` | Monthly | Appends new months to MACRO-MONTHLY sheet. `--backfill` mode fills blank cells in existing rows. Same sources as populate. |
 | `sync_monthly_actuals.py --apply` | After update_monthly_actuals | Reads MACRO-MONTHLY sheet only, writes `monthly_actuals` to data.json (36 most recent non-null per series). No external API calls. |
 | `audit_sheets.py` | Ad hoc | Read-only gap audit of MARKET-STATS and MACRO-MONTHLY. Flags stale or blank series. No writes. |
-| `update_stories.py` | On metric change | Diff-driven per-metric story rewrites |
-| `build.py --apply` | Daily | Assembles globe.html, validates, diffs, auto-commits, pushes |
+| `update_stories.py` | On metric change | Diff-driven per-metric story rewrites. Saves `value_at_generation` alongside each story. |
+| `build.py --apply` | Daily | Assembles globe.html, validates schema (incl. story mismatch guard), diffs, auto-commits, pushes |
 
 ---
 
@@ -459,10 +466,11 @@ data._meta.generated                                        <- build date stamp
 - Default sort: `_whSortCol = -1` = nominal GDP order (GDP_NOMINAL_ORDER constant). Logo click resets to this. Metric dropdown change also resets to `-1` (Session 17 fix).
 - `CARD_MARKET_EXCLUDE` set: `'Stock Market YTD (USD)'`, `'Stock Market Index'`, `'FX Rate'`
 - `monthly_actuals` field is rendered in tooltip line charts for macro metrics — the script header comment saying "story context only" is wrong.
-- **Tooltip chart window rule:** All tooltip charts (annual bar, monthly line, market line) always span Jan 2000 (left) → current month (right). The axis is fixed — never auto-fitted to data extent. Missing data shows as visible gaps. Three-layer no-chart guard in `renderMetricChart()`: (a) no `_frozen_historical` object; (b) metric key missing or `v` array empty; (c) all values null after padding — all three show "No historical data" and skip the chart entirely. This rule applies to `renderMetricChart()` only; commodity charts are separate.
+- **Tooltip chart window rule:** All tooltip charts (annual bar, monthly line, market line, commodity monthly) always span Jan 2000 (left) → current month (right). The axis is fixed — never auto-fitted to data extent. Data is right-aligned into the full label array, left-padded with nulls. Missing data shows as visible gaps.
+- **hasChartData guard:** `hasChartData(metricName, countryCode)` runs before building chart HTML. If it returns false, the entire `.metric-chart-wrap` section (title, range buttons, canvas) is omitted from the tooltip entirely. No "No historical data" message is shown — the chart section simply does not exist. Applies to metric tooltips only; commodity charts are separate and use `renderCommodityMonthlyChart()` / `renderCommodityChart()`.
 - **Commodity inline links:** `applyCommLinks()` runs at end of every `applyGlossary()` call. `attachCommLinks()` runs at end of every `attachGlossary()` call. Gold colour `#e8a838`, class `.comm-term`. Generic terms (oil, crude, commodity, commodities) → `showCommoditiesCard()`. Specific terms (WTI, Brent, natural gas, gold, silver, copper, wheat, corn, soybeans) → `showCommodityMTT(idx)` by name lookup. First occurrence only per term per block. Do not add separate call sites — the wiring into `applyGlossary`/`attachGlossary` covers all surfaces automatically.
 - **No floating commodities FAB.** The `#btnCommFab` button was removed in Session 26. Do not re-add it.
-- **Global stories carousel.** `renderNews()` drives the three-story carousel. `activeNewsIdx` tracks current story (0/1/2). `newsTTHeight` caches the tallest story height (reset to `null` on close, re-measured on next open). `setActiveNewsIcon(idx)` / `clearActiveNewsIcon()` control background menu opacity. Nav arrows use existing `.tt-nav` / `.tt-nav-btn` CSS. No new CSS added.
+- **Global stories carousel.** `renderNews()` drives the three-story carousel. `activeNewsIdx` tracks current story (0/1/2). `setActiveNewsIcon(idx)` / `clearActiveNewsIcon()` control background menu icon opacity (inactive icons fade to 0.3). No nav arrows in the global stories tooltip — story icons in the background menu are the navigation. `measureNewsTTHeight()` and `newsTTHeight` were removed in Session 29.
 
 ### Weather icon rule (FIXED — do not change)
 
@@ -476,13 +484,15 @@ All weather icons across the entire site must use the `.wh-icon` CSS filter patt
 
 ### Pending work (priority order)
 
+1. **Fix stale-story timing gap.** `sync_sheet.py` can update a forecast value without triggering a story rewrite, causing `value_at_generation` mismatches that block the build. Preferred fix: add `--stale-only` mode to `update_stories.py` that scans `data.json`, compares `value` vs `value_at_generation` for all macro metrics, and rewrites only mismatched ones. Add to ritual order: `sync_sheet.py → update_stories.py --stale-only → build.py`. Pipeline session.
+
+1. **GDP Growth stories audit.** CAN, FRA, ITA, BRA confirmed mismatches between story text and current values. Content session: upload `LIVING_BRIEF.md` + `data.json`. Use the Part 1B prompt below.
+
 1. **Fix `clean_cite_tags()` regex in `update_headlines.py`.** Current pattern `r'</?antml:cite[^>]*>'` does not match actual escaped tags in JSON. Correct pattern: `r'</?cite[^>]*>'`. Fix in next pipeline session.
 
 1. **Fix gspread deprecation warning in `populate_monthly_actuals.py`.** Change `ws.update('A1', values)` to `ws.update(values, 'A1')`. One-line fix.
 
 1. **Remove rolling spark update from `fetch_market_data.py`.** Lines 538-542: `spark = spark[1:] + [round(current, 2)]`. Superseded. Remove in next pipeline session.
-
-1. **GDP Growth stories audit.** CAN, FRA, ITA, BRA confirmed mismatches between story text and current values. Run a targeted stories session for these four countries (upload LIVING_BRIEF.md + data.json, use Part 1B prompt).
 
 1. **Build `print_snapshot.py`.** Uses Playwright to open the built HTML file, loops through each country, expands it, and captures a full-height PDF. Output is a dated file in `snapshots/` (e.g. `macrosnaps-2026-03-09.pdf`). Audience level hardcoded to expert. Requires `pip3 install playwright` and `playwright install chromium`.
 
@@ -493,6 +503,34 @@ All weather icons across the entire site must use the `.wh-icon` CSS filter patt
 1. **Post-launch:** replace fake contact form in "Ping Me" footer with a real form service (Formspree or similar).
 
 1. **Post-launch:** consider user alert emails (daily or weekly digest). A simple early version could use Buttondown or Mailchimp.
+
+---
+
+## PART 1B — GDP STORIES AUDIT PROMPT
+### Copy from here...
+
+This is a content session. I am uploading `LIVING_BRIEF.md` and `data.json`.
+
+The task is a targeted GDP Growth stories audit for four countries: **CAN, FRA, ITA, BRA**.
+
+For each of these four countries:
+1. Read the current `GDP Growth` value from `data.json` (`data.countries[code].metrics.macro["GDP Growth"].value`)
+2. Read the existing story text at all three levels (beginner, moderate, expert)
+3. Check whether the story text is consistent with the current value
+4. If there is a mismatch (story references a different number, or contradicts the current value), rewrite all three levels
+
+Write new stories following the style guide:
+- No em-dashes anywhere
+- UK English spelling
+- No hedging openers, no AI-typical sentence starters, no filler conclusions
+- beginner: 2-3 plain-English sentences
+- moderate: 3-4 sentences with standard financial terms
+- expert: 4-5 sentences, technical language, specific data and market implications
+- Stories should reflect what is actually happening now, not just restate the forecast value
+
+Present the proposed rewrites for all four countries before making any changes. Wait for explicit confirmation ("go") before writing anything to data.json.
+
+### ...to here
 
 ---
 
@@ -518,6 +556,8 @@ MacroSnaps has two distinct layers of truth that must not be conflated:
 The correct approach: stories comment on what is actually happening right now. If recent data is tracking ahead of or behind the annual forecast, the story can note that tension briefly. But the forecast is not the anchor of the story — recent data is.
 
 **Architectural constraint: write path separation.** `sync_sheet.py --apply` writes only annual forecast fields. `sync_monthly_actuals.py` writes only the `monthly_actuals` field. These two scripts must never touch each other's fields. No other script writes to `monthly_actuals`.
+
+**Story mismatch guard.** `update_stories.py` now saves `value_at_generation` alongside every metric story it writes. `build.py` checks this field at build time — if `value_at_generation` differs from the current `value`, the build fails with a clear error naming the country and metric. This field populates organically as stories are regenerated; existing metrics without the field pass the check silently.
 
 ---
 

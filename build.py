@@ -167,6 +167,10 @@ for code in EXPECTED_COUNTRIES:
                     err(f"{prefix} macro['{m}'].tier invalid: '{entry['tier']}' (must be one of {VALID_TIERS})")
                 if "last_updated" not in entry:
                     warn(f"{prefix} macro['{m}'].last_updated missing")
+                # Story mismatch guard: story must have been written for the current value
+                vag = entry.get("value_at_generation")
+                if vag is not None and str(vag).strip() != str(entry.get("value","")).strip():
+                    err(f"{prefix} macro['{m}'] story mismatch — written for '{vag}', current value is '{entry.get('value')}'. Re-run update_stories.py for this metric.")
 
     # Market metrics (base set)
     for m in MARKET_METRICS_BASE:

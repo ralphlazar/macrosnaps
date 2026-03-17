@@ -879,7 +879,7 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 <body>
 
 <div class="top-bar">
-  <div class="logo">Macro<span>Snaps</span><span class="sub1">Macro &amp; Market Snapshots</span><span class="sub2">Updated Daily</span></div>
+  <div class="logo">Macro<span>Snaps</span><span class="sub1">Macro &amp; Market Snapshots</span><span class="sub2" id="headerUpdated">Updated Daily</span></div>
   <div class="exp-group">
     <button class="exp-btn active" data-level="beginner">Beginner</button>
     <button class="exp-btn" data-level="moderate">Moderate</button>
@@ -5713,6 +5713,17 @@ fetch('data.json')
 
     console.log('[MacroSnaps] data.json loaded — generated: ' + (data._meta && data._meta.generated));
 
+    // Set header "Updated DD Mon YYYY" from _meta.generated.
+    (function() {
+      const genStr = data._meta && data._meta.generated;
+      if (genStr) {
+        const d = new Date(genStr);
+        const label = d.toLocaleDateString('en-GB', {day:'numeric', month:'short', year:'numeric'});
+        const el = document.getElementById('headerUpdated');
+        if (el) el.textContent = 'Updated ' + label;
+      }
+    })();
+
     // Build monthly chart labels dynamically from Jan 2000 to _meta.generated.
     // Anchored at Jan 2000 so the array covers all data going back to 2000.
     // Count grows naturally as months pass - no manual edit ever needed.
@@ -6595,14 +6606,8 @@ function assembleNewsData(idx) {
   return {icon: story.icon || '', label: story.label || 'Story', body: story.body || '', idx};
 }
 
-function setActiveNewsIcon(idx) {
-  document.querySelectorAll('.news-icon').forEach(el => {
-    el.style.opacity = +el.dataset.idx === idx ? '1' : '0.3';
-  });
-}
-function clearActiveNewsIcon() {
-  document.querySelectorAll('.news-icon').forEach(el => { el.style.opacity = ''; });
-}
+function setActiveNewsIcon(idx) {}
+function clearActiveNewsIcon() {}
 
 function renderNews(d) {
   if (!d) return;
@@ -6875,9 +6880,14 @@ function renderCommodityMonthlyChart(container, item, rangeMonths) {
   const fh = item._frozen_historical;
   if (!fh || !fh.v || fh.v.length === 0) { container.innerHTML = '<div class="metric-chart-nodata">No historical data</div>'; return; }
 
-  const n = rangeMonths ? Math.min(rangeMonths, fh.v.length) : fh.v.length;
-  const sliceVals = rangeMonths ? fh.v.slice(-n) : fh.v.slice(0, n);
-  const sliceLabels = rangeMonths ? histMonthlyLabels.slice(-n) : histMonthlyLabels.slice(0, n);
+  const totalLen = histMonthlyLabels.length;
+  const rawVals = fh.v || [];
+  const padded = totalLen > rawVals.length
+    ? Array(totalLen - rawVals.length).fill(null).concat(rawVals)
+    : rawVals.slice(rawVals.length - totalLen);
+  const n = rangeMonths || totalLen;
+  const sliceVals = padded.slice(-n);
+  const sliceLabels = histMonthlyLabels.slice(-n);
 
   const validVals = sliceVals.filter(v => v !== null && v !== undefined);
   const mn = validVals.length ? Math.min(...validVals) : 0;

@@ -286,6 +286,7 @@ def write_metric_story(data, item, stories):
         "expert": stories["expert"],
     }
     entry["last_updated"] = TODAY
+    entry["value_at_generation"] = item["new_value"]
 
 
 def write_commodity_story(data, item, stories):
