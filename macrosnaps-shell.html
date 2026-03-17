@@ -6330,8 +6330,6 @@ function renderGridTable(wrap, cfg, titleHTML) {
     return `<tr data-code="${co.code}"><td class="wh-country-cell"><div class="wh-country-inner"><span class="wh-flag">${co.flag}</span><span class="wh-name">${DISPLAY_NAMES[co.name]||co.name}</span><span class="wh-code">${co.code}</span></div></td>${cells}</tr>`;
   }).join('');
 
-  const asofHTML = _whAsOfStr ? `<div class="wh-asof">Updated ${_whAsOfStr}</div>` : '';
-
   wrap.innerHTML = `${titleHTML}
     <table class="wh-table">
       <thead><tr>
@@ -6339,7 +6337,7 @@ function renderGridTable(wrap, cfg, titleHTML) {
         ${thCols}
       </tr></thead>
       <tbody>${bodyRows}</tbody>
-    </table>${asofHTML}`;
+    </table>`;
 
   attachTableEvents(wrap);
 }
@@ -6430,8 +6428,6 @@ function renderRankedTable(wrap, cfg, titleHTML) {
     </tr>`;
   }).join('');
 
-  const asofHTML = _whAsOfStr ? `<div class="wh-asof">Updated ${_whAsOfStr}</div>` : '';
-
   const thead = isStockYtd
     ? `<th class="wh-country-hd wh-sortable" data-col="0">Countries${arrow(0)}</th>
        <th class="wh-sortable wh-rank-th-val${sortCol===1?' wh-fc':''}" data-col="1">Local${arrow(1)}</th>
@@ -6443,7 +6439,7 @@ function renderRankedTable(wrap, cfg, titleHTML) {
     <table class="wh-table wh-table-ranked${isStockYtd ? ' wh-table-ranked-dual' : ''}">
       <thead><tr>${thead}</tr></thead>
       <tbody>${bodyRows}</tbody>
-    </table>${asofHTML}`;
+    </table>`;
 
   attachTableEvents(wrap);
 }
