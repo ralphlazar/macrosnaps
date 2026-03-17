@@ -5757,6 +5757,18 @@ function _flattenMetrics(metrics) {
 // Chart instance tracker
 let activeChart=null;
 
+function hasChartData(metricName, countryCode){
+  const d=historicalData[countryCode];
+  if(!d) return false;
+  const cfg=d[metricName];
+  if(!cfg||!cfg.v||!cfg.v.length) return false;
+  const isAnnual=cfg.type==='bar';
+  const totalLen=(isAnnual?histAnnualLabels:histMonthlyLabels).length;
+  const rawVals=cfg.v||[];
+  const padded=totalLen>rawVals.length?Array(totalLen-rawVals.length).fill(null).concat(rawVals):rawVals.slice(rawVals.length-totalLen);
+  return padded.some(v=>v!==null&&v!==undefined);
+}
+
 function renderMetricChart(container, metricName, countryCode, rangeMonths){
   if(activeChart){activeChart.destroy();activeChart=null;}
   const d=historicalData[countryCode];
@@ -7268,7 +7280,7 @@ function renderMTT(d) {
 
   // Chart HTML
   let chartHTML = '';
-  if (d.chart) {
+  if (d.chart && hasChartData(d.metricName, d.chart.code)) {
     if (d.chart.isAnnual) {
       chartHTML = `<div class="metric-chart-wrap">
         <div class="metric-chart-head">
@@ -7324,7 +7336,7 @@ function renderMTT(d) {
   });
 
   // Render chart
-  if (d.chart) {
+  if (d.chart && hasChartData(d.metricName, d.chart.code)) {
     const chartContainer = tt.querySelector('#mttChart');
     renderMetricChart(chartContainer, d.metricName, d.chart.code, null);
     if (!d.chart.isAnnual) {

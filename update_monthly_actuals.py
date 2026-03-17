@@ -43,15 +43,14 @@ SHEET_ID    = os.environ.get('MACRO_MONTHLY_SHEET_ID')
 KEY_FILE    = os.path.join(os.path.dirname(__file__), 'market-stats-key.json')
 FRED_KEY    = os.environ.get('FRED_API_KEY', '')
 
-# USA and BRA removed from IMF LS — they use FRED instead (see fetch_unemployment)
+# USA and BRA removed from IMF LS — USA uses FRED instead (BRA has no viable monthly source)
 UNEMP_IMF   = ['CAN', 'JPN', 'DEU', 'FRA', 'ITA', 'RUS']
-UNEMP_BLANK = ['CHN', 'IND', 'ZAF']
+UNEMP_BLANK = ['CHN', 'IND', 'ZAF', 'BRA']  # BRA: PNAD Contínua is quarterly only, no monthly source
 
 # FRED series for unemployment countries not covered by IMF LS
 UNEMP_FRED = {
     'USA': 'UNRATE',              # BLS — current to within weeks
     'GBR': 'LRHUTTTTGBM156S',    # ONS via FRED — ~5mo lag
-    'BRA': 'BRAURAGSAM157S',     # IBGE PNAD via FRED
 }
 
 BIS_RATE_COUNTRIES = {
@@ -61,7 +60,7 @@ BIS_RATE_COUNTRIES = {
     'ZAF': 'ZA',
     'BRA': 'BR',
     'RUS': 'RU',
-    # IND removed — BIS WS_CBPOL stops Aug 2016; using FRED instead
+    # IND removed — BIS WS_CBPOL stops Aug 2016, FRED INTDSRINM193N also stops 2016. No current source.
 }
 
 RATE_SERIES_FRED = {
@@ -69,7 +68,7 @@ RATE_SERIES_FRED = {
     'DEU': 'ECBMRRFR',
     'FRA': 'ECBMRRFR',
     'ITA': 'ECBMRRFR',
-    'IND': 'INTDSRINM193N',  # RBI repo rate — replaces BIS which stops Aug 2016
+    # IND: RBI repo rate not available as a live monthly series from BIS or FRED — permanent blank
     'CHN': None,
 }
 
@@ -265,8 +264,8 @@ def fetch_policy_rate(fetch_start, new_dates):
 # Maps tab name → which countries are permanently blank (never fill these)
 KNOWN_BLANKS = {
     'Inflation':    [],
-    'Unemployment': ['CHN', 'IND', 'ZAF'],
-    'Policy_Rate':  ['CHN'],
+    'Unemployment': ['CHN', 'IND', 'ZAF', 'BRA'],  # BRA: no monthly source (PNAD Contínua is quarterly)
+    'Policy_Rate':  ['CHN', 'IND'],                  # IND: RBI repo rate not available monthly from BIS/FRED
 }
 
 def col_letter(n):

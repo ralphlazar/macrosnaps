@@ -1,5 +1,38 @@
 # MacroSnaps - Living Brief
-Last updated: March 16, 2026 (Session 27: Global stories carousel nav; fixed tooltip height; Updated date visibility; copy tweaks.)
+Last updated: March 16, 2026 (Session 28: Sheet audit tooling; USA unemployment backfill; source fixes in update_monthly_actuals.py; new permanent gaps documented.)
+
+Session 28 changes in detail:
+
+(1) **`audit_sheets.py` built.** Read-only diagnostic script that connects to both MARKET-STATS and MACRO-MONTHLY and prints a gap report. For each MARKET-STATS country tab, reports last populated date per column (`Stock_Market_Index`, `FX_Rate`, `Bond_Yield_10Y`, `Yield_Curve`, `Stock_Market_YTD_USD`) and flags anything >90 days stale or blank. For each MACRO-MONTHLY tab, reports last non-null date per country column. Known permanent gaps are labelled rather than flagged. Auth via `market-stats-key.json`. Run:
+```bash
+MACRO_MONTHLY_SHEET_ID=<id> python3 audit_sheets.py
+```
+MACRO-MONTHLY sheet ID: `1-s4hppAkoTZbjGGEkHSUDK2H7E00RHhVuHrYKWLuHpI`
+
+(2) **Root cause of USA unemployment gap identified and fixed.** `update_monthly_actuals.py` checked only the last *row date* in the Date column (which ran to 2026-03-01) and concluded "nothing to do" — it never checked whether individual country cells within those rows were blank. USA unemployment had been blank since Jan 2025 (15 months). Fixed by switching USA from IMF LS (which genuinely stopped publishing USA data after Feb 2012) to FRED `UNRATE`. 13 cells backfilled (Jan 2025 → Feb 2026).
+
+(3) **`--backfill` mode added to `update_monthly_actuals.py`.** Scans all three tabs for blank cells in existing rows, fetches data for the date range of those gaps, and writes values back using targeted `ws.batch_update()` calls. Dry run by default; `--apply` to write.
+```bash
+MACRO_MONTHLY_SHEET_ID=<id> python3 update_monthly_actuals.py --backfill          # preview
+MACRO_MONTHLY_SHEET_ID=<id> python3 update_monthly_actuals.py --backfill --apply  # write
+```
+
+(4) **`update_monthly_actuals.py` source changes (v4).** Unemployment and Policy Rate sources updated:
+- **USA unemployment**: switched from IMF LS (stops 2012 for USA) → FRED `UNRATE`
+- **GBR unemployment**: FRED `LRHUTTTTGBM156S` (unchanged)
+- **BRA unemployment**: removed `BRAURAGSAM157S` (bad series ID); BRA added to `UNEMP_BLANK` — no viable monthly source exists (see permanent gaps below)
+- **IND policy rate**: removed from `BIS_RATE_COUNTRIES` and `RATE_SERIES_FRED`; BIS stops Aug 2016, FRED `INTDSRINM193N` also stops 2016 — no current source (see permanent gaps below)
+
+(5) **Two new permanent data gaps confirmed and documented** (see Known permanent data gaps table).
+
+(6) **Session 28 audit results summary:**
+- MARKET-STATS: all 12 country tabs current to 2026-03-15. CHN/IND/BRA/RUS Bond Yield and Yield Curve blank — known permanent gaps.
+- Commodities tab: all 9 commodities current to 2026-03-16.
+- MACRO-MONTHLY Inflation: 11/12 countries current to Jan 2026. IND last=Dec 2025 (IMF lag — expected).
+- MACRO-MONTHLY Policy Rate: all countries current to Jan/Feb 2026.
+- MACRO-MONTHLY Unemployment: USA now current to Feb 2026. GBR last=Nov 2025 (ONS lag). Others at expected IMF/BIS lag.
+
+---
 
 Session 27 changes in detail:
 
@@ -80,24 +113,16 @@ Session 23 changes in detail:
 
 (2) **`populate_monthly_actuals.py` rewritten (v3).** New data sources:
 - **Inflation**: IMF `CPI` dataset, key `COUNTRY.CPI._T.IX.M`. Single call covers all 12 countries. YoY % computed from monthly index levels (fetched from Jan 1999 for overlap). All 12 countries current to Jan 2026, IND to Dec 2025.
-- **Unemployment**: IMF `LS` dataset, key `COUNTRY.U.PT.M`. Covers USA/CAN/JPN/DEU/FRA/ITA/BRA/RUS. GBR fallback: FRED `LRHUTTTTGBM156S`. CHN/IND/ZAF remain permanent blanks.
-- **Policy Rate**: BIS `WS_CBPOL` API for CAN/GBR/JPN/IND/ZAF/BRA/RUS. FRED `FEDFUNDS` for USA. FRED `ECBMRRFR` for DEU/FRA/ITA. CHN and RUS remain permanent blanks.
+- **Unemployment**: IMF `LS` dataset, key `COUNTRY.U.PT.M`. Covers CAN/JPN/DEU/FRA/ITA/RUS. USA: FRED `UNRATE`. GBR: FRED `LRHUTTTTGBM156S`. CHN/IND/ZAF/BRA: permanent blanks (no monthly source).
+- **Policy Rate**: BIS `WS_CBPOL` API for CAN/GBR/JPN/ZAF/BRA/RUS. FRED `FEDFUNDS` for USA. FRED `ECBMRRFR` for DEU/FRA/ITA. CHN/IND: permanent blanks (no current monthly source).
 
-(3) **`update_monthly_actuals.py` rewritten (v3).** Same source changes as populate. Incremental append logic unchanged.
+(3) **`update_monthly_actuals.py` rewritten (v3→v4).** Same source changes as populate. Incremental append logic unchanged. `--backfill` mode added in Session 28.
 
 (4) **MACRO-MONTHLY backfill completed successfully.** `populate_monthly_actuals.py --apply` wrote 315 rows to all three tabs (Inflation, Unemployment, Policy_Rate). All 12 countries now have current monthly actuals in tooltip charts.
 
-(5) **Known data gaps after backfill** (expected, not bugs):
-- USA unemployment: last=Dec 2024 (IMF LS lags ~3 months for USA)
-- GBR unemployment: last=Oct 2025 (FRED ONS series lags ~5 months)
-- DEU unemployment: 228 months (IMF LS coverage starts ~2007 for DEU)
-- FRA unemployment: 276 months (IMF LS coverage starts ~2003 for FRA)
-- BRA unemployment: 156 months (IMF LS coverage starts ~2013 for BRA)
-- JPN policy rate: 208 months (BIS WS_CBPOL JPN starts ~2008)
+(5) **Deprecation warning in `populate_monthly_actuals.py`.** `ws.update('A1', values)` triggers a gspread argument order warning. Harmless — fix in next pipeline session: change to `ws.update(values, 'A1')`.
 
-(6) **Deprecation warning in `populate_monthly_actuals.py`.** `ws.update('A1', values)` triggers a gspread argument order warning. Harmless — fix in next pipeline session: change to `ws.update(values, 'A1')`.
-
-(7) **New IMF API country/dataset reference:**
+(6) **New IMF API country/dataset reference:**
 - CPI: `sdmx.Client('IMF_DATA').data('CPI', key='COUNTRY.CPI._T.IX.M', params={'startPeriod': 'YYYY-MM'})`
 - Unemployment: `sdmx.Client('IMF_DATA').data('LS', key='COUNTRY.U.PT.M', params={'startPeriod': 'YYYY-MM'})`
 - Country codes: ISO3 (USA, GBR, DEU, JPN, FRA, ITA, CAN, CHN, IND, ZAF, BRA, RUS)
@@ -329,13 +354,15 @@ This ensures chart rendering is never broken by a transient external API failure
 - Backfill script: `backfill_commodity_data.py` — one-time, already run. Do not re-run.
 
 **Monthly actuals (tooltip line charts — Inflation, Unemployment, Policy Rate):**
-- Source: MACRO-MONTHLY Google Sheet (ID: `MACRO_MONTHLY_SHEET_ID` env var)
+- Source: MACRO-MONTHLY Google Sheet (ID: `1-s4hppAkoTZbjGGEkHSUDK2H7E00RHhVuHrYKWLuHpI`, also set via `MACRO_MONTHLY_SHEET_ID` env var)
 - Tabs: `Inflation`, `Unemployment`, `Policy_Rate`
 - Columns: `Date | USA | CAN | GBR | JPN | DEU | FRA | ITA | CHN | IND | ZAF | BRA | RUS`
-- Backfill script: `populate_monthly_actuals.py` — run to rewrite full history from Jan 2000. CPI+Unemployment via IMF SDMX API (`sdmx1`); Policy Rate via BIS WS_CBPOL + FRED.
-- Incremental script: `update_monthly_actuals.py` — appends new months only. Safe to run monthly.
+- Backfill script: `populate_monthly_actuals.py` — run to rewrite full history from Jan 2000.
+- Incremental script: `update_monthly_actuals.py` — appends new months and fills blank cells (`--backfill`). Run monthly.
 - Sync script: `sync_monthly_actuals.py --apply` — reads MACRO-MONTHLY sheet only, writes `monthly_actuals` to data.json. `MONTHS_TO_KEEP = 36`. Never contacts external APIs.
-- **New IMF SDMX API**: `sdmx.Client('IMF_DATA')` via `sdmx1` library. CPI dataset: `COUNTRY.CPI._T.IX.M`. LS (unemployment) dataset: `COUNTRY.U.PT.M`. Old `dataservices.imf.org` endpoint is permanently dead.
+- **IMF SDMX API**: `sdmx.Client('IMF_DATA')` via `sdmx1` library. CPI dataset: `COUNTRY.CPI._T.IX.M`. LS (unemployment) dataset: `COUNTRY.U.PT.M`. Old `dataservices.imf.org` endpoint is permanently dead.
+- **Unemployment sources per country**: USA → FRED `UNRATE`; GBR → FRED `LRHUTTTTGBM156S`; CAN/JPN/DEU/FRA/ITA/RUS → IMF LS; CHN/IND/ZAF/BRA → permanent blanks.
+- **Policy Rate sources per country**: USA → FRED `FEDFUNDS`; DEU/FRA/ITA → FRED `ECBMRRFR`; CAN/GBR/JPN/ZAF/BRA/RUS → BIS `WS_CBPOL`; CHN/IND → permanent blanks.
 
 ---
 
@@ -385,10 +412,12 @@ data._meta.generated                                        <- build date stamp
 
 | Country | Metric | Reason |
 |---------|--------|--------|
-| CHN, IND | Unemployment | No IMF LUR coverage — blank |
-| ZAF, BRA, RUS | Unemployment | No IMF LUR coverage — blank |
+| CHN, IND, ZAF | Unemployment (MACRO-MONTHLY) | No IMF LUR coverage — permanent blank |
+| BRA | Unemployment (MACRO-MONTHLY) | PNAD Contínua is quarterly only — no freely available monthly series exists. IMF LS stops 2012 for BRA. Permanent blank. |
 | CHN, IND, BRA, RUS | 10Y Bond Yield | No source — sheet column empty; values hand-maintained in data.json |
 | CHN, IND, BRA, RUS | Yield Curve | No source — sheet column empty, always blank in chart |
+| CHN | Policy Rate (MACRO-MONTHLY) | No source — permanent blank |
+| IND | Policy Rate (MACRO-MONTHLY) | BIS WS_CBPOL stops Aug 2016; FRED INTDSRINM193N also stops 2016; RBI repo rate not available as a live monthly series. Permanent blank. |
 | RUS | Policy Rate (MACRO-MONTHLY) | BIS stopped publishing after Feb 2022 (sanctions) — blank from Mar 2022 |
 | RUS | All equity | MOEX REST API used instead of yfinance |
 | CAD/USD, GBP/USD, EUR/USD, USD/INR, USD/ZAR, USD/BRL | FX spark history | Sheet data starts ~2004, not 2000. Data is current, history is shorter. |
@@ -406,9 +435,10 @@ data._meta.generated                                        <- build date stamp
 | `update_commodity_stories.py` | Daily | Rewrites commodity stories when price moves exceed threshold |
 | `update_headlines.py` | Daily | Calls Claude API, writes country and global stories to draft JSON (manual review gate before --apply) |
 | `sync_sheet.py --apply` | When forecasts change | Reads Macro-stats sheet, writes macro card values and `_frozen_historical` arrays |
-| `populate_monthly_actuals.py` | Once (backfill) | Writes full history Jan 2000 → present to MACRO-MONTHLY sheet. CPI+Unemployment via IMF SDMX API (`sdmx1`); Policy Rate via BIS WS_CBPOL + FRED |
-| `update_monthly_actuals.py` | Monthly | Appends new months to MACRO-MONTHLY sheet. Same sources as populate. |
+| `populate_monthly_actuals.py` | Once (backfill) | Writes full history Jan 2000 → present to MACRO-MONTHLY sheet. CPI via IMF SDMX; Unemployment via IMF LS + FRED; Policy Rate via BIS WS_CBPOL + FRED |
+| `update_monthly_actuals.py` | Monthly | Appends new months to MACRO-MONTHLY sheet. `--backfill` mode fills blank cells in existing rows. Same sources as populate. |
 | `sync_monthly_actuals.py --apply` | After update_monthly_actuals | Reads MACRO-MONTHLY sheet only, writes `monthly_actuals` to data.json (36 most recent non-null per series). No external API calls. |
+| `audit_sheets.py` | Ad hoc | Read-only gap audit of MARKET-STATS and MACRO-MONTHLY. Flags stale or blank series. No writes. |
 | `update_stories.py` | On metric change | Diff-driven per-metric story rewrites |
 | `build.py --apply` | Daily | Assembles globe.html, validates, diffs, auto-commits, pushes |
 
