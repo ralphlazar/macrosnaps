@@ -243,26 +243,61 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 }
 
 /* ── Welcome Banner ── */
+/* Welcome Modal */
 .welcome-banner{
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  padding:7px 16px;flex-shrink:0;
-  border-bottom:1px solid rgba(255,255,255,.08);
-  background:rgba(0,212,255,.07);
-  font-family:var(--font-body);font-size:12px;color:#bbb;
-  animation:ttIn .3s ease-out;
+  position:fixed;inset:0;z-index:9999;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.65);backdrop-filter:blur(6px);
+  animation:wbFadeIn .35s ease-out;
 }
-.welcome-banner a{
-  color:var(--cyan);text-decoration:underline;text-underline-offset:3px;
-  cursor:pointer;background:none;border:none;font:inherit;padding:0;
+.welcome-banner.hidden{display:none}
+@keyframes wbFadeIn{from{opacity:0}to{opacity:1}}
+.wb-card{
+  position:relative;
+  background:linear-gradient(145deg,#0d1b2e,#0a1520);
+  border:1px solid rgba(0,212,255,.25);
+  border-radius:20px;
+  box-shadow:0 0 60px rgba(0,212,255,.12), 0 24px 64px rgba(0,0,0,.6);
+  padding:48px 48px 40px;
+  max-width:520px;width:calc(100% - 48px);
+  text-align:center;
+  animation:wbSlideUp .4s cubic-bezier(.16,1,.3,1);
 }
-.welcome-banner a:hover{color:#fff}
+@keyframes wbSlideUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.wb-globe{font-size:52px;margin-bottom:16px;line-height:1;display:block;}
+.wb-card h2{
+  font-family:var(--font-head);font-size:26px;font-weight:700;
+  color:#fff;letter-spacing:.01em;margin:0 0 12px;
+}
+.wb-card h2 span{color:var(--cyan);}
+.wb-card p{
+  font-family:var(--font-body);font-size:14px;color:#8a9bb0;
+  line-height:1.65;margin:0 0 28px;
+}
+.wb-card a{
+  display:inline-block;
+  background:linear-gradient(135deg,var(--cyan),#0099cc);
+  color:#000;font-family:var(--font-body);font-size:13px;font-weight:700;
+  letter-spacing:.04em;text-transform:uppercase;
+  padding:12px 32px;border-radius:100px;border:none;cursor:pointer;
+  text-decoration:none;
+  box-shadow:0 4px 20px rgba(0,212,255,.35);
+  transition:transform .15s,box-shadow .15s;
+}
+.wb-card a:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,212,255,.5);color:#000;}
+.wb-skip{
+  display:block;margin-top:16px;
+  font-family:var(--font-body);font-size:12px;color:#4a5a6a;
+  cursor:pointer;background:none;border:none;
+  transition:color .2s;letter-spacing:.03em;
+}
+.wb-skip:hover{color:#8a9bb0;}
 .welcome-banner .wb-close{
-  position:absolute;right:16px;background:none;border:none;
-  color:#555;font-size:16px;cursor:pointer;line-height:1;padding:2px 4px;
+  position:absolute;top:16px;right:18px;background:none;border:none;
+  color:#3a4a5a;font-size:18px;cursor:pointer;line-height:1;padding:4px 6px;
   transition:color .2s;
 }
-.welcome-banner .wb-close:hover{color:#aaa}
-.welcome-banner.hidden{display:none}
+.welcome-banner .wb-close:hover{color:#8a9bb0;}
 
 /* ── Hero (legacy, kept for any external refs) ── */
 .hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden}
@@ -752,8 +787,9 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 
   /* ── Tagline ── */
   .tagline{font-size:10px;padding:5px 12px}
-  .welcome-banner{font-size:12px;padding:10px 40px 10px 16px;text-align:center;flex-wrap:wrap;gap:8px}
-  .welcome-banner a{font-size:12px;padding:5px 14px;}
+  .wb-card{padding:36px 28px 32px;}
+  .wb-card h2{font-size:22px;}
+  .wb-globe{font-size:42px;}
 
   /* ── Hero ── */
   #globe-view{justify-content:flex-start;padding-top:6px}
@@ -890,7 +926,7 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 <script>
 (function(){
   var pwd = prompt("Enter password to access MacroSnaps:");
-  if(pwd !== "crocodile"){
+  if(pwd !== "Crocodile"){
     document.body.innerHTML = "";
     alert("Incorrect password.");
     window.location.href = "about:blank";
@@ -913,8 +949,14 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 </div>
 
 <div class="welcome-banner hidden" id="welcomeBanner">
-  New here? <a id="welcomeWhat">Find out what MacroSnaps is and how it works.</a>
-  <button class="wb-close" id="welcomeClose" aria-label="Dismiss">✕</button>
+  <div class="wb-card">
+    <button class="wb-close" id="welcomeClose" aria-label="Dismiss">✕</button>
+    <span class="wb-globe">🌍</span>
+    <h2>Welcome to <span>MacroSnaps</span></h2>
+    <p>Your daily briefing on the global economy. 12 countries, 9 commodities, three levels of depth. Everything you need to understand what's moving the world today.</p>
+    <a id="welcomeWhat">Show me how it works</a>
+    <button class="wb-skip" id="welcomeSkip">I'll explore on my own</button>
+  </div>
 </div>
 
 
@@ -7821,22 +7863,26 @@ document.querySelectorAll('.exp-btn').forEach(btn=>{btn.addEventListener('click'
 // initGlobe() is called lazily on first switch to Globe view
 
 
-// ── Welcome Banner ──
+// ── Welcome Modal ──
 (function() {
   const banner = document.getElementById('welcomeBanner');
   if (!banner) return;
   if (!localStorage.getItem('ms_welcomed')) {
     banner.classList.remove('hidden');
   }
-  document.getElementById('welcomeWhat').addEventListener('click', () => {
+  function dismiss() {
     banner.classList.add('hidden');
     localStorage.setItem('ms_welcomed', '1');
+  }
+  document.getElementById('welcomeWhat').addEventListener('click', () => {
+    dismiss();
     const whatLink = document.querySelector('[data-ft="what"]');
     if (whatLink) whatLink.click();
   });
-  document.getElementById('welcomeClose').addEventListener('click', () => {
-    banner.classList.add('hidden');
-    localStorage.setItem('ms_welcomed', '1');
+  document.getElementById('welcomeClose').addEventListener('click', dismiss);
+  document.getElementById('welcomeSkip').addEventListener('click', dismiss);
+  banner.addEventListener('click', (e) => {
+    if (e.target === banner) dismiss();
   });
 })();
 
