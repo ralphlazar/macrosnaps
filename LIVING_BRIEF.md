@@ -1,5 +1,27 @@
 # MacroSnaps - Living Brief
-Last updated: March 17, 2026 (Session 29: hasChartData guard hides empty chart sections; global stories nav arrows removed; commodity chart x-axis fixed to Jan 2000→now; value_at_generation story mismatch guard added to update_stories.py + build.py.)
+Last updated: March 17, 2026 (Session 30: UI changes to macrosnaps-shell.html — header date dynamic, news icon fading removed, table date removed, Icons? footer added, weather strip in macro tooltips, 2dp formatting in ranked tables, muted cyan header date colour, canonical icon set locked in style guide, em-dash ban hardened.)
+
+Session 30 changes in detail:
+
+(1) **Header "Updated Daily" replaced with dynamic date.** `<span class="sub2" id="headerUpdated">` now reads `_meta.generated` on data load and renders as "Updated 17 Mar 2026". Falls back to "Updated Daily" if data not yet loaded. Colour changed from `#aaa` to `#4db8cc` (muted cyan) to signal freshness.
+
+(2) **Global stories news icon fading removed.** `setActiveNewsIcon()` and `clearActiveNewsIcon()` are now empty stubs. Icons sit fully static at all times. Inconsistent dimming behaviour was the root cause.
+
+(3) **"Updated" date below rankings and commodity tables removed.** `asofHTML` variable and its two injection points deleted from `renderGridTable()` and `renderRankedTable()`. Date is in the header; no need to repeat it.
+
+(4) **"Icons?" footer tooltip added.** New entry in the footer links bar and footer data object. Covers all three icon contexts: country headline icon, metric weather strip, and commodity card icon. All three icons rendered with `.wh-icon` filter spans. Short hyphens throughout (no em-dashes).
+
+(5) **Weather strip added to macro metric tooltips.** When a macro metric tooltip opens, the 7-icon weather strip from the card now appears to the right of the country name and value. Strip is injected via `insertAdjacentHTML` after `applyGlossary` runs (to avoid attribute mangling). Market metric tooltips unaffected. Strip size matches card (18px). Rollover tip for all icons anchored above icon 4 (the middle) using nth-child CSS offsets to prevent clipping.
+
+(6) **2dp formatting in ranked tables.** `fmtNum()` helper added — pads values with fewer than 2 decimal places to exactly 2dp (e.g. 6% → 6.00%, 2.5% → 2.50%). Applies to all ranked and grid table values via `fmtPct()` and the `disp` line. Exception: Yield Curve (unit ` bps`) bypasses `fmtNum` and renders as plain integers.
+
+(7) **Canonical weather icon set locked (style guide).** ☀️ ☁️ ⛈️ are the only permitted weather icons anywhere in the product. All other variants (⛅ 🌩 🌧 🌤 etc.) are banned. Every icon must use a `.wh-icon sunny/cloudy/stormy` span for CSS filter rendering. Raw emoji forbidden.
+
+(8) **Em-dash ban hardened (style guide).** Rule extended from story text and copy to everywhere without exception: code, comments, prompts, tooltips, the living brief itself. No edge cases.
+
+(9) **`update_headlines.py` word count ceilings added.** Global story body caps: beginner 55 words, moderate 80 words, expert 110 words. Added directly to the JSON format spec in `build_global_system()`.
+
+---
 
 Session 29 changes in detail:
 
