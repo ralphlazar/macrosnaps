@@ -6438,7 +6438,7 @@ function renderRankedTable(wrap, cfg, titleHTML) {
     }
     const sign   = (cfg && cfg.sign && num !== null && num > 0) ? '+' : '';
     const valCls = num === null ? '' : num > 0 ? 'positive' : num < 0 ? 'negative' : '';
-    const disp   = num !== null ? `${sign}${fmtNum(num)}${cfg.unit || ''}` : '—';
+    const disp   = num !== null ? `${sign}${(cfg.unit === ' bps') ? num : fmtNum(num)}${cfg.unit || ''}` : '—';
     return `<tr data-code="${co.code}">
       <td class="wh-country-cell"><div class="wh-country-inner"><span class="wh-flag">${co.flag}</span><span class="wh-name">${dispName}</span><span class="wh-code">${co.code}</span></div></td>
       <td class="wh-cell wh-rank-val"><span class="wh-rank-num ${valCls}">${disp}</span></td>
