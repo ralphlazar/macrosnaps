@@ -1,5 +1,28 @@
 # MacroSnaps - Living Brief
-Last updated: March 17, 2026 (Session 30: UI changes to macrosnaps-shell.html — header date dynamic, news icon fading removed, table date removed, Icons? footer added, weather strip in macro tooltips, 2dp formatting in ranked tables, muted cyan header date colour, canonical icon set locked in style guide, em-dash ban hardened.)
+Last updated: March 17, 2026 (Session 31: Daily ritual run; audit_ritual.py built.)
+
+Session 31 changes in detail:
+
+(1) **Daily ritual run successfully.** Build 2026-03-17 committed and pushed to ralphlazar.github.io/macrosnaps. Three known issues surfaced:
+- **RUS Stock Market YTD failed** — `fetch_moex_index()` not being called correctly in `fetch_market_data.py`. yfinance hit instead and returned no data (`$IMOEX.ME possibly delisted`). Russia carried yesterday's value. Fix pending.
+- **JPN missing from `update_headlines.py --apply` output** — 11/12 countries applied, JPN absent. Japan carried yesterday's stories. Root cause unknown. Fix pending.
+- **USA/JPN/DEU/FRA/ITA 10Y Bond Yield and Yield Curve failed** — FRED HTTP 500s, transient outage. Values stale by one day. Will self-correct when FRED recovers.
+
+(2) **`audit_ritual.py` built.** Final step of the daily ritual. Reads `data.json` from the project directory and produces a terminal health report. Eight checks:
+- Build date matches today (`_meta.generated`)
+- Market values non-blank (skips known permanent gaps per `KNOWN_BLANK_MARKET`)
+- Spark arrays non-empty
+- All 9 commodities have price, change, and 120-pt spark
+- All 12 countries have stories at all 3 tiers
+- All country stories have `last_updated` = today (catches skipped countries like JPN)
+- No `value_at_generation` mismatches on macro metrics
+- All 3 global story cards present at all 3 tiers
+
+Writes dated plain-text log to `logs/audit_YYYY-MM-DD.txt`. Creates `logs/` directory if needed. Exits with code 1 if any issues found. Add as step 9 of the daily ritual: `python3 audit_ritual.py`.
+
+(3) **Daily ritual expanded to 9 steps.** See updated Daily ritual section below.
+
+---
 
 Session 30 changes in detail:
 
@@ -368,7 +391,7 @@ This ensures chart rendering is never broken by a transient external API failure
 
 **Market metric spark arrays (historical line charts):**
 - Script: `sync_market_historical.py --apply`
-- **Source: MARKET-STATS sheet only. Never contacts yfinance or FRED.**
+- **Source: MARKET-STATS sheet only. Never contacts yfinance or FREQ.**
 - Sheet columns: `Stock_Market_Index`, `FX_Rate`, `Bond_Yield_10Y`, `Yield_Curve`
 - FX values stored in display format in sheet — no inversion needed.
 - Yield curve stored in bps in sheet — no derivation needed.
@@ -408,7 +431,10 @@ python3 sync_market_historical.py --apply
 python3 sync_commodity_data.py --apply
 python3 update_commodity_stories.py
 python3 update_headlines.py
+# [manual review gate — open headline_review.html, load draft, review/edit, export approved file]
+python3 update_headlines.py --apply stories_approved_$(date +%Y-%m-%d).json
 python3 build.py --apply
+python3 audit_ritual.py
 ```
 
 `update_headlines.py` has a manual review gate:
@@ -416,8 +442,9 @@ python3 build.py --apply
 2. Open `headline_review.html`, load draft, review/edit, export `stories_approved_YYYY-MM-DD.json`
 3. Run `python3 update_headlines.py --apply stories_approved_YYYY-MM-DD.json`
 4. Run `python3 build.py --apply`
+5. Run `python3 audit_ritual.py`
 
-**Mid-day re-edit workflow:** Load `stories_approved_YYYY-MM-DD.json` (not the draft) to preserve previous edits. Re-export overwrites the approved file. Re-run steps 3 and 4. Safe to do multiple times per day.
+**Mid-day re-edit workflow:** Load `stories_approved_YYYY-MM-DD.json` (not the draft) to preserve previous edits. Re-export overwrites the approved file. Re-run steps 3, 4, and 5. Safe to do multiple times per day.
 
 ---
 
@@ -470,6 +497,7 @@ data._meta.generated                                                 <- build da
 | `audit_sheets.py` | Ad hoc | Read-only gap audit of MARKET-STATS and MACRO-MONTHLY. Flags stale or blank series. No writes. |
 | `update_stories.py` | On metric change | Diff-driven per-metric story rewrites. Saves `value_at_generation` alongside each story. |
 | `build.py --apply` | Daily | Assembles globe.html, validates schema (incl. story mismatch guard), diffs, auto-commits, pushes |
+| `audit_ritual.py` | Daily (final step) | Reads data.json, runs 8 health checks, prints terminal report, writes logs/audit_YYYY-MM-DD.txt. Exits 1 if issues found. |
 
 ---
 
@@ -520,6 +548,10 @@ Em-dashes (—) are banned everywhere in the product without exception. This inc
 ---
 
 ### Pending work (priority order)
+
+1. **Fix RUS MOEX fetch.** `fetch_moex_index()` exists in `fetch_market_data.py` but is not being called for the Stock Market YTD field — yfinance is hit instead and fails. Investigate and fix. Pipeline session: upload `LIVING_BRIEF.md` + `fetch_market_data.py`.
+
+1. **Fix JPN headlines skip.** `update_headlines.py --apply` applied 11/12 countries on 2026-03-17 with JPN absent. Root cause unknown — could be a missing key in the approved JSON or a silent skip in the apply loop. Pipeline session: upload `LIVING_BRIEF.md` + `update_headlines.py`.
 
 1. **Fix stale-story timing gap.** `sync_sheet.py` can update a forecast value without triggering a story rewrite, causing `value_at_generation` mismatches that block the build. Preferred fix: add `--stale-only` mode to `update_stories.py` that scans `data.json`, compares `value` vs `value_at_generation` for all macro metrics, and rewrites only mismatched ones. Add to ritual order: `sync_sheet.py → update_stories.py --stale-only → build.py`. Pipeline session.
 
