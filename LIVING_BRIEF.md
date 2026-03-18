@@ -1,5 +1,24 @@
 # MacroSnaps - Living Brief
-Last updated: March 17, 2026 (Session 36: audit_ritual.py corrected to match actual data.json structure; pre-launch checklist closed.)
+Last updated: March 17, 2026 (Session 37: site launched at macrosnaps.app; OUTPUT_FILE changed to index.html; password gate, Cloudflare analytics, and welcome modal redesign added.)
+
+Session 37 changes in detail:
+
+(1) **Site launched at macrosnaps.app.** Domain registered on Cloudflare. DNS configured with four A records (185.199.108–111.153) and a CNAME (www → ralphlazar.github.io), all grey cloud (DNS only, not proxied). Custom domain set in GitHub Pages settings. HTTPS enforced via Let's Encrypt (auto-provisioned by GitHub).
+
+(2) **`build.py` OUTPUT_FILE changed from `macrosnaps-globe.html` to `index.html`.** Single-line change on line 27. Required because GitHub Pages serves `index.html` at the root. `macrosnaps-shell.html` remains the source template (input). `macrosnaps-globe.html` deleted from repo — still recoverable from git history if ever needed.
+
+(3) **git pull strategy set to merge.** `git config --global pull.rebase false` run on the machine to prevent the divergent-branches prompt on future pulls. The initial push conflict was caused by GitHub auto-creating a `CNAME` file when the custom domain was set.
+
+(4) **Password gate added to `macrosnaps-shell.html`.** Temporary, for soft-launch period. An IIFE immediately after `<body>` prompts for password `Crocodile` (capital C). Wrong password blanks the page and redirects to `about:blank`. To remove at public launch: delete the 9-line `<script>` block after `<body>` and run `build.py`.
+
+(5) **Cloudflare Web Analytics added.** RUM enabled with JS snippet installation (auto-inject not available since DNS is grey cloud). Snippet added just before `</body>` in `macrosnaps-shell.html`:
+```html
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "30ef321a2bad44e5aa9b4ddcf4f6ac65"}'></script><!-- End Cloudflare Web Analytics -->
+```
+
+(6) **Welcome modal redesigned in `macrosnaps-shell.html`.** Replaced the thin top-of-page banner strip with a full-screen overlay modal. Features: blurred dark backdrop, centred dark navy card with cyan glow border, three weather icons (☀️ ☁️ ⛈️) using the canonical `.wh-icon` filter pattern, bold headline, short description, cyan gradient CTA button ("Show me how it works" — opens the What tooltip as before), "I'll explore on my own" dismiss link, ✕ close button, and click-outside-to-dismiss. Slides up on entry. Shown once per browser via `localStorage` key `ms_welcomed`. To re-trigger for testing: delete `ms_welcomed` from DevTools → Application → Local Storage.
+
+---
 
 Session 36 changes in detail:
 

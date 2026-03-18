@@ -327,18 +327,17 @@ def write_metric_story(data, item, stories):
 
 
 def write_commodity_story(data, item, stories):
-    """
-    Write beginner/moderate/expert into commodity story.
-    Commodity stories use {text: "..."} dicts per level.
-    """
+    """Write beginner/moderate/expert strings into the commodity's story field."""
     comm_items = data["commodities"]["items"]
     for comm in comm_items:
         if comm["name"] == item["name"]:
             comm["story"] = {
-                "beginner": {"text": stories["beginner"]},
-                "moderate": {"text": stories["moderate"]},
-                "expert":   {"text": stories["expert"]},
+                "beginner": stories["beginner"],
+                "moderate": stories["moderate"],
+                "expert":   stories["expert"],
             }
+            comm["storyWrittenAtPrice"] = item["new_value"]
+            comm["storyUpdatedDate"] = TODAY
             return
 
 

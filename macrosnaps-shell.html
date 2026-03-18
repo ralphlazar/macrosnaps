@@ -154,6 +154,20 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 .wh-name{font-size:12px;color:#ccc;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .wh-code{font-family:var(--font-display);font-size:9px;letter-spacing:.8px;color:#777;display:none}
 .wh-cell{padding:4px 2px;text-align:center;vertical-align:middle}
+.wh-num-val{
+  display:block;font-family:var(--font-display);font-size:11px;font-weight:600;
+  letter-spacing:.2px;white-space:nowrap;line-height:1.2;padding:2px 0;
+}
+.wh-num-val.sunny{color:var(--cyan)}
+.wh-num-val.cloudy{color:#888}
+.wh-num-val.stormy{color:var(--hot)}
+.wh-num-toggle{
+  margin-left:8px;padding:3px 9px;font-size:11px;font-family:var(--font-display);
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+  border-radius:4px;color:#aaa;cursor:pointer;letter-spacing:.3px;
+  vertical-align:middle;transition:background .15s,color .15s;
+}
+.wh-num-toggle:hover{background:rgba(0,212,255,.1);color:#fff;border-color:rgba(0,212,255,.3)}
 .wh-cell-inner{
   display:flex;flex-direction:column;align-items:center;gap:2px;
 }
@@ -6249,6 +6263,7 @@ let _whSortAsc = false;
 let _whMetric  = 'GDP Growth';
 let _whAsOfStr = '';
 let _whDropOpen = false;
+let _whNumericMode = (localStorage.getItem('whNumericMode') === '1');
 
 // Short display names for ranked/grid tables
 const DISPLAY_NAMES = {'United Kingdom':'UK','United States':'USA'};
@@ -6315,11 +6330,15 @@ function renderMetricTable() {
   const cfg = METRIC_CONFIG[_whMetric];
 
   // ── Title with metric picker button ──
+  const toggleBtn = (cfg && cfg.hasGrid)
+    ? `<button class="wh-num-toggle" id="whNumToggle" title="Switch between icons and values">${_whNumericMode ? '☀️ Icons' : '# Values'}</button>`
+    : '';
   const titleHTML = `<div class="wh-title">
     <button class="wh-metric-btn" id="whMetricBtn">
       <span id="whMetricLabel">${_whMetric}</span>
       <span class="wh-metric-arrow">▾</span>
     </button>
+    ${toggleBtn}
   </div>`;
 
   if (cfg && cfg.hasGrid) {
@@ -6336,7 +6355,17 @@ function renderMetricTable() {
       toggleMetricDropdown(btn);
     });
   }
-}
+
+  // Wire numeric toggle after render
+  const tog = document.getElementById('whNumToggle');
+  if (tog) {
+    tog.addEventListener('click', e => {
+      e.stopPropagation();
+      _whNumericMode = !_whNumericMode;
+      localStorage.setItem('whNumericMode', _whNumericMode ? '1' : '0');
+      renderMetricTable();
+    });
+  }
 
 function renderGridTable(wrap, cfg, titleHTML) {
   const colLabels = (histAnnualLabels && histAnnualLabels.length >= 7)
@@ -6390,7 +6419,10 @@ function renderGridTable(wrap, cfg, titleHTML) {
       const isOld = i < 2;
       const sign  = (cfg.sign && v !== null && v > 0) ? '+' : '';
       const tipVal = v !== null ? `${sign}${v}${cfg.unit}` : '';
-      return `<td class="wh-cell${isFc ? ' wh-fc-col' : ''}${isOld ? ' wh-col-old' : ''}" data-val="${tipVal}" data-country="${co.name}"><span class="wh-icon ${cls}">${emoji}</span></td>`;
+      const cellContent = _whNumericMode
+        ? `<span class="wh-num-val ${cls}">${tipVal || '—'}</span>`
+        : `<span class="wh-icon ${cls}">${emoji}</span>`;
+      return `<td class="wh-cell${isFc ? ' wh-fc-col' : ''}${isOld ? ' wh-col-old' : ''}" data-val="${tipVal}" data-country="${co.name}">${cellContent}</td>`;
     }).join('');
     return `<tr data-code="${co.code}"><td class="wh-country-cell"><div class="wh-country-inner"><span class="wh-flag">${co.flag}</span><span class="wh-name">${DISPLAY_NAMES[co.name]||co.name}</span><span class="wh-code">${co.code}</span></div></td>${cells}</tr>`;
   }).join('');
