@@ -1,0 +1,24 @@
+{
+  "date": "2026-03-18",
+  "countries": {
+    "USA": {
+      "stories": {
+        "beginner": [
+          "The economy grew much slower than expected at the end of 2025, with growth cut nearly in half to just 0.7% instead of 1.4%, which means job creation and wage growth could slow down.",
+          "Inflation ticked back up to 3.1% in January, the highest in two years, which makes your groceries and gas more expensive even though February's overall price growth cooled.",
+          "Oil prices spiked above $100 a barrel in late February after Middle East tensions, raising fears that inflation could creep higher again just when the Fed thought it had the problem beaten."
+        ],
+        "moderate": [
+          "US Q4 GDP collapsed to 0.7% annualized from an initially reported 1.4%, signaling economic momentum has stalled far more than the Fed anticipated when it paused rate cuts in January, and this slowdown mirrors the 2015-2016 soft patch when growth cratered without a recession.",
+          "Core PCE inflation jumped to 3.1% in January, a two-year high that directly contradicts the disinflation narrative, while the February CPI print at 2.4% suggests some relief but the underlying upward pressure on services and shelter remains sticky.",
+          "The Iran Shock military strike pushed oil above $100 a barrel in late February, creating a stagflation scenario the Fed cannot easily solve: cutting rates would ease growth pain but fuel inflation, while holding rates risks deepening the already-weak GDP backdrop."
+        ],
+        "expert": [
+          "Q4 2025 GDP revised sharply downward to 0.7% annualized from 1.4% initial estimate, with core PCE at 3.1% in January before February CPI settled at 2.4%, creating a dual-mandate bind where the Fed held rates at 3.5-3.75% on March 17-18; the 50 basis point miss versus initial GDP guidance suggests potential recession risk if labor market deteriorates further from the 4.4% unemployment print.",
+          "Geopolitical oil shock pushed Brent above $100/barrel in late February, materializing the stagflation tail risk that forces the Fed to choose between defending its credibility on inflation (which tracks above the 2.3% full-year forecast) or supporting growth (tracking well below the 2.2% GDP target), with forward curves now pricing only 25 basis points of cuts by year-end versus 75 basis points in January.",
+          "The collapse in Q4 momentum combined with sticky above-trend inflation and elevated oil volatility shifts market expectations toward a 2026 growth scare scenario where the Fed either pauses its easing cycle or reverses course, fundamentally rewriting the 3.25% year-end policy rate forecast and pressuring equities that had priced in sustained easing."
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,323 @@
+{
+  "date": "2026-03-18",
+  "generated_at": "2026-03-18 12:04",
+  "countries": {
+    "USA": {
+      "stories": {
+        "beginner": [
+          "The economy grew much slower than expected at the end of 2025, with growth cut nearly in half to just 0.7% instead of 1.4%, which means job creation and wage growth could slow down.",
+          "Inflation ticked back up to 3.1% in January, the highest in two years, which makes your groceries and gas more expensive even though February's overall price growth cooled.",
+          "Oil prices spiked above $100 a barrel in late February after Middle East tensions, raising fears that inflation could creep higher again just when the Fed thought it had the problem beaten."
+        ],
+        "moderate": [
+          "US Q4 GDP collapsed to 0.7% annualized from an initially reported 1.4%, signaling economic momentum has stalled far more than the Fed anticipated when it paused rate cuts in January, and this slowdown mirrors the 2015-2016 soft patch when growth cratered without a recession.",
+          "Core PCE inflation jumped to 3.1% in January, a two-year high that directly contradicts the disinflation narrative, while the February CPI print at 2.4% suggests some relief but the underlying upward pressure on services and shelter remains sticky.",
+          "The Iran Shock military strike pushed oil above $100 a barrel in late February, creating a stagflation scenario the Fed cannot easily solve: cutting rates would ease growth pain but fuel inflation, while holding rates risks deepening the already-weak GDP backdrop."
+        ],
+        "expert": [
+          "Q4 2025 GDP revised sharply downward to 0.7% annualized from 1.4% initial estimate, with core PCE at 3.1% in January before February CPI settled at 2.4%, creating a dual-mandate bind where the Fed held rates at 3.5-3.75% on March 17-18; the 50 basis point miss versus initial GDP guidance suggests potential recession risk if labor market deteriorates further from the 4.4% unemployment print.",
+          "Geopolitical oil shock pushed Brent above $100/barrel in late February, materializing the stagflation tail risk that forces the Fed to choose between defending its credibility on inflation (which tracks above the 2.3% full-year forecast) or supporting growth (tracking well below the 2.2% GDP target), with forward curves now pricing only 25 basis points of cuts by year-end versus 75 basis points in January.",
+          "The collapse in Q4 momentum combined with sticky above-trend inflation and elevated oil volatility shifts market expectations toward a 2026 growth scare scenario where the Fed either pauses its easing cycle or reverses course, fundamentally rewriting the 3.25% year-end policy rate forecast and pressuring equities that had priced in sustained easing."
+        ]
+      },
+      "sources": []
+    },
+    "CAN": {
+      "stories": {
+        "beginner": [
+          "Canada's inflation dropped sharply to 1.8% in February, below the Bank of Canada's 2% target, which means prices are rising slower and families get a break on their budgets.",
+          "The job market is really weak with unemployment at 6.74%, the highest in years, so the central bank now has strong reason to cut interest rates starting in April to help people find work.",
+          "With both inflation and employment working against them, the Bank of Canada could make bigger rate cuts than usual, potentially dropping rates by 50 basis points at a time instead of the normal 25."
+        ],
+        "moderate": [
+          "Canada's CPI collapsed to 1.8% in February from 2.3% in prior months, with core inflation dropping to 2.3%, giving the Bank of Canada a clear green light for rate cuts starting in April; this disinflation pace is more aggressive than the 2% full-year forecast and reflects energy deflation plus weakening demand.",
+          "The labor market cratered with unemployment at 6.74%, compared to just 2.4% in Japan and 4.4% in the US, creating a sharp divergence where Canada's weakness becomes the BoC's primary concern and justifies aggressive easing even as inflation undershoots target.",
+          "Markets are pricing in 50 basis point moves at the April meeting and beyond, a pace unseen since the pandemic, signaling that the BoC will prioritize job creation over inflation and likely push rates below the 2.25% full-year forecast by mid-year."
+        ],
+        "expert": [
+          "Canada's CPI plunged to 1.8% in February from 2.3%, with core falling to 2.3% from 2.6%, while unemployment stands at 6.74%, creating an inverted demand shock where the BoC faces a labor market crisis that dwarfs mild disinflation; the April meeting now carries high probability for a 50 basis point cut, with markets pricing cumulative 125 basis points of cuts by year-end versus the 2.25% forecast.",
+          "The BoC's dilemma centers on whether this is cyclical weakness (calling for aggressive easing to support demand) or structural (requiring caution on currency effects and capital outflows); the 6.74% unemployment reading versus 2.5% forecast and rapid core inflation deceleration to 2.3% suggest cyclical dynamics dominate, justifying the hawkish shift toward larger cuts.",
+          "Forward guidance and futures positioning now imply the BoC will reach the 2.25% policy rate forecast by Q2 2026, implying rates hit 1.75% or lower by summer, a path that would make Canadian assets vulnerable to carry-trade unwinding and currency pressure if the Fed holds steady or moves rates higher in response to oil shock inflation."
+        ]
+      },
+      "sources": []
+    },
+    "GBR": {
+      "stories": {
+        "beginner": [
+          "The UK is waiting for important economic news about how many people have jobs and how fast the economy is growing, especially after oil prices spiked higher from Middle East conflict.",
+          "Britain sold a lot more services to the world (like banking and insurance) than it bought other things, which is good, but bought way too many goods from other countries, creating a massive trade deficit of $338 billion last year.",
+          "The Bank of England is stuck because inflation is still too high at 3.18%, which makes it hard to cut interest rates even though the economy is weak and oil prices are creating new headaches."
+        ],
+        "moderate": [
+          "The UK awaits crucial GDP and labor market data in March, with the Bank of England's March meeting response to the Middle East energy shock looming; stubbornly above-target inflation at 3.18% (versus 3.75% policy rate) already constrains the BoE's easing appetite, and an oil price spike to above $100/barrel could cement a hold or even signal hawkish concern.",
+          "UK goods trade deficit widened to a record $338 billion in 2025, yet the services surplus reached $261.3 billion, showing the economy remains split between weak manufacturing and resilient financial services; this imbalance mirrors post-Brexit structural shifts where goods trade collapsed but City of London capabilities offset some damage.",
+          "With inflation still above target and geopolitical risk pushing energy costs higher, the BoE has little room to cut rates and will likely signal a pause, contrasting sharply with the Bank of Canada's aggressive pivot and forcing sterling higher as UK yields attract safe-haven demand."
+        ],
+        "expert": [
+          "UK inflation stands at 3.18% with the BoE on hold at 3.75%, creating a 55 basis point real policy rate that constrains easing despite unemployment at 5.2% and weak growth, while the March meeting response to the $100+ oil shock will likely signal hawkish caution rather than the dovish pivot markets had priced in late February.",
+          "The record $338 billion goods trade deficit in 2025 balanced against a $261.3 billion services surplus underscores the post-Brexit rebalancing where goods trade collapsed but the financial sector compensated; however, persistent goods trade weakness suggests structural competitiveness loss that limits BoE's ability to ease without currency depreciation risks.",
+          "The BoE faces an inverted situation versus the Fed: while US stagflation risk from oil shocks argues for caution on cuts, UK inflation above target plus energy costs rising constrains policy space, likely resulting in a hold through Q2 2026 and a policy rate path trading sideways rather than falling toward the 3.25% full-year forecast, creating relative sterling strength that pressures UK exporters further."
+        ]
+      },
+      "sources": []
+    },
+    "JPN": {
+      "stories": {
+        "beginner": [
+          "Japan's central bank wanted to raise interest rates this year, but the Prime Minister just told them to slow down because of the war in the Middle East and the risk that oil prices could spike higher.",
+          "Japan depends heavily on oil from the Middle East (70% of Gulf shipments go to Asia), so a conflict there could make energy way more expensive and hurt Japanese companies and families.",
+          "Inflation in Japan is very low at 1.53%, well below the Bank of Japan's target, which gives them room to raise rates, but geopolitical risk is making them nervous about moving forward with those hikes."
+        ],
+        "moderate": [
+          "The Bank of Japan faced market expectations for rate hikes, but the Prime Minister recently urged caution amid Middle East war risks, creating political pressure that shifts the BoJ's stance from tightening to wait-and-see; this pivot reverses the hawkish guidance from early 2026 when a January rate hike appeared probable.",
+          "Japan faces outsized exposure to Middle East energy disruption, with 70% of Gulf oil shipments destined for Asia, making the country acutely vulnerable to the $100+ barrel shock that hit late February; the Ministry of Finance hosted an IMF symposium specifically warning about conflict risks, signaling official concern that geopolitical tail risks now dominate economic policy.",
+          "With inflation at just 1.53% versus the BoJ's 2% target, the central bank retains policy headroom for hikes, but political intervention combined with energy shock fears likely delays tightening into 2027, allowing the yen to weaken further and supporting export competitiveness even as it imports inflation via oil."
+        ],
+        "expert": [
+          "The BoJ faces pressure to pause rate hikes despite inflation tracking toward its 2% target, with Prime Minister intervention citing Middle East conflict risk and the 70% vulnerability of Gulf oil shipments to Asian markets (including 20-25% of Japan's oil imports); the Ministry of Finance IMF symposium warning signals official consensus that geopolitical tail risk now overrides inflation considerations, shifting the policy rate path from the 1.25% full-year forecast toward a hold through Q2 2026.",
+          "Market expectations had priced a January 2026 rate hike and cumulative tightening toward 1.25% by year-end, but political guidance plus the oil shock have nearly eliminated near-term hike probability; this pivot reverses the BoJ's tightening cycle before it gained traction, leaving the policy rate at 0.75% and signaling the BoJ will hold at or near zero unless inflation accelerates sharply from energy passthrough.",
+          "The BoJ's apparent shift toward caution on hikes carries forward implications for carry trade dynamics and yen weakness, as investors who had positioned for rate differentials versus the Fed now face extended accommodation; if the $100+ oil price proves sustained, energy passthrough could force BoJ tightening later in 2026 despite political opposition, creating a policy bind between inflation control and growth support that pressures yen volatility."
+        ]
+      },
+      "sources": []
+    },
+    "DEU": {
+      "stories": {
+        "beginner": [
+          "German factories are producing more than they have in four years, which is good news for workers and companies looking to hire.",
+          "But German factories are still making 9% less stuff than they did back in 2021, so there is still a long way to go.",
+          "Consumer confidence dropped recently, meaning people are worried about their wallets and might spend less money on things they do not need."
+        ],
+        "moderate": [
+          "German industrial production momentum has accelerated to its fastest pace in nearly four years according to PMI data, though January factory output fell 1.3% as part of a broader eurozone decline, signaling uneven recovery rather than sustained strength.",
+          "Consumer sentiment fell sharply to 44.73 from 47.07, suggesting households remain cautious despite manufacturing gains, a pattern consistent with eurozone weakness where industrial output contracted 1.5% in January.",
+          "German factories remain 9% below 2021 production levels, meaning the recovery must clear a substantial structural gap before reaching pre-pandemic capacity utilization."
+        ],
+        "expert": [
+          "PMI surveys show German industrial momentum accelerating to four-year highs, yet January actual production contracted 1.3% as part of the eurozone's 1.5% monthly decline, indicating forward-looking surveys may overstate near-term momentum and timing remains uncertain for acceleration to materialize in hard data.",
+          "Consumer sentiment collapsed to 44.73 from 47.07 precisely as industrial indicators brightened, suggesting households perceive risks (wage pressure, energy costs, geopolitical exposure) that purchasing managers have not yet priced in, creating asymmetric recession signals.",
+          "With factories 9% below 2021 levels and full-year GDP growth forecast at only 1.2%, German production must accelerate substantially to close the output gap, meaning the current PMI upturn must translate into sustained monthly gains rather than statistical noise."
+        ]
+      },
+      "sources": []
+    },
+    "FRA": {
+      "stories": {
+        "beginner": [
+          "French factories made less stuff in January, which means fewer jobs might be created and the economy could slow down.",
+          "People in France are still worried and not feeling very confident about their future, even though their mood improved slightly.",
+          "The European Union is spending money on defense and rebuilding, which could help France and other southern European countries create new jobs and grow."
+        ],
+        "moderate": [
+          "French industrial output contracted sharply in January as part of a eurozone-wide 1.5% monthly production decline that missed expectations, revealing persistent weakness in manufacturing demand across the currency union despite monetary easing.",
+          "Consumer sentiment edged up marginally to 42.03 from 41.15, yet remains deeply depressed compared to historical norms, suggesting households view the recent uptick as temporary relief rather than confidence in sustained recovery.",
+          "EU defense spending through ReArm Europe and NextGen EU funds are expected to boost investment growth particularly in southern eurozone economies where France operates, creating a structural tailwind for industrial orders in the near term."
+        ],
+        "expert": [
+          "French factory production declined in January alongside eurozone industrial output dropping 1.5% month-on-month, a miss versus expectations that points to demand softness contradicting the 1.4% full-year GDP growth forecast and implying front-loaded weakness in Q1 2026.",
+          "Consumer sentiment at 42.03 reflects a 0.88 point gain but remains anchored near cyclical lows, indicating the household sector has not yet transmitted confidence to purchasing behavior despite ECB policy rates stabilizing at 2.15%, signaling potential demand destruction if manufacturing weakness persists.",
+          "EU defense realignment and NextGen EU capital deployment targeting southern eurozone economies should lift French capital goods demand through 2026 and 2027, but near-term data suggests this stimulus has yet to reach the factory floor, creating downside execution risk to growth forecasts."
+        ]
+      },
+      "sources": []
+    },
+    "ITA": {
+      "stories": {
+        "beginner": [
+          "Italian government bonds that mature in three years are getting more expensive to borrow for, which means the government is worried about paying bills soon.",
+          "Italian factories also made less stuff in January like other European countries, so the whole region is struggling.",
+          "Italian bonds that mature way in the future got cheaper to borrow for, which means people believe Italy will be okay in the long run."
+        ],
+        "moderate": [
+          "Italian 3-year BTP yields spiked to 2.75% from 2.36%, a sharp rise reflecting near-term inflation anxiety and refinancing pressure, while 15-year yields fell to 3.85% from 4.03%, indicating markets expect Italy to deliver longer-term fiscal discipline despite current cost pressures.",
+          "Italian factory output contracted in January alongside the broader eurozone industrial decline, consistent with weak demand transmission across the currency union and challenging the 1% full-year GDP growth forecast.",
+          "The yield curve inversion signal (short-term rates rising while long-term rates fall) suggests bond markets see Italy as facing near-term cash management stress but maintain faith in medium-term structural reforms and EU fiscal frameworks."
+        ],
+        "expert": [
+          "Italian 3-year BTP yields jumped 39 basis points to 2.75% while 15-year yields fell 18 basis points to 3.85%, creating a flattening curve that signals acute refinancing anxiety in the 2026-2028 window offset by confidence in Italy's post-2028 fiscal trajectory under EU fiscal rules.",
+          "January factory output contraction aligns Italy with eurozone industrial weakness, yet the divergent BTP yield movement suggests credit markets are pricing Italy-specific near-term stress rather than general eurozone recessionary risk, pointing to potential fiscal or monetary misalignment.",
+          "The short-term BTP spike creates downside risk to the 1% full-year growth forecast if rising borrowing costs force fiscal tightening in H1 2026, while the long-term yield decline implies markets expect either EU support mechanisms or structural reforms to stabilize spreads beyond 2027."
+        ]
+      },
+      "sources": []
+    },
+    "CHN": {
+      "stories": {
+        "beginner": [
+          "Chinese banks lent way more money than expected in February, which means businesses and people have cash to spend and invest.",
+          "China's government will decide on a new five-year plan in March that will shape what the country focuses on for the next five years.",
+          "Prices in China are barely going up, so people's wages will buy more stuff, which helps them feel better about their lives."
+        ],
+        "moderate": [
+          "China's February credit data smashed expectations with new yuan loans reaching 900 billion versus 865 billion consensus and total social financing hitting 2,380 billion versus 2,130 billion forecast, signaling that policymakers have shifted decisively toward accommodative fiscal-monetary coordination to support growth.",
+          "The 15th Five-Year Plan formalized at March's National People's Congress will set priorities through 2030, with markets expecting continuity in pro-growth policies while adapting to geopolitical pressures and domestic consumption shifts, supporting Deloitte's 4.5% full-year GDP growth forecast.",
+          "M2 money supply growth held steady at 9.0%, indicating policymakers are maintaining monetary accommodation without overheating, a signal that credit expansion aims for growth support rather than asset bubble creation."
+        ],
+        "expert": [
+          "Chinese new yuan loans reached 900 billion in February versus 865 billion consensus and total social financing hit 2,380 billion versus 2,130 billion forecast, representing 4.0% and 5.8% beats respectively, with M2 holding at 9.0%, indicating policymakers engineered a coordinated credit surge to front-load growth into Q1 2026 ahead of external uncertainties.",
+          "The March National People's Congress will formalize the 15th Five-Year Plan (2026-2030) with expected emphasis on continuity in expansionary fiscal posture while adapting to geopolitical fragmentation and demographic headwinds, implying policy support for the 4.5% full-year growth forecast but signaling medium-term structural rebalancing toward services.",
+          "Credit-to-GDP expansion at current pace implies policy is targeting nominal growth acceleration rather than real rate changes, suggesting Beijing prioritizes debt service capacity and employment over inflation control, creating upside risk to the 2% full-year CPI forecast and potential currency depreciation pressure if external rate differentials widen."
+        ]
+      },
+      "sources": []
+    },
+    "IND": {
+      "stories": {
+        "beginner": [
+          "India's food prices jumped higher last month, pushing wholesale inflation up to 2.13%. This makes things more expensive at the grocery store.",
+          "India is buying less stuff from other countries right now, so the trade deficit shrank from $34.7 billion to $27.1 billion. That's good for India's wallet.",
+          "India's economy is expected to grow around 7.5% to 7.8% this year, which is faster than most other big countries. A new trade deal with the US could help even more."
+        ],
+        "moderate": [
+          "Wholesale price inflation accelerated to 2.13% from 1.81%, driven entirely by food prices spiking while other goods stayed tame. Food inflation is particularly sensitive to monsoon timing and harvest outcomes in India.",
+          "The trade deficit collapsed to $27.1 billion from $34.7 billion as Indian importers sharply cut orders. This swing suggests either deliberate inventory pullback or weakening domestic demand despite the 7.5-7.8% growth forecast.",
+          "India's retail inflation sits at 1.33%, well below the central bank's comfort zone, giving the RBI room to hold rates steady at 5.25% while monitoring whether food pressures bleed into broader prices."
+        ],
+        "expert": [
+          "Wholesale inflation jumped 32 basis points to 2.13% on food-driven pressure, yet retail CPI remains anchored at 1.33%, creating a two-speed inflation picture typical of commodity-driven shocks. The 283 basis point gap between WPI and CPI suggests food pass-through to consumer prices remains incomplete, likely due to policy intervention or demand weakness.",
+          "The trade deficit compression from $34.7 billion to $27.1 billion reflects import contraction across capital and intermediate goods, not export strength. This signals either deliberate working capital reduction in advance of fiscal tightening or early signs of domestic demand softening below the 7.5-7.8% forecast growth range.",
+          "With retail inflation at 1.33% and the policy rate anchored at 5.25%, the RBI has ample headroom to cut if food pressures fade, but persistent WPI stickiness and potential US-India trade deal implementation risk complicate the forward path. Watch whether food inflation reaches consumers in coming months, as delayed pass-through now could mean sharper CPI acceleration later."
+        ]
+      },
+      "sources": []
+    },
+    "ZAF": {
+      "stories": {
+        "beginner": [
+          "South Africa's trade balance flipped dramatically, swinging from a $72 billion deficit to a $50 billion surplus. This is huge and means the country is selling more than it's buying.",
+          "When a country stops spending money abroad, that's a sign the economy might be struggling, not thriving. South Africa's reversal is real but mostly reflects weak imports rather than booming exports.",
+          "South Africa's inflation is low at 3.49%, which gives the central bank room to cut interest rates down from 6.75% if the economy keeps weakening."
+        ],
+        "moderate": [
+          "South Africa's current account flipped to a 50.2 billion rand surplus in Q4 from a 72 billion rand deficit in Q3, the sharpest swing in recent quarters. This reversal stems primarily from import collapse rather than export acceleration, a sign of domestic demand destruction.",
+          "The current account improvement is genuinely positive for reserves and external stability, but the regional backdrop complicates the story: Brazil is stuck in high inflation while Argentina is reaccelerating, limiting opportunities for South African exporters in its biggest market.",
+          "With CPI at 3.49% and the policy rate at 6.75%, the SARB has room to ease, but structural unemployment at 32.5% means growth is the harder constraint than inflation for now."
+        ],
+        "expert": [
+          "The current account swung 122 billion rand from deficit to surplus, driven by imports falling 18% year-over-year while exports grew only 4%. This is external adjustment by demand destruction, not supply expansion, signaling that growth headwinds are material and likely to persist through Q1 2026.",
+          "South Africa's current account flip masks regional headwinds: Brazil's sticky 3.81% CPI (above consensus at 3.77%) and Argentina's reaccelerating inflation constrain regional trade momentum precisely when South Africa needs export volume growth. The surplus reflects inward-looking stabilization, not outward-looking dynamism.",
+          "The SARB faces a trilemma: CPI at 3.49% allows rate cuts, 1.5% forecast growth demands them, but the current account strength is fragile and dependent on continued import weakness. If global energy prices spike (as the Iran-Hormuz disruption risks), commodity revenue could swing, requiring the central bank to tighten despite growth headwinds."
+        ]
+      },
+      "sources": []
+    },
+    "BRA": {
+      "stories": {
+        "beginner": [
+          "Brazil's prices went up 3.81% compared to last year, which is better than January's 4.44% but still climbing. Food and energy are the main culprits.",
+          "Brazil's central bank raised interest rates to 15%, the highest level in this economic cycle, because inflation keeps surprising to the upside. This makes borrowing expensive for regular people and businesses.",
+          "If oil prices stay high because of the Middle East crisis, Brazil's inflation could stick around and the central bank won't be able to cut rates any time soon."
+        ],
+        "moderate": [
+          "February CPI printed at 3.81% year-over-year, down from January's 4.44% but above the 3.77% consensus, with monthly inflation of 0.70% beating the 0.65% forecast. The outperformance suggests core price momentum remains sticky despite the moderation in headline rates.",
+          "Brazil's policy rate sits at 15%, highest in the cycle, because the central bank fears inflation has momentum. Food prices and energy costs are the main drivers, both sensitive to currency weakness (the real is under pressure from US rate differentials).",
+          "The Banco Central do Brasil's easing window has likely slammed shut if crude prices remain elevated, given that energy feeds directly into transport and food costs. At 6.78% unemployment, the central bank has little reason to cut even if it wanted to."
+        ],
+        "expert": [
+          "February CPI of 3.81% beat consensus by 4 basis points on a 0.70% monthly print (5 basis points above forecast), indicating core inflation breadth is sticky. The quarterly trend shows no deceleration from January's 4.44%, with services inflation proving particularly resilient at elevated levels.",
+          "The Banco Central do Brasil's easing window has fully closed: the policy rate at 15% leaves real rates near 11% (assuming 4.2% year-end inflation forecast), and crude pricing at elevated levels due to Hormuz disruptions keeps energy-linked pass-through alive. The central bank will likely hold or tighten at its next decision.",
+          "Brazil's inflation persistence now hinges on currency dynamics and global oil flows: if the real weakens further against the dollar (likely given the 500+ basis point US-Brazil rate differential), import prices will re-accelerate, forcing the central bank to maintain restrictive policy through at least Q2 2026 and suppressing growth below the 1.7% forecast."
+        ]
+      },
+      "sources": []
+    },
+    "RUS": {
+      "stories": {
+        "beginner": [
+          "Russia's stock market is climbing because the country sells a lot of oil, and oil prices are rising due to the Iran war disrupting shipments through the Middle East. Russia is stepping in to fill the gap.",
+          "Around 20% of the world's oil flows through the Strait of Hormuz, and the war has blocked some of that. Russia, sitting outside the conflict, can sell more oil and make more money.",
+          "Russia's economy is expected to grow 1.2% this year, which is slow, but high oil prices and military spending are keeping things afloat."
+        ],
+        "moderate": [
+          "Russian equities have rallied as the country positions itself as the primary non-Gulf hydrocarbon alternative amid Iran war disruptions blocking roughly 20% of global oil flows through the Strait of Hormuz. This is structural tailwind for Russia's external balance and equity valuations.",
+          "Russia's inflation sits at 6.01% and the central bank has set the policy rate at 15.5%, but those rates are holding because energy revenues are strong and the ruble is stable. The war disruption is inadvertently supporting Russia's energy export economics.",
+          "Russia's unemployment at 2.15% is extremely tight, which explains the high inflation and why the central bank keeps rates elevated despite slowing growth. The labor market is a binding constraint."
+        ],
+        "expert": [
+          "Russian equities have trended upward as Hormuz disruptions remove roughly 2 million barrels per day of Iranian capacity from global markets, making Russia's 10+ million barrels per day production economically critical to global supply balancing. This tailwind supports both ruble stability and government revenues critical to funding the war effort.",
+          "The policy rate at 15.5% reflects not growth concerns but inflation at 6.01% and ultra-tight labor markets (2.15% unemployment) driven by military mobilization and sustained defense spending. The real policy rate is approximately 9.5%, highly restrictive, yet the central bank cannot ease without igniting wage-price spirals in a supply-constrained economy.",
+          "Russia's current account surplus and equity rally mask medium-term fragility: if Hormuz flows normalize or global oil demand slows, revenues collapse and the ruble weakens, forcing the central bank to tighten further despite the 1.2% growth forecast. Watch Brent crude and tanker throughput data as leading indicators of whether this equity momentum persists through Q2 2026."
+        ]
+      },
+      "sources": []
+    }
+  },
+  "globalStories": {
+    "beginner": [
+      {
+        "icon": "🏛️",
+        "label": "Fed Holds Rates Amid Oil Crisis",
+        "body": "The Federal Reserve is expected to keep interest rates unchanged today at 3.5-3.75%. Rising oil prices from the Iran war have complicated inflation concerns. Chair Powell speaks at 2:30 PM.",
+        "source": "CNBC"
+      },
+      {
+        "icon": "⛽",
+        "label": "Oil Prices Above $100 Per Barrel",
+        "body": "Oil has jumped over $100 as Iran's closure of the Strait of Hormuz disrupts global energy supplies. This is the biggest supply shock in oil market history.",
+        "source": "Bloomberg"
+      },
+      {
+        "icon": "📈",
+        "label": "Markets Rise Despite Energy Crisis",
+        "body": "Global stocks gained for a third straight day even as energy disruptions continue. Asian markets led gains, up 1.4%, while investors look past geopolitical tensions.",
+        "source": "Bloomberg"
+      }
+    ],
+    "moderate": [
+      {
+        "icon": "🏛️",
+        "label": "Fed Holds Rates Amid Oil Crisis",
+        "body": "The Federal Reserve will likely keep rates at 3.5-3.75% today as oil prices above $100 complicate inflation outlook. Markets expect no cuts in 2026 due to energy shock. The key focus is Powell's updated economic projections and whether the Fed shifts from dovish to neutral stance.",
+        "source": "CNBC"
+      },
+      {
+        "icon": "⛽",
+        "label": "Oil Prices Above $100 Per Barrel",
+        "body": "Brent crude topped $103 as Iran effectively closed the Strait of Hormuz, disrupting 20% of global oil supply. Gulf producers have cut output by at least 10 million barrels per day. The IEA called it the largest supply disruption in oil market history, with emergency reserves providing only temporary relief.",
+        "source": "Al Jazeera"
+      },
+      {
+        "icon": "📈",
+        "label": "Markets Rise Despite Energy Crisis",
+        "body": "Global stocks extended gains for a third day as investors looked beyond immediate energy disruptions. The MSCI World Index rose 0.3% while Asian markets gained 1.4%, led by tech stocks. Despite oil shock concerns, markets are betting on economic resilience and potential stabilization.",
+        "source": "Bloomberg"
+      }
+    ],
+    "expert": [
+      {
+        "icon": "🏛️",
+        "label": "Fed Holds Rates Amid Oil Crisis",
+        "body": "The FOMC will announce its March decision today at 2:00 PM, with rates expected to remain at 3.5-3.75%. Oil above $100 has collapsed rate cut probabilities from 56% to 23% for June. The quarterly dot plot update becomes critical as officials may project zero cuts for 2026, down from two in December. Powell's final press conferences before his May departure will address stagflation risks and policy flexibility.",
+        "source": "CNBC"
+      },
+      {
+        "icon": "⛽",
+        "label": "Oil Prices Above $100 Per Barrel",
+        "body": "Brent crude hit $103.14 after touching near $120 as Iran's Strait of Hormuz closure disrupted 20 million barrels per day of flows. Gulf producers slashed output by over 10 million barrels daily, with storage facilities filling rapidly. Goldman Sachs estimates $14 risk premium reflecting four-week closure scenario. IEA emergency release of 400 million barrels provides only 20 days of normal Hormuz flows, highlighting supply constraints.",
+        "source": "Al Jazeera"
+      },
+      {
+        "icon": "📈",
+        "label": "Markets Rise Despite Energy Crisis",
+        "body": "Global equities rallied for a third consecutive session despite ongoing Hormuz disruptions, with MSCI ACWI gaining 0.3%. Asian markets outperformed at +1.4%, led by memory chips like Samsung, viewed as less Middle East exposed. S&P 500 earnings consensus remains at +15% for 2026 with 74% beat rates supporting fundamental resilience. Key divergence emerging between energy shock concerns and continued tech sector strength in AI deployment cycle.",
+        "source": "Bloomberg"
+      }
+    ],
+    "sources": [
+      {
+        "title": "CNBC",
+        "url": "https://www.cnbc.com/2026/03/17/the-fed-issues-its-latest-interest-rate-decision-wednesday-heres-what-to-expect.html"
+      },
+      {
+        "title": "Bloomberg",
+        "url": "https://www.bloomberg.com/news/articles/2026-03-17/stock-market-today-dow-s-p-live-updates-"
+      },
+      {
+        "title": "Al Jazeera",
+        "url": "https://www.aljazeera.com/economy/2026/3/15/strategic-oil-release-may-calm-markets-but-cannot-fix-hormuz-disruption"
+      }
+    ]
+  },
+  "_failures": []
+}
