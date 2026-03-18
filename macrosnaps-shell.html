@@ -6888,10 +6888,9 @@ function showCommodityMTT(idx) {
   const storyText = item.story ? (item.story[currentLevel] || item.story.beginner || '') : '';
   const storyHTML = storyText ? `<div class="tt-section tt-metric-story"><div class="tt-story" style="margin-bottom:0;padding-bottom:0;border-bottom:none">${storyText}</div></div>` : '';
 
-  // Chart HTML (monthly history from _frozen_historical)
+  // Chart HTML (monthly history from item.spark)
   let chartHTML = '';
-  const commFH = item._frozen_historical;
-  if (commFH && commFH.v && commFH.v.length > 0) {
+  if (item.spark && item.spark.length > 0) {
     chartHTML = `<div class="metric-chart-wrap">
       <div class="metric-chart-head">
         <div class="metric-chart-title">${item.name} (${item.unit})</div>
@@ -6937,8 +6936,7 @@ function showCommodityMTT(idx) {
   });
 
   // Render chart
-  const commFH2 = item._frozen_historical;
-  if (commFH2 && commFH2.v && commFH2.v.length > 0) {
+  if (item.spark && item.spark.length > 0) {
     const chartContainer = tt.querySelector('#commMTTChart');
     renderCommodityMonthlyChart(chartContainer, item, 0);
     tt.querySelectorAll('.mcr-btn').forEach(btn => {
@@ -6978,11 +6976,11 @@ function showCommodityMTT(idx) {
 
 function renderCommodityMonthlyChart(container, item, rangeMonths) {
   if (activeChart) { activeChart.destroy(); activeChart = null; }
-  const fh = item._frozen_historical;
-  if (!fh || !fh.v || fh.v.length === 0) { container.innerHTML = '<div class="metric-chart-nodata">No historical data</div>'; return; }
+  const fh = item.spark;
+  if (!fh || fh.length === 0) { container.innerHTML = '<div class="metric-chart-nodata">No historical data</div>'; return; }
 
   const totalLen = histMonthlyLabels.length;
-  const rawVals = fh.v || [];
+  const rawVals = fh;
   const padded = totalLen > rawVals.length
     ? Array(totalLen - rawVals.length).fill(null).concat(rawVals)
     : rawVals.slice(rawVals.length - totalLen);
