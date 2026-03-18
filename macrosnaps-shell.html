@@ -168,6 +168,7 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
   vertical-align:middle;transition:background .15s,color .15s;
 }
 .wh-num-toggle:hover{background:rgba(0,212,255,.1);color:#fff;border-color:rgba(0,212,255,.3)}
+.wh-num-toggle-hidden{visibility:hidden;pointer-events:none}
 .wh-cell-inner{
   display:flex;flex-direction:column;align-items:center;gap:2px;
 }
@@ -6330,9 +6331,8 @@ function renderMetricTable() {
   const cfg = METRIC_CONFIG[_whMetric];
 
   // ── Title with metric picker button ──
-  const toggleBtn = (cfg && cfg.hasGrid)
-    ? `<button class="wh-num-toggle" id="whNumToggle" title="Switch between icons and values">${_whNumericMode ? '☀️ Icons' : '# Values'}</button>`
-    : '';
+  const hasGrid = !!(cfg && cfg.hasGrid);
+  const toggleBtn = `<button class="wh-num-toggle${hasGrid ? '' : ' wh-num-toggle-hidden'}" id="whNumToggle" title="Switch between icons and values">${_whNumericMode ? '☀️ Icons' : '# Values'}</button>`;
   const titleHTML = `<div class="wh-title">
     <button class="wh-metric-btn" id="whMetricBtn">
       <span id="whMetricLabel">${_whMetric}</span>
@@ -6356,9 +6356,9 @@ function renderMetricTable() {
     });
   }
 
-  // Wire numeric toggle after render
+  // Wire numeric toggle after render (grid metrics only)
   const tog = document.getElementById('whNumToggle');
-  if (tog) {
+  if (tog && hasGrid) {
     tog.addEventListener('click', e => {
       e.stopPropagation();
       _whNumericMode = !_whNumericMode;
