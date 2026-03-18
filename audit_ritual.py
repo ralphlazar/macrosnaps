@@ -48,7 +48,12 @@ KNOWN_BLANK_HISTORICAL = {
 
 COMMODITIES = ["WTI Crude", "Brent Crude", "Natural Gas", "Gold", "Silver", "Copper", "Wheat", "Corn", "Soybeans"]
 STALE_MONTHS = 3
-EXPECTED_SPARK_PTS = 120
+
+def _months_since_jan_2000():
+    today = date.today()
+    return (today.year - 2000) * 12 + today.month
+
+EXPECTED_SPARK_PTS = _months_since_jan_2000()
 
 GLOBAL_STORY_LABELS = ["Today's Story", "Biggest Movers", "The Connection"]
 
@@ -177,12 +182,12 @@ def check_commodities(data, issues):
             issues += fail(f"{name}  change blank")
             clean = False
         spark = item.get("spark", [])
-        if len(spark) < EXPECTED_SPARK_PTS:
-            issues += warn(f"{name}  spark has {len(spark)} pts (expected {EXPECTED_SPARK_PTS})")
+        if len(spark) < EXPECTED_SPARK_PTS - 3:   # allow up to 3 months of lag
+            issues += warn(f"{name}  spark has {len(spark)} pts (expected ~{EXPECTED_SPARK_PTS})")
             clean = False
 
     if clean:
-        ok(f"All 9 commodities have price, change, and {EXPECTED_SPARK_PTS}-pt spark")
+        ok(f"All 9 commodities have price, change, and ~{EXPECTED_SPARK_PTS}-pt spark")
     return issues
 
 def check_story_completeness(data, issues):

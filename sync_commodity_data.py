@@ -47,7 +47,7 @@ MARKET_KEY_FILE = os.path.expanduser(
     os.getenv("MARKET_STATS_KEY_FILE", "~/Downloads/macrosnaps/market-stats-key.json")
 )
 TAB_NAME        = "Commodities"
-SPARK_MONTHS    = 120    # 10 years of monthly last-close values
+SPARK_MONTHS    = None   # all months from sheet history (Jan 2000 onward)
 TODAY           = date.today().isoformat()
 
 DRY_RUN = "--dry-run" in sys.argv
@@ -199,8 +199,8 @@ def derive_spark(rows, col):
     sorted_months = sorted(monthly.keys())
     last_closes   = [monthly[m][-1] for m in sorted_months]
 
-    # Return last SPARK_MONTHS values
-    return last_closes[-SPARK_MONTHS:]
+    # Return all monthly closes (full history from sheet)
+    return last_closes
 
 # ---------------------------------------------------------------------------
 # MAIN

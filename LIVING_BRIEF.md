@@ -1,5 +1,17 @@
 # MacroSnaps - Living Brief
-Last updated: March 17, 2026 (Session 37: site launched at macrosnaps.app; OUTPUT_FILE changed to index.html; password gate, Cloudflare analytics, and welcome modal redesign added.)
+Last updated: March 18, 2026 (Session 38: commodity story bug fixed in data.json and update_stories.py; icons/values toggle added to weather matrix; password changed to croc.)
+
+Session 38 changes in detail:
+
+(1) **Commodity story malformed structure fixed in `data.json`.** Five commodities (Natural Gas, Gold, Copper, Wheat, Corn) had story tiers stored as `{"text": "..."}` objects instead of plain strings. This caused tooltips to render blank for those commodities. Fixed by flattening all 15 affected tiers (5 commodities x 3 levels) to plain strings. WTI Crude, Brent, Silver, and Soybeans were unaffected.
+
+(2) **`write_commodity_story()` fixed in `update_stories.py`.** Root cause of (1): the function was wrapping each tier in `{"text": "..."}` instead of writing a plain string. The docstring even stated "Commodity stories use `{text: ...}` dicts per level" — that was wrong. Fixed to write plain strings identical to `write_metric_story()`. Also added `storyWrittenAtPrice` and `storyUpdatedDate` writes to the commodity path, which were previously missing (those fields existed on WTI from manual edits but were never being written by the pipeline for any commodity).
+
+(3) **Icons/values toggle added to weather matrix in `macrosnaps-shell.html`.** A toggle button appears in the matrix title bar next to the metric picker. Clicking it switches all matrix cells between weather icons and the underlying forecast numbers. Numbers are coloured by weather class (sunny=cyan, cloudy=grey, stormy=hot). State persists via `localStorage` key `whNumericMode`. Toggle only applies to grid metrics (`hasGrid:true`): GDP Growth, Inflation (CPI), Unemployment, Budget Deficit, Current Account. For non-grid metrics (Policy Rate, Stock Market YTD, 10Y Bond Yield, Yield Curve) the toggle button is always rendered but `visibility:hidden` to prevent layout shift when switching metrics. New CSS classes: `.wh-num-val` (number display), `.wh-num-toggle` (button), `.wh-num-toggle-hidden` (invisible placeholder).
+
+(4) **Password changed** from `Crocodile` to `croc` in `macrosnaps-shell.html`.
+
+---
 
 Session 37 changes in detail:
 
@@ -9,7 +21,7 @@ Session 37 changes in detail:
 
 (3) **git pull strategy set to merge.** `git config --global pull.rebase false` run on the machine to prevent the divergent-branches prompt on future pulls. The initial push conflict was caused by GitHub auto-creating a `CNAME` file when the custom domain was set.
 
-(4) **Password gate added to `macrosnaps-shell.html`.** Temporary, for soft-launch period. An IIFE immediately after `<body>` prompts for password `Crocodile` (capital C). Wrong password blanks the page and redirects to `about:blank`. To remove at public launch: delete the 9-line `<script>` block after `<body>` and run `build.py`.
+(4) **Password gate added to `macrosnaps-shell.html`.** Temporary, for soft-launch period. An IIFE immediately after `<body>` prompts for password. Currently set to `croc` (changed from `Crocodile` in Session 38). Wrong password blanks the page and redirects to `about:blank`. To remove at public launch: delete the 9-line `<script>` block after `<body>` and run `build.py`.
 
 (5) **Cloudflare Web Analytics added.** RUM enabled with JS snippet installation (auto-inject not available since DNS is grey cloud). Snippet added just before `</body>` in `macrosnaps-shell.html`:
 ```html
@@ -625,6 +637,7 @@ data.globalStories[tier]                                             <- list of 
 - `metricDisplayLabels`: `'Policy Rate' → 'Policy Rate (year-end)'`
 - Globe is lazy-init (WebGL only on first toggle click). Nav buttons hidden, globe accessible by restoring `.view-toggle{display:flex}` if needed.
 - Default sort: `_whSortCol = -1` = nominal GDP order (GDP_NOMINAL_ORDER constant). Logo click resets to this. Metric dropdown change also resets to `-1` (Session 17 fix).
+- `_whNumericMode` (bool, localStorage `whNumericMode`): when true, weather matrix cells show forecast numbers instead of icons. Grid metrics only (`hasGrid:true`). Toggle button always rendered for layout stability; `visibility:hidden` on non-grid metrics.
 - `CARD_MARKET_EXCLUDE` set: `'Stock Market YTD (USD)'`, `'Stock Market Index'`, `'FX Rate'`
 - `monthly_actuals` field is rendered in tooltip line charts for macro metrics — the script header comment saying "story context only" is wrong.
 - **Tooltip chart window rule:** All tooltip charts (annual bar, monthly line, market line, commodity monthly) always span Jan 2000 (left) → current month (right). The axis is fixed — never auto-fitted to data extent. Data is right-aligned into the full label array, left-padded with nulls. Missing data shows as visible gaps.
