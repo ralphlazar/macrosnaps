@@ -725,6 +725,8 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
   padding:12px 24px;
   background:linear-gradient(180deg,transparent,rgba(0,0,0,.9) 30%);
 }
+.footer-comm-row{display:contents}
+.footer-main-row{display:contents}
 .footer-link{
   font-family:var(--font-display);font-size:9px;letter-spacing:1.5px;
   text-transform:uppercase;color:#aaa;cursor:pointer;
@@ -905,7 +907,10 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
   .footer{
     gap:10px;padding:10px 16px;
     padding-bottom:calc(10px + env(safe-area-inset-bottom));
+    flex-direction:column;gap:4px;
   }
+  .footer-comm-row{display:flex;align-items:center;justify-content:center}
+  .footer-main-row{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px}
   .footer-link{font-size:9px;letter-spacing:1px;padding:4px 2px;min-height:32px;display:inline-flex;align-items:center}
   .footer-sep{font-size:8px}
 
@@ -990,19 +995,22 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 </div>
 
 <div class="footer">
-  <span class="footer-link" data-ft="what">What?</span>
-  <span class="footer-sep">|</span>
-  <span class="footer-link" data-ft="how">How?</span>
-  <span class="footer-sep">|</span>
-  <span class="footer-link" data-ft="who">Who?</span>
-  <span class="footer-sep">|</span>
-  <span class="footer-link" data-ft="icons">Icons?</span>
-  <span class="footer-sep">|</span>
-  <span class="footer-link" data-ft="legal">Legalese</span>
-  <span class="footer-sep">|</span>
-  <span class="footer-link" data-ft-comm="1">Commodities</span>
-  <span class="footer-sep">|</span>
-  <span class="footer-link" data-ft="ping">Ping Me</span>
+  <div class="footer-comm-row">
+    <span class="footer-link" data-ft-comm="1">Commodities</span>
+  </div>
+  <div class="footer-main-row">
+    <span class="footer-link" data-ft="what">What?</span>
+    <span class="footer-sep">|</span>
+    <span class="footer-link" data-ft="how">How?</span>
+    <span class="footer-sep">|</span>
+    <span class="footer-link" data-ft="who">Who?</span>
+    <span class="footer-sep">|</span>
+    <span class="footer-link" data-ft="icons">Icons?</span>
+    <span class="footer-sep">|</span>
+    <span class="footer-link" data-ft="legal">Legalese</span>
+    <span class="footer-sep">|</span>
+    <span class="footer-link" data-ft="ping">Ping Me</span>
+  </div>
 </div>
 
 
