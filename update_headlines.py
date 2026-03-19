@@ -281,7 +281,7 @@ def fetch_recent_country_data(client, countries_data):
         try:
             response = client.messages.create(
                 model=MODEL_SEARCH,
-                max_tokens=2000,
+                max_tokens=4000,
                 system=system,
                 tools=[{"type": "web_search_20250305", "name": "web_search"}],
                 messages=messages

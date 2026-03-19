@@ -1,0 +1,672 @@
+{
+  "emerging market debt": {
+    "complexity": 2,
+    "category": "credit",
+    "levels": {
+      "beginner": {
+        "bluf": "Money developing countries borrowed, often in US dollars."
+      },
+      "moderate": {
+        "bluf": "Sovereign/corporate bonds from EM entities, often USD-denominated."
+      },
+      "expert": {
+        "bluf": "~$4tn USD outstanding. Spreads reflect risk appetite, idiosyncratic credit, dollar funding."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "basis trade": {
+    "complexity": 3,
+    "category": "credit",
+    "levels": {
+      "beginner": {
+        "bluf": "Profiting from small price gaps between similar instruments."
+      },
+      "moderate": {
+        "bluf": "Leveraged cash bond vs futures arbitrage."
+      },
+      "expert": {
+        "bluf": "20-50x levered via repo. Vulnerable to vol spikes and repo stress."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "LGFV": {
+    "complexity": 3,
+    "category": "credit",
+    "levels": {
+      "beginner": {
+        "bluf": "Chinese local government companies that borrow for infrastructure."
+      },
+      "moderate": {
+        "bluf": "Off-balance-sheet local gov debt entities, ~¥60tn outstanding."
+      },
+      "expert": {
+        "bluf": "Quasi-fiscal with implicit guarantee; coverage deteriorating as land revenue collapses."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "credit impulse": {
+    "complexity": 3,
+    "category": "credit",
+    "levels": {
+      "beginner": {
+        "bluf": "How fast new borrowing speeds up or slows."
+      },
+      "moderate": {
+        "bluf": "Change in credit flow as % of GDP. Leading indicator."
+      },
+      "expert": {
+        "bluf": "Δflow/GDP. China TSF-based impulse historically led global PMIs."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "CDS": {
+    "complexity": 3,
+    "category": "credit",
+    "levels": {
+      "beginner": {
+        "bluf": "Credit Default Swap - a type of insurance that pays out if a borrower fails to repay their debt."
+      },
+      "moderate": {
+        "bluf": "Derivative contract providing insurance against default. Buyer pays a premium (spread); seller pays par if credit event occurs. CDS spreads are a real-time gauge of credit risk."
+      },
+      "expert": {
+        "bluf": "OTC derivative referencing credit events (failure to pay, restructuring). Single-name CDS on sovereigns prices redenomination/default risk. Bank CDS reflects sovereign-bank nexus in eurozone. Basis (CDS vs cash bond spread) indicates supply/demand technicals."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "TIPS": {
+    "complexity": 2,
+    "category": "credit",
+    "levels": {
+      "beginner": {
+        "bluf": "Treasury Inflation-Protected Securities - US government bonds that automatically adjust for inflation, protecting investors from rising prices."
+      },
+      "moderate": {
+        "bluf": "US government bonds indexed to CPI. The difference between TIPS yields and nominal Treasury yields gives the 'breakeven inflation rate' - the market's inflation expectation."
+      },
+      "expert": {
+        "bluf": "Real-return Treasury securities; principal adjusts with CPI-U. TIPS breakevens = nominal yield − real yield, decomposable into expected inflation + inflation risk premium. Liquidity premium in TIPS means breakevens slightly understate true expectations."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "NII": {
+    "complexity": 3,
+    "category": "credit",
+    "levels": {
+      "beginner": {
+        "bluf": "Net Interest Income - the profit banks make from the difference between what they earn on loans and what they pay on deposits."
+      },
+      "moderate": {
+        "bluf": "Difference between interest earned on assets (loans, bonds) and interest paid on liabilities (deposits). Rising rates boost NII for banks with fixed-rate asset books."
+      },
+      "expert": {
+        "bluf": "Key bank profitability driver; NII expansion in rising rate environments depends on asset-liability duration mismatch and deposit beta (the pass-through of rate hikes to deposit pricing). European bank NII expansion has driven recent equity outperformance."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "TPI": {
+    "complexity": 3,
+    "category": "credit",
+    "levels": {
+      "beginner": {
+        "bluf": "Transmission Protection Instrument - an ECB tool designed to prevent bond market panic from spreading across eurozone countries."
+      },
+      "moderate": {
+        "bluf": "ECB backstop to counter 'unwarranted' sovereign spread widening that impairs monetary policy transmission. Allows unlimited bond purchases for countries meeting fiscal/reform conditions."
+      },
+      "expert": {
+        "bluf": "Successor to OMT. Designed to address fragmentation risk within EMU. Conditionality (EU fiscal rules, no EDP, sustainability per DSA, sound macro policies) creates constructive ambiguity - the 'whatever it takes' put with moral hazard tension. Untested in practice."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "TLTRO": {
+    "complexity": 3,
+    "category": "credit",
+    "levels": {
+      "beginner": {
+        "bluf": "Targeted Long-Term Refinancing Operations - cheap loans the ECB gives to banks on the condition they lend the money to businesses and households."
+      },
+      "moderate": {
+        "bluf": "ECB programme providing cheap multi-year funding to banks, conditional on maintaining or increasing lending. Subsidised rates created carry opportunities. Repayment schedule affects bank funding costs and liquidity."
+      },
+      "expert": {
+        "bluf": "Targeted lending facility with rate incentives tied to lending benchmarks. TLTRO III provided sub-zero funding (~-1%) creating risk-free arbitrage. Repayment cliff affects bank funding plans, reserve levels, and excess liquidity in the eurozone system."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "gilt": {
+    "complexity": 2,
+    "category": "credit",
+    "levels": {
+      "beginner": {
+        "bluf": "A UK government bond - the British equivalent of a US Treasury."
+      },
+      "moderate": {
+        "bluf": "UK government bond. Named after the gilt-edged certificates they were historically printed on. The gilt market was at the centre of the September 2022 crisis triggered by the Truss mini-budget."
+      },
+      "expert": {
+        "bluf": "UK sovereign debt instrument. Post-mini-budget (Sept 2022) demonstrated LDI (liability-driven investment) leverage risk in the gilt market. BoE emergency purchases highlighted financial stability vs inflation mandate tension. DMO issuance plans are the key supply variable for the long end."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "bund": {
+    "complexity": 2,
+    "category": "credit",
+    "levels": {
+      "beginner": {
+        "bluf": "A German government bond - considered the safest in Europe and the benchmark for all eurozone debt."
+      },
+      "moderate": {
+        "bluf": "German government bond. The eurozone's risk-free benchmark. BTP-Bund, OAT-Bund, and other spreads to bunds measure relative sovereign credit risk within the eurozone."
+      },
+      "expert": {
+        "bluf": "Eurozone risk-free benchmark. Bund yields reflect ECB rate expectations and global safe-haven demand. Supply scarcity (Schuldenbremse limits issuance) has historically compressed bund yields. The bund-swap spread and repo specialness are key technicals for relative value."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "JGB": {
+    "complexity": 3,
+    "category": "credit",
+    "levels": {
+      "beginner": {
+        "bluf": "Japanese Government Bond - Japan has the largest government bond market in the world relative to its economy."
+      },
+      "moderate": {
+        "bluf": "Japanese government bonds. Outstanding stock ~¥1,000tn (~250% of GDP). The BOJ holds ~50% of the market, creating extreme concentration risk as it normalises policy."
+      },
+      "expert": {
+        "bluf": "Sovereign debt with unique dynamics: BOJ ownership ~50% of outstanding, suppressing vol and price discovery. YCC removal creates repricing risk across the curve. JGB basis trade (cash vs futures) vulnerable to BOJ purchase tapering. Foreign holdings minimal (~7%) due to hedging costs."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "BTP": {
+    "complexity": 3,
+    "category": "credit",
+    "levels": {
+      "beginner": {
+        "bluf": "Italian government bond - closely watched because Italy has one of the largest debt burdens in Europe."
+      },
+      "moderate": {
+        "bluf": "Italian government bond (Buoni del Tesoro Poliennali). BTP-Bund spread is the key gauge of Italian sovereign risk and eurozone fragmentation. Currently ~170bps."
+      },
+      "expert": {
+        "bluf": "Italian sovereign; BTP-Bund spread is the de facto 'shadow exchange rate' pricing redenomination risk. Spread drivers: fiscal trajectory, ECB backstop credibility, political risk. Bank HTM portfolios loaded with BTPs create sovereign-bank doom loop. TPI is the circuit breaker, but conditionality limits certainty."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "OAT": {
+    "complexity": 3,
+    "category": "credit",
+    "levels": {
+      "beginner": {
+        "bluf": "French government bond - tracked for signs of fiscal stress in the eurozone's second-largest economy."
+      },
+      "moderate": {
+        "bluf": "French government bond (Obligations Assimilables du Trésor). OAT-Bund spread (~55bps) is widening as France's fiscal deficit trajectory draws scrutiny. France's spread is a gauge of political and fiscal risk within the eurozone core."
+      },
+      "expert": {
+        "bluf": "French sovereign; OAT-Bund spread traditionally tight (~30bps) but widening on fiscal concerns reflects political risk pricing. Article 49.3 (executive budget bypass) reduces parliamentary gridlock but signals governance fragility. OAT outstandings are the eurozone's largest sovereign market, giving it systemic importance."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "duration": {
+    "complexity": 2,
+    "category": "credit",
+    "levels": {
+      "beginner": {
+        "bluf": "A measure of how sensitive a bond's price is to changes in interest rates. Longer duration means more sensitivity."
+      },
+      "moderate": {
+        "bluf": "Weighted average time to receive bond cash flows. Also measures price sensitivity to yield changes: a bond with 7-year duration loses ~7% if yields rise 1%. Central banks extract duration from the market via QE, compressing term premium."
+      },
+      "expert": {
+        "bluf": "Modified duration = ΔP/P per Δy. Macaulay duration = weighted average cash flow timing. Effective duration accounts for embedded options. Key risk metric: dollar duration × yield change = P&L. Duration extraction by central banks (QE) and return by QT is a primary driver of term premium dynamics."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "convexity": {
+    "complexity": 3,
+    "category": "credit",
+    "levels": {
+      "beginner": {
+        "bluf": "How a bond's price sensitivity to interest rates changes as rates move - it means bond prices respond differently to big moves vs small moves."
+      },
+      "moderate": {
+        "bluf": "Second-order bond price sensitivity: the rate of change of duration. Positive convexity means bonds gain more when yields fall than they lose when yields rise. MBS have negative convexity. Important for large yield moves."
+      },
+      "expert": {
+        "bluf": "Second derivative of price w.r.t. yield. Positive convexity is valuable (asymmetric payoff). MBS negative convexity from prepayment optionality creates hedging-driven volatility amplification. Callable bonds and CMS structures also exhibit convexity risk. Bank HTM portfolio convexity risk crystallises when rates move sharply (cf. SVB 2023)."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "spread": {
+    "complexity": 2,
+    "category": "credit",
+    "levels": {
+      "beginner": {
+        "bluf": "The difference in interest rates or yields between two bonds. A wider spread means more perceived risk."
+      },
+      "moderate": {
+        "bluf": "Yield differential between two bonds. Sovereign spreads (BTP-Bund) measure credit risk. Corporate spreads (over Treasuries) measure default risk. OAS (option-adjusted spread) accounts for embedded options. Spreads widen in stress, compress in risk-on environments."
+      },
+      "expert": {
+        "bluf": "Generic term for yield differential. Decomposable into credit risk premium, liquidity premium, and technical supply/demand factors. Z-spread (zero-volatility), OAS, and ASW (asset swap) spread each serve different analytical purposes. Spread duration measures sensitivity to spread changes vs rate changes."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "risk premium": {
+    "complexity": 2,
+    "category": "credit",
+    "levels": {
+      "beginner": {
+        "bluf": "The extra return investors demand for taking on risk instead of holding safe assets like government bonds."
+      },
+      "moderate": {
+        "bluf": "Additional return above the risk-free rate that compensates for uncertainty. Applies to credit risk (corporate bonds), equity risk (stocks vs bonds), term risk (long vs short bonds), and currency risk (FX forwards)."
+      },
+      "expert": {
+        "bluf": "Compensation for bearing systematic risk. Key types: equity risk premium (stocks vs bonds), term premium (duration risk), credit risk premium (default risk), and liquidity premium. Time-varying risk premia are central to asset pricing - Cochrane (2011) emphasises that most return predictability comes from discount rate variation."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "leverage": {
+    "complexity": 2,
+    "category": "credit",
+    "levels": {
+      "beginner": {
+        "bluf": "Using borrowed money to invest, which amplifies both gains and losses. More leverage means higher risk."
+      },
+      "moderate": {
+        "bluf": "Using debt to amplify investment returns. A hedge fund with 10x leverage sees 10% moves on 1% market changes. Leverage is the core amplifier of financial crises - forced selling by overleveraged institutions cascades through markets."
+      },
+      "expert": {
+        "bluf": "Debt-to-equity ratio at entity level; gross notional-to-capital for derivatives. Leverage is the common thread in financial crises: 1998 LTCM (25x), 2008 bank leverage (30x+), 2020 basis trade (20-50x). Marginal leverage (incremental borrowing sensitivity) matters more than average leverage for assessing systemic fragility."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "arbitrage": {
+    "complexity": 2,
+    "category": "credit",
+    "levels": {
+      "beginner": {
+        "bluf": "Profiting from price differences between similar assets - buying where it's cheap and selling where it's expensive. In theory, risk-free."
+      },
+      "moderate": {
+        "bluf": "Exploiting price discrepancies between related instruments. Pure arbitrage (risk-free) is rare in practice. Most 'arbitrage' strategies involve basis risk, leverage, and liquidity risk (Shleifer & Vishny, 'limits of arbitrage')."
+      },
+      "expert": {
+        "bluf": "Textbook: risk-free profit from pricing inconsistency. Reality: 'limits of arbitrage' (Shleifer-Vishny 1997) - margin constraints, funding liquidity, and career risk prevent convergence. Basis trades, stat arb, and relative value strategies are all leveraged 'quasi-arbitrage' with tail risk. Convergence can take longer than liquidity lasts."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "shadow banking": {
+    "complexity": 2,
+    "category": "credit",
+    "levels": {
+      "beginner": {
+        "bluf": "Financial institutions that do bank-like things (lending, investing) but aren't regulated like traditional banks. In China, this includes trust companies and wealth management products."
+      },
+      "moderate": {
+        "bluf": "Non-bank financial intermediation: entities performing bank-like functions (lending, maturity transformation) outside banking regulation. Includes money market funds, hedge funds, securitisation vehicles, and (in China) trust companies and WMPs. ~$60tn in China."
+      },
+      "expert": {
+        "bluf": "FSB defines as 'credit intermediation involving entities outside the regular banking system.' China's shadow banking (~¥60tn) includes trust loans, entrusted loans, and WMPs - interconnected with formal banking via implicit guarantees. Regulatory arbitrage drives growth; opacity complicates systemic risk assessment. Global shadow banking ~$200tn (NBFI monitoring per FSB)."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "HTM": {
+    "complexity": 3,
+    "category": "credit",
+    "levels": {
+      "beginner": {
+        "bluf": "Held-to-Maturity - a way banks classify bonds on their books so they don't have to report losses when bond prices fall, as long as they plan to hold them until they mature."
+      },
+      "moderate": {
+        "bluf": "Accounting classification for securities held until maturity. HTM assets are carried at amortised cost, not market value - meaning unrealised losses don't appear in earnings or capital. SVB's failure highlighted the risks of large HTM portfolios when forced selling crystallises hidden losses."
+      },
+      "expert": {
+        "bluf": "Accounting treatment (ASC 320): amortised cost rather than mark-to-market. Post-2022 rate hikes created ~$600bn in unrealised losses across US bank HTM portfolios. SVB demonstrated that HTM accounting obscures interest rate risk until a liquidity event forces realisation. European bank HTM-classified sovereign holdings (particularly BTPs) create a latent sovereign-bank doom loop."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "credit spread": {
+    "complexity": 1,
+    "category": "credit",
+    "levels": {
+      "beginner": {
+        "bluf": "The extra interest a riskier borrower pays compared to a safe benchmark like government bonds. Wider spreads mean more fear in markets."
+      },
+      "moderate": {
+        "bluf": "Yield premium over a risk-free benchmark, compensating for default risk and liquidity. IG OAS is the standard corporate measure; sovereign spreads (BTP-Bund, OAT-Bund) measure fiscal risk within the eurozone."
+      },
+      "expert": {
+        "bluf": "OAS = expected default loss + liquidity premium + systematic risk premium. Merton model frames spreads via firm leverage and asset vol. Credit spread puzzle: market spreads far exceed actuarial default rates. Spreads lead equities at turning points by 2-4 weeks."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "OAS": {
+    "complexity": 3,
+    "category": "credit",
+    "levels": {
+      "beginner": {
+        "bluf": "Option-Adjusted Spread - a way to measure the extra yield on a bond after accounting for any special features like early repayment options."
+      },
+      "moderate": {
+        "bluf": "The spread of a bond over the Treasury curve after removing the value of any embedded options (e.g., callability). The standard measure for comparing corporate bond credit risk across issuers and maturities."
+      },
+      "expert": {
+        "bluf": "Spread computed via Monte Carlo simulation of interest rate paths, stripping embedded option value. OAS isolates pure credit/liquidity premium. Preferred over nominal spread or z-spread for callable bonds. ICE BofA and Bloomberg indices are the standard IG/HY OAS benchmarks."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "investment grade": {
+    "complexity": 2,
+    "category": "credit",
+    "levels": {
+      "beginner": {
+        "bluf": "Bonds rated as relatively safe by credit rating agencies. Companies or governments with investment grade ratings can borrow money at lower interest rates because they're seen as unlikely to default."
+      },
+      "moderate": {
+        "bluf": "Bonds rated BBB-/Baa3 or higher by S&P/Moody's. The boundary between investment grade and high yield (\"junk\") is the most consequential rating threshold - many institutional investors are mandated to hold only IG bonds. The BBB tier (~50% of US IG) represents the largest concentration of credit risk at the boundary."
+      },
+      "expert": {
+        "bluf": "Rating threshold: ≥BBB- (S&P/Fitch) / ≥Baa3 (Moody's). The IG/HY boundary is systemically important: mandate-driven forced selling on downgrade (\"fallen angels\") creates cliff risk. BBB tranche has grown from ~30% to ~50% of US IG index since 2008 - a downgrade wave would overwhelm HY market absorption capacity. IG OAS (~85bps US) is the benchmark corporate credit risk gauge."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "high yield": {
+    "complexity": 2,
+    "category": "credit",
+    "levels": {
+      "beginner": {
+        "bluf": "Bonds rated as riskier - sometimes called \"junk bonds.\" They pay higher interest rates to compensate investors for the greater chance the borrower might not pay back."
+      },
+      "moderate": {
+        "bluf": "Bonds rated BB+/Ba1 or below. Higher default risk but higher yields. The HY market is sensitive to economic cycles - spreads widen sharply in recessions as default rates rise. HY spread is a leading indicator of economic stress, often moving before equity markets."
+      },
+      "expert": {
+        "bluf": "Sub-IG credit: BB+/Ba1 and below (S&P/Moody's). US HY market ~$1.4tn outstanding. Default rates cycle between 1-2% (benign) and 10-12% (recession). HY-IG spread compression (currently near tights) signals risk appetite but also poor forward risk-adjusted returns. Distressed ratio (bonds trading >1000bps) is the early warning indicator for the default cycle turning. CCC-rated issuers represent the highest-risk tail and typically lead the spread widening."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "Corp Spread": {
+    "complexity": 2,
+    "category": "credit",
+    "levels": {
+      "beginner": {
+        "bluf": "The corporate spread is the extra interest rate companies must pay to borrow, compared to the government. It measures how risky the market thinks corporate borrowers are - wider spreads mean more fear about companies defaulting on their debts.",
+        "sections": [
+          {
+            "head": "Why it matters",
+            "body": "Companies borrow by issuing bonds. They always pay a higher rate than the government because there is a chance they could go bankrupt and not pay back their debt. The corporate spread measures this risk premium. When the economy looks shaky, investors demand a bigger premium - spreads widen. When confidence is high, spreads narrow."
+          },
+          {
+            "head": "Intuition",
+            "body": "Think of it like a credit score for the corporate sector. Just as a person with a lower credit score pays a higher interest rate on a mortgage, companies in a troubled economy pay more to borrow. The spread is the market's real-time assessment of corporate health - it moves faster than credit ratings do."
+          },
+          {
+            "head": "Example",
+            "body": "If the US government 10-year bond yields 4.5% and an investment-grade corporate bond yields 5.5%, the corporate spread is 1.0% (100 basis points). During the 2008 crisis, investment-grade spreads blew out to over 600 basis points as investors feared a wave of bankruptcies."
+          },
+          {
+            "head": "What to watch",
+            "body": [
+              "Investment-grade spreads below 100bp signal strong confidence in the corporate sector",
+              "Spreads above 200bp for investment-grade signal real stress",
+              "High-yield (\"junk bond\") spreads are more sensitive - they can move from 300bp to 1000bp in a crisis",
+              "When spreads widen while stock markets are still rising, credit is often right and equities are wrong"
+            ]
+          }
+        ],
+        "formal": "The yield premium (in basis points) that investment-grade corporate bonds pay above the equivalent-maturity government bond yield, reflecting credit risk, liquidity risk, and market risk appetite."
+      },
+      "moderate": {
+        "bluf": "Investment-grade corporate spreads reflect the credit risk premium, liquidity conditions, and risk appetite. They are a leading indicator of financial stress - typically widening before equities sell off - and a key input into corporate financing costs and M&A activity.",
+        "sections": [
+          {
+            "head": "Why it matters",
+            "body": "Corporate spreads determine the actual cost of capital for companies. Even if the 10Y yield is stable, widening spreads tighten corporate financial conditions. Spreads also reflect systemic risk: during crises, the correlation between credit and equities approaches 1.0, meaning spread widening amplifies equity sell-offs. Credit markets are generally considered smarter than equity markets at pricing tail risk."
+          },
+          {
+            "head": "Intuition",
+            "body": "Spreads decompose into: expected default loss + credit risk premium + liquidity premium. In normal markets, actual defaults are well below what spreads imply - the excess is the credit risk premium that investors earn for bearing uncertainty. During crises, expected defaults spike and liquidity evaporates, so spreads blow out far beyond what actual defaults would justify."
+          },
+          {
+            "head": "Example",
+            "body": "US IG spreads sat at ~90bp in early 2024 - near historically tight levels. This reflected strong corporate fundamentals (high coverage ratios, low leverage) and abundant liquidity. But tight spreads also mean there is little room for further compression and significant downside if conditions deteriorate - asymmetric risk."
+          },
+          {
+            "head": "What to watch",
+            "body": [
+              "**IG vs HY divergence:** when high-yield widens but IG stays tight, risk is concentrated in weaker credits",
+              "**Primary market access:** when new issuance dries up, companies cannot refinance - the real crisis mechanism",
+              "**CCC spreads:** the weakest tier of high-yield - the canary in the coal mine for default cycles",
+              "**Spread per unit of duration:** longer-dated credit with tight spreads offers the worst risk/return"
+            ]
+          }
+        ],
+        "formal": "The option-adjusted spread (OAS) of investment-grade corporate bonds over the equivalent sovereign yield curve. Expressed in basis points. Accounts for embedded optionality (callable bonds) and represents the pure credit + liquidity premium."
+      },
+      "expert": {
+        "bluf": "IG corporate spreads are the market's clearing price for credit risk, decomposable into expected loss, credit risk premium, and liquidity premium. At current compressed levels (~90bp), the credit risk premium is near zero - investors are being paid almost entirely for expected loss with minimal compensation for uncertainty. Asymmetry is extreme.",
+        "sections": [
+          {
+            "head": "Why it matters",
+            "body": "Credit spreads are the primary transmission mechanism from financial markets to the real economy. A 100bp move in IG spreads changes corporate borrowing costs for every company that accesses the bond market. The BBB cliff (the concentration of near-junk rated IG bonds) means spread widening can trigger downgrades, forced selling by mandate-constrained funds, and a self-reinforcing credit crunch."
+          },
+          {
+            "head": "Intuition",
+            "body": "The credit risk premium (spread minus expected loss) is compensation for bearing default uncertainty and illiquidity. Merton model framework: credit spreads should reflect the distance-to-default (equity vol, leverage, asset value). In practice, spreads are also driven by flows: CLO formation drives HY demand, insurance company buying drives IG demand, and ETF rebalancing creates mechanical spread compression. These technical factors can decouple spreads from fundamentals for extended periods."
+          },
+          {
+            "head": "Example",
+            "body": "March 2020: IG spreads hit 375bp despite investment-grade default rates never exceeding 0.5%. The spread reflected pure liquidity panic - dealers could not warehouse risk, ETF NAV discounts hit 5%+, and the Fed had to intervene with the corporate credit facility (buying IG and even fallen-angel HY ETFs). The lesson: credit market structure - not fundamental credit risk - can drive spread moves in crises."
+          },
+          {
+            "head": "What to watch",
+            "body": [
+              "**BBB concentration:** ~50% of the IG index is BBB - a downgrade wave would flood the HY market with forced selling",
+              "**Dealer inventory:** post-Volcker Rule, dealer balance sheets are constrained - they cannot absorb selling pressure, amplifying spread moves",
+              "**Excess bond premium (EBP):** Gilchrist-Zakrajsek measure strips out expected defaults - the pure risk appetite/financial conditions signal",
+              "**Private credit migration:** $1.5tn+ in private credit is unpriced by markets - a shadow credit market whose stress would not show up in spread indices until contagion occurs"
+            ]
+          }
+        ],
+        "formal": "Option-adjusted spread (OAS) of the investment-grade corporate bond index over the sovereign curve. Decomposition: OAS = expected loss + credit risk premium + liquidity premium. The excess bond premium (EBP = OAS - expected loss) is the clean financial conditions signal. Merton model: spread = f(leverage, asset vol, risk-free rate, maturity)."
+      }
+    },
+    "aliases": [
+      "credit spread",
+      "corporate bond spread",
+      "IG spread"
+    ],
+    "relatedTerms": [
+      "credit spread",
+      "high yield",
+      "investment grade",
+      "default"
+    ],
+    "metricLinks": [
+      "Corp Spread"
+    ]
+  },
+  "Sov CDS": {
+    "complexity": 2,
+    "category": "credit",
+    "levels": {
+      "beginner": {
+        "bluf": "A sovereign CDS (Credit Default Swap) spread is the cost of insurance against a government failing to pay its debts. It is the market's real-time verdict on how likely a country is to default - higher spreads mean more risk.",
+        "sections": [
+          {
+            "head": "Why it matters",
+            "body": "Governments are generally the safest borrowers in any country - if the government cannot pay its debts, everything else is in trouble. The sovereign CDS spread tells you how much investors would pay to protect themselves against this worst-case scenario. For most developed countries, the spread is very low (government default is extremely unlikely). For countries with weaker finances, it can be high."
+          },
+          {
+            "head": "Intuition",
+            "body": "Think of it like home insurance premiums. A house in a safe area with solid foundations costs very little to insure. A house in a flood zone with structural problems costs a lot more. Sovereign CDS works the same way - countries with strong finances and stable institutions have low spreads; countries with high debt, political instability, or weak growth have higher spreads."
+          },
+          {
+            "head": "Example",
+            "body": "Germany's sovereign CDS spread might be 15 basis points (very safe), while Italy's might be 100 basis points (more risk due to high debt). During the European debt crisis (2011-2012), Greece's CDS spread exceeded 30,000 basis points before it actually defaulted - the market was pricing near certainty of default."
+          },
+          {
+            "head": "What to watch",
+            "body": [
+              "Below 50bp: low risk - the market considers default extremely unlikely",
+              "100-200bp: moderate risk - some concern about fiscal sustainability",
+              "Above 300bp: elevated risk - serious questions about the country's ability to manage its debt",
+              "Sudden spikes in CDS often foreshadow broader market stress or political crises"
+            ]
+          }
+        ],
+        "formal": "The annual premium (in basis points) paid to buy protection against a sovereign default via a credit default swap contract, typically referencing the 5-year maturity."
+      },
+      "moderate": {
+        "bluf": "Sovereign CDS spreads price the market-implied probability of government default. They strip out interest rate risk (unlike bond spreads) and provide a pure measure of credit perception. They are the fastest-moving indicator of sovereign stress and contagion risk.",
+        "sections": [
+          {
+            "head": "Why it matters",
+            "body": "Sovereign CDS spreads are the cleanest measure of sovereign credit risk because they isolate default probability from interest rate and liquidity effects. They move faster than bond markets during stress because CDS are unfunded (no capital outlay) and can be shorted easily. For countries with less liquid bond markets, CDS is often the more reliable risk indicator."
+          },
+          {
+            "head": "Intuition",
+            "body": "A CDS spread can be roughly converted to a default probability: a 100bp spread on a 5Y CDS, assuming 40% recovery, implies roughly a 1.7% annual default probability or ~8% cumulative 5-year probability. This is a useful mental model, though the actual CDS premium includes a risk premium above the pure actuarial probability."
+          },
+          {
+            "head": "Example",
+            "body": "During the 2011 euro crisis, Italian CDS widened from 150bp to 590bp in 4 months as markets questioned euro membership. The ECB's \"whatever it takes\" intervention compressed spreads 300bp in weeks - demonstrating that for eurozone sovereigns, the central bank backstop is the dominant variable. Without it, Italian spreads would structurally trade wider."
+          },
+          {
+            "head": "What to watch",
+            "body": [
+              "**CDS-bond basis:** the gap between CDS spread and bond spread - when CDS is significantly wider, it signals hedging demand or short positioning",
+              "**Cross-country contagion:** correlation of CDS moves across countries signals systemic vs idiosyncratic risk",
+              "**Upfront pricing:** when CDS trades upfront rather than running spread, the market considers near-term default possible",
+              "**CDS vs local yields:** for countries that print their own currency, CDS also prices inflation/devaluation risk, not just hard default"
+            ]
+          }
+        ],
+        "formal": "The 5-year sovereign CDS premium in basis points. Approximate implied default probability: p ≈ spread / (1 - recovery rate), with standard recovery assumption of 40% for sovereign CDS (25% for some EM credits)."
+      },
+      "expert": {
+        "bluf": "Sovereign CDS prices the risk-neutral default probability conditional on recovery assumptions. For G7 issuers, CDS levels reflect redenomination risk and fiscal trajectory more than literal default probability. The CDS-bond basis and cross-currency basis together reveal the true all-in cost of sovereign risk hedging.",
+        "sections": [
+          {
+            "head": "Why it matters",
+            "body": "For developed market sovereigns that issue in their own currency, \"default\" is effectively a policy choice (they can always print). Sovereign CDS for these issuers prices a combination of: redenomination risk (for eurozone members), restructuring probability, political willingness to pay, and the tail risk of institutional breakdown. The 2012 Greek restructuring was a credit event; Argentina's serial defaults are credit events. The US debt ceiling drama is priced via CDS even though actual default is near-zero probability."
+          },
+          {
+            "head": "Intuition",
+            "body": "The sovereign CDS market is thin for most names - the notional outstanding is a fraction of the bond market. This means CDS spreads can be driven by positioning (a few large hedge funds buying protection) rather than fundamental repricing. The CDS-bond basis (negative when CDS bond spread) reveals whether the signal is coming from the cash market or the derivatives market."
+          },
+          {
+            "head": "Example",
+            "body": "US CDS spiked to 175bp during the 2023 debt ceiling standoff - a massive move for the world's reserve currency issuer. This was pure political risk pricing: the market assigned a non-trivial probability to a technical default (missed payment) even though eventual payment was near certain. The asymmetry - tiny probability of an enormous event - makes sovereign CDS gamma extremely convex during political crises."
+          },
+          {
+            "head": "What to watch",
+            "body": [
+              "**ISDA definitions:** what constitutes a credit event is legally precise - failure to pay, restructuring, and repudiation are the three sovereign triggers. Definitions changed post-2014 to include redenomination",
+              "**Recovery rate assumptions:** standard 40% recovery is a convention, not a fundamental - actual sovereign recoveries vary enormously (Greece: ~47%, Argentina: ~25%)",
+              "**Quanto CDS:** the difference between USD-denominated and EUR-denominated CDS on eurozone sovereigns prices redenomination (exit to new currency) specifically",
+              "**Net notional:** DTCC data shows net CDS positions outstanding - a shrinking market means less liquidity and more gap risk"
+            ]
+          }
+        ],
+        "formal": "The 5Y sovereign CDS spread in basis points. Risk-neutral default probability: PD = 1 - e^(-s*T/(1-R)), where s = spread, T = maturity, R = recovery. For EUR sovereigns, quanto CDS differential (EUR vs USD denomination) isolates redenomination risk. The CDS-bond basis = CDS spread - asset swap spread (ASW) on the benchmark bond."
+      }
+    },
+    "aliases": [
+      "sovereign CDS",
+      "sovereign credit default swap",
+      "country CDS"
+    ],
+    "relatedTerms": [
+      "sovereign CDS",
+      "CDS",
+      "default",
+      "credit risk"
+    ],
+    "metricLinks": [
+      "Sov CDS"
+    ]
+  }
+}

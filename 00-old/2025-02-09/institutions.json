@@ -1,0 +1,344 @@
+{
+  "Fed": {
+    "complexity": 2,
+    "category": "institutions",
+    "levels": {
+      "beginner": {
+        "bluf": "The Federal Reserve - America's central bank that controls interest rates and the money supply."
+      },
+      "moderate": {
+        "bluf": "The US central bank. Dual mandate: price stability and maximum employment. Sets the federal funds rate."
+      },
+      "expert": {
+        "bluf": "Independent central bank operating via FOMC. Balance sheet ~$7.5tn post-QE. Transmission through reserves, ON RRP, and standing facilities."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "Federal Reserve": {
+    "complexity": 1,
+    "category": "institutions",
+    "levels": {
+      "beginner": {
+        "bluf": "America's central bank - it decides interest rates and helps keep the economy stable."
+      },
+      "moderate": {
+        "bluf": "The US central bank responsible for monetary policy, financial stability, and bank supervision. Operates via the FOMC."
+      },
+      "expert": {
+        "bluf": "Dual-mandate institution (Humphrey-Hawkins 1978). Implements policy via fed funds target, IORB, ON RRP, and discount window. Lender of last resort function critical in crises."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "ECB": {
+    "complexity": 2,
+    "category": "institutions",
+    "levels": {
+      "beginner": {
+        "bluf": "The European Central Bank - sets interest rates for all countries using the euro."
+      },
+      "moderate": {
+        "bluf": "Central bank for the eurozone (20 countries). Single mandate: price stability (~2% inflation). Key rates: deposit facility, main refinancing, marginal lending."
+      },
+      "expert": {
+        "bluf": "Governing Council sets policy for heterogeneous economies - one-size-fits-all constraint. Asset purchases (APP/PEPP), TPI, and forward guidance are key unconventional tools. Fiscal-monetary boundary tested by sovereign spread management."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "BOJ": {
+    "complexity": 2,
+    "category": "institutions",
+    "levels": {
+      "beginner": {
+        "bluf": "Bank of Japan - Japan's central bank, known for keeping interest rates extremely low for decades."
+      },
+      "moderate": {
+        "bluf": "Japan's central bank. Pioneered unconventional policies: QQE, negative rates, yield curve control. Currently exiting decades-long easing."
+      },
+      "expert": {
+        "bluf": "Implemented YCC (2016), NIRP, and QQE with balance sheet at ~130% GDP. Exit sequencing - NIRP removal → YCC adjustment → rate normalisation - is the key global macro event."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "BOE": {
+    "complexity": 2,
+    "category": "institutions",
+    "levels": {
+      "beginner": {
+        "bluf": "Bank of England - the UK's central bank that sets interest rates for Britain."
+      },
+      "moderate": {
+        "bluf": "UK central bank with inflation target of 2% (CPI). Monetary Policy Committee (MPC) sets bank rate. Also responsible for financial stability."
+      },
+      "expert": {
+        "bluf": "MPC votes on bank rate; forward guidance via meeting minutes and MPR. Post-mini-budget crisis (2022) demonstrated gilt market fragility and BoE's financial stability mandate tension with inflation targeting."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "PBOC": {
+    "complexity": 2,
+    "category": "institutions",
+    "levels": {
+      "beginner": {
+        "bluf": "People's Bank of China - China's central bank that manages the yuan and sets lending rates."
+      },
+      "moderate": {
+        "bluf": "China's central bank. Uses multiple tools: MLF, LPR, RRR, and FX intervention. Operates under State Council guidance, limiting independence."
+      },
+      "expert": {
+        "bluf": "Operates through administered rate corridor (MLF/LPR/RRR) rather than market-based overnight rate. Dual mandate of growth support and FX stability creates impossible trinity tension. Window guidance and moral suasion supplement formal tools."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "RBI": {
+    "complexity": 2,
+    "category": "institutions",
+    "levels": {
+      "beginner": {
+        "bluf": "Reserve Bank of India - India's central bank that manages interest rates and the rupee."
+      },
+      "moderate": {
+        "bluf": "India's central bank. Inflation-targeting framework (4% ±2% CPI). Manages the rupee through active FX intervention while maintaining the LAF corridor for liquidity."
+      },
+      "expert": {
+        "bluf": "Flexible inflation targeting since 2016 (amended RBI Act). Operates via LAF corridor (repo/reverse repo/MSF). Active FX intervention sterilised through MSS and OMOs. Capital account liberalisation gradual per Tarapore Committee framework."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "IMF": {
+    "complexity": 1,
+    "category": "institutions",
+    "levels": {
+      "beginner": {
+        "bluf": "International Monetary Fund - a global organisation that lends money to countries in financial trouble and monitors the world economy."
+      },
+      "moderate": {
+        "bluf": "International institution providing financial assistance, surveillance, and technical support. 190 member countries. Key publications: WEO, GFSR, Article IV reports."
+      },
+      "expert": {
+        "bluf": "Bretton Woods institution. Lending via Stand-By, EFF, and precautionary facilities with conditionality. SDR allocation as supplementary reserves. Surveillance through Article IV, FSAP, and External Balance Assessment (EBA) frameworks."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "BIS": {
+    "complexity": 3,
+    "category": "institutions",
+    "levels": {
+      "beginner": {
+        "bluf": "Bank for International Settlements - a bank for central banks that researches global financial risks."
+      },
+      "moderate": {
+        "bluf": "International institution serving as the 'central bank of central banks.' Hosts Basel Committee (banking regulation). Publishes key data on global banking, FX turnover, and credit."
+      },
+      "expert": {
+        "bluf": "Basel-based institution facilitating CB cooperation. Hosts BCBS, CPMI, and FSB secretariat. Triennial Survey is the definitive FX market data source. Research on global liquidity, credit cycles, and financial stability is highly influential."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "SNB": {
+    "complexity": 3,
+    "category": "institutions",
+    "levels": {
+      "beginner": {
+        "bluf": "Swiss National Bank - Switzerland's central bank."
+      },
+      "moderate": {
+        "bluf": "Swiss central bank. Notable for negative rates and massive FX intervention to prevent CHF overappreciation."
+      },
+      "expert": {
+        "bluf": "Implemented NIRP and conducted large-scale FX intervention (~CHF 800bn cumulative). Abandoned EUR/CHF floor in Jan 2015 ('Frankenshock'). Unique among CBs in holding significant equity portfolio."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "OPEC": {
+    "complexity": 2,
+    "category": "institutions",
+    "levels": {
+      "beginner": {
+        "bluf": "Organisation of the Petroleum Exporting Countries - a group of oil-producing nations that coordinate how much oil to produce, influencing global oil prices."
+      },
+      "moderate": {
+        "bluf": "Cartel of major oil exporters coordinating production quotas to manage oil prices. OPEC+ includes Russia and other non-member producers."
+      },
+      "expert": {
+        "bluf": "Production quota cartel; OPEC+ framework includes non-members. Spare capacity (primarily Saudi) is the key supply elasticity variable. Revenue recycling into USD assets (petrodollar system) has structural implications for Treasury demand and global liquidity."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "Target2": {
+    "complexity": 3,
+    "category": "institutions",
+    "levels": {
+      "beginner": {
+        "bluf": "A payment system connecting eurozone central banks. Large imbalances in Target2 show money flowing from weaker to stronger eurozone economies."
+      },
+      "moderate": {
+        "bluf": "The ECB's real-time gross settlement system. Target2 balances reflect net cross-border payment flows within the eurozone. Germany's large positive balance (~€1tn) mirrors southern European deficits, indicating persistent capital flow asymmetries."
+      },
+      "expert": {
+        "bluf": "RTGS system; imbalances are accounting counterparts to cross-border flows within EMU. During crises, Target2 substitutes for private capital flows (Sinn 2011). Germany's claim (~€1tn) represents implicit exposure to eurozone break-up risk. Balances are uncollateralised claims on the Eurosystem."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "EMU": {
+    "complexity": 2,
+    "category": "institutions",
+    "levels": {
+      "beginner": {
+        "bluf": "European Monetary Union - the arrangement where 20 European countries share the euro as their currency."
+      },
+      "moderate": {
+        "bluf": "The eurozone: 20 EU member states sharing the euro and ECB-set monetary policy. Fiscal policy remains national, creating the core tension - monetary union without fiscal union."
+      },
+      "expert": {
+        "bluf": "Optimal Currency Area theory (Mundell 1961) suggests EMU is suboptimal - asymmetric shocks without labour mobility or fiscal transfers create adjustment costs. The 'original sin' for high-debt members is the loss of monetary sovereignty and devaluation option."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "ERM": {
+    "complexity": 3,
+    "category": "institutions",
+    "levels": {
+      "beginner": {
+        "bluf": "Exchange Rate Mechanism - a system that used to link European currencies together before the euro was created. The UK was famously forced out in 1992."
+      },
+      "moderate": {
+        "bluf": "Pre-euro system pegging European currencies within bands. ERM crisis of 1992 ('Black Wednesday') forced UK and Italy out. ERM II currently serves as the waiting room for euro adoption."
+      },
+      "expert": {
+        "bluf": "Adjustable peg system with ±2.25% bands (±15% post-1993 widening). Speculative attacks exploited the impossible trinity - Soros's GBP short in Sept 1992 is the canonical example. Demonstrated that fixed-but-adjustable pegs are inherently unstable (Obstfeld 1996)."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "NGEU": {
+    "complexity": 3,
+    "category": "institutions",
+    "levels": {
+      "beginner": {
+        "bluf": "NextGenerationEU - a €750 billion recovery fund created by the EU after COVID, financed by joint borrowing for the first time."
+      },
+      "moderate": {
+        "bluf": "€750bn EU recovery fund (2021-2026) financed through common EU debt issuance - a breakthrough in fiscal integration. Italy is the largest beneficiary (~€191bn in grants and loans), conditional on reform milestones."
+      },
+      "expert": {
+        "bluf": "First large-scale EU joint debt issuance. Creates a quasi-safe asset (EU bonds) and fiscal transfer mechanism. Conditionality on structural reforms and green/digital investment. Implementation delays risk disbursement timeline, particularly for Italy's €191bn allocation."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "BPM6": {
+    "complexity": 3,
+    "category": "institutions",
+    "levels": {
+      "beginner": {
+        "bluf": "Balance of Payments Manual 6th Edition - the international standard for how countries measure their trade and financial flows with the rest of the world."
+      },
+      "moderate": {
+        "bluf": "IMF's international standard for compiling balance of payments statistics. Defines current account, capital account, and financial account components and methodology."
+      },
+      "expert": {
+        "bluf": "IMF statistical framework for external accounts. Key methodological features: FDI threshold at 10%, treatment of reinvested earnings, and financial derivatives classification. Asymmetries in bilateral reporting (errors and omissions) complicate global consistency."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "Schuldenbremse": {
+    "complexity": 3,
+    "category": "institutions",
+    "levels": {
+      "beginner": {
+        "bluf": "Germany's constitutional 'debt brake' - a rule limiting how much the government can borrow, which critics say prevents needed investment spending."
+      },
+      "moderate": {
+        "bluf": "Germany's constitutional debt brake, enshrined in the Basic Law since 2009. Limits the structural federal deficit to 0.35% of GDP. Constrains counter-cyclical fiscal policy and public investment, contributing to Germany's infrastructure deficit."
+      },
+      "expert": {
+        "bluf": "Constitutional fiscal rule (Art. 109 GG) limiting structural federal deficit to 0.35% GDP. Escape clause for extraordinary circumstances (activated for COVID). Binding constraint on fiscal response to structural challenges (energy transition, defence, digitalisation). Reform debate centres on golden rule exceptions for investment spending."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "conditionality": {
+    "complexity": 2,
+    "category": "institutions",
+    "levels": {
+      "beginner": {
+        "bluf": "Requirements that countries must meet in exchange for financial support - like promising to cut spending or reform their economy to receive IMF loans."
+      },
+      "moderate": {
+        "bluf": "Policy conditions attached to financial assistance (IMF programmes, ECB backstops, EU funds). Typically involves fiscal consolidation, structural reforms, and institutional changes. Balances support with incentive alignment."
+      },
+      "expert": {
+        "bluf": "Ex ante or ex post policy requirements attached to financial support. IMF conditionality has evolved from rigid structural adjustment to more flexible frameworks. ECB TPI conditionality (EU fiscal rules, no EDP, sustainable debt) creates constructive ambiguity about activation threshold. NGEU reform milestones represent a softer conditionality model."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  },
+  "SWF": {
+    "complexity": 3,
+    "category": "institutions",
+    "levels": {
+      "beginner": {
+        "bluf": "Sovereign Wealth Fund - a government-owned investment fund, often built from oil revenues or trade surpluses, that invests globally."
+      },
+      "moderate": {
+        "bluf": "State-owned investment fund managing national savings. Funded by commodity revenues (Norway's GPFG, Abu Dhabi's ADIA) or current account surpluses (China's CIC, Singapore's GIC/Temasek). AUM collectively exceeds $10tn. Asset allocation decisions have market-moving impact."
+      },
+      "expert": {
+        "bluf": "Government-owned pools of capital investing across asset classes and geographies. Governance and transparency vary widely (Santiago Principles provide voluntary standards). Geopolitical diversification away from USTs by some SWFs contributes to de-dollarisation dynamics. Asset allocation shifts (from bonds to alternatives/private markets) affect public market liquidity and pricing."
+      }
+    },
+    "aliases": [],
+    "relatedTerms": [],
+    "metricLinks": []
+  }
+}
