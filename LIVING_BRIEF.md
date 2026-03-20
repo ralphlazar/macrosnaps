@@ -1,5 +1,11 @@
 # MacroSnaps - Living Brief
-Last updated: March 18, 2026 (Session 39: commodity charts fixed to span Jan 2000; spark arrays expanded from 120 pts to full history.)
+Last updated: March 19, 2026 (Session 40: `update_headlines.py` harvest `max_tokens` bumped from 2000 to 4000.)
+
+Session 40 changes in detail:
+
+(1) **`update_headlines.py`: harvest `max_tokens` raised from 2000 to 4000 (line 284).** The Anthropic API now returns web search results as `server_tool_use` + `web_search_tool_result` blocks in the same turn as the final text response, consuming tokens from the same `max_tokens` budget. This left insufficient room for the 12-country JSON output, causing truncation mid-object and a consistent `No JSON object found in response` parse failure. Bumping to 4000 resolved it cleanly. Root cause confirmed by inspecting raw block types: previously the search results were lighter or handled differently; now they count against the output budget.
+
+---
 
 Session 39 changes in detail:
 
