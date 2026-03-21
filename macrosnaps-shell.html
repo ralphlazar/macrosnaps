@@ -718,6 +718,33 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 .cr-regime.euro{border-color:rgba(100,140,255,.15);color:#7a9cf0}
 
 /* ── Footer ── */
+.subscribe-box{
+  padding:16px 20px;
+  border-top:1px solid rgba(255,255,255,.07);
+  border-bottom:1px solid rgba(255,255,255,.07);
+  background:rgba(0,212,255,.04);
+}
+.subscribe-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  max-width:900px;margin:0 auto;gap:16px;flex-wrap:wrap;
+}
+.subscribe-text{display:flex;flex-direction:column;gap:3px;}
+.subscribe-label{
+  font-family:var(--font-display);font-size:11px;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--cyan);
+}
+.subscribe-desc{font-family:var(--font-body);font-size:12px;color:#888;}
+.subscribe-btn{
+  font-family:var(--font-display);font-size:11px;letter-spacing:1.5px;
+  text-transform:uppercase;padding:8px 22px;
+  border:1px solid var(--cyan);border-radius:4px;
+  background:rgba(0,212,255,.12);color:var(--cyan);
+  text-decoration:none;white-space:nowrap;
+  box-shadow:0 0 16px rgba(0,212,255,.12);
+  transition:all .2s;
+}
+.subscribe-btn:hover{background:rgba(0,212,255,.22);box-shadow:0 0 24px rgba(0,212,255,.22);}
+
 .footer{
   position:fixed;bottom:0;left:0;right:0;z-index:10;
   display:flex;align-items:center;justify-content:center;gap:24px;
@@ -991,6 +1018,16 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
     <div class="globe-hint"><span class="hint-desktop">Drag to rotate · Scroll to zoom · Click a country</span><span class="hint-mobile">Swipe to rotate · Pinch to zoom · Tap a country</span></div>
   </div>
   <div id="rankings-view" class="active"></div>
+</div>
+
+<div class="subscribe-box">
+  <div class="subscribe-inner">
+    <div class="subscribe-text">
+      <span class="subscribe-label">MacroSnaps Newsletter</span>
+      <span class="subscribe-desc">Daily and weekly macro briefings, straight to your inbox.</span>
+    </div>
+    <a class="subscribe-btn" href="https://macrosnaps.substack.com" target="_blank" rel="noopener">Subscribe free</a>
+  </div>
 </div>
 
 <div class="footer">

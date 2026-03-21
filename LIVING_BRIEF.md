@@ -1,5 +1,19 @@
 # MacroSnaps - Living Brief
-Last updated: March 19, 2026 (Session 40: `update_headlines.py` harvest `max_tokens` bumped from 2000 to 4000.)
+Last updated: March 21, 2026 (Session 41: Three.js and Cloudflare beacon removed; `build.py` date stamp order fixed; service account key regenerated; Anthropic API key updated.)
+
+Session 41 changes in detail:
+
+(1) **Three.js removed from `macrosnaps-shell.html`.** The Three.js script (`cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js`) was loading on every page load despite the globe no longer being part of the site. This was crashing Chrome 146 on macOS instantly, both regular and incognito mode. Safari and mobile were unaffected. Confirmed by disabling GPU in Chrome (`--disable-gpu` flag), which prevented the crash, isolating it to Chrome's GPU process. Removed by deleting the `<script>` tag from `macrosnaps-shell.html`. Globe feature is gone, Three.js is dead code and must not be re-added.
+
+(2) **Cloudflare Web Analytics beacon removed from `macrosnaps-shell.html`.** The beacon script (`static.cloudflareinsights.com/beacon.min.js`) was also contributing to Chrome crashes. Removed by deleting the line from `macrosnaps-shell.html`. Google Analytics to be added as a replacement at a later date. To add GA4: insert snippet just before `</body>` in `macrosnaps-shell.html` and run `build.py --apply`.
+
+(3) **`build.py`: date stamp order fixed.** `data["_meta"]["generated"]` and `data["_meta"]["built_at"]` were being stamped after `json.dumps(data)` was called to inline into `index.html`, meaning the published site always showed yesterday's date under the logo. Fixed by moving both assignments to immediately before the `json.dumps()` call. The `json.dump()` write to `data.json` at the end of the build is unchanged.
+
+(4) **Google service account key regenerated.** `market-stats-key.json` had an invalid JWT signature, causing all gspread calls to fail (`invalid_grant: Invalid JWT Signature`). This affected both the sheet append in `fetch_market_data.py` and all of `sync_market_historical.py`. Regenerated via Google Cloud Console (project: `macrosnaps`, service account: `macrosnaps-sheets@macrosnaps.iam.gserviceaccount.com`) under IAM & Admin, Service Accounts, Keys, Add Key, Create new key, JSON. Downloaded and replaced `~/Downloads/macrosnaps/market-stats-key.json`. If this recurs, regenerate the key via the same path.
+
+(5) **Anthropic API key updated in `.env`.** `update_headlines.py` was failing with `401 invalid x-api-key`. Fixed by updating `ANTHROPIC_API_KEY` in `~/Downloads/macrosnaps/.env` with the correct key.
+
+---
 
 Session 40 changes in detail:
 
@@ -731,6 +745,10 @@ The correct approach: stories comment on what is actually happening right now. I
 ---
 
 ### Substack strategy
+
+**Digest expertise level:** Moderate. Assumes basic financial literacy. First-occurrence jargon terms hyperlinked to macrosnaps.app glossary. No jargon wall.
+
+**Build rule:** Always ask before building, coding, or creating any files. No exceptions.
 
 **Goal for first 3 months:** audience building only. No paywall, no monetisation pressure.
 
