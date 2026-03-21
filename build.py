@@ -388,6 +388,8 @@ shell = re.sub(
     shell
 )
 
+# Stamp today's date into data before inlining
+
 # Inline data.json into the HTML so it works as a standalone local file.
 # Replace the fetch('data.json') call with a Promise.resolve() over the
 # inlined JSON payload — no server required, works via file:// protocol.
@@ -425,9 +427,6 @@ with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
 
 ok(f"Written: {OUTPUT_FILE} ({os.path.getsize(OUTPUT_FILE)//1024} KB)")
 
-# Also update _meta.generated in data.json to today
-data["_meta"]["generated"] = TODAY
-data["_meta"]["built_at"] = NOW
 with open(DATA_FILE, "w", encoding="utf-8") as f:
     json.dump(data, f, indent=2, ensure_ascii=False)
 ok(f"Stamped _meta.generated = {TODAY} in data.json")
