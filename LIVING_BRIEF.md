@@ -697,7 +697,7 @@ Em-dashes (—) are banned everywhere in the product without exception. This inc
 
 1. **Post-launch:** replace fake contact form in "Ping Me" footer with a real form service (Formspree or similar).
 
-1. **Post-launch:** consider user alert emails (daily or weekly digest). A simple early version could use Buttondown or Mailchimp.
+1. **Post-launch:** Substack chosen as the email/newsletter platform. See Substack strategy section for full plan. Buttondown and Mailchimp no longer under consideration.
 
 ---
 
@@ -725,6 +725,65 @@ The correct approach: stories comment on what is actually happening right now. I
 **Architectural constraint: write path separation.** `sync_sheet.py --apply` writes only annual forecast fields. `sync_monthly_actuals.py` writes only the `monthly_actuals` field. These two scripts must never touch each other's fields. No other script writes to `monthly_actuals`.
 
 **Story mismatch guard.** `update_stories.py` now saves `value_at_generation` alongside every metric story it writes. `build.py` checks this field at build time — if `value_at_generation` differs from the current `value`, the build fails with a clear error naming the country and metric. This field populates organically as stories are regenerated; existing metrics without the field pass the check silently.
+
+---
+
+---
+
+### Substack strategy
+
+**Goal for first 3 months:** audience building only. No paywall, no monetisation pressure.
+
+**Cadence: daily posts + weekly digest**
+
+Run two things simultaneously, serving different subscriber relationships:
+
+- **Daily post:** short, low-friction, almost verbatim from the pipeline's three-act global story output. Low extra effort. Its jobs are: proving the pipeline is alive and the product is serious (40 posts = credibility), creating a scrollable archive for new subscribers, and feeding Substack's algorithm (which surfaces active publications). Most subscribers will not read every one — that is fine.
+- **Weekly digest:** the actual product most subscribers will open. Longer and more considered: what mattered this week, which countries moved, what surprised, what to watch next week. Different enough from the daily to justify both. Built from material already generated during the week.
+
+Keep daily posts genuinely short. If they are long, readers feel guilty skipping them, unsubscribe rates rise, and the weekly stops feeling like a reward.
+
+**Funnel: glossary links + one CTA per post**
+
+Every glossary term in every post should be hyperlinked to the live glossary on macrosnaps.app. Use the same rule as the site: first occurrence per post only, not every instance. This is a passive conversion path — readers who click mid-sentence to understand a term land on a live interactive page and become site users.
+
+Supplement with one explicit call to action (CTA) at the end of every post. Something like: "See how this plays out across all 12 countries on the live dashboard." This is active, gives a specific reason to visit, and positions the site as the thing the email cannot replace (interactivity, depth-toggle). Glossary links + one CTA is the right combination for the audience-building phase.
+
+Note on deliverability: emails with many outbound links can score worse on spam filters. The first-occurrence rule keeps this clean.
+
+**Depth levels and future monetisation**
+
+The site's beginner / moderate / expert structure maps naturally to a free/paid Substack split. Suggested path: everything free for 3 months, then introduce paid with beginner free and moderate/expert behind a paywall. The content structure already justifies this — no extra work required.
+
+**Voice**
+
+Substack readers follow people, not products. The pipeline writes the stories but a 2-3 sentence human intro each day (written by Ralph) is important. Without it the publication reads like a feed, not a newsletter. The most successful macro newsletters (Doomberg, Net Interest, Kyla's Newsletter) have a strong authorial voice.
+
+**The name**
+
+MacroSnaps works for a web app. Consider whether the Substack needs a subtitle or tagline that carries more weight on its own and tells a new reader immediately what they are getting.
+
+**Before launching: have 4-6 posts in the bank.** New subscribers who arrive at a near-empty archive leave immediately.
+
+**Substack Notes**
+
+Substack's short-form feed (similar to Twitter). Macro content performs well there. A chart screenshot or one-line take on a data print is natural material given the daily pipeline. Low effort, decent discovery reach.
+
+**Promotion (first 3 months)**
+
+What actually works at the early stage, in priority order:
+
+1. **Personal outreach first.** The first 50-100 subscribers should come from people already known personally or professionally. Pick 30-40 people in your network who would genuinely find it useful and message them individually. Direct messages convert far better than any public promotion.
+
+2. **LinkedIn.** Macro content performs well there, especially anything with a clear data angle. A weekly post sharing one chart or insight from MacroSnaps, with a link to the Substack, is low effort and reaches a professional audience already predisposed to this content. Consistency matters more than virality.
+
+3. **Cross-recommendations on Substack.** Recommend other macro/finance Substacks genuinely. Some will recommend back. It is a real growth driver on the platform. Do not be transactional about it.
+
+4. **Twitter/X.** Worth maintaining for macro content specifically because that community is active there, but it is a slow burn unless something catches. Do not rely on it.
+
+5. **Ask early subscribers to forward to one person.** Word of mouth from a trusted source converts better than anything you can do yourself. Most people do not think to do it unless asked.
+
+**What not to bother with in the first 3 months:** paid promotion, SEO, press outreach, ProductHunt-style launches. All of that makes sense later. For sub-1000 subscribers it is noise.
 
 ---
 
