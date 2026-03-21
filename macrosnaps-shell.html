@@ -6274,7 +6274,7 @@ let _whSortAsc = false;
 let _whMetric  = 'GDP Growth';
 let _whAsOfStr = '';
 let _whDropOpen = false;
-let _whNumericMode = (localStorage.getItem('whNumericMode') === '1');
+let _whNumericMode = false; try { _whNumericMode = (localStorage.getItem('whNumericMode') === '1'); } catch(e) {}
 
 // Short display names for ranked/grid tables
 const DISPLAY_NAMES = {'United Kingdom':'UK','United States':'USA'};
@@ -6372,7 +6372,7 @@ function renderMetricTable() {
     tog.addEventListener('click', e => {
       e.stopPropagation();
       _whNumericMode = !_whNumericMode;
-      localStorage.setItem('whNumericMode', _whNumericMode ? '1' : '0');
+      try { localStorage.setItem('whNumericMode', _whNumericMode ? '1' : '0'); } catch(e) {}
       renderMetricTable();
     });
   }
@@ -7908,12 +7908,12 @@ document.querySelectorAll('.exp-btn').forEach(btn=>{btn.addEventListener('click'
 (function() {
   const banner = document.getElementById('welcomeBanner');
   if (!banner) return;
-  if (!localStorage.getItem('ms_welcomed')) {
+  let _welcomed = false; try { _welcomed = !localStorage.getItem('ms_welcomed'); } catch(e) {} if (_welcomed) {
     banner.classList.remove('hidden');
   }
   function dismiss() {
     banner.classList.add('hidden');
-    localStorage.setItem('ms_welcomed', '1');
+    try { localStorage.setItem('ms_welcomed', '1'); } catch(e) {}
   }
   document.getElementById('welcomeWhat').addEventListener('click', () => {
     dismiss();
