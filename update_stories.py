@@ -63,6 +63,9 @@ Story writing style rules - apply every one of these to every story at every lev
 - Write numbers as if they are real and specific. "Inflation hit 8.4%" reads better than "the inflation rate stands at 8.4%."
 - No filler conclusions. Never end a story with "overall," "in summary," or "taken together."
 - No committee language. Write as if explaining to a smart friend, not presenting a report.
+- Lead with the most recent data point or trend. Do not open with the annual forecast value.
+- The annual forecast is background context only. Mention it solely if there is a meaningful gap between recent data and the year-end target.
+- Convey direction. Is this metric rising, falling, or holding? A story with no directional signal is a dead story.
 - Before outputting any story, scan it against every rule above and rewrite any sentence that fails. Output only the final corrected version.
 
 Audience levels:
@@ -246,7 +249,7 @@ def call_claude_metric(client, item):
         )
         monthly_context = (
             f"\nRecent monthly actuals (most recent first): {formatted}"
-            f"\nLead with the most recent print where relevant. The annual value above is the year-end forecast."
+            f"\nThe most recent monthly print is your anchor. Open with it. The annual value is the year-end forecast -- treat it as background, not the lead."
         )
 
     prompt = f"""You are writing metric stories for MacroSnaps, a global macro dashboard.
@@ -256,7 +259,7 @@ Metric: {item['metric']}
 Section: {item['section']}
 {change_desc}{monthly_context}
 
-Write three story variants for this metric at the value shown above.
+Write three story variants for this metric. Anchor each story in the most recent data and direction of travel, not the annual forecast.
 
 {STYLE_GUIDE}
 
@@ -291,7 +294,7 @@ Commodity: {item['name']}
 Unit: {item['unit']}
 {change_desc}
 
-Write three story variants for this commodity at the price shown above.
+Write three story variants for this commodity. Lead with the price level and its direction -- is it rising, falling, or range-bound? Give the reader a sense of momentum, not just a number.
 
 {STYLE_GUIDE}
 
@@ -351,6 +354,10 @@ def main():
                         help="Rewrite every metric regardless of value changes")
     parser.add_argument("--stale-only", action="store_true",
                         help="Rewrite only macro metrics where value_at_generation != current value")
+    parser.add_argument("--country", type=str, default=None,
+                        help="Filter to a single country code (e.g. ITA). Use with --force-all or alone.")
+    parser.add_argument("--metric", type=str, default=None,
+                        help="Filter to a single metric name (e.g. 'Current Account'). Use with --country.")
     args = parser.parse_args()
 
     print("\n" + "="*60)
@@ -398,6 +405,25 @@ def main():
         print("\n  No changes detected vs last git commit. Nothing to rewrite.")
         print("  Use --force-all to rewrite everything regardless.\n")
         sys.exit(0)
+
+    # Apply --country / --metric filters
+    if args.country or args.metric:
+        before = len(items_to_rewrite)
+        if args.country:
+            items_to_rewrite = [
+                i for i in items_to_rewrite
+                if i.get("code", "").upper() == args.country.upper()
+            ]
+        if args.metric:
+            items_to_rewrite = [
+                i for i in items_to_rewrite
+                if i.get("metric", "").lower() == args.metric.lower()
+            ]
+        after = len(items_to_rewrite)
+        print(f"\n  Filter applied: {before} -> {after} metric(s).")
+        if not items_to_rewrite:
+            print("  Nothing matched. Check --country and --metric values.\n")
+            sys.exit(0)
 
     # Print what will be rewritten
     print(f"\n  Metrics queued for rewrite: {len(items_to_rewrite)}\n")
