@@ -427,6 +427,7 @@ with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
 
 ok(f"Written: {OUTPUT_FILE} ({os.path.getsize(OUTPUT_FILE)//1024} KB)")
 
+data["_meta"]["generated"] = TODAY
 with open(DATA_FILE, "w", encoding="utf-8") as f:
     json.dump(data, f, indent=2, ensure_ascii=False)
 ok(f"Stamped _meta.generated = {TODAY} in data.json")
