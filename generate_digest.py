@@ -353,40 +353,47 @@ def build_brief(data: dict, changes: dict) -> str:
 # Mode prompts
 # ---------------------------------------------------------------------------
 MODE_INSTRUCTIONS = {
-    "daily": """Write a short Substack daily post at moderate expertise level — assumes basic financial literacy, no jargon wall.
+    "daily": """Write a ultra-short Substack daily post at moderate expertise level. Think: the site's country stories. One punchy sentence per idea, nothing wasted.
 
 Structure:
-SUBJECT: [one compelling subject line — specific, not generic]
+SUBJECT: [one specific, compelling subject line. Not generic. No em-dashes.]
 
-[2-3 sentence human-sounding intro in Ralph's voice — what caught his eye today, written as if from a real person, not a pipeline. Then 3-4 sentences of macro narrative. End with one CTA line linking to {url}. Total: 100 words maximum.]
+- [bullet 1: the single most important macro move or data point today]
+- [bullet 2: second most important observation, different country or metric]
+- [bullet 3: a tension, surprise, or thing to watch]
+- [bullet 4: optional — only if genuinely noteworthy]
 
-Rules:
-- No em-dashes. Use commas, colons, or parentheses instead.
-- First occurrence of any jargon term: hyperlink it as [term]({url}).
-- Sharp and direct. No filler. Every sentence earns its place.""",
-
-    "weekly": """Write a weekly macro digest for Substack at moderate expertise level — assumes basic financial literacy, no jargon wall.
-
-Structure:
-SUBJECT: [one compelling subject line]
-
-[2-3 sentence human-sounding intro in Ralph's voice — what stood out this week.]
-
-## What moved
-[3-4 country sections, bold header each. 2-3 sentences only. Skip countries where nothing notable happened.]
-
-## What to watch
-[3 tight bullet points — specific data or events next week.]
-
----
-[CTA line linking to {url}]
+[Single CTA line: "Full picture across 12 economies: {url}"]
 
 Rules:
-- No em-dashes. Use commas, colons, or parentheses instead.
+- Each bullet is one sentence. Maximum 15 words per bullet.
+- No em-dashes. No filler. No intro paragraph.
 - First occurrence of jargon: hyperlink as [term]({url}).
-- 350 words maximum.""",
+- Total post: under 80 words.""",
 
-    "notes": """Write exactly 3 Substack Notes. Each is 1-2 lines, punchy, standalone.
+    "weekly": """Write an ultra-short weekly macro digest for Substack at moderate expertise level. Scannable in 30 seconds.
+
+Structure:
+SUBJECT: [one specific, compelling subject line. No em-dashes.]
+
+**What moved**
+- [bullet: country/metric, what happened, why it matters — one sentence]
+- [bullet: repeat for 2-3 more notable moves]
+
+**What to watch**
+- [bullet: specific event or data release next week]
+- [bullet: second thing to watch]
+- [bullet: third thing to watch]
+
+[Single CTA line: "Track it live across 12 economies: {url}"]
+
+Rules:
+- Each bullet is one sentence. Maximum 15 words per bullet.
+- No em-dashes. No intro paragraph. No filler.
+- First occurrence of jargon: hyperlink as [term]({url}).
+- Total post: under 150 words.""",
+
+    "notes": """Write exactly 3 Substack Notes. Each is one sentence, punchy, standalone.
 
 Format:
 NOTE 1:
@@ -400,6 +407,7 @@ NOTE 3:
 
 Rules:
 - One sharp observation each: a data point, a tension, a surprise.
+- One sentence per note. Under 25 words each.
 - No em-dashes. No CTA. No jargon that needs explaining.
 - Do not number the notes in the text itself.""",
 }
@@ -411,9 +419,18 @@ def build_prompt(brief: str, mode: str) -> str:
 
     return f"""You are the editorial engine for MacroSnaps, a macro-economic briefing covering 12 countries. Today is {today}.
 
-Your job: read the structured data brief below and write a compelling Substack {mode} post. Do not summarise everything equally — identify what actually matters today, what is surprising, what has changed, and lead with that.
+Your job: read the structured data brief below and write a Substack {mode} post. Do not summarise everything equally. Identify what actually matters today, what is surprising, what has changed, and lead with that.
 
 {instruction}
+
+STRICT WRITING RULES (no exceptions):
+- Em-dashes are completely banned. Never use them. Use commas, colons, or parentheses instead.
+- No AI-sounding phrases. Write like a sharp, informed human.
+- No filler words: "notably", "importantly", "it is worth noting", "interestingly", "furthermore".
+- No hedging: "it appears", "it seems", "one might argue".
+- Every word must earn its place. If a sentence can be cut, cut it.
+- Varied sentence openings. Never start two bullets the same way.
+- Numbers and specifics over vague descriptions. "5%" not "significantly".
 
 Output clean markdown only. No preamble, no "here is your post", no commentary after the post.
 

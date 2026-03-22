@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MacroSnaps Digest</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; color: #1a1a1a; min-height: 100vh; }
+header { background: #fff; border-bottom: 1px solid #e0e0e0; padding: 16px 32px; display: flex; align-items: center; gap: 16px; }
+header h1 { font-size: 18px; font-weight: 600; }
+header span { font-size: 13px; color: #888; }
+.container { max-width: 900px; margin: 0 auto; padding: 32px 24px; }
+.controls { background: #fff; border: 1px solid #e0e0e0; border-radius: 10px; padding: 24px; margin-bottom: 20px; }
+.controls h2 { font-size: 14px; font-weight: 600; color: #555; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.05em; }
+.mode-row { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+.mode-btn { flex: 1; min-width: 120px; padding: 12px; border: 1px solid #e0e0e0; border-radius: 8px; background: #fff; cursor: pointer; font-size: 14px; font-weight: 500; color: #444; transition: all 0.15s; text-align: center; }
+.mode-btn:hover { border-color: #aaa; background: #fafafa; }
+.mode-btn.active { border-color: #1a1a1a; background: #1a1a1a; color: #fff; }
+.generate-btn { width: 100%; padding: 13px; background: #1a1a1a; border: none; border-radius: 8px; color: #fff; font-size: 15px; font-weight: 600; cursor: pointer; transition: background 0.15s; }
+.generate-btn:hover { background: #333; }
+.generate-btn:disabled { background: #aaa; cursor: not-allowed; }
+.status { display: none; align-items: center; gap: 10px; padding: 12px 16px; background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 20px; font-size: 13px; color: #555; }
+.status.visible { display: flex; }
+.spinner { width: 14px; height: 14px; border: 2px solid #e0e0e0; border-top-color: #1a1a1a; border-radius: 50%; animation: spin 0.7s linear infinite; flex-shrink: 0; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.panel { display: none; background: #fff; border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; margin-bottom: 20px; }
+.panel.visible { display: block; }
+.panel-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border-bottom: 1px solid #e0e0e0; background: #fafafa; }
+.panel-tag { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #888; }
+.panel-date { font-size: 12px; color: #aaa; }
+.btn-row { display: flex; gap: 8px; }
+.action-btn { padding: 7px 14px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.14s; font-family: inherit; border: 1px solid transparent; }
+.copy-btn { background: #1a1a1a; border-color: #1a1a1a; color: #fff; }
+.copy-btn:hover { background: #333; }
+.copy-btn.copied { background: #16a34a; border-color: #16a34a; }
+.toggle-btn { background: #fff; border-color: #e0e0e0; color: #555; }
+.toggle-btn:hover { background: #f5f5f5; }
+.preview-pane { padding: 28px 32px; }
+.preview-pane.hidden { display: none; }
+.subject-block { font-size: 12px; color: #888; margin-bottom: 18px; padding: 10px 14px; background: #f5f5f5; border-radius: 6px; }
+.subject-block strong { color: #1a1a1a; font-size: 14px; display: block; margin-top: 4px; }
+.preview-body { font-size: 15px; line-height: 1.75; color: #1a1a1a; }
+.preview-body h2 { font-size: 16px; font-weight: 700; margin: 20px 0 8px; }
+.preview-body p { margin-bottom: 10px; }
+.preview-body a { color: #2563eb; text-decoration: underline; }
+.preview-body ul { padding-left: 20px; margin-bottom: 10px; }
+.preview-body li { margin-bottom: 6px; }
+.preview-body hr { border: none; border-top: 1px solid #e0e0e0; margin: 20px 0; }
+.preview-body strong { font-weight: 600; }
+.raw-pane { display: none; }
+.raw-pane.visible { display: block; }
+.raw-pane textarea { width: 100%; border: none; outline: none; resize: none; font-family: 'Menlo','Monaco',monospace; font-size: 13px; line-height: 1.7; color: #1a1a1a; padding: 24px 32px; min-height: 280px; background: #fff; }
+.twitter-body { padding: 20px 32px; }
+.tweet-block { border: 1px solid #e0e0e0; border-radius: 8px; padding: 14px 16px 14px 16px; margin-bottom: 12px; font-size: 14px; line-height: 1.6; color: #1a1a1a; position: relative; padding-right: 72px; }
+.tweet-block a { color: #2563eb; text-decoration: underline; }
+.tweet-count { font-size: 11px; color: #aaa; text-align: right; margin-top: 8px; }
+.tweet-copy { position: absolute; top: 10px; right: 10px; background: #fff; border: 1px solid #e0e0e0; border-radius: 5px; padding: 4px 10px; font-size: 11px; font-weight: 600; cursor: pointer; color: #555; font-family: inherit; }
+.tweet-copy:hover { background: #f5f5f5; }
+.tweet-copy.copied { background: #16a34a; border-color: #16a34a; color: #fff; }
+.linkedin-body { padding: 24px 32px; font-size: 15px; line-height: 1.75; color: #1a1a1a; white-space: pre-wrap; }
+.linkedin-body a { color: #2563eb; text-decoration: underline; }
+.error { display: none; padding: 13px 17px; background: #fef2f2; border: 1px solid #fca5a5; border-radius: 8px; font-size: 13px; color: #dc2626; margin-top: 14px; }
+.error.visible { display: block; }
+.schedule { background: #fff; border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px 24px; margin-bottom: 20px; }
+.schedule-heading { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #888; margin-bottom: 14px; }
+.schedule-heading span { color: #1a1a1a; font-size: 14px; font-weight: 600; text-transform: none; letter-spacing: 0; }
+.sched-section { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: #bbb; margin: 14px 0 8px; padding-top: 12px; border-top: 1px solid #f0f0f0; }
+.sched-section:first-of-type { margin-top: 0; border-top: none; padding-top: 0; }
+.task-item { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; cursor: pointer; user-select: none; border-bottom: 1px solid #f5f5f5; }
+.task-item:last-child { border-bottom: none; }
+.task-check { width: 17px; height: 17px; border: 2px solid #d0d0d0; border-radius: 4px; flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+.task-item.done .task-check { background: #16a34a; border-color: #16a34a; }
+.task-item.done .task-check::after { content: '✓'; color: #fff; font-size: 10px; font-weight: 800; }
+.task-label { font-size: 14px; line-height: 1.5; color: #1a1a1a; }
+.task-item.done .task-label { color: #bbb; text-decoration: line-through; }
+.task-label strong { font-weight: 600; }
+.plt { display: inline-block; padding: 1px 7px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 5px; vertical-align: middle; line-height: 1.7; }
+.plt-twitter { background: #dbeafe; color: #1d4ed8; }
+.plt-substack { background: #fff3e0; color: #b45309; }
+.plt-linkedin { background: #e0f2fe; color: #0369a1; }
+.weekend-note { font-size: 14px; color: #aaa; padding: 4px 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>MacroSnaps Digest</h1>
+  <span id="headerDate"></span>
+</header>
+<div class="container">
+  <div class="schedule" id="scheduleCard">
+    <div class="schedule-heading">Today &mdash; <span id="schedDayLabel"></span></div>
+    <div id="taskList"></div>
+  </div>
+  <div class="controls">
+    <h2>Format</h2>
+    <div class="mode-row">
+      <button class="mode-btn active" data-mode="daily">Daily Post</button>
+      <button class="mode-btn" data-mode="weekly">Weekly Digest</button>
+      <button class="mode-btn" data-mode="notes">Substack Notes</button>
+    </div>
+    <button class="generate-btn" id="generateBtn">Generate digest</button>
+    <div class="error" id="errorBox"></div>
+  </div>
+  <div class="status" id="statusBar"><div class="spinner"></div><span id="statusText">Starting...</span></div>
+  <div class="panel" id="digestPanel">
+    <div class="panel-header">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span class="panel-tag" id="digestTag">DAILY</span>
+        <span class="panel-date" id="digestDate"></span>
+      </div>
+      <div class="btn-row">
+        <button class="action-btn toggle-btn" id="toggleBtn">Edit</button>
+        <button class="action-btn copy-btn" id="copyBtn">Copy</button>
+      </div>
+    </div>
+    <div class="preview-pane" id="previewPane">
+      <div id="subjectBlock"></div>
+      <div class="preview-body" id="previewBody"></div>
+    </div>
+    <div class="raw-pane" id="rawPane">
+      <textarea id="rawEditor"></textarea>
+    </div>
+  </div>
+  <div class="panel" id="twitterPanel">
+    <div class="panel-header"><span class="panel-tag">X / Twitter — pick one</span></div>
+    <div class="twitter-body" id="twitterBody"></div>
+  </div>
+  <div class="panel" id="linkedinPanel">
+    <div class="panel-header">
+      <span class="panel-tag">LinkedIn</span>
+      <button class="action-btn copy-btn" id="linkedinCopyBtn">Copy</button>
+    </div>
+    <div class="linkedin-body" id="linkedinBody"></div>
+  </div>
+</div>
+<script>
+var currentMode = 'daily';
+var rawMarkdown = '';
+var showingEdit = false;
+var _tweets = [];
+var _linkedinText = '';
+
+document.getElementById('headerDate').textContent = new Date().toLocaleDateString('en-GB', {weekday:'long',day:'numeric',month:'long',year:'numeric'});
+
+document.querySelectorAll('.mode-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.mode-btn').forEach(function(b){b.classList.remove('active');});
+    btn.classList.add('active');
+    currentMode = btn.dataset.mode;
+  });
+});
+
+document.getElementById('generateBtn').addEventListener('click', generate);
+document.getElementById('toggleBtn').addEventListener('click', toggleView);
+document.getElementById('copyBtn').addEventListener('click', copyText);
+document.getElementById('linkedinCopyBtn').addEventListener('click', copyLinkedin);
+document.getElementById('rawEditor').addEventListener('input', function(){rawMarkdown=this.value;});
+
+function setStatus(msg){document.getElementById('statusBar').classList.add('visible');document.getElementById('statusText').textContent=msg;}
+function hideStatus(){document.getElementById('statusBar').classList.remove('visible');}
+function showError(msg){var el=document.getElementById('errorBox');el.textContent=msg;el.classList.add('visible');}
+function hideError(){document.getElementById('errorBox').classList.remove('visible');}
+
+function mdToHtml(md) {
+  var h = md;
+  h = h.replace(/^SUBJECT:\s*(.+)$/m, function(_,s){return '<div id="subj-out" data-subj="'+s.replace(/"/g,'&quot;')+'"></div>';});
+  h = h.replace(/^## (.+)$/gm,'<h2>$1</h2>');
+  h = h.replace(/^# (.+)$/gm,'<h1>$1</h1>');
+  h = h.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+  h = h.replace(/__(.+?)__/g,'<strong>$1</strong>');
+  h = h.replace(/\*(.+?)\*/g,'<em>$1</em>');
+  h = h.replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');
+  h = h.replace(/(?<![="'])(https?:\/\/[^\s<"]+)/g,'<a href="$1" target="_blank" rel="noopener">$1</a>');
+  h = h.replace(/^---$/gm,'<hr>');
+  h = h.replace(/^- (.+)$/gm,'<li>$1</li>');
+  h = h.replace(/(<li>[\s\S]*?<\/li>\n?)+/g,function(m){return '<ul>'+m+'</ul>';});
+  h = h.replace(/^> (.+)$/gm,'<blockquote>$1</blockquote>');
+  return h.split('\n').map(function(line){
+    var s=line.trim();
+    if(!s)return '';
+    if(s.charAt(0)==='<')return s;
+    return '<p>'+s+'</p>';
+  }).join('\n');
+}
+
+function linkify(text) {
+  var h = text;
+  h = h.replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');
+  h = h.replace(/(?<![="'])(https?:\/\/[^\s<"]+)/g,'<a href="$1" target="_blank" rel="noopener">$1</a>');
+  return h;
+}
+
+async function generate() {
+  hideError();
+  var btn=document.getElementById('generateBtn');
+  btn.disabled=true; btn.textContent='Generating...';
+  setStatus('Running generate_digest.py...');
+  ['digestPanel','twitterPanel','linkedinPanel'].forEach(function(id){document.getElementById(id).classList.remove('visible');});
+  try {
+    var resp = await fetch('/generate?mode='+currentMode);
+    var data = await resp.json();
+    if(!resp.ok||data.error) throw new Error(data.error||'Unknown error');
+    rawMarkdown=data.markdown;
+    renderDigest(data.markdown,currentMode);
+    document.getElementById('digestPanel').classList.add('visible');
+    if(data.tweets&&data.tweets.length) renderTweets(data.tweets);
+    if(data.linkedin) renderLinkedin(data.linkedin);
+    hideStatus();
+  } catch(e) {
+    hideStatus(); showError('Error: '+e.message);
+  } finally {
+    btn.disabled=false; btn.textContent='Generate digest';
+  }
+}
+
+function renderDigest(md,mode) {
+  var labels={daily:'DAILY POST',weekly:'WEEKLY DIGEST',notes:'SUBSTACK NOTES'};
+  document.getElementById('digestTag').textContent=labels[mode]||mode.toUpperCase();
+  document.getElementById('digestDate').textContent=new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+  var bodyEl=document.getElementById('previewBody');
+  bodyEl.innerHTML=mdToHtml(md);
+  var subjEl=bodyEl.querySelector('#subj-out');
+  var sb=document.getElementById('subjectBlock');
+  if(subjEl){sb.innerHTML='<div class="subject-block">Subject line<strong>'+subjEl.getAttribute('data-subj')+'</strong></div>';subjEl.remove();}
+  else{sb.innerHTML='';}
+  document.getElementById('rawEditor').value=md;
+  showingEdit=false;
+  document.getElementById('previewPane').classList.remove('hidden');
+  document.getElementById('rawPane').classList.remove('visible');
+  document.getElementById('toggleBtn').textContent='Edit';
+}
+
+function toggleView() {
+  showingEdit=!showingEdit;
+  document.getElementById('previewPane').classList.toggle('hidden',showingEdit);
+  document.getElementById('rawPane').classList.toggle('visible',showingEdit);
+  document.getElementById('toggleBtn').textContent=showingEdit?'Preview':'Edit';
+}
+
+function copyText() {
+  navigator.clipboard.writeText(document.getElementById('rawEditor').value).then(function(){
+    var btn=document.getElementById('copyBtn');
+    btn.textContent='Copied'; btn.classList.add('copied');
+    setTimeout(function(){btn.textContent='Copy';btn.classList.remove('copied');},2500);
+  });
+}
+
+function renderTweets(tweets) {
+  _tweets=tweets;
+  var body=document.getElementById('twitterBody');
+  body.innerHTML=tweets.map(function(t,i){
+    var over=t.length>280;
+    return '<div class="tweet-block"><button class="tweet-copy" data-idx="'+i+'">Copy</button><div>'+linkify(t)+'</div>'
+      +'<div class="tweet-count" style="color:'+(over?'#dc2626':'#aaa')+'">'+t.length+'/280'+(over?' — too long':'')+'</div></div>';
+  }).join('');
+  body.querySelectorAll('.tweet-copy').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var idx=parseInt(this.getAttribute('data-idx'));
+      navigator.clipboard.writeText(_tweets[idx]).then(function(){
+        btn.textContent='Copied'; btn.classList.add('copied');
+        setTimeout(function(){btn.textContent='Copy';btn.classList.remove('copied');},2000);
+      });
+    });
+  });
+  document.getElementById('twitterPanel').classList.add('visible');
+}
+
+function renderLinkedin(text) {
+  _linkedinText=text;
+  document.getElementById('linkedinBody').innerHTML=linkify(text);
+  document.getElementById('linkedinPanel').classList.add('visible');
+}
+
+function copyLinkedin() {
+  navigator.clipboard.writeText(_linkedinText).then(function(){
+    var btn=document.getElementById('linkedinCopyBtn');
+    btn.textContent='Copied'; btn.classList.add('copied');
+    setTimeout(function(){btn.textContent='Copy';btn.classList.remove('copied');},2000);
+  });
+}
+// ── Daily schedule ────────────────────────────────────────────────────────────
+var SCHEDULE = {
+  0: { label: 'Sunday', defaultMode: 'daily', sections: [
+    { title: null, tasks: [
+      { label: 'Generate <strong>Daily Post</strong>', platforms: ['twitter'] },
+      { label: 'Copy digest &rarr; Tweet', platforms: ['twitter'] },
+    ]}
+  ]},
+  6: { label: 'Saturday', defaultMode: 'daily', sections: [
+    { title: null, tasks: [
+      { label: 'Generate <strong>Daily Post</strong>', platforms: ['twitter'] },
+      { label: 'Copy digest &rarr; Tweet', platforms: ['twitter'] },
+    ]}
+  ]},
+  1: { label: 'Monday', defaultMode: 'daily', sections: [
+    { title: null, tasks: [
+      { label: 'Generate <strong>Daily Post</strong>', platforms: ['twitter','substack'] },
+      { label: 'Copy digest &rarr; Tweet', platforms: ['twitter'] },
+      { label: 'Copy digest &rarr; post to Substack Notes', platforms: ['substack'] },
+    ]}
+  ]},
+  2: { label: 'Tuesday', defaultMode: 'daily', sections: [
+    { title: null, tasks: [
+      { label: 'Generate <strong>Daily Post</strong>', platforms: ['twitter','substack'] },
+      { label: 'Copy digest &rarr; Tweet', platforms: ['twitter'] },
+      { label: 'Copy digest &rarr; post to Substack Notes', platforms: ['substack'] },
+    ]}
+  ]},
+  3: { label: 'Wednesday', defaultMode: 'daily', sections: [
+    { title: null, tasks: [
+      { label: 'Generate <strong>Daily Post</strong>', platforms: ['twitter','substack'] },
+      { label: 'Copy digest &rarr; Tweet', platforms: ['twitter'] },
+      { label: 'Copy digest &rarr; post to Substack Notes', platforms: ['substack'] },
+    ]}
+  ]},
+  4: { label: 'Thursday', defaultMode: 'weekly', sections: [
+    { title: 'Step 1 &mdash; Weekly Digest (Substack + LinkedIn)', tasks: [
+      { label: 'Select <strong>Weekly Digest</strong> &rarr; Generate', platforms: ['substack','linkedin'] },
+      { label: 'Copy digest &rarr; post to Substack (detailed weekly)', platforms: ['substack'] },
+      { label: 'Copy LinkedIn from panel below &rarr; post', platforms: ['linkedin'] },
+    ]},
+    { title: 'Step 2 &mdash; Daily Post (Twitter)', tasks: [
+      { label: 'Switch to <strong>Daily Post</strong> &rarr; Generate', platforms: ['twitter'] },
+      { label: 'Copy digest &rarr; Tweet', platforms: ['twitter'] },
+    ]},
+  ]},
+  5: { label: 'Friday', defaultMode: 'daily', sections: [
+    { title: null, tasks: [
+      { label: 'Generate <strong>Daily Post</strong>', platforms: ['twitter','substack'] },
+      { label: 'Copy digest &rarr; Tweet', platforms: ['twitter'] },
+      { label: 'Copy digest &rarr; post to Substack Notes', platforms: ['substack'] },
+    ]}
+  ]},
+};
+
+var PLT_LABELS = { twitter: 'Twitter', substack: 'Substack', linkedin: 'LinkedIn' };
+var taskDone = [];
+
+function buildSchedule() {
+  var dow = new Date().getDay();
+  var day = SCHEDULE[dow];
+  document.getElementById('schedDayLabel').textContent = day.label;
+  var list = document.getElementById('taskList');
+
+  // Auto-select mode
+  if (day.defaultMode) setMode(day.defaultMode);
+
+  // Build checklist
+  var html = '';
+  var idx = 0;
+  day.sections.forEach(function(sec) {
+    if (sec.title) html += '<div class="sched-section">' + sec.title + '</div>';
+    sec.tasks.forEach(function(task) {
+      var pills = task.platforms.map(function(p){
+        return '<span class="plt plt-'+p+'">'+PLT_LABELS[p]+'</span>';
+      }).join('');
+      html += '<div class="task-item" data-idx="'+idx+'" onclick="toggleTask(this)">'
+        + '<div class="task-check"></div>'
+        + '<div class="task-label">'+task.label+pills+'</div>'
+        + '</div>';
+      idx++;
+    });
+  });
+  list.innerHTML = html;
+}
+
+function toggleTask(el) {
+  el.classList.toggle('done');
+}
+
+function setMode(mode) {
+  currentMode = mode;
+  document.querySelectorAll('.mode-btn').forEach(function(b){
+    b.classList.toggle('active', b.dataset.mode === mode);
+  });
+}
+
+buildSchedule();
+// ── End schedule ──────────────────────────────────────────────────────────────
+</script>
+</body>
+</html>

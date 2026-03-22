@@ -1,5 +1,35 @@
 # MacroSnaps - Living Brief
-Last updated: March 21, 2026 (Session 41: Three.js and Cloudflare beacon removed; `build.py` date stamp order fixed; service account key regenerated; Anthropic API key updated.)
+Last updated: March 21, 2026 (Session 42: Substack digest pipeline built; subscribe box added to site; Twitter and LinkedIn accounts set up.)
+
+Session 42 changes in detail:
+
+(1) **Digest pipeline built.** Two new scripts added to the macrosnaps folder:
+- `generate_digest.py` -- reads `data.json`, diffs against a saved snapshot to detect changes, builds an analytical brief, calls Claude API, writes output to `digests/YYYY-MM-DD-[mode].md`. Supports `--mode daily|weekly|notes`. Run at end of daily ritual.
+- `digest_server.py` + `digest_ui.html` -- local web server on `http://localhost:8080`. Run `python3 digest_server.py` once per session. Browser UI with Daily Post, Weekly Digest, and Substack Notes buttons. Generates digest, tweets, and (on weekly) LinkedIn post in one click. Each section has its own Copy button.
+
+(2) **Digest format.** Ultra-short bullet format. Daily: 4 bullets max, under 80 words. Weekly: "What moved" + "What to watch" sections, under 150 words. Notes: 3 standalone one-sentence takes. Voice: moderate expertise level, assumes basic financial literacy, no jargon wall. First-occurrence jargon hyperlinked to macrosnaps.app.
+
+(3) **Digest writing rules (enforced in prompt).** Em-dashes banned entirely. No filler words (notably, importantly, it is worth noting, interestingly). No hedging. Specific numbers over vague descriptions. Every word earns its place. Sound human, not AI-generated.
+
+(4) **Snapshot delta system.** `generate_digest.py` saves a lean snapshot of all metric values to `digests/snapshots/YYYY-MM-DD.json` after each run. Next run diffs against previous snapshot, surfaces changed metrics, stormy flags, and commodity moves >= 1.5% to Claude as structured input.
+
+(5) **Subscribe box added to `macrosnaps-shell.html`.** Sits between the GDP rankings table and the footer. Centred, dark navy with cyan border glow, matching site aesthetic. Links to `macrosnaps.substack.com` in a new tab. Text: "MacroSnaps Newsletter / Daily and weekly macro mini-briefings, straight to your inbox." Button: "Subscribe free".
+
+(6) **Substack account set up.** URL: `macrosnaps.substack.com`. Description: "Daily macro briefings across 12 economies, at the depth you choose." Cadence: daily posts weekdays only, weekly digest every Thursday. Expertise level: moderate throughout.
+
+(7) **Twitter/X account set up.** Professional account, Financial services category. Profile photo: `macrosnaps-logo.png` (512x512). Banner: `macrosnaps-banner.png` (1500x500). Posting cadence: daily including weekends. Content: one tweet per day from Notes output or a single data observation.
+
+(8) **LinkedIn.** Posting cadence: once per week, Thursdays, condensed version of weekly digest. LinkedIn post generated automatically by `digest_server.py` when weekly mode is run.
+
+(9) **Posting cadence summary.**
+- Substack daily post: weekdays only (Mon-Wed, Fri). Generated via digest server, daily mode.
+- Substack weekly digest: Thursdays. Generated via digest server, weekly mode.
+- Twitter/X: daily including weekends.
+- LinkedIn: Thursdays only, from weekly digest run.
+
+(10) **Build rule.** Always ask before building, coding, or creating any files. No exceptions.
+
+---
 
 Session 41 changes in detail:
 
@@ -587,6 +617,7 @@ python3 update_headlines.py
 python3 update_headlines.py --apply stories_approved_$(date +%Y-%m-%d).json
 python3 build.py --apply
 python3 audit_ritual.py
+python3 digest_server.py
 ```
 
 `update_headlines.py` has a manual review gate:
@@ -595,6 +626,7 @@ python3 audit_ritual.py
 3. Run `python3 update_headlines.py --apply stories_approved_YYYY-MM-DD.json`
 4. Run `python3 build.py --apply`
 5. Run `python3 audit_ritual.py`
+6. Run `python3 digest_server.py` — opens browser UI at `http://localhost:8080`, generate and post digest
 
 **Mid-day re-edit workflow:** Load `stories_approved_YYYY-MM-DD.json` (not the draft) to preserve previous edits. Re-export overwrites the approved file. Re-run steps 3, 4, and 5. Safe to do multiple times per day.
 
@@ -745,10 +777,6 @@ The correct approach: stories comment on what is actually happening right now. I
 ---
 
 ### Substack strategy
-
-**Digest expertise level:** Moderate. Assumes basic financial literacy. First-occurrence jargon terms hyperlinked to macrosnaps.app glossary. No jargon wall.
-
-**Build rule:** Always ask before building, coding, or creating any files. No exceptions.
 
 **Goal for first 3 months:** audience building only. No paywall, no monetisation pressure.
 
