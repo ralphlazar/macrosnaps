@@ -1,5 +1,21 @@
 # MacroSnaps - Living Brief
-Last updated: March 21, 2026 (Session 42: Substack digest pipeline built; subscribe box added to site; Twitter and LinkedIn accounts set up.)
+Last updated: March 22, 2026 (Session 43: Daily ritual run; three bug fixes: build.py date stamp, digest_server.py model string and tweet formatting, generate_digest.py hyperlink and model string.)
+
+Session 43 changes in detail:
+
+(1) **`build.py`: `data["_meta"]["generated"] = TODAY` assignment was missing.** The `ok()` log line claimed the stamp had been written, but there was no actual assignment before the `json.dump()` call. Result: `data.json` always retained yesterday's date, and `audit_ritual.py` Check 1 always failed. Fixed by inserting `data["_meta"]["generated"] = TODAY` immediately before the `json.dump()` call. Note: Session 41 fixed the same bug for the `index.html` inlining path (`json.dumps()`), but the separate `json.dump()` write to `data.json` at the end of the build was never patched. Both paths are now correct.
+
+(2) **`digest_server.py`: invalid model string fixed; tweet and LinkedIn prompts tightened.**
+- Model string `claude-opus-4-5` changed to `claude-haiku-4-5-20251001` in both `generate_tweets()` and `generate_linkedin()`. The invalid string was causing the API call to fail silently, returning an empty list, and the UI was falling back to rendering the raw digest markdown as the tweet.
+- Tweet prompt: character budget clarified as 256 chars of text + 1 space + bare URL (Twitter wraps all URLs to 23 chars, so total = 280). Explicit rule added: no markdown links, no [text](url) formatting, bare URL only. CTA URL included in the output format spec.
+- LinkedIn prompt: added explicit rule "No markdown links. LinkedIn does not render them. Bare URLs only."
+
+(3) **`generate_digest.py`: first-occurrence jargon hyperlinks enabled for Substack; model string fixed.**
+- Model string `claude-opus-4-5` changed to `claude-haiku-4-5-20251001`.
+- Added rule to STRICT WRITING RULES: "Hyperlink the first occurrence of jargon terms (e.g. stagflation, yield curve, CPI) using markdown links to macrosnaps.app -- first occurrence only, not every instance." Markdown links are correct for Substack (renders them as hyperlinks) and for the digest server's HTML preview. They must not appear in tweet or LinkedIn output -- those are handled by separate rules in `digest_server.py`.
+
+---
+
 
 Session 42 changes in detail:
 

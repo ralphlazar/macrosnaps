@@ -104,19 +104,20 @@ class Handler(BaseHTTPRequestHandler):
             prompt = (
                 "You are writing tweets for @MacroSnapsApp, a macro-economic briefing covering 12 economies.\n\n"
                 "From the digest below, write exactly 3 tweets. Each tweet must:\n"
-                "- Be under 240 characters\n"
+                "- The text before the URL must be 256 characters or fewer (Twitter wraps all URLs to 23 chars, so 256 + space + URL = 280 exactly)\n"
                 "- Be a single sharp observation: one data point, one tension, one surprise\n"
-                "- End with: macrosnaps.app\n"
+                "- End with the bare URL: macrosnaps.app\n"
+                "- No markdown links, no [text](url) formatting, no HTML links. Bare URL only.\n"
                 "- No em-dashes. No hashtags. No filler.\n"
                 "- Sound like a sharp human, not a bot.\n\n"
                 "Output exactly this format, nothing else:\n"
-                "TWEET1: [text]\n"
-                "TWEET2: [text]\n"
-                "TWEET3: [text]\n\n"
+                "TWEET1: [text] macrosnaps.app\n"
+                "TWEET2: [text] macrosnaps.app\n"
+                "TWEET3: [text] macrosnaps.app\n\n"
                 f"Digest:\n{body[:1500]}"
             )
             msg = client.messages.create(
-                model="claude-opus-4-5",
+                model="claude-haiku-4-5-20251001",
                 max_tokens=400,
                 messages=[{"role": "user", "content": prompt}]
             )
@@ -151,12 +152,13 @@ class Handler(BaseHTTPRequestHandler):
                 "- One forward-looking closing line.\n"
                 "- End with: Full picture across 12 economies: macrosnaps.app\n"
                 "- No em-dashes. Maximum 2 hashtags at the very end, or none.\n"
+                "- No markdown links. LinkedIn does not render them. Bare URLs only.\n"
                 "- Warm but authoritative. Never use: notably, importantly, it is worth noting.\n"
                 "- Output the post only. No preamble.\n\n"
                 f"Weekly digest:\n{body[:2000]}"
             )
             msg = client.messages.create(
-                model="claude-opus-4-5",
+                model="claude-haiku-4-5-20251001",
                 max_tokens=300,
                 messages=[{"role": "user", "content": prompt}]
             )

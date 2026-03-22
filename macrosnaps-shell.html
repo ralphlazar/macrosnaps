@@ -970,17 +970,6 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 </style>
 </head>
 <body>
-<script>
-(function(){
-  var pwd = prompt("Enter password to access MacroSnaps:");
-  if(pwd !== "croc" && pwd !== "Croc"){
-    document.body.innerHTML = "";
-    alert("Incorrect password.");
-    window.location.href = "about:blank";
-  }
-})();
-</script>
-
 <div class="top-bar">
   <div class="logo">Macro<span>Snaps</span><span class="sub1">Macro &amp; Market Snapshots</span><span class="sub2" id="headerUpdated">Updated Daily</span></div>
   <div class="exp-group">

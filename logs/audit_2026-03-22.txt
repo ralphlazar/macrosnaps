@@ -1,8 +1,7 @@
 MacroSnaps Daily Audit - 2026-03-22
 ============================================================
-data.json generated : 2026-03-21
-Issues found        : 11
+data.json generated : 2026-03-22
+Issues found        : 10
 ============================================================
 
-✗ Build date mismatch: '2026-03-21'
 ⚠ RUS  last market update = '2026-03-21'

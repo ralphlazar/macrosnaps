@@ -368,7 +368,7 @@ SUBJECT: [one specific, compelling subject line. Not generic. No em-dashes.]
 Rules:
 - Each bullet is one sentence. Maximum 15 words per bullet.
 - No em-dashes. No filler. No intro paragraph.
-- First occurrence of jargon: hyperlink as [term]({url}).
+
 - Total post: under 80 words.""",
 
     "weekly": """Write an ultra-short weekly macro digest for Substack at moderate expertise level. Scannable in 30 seconds.
@@ -390,7 +390,7 @@ SUBJECT: [one specific, compelling subject line. No em-dashes.]
 Rules:
 - Each bullet is one sentence. Maximum 15 words per bullet.
 - No em-dashes. No intro paragraph. No filler.
-- First occurrence of jargon: hyperlink as [term]({url}).
+
 - Total post: under 150 words.""",
 
     "notes": """Write exactly 3 Substack Notes. Each is one sentence, punchy, standalone.
@@ -431,6 +431,7 @@ STRICT WRITING RULES (no exceptions):
 - Every word must earn its place. If a sentence can be cut, cut it.
 - Varied sentence openings. Never start two bullets the same way.
 - Numbers and specifics over vague descriptions. "5%" not "significantly".
+- Hyperlink the first occurrence of jargon terms (e.g. stagflation, yield curve, CPI) using markdown links to macrosnaps.app — first occurrence only, not every instance.
 
 Output clean markdown only. No preamble, no "here is your post", no commentary after the post.
 
@@ -452,7 +453,7 @@ def call_claude(prompt: str) -> str:
     print("  Calling Claude API...")
 
     message = client.messages.create(
-        model="claude-opus-4-5",
+        model="claude-haiku-4-5-20251001",
         max_tokens=1500,
         messages=[{"role": "user", "content": prompt}],
     )
@@ -514,7 +515,7 @@ def write_output(content: str, mode: str) -> Path:
     body = _re.sub(r'^SUBJECT:\s*.+\n?\n?', '', content, flags=_re.MULTILINE).strip()
 
     if mode != "notes":
-        full_markdown = subject_line + body + f"\n\n---\n[{MACROSNAPS_URL}]({MACROSNAPS_URL})"
+        full_markdown = subject_line + body + f"\n\n---\n{MACROSNAPS_URL}"
     else:
         full_markdown = content
 
