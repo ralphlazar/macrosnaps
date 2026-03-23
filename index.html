@@ -725,30 +725,6 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 .cr-regime.euro{border-color:rgba(100,140,255,.15);color:#7a9cf0}
 
 
-/* ── Educators row ── */
-.edu-row{
-  display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px 10px;
-  padding:12px 24px;cursor:pointer;
-  border-top:1px solid rgba(255,255,255,.07);
-  background:rgba(0,212,255,.02);
-  text-align:center;
-  transition:background .2s;
-}
-.edu-row:hover{background:rgba(0,212,255,.06);}
-.edu-row-tag{
-  font-family:var(--font-display);font-size:8px;letter-spacing:2px;
-  text-transform:uppercase;color:var(--cyan);
-  border:1px solid rgba(0,212,255,.3);padding:2px 7px;border-radius:2px;
-  flex-shrink:0;
-}
-.edu-row-title{
-  font-family:var(--font-display);font-size:10px;letter-spacing:1px;
-  text-transform:uppercase;color:#e8e8e8;flex-shrink:0;
-}
-.edu-row-desc{
-  width:100%;font-family:var(--font-body);font-size:11px;color:#556678;line-height:1.4;
-  text-align:center;margin-bottom:60px;
-}
 
 /* ── Footer ── */
 .subscribe-box{
@@ -756,6 +732,7 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
   border-top:1px solid rgba(255,255,255,.07);
   border-bottom:1px solid rgba(255,255,255,.07);
   background:rgba(0,212,255,.04);
+  margin-bottom:60px;
 }
 .subscribe-inner{
   display:flex;align-items:center;justify-content:center;
@@ -1054,11 +1031,7 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
   </div>
 </div>
 
-<div class="edu-row" id="eduRow">
-  <span class="edu-row-tag">For Educators</span>
-  <span class="edu-row-title">Use MacroSnaps in the classroom</span>
-  <span class="edu-row-desc">Free, no signup, works on any device. Every metric is explained at three levels — ideal for introductory lectures, seminar discussions, or self-directed student research.</span>
-</div>
+
 
 <div class="footer">
   <div class="footer-comm-row">
@@ -5778,7 +5751,6 @@ const histAnnualLabels  = _frozen.chartConfig.annualLabels;
 let histMonthlyLabels = []; // populated after data.json loads - see generator below
 const gdpYears          = _frozen.chartConfig.weatherGridYears;
 const footerContent     = _frozen.footer;
-footerContent['educators'] = "<h2>For Educators</h2><p>Free, no signup, works on any device. Every metric is explained at three levels — ideal for introductory lectures, seminar discussions, or self-directed student research.</p><div class=\"ft-sub\">Three levels, one screen</div><p><strong style=\"color:#00e68a\">Beginner</strong> — Plain-English explanations. Numbers in context. No jargon. Good for first-year undergrads or anyone new to macro.</p><p><strong style=\"color:#ffd700\">Moderate</strong> — Cause, effect, and policy linkages. Assumes basic economic literacy. Good for second-year and above.</p><p><strong style=\"color:#00d4ff\">Expert</strong> — Market mechanics, monetary transmission, and macro interdependencies. Good for postgrads and professionals.</p><div class=\"ft-sub\">Classroom ideas</div><p>📊 Open a country card mid-lecture to show live CPI, unemployment, or policy rate data — then toggle the expertise level to match your class.</p><p>🌍 Compare two economies side by side — e.g. Japan vs USA on inflation — to illustrate why the same conditions produce different policy responses.</p><p>💬 Set a discussion question: ask students to explain a metric at beginner level, then read the expert version together to see what they missed.</p><div class=\"ft-sub\">Share</div><p><button onclick=\"if(navigator.clipboard){navigator.clipboard.writeText('https://www.macrosnaps.com').then(function(){var b=document.getElementById('eduCopyBtn');b.textContent='Copied!';setTimeout(function(){b.textContent='Copy link'},2000);})}\" id=\"eduCopyBtn\" style=\"font-family:var(--font-display);font-size:9px;letter-spacing:1px;text-transform:uppercase;background:var(--cyan);color:#000;border:none;padding:6px 14px;border-radius:2px;cursor:pointer;margin-right:8px\">Copy link</button><a href=\"mailto:lastlemon@gmail.com?subject=MacroSnaps%20educator%20feedback\" style=\"font-family:var(--font-display);font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--cyan);border:1px solid rgba(0,212,255,.35);padding:6px 14px;border-radius:2px;text-decoration:none\">Suggest a feature</a></p>";
 const fxSource          = metricSources['FX'] || 'WM/Refinitiv · Bloomberg · National central banks';
 
 // ── Runtime state (populated by fetch) ──
@@ -8033,23 +8005,6 @@ document.querySelectorAll('.exp-btn').forEach(btn=>{btn.addEventListener('click'
     if (e.target === banner) dismiss();
   });
 })();
-
-document.getElementById('eduRow').addEventListener('click', function(){
-  closeAll();
-  const tt = document.createElement('div');
-  tt.className = 'footer-tooltip';
-  tt.innerHTML = '<div class="tt-close" onclick="this.parentElement.remove()">✕</div>' + footerContent['educators'];
-  document.body.appendChild(tt);
-  tt.offsetHeight;
-  tt.classList.add('active');
-  setTimeout(function(){
-    document.addEventListener('click', function cl(e){
-      if(!tt.contains(e.target) && e.target !== document.getElementById('eduRow')){
-        tt.remove(); document.removeEventListener('click', cl);
-      }
-    });
-  }, 100);
-});
 
 
   el.addEventListener('click', () => {
