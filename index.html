@@ -724,6 +724,83 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 .cr-regime.peg{border-color:rgba(255,61,90,.15);color:#c66}
 .cr-regime.euro{border-color:rgba(100,140,255,.15);color:#7a9cf0}
 
+/* ── Educators ── */
+.edu-section{
+  padding:32px 24px 28px;
+  border-top:1px solid rgba(255,255,255,.07);
+  border-bottom:1px solid rgba(255,255,255,.07);
+  background:rgba(0,212,255,.02);
+  max-width:760px;margin:0 auto 0;
+}
+.edu-header{
+  display:flex;align-items:center;gap:10px;margin-bottom:6px;
+}
+.edu-tag{
+  font-family:var(--font-display);font-size:9px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--cyan);
+  border:1px solid rgba(0,212,255,.3);padding:3px 8px;border-radius:2px;
+}
+.edu-title{
+  font-family:var(--font-display);font-size:13px;letter-spacing:1.5px;
+  text-transform:uppercase;color:#e8e8e8;
+}
+.edu-intro{
+  font-family:var(--font-body);font-size:13px;color:#8a9bb0;
+  line-height:1.6;margin-bottom:20px;
+}
+.edu-levels{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px;
+}
+.edu-level-card{
+  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);
+  border-radius:4px;padding:12px;
+}
+.edu-level-card.beginner{border-top:2px solid #00e68a;}
+.edu-level-card.moderate{border-top:2px solid #ffd700;}
+.edu-level-card.expert{border-top:2px solid var(--cyan);}
+.edu-level-label{
+  font-family:var(--font-display);font-size:8px;letter-spacing:1.5px;
+  text-transform:uppercase;margin-bottom:7px;
+}
+.edu-level-card.beginner .edu-level-label{color:#00e68a;}
+.edu-level-card.moderate .edu-level-label{color:#ffd700;}
+.edu-level-card.expert .edu-level-label{color:var(--cyan);}
+.edu-level-text{
+  font-family:var(--font-body);font-size:11px;color:#8a9bb0;line-height:1.55;
+}
+.edu-uses{
+  display:flex;flex-direction:column;gap:6px;margin-bottom:20px;
+}
+.edu-use-item{
+  display:flex;align-items:flex-start;gap:8px;
+  font-family:var(--font-body);font-size:12px;color:#8a9bb0;line-height:1.5;
+}
+.edu-use-icon{
+  font-size:12px;margin-top:1px;flex-shrink:0;
+}
+.edu-actions{
+  display:flex;gap:10px;flex-wrap:wrap;
+}
+.edu-btn-primary{
+  font-family:var(--font-display);font-size:10px;letter-spacing:1px;
+  text-transform:uppercase;color:#000;
+  background:var(--cyan);border:none;padding:8px 18px;
+  border-radius:2px;cursor:pointer;text-decoration:none;
+  transition:opacity .2s;
+}
+.edu-btn-primary:hover{opacity:.85;}
+.edu-btn-secondary{
+  font-family:var(--font-display);font-size:10px;letter-spacing:1px;
+  text-transform:uppercase;color:var(--cyan);
+  background:transparent;border:1px solid rgba(0,212,255,.35);
+  padding:8px 18px;border-radius:2px;cursor:pointer;text-decoration:none;
+  transition:border-color .2s,color .2s;
+}
+.edu-btn-secondary:hover{border-color:var(--cyan);color:#fff;}
+@media(max-width:600px){
+  .edu-levels{grid-template-columns:1fr;}
+}
+
 /* ── Footer ── */
 .subscribe-box{
   padding:16px 24px;
@@ -1028,6 +1105,57 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
     <a class="subscribe-btn" href="https://macrosnaps.substack.com" target="_blank" rel="noopener">Subscribe free</a>
   </div>
 </div>
+
+<div class="edu-section">
+  <div class="edu-header">
+    <span class="edu-tag">For Educators</span>
+    <span class="edu-title">Use MacroSnaps in the classroom</span>
+  </div>
+  <p class="edu-intro">Free, no signup, works on any device. Every metric is explained at three levels — ideal for introductory lectures, seminar discussions, or self-directed student research.</p>
+
+  <div class="edu-levels">
+    <div class="edu-level-card beginner">
+      <div class="edu-level-label">Beginner</div>
+      <div class="edu-level-text">Plain-English explanations. Numbers in context. No jargon. Good for first-year undergrads or anyone new to macro.</div>
+    </div>
+    <div class="edu-level-card moderate">
+      <div class="edu-level-label">Moderate</div>
+      <div class="edu-level-text">Cause, effect, and policy linkages. Assumes basic economic literacy. Good for second-year and above.</div>
+    </div>
+    <div class="edu-level-card expert">
+      <div class="edu-level-label">Expert</div>
+      <div class="edu-level-text">Market mechanics, monetary transmission, and macro interdependencies. Good for postgrads and professionals.</div>
+    </div>
+  </div>
+
+  <div class="edu-uses">
+    <div class="edu-use-item"><span class="edu-use-icon">📊</span><span>Open a country card mid-lecture to show live CPI, unemployment, or policy rate data — then toggle the expertise level to match your class.</span></div>
+    <div class="edu-use-item"><span class="edu-use-icon">🌍</span><span>Compare two economies side by side — e.g. Japan vs USA on inflation — to illustrate why the same conditions produce different policy responses.</span></div>
+    <div class="edu-use-item"><span class="edu-use-icon">💬</span><span>Set a discussion question: ask students to explain a metric at beginner level, then read the expert version together to see what they missed.</span></div>
+  </div>
+
+  <div class="edu-actions">
+    <a class="edu-btn-primary" id="eduShareBtn" href="#">Share with your department</a>
+    <a class="edu-btn-secondary" href="mailto:lastlemon@gmail.com?subject=MacroSnaps%20educator%20feedback">Suggest a feature</a>
+  </div>
+</div>
+
+<script>
+document.getElementById('eduShareBtn').addEventListener('click', function(e){
+  e.preventDefault();
+  const url = 'https://www.macrosnaps.com';
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(url).then(function(){
+      const btn = document.getElementById('eduShareBtn');
+      const orig = btn.textContent;
+      btn.textContent = 'Link copied!';
+      setTimeout(function(){ btn.textContent = orig; }, 2000);
+    });
+  } else {
+    window.open('mailto:?subject=MacroSnaps%20%E2%80%94%20free%20macro%20teaching%20tool&body=Thought%20this%20might%20be%20useful%20for%20your%20classes%3A%20https%3A%2F%2Fwww.macrosnaps.com');
+  }
+});
+</script>
 
 <div class="footer">
   <div class="footer-comm-row">
