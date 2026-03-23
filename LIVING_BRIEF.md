@@ -1,5 +1,17 @@
 # MacroSnaps - Living Brief
-Last updated: March 22, 2026 (Session 44: X/Twitter icon added to footer; update_stories.py prompt tightened and --country/--metric flags added.)
+Last updated: March 23, 2026 (Session 45: build.py structural date fix; US→Commodities tooltip nav flash fixed; Ping Me form wired to Formspree; forecast_cms.html explainer banner added.)
+
+Session 45 changes in detail:
+
+(1) **`build.py`: structural date fix.** Root cause of site showing yesterday's date three days running: build.py was injecting data into `window.__MACROSNAPS_DATA__` while the site JS reads from `window.__MACRO_DATA__` — two different variable names, so injected data was never used. Fix: build.py now uses a regex to directly replace the `window.__MACRO_DATA__ = {...};` block in the shell with today's fresh data on every build. The old fetch-block replacement logic and misnamed variable injection have been removed. Additionally, the date stamp is now applied to `data` before serialisation, so both `index.html` and `data.json` always carry the same date.
+
+(2) **`macrosnaps-shell.html`: US→Commodities tooltip nav flash fixed.** The previous session's nav fix (skip animation on country→country navigation) was applied to `showCard` only. `showCommoditiesCard` still used a create-new/remove-old cycle, causing a blank flash specifically on the US→Commodities transition (US is the last country before Commodities in nav order). Fix: `showCommoditiesCard` now uses the same update-in-place strategy as `showCard` — if a `.card-overlay` already exists, it reuses it and swaps innerHTML rather than creating a new overlay. No flash on any nav transition.
+
+(3) **Ping Me form wired to Formspree.** The fake contact form (which just swapped in a success message on submit without sending anything) has been replaced with a real Formspree POST. Endpoint: `https://formspree.io/f/xqeyvnov`. Fields: `name`, `email`, `message`. Button shows "Sending…" during request, success message on delivery, "Error — try again" on failure. Submissions arrive at `lastlemon@gmail.com` with subject line "MacroSnaps" (set in Formspree dashboard under Settings → Email Notifications).
+
+(4) **`forecast_cms.html`: explainer banner added.** A slim dark banner sits between the header and the grid with four labelled items: what the CMS is, how to run it (start `forecast_server.py`, open in browser), what the context column shows, and the save feedback colour codes (gold/green/red).
+
+---
 
 Session 44 changes in detail:
 
