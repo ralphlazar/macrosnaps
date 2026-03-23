@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MacroSnaps for Educators</title>
+<meta name="description" content="Use MacroSnaps in your teaching. Free, no signup. Every metric explained at three levels: beginner, moderate, expert.">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cyan:#00d4ff;--hot:#ff3d5a;--gold:#ffd700;--green:#00e68a;
+  --font-display:'Space Mono',monospace;
+  --font-body:'DM Sans',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{background:#091426;color:#e8e8e8;font-family:var(--font-body);}
+body{min-height:100vh;display:flex;flex-direction:column;}
+.header{display:flex;align-items:center;justify-content:space-between;padding:16px 32px;border-bottom:1px solid rgba(255,255,255,.07);background:rgba(9,20,38,.95);}
+.header-logo{font-family:var(--font-display);font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#fff;text-decoration:none;}
+.header-logo span{color:var(--cyan);}
+.header-back{font-family:var(--font-display);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:#aaa;text-decoration:none;border:1px solid rgba(255,255,255,.15);padding:6px 14px;border-radius:3px;transition:color .2s,border-color .2s;}
+.header-back:hover{color:var(--cyan);border-color:var(--cyan);}
+.page{max-width:680px;margin:0 auto;padding:48px 32px 80px;}
+.title-block{display:flex;align-items:center;gap:20px;margin-bottom:20px;}
+.title-text{flex:1;}
+.page-tag{font-family:var(--font-display);font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);display:block;margin-bottom:10px;}
+.page-title{font-family:var(--font-display);font-size:22px;letter-spacing:1px;text-transform:uppercase;color:#fff;line-height:1.3;}
+.page-title span{color:var(--cyan);}
+.title-icons{display:flex;flex-direction:row;align-items:center;gap:10px;flex-shrink:0;}
+.wi{font-size:52px;line-height:1;display:block;}
+.wi.sunny{filter:none;}
+.wi.cloudy{filter:brightness(.65) contrast(1.05) saturate(.3);}
+.wi.stormy{filter:brightness(.15) contrast(1.2) saturate(0) drop-shadow(0 0 4px rgba(255,255,255,.35)) drop-shadow(0 0 8px rgba(255,255,255,.15));}
+.page-intro{font-family:var(--font-body);font-size:15px;color:#8a9bb0;line-height:1.7;margin-bottom:40px;border-bottom:1px solid rgba(255,255,255,.07);padding-bottom:32px;}
+.section-label{font-family:var(--font-display);font-size:15px;letter-spacing:1px;text-transform:uppercase;color:#8a9bb0;margin-bottom:14px;}
+.levels{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:40px;}
+.level-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:16px;}
+.level-card.beginner{border-top:2px solid var(--green);}
+.level-card.moderate{border-top:2px solid var(--gold);}
+.level-card.expert{border-top:2px solid var(--cyan);}
+.level-name{font-family:var(--font-display);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;}
+.level-card.beginner .level-name{color:var(--green);}
+.level-card.moderate .level-name{color:var(--gold);}
+.level-card.expert .level-name{color:var(--cyan);}
+.level-desc{font-family:var(--font-body);font-size:15px;color:#8a9bb0;line-height:1.6;}
+.ideas{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.idea{display:flex;gap:14px;align-items:flex-start;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:4px;padding:14px;}
+.idea-icon{flex-shrink:0;margin-top:2px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:15px;}
+.idea-icon.sunny{background:rgba(255,215,0,.1);border:1px solid rgba(255,215,0,.25);}
+.idea-icon.cloudy{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);}
+.idea-icon.stormy{background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.2);}
+.idea-text{font-family:var(--font-body);font-size:15px;color:#8a9bb0;line-height:1.6;}
+.hl{color:var(--cyan);font-weight:600;}
+.actions{display:flex;gap:12px;flex-wrap:wrap;padding-top:8px;}
+.btn-primary{font-family:var(--font-display);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#000;background:var(--cyan);border:none;padding:10px 22px;border-radius:3px;cursor:pointer;text-decoration:none;transition:opacity .2s;display:inline-block;}
+.btn-primary:hover{opacity:.85;}
+.btn-secondary{font-family:var(--font-display);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--cyan);background:transparent;border:1px solid rgba(0,212,255,.35);padding:10px 22px;border-radius:3px;cursor:pointer;text-decoration:none;transition:border-color .2s,color .2s;display:inline-block;}
+.btn-secondary:hover{border-color:var(--cyan);color:#fff;}
+.copy-confirm{font-family:var(--font-display);font-size:9px;letter-spacing:1px;color:var(--green);display:none;align-self:center;margin-left:4px;}
+.footer{margin-top:auto;padding:20px 32px;border-top:1px solid rgba(255,255,255,.07);text-align:center;font-family:var(--font-display);font-size:9px;letter-spacing:1px;color:#556678;}
+.footer a{color:#556678;text-decoration:none;transition:color .2s;}
+.footer a:hover{color:var(--cyan);}
+@media(max-width:580px){.levels{grid-template-columns:1fr;}.page{padding:32px 20px 60px;}.header{padding:14px 20px;}.title-block{gap:12px;}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <a class="header-logo" href="/">Macro<span>Snaps</span></a>
+  <a class="header-back" href="/">← Back to dashboard</a>
+</div>
+
+<div class="page">
+
+  <div class="title-block">
+    <div class="title-text">
+      <span class="page-tag">For Educators</span>
+      <h1 class="page-title">Use MacroSnaps<br>in your <span>teaching</span></h1>
+    </div>
+    <div class="title-icons">
+      <span class="wi sunny">☀️</span>
+      <span class="wi cloudy">☁️</span>
+      <span class="wi stormy">⛈️</span>
+    </div>
+  </div>
+
+  <p class="page-intro">Free, no signup, works on any device. Every metric is explained at <span class="hl">three levels</span>, ideal for introductory lectures, seminar discussions, or self-directed student research across 12 major economies.</p>
+
+  <div class="section-label">Three levels, one screen</div>
+  <div class="levels">
+    <div class="level-card beginner">
+      <div class="level-name">Beginner</div>
+      <div class="level-desc">Plain-English explanations. Numbers in context. No jargon. Good for first-year undergrads or anyone new to macro.</div>
+    </div>
+    <div class="level-card moderate">
+      <div class="level-name">Moderate</div>
+      <div class="level-desc">Cause, effect, and policy linkages. Assumes basic economic literacy. Good for second-year and above.</div>
+    </div>
+    <div class="level-card expert">
+      <div class="level-name">Expert</div>
+      <div class="level-desc">Market mechanics, monetary transmission, and macro interdependencies. Good for postgrads and professionals.</div>
+    </div>
+  </div>
+
+  <div class="section-label">Teaching ideas</div>
+  <div class="ideas">
+    <div class="idea">
+      <span class="idea-icon sunny">☀️</span>
+      <span class="idea-text">Open a <span class="hl">country card</span> mid-lecture to show live CPI, unemployment, or policy rate data. Toggle the expertise level to match your class.</span>
+    </div>
+    <div class="idea">
+      <span class="idea-icon cloudy">☁️</span>
+      <span class="idea-text">Use the <span class="hl">weather icons</span> as a quick visual prompt (sunny, cloudy, or stormy) to spark discussion about which economies are thriving and which are under pressure, before diving into the data.</span>
+    </div>
+    <div class="idea">
+      <span class="idea-icon stormy">⛈️</span>
+      <span class="idea-text">Set a discussion question: ask students to explain a metric at beginner level, then read the expert version together to see what they missed.</span>
+    </div>
+    <div class="idea">
+      <span class="idea-icon sunny">☀️</span>
+      <span class="idea-text">Start each class with that day's <span class="hl">story bullets</span>. Concise, three-act daily narratives covering the most important macro event, biggest market movers, and how they connect. A ready-made warm-up in under two minutes.</span>
+    </div>
+  </div>
+
+  <div class="section-label">Share with your department</div>
+  <div class="actions">
+    <button class="btn-primary" id="copyBtn" onclick="navigator.clipboard.writeText('https://www.macrosnaps.com').then(function(){var btn=document.getElementById('copyBtn');var conf=document.getElementById('copyConf');btn.textContent='Copied!';conf.style.display='inline';setTimeout(function(){btn.textContent='Copy link';conf.style.display='none';},2000);});">Copy link</button>
+    <a class="btn-secondary" href="mailto:?subject=MacroSnaps%20for%20Educators&body=Thought%20this%20might%20be%20useful%20for%20your%20teaching%3A%20https%3A%2F%2Fwww.macrosnaps.com%2Feducators.html">Share by email</a>
+    <a class="btn-secondary" href="mailto:lastlemon@gmail.com?subject=MacroSnaps%20educator%20feedback">Suggest a feature</a>
+    <span class="copy-confirm" id="copyConf">Link copied</span>
+  </div>
+
+</div>
+
+<div class="footer">
+  <a href="/">macrosnaps.com</a> &nbsp;·&nbsp; Macro · Market · World
+</div>
+
+</body>
+</html>
