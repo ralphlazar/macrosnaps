@@ -1,5 +1,21 @@
 # MacroSnaps - Living Brief
-Last updated: March 23, 2026 (Session 45: build.py structural date fix; US→Commodities tooltip nav flash fixed; Ping Me form wired to Formspree; forecast_cms.html explainer banner added.)
+Last updated: March 23, 2026 (Session 46: Twitter/OG meta tags added; educators.html created; Subscribe free + Educators buttons moved into fixed footer; #ping hash handler added.)
+
+Session 46 changes in detail:
+
+(1) **Twitter/OG meta tags added to `macrosnaps-shell.html`.** Full set of tags added to `<head>`: `twitter:card`, `twitter:site` (@macrosnapsapp), `twitter:title`, `twitter:description`, `twitter:image`, `twitter:image:alt`, plus `og:image`, `og:title`, `og:description`. Image URL points to `https://raw.githubusercontent.com/ralphlazar/macrosnaps/master/macrosnaps-logo.png` (raw GitHub URL used because the custom domain was returning 400 on the direct path). Logo file (`macrosnaps-logo.png`) uploaded to the root of the GitHub repo. Validated via cards-dev.twitter.com/validator.
+
+(2) **`educators.html` created.** Standalone page at `macrosnaps.app/educators.html`. Matches site design (Space Mono + DM Sans, dark navy, cyan accents). Sections: title block with three weather icons (☀️ ☁️ ⛈️) in a row at 52px using the same CSS filters as the weather grid; intro paragraph; three level cards (Beginner/Moderate/Expert) colour-coded green/gold/cyan; four teaching ideas using weather icons as idea bullets; Share with your department section with Copy link, Share by email, and Suggest a feature buttons. "Suggest a feature" links to `macrosnaps.app/#ping` (not a mailto) to avoid email harvesting. Footer reads: `macrosnaps.app · Macro · Markets · World`. Key terms bold cyan: "three levels", "country card", "weather icons", "story bullets". No em dashes throughout. Human-written tone per style guide.
+
+(3) **Subscribe free + Educators buttons moved into fixed footer.** Standalone subscribe box between weather table and footer removed. Footer is now two rows: row 1 = Subscribe free + Educators buttons; row 2 = Commodities | What? | How? | Who? | Icons? | Legalese | Ping Me | X icon. Footer changed from `display:flex` (single row) to `flex-direction:column`. `footer-comm-row` and `footer-main-row` changed from `display:contents` to `display:flex` with `justify-content:center`. New `.footer-btn-row` class added. `#rankings-view` bottom padding bumped from 80px to 110px to account for taller footer.
+
+(4) **`#ping` hash handler added to `macrosnaps-shell.html`.** A JS snippet at the end of the main script block checks `window.location.hash` on load. If the hash matches a key in `footerContent` (e.g. `#ping`, `#what`), it opens that tooltip automatically. This allows `macrosnaps.app/#ping` to be linked from external pages (e.g. educators.html) and open the Ping Me form directly.
+
+(5) **Educator outreach strategy added to brief.** Target audience: university macroeconomics lecturers globally. Rationale: the three expertise levels map naturally to intro/intermediate/advanced students. Outreach channels: cold email to economics departments, X engagement on #econtwitter, educators page as landing destination. Cold email template drafted: short, collaborative tone, soft-launch framing, invites feedback.
+
+---
+
+
 
 Session 45 changes in detail:
 
