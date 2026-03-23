@@ -390,6 +390,11 @@ shell = re.sub(
 
 # Stamp today's date into data before inlining
 
+# Stamp today's date into data BEFORE serialising, so index.html and
+# data.json always carry the same date. (Previously this happened after
+# serialisation, causing index.html to show yesterday's date.)
+data["_meta"]["generated"] = TODAY
+
 # Inline data.json into the HTML so it works as a standalone local file.
 # Replace the fetch('data.json') call with a Promise.resolve() over the
 # inlined JSON payload — no server required, works via file:// protocol.
@@ -427,7 +432,6 @@ with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
 
 ok(f"Written: {OUTPUT_FILE} ({os.path.getsize(OUTPUT_FILE)//1024} KB)")
 
-data["_meta"]["generated"] = TODAY
 with open(DATA_FILE, "w", encoding="utf-8") as f:
     json.dump(data, f, indent=2, ensure_ascii=False)
 ok(f"Stamped _meta.generated = {TODAY} in data.json")
