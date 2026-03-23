@@ -55510,7 +55510,7 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
     "who": "<h2>Who?</h2>\n<p>Built by <strong>Ralph Lazar</strong> - formerly Global Equity Strategy at Goldman Sachs and Fixed-Income Prop Trading at CSFB. Old habits die hard.</p>",
     "icons": "<h2>Icons?</h2>\n<p>The same three weather icons appear throughout MacroSnaps. They always mean the same thing: positive, mixed, or negative - applied to whatever is being measured.</p>\n<p><span class=\"wh-icon sunny\">☀️</span> <strong>Sunny</strong> - tracking positively relative to expectations.</p>\n<p><span class=\"wh-icon cloudy\">☁️</span> <strong>Cloudy</strong> - mixed or in line with expectations.</p>\n<p><span class=\"wh-icon stormy\">⛈️</span> <strong>Stormy</strong> - tracking negatively or deteriorating.</p>\n<div class=\"ft-sub\">Where you'll see them</div>\n<p><strong>Country card headline icon</strong> - a single combined reading across all metrics for that country. Not any one data point.</p>\n<p><strong>Metric weather strip</strong> - the row of 7 small icons next to each macro forecast. Each icon represents one year (2020-2026), so you can see how that metric has trended over time. The last icon is the current year forecast.</p>\n<p><strong>Commodity card icon</strong> - reflects recent price momentum for that commodity.</p>",
     "legal": "<h2>Legalese</h2>\n<div class=\"ft-sub\">Disclaimer</div>\n<p class=\"ft-legal\">All content, including market trends and economic insights, is provided for informational and educational purposes only and does not constitute financial, investment, or trading advice. Past performance is not indicative of future results. You must consult with a qualified financial advisor before making any investment decisions.</p>\n<div class=\"ft-sub\">Privacy</div>\n<p class=\"ft-legal\">MacroSnaps does not sell, share, or distribute any personal data to third parties. We do not use tracking cookies for advertising purposes. Basic analytics may be collected to improve the service (e.g. page views, session duration). If you contact us via the form on this site, your name and email are used solely to respond to your message and are not added to any mailing list. We do not store financial data or personal investment information. By using this site, you consent to this policy. For questions or data removal requests, please use the contact form.</p>",
-    "ping": "<h2>Ping Me</h2>\n<p>Something to say? This is the place.</p>\n<form class=\"contact-form\" onsubmit=\"event.preventDefault();this.innerHTML='<p style=\\'color:#00d4ff;margin-top:12px\\'>Message sent. Thanks! ✓</p>';\">\n  <input type=\"text\" placeholder=\"Name\" required>\n  <input type=\"email\" placeholder=\"Email\" required>\n  <textarea placeholder=\"What's on your mind?\" required></textarea>\n  <button type=\"submit\">Send</button>\n</form>"
+    "ping": "<h2>Ping Me</h2>\n<p>Something to say? This is the place.</p>\n<form class=\"contact-form\" onsubmit=\"event.preventDefault();var f=this;var b=f.querySelector('button');b.textContent='Sending…';b.disabled=true;fetch('https://formspree.io/f/xqeyvnov',{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}}).then(function(r){if(r.ok){f.innerHTML='<p style=\\'color:#00d4ff;margin-top:12px\\'>Message sent. Thanks! ✓</p>';}else{b.textContent='Error — try again';b.disabled=false;}}).catch(function(){b.textContent='Error — try again';b.disabled=false;});\">\n  <input type=\"text\" name=\"name\" placeholder=\"Name\" required>\n  <input type=\"email\" name=\"email\" placeholder=\"Email\" required>\n  <textarea name=\"message\" placeholder=\"What's on your mind?\" required></textarea>\n  <button type=\"submit\">Send</button>\n</form>"
   },
   "itemExplanations": {
     "WTI Crude": {
@@ -56754,6 +56754,7 @@ function formatCommPrice(price) {
 }
 
 function showCommoditiesCard() {
+  const _oldCards = [...document.querySelectorAll('.card-overlay, .tooltip')];
   closeBubble();
   const comm = commoditiesData;
   if (!comm) return;
@@ -56800,27 +56801,20 @@ function showCommoditiesCard() {
 
   const storiesList = stories.map(s => `<li>${applyGlossary(s)}</li>`).join('');
 
-  const cardInnerHTML = `<div class="card-close" onclick="this.closest('.card-overlay').remove()">\u2715</div>
+  const o = document.createElement('div');
+  o.className = 'card-overlay';
+  o.innerHTML = `<div class="country-card">
+    <div class="card-close" onclick="this.closest('.card-overlay').remove()">\u2715</div>
     ${levelToggleHTML()}
     <div class="card-head"><span class="c-flag">\u{1F6E2}\uFE0F</span><span class="c-name">Commodities</span>${cardNavHTML()}</div>
     <div class="weather-sec"><div class="w-icon ${weatherClass}">${comm.weather || '☁️'}</div><ul class="c-stories">${storiesList}</ul></div>
     ${sectionsHTML}
-    <div class="comm-footer">As of ${comm.asOf} \u00b7 ${comm.source}</div>`;
+    <div class="comm-footer">As of ${comm.asOf} \u00b7 ${comm.source}</div>
+  </div>`;
 
-  const existingOverlay = document.querySelector('.card-overlay');
-  let o;
-  if (existingOverlay) {
-    // Update in place — no create/remove cycle, no flash
-    o = existingOverlay;
-    const card = o.querySelector('.country-card');
-    if (card) card.innerHTML = cardInnerHTML;
-  } else {
-    o = document.createElement('div');
-    o.className = 'card-overlay';
-    o.innerHTML = `<div class="country-card">${cardInnerHTML}</div>`;
-    document.body.appendChild(o);
-    o.addEventListener('click', e => { if (e.target === o) o.remove(); });
-  }
+  document.body.appendChild(o);
+  _oldCards.forEach(el => el.remove());
+  o.addEventListener('click', e => { if (e.target === o) o.remove(); });
 
   // Click handlers on commodity items → open MTT
   o.querySelectorAll('.comm-item').forEach(el => {
