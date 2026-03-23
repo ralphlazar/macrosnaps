@@ -57936,6 +57936,7 @@ document.querySelectorAll('.exp-btn').forEach(btn=>{btn.addEventListener('click'
 })();
 
 
+document.querySelectorAll('.footer-link').forEach(el => {
   el.addEventListener('click', () => {
     if (el.dataset.ftComm) { closeAll(); showCommoditiesCard(); return; }
     closeAll();
