@@ -56755,6 +56755,7 @@ function formatCommPrice(price) {
 
 function showCommoditiesCard() {
   const _oldCards = [...document.querySelectorAll('.card-overlay, .tooltip')];
+  const isNavigation = _oldCards.length > 0;
   closeBubble();
   const comm = commoditiesData;
   if (!comm) return;
@@ -56802,7 +56803,7 @@ function showCommoditiesCard() {
   const storiesList = stories.map(s => `<li>${applyGlossary(s)}</li>`).join('');
 
   const o = document.createElement('div');
-  o.className = 'card-overlay';
+  o.className = 'card-overlay' + (isNavigation ? ' no-anim' : '');
   o.innerHTML = `<div class="country-card">
     <div class="card-close" onclick="this.closest('.card-overlay').remove()">\u2715</div>
     ${levelToggleHTML()}
