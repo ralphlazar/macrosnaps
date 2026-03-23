@@ -50372,7 +50372,6 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
   animation:cardIn .25s ease-out;margin:auto;
 }
 @keyframes cardIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-.card-overlay.no-anim,.card-overlay.no-anim .country-card{animation:none}
 .country-card:hover{border-color:#555}
 .card-close{
   position:absolute;top:12px;right:12px;width:28px;height:28px;
@@ -57218,7 +57217,7 @@ function metricWeatherStrip(metricName, countryCode) {
   return `<div class="m-strip" data-strip="1">${icons}</div>`;
 }
 
-function renderCard(d, co, skipAnim) {
+function renderCard(d, co, existingOverlay) {
   let mH = '', mkH = '';
   d.macroMetrics.forEach(m => { const label = metricDisplayLabels[m.name] || m.name; const strip = metricWeatherStrip(m.name, d.code); mH += `<div class="metric" data-m="${m.name}" data-v="${m.val}" data-c="${d.name}" data-s="macro"><div class="m-name">${label}</div><div class="m-val-row"><div class="m-val">${m.val}</div>${strip}</div></div>`; });
   d.marketMetrics.forEach(m => { const label = metricDisplayLabels[m.name] || m.name; mkH += `<div class="metric" data-m="${m.name}" data-v="${m.val}" data-c="${d.name}" data-s="market"><div class="m-name">${label}</div><div class="m-val">${m.val}</div></div>`; });
@@ -57226,10 +57225,20 @@ function renderCard(d, co, skipAnim) {
   const macroSection = d.macroMetrics.length > 0 ? `<div class="sec-head">MACRO FORECASTS (2026)</div><div class="metrics">${mH}</div>` : '';
   const marketSection = d.marketMetrics.length > 0 ? `<div class="sec-head">MARKETS</div><div class="metrics mkt">${mkH}</div>` : '';
 
-  const o = document.createElement('div'); o.className = 'card-overlay' + (skipAnim ? ' no-anim' : '');
-  o.innerHTML = `<div class="country-card"><div class="card-close" onclick="this.closest('.card-overlay').remove()">✕</div>${levelToggleHTML()}<div class="card-head"><span class="c-flag">${d.flag}</span><span class="c-name">${d.name}</span>${cardNavHTML()}</div><div class="weather-sec"><div class="w-icon ${d.weatherClass}">${d.weather}</div><ul class="c-stories">${d.stories.map(s => `<li>${applyGlossary(s)}</li>`).join('')}</ul></div>${macroSection}${marketSection}</div>`;
-  document.body.appendChild(o);
-  o.addEventListener('click', e => { if (e.target === o) o.remove(); });
+  const cardInnerHTML = `<div class="card-close" onclick="this.closest('.card-overlay').remove()">✕</div>${levelToggleHTML()}<div class="card-head"><span class="c-flag">${d.flag}</span><span class="c-name">${d.name}</span>${cardNavHTML()}</div><div class="weather-sec"><div class="w-icon ${d.weatherClass}">${d.weather}</div><ul class="c-stories">${d.stories.map(s => `<li>${applyGlossary(s)}</li>`).join('')}</ul></div>${macroSection}${marketSection}`;
+
+  let o;
+  if (existingOverlay) {
+    // Update in place — never destroy the composited backdrop-filter layer
+    o = existingOverlay;
+    const card = o.querySelector('.country-card');
+    if (card) card.innerHTML = cardInnerHTML;
+  } else {
+    o = document.createElement('div'); o.className = 'card-overlay';
+    o.innerHTML = `<div class="country-card">${cardInnerHTML}</div>`;
+    document.body.appendChild(o);
+    o.addEventListener('click', e => { if (e.target === o) o.remove(); });
+  }
   o.querySelectorAll('.metric').forEach(el => {
     el.addEventListener('click', e => {
       if (e.target.closest('.m-strip')) return;
@@ -57262,12 +57271,11 @@ function renderCard(d, co, skipAnim) {
 function showCard(co) {
   if (!co) return;
   activeCardCountry = co;
-  const _oldCards = [...document.querySelectorAll('.card-overlay, .tooltip')];
-  const isNavigation = _oldCards.length > 0;
   closeBubble();
+  document.querySelectorAll('.tooltip').forEach(el => el.remove());
   const d = assembleCardData(co);
-  renderCard(d, co, isNavigation);
-  _oldCards.forEach(el => el.remove());
+  const existingOverlay = document.querySelector('.card-overlay');
+  renderCard(d, co, existingOverlay || null);
 }
 
 // ── METRIC TOOLTIP ──
