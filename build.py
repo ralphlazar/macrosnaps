@@ -390,41 +390,31 @@ shell = re.sub(
 
 # Stamp today's date into data before inlining
 
-# Stamp today's date into data BEFORE serialising, so index.html and
-# data.json always carry the same date. (Previously this happened after
-# serialisation, causing index.html to show yesterday's date.)
-data["_meta"]["generated"] = TODAY
-
 # Inline data.json into the HTML so it works as a standalone local file.
 # Replace the fetch('data.json') call with a Promise.resolve() over the
 # inlined JSON payload — no server required, works via file:// protocol.
 data_json_str = json.dumps(data, ensure_ascii=False)
 
-FETCH_OLD = (
-    "fetch('data.json')\n"
-    "  .then(r => { if(!r.ok) throw new Error('data.json not found: ' + r.status); return r.json(); })\n"
-    "  .then(data => {"
+# Replace the existing window.__MACRO_DATA__ = {...}; block in the shell
+# with today's fresh data. This is the variable the JS actually reads from.
+_data_pattern = re.compile(
+    r'window\.__MACRO_DATA__\s*=\s*\{.*?\};\s*\n',
+    re.DOTALL
 )
-FETCH_NEW = (
-    "// data.json inlined by build.py — standalone file, no server needed\n"
-    "Promise.resolve(window.__MACROSNAPS_DATA__)\n"
-    "  .then(data => {"
-)
-
-if FETCH_OLD not in shell:
-    print("  WARNING: Could not find fetch block to replace — output may still require a server.")
+_replacement = f"window.__MACRO_DATA__ = {data_json_str};\n"
+if _data_pattern.search(shell):
+    shell = _data_pattern.sub(_replacement, shell, count=1)
+    ok("Replaced window.__MACRO_DATA__ with today's data")
 else:
-    shell = shell.replace(FETCH_OLD, FETCH_NEW)
-    ok("Inlined data.json into HTML (standalone mode)")
-
-# Inject the data payload as a <script> block just before </body>
-inline_script = (
-    f"\n<script>\n"
-    f"// Inlined by build.py on {NOW}\n"
-    f"window.__MACROSNAPS_DATA__ = {data_json_str};\n"
-    f"</script>\n"
-)
-shell = shell.replace("</head>", inline_script + "</head>", 1)
+    # Fallback: inject before </head>
+    print("  WARNING: Could not find window.__MACRO_DATA__ block — injecting before </head>.")
+    inline_script = (
+        f"\n<script>\n"
+        f"// Inlined by build.py on {NOW}\n"
+        f"window.__MACRO_DATA__ = {data_json_str};\n"
+        f"</script>\n"
+    )
+    shell = shell.replace("</head>", inline_script + "</head>", 1)
 
 # Write the output
 with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
@@ -432,6 +422,7 @@ with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
 
 ok(f"Written: {OUTPUT_FILE} ({os.path.getsize(OUTPUT_FILE)//1024} KB)")
 
+data["_meta"]["generated"] = TODAY
 with open(DATA_FILE, "w", encoding="utf-8") as f:
     json.dump(data, f, indent=2, ensure_ascii=False)
 ok(f"Stamped _meta.generated = {TODAY} in data.json")
