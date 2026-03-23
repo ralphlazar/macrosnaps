@@ -57772,12 +57772,28 @@ function attachCommLinks(r){
   });
 }
 
+// Precompile glossary regexes once — avoids ~430 new RegExp() calls per applyGlossary invocation
+const _glossaryCache = {beginner:[], moderate:[], expert:[]};
+(function _buildGlossaryCache(){
+  Object.keys(glossary).forEach(t=>{
+    const g=glossary[t];if(!g)return;
+    const c=g.complexity||0;
+    const escaped=t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+    const rx=new RegExp(`(?<![\\w-])\\b(${escaped})\\b(?![^<]*>)`,'i');
+    const entry={t,rx};
+    _glossaryCache.beginner.push(entry);
+    if(c>=2) _glossaryCache.moderate.push(entry);
+    if(c>=3) _glossaryCache.expert.push(entry);
+  });
+})();
+
 function applyGlossary(h, skipTerm){
   if(!h || typeof h !== 'string') return h || '';
   h=h.replace(/<a data-term="([^"]+)">([^<]+)<\/a>/g,(_,t,x)=>`<span class="glossary-term" data-term="${t}">${x}</span>`);
   const skipSet=new Set();
   if(skipTerm){const sl=skipTerm.toLowerCase();skipSet.add(sl);skipSet.add(sl.replace(/\s*\(.*\)\s*/g,'').trim());}
-  Object.keys(glossary).forEach(t=>{const g=glossary[t];if(!g)return;const c=g.complexity||0;if(currentLevel==='moderate'&&c<2)return;if(currentLevel==='expert'&&c<3)return;if(skipSet.has(t.toLowerCase()))return;h=h.replace(new RegExp(`(?<![\\w-])\\b(${t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})\\b(?![^<]*>)`,'i'),m=>`<span class="glossary-term" data-term="${t}">${m}</span>`);});
+  const entries=_glossaryCache[currentLevel]||_glossaryCache.beginner;
+  entries.forEach(({t,rx})=>{if(skipSet.has(t.toLowerCase()))return;h=h.replace(rx,m=>`<span class="glossary-term" data-term="${t}">${m}</span>`);});
   h=applyCommLinks(h);
   return h;
 }
