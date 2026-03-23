@@ -1,5 +1,34 @@
 # MacroSnaps - Living Brief
-Last updated: March 22, 2026 (Session 43: Daily ritual run; three bug fixes: build.py date stamp, digest_server.py model string and tweet formatting, generate_digest.py hyperlink and model string.)
+Last updated: March 22, 2026 (Session 44: X/Twitter icon added to footer; update_stories.py prompt tightened and --country/--metric flags added.)
+
+Session 44 changes in detail:
+
+(1) **`macrosnaps-shell.html`: X/Twitter icon added to footer.** Small inline SVG X logo added after `| Ping Me |` in the footer link bar. Links to `https://x.com/macrosnapsapp` in a new tab. Uses `aria-label="MacroSnaps on X"`. New CSS class `.footer-x-link`: colour `#555`, hover-to-`var(--cyan)` matching all other footer links, `display:inline-flex;align-items:center`. No external dependencies -- inline SVG only.
+
+(2) **`update_stories.py`: prompt tightened to reduce stale, forecast-anchored stories.** Three new rules added to `STYLE_GUIDE`:
+- "Lead with the most recent data point or trend. Do not open with the annual forecast value."
+- "The annual forecast is background context only. Mention it solely if there is a meaningful gap between recent data and the year-end target."
+- "Convey direction. Is this metric rising, falling, or holding? A story with no directional signal is a dead story."
+
+`monthly_context` instruction hardened from "Lead with the most recent print where relevant" to "The most recent monthly print is your anchor. Open with it. The annual value is the year-end forecast -- treat it as background, not the lead."
+
+Metric prompt anchor changed from "Write three story variants for this metric at the value shown above" to "Write three story variants for this metric. Anchor each story in the most recent data and direction of travel, not the annual forecast."
+
+Commodity prompt updated to "Lead with the price level and its direction -- is it rising, falling, or range-bound? Give the reader a sense of momentum, not just a number."
+
+`--force-all` run completed: 140/141 OK. ITA/Current Account failed on first run (JSON truncation mid-response). Re-ran with new `--country`/`--metric` flags; second attempt succeeded.
+
+(3) **`update_stories.py`: `--country` and `--metric` filter flags added.** Two new optional arguments:
+- `--country CODE` -- filters queue to a single country code (e.g. `--country ITA`). Case-insensitive.
+- `--metric NAME` -- filters queue to a single metric name (e.g. `--metric "Current Account"`). Case-insensitive.
+
+Both flags apply as a post-queue filter -- they work with any mode (`--force-all`, `--stale-only`, default diff). Usage for single-metric retry:
+```bash
+python3 update_stories.py --force-all --country ITA --metric "Current Account"
+```
+
+---
+
 
 Session 43 changes in detail:
 
@@ -33,7 +62,7 @@ Session 42 changes in detail:
 
 (6) **Substack account set up.** URL: `macrosnaps.substack.com`. Description: "Daily macro briefings across 12 economies, at the depth you choose." Cadence: daily posts weekdays only, weekly digest every Thursday. Expertise level: moderate throughout.
 
-(7) **Twitter/X account set up.** Professional account, Financial services category. Profile photo: `macrosnaps-logo.png` (512x512). Banner: `macrosnaps-banner.png` (1500x500). Posting cadence: daily including weekends. Content: one tweet per day from Notes output or a single data observation.
+(7) **Twitter/X account set up.** Professional account, Financial services category. Profile photo: `macrosnaps-logo.png` (512x512). Banner: `macrosnaps-banner.png` (1500x500). Handle: `@macrosnapsapp`. URL: `https://x.com/macrosnapsapp`. Posting cadence: daily including weekends. Content: one tweet per day from Notes output or a single data observation.
 
 (8) **LinkedIn.** Posting cadence: once per week, Thursdays, condensed version of weekly digest. LinkedIn post generated automatically by `digest_server.py` when weekly mode is run.
 
@@ -73,15 +102,13 @@ Session 39 changes in detail:
 
 (2) **`audit_ritual.py`: `EXPECTED_SPARK_PTS` made dynamic.** Was hardcoded to `120`. Now computed at runtime via `_months_since_jan_2000()` which returns `(year - 2000) * 12 + month` (currently 314). Check 4 allows 3 months of lag tolerance (`len(spark) < EXPECTED_SPARK_PTS - 3`) to handle commodities with slightly shorter sheet history.
 
-(3) **`macrosnaps-shell.html`: commodity chart render fixed to read `item.spark` directly.** Root cause: `showCommodityMTT()` and `renderCommodityMonthlyChart()` were reading `item._frozen_historical.v`, which is a country-level structure for macro/market metrics and is never populated on commodity items. The chart silently fell through to the `item.annual` fallback (annual average prices only, ~10 years). Fixed by replacing all three `_frozen_historical` references in the commodity chart path with direct reads from `item.spark`. The right-align + null-pad logic in `renderCommodityMonthlyChart()` was already correct and needed no changes.
-
 ---
 
 Session 38 changes in detail:
 
 (1) **Commodity story malformed structure fixed in `data.json`.** Five commodities (Natural Gas, Gold, Copper, Wheat, Corn) had story tiers stored as `{"text": "..."}` objects instead of plain strings. This caused tooltips to render blank for those commodities. Fixed by flattening all 15 affected tiers (5 commodities x 3 levels) to plain strings. WTI Crude, Brent, Silver, and Soybeans were unaffected.
 
-(2) **`write_commodity_story()` fixed in `update_stories.py`.** Root cause of (1): the function was wrapping each tier in `{"text": "..."}` instead of writing a plain string. The docstring even stated "Commodity stories use `{text: ...}` dicts per level" — that was wrong. Fixed to write plain strings identical to `write_metric_story()`. Also added `storyWrittenAtPrice` and `storyUpdatedDate` writes to the commodity path, which were previously missing (those fields existed on WTI from manual edits but were never being written by the pipeline for any commodity).
+(2) **`write_commodity_story()` fixed in `update_stories.py`.** Root cause of (1): the function was wrapping each tier in `{"text": "..."}` instead of writing a plain string. The docstring even stated "Commodity stories use `{text: ...}` dicts per level" -- that was wrong. Fixed to write plain strings identical to `write_metric_story()`. Also added `storyWrittenAtPrice` and `storyUpdatedDate` writes to the commodity path, which were previously missing (those fields existed on WTI from manual edits but were never being written by the pipeline for any commodity).
 
 (3) **Icons/values toggle added to weather matrix in `macrosnaps-shell.html`.** A toggle button appears in the matrix title bar next to the metric picker. Clicking it switches all matrix cells between weather icons and the underlying forecast numbers. Numbers are coloured by weather class (sunny=cyan, cloudy=grey, stormy=hot). State persists via `localStorage` key `whNumericMode`. Toggle only applies to grid metrics (`hasGrid:true`): GDP Growth, Inflation (CPI), Unemployment, Budget Deficit, Current Account. For non-grid metrics (Policy Rate, Stock Market YTD, 10Y Bond Yield, Yield Curve) the toggle button is always rendered but `visibility:hidden` to prevent layout shift when switching metrics. New CSS classes: `.wh-num-val` (number display), `.wh-num-toggle` (button), `.wh-num-toggle-hidden` (invisible placeholder).
 
@@ -93,7 +120,7 @@ Session 37 changes in detail:
 
 (1) **Site launched at macrosnaps.app.** Domain registered on Cloudflare. DNS configured with four A records (185.199.108-111.153) and a CNAME (www -> ralphlazar.github.io), all grey cloud (DNS only, not proxied). Custom domain set in GitHub Pages settings. HTTPS enforced via Let's Encrypt (auto-provisioned by GitHub).
 
-(2) **`build.py` OUTPUT_FILE changed from `macrosnaps-globe.html` to `index.html`.** Single-line change on line 27. Required because GitHub Pages serves `index.html` at the root. `macrosnaps-shell.html` remains the source template (input). `macrosnaps-globe.html` deleted from repo — still recoverable from git history if ever needed.
+(2) **`build.py` OUTPUT_FILE changed from `macrosnaps-globe.html` to `index.html`.** Single-line change on line 27. Required because GitHub Pages serves `index.html` at the root. `macrosnaps-shell.html` remains the source template (input). `macrosnaps-globe.html` deleted from repo -- still recoverable from git history if ever needed.
 
 (3) **git pull strategy set to merge.** `git config --global pull.rebase false` run on the machine to prevent the divergent-branches prompt on future pulls. The initial push conflict was caused by GitHub auto-creating a `CNAME` file when the custom domain was set.
 
@@ -104,7 +131,7 @@ Session 37 changes in detail:
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "30ef321a2bad44e5aa9b4ddcf4f6ac65"}'></script><!-- End Cloudflare Web Analytics -->
 ```
 
-(6) **Welcome modal redesigned in `macrosnaps-shell.html`.** Replaced the thin top-of-page banner strip with a full-screen overlay modal. Features: blurred dark backdrop, centred dark navy card with cyan glow border, three weather icons (☀️ ☁️ ⛈️) using the canonical `.wh-icon` filter pattern, bold headline, short description, cyan gradient CTA button ("Show me how it works" — opens the What tooltip as before), "I'll explore on my own" dismiss link, ✕ close button, and click-outside-to-dismiss. Slides up on entry. Shown once per browser via `localStorage` key `ms_welcomed`. To re-trigger for testing: delete `ms_welcomed` from DevTools -> Application -> Local Storage.
+(6) **Welcome modal redesigned in `macrosnaps-shell.html`.** Replaced the thin top-of-page banner strip with a full-screen overlay modal. Features: blurred dark backdrop, centred dark navy card with cyan glow border, three weather icons (☀️ ☁️ ⛈️) using the canonical `.wh-icon` filter pattern, bold headline, short description, cyan gradient CTA button ("Show me how it works" -- opens the What tooltip as before), "I'll explore on my own" dismiss link, x close button, and click-outside-to-dismiss. Slides up on entry. Shown once per browser via `localStorage` key `ms_welcomed`. To re-trigger for testing: delete `ms_welcomed` from DevTools -> Application -> Local Storage.
 
 ---
 
@@ -112,7 +139,7 @@ Session 36 changes in detail:
 
 (1) **Pre-launch checklist closed.** All blocking items resolved:
 - `clean_cite_tags()` regex (`r'</?cite[^>]*>'`) confirmed fixed prior to this session.
-- `audit_macro_monthly.py` marked redundant — superseded by `audit_sheets.py` (Session 28), which covers the same gap audit. Never needs to be run.
+- `audit_macro_monthly.py` marked redundant -- superseded by `audit_sheets.py` (Session 28), which covers the same gap audit. Never needs to be run.
 - Corp Spread and Sov CDS confirmed removed from `data.json`.
 - `audit_ritual.py` corrected and verified with a clean green run (see below).
 
@@ -134,7 +161,7 @@ These match the confirmed permanent data gaps in the known gaps table.
 
 - **Check 8 (global stories): wrong key and wrong structure.** Script used `data.get("global_stories", [])` but the actual key is `globalStories` and it is a dict keyed by tier (`beginner`, `moderate`, `expert`), each containing a list of 3 cards. Rewritten accordingly.
 
-- **`KNOWN_BLANK_MARKET` for RUS also corrected.** `"Stock Market YTD"` was in the skip list for RUS, leftover from before Session 33 fixed the MOEX fetch. Removed — RUS Stock Market YTD is now live data and should be audited.
+- **`KNOWN_BLANK_MARKET` for RUS also corrected.** `"Stock Market YTD"` was in the skip list for RUS, leftover from before Session 33 fixed the MOEX fetch. Removed -- RUS Stock Market YTD is now live data and should be audited.
 
 (3) **`audit_ritual.py` verified clean.** All 8 checks passed against today's `data.json` (2026-03-17 build).
 
@@ -197,16 +224,16 @@ python3 update_stories.py --stale-only
 python3 build.py --apply
 ```
 
-(3) **GDP Growth stories audit closed as false alarm.** CAN, FRA, ITA, BRA stories were audited against current values. All four stories are consistent with their current values. The earlier suspicion of mismatches was not borne out. All four have `value_at_generation: MISSING` (field predates Session 29) — this is harmless; `build.py` only blocks when the field is present and mismatches. These will self-heal the next time `update_stories.py` rewrites them.
+(3) **GDP Growth stories audit closed as false alarm.** CAN, FRA, ITA, BRA stories were audited against current values. All four stories are consistent with their current values. The earlier suspicion of mismatches was not borne out. All four have `value_at_generation: MISSING` (field predates Session 29) -- this is harmless; `build.py` only blocks when the field is present and mismatches. These will self-heal the next time `update_stories.py` rewrites them.
 
 ---
 
 Session 31 changes in detail:
 
 (1) **Daily ritual run successfully.** Build 2026-03-17 committed and pushed to ralphlazar.github.io/macrosnaps. Three known issues surfaced:
-- **RUS Stock Market YTD failed** — `fetch_moex_index()` not being called correctly in `fetch_market_data.py`. yfinance hit instead and returned no data (`$IMOEX.ME possibly delisted`). Russia carried yesterday's value. Fixed in Session 33.
-- **JPN missing from `update_headlines.py --apply` output** — 11/12 countries applied, JPN absent. Japan carried yesterday's stories. Fixed in Session 33.
-- **USA/JPN/DEU/FRA/ITA 10Y Bond Yield and Yield Curve failed** — FRED HTTP 500s, transient outage. Values stale by one day. Self-corrected when FRED recovered.
+- **RUS Stock Market YTD failed** -- `fetch_moex_index()` not being called correctly in `fetch_market_data.py`. yfinance hit instead and returned no data (`$IMOEX.ME possibly delisted`). Russia carried yesterday's value. Fixed in Session 33.
+- **JPN missing from `update_headlines.py --apply` output** -- 11/12 countries applied, JPN absent. Japan carried yesterday's stories. Fixed in Session 33.
+- **USA/JPN/DEU/FRA/ITA 10Y Bond Yield and Yield Curve failed** -- FRED HTTP 500s, transient outage. Values stale by one day. Self-corrected when FRED recovered.
 
 (2) **`audit_ritual.py` built.** Final step of the daily ritual. Reads `data.json` from the project directory and produces a terminal health report. Eight checks:
 - Build date matches today (`_meta.generated`)
@@ -236,7 +263,7 @@ Session 30 changes in detail:
 
 (5) **Weather strip added to macro metric tooltips.** When a macro metric tooltip opens, the 7-icon weather strip from the card now appears to the right of the country name and value. Strip is injected via `insertAdjacentHTML` after `applyGlossary` runs (to avoid attribute mangling). Market metric tooltips unaffected. Strip size matches card (18px). Rollover tip for all icons anchored above icon 4 (the middle) using nth-child CSS offsets to prevent clipping.
 
-(6) **2dp formatting in ranked tables.** `fmtNum()` helper added — pads values with fewer than 2 decimal places to exactly 2dp (e.g. 6% -> 6.00%, 2.5% -> 2.50%). Applies to all ranked and grid table values via `fmtPct()` and the `disp` line. Exception: Yield Curve (unit ` bps`) bypasses `fmtNum` and renders as plain integers.
+(6) **2dp formatting in ranked tables.** `fmtNum()` helper added -- pads values with fewer than 2 decimal places to exactly 2dp (e.g. 6% -> 6.00%, 2.5% -> 2.50%). Applies to all ranked and grid table values via `fmtPct()` and the `disp` line. Exception: Yield Curve (unit ` bps`) bypasses `fmtNum` and renders as plain integers.
 
 (7) **Canonical weather icon set locked (style guide).** ☀️ ☁️ ⛈️ are the only permitted weather icons anywhere in the product. All other variants (⛅ 🌩 🌧 🌤 etc.) are banned. Every icon must use a `.wh-icon sunny/cloudy/stormy` span for CSS filter rendering. Raw emoji forbidden.
 
@@ -248,9 +275,9 @@ Session 30 changes in detail:
 
 Session 29 changes in detail:
 
-(1) **`hasChartData(metricName, countryCode)` helper added to `macrosnaps-shell.html`.** When a metric has no historical data at all (missing `_frozen_historical`, empty `v` array, or all-null values after padding), the entire chart section is now hidden from the tooltip — including the title, range buttons, and canvas. Previously a "No historical data" placeholder rendered, which looked like a broken state. The helper uses the same three-layer guard as `renderMetricChart()` and correctly handles both bar (annual) and line (monthly) chart types by selecting the appropriate label array. Both the `chartHTML` build block and the render block are gated on `d.chart && hasChartData(d.metricName, d.chart.code)`.
+(1) **`hasChartData(metricName, countryCode)` helper added to `macrosnaps-shell.html`.** When a metric has no historical data at all (missing `_frozen_historical`, empty `v` array, or all-null values after padding), the entire chart section is now hidden from the tooltip -- including the title, range buttons, and canvas. Previously a "No historical data" placeholder rendered, which looked like a broken state. The helper uses the same three-layer guard as `renderMetricChart()` and correctly handles both bar (annual) and line (monthly) chart types by selecting the appropriate label array. Both the `chartHTML` build block and the render block are gated on `d.chart && hasChartData(d.metricName, d.chart.code)`.
 
-(2) **Global stories nav arrows removed from `renderNews()`.** The ◀ ▶ arrows in the global stories tooltip were redundant — story icons in the background menu already serve as navigation. Removed: `navHTML` construction, nav btn click listeners, `measureNewsTTHeight()` function, `newsTTHeight` module-level variable, and `newsTTHeight = null` from `clearActiveNewsIcon()`. Kept: `activeNewsIdx`, `setActiveNewsIcon()`, `clearActiveNewsIcon()`, and all icon opacity fade behaviour. The `.tt-nav` / `.tt-nav-btn` CSS is retained — still used by metric and commodity tooltips.
+(2) **Global stories nav arrows removed from `renderNews()`.** The arrows in the global stories tooltip were redundant -- story icons in the background menu already serve as navigation. Removed: `navHTML` construction, nav btn click listeners, `measureNewsTTHeight()` function, `newsTTHeight` module-level variable, and `newsTTHeight = null` from `clearActiveNewsIcon()`. Kept: `activeNewsIdx`, `setActiveNewsIcon()`, `clearActiveNewsIcon()`, and all icon opacity fade behaviour. The `.tt-nav` / `.tt-nav-btn` CSS is retained -- still used by metric and commodity tooltips.
 
 (3) **Commodity chart x-axis fixed to Jan 2000 -> current month.** `renderCommodityMonthlyChart()` previously used a broken slice pattern: on "All" view it took the first 120 labels from `histMonthlyLabels`, mapping commodity data to Jan 2000-Dec 2009 regardless of actual dates. Fixed by replacing with the same right-align + null-pad pattern used in `renderMetricChart()`: the spark array is right-aligned into the full `histMonthlyLabels` window (~303 months), left-padded with nulls. The render function was correct after this fix; Session 39 fixed the separate issue of the wrong data source being read.
 
@@ -258,9 +285,9 @@ Session 29 changes in detail:
 
 (5) **Story mismatch guard added to `build.py`.** In the macro metrics validation loop (Section 2), after the existing tier/value checks, `build.py` now checks: if `value_at_generation` is present and does not match the current `value`, the build fails with a clear error:
 ```
-✗ [BRA] macro['GDP Growth'] story mismatch — written for '2.8%', current value is '2.1%'. Re-run update_stories.py for this metric.
+x [BRA] macro['GDP Growth'] story mismatch -- written for '2.8%', current value is '2.1%'. Re-run update_stories.py for this metric.
 ```
-Guard scoped to macro metrics only (forecast values drift; market values update in the same daily ritual). The guard only fires when `value_at_generation` is present — existing metrics without the field pass silently. The field populates organically as stories are regenerated.
+Guard scoped to macro metrics only (forecast values drift; market values update in the same daily ritual). The guard only fires when `value_at_generation` is present -- existing metrics without the field pass silently. The field populates organically as stories are regenerated.
 
 ---
 
@@ -272,7 +299,7 @@ MACRO_MONTHLY_SHEET_ID=<id> python3 audit_sheets.py
 ```
 MACRO-MONTHLY sheet ID: `1-s4hppAkoTZbjGGEkHSUDK2H7E00RHhVuHrYKWLuHpI`
 
-(2) **Root cause of USA unemployment gap identified and fixed.** `update_monthly_actuals.py` checked only the last *row date* in the Date column (which ran to 2026-03-01) and concluded "nothing to do" — it never checked whether individual country cells within those rows were blank. USA unemployment had been blank since Jan 2025 (15 months). Fixed by switching USA from IMF LS (which genuinely stopped publishing USA data after Feb 2012) to FRED `UNRATE`. 13 cells backfilled (Jan 2025 -> Feb 2026).
+(2) **Root cause of USA unemployment gap identified and fixed.** `update_monthly_actuals.py` checked only the last *row date* in the Date column (which ran to 2026-03-01) and concluded "nothing to do" -- it never checked whether individual country cells within those rows were blank. USA unemployment had been blank since Jan 2025 (15 months). Fixed by switching USA from IMF LS (which genuinely stopped publishing USA data after Feb 2012) to FRED `UNRATE`. 13 cells backfilled (Jan 2025 -> Feb 2026).
 
 (3) **`--backfill` mode added to `update_monthly_actuals.py`.** Scans all three tabs for blank cells in existing rows, fetches data for the date range of those gaps, and writes values back using targeted `ws.batch_update()` calls. Dry run by default; `--apply` to write.
 ```bash
@@ -283,15 +310,15 @@ MACRO_MONTHLY_SHEET_ID=<id> python3 update_monthly_actuals.py --backfill --apply
 (4) **`update_monthly_actuals.py` source changes (v4).** Unemployment and Policy Rate sources updated:
 - **USA unemployment**: switched from IMF LS (stops 2012 for USA) -> FRED `UNRATE`
 - **GBR unemployment**: FRED `LRHUTTTTGBM156S` (unchanged)
-- **BRA unemployment**: removed `BRAURAGSAM157S` (bad series ID); BRA added to `UNEMP_BLANK` — no viable monthly source exists (see permanent gaps below)
-- **IND policy rate**: removed from `BIS_RATE_COUNTRIES` and `RATE_SERIES_FRED`; BIS stops Aug 2016, FRED `INTDSRINM193N` also stops 2016 — no current source (see permanent gaps below)
+- **BRA unemployment**: removed `BRAURAGSAM157S` (bad series ID); BRA added to `UNEMP_BLANK` -- no viable monthly source exists (see permanent gaps below)
+- **IND policy rate**: removed from `BIS_RATE_COUNTRIES` and `RATE_SERIES_FRED`; BIS stops Aug 2016, FRED `INTDSRINM193N` also stops 2016 -- no current source (see permanent gaps below)
 
 (5) **Two new permanent data gaps confirmed and documented** (see Known permanent data gaps table).
 
 (6) **Session 28 audit results summary:**
-- MARKET-STATS: all 12 country tabs current to 2026-03-15. CHN/IND/BRA/RUS Bond Yield and Yield Curve blank — known permanent gaps.
+- MARKET-STATS: all 12 country tabs current to 2026-03-15. CHN/IND/BRA/RUS Bond Yield and Yield Curve blank -- known permanent gaps.
 - Commodities tab: all 9 commodities current to 2026-03-16.
-- MACRO-MONTHLY Inflation: 11/12 countries current to Jan 2026. IND last=Dec 2025 (IMF lag — expected).
+- MACRO-MONTHLY Inflation: 11/12 countries current to Jan 2026. IND last=Dec 2025 (IMF lag -- expected).
 - MACRO-MONTHLY Policy Rate: all countries current to Jan/Feb 2026.
 - MACRO-MONTHLY Unemployment: USA now current to Feb 2026. GBR last=Nov 2025 (ONS lag). Others at expected IMF/BIS lag.
 
@@ -299,7 +326,7 @@ MACRO_MONTHLY_SHEET_ID=<id> python3 update_monthly_actuals.py --backfill --apply
 
 Session 27 changes in detail:
 
-(1) **Global stories carousel navigation added then partially removed.** Session 27 added ◀ ▶ nav arrows to the global stories tooltip. Session 29 removed them as redundant (story icons in the background menu already serve as navigation). What remains from Session 27: `setActiveNewsIcon(idx)` / `clearActiveNewsIcon()` icon opacity fade behaviour, `activeNewsIdx` tracker. What was removed in Session 29: `navHTML`, nav btn listeners, `measureNewsTTHeight()`, `newsTTHeight`.
+(1) **Global stories carousel navigation added then partially removed.** Session 27 added nav arrows to the global stories tooltip. Session 29 removed them as redundant (story icons in the background menu already serve as navigation). What remains from Session 27: `setActiveNewsIcon(idx)` / `clearActiveNewsIcon()` icon opacity fade behaviour, `activeNewsIdx` tracker. What was removed in Session 29: `navHTML`, nav btn listeners, `measureNewsTTHeight()`, `newsTTHeight`.
 
 (2) **`Updated` date label made more visible.** `.wh-asof` CSS: `color:#333 -> #777`, `font-size:7px -> 9px`.
 
@@ -311,33 +338,33 @@ Session 26 changes in detail:
 
 (1) **Glossary extended with four new entries:** G7, BRICS, Goldman Sachs, CSFB. All three levels written for each. Footer tooltips (WHAT? and WHO?) now run `applyGlossary()` + `attachGlossary()` so these terms auto-link inside footer panels.
 
-(2) **Floating commodities FAB removed.** `#btnCommFab` (the 🛢️ button, fixed bottom-right) is gone entirely — CSS block, HTML element, and JS event listener all deleted.
+(2) **Floating commodities FAB removed.** `#btnCommFab` (the FAB button, fixed bottom-right) is gone entirely -- CSS block, HTML element, and JS event listener all deleted.
 
-(3) **Commodity inline links added.** `applyCommLinks()` and `attachCommLinks()` added and wired into `applyGlossary()` / `attachGlossary()`. Every call site that already used those functions (global stories, country card bullets, metric tooltips, footer panels) now also gets commodity links automatically — no new call sites needed.
-- Colour: gold `#e8a838` with dotted underline — visually distinct from glossary blue (`#8ec8f0`)
+(3) **Commodity inline links added.** `applyCommLinks()` and `attachCommLinks()` added and wired into `applyGlossary()` / `attachGlossary()`. Every call site that already used those functions (global stories, country card bullets, metric tooltips, footer panels) now also gets commodity links automatically -- no new call sites needed.
+- Colour: gold `#e8a838` with dotted underline -- visually distinct from glossary blue (`#8ec8f0`)
 - Generic terms (oil, crude, commodity, commodities) -> opens full commodities card
 - Specific terms (WTI, Brent, natural gas, gold, silver, copper, wheat, corn, soybeans, soybean) -> opens individual commodity tooltip by item name lookup; fallback to full card if name not found
 - First occurrence only per term per text block, longest-match first to avoid partial matches
 - CSS classes: `.comm-term` (link), hover brightens to `#f5c46a`
 
-(4) **Style guide rule established: no em-dashes anywhere.** Em-dashes (—) are a signal of AI-generated writing and are banned from all story text, glossary definitions, and any other copy in the product. Use commas, colons, parentheses, or restructure the sentence instead.
+(4) **Style guide rule established: no em-dashes anywhere.** Em-dashes are a signal of AI-generated writing and are banned from all story text, glossary definitions, and any other copy in the product. Use commas, colons, parentheses, or restructure the sentence instead.
 
 ---
 
 Session 25 changes in detail:
 
 (1) **Pipeline architecture rule established (CRITICAL).** No sync script may contact an external API directly. The pipeline has two strictly separated layers:
-- **Fetch layer** (`fetch_market_data.py`, `update_monthly_actuals.py`) — contacts external APIs, writes to Google Sheets.
-- **Sync layer** (`sync_market_historical.py`, `sync_commodity_data.py`, `sync_monthly_actuals.py`) — reads exclusively from Google Sheets, writes to data.json. Never contacts any external API.
+- **Fetch layer** (`fetch_market_data.py`, `update_monthly_actuals.py`) -- contacts external APIs, writes to Google Sheets.
+- **Sync layer** (`sync_market_historical.py`, `sync_commodity_data.py`, `sync_monthly_actuals.py`) -- reads exclusively from Google Sheets, writes to data.json. Never contacts any external API.
 This ensures chart rendering is never broken by a transient external API failure. All three sync scripts confirmed compliant as of this session.
 
-(2) **`sync_market_historical.py` rewritten (v2).** Previous version fetched directly from yfinance and FRED — architecturally wrong and the root cause of the USA USD/DXY empty tooltip chart (yfinance `DX-Y.NYB` returned no data on March 16). New version reads exclusively from the MARKET-STATS Google Sheet (ID: `1tL0BkihqRC0JHW0H43ZEfeU2-MS9Swu8F6xxwddUDKI`), one tab per country. Sheet columns used: `Stock_Market_Index`, `FX_Rate`, `Bond_Yield_10Y`, `Yield_Curve`. All four columns resampled to monthly last-close via pandas. No yfinance, no FRED, no requests — gspread only. Auth via `market-stats-key.json`.
+(2) **`sync_market_historical.py` rewritten (v2).** Previous version fetched directly from yfinance and FRED -- architecturally wrong and the root cause of the USA USD/DXY empty tooltip chart (yfinance `DX-Y.NYB` returned no data on March 16). New version reads exclusively from the MARKET-STATS Google Sheet (ID: `1tL0BkihqRC0JHW0H43ZEfeU2-MS9Swu8F6xxwddUDKI`), one tab per country. Sheet columns used: `Stock_Market_Index`, `FX_Rate`, `Bond_Yield_10Y`, `Yield_Curve`. All four columns resampled to monthly last-close via pandas. No yfinance, no FRED, no requests -- gspread only. Auth via `market-stats-key.json`.
 
 (3) **FX inversion removed from `sync_market_historical.py`.** FX values in MARKET-STATS are already stored in display format. No inversion logic needed. `FX_INVERT` dict removed entirely.
 
 (4) **Yield Curve derivation removed from `sync_market_historical.py`.** `Yield_Curve` column is pre-computed in bps in the sheet. `SHORT_RATE_SERIES` dict and derivation logic removed entirely.
 
-(5) **Staleness check fixed in `sync_market_historical.py`.** Previous check compared total array length against expected months-since-2000 — produced false positives for series with shorter history (e.g. EUR/USD starts 2004, ZAF stocks start 2012). New check uses actual last data point date from the DataFrame vs today, flagging only if last point is more than `STALE_MONTHS` (3) months old.
+(5) **Staleness check fixed in `sync_market_historical.py`.** Previous check compared total array length against expected months-since-2000 -- produced false positives for series with shorter history (e.g. EUR/USD starts 2004, ZAF stocks start 2012). New check uses actual last data point date from the DataFrame vs today, flagging only if last point is more than `STALE_MONTHS` (3) months old.
 
 (6) **`sync_monthly_actuals.py` confirmed already compliant.** Reads exclusively from MACRO-MONTHLY via Google Sheets API (`googleapiclient`). No external API calls. No changes needed.
 
@@ -352,15 +379,15 @@ Session 24 changes in detail:
 
 (1) **Tooltip navigation arrows now respect `CARD_MARKET_EXCLUDE`.** `CARD_MARKET_EXCLUDE` was lifted from inside `assembleCardData()` to module scope. `getMetricList()` now applies the same filter, so the up/down arrows in a metric tooltip can only navigate to the same 10 metrics visible on the card. Navigable sequence: GDP Growth -> Inflation (CPI) -> Unemployment -> Budget Deficit -> Current Account -> Policy Rate -> Stock Market YTD -> 10Y Bond Yield -> Yield Curve -> FX cross.
 
-(2) **Fixed-window chart rendering in `renderMetricChart()`.** All tooltip charts — annual bar, monthly line, market line — now always span **Jan 2000 (left) -> current month (right)**. The x-axis window is fixed; it never auto-fits to the extent of available data. Data is right-aligned into the full label array and left-padded with nulls where coverage is shorter than Jan 2000. Gaps are visible as blank regions rather than hidden by axis shrinkage.
+(2) **Fixed-window chart rendering in `renderMetricChart()`.** All tooltip charts -- annual bar, monthly line, market line -- now always span **Jan 2000 (left) -> current month (right)**. The x-axis window is fixed; it never auto-fits to the extent of available data. Data is right-aligned into the full label array and left-padded with nulls where coverage is shorter than Jan 2000. Gaps are visible as blank regions rather than hidden by axis shrinkage.
 
-(3) **Three-layer "no chart" guard in `renderMetricChart()`.** Guards fire in sequence: (a) `!d` — no `_frozen_historical` object; (b) `!cfg || !cfg.v || !cfg.v.length` — metric key missing or `v` array empty; (c) `!validVals.length` — all values null after padding. Session 29 extended this concept with `hasChartData()` to hide the entire chart section rather than show a placeholder message.
+(3) **Three-layer "no chart" guard in `renderMetricChart()`.** Guards fire in sequence: (a) `!d` -- no `_frozen_historical` object; (b) `!cfg || !cfg.v || !cfg.v.length` -- metric key missing or `v` array empty; (c) `!validVals.length` -- all values null after padding. Session 29 extended this concept with `hasChartData()` to hide the entire chart section rather than show a placeholder message.
 
 ---
 
 Session 23 changes in detail:
 
-(1) **Old IMF API permanently shut down.** `dataservices.imf.org` is not a temporary outage — the IMF decommissioned this endpoint in 2025 and replaced it with a new SDMX API accessible via the `sdmx1` Python library (`sdmx.Client('IMF_DATA')`). All scripts that used the old endpoint now use the new one. `sdmx1` is now a required dependency (`pip3 install sdmx1 --break-system-packages`).
+(1) **Old IMF API permanently shut down.** `dataservices.imf.org` is not a temporary outage -- the IMF decommissioned this endpoint in 2025 and replaced it with a new SDMX API accessible via the `sdmx1` Python library (`sdmx.Client('IMF_DATA')`). All scripts that used the old endpoint now use the new one. `sdmx1` is now a required dependency (`pip3 install sdmx1 --break-system-packages`).
 
 (2) **`populate_monthly_actuals.py` rewritten (v3).** New data sources:
 - **Inflation**: IMF `CPI` dataset, key `COUNTRY.CPI._T.IX.M`. Single call covers all 12 countries. YoY % computed from monthly index levels (fetched from Jan 1999 for overlap). All 12 countries current to Jan 2026, IND to Dec 2025.
@@ -380,13 +407,13 @@ Session 23 changes in detail:
 
 Session 22 changes in detail:
 
-(1) **`forecast_cms.html` built.** Standalone browser-based CMS for editing 2026 annual forecast values (Column AB) across all 12 country tabs in the Macro-stats Google Sheet. Shows a 12-country grid, 6 metrics each. Inputs save on blur with flash feedback (gold = saving, green = saved, red = error). Context column shows latest external consensus value, source, date, and revision badge (▲/▼) where available. Server connection status shown in header with auto-detect.
+(1) **`forecast_cms.html` built.** Standalone browser-based CMS for editing 2026 annual forecast values (Column AB) across all 12 country tabs in the Macro-stats Google Sheet. Shows a 12-country grid, 6 metrics each. Inputs save on blur with flash feedback (gold = saving, green = saved, red = error). Context column shows latest external consensus value, source, date, and revision badge where available. Server connection status shown in header with auto-detect.
 
 (2) **`forecast_server.py` built.** Local Flask proxy running on `localhost:5050`. Authenticates via `market-stats-key.json` service account. Endpoints: `GET /forecasts`, `POST /forecast`, `GET /external_forecasts`, `POST /run_fetch` + `GET /fetch_status`. Requires `flask flask-cors`. Service account must have Editor access to Macro-stats sheet.
 
 (3) **`fetch_external_forecasts.py` built.** Haiku 4.5 + web search, one API call per country, fetches latest 2026 forecasts from IMF, OECD, Goldman Sachs, JPMorgan, and other credible institutions published in the last 30 days. Returns structured JSON per metric: value, source, date, prior (if revised), notes. Writes to `external_forecasts.json`. `max_uses: 3` web searches per call. Cost: ~$0.73/run. Recommended cadence: weekly.
 
-(4) **Forecast CMS daily usage.** To use: (a) run `python3 forecast_server.py`; (b) open `forecast_cms.html` in browser; (c) edit any forecast value — saves on blur; (d) hit Fetch External weekly for fresh context data.
+(4) **Forecast CMS daily usage.** To use: (a) run `python3 forecast_server.py`; (b) open `forecast_cms.html` in browser; (c) edit any forecast value -- saves on blur; (d) hit Fetch External weekly for fresh context data.
 
 (5) **`METRIC_ROWS` config in `forecast_server.py`.** Row mapping (1-indexed): GDP_Growth=2, Inflation=3, Unemployment=4, Budget_Deficit=5, Current_Account=6, Policy_Rate=7. Verify this matches Macro-stats tab layout if saves land in wrong rows.
 
@@ -428,9 +455,9 @@ Session 18 changes in detail:
 
 (1) **`populate_monthly_actuals.py` and `update_monthly_actuals.py` rewritten (v2).** Switched CPI and Unemployment from frozen FRED/OECD series to IMF IFS API.
 
-(2) **`sync_market_historical.py` originally introduced.** Rewritten in Session 25 — see above.
+(2) **`sync_market_historical.py` originally introduced.** Rewritten in Session 25 -- see above.
 
-(3) **Bug fix: spark arrays were writing to wrong location.** Previous script wrote to `metrics.market[label]["spark"]` — a field the shell never reads. Fixed. Shell reads exclusively from `_frozen_historical[label].v`.
+(3) **Bug fix: spark arrays were writing to wrong location.** Previous script wrote to `metrics.market[label]["spark"]` -- a field the shell never reads. Fixed. Shell reads exclusively from `_frozen_historical[label].v`.
 
 (4) **`_frozen_historical` structure confirmed.** Shell populates `historicalData[code]` from `c._frozen_historical` (line 5595). Format per entry: `{"type": "bar"|"line", "v": [...]}`.
 
@@ -438,7 +465,7 @@ Session 18 changes in detail:
 
 Session 17 changes in detail:
 
-(1) **Security — stale API key file deleted and scrubbed from git history.**
+(1) **Security -- stale API key file deleted and scrubbed from git history.**
 (2) **Sort order fix in macrosnaps-shell.html.** `_whSortCol = -1` on metric dropdown change.
 (3) **Redundant files identified** (not yet deleted): `sync_market_sheet.py`, `sync_monthly_historical.py`, `update_market_sheet.py`, `populate_market_sheet.py`, `headline_review.html`.
 
@@ -446,12 +473,12 @@ Session 17 changes in detail:
 
 Session 16 changes in detail (all in macrosnaps-shell.html only):
 (1) Logo click from Globe view navigates back to homepage correctly.
-(2) Nav simplified to logo-only. All button code intact — do not delete.
+(2) Nav simplified to logo-only. All button code intact -- do not delete.
 (3) Commodities FAB introduced this session. **Removed in Session 26.**
 (4) Yield Curve and 10Y Bond Yield rankings render `num + cfg.unit` correctly.
 (5) Mobile rankings grid: columns 0-1 hidden at <=768px.
 (6) Per-metric weather strip added to country cards (5 macro metrics, 7 icons).
-(7) Icon rule (FIXED — do not change): all weather icons use `.wh-icon` CSS filter pattern.
+(7) Icon rule (FIXED -- do not change): all weather icons use `.wh-icon` CSS filter pattern.
 (8) `CARD_MARKET_EXCLUDE` set: `Stock Market YTD (USD)`, `Stock Market Index`, `FX Rate`.
 (9) Navy palette applied everywhere.
 (10) Default rankings sort: nominal GDP order via `GDP_NOMINAL_ORDER` constant, `_whSortCol = -1`.
@@ -461,7 +488,7 @@ Session 16 changes in detail (all in macrosnaps-shell.html only):
 
 Session 15 changes in detail:
 (1) New `Commodities` tab in MARKET-STATS sheet.
-(2) `backfill_commodity_data.py` — one-time only, already run. Do not re-run.
+(2) `backfill_commodity_data.py` -- one-time only, already run. Do not re-run.
 (3) `fetch_market_data.py` now appends today's commodity row to sheet.
 (4) `sync_commodity_data.py` reads Commodities tab, derives price/change/spark (full monthly history from Jan 2000).
 (5) spark upgraded from 12 -> ~307 points (full history).
@@ -512,7 +539,7 @@ Never upload `macrosnaps-globe.html`. It is a build output, not a source file.
 - Always present a plan before writing any code or making any changes. Wait for explicit confirmation ("go") before proceeding.
 - Make surgical, minimal changes. Do not refactor, rename, or reorganise anything not directly related to the task.
 - UK English spelling throughout all story content (realise, colour, behaviour, etc.).
-- No em-dashes (—) anywhere in story text, glossary definitions, or any other copy. They are a signal of AI-generated writing. Use commas, colons, parentheses, or restructure the sentence instead.
+- No em-dashes anywhere in story text, glossary definitions, or any other copy. They are a signal of AI-generated writing. Use commas, colons, parentheses, or restructure the sentence instead.
 - When in doubt, ask. Do not assume.
 
 ### ...to here
@@ -581,16 +608,16 @@ This ensures chart rendering is never broken by a transient external API failure
 
 **Daily market data (current values + sheet append):**
 - Source: yfinance + FRED + MOEX REST API
-- Script: `fetch_market_data.py` — fetches current values, writes to `metrics.market[label].value`, and appends a daily row to each country tab in MARKET-STATS. Never touches spark arrays in data.json.
+- Script: `fetch_market_data.py` -- fetches current values, writes to `metrics.market[label].value`, and appends a daily row to each country tab in MARKET-STATS. Never touches spark arrays in data.json.
 - RUS equity: MOEX REST API (not yfinance). `fetch_moex_index()` in `fetch_market_data.py`
-- Permanent blanks: CHN/IND/BRA/RUS bond yields — values hand-maintained in data.json. None-guard prevents overwriting.
+- Permanent blanks: CHN/IND/BRA/RUS bond yields -- values hand-maintained in data.json. None-guard prevents overwriting.
 
 **Market metric spark arrays (historical line charts):**
 - Script: `sync_market_historical.py --apply`
 - **Source: MARKET-STATS sheet only. Never contacts yfinance or FRED.**
 - Sheet columns: `Stock_Market_Index`, `FX_Rate`, `Bond_Yield_10Y`, `Yield_Curve`
-- FX values stored in display format in sheet — no inversion needed.
-- Yield curve stored in bps in sheet — no derivation needed.
+- FX values stored in display format in sheet -- no inversion needed.
+- Yield curve stored in bps in sheet -- no derivation needed.
 - Run: daily (after `fetch_market_data.py`)
 - Writes: `_frozen_historical[label] = {"type": "line", "v": [...]}`
 
@@ -599,16 +626,16 @@ This ensures chart rendering is never broken by a transient external API failure
 - Columns: `Date | WTI Crude | Brent Crude | Natural Gas | Gold | Silver | Copper | Wheat | Corn | Soybeans`
 - ~6,400 daily rows covering full history from Jan 2000
 - Script: `fetch_market_data.py` appends today's row; `sync_commodity_data.py --apply` reads full tab, derives price/change/spark (~307 monthly pts), writes to `data.json`
-- Spark field: `data.commodities.items[n].spark` — plain array of monthly last-close floats. Read directly by `renderCommodityMonthlyChart()` in the shell. NOT via `_frozen_historical` (that structure is for country macro/market metrics only).
-- Backfill script: `backfill_commodity_data.py` — one-time, already run. Do not re-run.
+- Spark field: `data.commodities.items[n].spark` -- plain array of monthly last-close floats. Read directly by `renderCommodityMonthlyChart()` in the shell. NOT via `_frozen_historical` (that structure is for country macro/market metrics only).
+- Backfill script: `backfill_commodity_data.py` -- one-time, already run. Do not re-run.
 
-**Monthly actuals (tooltip line charts — Inflation, Unemployment, Policy Rate):**
+**Monthly actuals (tooltip line charts -- Inflation, Unemployment, Policy Rate):**
 - Source: MACRO-MONTHLY Google Sheet (ID: `1-s4hppAkoTZbjGGEkHSUDK2H7E00RHhVuHrYKWLuHpI`, also set via `MACRO_MONTHLY_SHEET_ID` env var)
 - Tabs: `Inflation`, `Unemployment`, `Policy_Rate`
 - Columns: `Date | USA | CAN | GBR | JPN | DEU | FRA | ITA | CHN | IND | ZAF | BRA | RUS`
-- Backfill script: `populate_monthly_actuals.py` — run to rewrite full history from Jan 2000.
-- Incremental script: `update_monthly_actuals.py` — appends new months and fills blank cells (`--backfill`). Run monthly.
-- Sync script: `sync_monthly_actuals.py --apply` — reads MACRO-MONTHLY sheet only, writes `monthly_actuals` to data.json. `MONTHS_TO_KEEP = 36`. Never contacts external APIs.
+- Backfill script: `populate_monthly_actuals.py` -- run to rewrite full history from Jan 2000.
+- Incremental script: `update_monthly_actuals.py` -- appends new months and fills blank cells (`--backfill`). Run monthly.
+- Sync script: `sync_monthly_actuals.py --apply` -- reads MACRO-MONTHLY sheet only, writes `monthly_actuals` to data.json. `MONTHS_TO_KEEP = 36`. Never contacts external APIs.
 - **IMF SDMX API**: `sdmx.Client('IMF_DATA')` via `sdmx1` library. CPI dataset: `COUNTRY.CPI._T.IX.M`. LS (unemployment) dataset: `COUNTRY.U.PT.M`. Old `dataservices.imf.org` endpoint is permanently dead.
 - **Unemployment sources per country**: USA -> FRED `UNRATE`; GBR -> FRED `LRHUTTTTGBM156S`; CAN/JPN/DEU/FRA/ITA/RUS -> IMF LS; CHN/IND/ZAF/BRA -> permanent blanks.
 - **Policy Rate sources per country**: USA -> FRED `FEDFUNDS`; DEU/FRA/ITA -> FRED `ECBMRRFR`; CAN/GBR/JPN/ZAF/BRA/RUS -> BIS `WS_CBPOL`; CHN/IND -> permanent blanks.
@@ -617,7 +644,7 @@ This ensures chart rendering is never broken by a transient external API failure
 
 ### Spark array architecture rule
 
-**Every spark array must cover Jan 2000 -> last available data point.** "Last available" must be within the last 3 months of today. If a source stops updating, the chart shows a visible trailing gap rather than hiding it. Gaps are diagnostic. Sparks are never rolled forward one point at a time — they are always rebuilt from source on each run.
+**Every spark array must cover Jan 2000 -> last available data point.** "Last available" must be within the last 3 months of today. If a source stops updating, the chart shows a visible trailing gap rather than hiding it. Gaps are diagnostic. Sparks are never rolled forward one point at a time -- they are always rebuilt from source on each run.
 
 ---
 
@@ -629,7 +656,7 @@ python3 sync_market_historical.py --apply
 python3 sync_commodity_data.py --apply
 python3 update_commodity_stories.py
 python3 update_headlines.py
-# [manual review gate — open headline_review.html, load draft, review/edit, export approved file]
+# [manual review gate -- open headline_review.html, load draft, review/edit, export approved file]
 python3 update_headlines.py --apply stories_approved_$(date +%Y-%m-%d).json
 python3 build.py --apply
 python3 audit_ritual.py
@@ -637,12 +664,12 @@ python3 digest_server.py
 ```
 
 `update_headlines.py` has a manual review gate:
-1. Run `python3 update_headlines.py` — produces `stories_draft_YYYY-MM-DD.json`
+1. Run `python3 update_headlines.py` -- produces `stories_draft_YYYY-MM-DD.json`
 2. Open `headline_review.html`, load draft, review/edit, export `stories_approved_YYYY-MM-DD.json`
 3. Run `python3 update_headlines.py --apply stories_approved_YYYY-MM-DD.json`
 4. Run `python3 build.py --apply`
 5. Run `python3 audit_ritual.py`
-6. Run `python3 digest_server.py` — opens browser UI at `http://localhost:8080`, generate and post digest
+6. Run `python3 digest_server.py` -- opens browser UI at `http://localhost:8080`, generate and post digest
 
 **Mid-day re-edit workflow:** Load `stories_approved_YYYY-MM-DD.json` (not the draft) to preserve previous edits. Re-export overwrites the approved file. Re-run steps 3, 4, and 5. Safe to do multiple times per day.
 
@@ -661,7 +688,7 @@ data.countries[code]._frozen_historical[metric_name].type            <- "bar" or
 data.countries[code]._frozen_historical[metric_name].v               <- chart data array (macro/market tooltip charts only)
 data.countries[code].monthly_actuals                                 <- {inflation, unemployment, policy_rate} arrays
 data.commodities.items[n].price                                      <- commodity price
-data.commodities.items[n].spark                                      <- commodity monthly chart data (~307 pts) — NOT _frozen_historical
+data.commodities.items[n].spark                                      <- commodity monthly chart data (~307 pts) -- NOT _frozen_historical
 data._meta.generated                                                 <- build date stamp
 data.globalStories[tier]                                             <- list of 3 cards, each {icon, label, body, source}
 ```
@@ -672,13 +699,13 @@ data.globalStories[tier]                                             <- list of 
 
 | Country | Metric | Reason |
 |---------|--------|--------|
-| CHN, IND, ZAF | Unemployment (MACRO-MONTHLY) | No IMF LUR coverage — permanent blank |
-| BRA | Unemployment (MACRO-MONTHLY) | PNAD Continua is quarterly only — no freely available monthly series exists. IMF LS stops 2012 for BRA. Permanent blank. |
-| CHN, IND, BRA, RUS | 10Y Bond Yield | No source — sheet column empty; values hand-maintained in data.json |
-| CHN, IND, BRA, RUS | Yield Curve | No source — sheet column empty, always blank in chart |
-| CHN | Policy Rate (MACRO-MONTHLY) | No source — permanent blank |
+| CHN, IND, ZAF | Unemployment (MACRO-MONTHLY) | No IMF LUR coverage -- permanent blank |
+| BRA | Unemployment (MACRO-MONTHLY) | PNAD Continua is quarterly only -- no freely available monthly series exists. IMF LS stops 2012 for BRA. Permanent blank. |
+| CHN, IND, BRA, RUS | 10Y Bond Yield | No source -- sheet column empty; values hand-maintained in data.json |
+| CHN, IND, BRA, RUS | Yield Curve | No source -- sheet column empty, always blank in chart |
+| CHN | Policy Rate (MACRO-MONTHLY) | No source -- permanent blank |
 | IND | Policy Rate (MACRO-MONTHLY) | BIS WS_CBPOL stops Aug 2016; FRED INTDSRINM193N also stops 2016; RBI repo rate not available as a live monthly series. Permanent blank. |
-| RUS | Policy Rate (MACRO-MONTHLY) | BIS stopped publishing after Feb 2022 (sanctions) — blank from Mar 2022 |
+| RUS | Policy Rate (MACRO-MONTHLY) | BIS stopped publishing after Feb 2022 (sanctions) -- blank from Mar 2022 |
 | RUS | All equity | MOEX REST API used instead of yfinance |
 | CAD/USD, GBP/USD, EUR/USD, USD/INR, USD/ZAR, USD/BRL | FX spark history | Sheet data starts ~2004, not 2000. Data is current, history is shorter. |
 | ZAF | Stock Market spark history | Sheet data starts ~2012 |
@@ -699,7 +726,7 @@ data.globalStories[tier]                                             <- list of 
 | `update_monthly_actuals.py` | Monthly | Appends new months to MACRO-MONTHLY sheet. `--backfill` mode fills blank cells in existing rows. Same sources as populate. |
 | `sync_monthly_actuals.py --apply` | After update_monthly_actuals | Reads MACRO-MONTHLY sheet only, writes `monthly_actuals` to data.json (36 most recent non-null per series). No external API calls. |
 | `audit_sheets.py` | Ad hoc | Read-only gap audit of MARKET-STATS and MACRO-MONTHLY. Flags stale or blank series. No writes. |
-| `update_stories.py` | On metric change / after sync_sheet.py | Diff-driven per-metric story rewrites. Saves `value_at_generation` alongside each story. `--stale-only` rewrites only macro metrics where `value_at_generation` mismatches `value`. |
+| `update_stories.py` | On metric change / after sync_sheet.py | Diff-driven per-metric story rewrites. `--force-all` rewrites everything. `--stale-only` rewrites macro metrics where `value_at_generation` mismatches `value`. `--country CODE` and `--metric NAME` filter to a single metric for targeted retries. Saves `value_at_generation` alongside each story. |
 | `build.py --apply` | Daily | Assembles index.html, validates schema (incl. story mismatch guard), diffs, auto-commits, pushes |
 | `audit_ritual.py` | Daily (final step) | Reads data.json, runs 8 health checks, prints terminal report, writes logs/audit_YYYY-MM-DD.txt. Exits 1 if issues found. Commodity spark check uses dynamic expected pts (months since Jan 2000, currently ~314). |
 
@@ -708,9 +735,9 @@ data.globalStories[tier]                                             <- list of 
 ### Shell key facts (macrosnaps-shell.html)
 
 - All macro/market tooltip charts read from `_frozen_historical[label].v` via `historicalData[code]` (line 5595: `historicalData[c.code] = c._frozen_historical`)
-- **Commodity charts read from `item.spark` directly** — NOT from `_frozen_historical`. `_frozen_historical` is a country-level structure and is never populated on commodity items.
-- Market metric current values read from `co.metrics.market[display_key]` — exact string match required
-- `Stock Market YTD (USD)` read at rankings table only — excluded from country cards via `CARD_MARKET_EXCLUDE`
+- **Commodity charts read from `item.spark` directly** -- NOT from `_frozen_historical`. `_frozen_historical` is a country-level structure and is never populated on commodity items.
+- Market metric current values read from `co.metrics.market[display_key]` -- exact string match required
+- `Stock Market YTD (USD)` read at rankings table only -- excluded from country cards via `CARD_MARKET_EXCLUDE`
 - `Stock Market Index` and `FX Rate` also excluded from country cards via `CARD_MARKET_EXCLUDE`
 - Local YTD: `co.metrics.market['Stock Market YTD']`
 - `_flattenMetrics()` flattens `{value, story}` objects to bare values for the shell
@@ -721,39 +748,42 @@ data.globalStories[tier]                                             <- list of 
 - Default sort: `_whSortCol = -1` = nominal GDP order (GDP_NOMINAL_ORDER constant). Logo click resets to this. Metric dropdown change also resets to `-1` (Session 17 fix).
 - `_whNumericMode` (bool, localStorage `whNumericMode`): when true, weather matrix cells show forecast numbers instead of icons. Grid metrics only (`hasGrid:true`). Toggle button always rendered for layout stability; `visibility:hidden` on non-grid metrics.
 - `CARD_MARKET_EXCLUDE` set: `'Stock Market YTD (USD)'`, `'Stock Market Index'`, `'FX Rate'`
-- `monthly_actuals` field is rendered in tooltip line charts for macro metrics — the script header comment saying "story context only" is wrong.
-- **Tooltip chart window rule:** All tooltip charts (annual bar, monthly line, market line, commodity monthly) always span Jan 2000 (left) -> current month (right). The axis is fixed — never auto-fitted to data extent. Data is right-aligned into the full label array, left-padded with nulls. Missing data shows as visible gaps.
-- **hasChartData guard:** `hasChartData(metricName, countryCode)` runs before building chart HTML. If it returns false, the entire `.metric-chart-wrap` section (title, range buttons, canvas) is omitted from the tooltip entirely. No "No historical data" message is shown — the chart section simply does not exist. Applies to metric tooltips only; commodity charts are separate and use `renderCommodityMonthlyChart()` / `renderCommodityChart()`.
-- **Commodity inline links:** `applyCommLinks()` runs at end of every `applyGlossary()` call. `attachCommLinks()` runs at end of every `attachGlossary()` call. Gold colour `#e8a838`, class `.comm-term`. Generic terms (oil, crude, commodity, commodities) -> `showCommoditiesCard()`. Specific terms (WTI, Brent, natural gas, gold, silver, copper, wheat, corn, soybeans) -> `showCommodityMTT(idx)` by name lookup. First occurrence only per term per block. Do not add separate call sites — the wiring into `applyGlossary`/`attachGlossary` covers all surfaces automatically.
+- `monthly_actuals` field is rendered in tooltip line charts for macro metrics -- the script header comment saying "story context only" is wrong.
+- **Tooltip chart window rule:** All tooltip charts (annual bar, monthly line, market line, commodity monthly) always span Jan 2000 (left) -> current month (right). The axis is fixed -- never auto-fitted to data extent. Data is right-aligned into the full label array, left-padded with nulls. Missing data shows as visible gaps.
+- **hasChartData guard:** `hasChartData(metricName, countryCode)` runs before building chart HTML. If it returns false, the entire `.metric-chart-wrap` section (title, range buttons, canvas) is omitted from the tooltip entirely. No "No historical data" message is shown -- the chart section simply does not exist. Applies to metric tooltips only; commodity charts are separate and use `renderCommodityMonthlyChart()` / `renderCommodityChart()`.
+- **Commodity inline links:** `applyCommLinks()` runs at end of every `applyGlossary()` call. `attachCommLinks()` runs at end of every `attachGlossary()` call. Gold colour `#e8a838`, class `.comm-term`. Generic terms (oil, crude, commodity, commodities) -> `showCommoditiesCard()`. Specific terms (WTI, Brent, natural gas, gold, silver, copper, wheat, corn, soybeans) -> `showCommodityMTT(idx)` by name lookup. First occurrence only per term per block. Do not add separate call sites -- the wiring into `applyGlossary`/`attachGlossary` covers all surfaces automatically.
 - **No floating commodities FAB.** The `#btnCommFab` button was removed in Session 26. Do not re-add it.
-- **Global stories carousel.** `renderNews()` drives the three-story carousel. `activeNewsIdx` tracks current story (0/1/2). `setActiveNewsIcon(idx)` / `clearActiveNewsIcon()` are empty stubs — icons are fully static. No nav arrows in the global stories tooltip — story icons in the background menu are the navigation. `measureNewsTTHeight()` and `newsTTHeight` were removed in Session 29.
+- **Global stories carousel.** `renderNews()` drives the three-story carousel. `activeNewsIdx` tracks current story (0/1/2). `setActiveNewsIcon(idx)` / `clearActiveNewsIcon()` are empty stubs -- icons are fully static. No nav arrows in the global stories tooltip -- story icons in the background menu are the navigation. `measureNewsTTHeight()` and `newsTTHeight` were removed in Session 29.
+- **X/Twitter icon in footer.** Small inline SVG X logo sits after `| Ping Me |` in the footer link bar. Links to `https://x.com/macrosnapsapp`. CSS class `.footer-x-link`. Do not change the handle.
 
-### Weather icon rule (FIXED — do not change)
+### Weather icon rule (FIXED -- do not change)
 
 All weather icons across the entire site must use the `.wh-icon` CSS filter pattern:
 - A single emoji wrapped in `<span class="wh-icon sunny/cloudy/stormy">`
 - `.sunny`: no filter. `.cloudy`: `brightness(.6) contrast(1.05) saturate(.3)`. `.stormy`: `brightness(.15) contrast(1.2) saturate(0) drop-shadow(...)`
-- Exception: per-metric strip uses the correct emoji per state with the same `.wh-icon cls` wrapper — intentional, filter still applies correctly
+- Exception: per-metric strip uses the correct emoji per state with the same `.wh-icon cls` wrapper -- intentional, filter still applies correctly
 - Never use differently-styled icons (raw emoji, SVG, different filter values) anywhere else on the site
 
-**Canonical emoji set (LOCKED — do not substitute):**
+**Canonical emoji set (LOCKED -- do not substitute):**
 - ☀️ sunny state
 - ☁️ cloudy state
 - ⛈️ stormy state
 
-These three and only these three may be used anywhere in the product — in code, copy, tooltips, prompts, or documentation. ⛅, 🌩, 🌧, 🌤 and all other weather variants are banned. This applies to all future UI changes, story writing, and pipeline updates.
+These three and only these three may be used anywhere in the product -- in code, copy, tooltips, prompts, or documentation. ⛅, 🌩, 🌧, 🌤 and all other weather variants are banned. This applies to all future UI changes, story writing, and pipeline updates.
 
-**Icon rendering rule (FIXED — no exceptions):** Every weather icon displayed in the UI must be wrapped in a `.wh-icon sunny/cloudy/stormy` span so the CSS filter is applied. Raw emoji, bare text, or any other rendering method is forbidden. This includes footer tooltips, glossary entries, story text, and any future UI component.
+**Icon rendering rule (FIXED -- no exceptions):** Every weather icon displayed in the UI must be wrapped in a `.wh-icon sunny/cloudy/stormy` span so the CSS filter is applied. Raw emoji, bare text, or any other rendering method is forbidden. This includes footer tooltips, glossary entries, story text, and any future UI component.
 
 ---
 
-### Em-dash rule (FIXED — no exceptions)
+### Em-dash rule (FIXED -- no exceptions)
 
-Em-dashes (—) are banned everywhere in the product without exception. This includes story text, glossary definitions, footer copy, UI labels, tooltips, code comments, prompts, and the living brief itself. Use commas, colons, parentheses, or restructure the sentence instead. There are no edge cases where an em-dash is acceptable.
+Em-dashes are banned everywhere in the product without exception. This includes story text, glossary definitions, footer copy, UI labels, tooltips, code comments, prompts, and the living brief itself. Use commas, colons, parentheses, or restructure the sentence instead. There are no edge cases where an em-dash is acceptable.
 
 ---
 
 ### Pending work (priority order)
+
+1. **`update_stories.py` pipeline session (next).** Two improvements agreed but not yet built: (a) monthly actuals as a story rewrite trigger -- rewrite when a new monthly actual lands, not just when the annual forecast changes; (b) time-based stale refresh via `--stale-only` with a 30-day age threshold as a safety net for metrics where monthly actuals rarely change.
 
 1. **Post-launch:** revisit architecture if a second person joins to update data daily.
 
@@ -780,13 +810,13 @@ MacroSnaps has two distinct layers of truth that must not be conflated:
 
 **Forecast values** (source: Ralph's Google Sheet) are annual consensus views for 2026. They drive the metric value displayed on each card and the weather icon. Policy Rate is the year-end forecast. These are proprietary and intentionally stable.
 
-**Stories** should be written off recent data and trends, not off the forecast values. Monthly CPI prints, quarterly GDP flash estimates, central bank decisions, weekly jobless claims — this is the live texture that makes stories worth reading. A story that just restates the annual forecast number adds no value.
+**Stories** should be written off recent data and trends, not off the forecast values. Monthly CPI prints, quarterly GDP flash estimates, central bank decisions, weekly jobless claims -- this is the live texture that makes stories worth reading. A story that just restates the annual forecast number adds no value.
 
-The correct approach: stories comment on what is actually happening right now. If recent data is tracking ahead of or behind the annual forecast, the story can note that tension briefly. But the forecast is not the anchor of the story — recent data is.
+The correct approach: stories comment on what is actually happening right now. If recent data is tracking ahead of or behind the annual forecast, the story can note that tension briefly. But the forecast is not the anchor of the story -- recent data is.
 
 **Architectural constraint: write path separation.** `sync_sheet.py --apply` writes only annual forecast fields. `sync_monthly_actuals.py` writes only the `monthly_actuals` field. These two scripts must never touch each other's fields. No other script writes to `monthly_actuals`.
 
-**Story mismatch guard.** `update_stories.py` now saves `value_at_generation` alongside every metric story it writes. `build.py` checks this field at build time — if `value_at_generation` differs from the current `value`, the build fails with a clear error naming the country and metric. This field populates organically as stories are regenerated; existing metrics without the field pass the check silently.
+**Story mismatch guard.** `update_stories.py` now saves `value_at_generation` alongside every metric story it writes. `build.py` checks this field at build time -- if `value_at_generation` differs from the current `value`, the build fails with a clear error naming the country and metric. This field populates organically as stories are regenerated; existing metrics without the field pass the check silently.
 
 ---
 
@@ -800,14 +830,14 @@ The correct approach: stories comment on what is actually happening right now. I
 
 Run two things simultaneously, serving different subscriber relationships:
 
-- **Daily post:** short, low-friction, almost verbatim from the pipeline's three-act global story output. Low extra effort. Its jobs are: proving the pipeline is alive and the product is serious (40 posts = credibility), creating a scrollable archive for new subscribers, and feeding Substack's algorithm (which surfaces active publications). Most subscribers will not read every one — that is fine.
+- **Daily post:** short, low-friction, almost verbatim from the pipeline's three-act global story output. Low extra effort. Its jobs are: proving the pipeline is alive and the product is serious (40 posts = credibility), creating a scrollable archive for new subscribers, and feeding Substack's algorithm (which surfaces active publications). Most subscribers will not read every one -- that is fine.
 - **Weekly digest:** the actual product most subscribers will open. Longer and more considered: what mattered this week, which countries moved, what surprised, what to watch next week. Different enough from the daily to justify both. Built from material already generated during the week.
 
 Keep daily posts genuinely short. If they are long, readers feel guilty skipping them, unsubscribe rates rise, and the weekly stops feeling like a reward.
 
 **Funnel: glossary links + one CTA per post**
 
-Every glossary term in every post should be hyperlinked to the live glossary on macrosnaps.app. Use the same rule as the site: first occurrence per post only, not every instance. This is a passive conversion path — readers who click mid-sentence to understand a term land on a live interactive page and become site users.
+Every glossary term in every post should be hyperlinked to the live glossary on macrosnaps.app. Use the same rule as the site: first occurrence per post only, not every instance. This is a passive conversion path -- readers who click mid-sentence to understand a term land on a live interactive page and become site users.
 
 Supplement with one explicit call to action (CTA) at the end of every post. Something like: "See how this plays out across all 12 countries on the live dashboard." This is active, gives a specific reason to visit, and positions the site as the thing the email cannot replace (interactivity, depth-toggle). Glossary links + one CTA is the right combination for the audience-building phase.
 
@@ -815,7 +845,7 @@ Note on deliverability: emails with many outbound links can score worse on spam 
 
 **Depth levels and future monetisation**
 
-The site's beginner / moderate / expert structure maps naturally to a free/paid Substack split. Suggested path: everything free for 3 months, then introduce paid with beginner free and moderate/expert behind a paywall. The content structure already justifies this — no extra work required.
+The site's beginner / moderate / expert structure maps naturally to a free/paid Substack split. Suggested path: everything free for 3 months, then introduce paid with beginner free and moderate/expert behind a paywall. The content structure already justifies this -- no extra work required.
 
 **Voice**
 
