@@ -49964,7 +49964,7 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 #main-views{flex:1;overflow:hidden;position:relative;display:flex;flex-direction:column}
 #globe-view{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden}
 #globe-view.hidden{display:none}
-#rankings-view{flex:1;overflow-y:auto;display:none;padding:0 0 80px}
+#rankings-view{flex:1;overflow-y:auto;display:none;padding:0 0 110px}
 #rankings-view.active{display:block}
 
 /* ── View Toggle ── */
@@ -50656,17 +50656,6 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 
 
 /* ── Footer ── */
-.subscribe-box{
-  padding:8px 24px;
-  border-top:1px solid rgba(255,255,255,.07);
-  border-bottom:1px solid rgba(255,255,255,.07);
-  background:rgba(0,212,255,.04);
-  margin-bottom:60px;
-}
-.subscribe-inner{
-  display:flex;align-items:center;justify-content:center;
-  max-width:900px;margin:0 auto;gap:12px;flex-wrap:wrap;text-align:center;
-}
 .subscribe-btn{
   font-family:var(--font-display);font-size:9px;letter-spacing:1.2px;
   text-transform:uppercase;padding:5px 14px;
@@ -50680,12 +50669,13 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 
 .footer{
   position:fixed;bottom:0;left:0;right:0;z-index:10;
-  display:flex;align-items:center;justify-content:center;gap:24px;
-  padding:16px 24px;
-  background:linear-gradient(180deg,transparent,rgba(0,0,0,.9) 30%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  padding:8px 24px 10px;
+  background:linear-gradient(180deg,transparent,rgba(0,0,0,.95) 25%);
 }
-.footer-comm-row{display:contents}
-.footer-main-row{display:contents}
+.footer-comm-row{display:flex;align-items:center;justify-content:center;}
+.footer-main-row{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px;}
+.footer-btn-row{display:flex;align-items:center;justify-content:center;gap:10px;}
 .footer-link{
   font-family:var(--font-display);font-size:9px;letter-spacing:1.5px;
   text-transform:uppercase;color:#aaa;cursor:pointer;
@@ -50944,14 +50934,11 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
   <div id="rankings-view" class="active"></div>
 </div>
 
-<div class="subscribe-box">
-  <div class="subscribe-inner">
+<div class="footer">
+  <div class="footer-btn-row">
     <a class="subscribe-btn" href="https://macrosnaps.substack.com" target="_blank" rel="noopener">Subscribe free</a>
     <a class="subscribe-btn" href="/educators.html" target="_blank" rel="noopener">Educators</a>
   </div>
-</div>
-
-<div class="footer">
   <div class="footer-comm-row">
     <span class="footer-link" data-ft-comm="1">Commodities</span>
   </div>
