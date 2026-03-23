@@ -56754,8 +56754,6 @@ function formatCommPrice(price) {
 }
 
 function showCommoditiesCard() {
-  const _oldCards = [...document.querySelectorAll('.card-overlay, .tooltip')];
-  const isNavigation = _oldCards.length > 0;
   closeBubble();
   const comm = commoditiesData;
   if (!comm) return;
@@ -56802,20 +56800,27 @@ function showCommoditiesCard() {
 
   const storiesList = stories.map(s => `<li>${applyGlossary(s)}</li>`).join('');
 
-  const o = document.createElement('div');
-  o.className = 'card-overlay' + (isNavigation ? ' no-anim' : '');
-  o.innerHTML = `<div class="country-card">
-    <div class="card-close" onclick="this.closest('.card-overlay').remove()">\u2715</div>
+  const cardInnerHTML = `<div class="card-close" onclick="this.closest('.card-overlay').remove()">\u2715</div>
     ${levelToggleHTML()}
     <div class="card-head"><span class="c-flag">\u{1F6E2}\uFE0F</span><span class="c-name">Commodities</span>${cardNavHTML()}</div>
     <div class="weather-sec"><div class="w-icon ${weatherClass}">${comm.weather || '☁️'}</div><ul class="c-stories">${storiesList}</ul></div>
     ${sectionsHTML}
-    <div class="comm-footer">As of ${comm.asOf} \u00b7 ${comm.source}</div>
-  </div>`;
+    <div class="comm-footer">As of ${comm.asOf} \u00b7 ${comm.source}</div>`;
 
-  document.body.appendChild(o);
-  _oldCards.forEach(el => el.remove());
-  o.addEventListener('click', e => { if (e.target === o) o.remove(); });
+  const existingOverlay = document.querySelector('.card-overlay');
+  let o;
+  if (existingOverlay) {
+    // Update in place — no create/remove cycle, no flash
+    o = existingOverlay;
+    const card = o.querySelector('.country-card');
+    if (card) card.innerHTML = cardInnerHTML;
+  } else {
+    o = document.createElement('div');
+    o.className = 'card-overlay';
+    o.innerHTML = `<div class="country-card">${cardInnerHTML}</div>`;
+    document.body.appendChild(o);
+    o.addEventListener('click', e => { if (e.target === o) o.remove(); });
+  }
 
   // Click handlers on commodity items → open MTT
   o.querySelectorAll('.comm-item').forEach(el => {
