@@ -1,5 +1,13 @@
 # MacroSnaps - Living Brief
-Last updated: March 24, 2026 (Session 54: US and UK educator outreach campaigns complete. LIVING_BRIEF updated.)
+Last updated: March 25, 2026 (Session 55: macroeconomics.education data layer complete. sync_edu.py added to Daily Bash Ritual.)
+
+Session 55 changes in detail:
+
+(1) **macroeconomics.education data layer complete.** `sync_edu.py` reads `data.json` and writes `edu-data.json` to the macedu app, providing live snapshot values and 10-year historical chart series for all six education concepts across all six countries. Added as final step of the Daily Bash Ritual.
+
+(2) **macedu GitHub repo created.** `https://github.com/ralphlazar/macedu` -- separate from macrosnaps. All six chart components now read from `edu-data.json` (not hardcoded). Design pass complete (fonts, colours, section compartmentalisation). Deployment to Cloudflare Pages is the next step.
+
+---
 
 Session 54 changes in detail:
 
@@ -132,7 +140,7 @@ Since the site and app are live, all changes must be tested locally before pushi
 Run in order, pasting output after each step:
 
 ```bash
-cd ~/Downloads/macrosnaps
+cd /Users/lisaswerling/RALPH/AI/macrosnaps
 python3 fetch_market_data.py
 python3 sync_market_historical.py --apply
 python3 sync_commodity_data.py --apply
@@ -146,6 +154,7 @@ Manual gate: open `headline_review.html`, load `stories_draft_YYYY-MM-DD.json`, 
 python3 update_headlines.py --apply stories_approved_YYYY-MM-DD.json
 python3 build.py --apply
 python3 audit_ritual.py
+python3 sync_edu.py
 ```
 
 ### Social Media Bash
@@ -238,6 +247,7 @@ Forecast values (source: Ralph's Google Sheet) are annual consensus views for 20
 
 ## Full session history
 
+Session 55: macroeconomics.education data layer complete. sync_edu.py added to Daily Bash Ritual. macedu pushed to GitHub.
 Session 54: US and UK educator outreach campaigns complete/paused per Ralph's instruction.
 Session 53: US educator outreach ranks 55-51 complete; 10 contacts, 5 universities (Georgia Tech skip confirmed); LIVING_BRIEF updated; session prompt for ranks 50-1 created.
 Session 52: Teaching-staff-first rule formalised; session prompt for ranks 55-1 revised.
