@@ -1,5 +1,15 @@
 # MacroSnaps - Living Brief
-Last updated: March 25, 2026 (Session 55: macroeconomics.education data layer complete. sync_edu.py added to Daily Bash Ritual.)
+Last updated: March 26, 2026 (Session 56: repo moved; node_modules scrubbed; ritual fixed.)
+
+Session 56 changes in detail:
+
+(1) **Repo moved.** MacroSnaps repo relocated from `~/Downloads/macrosnaps` to `/Users/lisaswerling/RALPH/AI/macrosnaps`. All ritual commands updated. `MARKET_STATS_KEY_FILE` env var added to `.env` to fix sheet append key path for `fetch_market_data.py` and `sync_commodity_data.py`.
+
+(2) **node_modules scrubbed from both repos.** `node_modules` and `package.json` (a legacy Cloudflare adapter) were accidentally committed to macrosnaps history, blocking GitHub pushes. Scrubbed via `git filter-repo`. Same fix applied to macedu repo. Both repos now clean.
+
+(3) **Daily Bash Ritual fixed.** `sync_edu.py` repositioned to run after `build.py --apply` and before `audit_ritual.py`. macedu push step added explicitly after `sync_edu.py`.
+
+---
 
 Session 55 changes in detail:
 
@@ -153,8 +163,10 @@ Manual gate: open `headline_review.html`, load `stories_draft_YYYY-MM-DD.json`, 
 ```bash
 python3 update_headlines.py --apply stories_approved_YYYY-MM-DD.json
 python3 build.py --apply
-python3 audit_ritual.py
 python3 sync_edu.py
+cd /Users/lisaswerling/RALPH/AI/macedu && git add -A && git commit -m "Daily data sync YYYY-MM-DD" && git push origin main
+cd /Users/lisaswerling/RALPH/AI/macrosnaps
+python3 audit_ritual.py
 ```
 
 ### Social Media Bash
@@ -247,6 +259,7 @@ Forecast values (source: Ralph's Google Sheet) are annual consensus views for 20
 
 ## Full session history
 
+Session 56: Repo moved to /Users/lisaswerling/RALPH/AI/macrosnaps; MARKET_STATS_KEY_FILE env var added; node_modules scrubbed from macrosnaps and macedu repos; Daily Bash Ritual fixed (sync_edu.py before audit_ritual.py; macedu push added).
 Session 55: macroeconomics.education data layer complete. sync_edu.py added to Daily Bash Ritual. macedu pushed to GitHub.
 Session 54: US and UK educator outreach campaigns complete/paused per Ralph's instruction.
 Session 53: US educator outreach ranks 55-51 complete; 10 contacts, 5 universities (Georgia Tech skip confirmed); LIVING_BRIEF updated; session prompt for ranks 50-1 created.
