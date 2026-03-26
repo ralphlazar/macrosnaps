@@ -193,6 +193,136 @@ for code, country in COUNTRY_MAP.items():
     }
 edu['exchange-rates'] = fx_block
 
+
+# ── Icon + label derivation ───────────────────────────────────────────────────
+#
+# Adds 'icon' (sunny / cloudy / stormy) and 'label' (one editorial sentence)
+# to every snapshot entry. Rules are per-concept; all thresholds are
+# intentionally conservative. the aim is to surface genuinely notable
+# situations, not to cry wolf on normal variation.
+
+INFLATION_TARGET = 2.0
+INFLATION_TARGETS = {'uk': 2.0, 'us': 2.0, 'eurozone': 2.0,
+                     'china': 3.0, 'japan': 2.0, 'brazil': 3.0}
+
+STRUCTURAL_U = {'uk': 4.0, 'us': 4.0, 'eurozone': 6.5,
+                'china': 5.0, 'japan': 2.5, 'brazil': 8.0}
+
+GDP_TREND = {'uk': 2.0, 'us': 2.5, 'eurozone': 1.5,
+             'china': 5.0, 'japan': 1.0, 'brazil': 2.0}
+
+COUNTRY_NAMES = {'uk': 'UK', 'us': 'US', 'eurozone': 'Eurozone',
+                 'china': 'China', 'japan': 'Japan', 'brazil': 'Brazil'}
+
+def inflation_icon_label(country, val, direction):
+    target = INFLATION_TARGETS.get(country, 2.0)
+    name   = COUNTRY_NAMES[country]
+    if val is None:
+        return 'cloudy', 'Good example of missing inflation data. worth discussing why data gaps occur.'
+    diff = val - target
+    if abs(diff) <= 0.3:
+        return 'sunny', f'Good example of inflation on target. {name} CPI is sitting right where the central bank wants it.'
+    elif diff > 0:
+        if direction == 'up':
+            return 'stormy', f'Good example of a central bank under pressure. {name} inflation is above target and still rising.'
+        else:
+            return 'cloudy', f'Good example of inflation coming under control. {name} CPI is above target but heading in the right direction.'
+    else:
+        if direction == 'down':
+            return 'cloudy', f'Good example of below-target inflation. {name} CPI is low and falling, raising questions about deflation risk.'
+        else:
+            return 'sunny', f'Good example of inflation running slightly cool. {name} CPI is just below target.'
+
+def unemployment_icon_label(country, val, direction):
+    structural = STRUCTURAL_U.get(country, 5.0)
+    name = COUNTRY_NAMES[country]
+    if val is None:
+        return 'cloudy', 'Good example of missing labour market data. worth discussing measurement challenges.'
+    diff = val - structural
+    if diff <= 0.3:
+        return 'sunny', f'Good example of a tight labour market. {name} unemployment is at or below its normal level.'
+    elif diff <= 2.0:
+        if direction == 'up':
+            return 'stormy', f'Good example of a weakening labour market. {name} unemployment is rising above its structural rate.'
+        else:
+            return 'cloudy', f'Good example of elevated unemployment. {name} is above its structural rate but improving.'
+    else:
+        return 'stormy', f'Good example of a labour market under serious strain. {name} unemployment is well above its normal level.'
+
+def gdp_icon_label(country, val, direction):
+    trend = GDP_TREND.get(country, 2.0)
+    name = COUNTRY_NAMES[country]
+    if val is None:
+        return 'cloudy', 'Good example of missing growth data. worth discussing GDP measurement.'
+    if val < 0:
+        return 'stormy', f'Good example of a contracting economy. {name} is in negative growth territory right now.'
+    elif val >= trend * 0.75:
+        return 'sunny', f'Good example of healthy growth. {name} is expanding at or above its trend rate.'
+    else:
+        return 'cloudy', f'Good example of sluggish growth. {name} is growing but well below its historical trend.'
+
+def interest_icon_label(country, val, direction):
+    name = COUNTRY_NAMES[country]
+    if val is None:
+        return 'cloudy', 'Good example of missing monetary policy data.'
+    if val <= 1.0:
+        return 'sunny', f'Good example of loose monetary policy. {name} rates are very low, designed to stimulate the economy.'
+    elif val <= 4.0:
+        if direction == 'down':
+            return 'sunny', f'Good example of a central bank easing. {name} is cutting rates as inflation comes under control.'
+        elif direction == 'up':
+            return 'cloudy', f'Good example of a central bank tightening. {name} is raising rates to bear down on inflation.'
+        else:
+            return 'cloudy', f'Good example of a central bank on hold. {name} is watching the data before moving rates.'
+    else:
+        return 'stormy', f'Good example of restrictive monetary policy. {name} rates are high and squeezing the economy.'
+
+def fx_icon_label(country, val, direction):
+    name = COUNTRY_NAMES[country]
+    if val is None:
+        return 'cloudy', 'Good example of missing exchange rate data.'
+    if direction == 'up':
+        return 'cloudy', f'Good example of currency appreciation. the {name} currency is strengthening, which helps importers but hurts exporters.'
+    elif direction == 'down':
+        return 'cloudy', f'Good example of currency depreciation. the {name} currency is weakening, which helps exporters but raises import costs.'
+    else:
+        return 'sunny', f'Good example of a stable exchange rate. the {name} currency is holding steady against the dollar.'
+
+def trade_icon_label(country, val, direction):
+    name = COUNTRY_NAMES[country]
+    if val is None:
+        return 'cloudy', 'Good example of missing current account data.'
+    if abs(val) <= 1.0:
+        return 'sunny', f'Good example of a broadly balanced current account. {name} is neither heavily importing nor exporting on net.'
+    elif val > 0:
+        if abs(val) > 4.0:
+            return 'sunny', f'Good example of a large current account surplus. {name} is selling significantly more to the world than it is buying.'
+        return 'sunny', f'Good example of a current account surplus. {name} is selling more to the world than it is buying.'
+    elif abs(val) <= 4.0:
+        return 'cloudy', f'Good example of a current account deficit. {name} is buying more from the world than it is selling.'
+    else:
+        return 'stormy', f'Good example of a large current account deficit. {name} is running a significant external imbalance.'
+
+ICON_FNS = {
+    'inflation':      inflation_icon_label,
+    'unemployment':   unemployment_icon_label,
+    'gdp':            gdp_icon_label,
+    'interest-rates': interest_icon_label,
+    'exchange-rates': fx_icon_label,
+    'trade':          trade_icon_label,
+}
+
+for slug, fn in ICON_FNS.items():
+    block = edu.get(slug, {})
+    for country, entry in block.items():
+        raw_val = parse_num(entry.get('value'))
+        direction = entry.get('direction', 'flat')
+        icon, label = fn(country, raw_val, direction)
+        entry['icon']  = icon
+        entry['label'] = label
+
+print('Icons + labels derived.')
+
 # ── Charts ────────────────────────────────────────────────────────────────────
 
 print('\nBuilding charts...')
