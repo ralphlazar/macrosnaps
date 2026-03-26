@@ -2,3 +2,4 @@
 .env
 env
 market-stats-key.json
+node_modules/
