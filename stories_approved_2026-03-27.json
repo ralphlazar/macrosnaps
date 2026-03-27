@@ -1,0 +1,295 @@
+{
+  "date": "2026-03-27",
+  "countries": {
+    "USA": {
+      "stories": {
+        "beginner": [
+          "The Iran war is pushing gas prices up, which means inflation will stay around 4.2% this year instead of dropping as low as the Federal Reserve wanted.",
+          "The economy grew much slower than expected at the end of 2025, adding only 0.7% annual growth in the fourth quarter.",
+          "Your paycheck growth will probably slow down over the next couple of years as businesses spend less on hiring and more on AI technology."
+        ],
+        "moderate": [
+          "Geopolitical tensions in Iran are driving headline inflation to 4.2% in 2026, nearly double the Fed's comfort zone, while Q4 GDP growth disappointed at just 0.7% annualized versus earlier expectations of stronger momentum.",
+          "The slowdown mirrors the 2015-2016 period when energy shocks and weak investment growth coincided, except this time AI capex is offsetting some weakness rather than amplifying it.",
+          "Real income growth will decelerate as consumer spending weakens, shifting the growth drivers from consumption (which powered 2024-2025) to business investment in artificial intelligence."
+        ],
+        "expert": [
+          "January CPI at 2.39% remains below the Fed's 2% target, but the OECD's 4.2% forecast for headline 2026 inflation reflects sustained energy cost pressures from Iran geopolitical risk that survey-based expectations still underestimate.",
+          "Q4 2025 GDP revision to 0.7% annualized signals a sharp deceleration from 2.8% in Q3, driven by inventory drawdowns and trade uncertainty, while the unemployment rate held steady at 4.4% in early February, suggesting labor market resilience has not yet fully transmitted to broader demand.",
+          "The projected moderation from 2.0% growth in 2026 to 1.7% in 2027 hinges on how quickly AI investment productivity gains offset household balance sheet weakness and tariff pass-through, with downside risk if energy prices spike further or corporate capex disappointment forces margin compression."
+        ]
+      }
+    },
+    "CAN": {
+      "stories": {
+        "beginner": [
+          "Canada's economy started strong but stumbled in the spring as companies and exporters pulled back on spending and sales.",
+          "Trade tensions are making businesses nervous about investing and selling goods abroad, which hurts growth.",
+          "The Bank of Canada cut interest rates to help the economy, and things improved a bit in the fall, but the outlook remains shaky."
+        ],
+        "moderate": [
+          "After momentum in early 2026, Canada's Q2 economy lost steam as exports fell and business investment weakened, a pattern not seen since the 2020 pandemic shock when external demand collapsed.",
+          "Trade-related uncertainty has weighed on both consumer and corporate confidence, with the Canadian dollar absorbing much of the adjustment through currency depreciation rather than rapid demand destruction.",
+          "Recent rate cuts by the Bank of Canada supported a Q3 rebound, but the unemployment rate sits at 6.74% in January 2026, elevated relative to historical norms and signaling persistent slack in the labor market."
+        ],
+        "expert": [
+          "Canada's Q2 export collapse and investment retrenchment reflect both cyclical weakness from global demand and structural tariff risk from the United States, a dual headwind absent from prior post-crisis recoveries.",
+          "The 6.74% unemployment rate in early 2026 versus the 6.5% year-end forecast suggests downside momentum in labor markets despite the 2.25% policy rate floor and fiscal stimulus measures, indicating the output gap has widened rather than narrowed.",
+          "The near-term outlook hinges on whether US tariff negotiations stabilize (reducing uncertainty premium in capex decisions) or escalate, with downside risk to the 1.7% GDP forecast if investment does not recover and trade remains subdued through H2 2026."
+        ]
+      }
+    },
+    "GBR": {
+      "stories": {
+        "beginner": [
+          "Britain's inflation is stuck above the Bank of England's target at 3.18%, partly because of global oil prices affected by the Iran conflict.",
+          "Like most major developed countries, the UK is growing slower than it normally does, a sign that the global economy is weakening.",
+          "Interest rates remain high to fight inflation, which makes mortgages and loans more expensive for families and businesses."
+        ],
+        "moderate": [
+          "UK inflation at 3.18% in January 2026 sits 68 basis points above the Bank of England's 2.5% midpoint forecast, driven by geopolitical energy shocks similar to those pressuring the US and eurozone simultaneously.",
+          "The UK faces below-trend growth alongside France, Germany, the United States, and China, a synchronized slowdown not seen since 2012-2013 that reflects structural headwinds in major economies rather than isolated UK weakness.",
+          "The policy rate of 3.75% persists at the high end relative to peers despite persistent inflation, leaving limited room for further tightening and constraining household consumption and housing demand."
+        ],
+        "expert": [
+          "January CPI at 3.18% reflects base effects from energy price pass-through and sticky services inflation (particularly in housing), with the 3.75% policy rate insufficient to anchor expectations if Iran-related oil volatility persists beyond Q2.",
+          "The 5.2% unemployment rate from November 2025 combined with subdued wage growth signals the output gap has stabilized but not closed, consistent with forecast 1.5% growth that trails potential and leaves inflation anchoring fragile.",
+          "The Bank of England faces a policy dilemma: cutting rates risks reigniting inflation expectations if geopolitical shocks persist, but holding firm risks deepening the growth undershooting and pushing unemployment toward 5.5%, suggesting rates may stay at 3.75% through mid-2026 despite growth headwinds."
+        ]
+      }
+    },
+    "JPN": {
+      "stories": {
+        "beginner": [
+          "Japan's economy is slowing down because American tariffs will hurt Japanese exporters, cutting growth from 1.1% to just 0.4% in 2026.",
+          "Inflation in Japan is low at 1.53%, and the Bank of Japan expects it to keep falling toward its official goal, which is good news for shoppers but tricky for the central bank.",
+          "Japan's interest rate is still very low at 0.75%, which helps borrowers but means savers earn almost nothing on their money."
+        ],
+        "moderate": [
+          "Japan's 0.4% growth forecast for 2026, down sharply from 1.1% expected in 2025, reflects the crystallizing impact of US tariffs on manufacturing exports, a headwind that was uncertain at year-end but now dominates the growth outlook.",
+          "Inflation at 1.53% in January 2026 remains well below the Bank of Japan's 2% target and below peers, giving the central bank room to maintain accommodative policy, but the weak growth backdrop means inflation is converging downward toward target by demand destruction rather than supply rebalancing.",
+          "The 2.4% unemployment rate signals a tight labor market despite export weakness, suggesting Japanese firms have not yet adjusted payrolls, which means either capex will absorb tariff shocks or wage growth will compress and trigger domestic demand weakness."
+        ],
+        "expert": [
+          "The downgrade from 1.1% to 0.4% growth reflects tariff elasticity estimates showing that US duties on Japanese autos and electronics will reduce export volumes by 8-12% in 2026, offsetting earlier momentum from reshoring investments and the weak yen.",
+          "January CPI at 1.53% and the Bank of Japan's expectation of convergence toward 2% target by 2027 implies the central bank views the slack from tariff-driven growth undershoot as temporary, but the 0.75% policy rate leaves minimal room to ease if deflation risk re-emerges.",
+          "The persistent 2.4% unemployment rate masks compositional shifts toward part-time and contract work, and downside risk to the 0.4% forecast emerges if Japan's current account surplus (4.8% of GDP, historically a shock absorber) compresses faster than modeled due to yen depreciation pass-through and tariff-driven terms-of-trade deterioration."
+        ]
+      }
+    },
+    "DEU": {
+      "stories": {
+        "beginner": [
+          "Germany's government is spending a lot more money right now, which should help the economy grow faster than other European countries facing high energy bills.",
+          "Prices are rising at 2.08%, which is manageable, and only 3.6% of German workers are without jobs.",
+          "Germany has structural problems from expensive energy and fewer working-age people, so growth will stay slower than it was in the past."
+        ],
+        "moderate": [
+          "Germany's federal government has ramped up spending significantly, providing a growth cushion while the broader eurozone economy eases to 0.8% in 2026. This countercyclical fiscal boost contrasts sharply with most EU members, which face constraints from high energy prices inherited from Middle East instability.",
+          "Inflation at 2.08% sits just above target, and unemployment at 3.6% remains among Europe's lowest, but these tight labor conditions mask underlying structural drag from energy costs and demographic contraction.",
+          "The ECB held its policy rate at 2.15% in February, leaving little room to cut if eurozone growth disappoints. Germany's current account surplus of 4.5% GDP indicates the country still exports capital rather than deploying it domestically."
+        ],
+        "expert": [
+          "Germany's GDP growth trajectory hinges on federal defense spending acceleration offsetting broader eurozone deceleration to 0.8% in 2026 before a modest 1.2% recovery in 2027 as NATO commitments bite. The recent 2.08% CPI print and 3.6% unemployment reflect tight labor markets, but nominal wage growth is not translating into broad-based demand pressure.",
+          "The ECB's 2.15% policy rate leaves limited ammunition for demand support if the 1.2% full-year growth forecast proves optimistic relative to current fiscal multiplier assumptions. Energy-intensive manufacturing faces persistent headwinds from Middle East premium pricing, and demographic decline will compress labor force growth by 0.3-0.4% annually.",
+          "Forward-looking, Germany's budget deficit at 2% of GDP is manageable but subordinate to the larger eurozone fiscal picture. If French and Italian growth underperforms consensus expectations (both targeting 0.9% and 1% respectively in 2026), German exports may face unexpected demand shock despite Munich defense orders."
+        ]
+      }
+    },
+    "FRA": {
+      "stories": {
+        "beginner": [
+          "France's economy grew only 1.1% last year and is slowing further to 0.7% this year, making it one of Europe's weakest performers.",
+          "Prices barely rose in January at 0.29%, and unemployment sits at 7.7%, which means the job market is not as tight as Germany's.",
+          "France should see a modest recovery to 0.9% growth in 2026, but that still leaves it struggling compared to faster-growing economies worldwide."
+        ],
+        "moderate": [
+          "French growth decelerated to 0.7% in 2025 after a 1.1% rebound in 2024, and Banque de France expects only 0.9% expansion in 2026, making France a laggard even within the sluggish eurozone. The 0.29% January CPI print reflects subdued demand and the eurozone's broader deflationary bias despite energy shocks.",
+          "Unemployment at 7.7% is substantially higher than Germany's 3.6%, suggesting France's labor market has not tightened enough to generate wage-driven inflation or broad-based consumer spending. The 4.8% budget deficit forecast signals Paris will need to consolidate eventually, which threatens already fragile growth momentum.",
+          "France's current account surplus of 1% GDP is modest relative to Germany, indicating less export dynamism and weaker external demand support. If eurozone growth disappoints materially below consensus, France's domestic demand weakness leaves little buffer."
+        ],
+        "expert": [
+          "French GDP growth ground lower from 1.1% in 2024 to an expected 0.7% in 2025, with only 0.9% forecast for 2026, trailing even the anaemic 0.8% eurozone average. The 0.29% January CPI print and persistent 7.7% unemployment reveal deflationary slack that the ECB's 2.15% policy rate cannot easily stimulate given limited fiscal space.",
+          "France's 4.8% budget deficit forecast for 2026 represents the highest in the eurozone outside Italy, constraining fiscal multiplier upside at precisely the moment when domestic demand needs support. Structural labor market rigidities, reflected in 7.7% unemployment despite tepid growth, imply weak wage dynamics and subdued consumption elasticity.",
+          "The asymmetry between France's modest current account surplus (1% GDP) and Germany's 4.5% suggests France is not generating enough export growth to offset domestic demand slack. If the ECB cuts rates materially in 2026, France would benefit, but such cuts are contingent on eurozone-wide disinflationary risks, creating a timing mismatch with French growth needs."
+        ]
+      }
+    },
+    "ITA": {
+      "stories": {
+        "beginner": [
+          "Italy's economy is growing very slowly at around 1%, barely keeping pace with inflation, so ordinary Italians feel little economic improvement.",
+          "Unemployment at 5.2% is lower than France but higher than Germany, and prices are up 1.8%, putting a squeeze on household budgets.",
+          "Italy faces the same energy cost headwinds hitting other European countries, and its large government debt makes it harder to spend more money to boost growth."
+        ],
+        "moderate": [
+          "Italy is forecast to grow just 1% in 2026, matching France's torpid pace and underlining how peripheral eurozone economies are being left behind by structural energy constraints and subdued external demand. The 1.8% January CPI print is above the eurozone average but below the 2.3% full-year forecast, indicating price pressures are easing as demand remains weak.",
+          "Unemployment at 5.2% is lower than France's 7.7% but masks significant regional disparities, with southern Italy facing persistent youth joblessness. Italy's 3.2% budget deficit forecast is tighter than France's, but the nation's 140% debt-to-GDP ratio leaves little fiscal headroom for stimulus.",
+          "Italy's current account surplus of just 0.8% GDP lags Germany substantially, reflecting weaker export competitiveness and reliance on domestic demand that is itself constrained. The ECB's policy rate at 2.15% is uniform across the eurozone, but Italian firms face higher borrowing costs due to sovereign risk premia, creating a monetary transmission wedge."
+        ],
+        "expert": [
+          "Italy's 1% growth forecast for 2026 positions it below even France's 0.9% and highlights how Middle East energy escalation and eurozone structural imbalances disproportionately harm southern peripheral economies. The 1.8% January CPI and 5.2% unemployment reflect tight labor supply in the north offset by slack in the Mezzogiorno, producing low aggregate inflationary pressure and weak wage bargaining power.",
+          "Italy's 3.2% budget deficit and 140% gross debt ratio constrain counter-cyclical fiscal deployment, while the ECB's uniform 2.15% policy rate translates into higher real rates for Italian borrowers due to 50-80 basis point sovereign spreads. This monetary-fiscal bind implies Italian growth is effectively constrained by external financing costs rather than demand shortage.",
+          "Forward-looking, if eurozone growth disappoints materially below the 0.8% consensus, Italian export demand will deteriorate first given its reliance on intra-European trade. The current account surplus of 0.8% GDP offers minimal buffer, and any deterioration would force Italy toward external borrowing at punitive rates absent ECB backstop measures."
+        ]
+      }
+    },
+    "CHN": {
+      "stories": {
+        "beginner": [
+          "China's economy is expected to grow 4.5% in 2026 if the government spends more money, which is slower than China's historical pace but still much faster than Europe or the United States.",
+          "Prices in China are barely rising at 0.23%, which means the government has room to cut interest rates or boost spending without worrying about inflation.",
+          "China faces weak demand from its own people and too much production capacity, which keeps prices flat and means companies are struggling to sell goods at good margins."
+        ],
+        "moderate": [
+          "China's 4.5% growth forecast for 2026 assumes an expansionary fiscal stance, a material downgrade from the 4.7% full-year consensus and reflecting ongoing deflationary structural headwinds. The 0.23% January CPI print confirms that weak domestic demand and chronic overcapacity in manufacturing and real estate continue to suppress pricing power.",
+          "China remains an outlier in the global economy with deflation of 0.6% year-over-year despite the Middle East energy shock that has ravaged other regions, indicating both demand weakness and excess inventory. Policy rates around 2.75% provide substantial room for easing, and the government has already signaled expansionary fiscal intentions through defense and infrastructure spending.",
+          "The 5.1% unemployment forecast masks significant structural shifts from manufacturing automation and real estate downsizing, while youth unemployment remains elevated despite official stability. Without aggressive fiscal multiplier deployment, China risks drifting toward 3-4% trend growth, a secular deceleration that would reshape global commodity and trade dynamics."
+        ],
+        "expert": [
+          "China's 4.5% growth forecast for 2026 embeds an expansionary fiscal assumption and represents a 20-basis-point downgrade from the 4.7% full-year consensus, signaling Beijing's concern about momentum. The 0.23% January CPI and 0.6% year-over-year deflation confirm deflationary forces from persistent overcapacity, weak domestic demand, and real estate sector contraction, despite geopolitical oil disruptions that have inflated prices elsewhere.",
+          "China's policy rate at 2.75% provides 250+ basis points of cutting space if growth falters, but rate cuts alone cannot address demand destruction rooted in deleveraging household balance sheets and property wealth erosion. The forecast 6.8% budget deficit signals fiscal expansion is planned, but implementation lags and fiscal multipliers have eroded as marginal demand elasticity declines with rising debt saturation.",
+          "Forward-looking, if China's fiscal impulse underperforms relative to the expansionary assumption baked into the 4.5% forecast, growth could slip to 3.5-4%, triggering a global growth repricing and demand shock for commodity exporters. Deflation persistence also raises the risk of expectations anchoring downward, limiting real rate cuts' stimulus efficacy and forcing Beijing toward more aggressive fiscal and credit measures by 2027."
+        ]
+      }
+    },
+    "IND": {
+      "stories": {
+        "beginner": [
+          "India's economy is growing steadily at around 6.3 percent, which means more jobs and rising living standards for ordinary people.",
+          "Food prices are pushing inflation higher, but the central bank is keeping overall price increases under control so your money doesn't lose value too quickly.",
+          "The Indian government is spending more than it takes in through taxes, which helps fund schools and infrastructure but also means more borrowing."
+        ],
+        "moderate": [
+          "India's fiscal year 2026 growth of 6.3 percent outpaces most developing regions, though South Asia's overall growth is moderating to 6.2 percent due to rising trade barriers affecting the whole region.",
+          "Food inflation pressures exist, yet the central bank's inflation target of around 4.2 percent remains achievable because core inflation stayed contained at 1.33 percent in recent months.",
+          "The policy rate sitting at 5.25 percent reflects a relatively neutral stance, balancing growth support against the need to anchor inflation expectations as the year progresses."
+        ],
+        "expert": [
+          "India's 6.3 percent FY2026 growth trajectory reflects strong domestic consumption offsetting external headwinds, with the central bank's accommodative 5.25 percent policy rate providing room for gradual normalization if food inflation moderates as expected.",
+          "Food price pressures create upside risks to the 4.2 percent inflation forecast, particularly given the tight labor market and potential wage spillovers, forcing the Reserve Bank to balance growth support against inflation anchoring through 2026.",
+          "The widening current account deficit of 1.2 percent GDP and fiscal deficit of 7.2 percent GDP reflect investment-heavy growth, but sustainability depends on commodity price stability and continued foreign capital inflows despite elevated global rates."
+        ]
+      }
+    },
+    "ZAF": {
+      "stories": {
+        "beginner": [
+          "South Africa's economy is starting to grow faster as the government fixes power shortages and improves infrastructure, moving from 1.0 percent growth to 1.2 percent this year.",
+          "Prices are rising at a moderate pace of 3.49 percent, which is close to the central bank's comfort zone, so your purchasing power is relatively stable.",
+          "South Africa faces high unemployment at 32.5 percent, meaning millions struggle to find jobs despite the infrastructure improvements creating some new opportunities."
+        ],
+        "moderate": [
+          "South Africa's growth acceleration from 1.0 percent in 2025 to 1.2 percent in 2026 remains weak compared to regional peers, but energy reforms and infrastructure investment signal a potential turning point after years of load shedding constraints.",
+          "Inflation at 3.49 percent sits comfortably within the South African Reserve Bank's 3 to 6 percent target range, supporting the central bank's measured approach at a 6.75 percent policy rate.",
+          "The region is outperforming with Sub-Saharan Africa accelerating to 4.3 percent, yet South Africa's structural challenges around labor market rigidity and skills gaps keep unemployment entrenched near 32.5 percent despite GDP growth."
+        ],
+        "expert": [
+          "South Africa's 1.2 percent growth forecast reflects a modest recovery anchored by infrastructure spending and energy supply normalization, but the pace remains constrained by structural headwinds and lags the 4.3 percent regional acceleration across Sub-Saharan Africa.",
+          "The SARB's 6.75 percent policy rate provides sufficient real tightness to anchor the 3.49 percent inflation print, though downside pressures from moderating energy costs create room for rate cuts if global financial conditions permit.",
+          "The persistent 32.5 percent unemployment rate and 1.4 percent current account deficit signal that growth alone cannot absorb labor supply, requiring complementary skills and labor market reforms to unlock sustainable job creation beyond infrastructure-cycle gains."
+        ]
+      }
+    },
+    "BRA": {
+      "stories": {
+        "beginner": [
+          "Brazil's central bank is keeping interest rates very high at 15.0 percent to fight inflation that sits at 4.44 percent, making borrowing expensive for families and businesses.",
+          "The currency has weakened, which pushes prices higher on imported goods, but inflation should gradually fall back to normal levels by late 2026 as these pressures ease.",
+          "Unemployment is low at 6.78 percent, meaning most people who want to work can find jobs, though higher interest rates may slow hiring in the coming months."
+        ],
+        "moderate": [
+          "Brazil's 15.0 percent policy rate stands as Latin America's outlier, kept elevated to combat 4.44 percent inflation driven primarily by currency depreciation and wage indexation mechanisms that lock in past price increases.",
+          "The central bank expects around 300 basis points of rate cuts through 2026 as currency pressures ease and wage growth moderates, creating a path for monetary easing across the region's most hawkish central bank.",
+          "Inflation at 4.44 percent remains above the 4.2 percent full-year forecast, signaling persistent currency and labor cost pressures, yet the unemployment rate of 6.78 percent suggests tight labor markets that could keep wage demands elevated."
+        ],
+        "expert": [
+          "Brazil's 15.0 percent terminal rate reflects the central bank's aggressive defense against currency-driven inflation (currently 4.44 percent) and wage-price spiral risks, though the projected 300 basis point ease path depends critically on real depreciation stabilizing and inflation expectations re-anchoring.",
+          "The forecasted deceleration to 4.2 percent inflation by year-end requires currency stabilization and a slowdown in nominal wage growth from the 6.78 percent unemployment tightness, creating a narrow path for the rate-cut cycle to commence without rekindling expectations.",
+          "Brazil's 6.7 percent budget deficit and 2.6 percent current account deficit constrain monetary easing flexibility, meaning the central bank must balance inflation anchoring against fiscal sustainability, with risk that external pressures could force a longer pause in the planned rate-cut cycle."
+        ]
+      }
+    },
+    "RUS": {
+      "stories": {
+        "beginner": [
+          "Russia's central bank has pushed interest rates to 15.5 percent, the highest among the countries we are looking at, to control inflation at 6.01 percent and deal with economic stress from war and sanctions.",
+          "Unemployment is extremely low at 2.15 percent because the military is hiring and some workers have left the country, but this tight labor market makes wages rise and inflation harder to control.",
+          "Russia still exports oil and gas to other countries, which brings in money, but the country faces uncertain growth prospects due to ongoing war, sanctions, and investment restrictions."
+        ],
+        "moderate": [
+          "Russia's 15.5 percent policy rate and 6.01 percent inflation reflect a central bank under severe pressure from war-related fiscal spending, currency depreciation, and supply disruptions that cannot be easily solved through tighter monetary policy alone.",
+          "The 2.15 percent unemployment rate masks war-related labor supply shifts, military conscription, and emigration rather than true labor market strength, making wage pressures persistent despite elevated rates that should cool demand.",
+          "High uncertainty surrounds Russia's outlook due to the Ukraine conflict's duration, escalating sanctions regimes, and potential trade tensions globally, creating risks that interest rate policy alone cannot manage in an environment of structural economic dislocation."
+        ],
+        "expert": [
+          "Russia's 15.5 percent policy rate represents a defensive stance against 6.01 percent inflation driven by currency depreciation, fiscal dominance from war spending, and import supply constraints, with limited transmission to real demand as capital controls and sanctions fragment financial channels.",
+          "The 2.15 percent unemployment rate reflects compositional effects from military conscription and worker emigration rather than tight labor markets, yet nominal wage growth remains elevated, suggesting inflation expectations remain unanchored and the 4.7 percent full-year forecast relies on demand destruction rather than re-anchoring.",
+          "The current account surplus of 2 percent GDP and minimal deficit constraints provide fiscal space, but prolonged war intensification, further sanctions escalation, or a shift in commodity demand pose significant downside risks to the 1.2 percent growth forecast and could force additional monetary tightening despite already restrictive rates."
+        ]
+      }
+    }
+  },
+  "globalStories": {
+    "beginner": [
+      {
+        "icon": "🛢️",
+        "label": "Middle East Crisis Disrupts Oil Markets",
+        "body": "A month-long conflict between the US and Iran has closed a vital shipping route in the Middle East. Oil prices jumped above $100 per barrel as tanker traffic through the Strait of Hormuz dropped 70%.",
+        "source": "BlackRock"
+      },
+      {
+        "icon": "📉",
+        "label": "Stock Markets Fall Worldwide",
+        "body": "US stocks hit their worst day since January with the S&P 500 falling 1.7%. Asian markets also tumbled with Japan's Nikkei down 0.9% and South Korea's Kospi dropping 2.9%.",
+        "source": "Business Standard"
+      },
+      {
+        "icon": "⚖️",
+        "label": "Central Banks Pause Rate Changes",
+        "body": "The Federal Reserve and European Central Bank held interest rates steady as oil price spikes threaten to push inflation higher. Central bankers worry the crisis could reignite price pressures.",
+        "source": "US Bank"
+      }
+    ],
+    "moderate": [
+      {
+        "icon": "🛢️",
+        "label": "Middle East Crisis Disrupts Oil Markets",
+        "body": "Iran effectively closed the Strait of Hormuz after US-Israeli strikes killed its Supreme Leader on February 28. The waterway handles 20% of global oil trade. Brent crude hit $101.89 per barrel as insurance companies withdrew coverage for ships transiting the area.",
+        "source": "BlackRock"
+      },
+      {
+        "icon": "📉",
+        "label": "Stock Markets Fall Worldwide",
+        "body": "Wall Street saw its sharpest decline since the Iran conflict began, with the Nasdaq entering correction territory after falling over 10% from its peak. Treasury yields surged to 4.43% as investors demanded higher returns. Global markets from Asia to Europe followed suit.",
+        "source": "Business Standard"
+      },
+      {
+        "icon": "⚖️",
+        "label": "Central Banks Pause Rate Changes",
+        "body": "Major central banks abandoned plans for rate cuts as oil shocks threaten inflation targets. The Fed held rates at 3.5-3.75% while the ECB kept its deposit rate at 2%. Officials raised 2026 inflation forecasts citing energy price pressures.",
+        "source": "US Bank"
+      }
+    ],
+    "expert": [
+      {
+        "icon": "🛢️",
+        "label": "Middle East Crisis Disrupts Oil Markets",
+        "body": "Iran's Islamic Revolutionary Guard Corps closed the Strait of Hormuz after joint US-Israeli Operation Epic Fury killed Supreme Leader Ali Khamenei on February 28. The waterway carries 20 million barrels daily, roughly 20% of seaborne oil trade. Insurance withdrawal created a de facto closure despite the strait remaining physically open. Brent crude reached $101.89 per barrel, with Goldman Sachs warning of $200/barrel peaks if closures persist. This supply disruption exceeds 1970s energy crises in scope.",
+        "source": "BlackRock"
+      },
+      {
+        "icon": "📉",
+        "label": "Stock Markets Fall Worldwide",
+        "body": "Global equity markets entered correction territory as geopolitical risk premiums spiked. The S&P 500 fell 1.7% while the Nasdaq dropped 2.4%, officially entering correction with a 10% decline from peaks. Ten-year Treasury yields hit 4.43%, the highest since July 2023, as term premiums expanded. Asian markets followed with the Kospi down 2.9% and Nikkei off 0.9%. Goldman Sachs downgraded Indian equities to marketweight, cutting Nifty targets to 25,900 from 29,300.",
+        "source": "Business Standard"
+      },
+      {
+        "icon": "⚖️",
+        "label": "Central Banks Pause Rate Changes",
+        "body": "Central bank policy pivoted from dovish to hawkish as oil shocks threatened disinflationary progress. The Fed held the funds rate at 3.5-3.75% while raising headline PCE forecasts to 2.7% from 2.4% for 2026. The ECB maintained its deposit rate at 2% but warned the outlook became \"significantly more uncertain.\" Market-implied Fed cuts for 2026 evaporated while European rate expectations turned to multiple hikes. The policy reversal echoes 1970s stagflation risks as supply shocks complicate dual mandates.",
+        "source": "US Bank"
+      }
+    ]
+  }
+}

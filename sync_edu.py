@@ -131,6 +131,79 @@ def tail_dates(all_dates, values, n):
 def round_series(values):
     return [round(float(v), 2) if v is not None else None for v in values]
 
+# ── Constants ─────────────────────────────────────────────────────────────────
+
+COUNTRY_NAMES = {'uk': 'UK', 'us': 'US', 'eurozone': 'Eurozone',
+                 'china': 'China', 'japan': 'Japan', 'brazil': 'Brazil'}
+
+FLAG_MAP = {'uk': '🇬🇧', 'us': '🇺🇸', 'eurozone': '🇪🇺',
+            'china': '🇨🇳', 'japan': '🇯🇵', 'brazil': '🇧🇷'}
+
+# Unit appended after the value on the homepage feed
+UNIT_MAP = {
+    'inflation':      '%',
+    'unemployment':   '%',
+    'gdp':            '%',
+    'interest-rates': '%',
+    'exchange-rates': '',   # value already includes pair context
+    'trade':          '% GDP',
+}
+
+# ── Release date calendar ──────────────────────────────────────────────────────
+# Update monthly. Use the official announced release date for each series.
+# Exchange rates are always 0 (pulled daily).
+# Sources:
+#   UK:       https://www.ons.gov.uk/releases
+#   US:       https://www.bls.gov/schedule/ and https://www.bea.gov/news/schedule
+#   Eurozone: https://ec.europa.eu/eurostat/news/release-calendar
+#   ECB/BoE:  central bank meeting calendars
+#   Japan:    https://www.stat.go.jp/english/info/news/index.html
+#   Brazil:   https://www.ibge.gov.br/en/news-agency/release-schedule.html
+
+RELEASE_DATES = {
+    'inflation': {
+        'uk':       date(2026, 3, 19),
+        'us':       date(2026, 3, 12),
+        'eurozone': date(2026, 3, 19),
+        'china':    date(2026, 3, 11),
+        'japan':    date(2026, 3, 21),
+        'brazil':   date(2026, 3, 14),
+    },
+    'unemployment': {
+        'uk':       date(2026, 3, 18),
+        'us':       date(2026, 3,  7),
+        'eurozone': date(2026, 3,  3),
+        'china':    date(2026, 3, 17),
+        'japan':    date(2026, 2, 28),
+        'brazil':   date(2026, 3, 27),
+    },
+    'gdp': {
+        'uk':       date(2026, 2, 13),
+        'us':       date(2026, 2, 27),
+        'eurozone': date(2026, 1, 30),
+        'china':    date(2026, 1, 17),
+        'japan':    date(2026, 2, 17),
+        'brazil':   date(2026, 2, 27),
+    },
+    'interest-rates': {
+        'uk':       date(2026, 2,  6),
+        'us':       date(2026, 3, 19),
+        'eurozone': date(2026, 3,  6),
+        'china':    date(2026, 3, 20),
+        'japan':    date(2026, 3, 19),
+        'brazil':   date(2026, 3, 19),
+    },
+    'trade': {
+        'uk':       date(2026, 2, 13),
+        'us':       date(2026, 3,  6),
+        'eurozone': date(2026, 1, 21),
+        'china':    date(2026, 3,  7),
+        'japan':    date(2026, 3,  5),
+        'brazil':   date(2026, 2, 25),
+    },
+    # exchange-rates handled separately — always 0
+}
+
 # ── Load ──────────────────────────────────────────────────────────────────────
 
 print(f'\nsync_edu.py — {TODAY}')
@@ -171,15 +244,24 @@ SNAPSHOT_MAP = {
     'trade':          'Current Account',
 }
 
+today_date = date.today()
+
 for slug, macro_key in SNAPSHOT_MAP.items():
     block = {}
+    release_dates_for_concept = RELEASE_DATES.get(slug, {})
     for code, country in COUNTRY_MAP.items():
         new_str = get_macro_value(code, macro_key, data)
         old_str = get_macro_value(code, macro_key, old_data) if old_data else None
         display  = new_str.replace(' GDP', '').strip() if new_str else new_str
+        release_date = release_dates_for_concept.get(country)
+        days_ago = (today_date - release_date).days if release_date else 0
         block[country] = {
-            'value':     display,
-            'direction': get_direction(parse_num(new_str), parse_num(old_str)),
+            'value':           display,
+            'direction':       get_direction(parse_num(new_str), parse_num(old_str)),
+            'flag':            FLAG_MAP.get(country, ''),
+            'country':         COUNTRY_NAMES.get(country, country),
+            'unit':            UNIT_MAP.get(slug, ''),
+            'releasedDaysAgo': max(0, days_ago),
         }
     edu[slug] = block
 
@@ -187,9 +269,24 @@ fx_block = {}
 for code, country in COUNTRY_MAP.items():
     new_raw = get_fx_raw(code, data)
     old_raw = get_fx_raw(code, old_data) if old_data else None
+
+    # movePercent: compare today vs 7 days ago via frozen historical
+    move_pct = None
+    hist_key = FX_HIST_KEYS[code]
+    fx_hist = get_frozen(code, hist_key, data) or get_frozen(code, 'FX Rate', data)
+    if fx_hist and len(fx_hist) >= 8 and new_raw:
+        prev_7d = fx_hist[-8]   # approx 7 trading days ago
+        if prev_7d and prev_7d != 0:
+            move_pct = round(((new_raw - prev_7d) / prev_7d) * 100, 1)
+
     fx_block[country] = {
-        'value':     format_fx(new_raw, FX_DECIMALS[code]),
-        'direction': get_fx_direction(new_raw, old_raw),
+        'value':           format_fx(new_raw, FX_DECIMALS[code]),
+        'direction':       get_fx_direction(new_raw, old_raw),
+        'flag':            FLAG_MAP.get(country, ''),
+        'country':         COUNTRY_NAMES.get(country, country),
+        'unit':            '',
+        'releasedDaysAgo': 0,   # FX is always today
+        'movePercent':     move_pct,
     }
 edu['exchange-rates'] = fx_block
 
@@ -210,9 +307,6 @@ STRUCTURAL_U = {'uk': 4.0, 'us': 4.0, 'eurozone': 6.5,
 
 GDP_TREND = {'uk': 2.0, 'us': 2.5, 'eurozone': 1.5,
              'china': 5.0, 'japan': 1.0, 'brazil': 2.0}
-
-COUNTRY_NAMES = {'uk': 'UK', 'us': 'US', 'eurozone': 'Eurozone',
-                 'china': 'China', 'japan': 'Japan', 'brazil': 'Brazil'}
 
 def inflation_icon_label(country, val, direction):
     target = INFLATION_TARGETS.get(country, 2.0)
@@ -383,6 +477,13 @@ for name, c in charts.items():
 
 edu['charts'] = charts
 
+# ── Wrap snapshots ────────────────────────────────────────────────────────────
+# TeacherHomePage.js reads from edu-data.snapshots (not top-level concept keys).
+# Move all concept blocks into a nested 'snapshots' object for clarity.
+
+CONCEPT_SLUGS = ['inflation', 'unemployment', 'gdp', 'interest-rates', 'exchange-rates', 'trade']
+edu['snapshots'] = {slug: edu.pop(slug) for slug in CONCEPT_SLUGS if slug in edu}
+
 # ── Write ─────────────────────────────────────────────────────────────────────
 
 os.makedirs(os.path.dirname(MACEDU_DATA), exist_ok=True)
@@ -394,9 +495,10 @@ print(f'\nWritten: {MACEDU_DATA} ({size_kb} KB)')
 
 print('\nSnapshot:')
 for concept in ['inflation','unemployment','gdp','interest-rates','trade','exchange-rates']:
-    block = edu.get(concept, {})
+    block = edu.get('snapshots', {}).get(concept, {})
     print(f'  {concept}:')
     for country, vals in block.items():
-        print(f'    {country}: {vals["value"]}  {vals["direction"]}')
+        move = f"  move={vals['movePercent']}%" if vals.get('movePercent') is not None else ''
+        print(f'    {vals["flag"]} {country}: {vals["value"]}  {vals["direction"]}  ({vals["releasedDaysAgo"]}d ago){move}')
 
 print('\n  sync_edu complete.\n')

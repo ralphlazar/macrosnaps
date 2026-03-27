@@ -1,5 +1,16 @@
 # MacroSnaps - Living Brief
-Last updated: March 26, 2026 (Session 56: repo moved; node_modules scrubbed; ritual fixed.)
+Last updated: March 26, 2026 (Session 57: favicon added to macrosnaps-shell.html.)
+
+Session 57 changes in detail:
+
+(1) **Favicon added.** `favicon.ico` (16x16, 32x32, 48x48) and `favicon-192.png` generated from the MacroSnaps logo and added to the repo root. Two `<link>` tags added to `macrosnaps-shell.html` just before `</head>`:
+```html
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+```
+X Card Validator confirmed the icon is picked up successfully.
+
+---
 
 Session 56 changes in detail:
 
@@ -21,9 +32,9 @@ Session 55 changes in detail:
 
 Session 54 changes in detail:
 
-(1) **US educator outreach complete.** All required US university contacts have been compiled. Campaign paused per Ralph's instruction — no further batches needed.
+(1) **US educator outreach complete.** All required US university contacts have been compiled. Campaign paused per Ralph's instruction -- no further batches needed.
 
-(2) **UK educator outreach complete.** All required UK university contacts have been compiled. Campaign paused per Ralph's instruction — no further batches needed.
+(2) **UK educator outreach complete.** All required UK university contacts have been compiled. Campaign paused per Ralph's instruction -- no further batches needed.
 
 ---
 
@@ -259,6 +270,7 @@ Forecast values (source: Ralph's Google Sheet) are annual consensus views for 20
 
 ## Full session history
 
+Session 57: Favicon added (favicon.ico + favicon-192.png); favicon link tags added to macrosnaps-shell.html; X Card Validator confirmed icon picked up.
 Session 56: Repo moved to /Users/lisaswerling/RALPH/AI/macrosnaps; MARKET_STATS_KEY_FILE env var added; node_modules scrubbed from macrosnaps and macedu repos; Daily Bash Ritual fixed (sync_edu.py before audit_ritual.py; macedu push added).
 Session 55: macroeconomics.education data layer complete. sync_edu.py added to Daily Bash Ritual. macedu pushed to GitHub.
 Session 54: US and UK educator outreach campaigns complete/paused per Ralph's instruction.
