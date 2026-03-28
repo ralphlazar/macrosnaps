@@ -6931,7 +6931,9 @@ function showCommodityMTT(idx) {
 
   // Level-aware story
   const storyText = item.story ? (item.story[currentLevel] || item.story.beginner || '') : '';
-  const storyHTML = storyText ? `<div class="tt-section tt-metric-story"><div class="tt-story" style="margin-bottom:0;padding-bottom:0;border-bottom:none">${storyText}</div></div>` : '';
+  const storyHTML = storyText
+    ? `<div class="tt-section tt-metric-story">${Array.isArray(storyText) ? `<ol class="c-stories">${storyText.map(b => `<li>${b}</li>`).join('')}</ol>` : `<div class="tt-story" style="margin-bottom:0;padding-bottom:0;border-bottom:none">${storyText}</div>`}</div>`
+    : '';
 
   // Chart HTML (monthly history from item.spark)
   let chartHTML = '';
@@ -7446,7 +7448,11 @@ function renderMTT(d) {
   // Metric story HTML
   let metricStoryHTML = '';
   if (d.metricStory) {
-    metricStoryHTML = `<div class="tt-section tt-metric-story"><div class="tt-story" style="margin-bottom:0;padding-bottom:0;border-bottom:none">${d.metricStory}</div></div>`;
+    const ms = d.metricStory;
+    const storyContent = Array.isArray(ms)
+      ? `<ol class="c-stories">${ms.map(b => `<li>${b}</li>`).join('')}</ol>`
+      : `<div class="tt-story" style="margin-bottom:0;padding-bottom:0;border-bottom:none">${ms}</div>`;
+    metricStoryHTML = `<div class="tt-section tt-metric-story">${storyContent}</div>`;
   }
 
   // Navigation arrows - only if metric list has entries

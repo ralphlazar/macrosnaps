@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MacroSnaps — Metric Story Review</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0d1117; color: #ccc; min-height: 100vh; }
+
+  /* ── Header ── */
+  .header { background: #161b22; border-bottom: 1px solid #30363d; padding: 16px 24px; display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 100; }
+  .header h1 { font-size: 16px; font-weight: 700; color: #00d4ff; }
+  .header .meta { font-size: 12px; color: #666; }
+  .header .spacer { flex: 1; }
+  .btn { padding: 7px 16px; border-radius: 6px; border: none; cursor: pointer; font-size: 13px; font-weight: 600; transition: opacity 0.15s; }
+  .btn:hover { opacity: 0.85; }
+  .btn-primary { background: #00d4ff; color: #0d1117; }
+  .btn-secondary { background: #21262d; color: #ccc; border: 1px solid #30363d; }
+  .btn-load { background: #238636; color: #fff; }
+
+  /* ── Filters ── */
+  .filters { background: #161b22; border-bottom: 1px solid #30363d; padding: 12px 24px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .filters label { font-size: 12px; color: #666; margin-right: 4px; }
+  select { background: #21262d; border: 1px solid #30363d; color: #ccc; padding: 5px 10px; border-radius: 6px; font-size: 13px; cursor: pointer; }
+  .filter-sep { width: 1px; height: 24px; background: #30363d; }
+  .progress { font-size: 12px; color: #666; margin-left: auto; }
+  .progress span { color: #00d4ff; font-weight: 600; }
+
+  /* ── Layout ── */
+  .main { max-width: 960px; margin: 0 auto; padding: 24px; }
+
+  /* ── Country section ── */
+  .country-section { margin-bottom: 32px; }
+  .country-heading { font-size: 14px; font-weight: 700; color: #00d4ff; padding: 8px 0; border-bottom: 1px solid #21262d; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .country-heading .flag { font-size: 18px; }
+
+  /* ── Metric card ── */
+  .metric-card { background: #161b22; border: 1px solid #30363d; border-radius: 8px; margin-bottom: 12px; overflow: hidden; }
+  .metric-header { padding: 10px 14px; display: flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; }
+  .metric-header:hover { background: #1c2128; }
+  .metric-name { font-size: 13px; font-weight: 600; color: #e6edf3; flex: 1; }
+  .metric-value { font-size: 12px; color: #00d4ff; font-weight: 600; }
+  .metric-section { font-size: 11px; color: #444; background: #21262d; padding: 2px 6px; border-radius: 4px; }
+  .metric-chevron { font-size: 11px; color: #444; transition: transform 0.2s; }
+  .metric-card.open .metric-chevron { transform: rotate(180deg); }
+
+  .metric-body { display: none; padding: 0 14px 14px; border-top: 1px solid #21262d; }
+  .metric-card.open .metric-body { display: block; }
+
+  /* ── Level tabs ── */
+  .level-tabs { display: flex; gap: 4px; padding: 10px 0 8px; }
+  .level-tab { padding: 4px 12px; border-radius: 4px; font-size: 12px; cursor: pointer; border: 1px solid #30363d; background: transparent; color: #666; transition: all 0.15s; }
+  .level-tab.active { background: #00d4ff; color: #0d1117; border-color: #00d4ff; font-weight: 600; }
+
+  /* ── Bullet editors ── */
+  .bullets { display: flex; flex-direction: column; gap: 6px; }
+  .bullet-row { display: flex; align-items: flex-start; gap: 8px; }
+  .bullet-num { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid #00d4ff; color: #00d4ff; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 8px; }
+  .bullet-input { flex: 1; background: #0d1117; border: 1px solid #30363d; border-radius: 5px; color: #ccc; padding: 7px 10px; font-size: 12px; line-height: 1.5; resize: none; min-height: 52px; font-family: inherit; transition: border-color 0.15s; }
+  .bullet-input:focus { outline: none; border-color: #00d4ff; }
+
+  /* ── Empty / load state ── */
+  .empty-state { text-align: center; padding: 80px 24px; color: #444; }
+  .empty-state .big { font-size: 32px; margin-bottom: 12px; }
+  .empty-state p { font-size: 14px; margin-bottom: 16px; }
+
+  /* ── Toast ── */
+  .toast { position: fixed; bottom: 24px; right: 24px; background: #238636; color: #fff; padding: 10px 18px; border-radius: 8px; font-size: 13px; font-weight: 600; opacity: 0; transform: translateY(8px); transition: all 0.25s; pointer-events: none; z-index: 999; }
+  .toast.show { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Metric Story Review</h1>
+  <span class="meta" id="meta">No file loaded</span>
+  <div class="spacer"></div>
+  <button class="btn btn-secondary" onclick="document.getElementById('fileInput').click()">Load Draft</button>
+  <input type="file" id="fileInput" accept=".json" style="display:none" onchange="loadFile(event)">
+  <button class="btn btn-primary" onclick="exportApproved()" id="exportBtn" disabled>Export Approved</button>
+</div>
+
+<div class="filters" id="filters" style="display:none">
+  <label>Country</label>
+  <select id="filterCountry" onchange="render()">
+    <option value="">All</option>
+  </select>
+  <div class="filter-sep"></div>
+  <label>Section</label>
+  <select id="filterSection" onchange="render()">
+    <option value="">All</option>
+    <option value="macro">Macro</option>
+    <option value="market">Market</option>
+  </select>
+  <div class="progress" id="progressText"></div>
+</div>
+
+<div class="main" id="main">
+  <div class="empty-state">
+    <div class="big">📋</div>
+    <p>Load a metric_stories_draft file to begin review.</p>
+    <button class="btn btn-load" onclick="document.getElementById('fileInput').click()">Load Draft JSON</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── State ──────────────────────────────────────────────────────────────────
+let draft      = null;
+let edited     = {};   // edited[code][metric][level] = [b1, b2, b3]
+let metaData   = {};   // metaData[code] = {name, flag, metrics: [{section, name, value}]}
+
+const LEVELS   = ['beginner','moderate','expert'];
+const COUNTRY_ORDER = ['USA','CAN','GBR','JPN','DEU','FRA','ITA','CHN','IND','ZAF','BRA','RUS'];
+const FLAGS    = {USA:'🇺🇸',CAN:'🇨🇦',GBR:'🇬🇧',JPN:'🇯🇵',DEU:'🇩🇪',FRA:'🇫🇷',ITA:'🇮🇹',CHN:'🇨🇳',IND:'🇮🇳',ZAF:'🇿🇦',BRA:'🇧🇷',RUS:'🇷🇺'};
+
+// ── Load file ──────────────────────────────────────────────────────────────
+function loadFile(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    try {
+      draft  = JSON.parse(ev.target.result);
+      edited = {};
+      // Deep-copy draft into edited
+      for (const [code, metrics] of Object.entries(draft.countries || {})) {
+        edited[code] = {};
+        for (const [name, levels] of Object.entries(metrics)) {
+          edited[code][name] = {};
+          for (const lv of LEVELS) {
+            edited[code][name][lv] = (levels[lv] || ['','','']).slice(0,3);
+            while (edited[code][name][lv].length < 3) edited[code][name][lv].push('');
+          }
+        }
+      }
+      document.getElementById('meta').textContent = `${file.name} — ${draft.date || ''} ${draft.generated_at || ''}`;
+      document.getElementById('exportBtn').disabled = false;
+      document.getElementById('filters').style.display = 'flex';
+      populateCountryFilter();
+      render();
+      toast('Draft loaded');
+    } catch(err) {
+      alert('Could not parse JSON: ' + err.message);
+    }
+  };
+  reader.readAsText(file);
+  e.target.value = '';
+}
+
+// ── Populate country filter ────────────────────────────────────────────────
+function populateCountryFilter() {
+  const sel = document.getElementById('filterCountry');
+  sel.innerHTML = '<option value="">All countries</option>';
+  for (const code of COUNTRY_ORDER) {
+    if (draft.countries && draft.countries[code]) {
+      const opt = document.createElement('option');
+      opt.value = code;
+      opt.textContent = `${FLAGS[code]||''} ${code}`;
+      sel.appendChild(opt);
+    }
+  }
+}
+
+// ── Render ─────────────────────────────────────────────────────────────────
+function render() {
+  if (!draft) return;
+  const filterCode    = document.getElementById('filterCountry').value;
+  const filterSection = document.getElementById('filterSection').value;
+  const main          = document.getElementById('main');
+  main.innerHTML      = '';
+
+  const codes = filterCode ? [filterCode] : COUNTRY_ORDER.filter(c => draft.countries && draft.countries[c]);
+
+  let totalMetrics = 0, totalCards = 0;
+
+  for (const code of codes) {
+    const metrics = draft.countries[code];
+    if (!metrics) continue;
+
+    // Filter metrics by section if needed
+    // We need to know which section each metric belongs to — store in draft or infer
+    const metricNames = Object.keys(metrics).filter(name => {
+      if (!filterSection) return true;
+      // Section info embedded in draft if available
+      const sectionInfo = draft._sections && draft._sections[code] && draft._sections[code][name];
+      if (sectionInfo) return sectionInfo === filterSection;
+      // Fallback: macro metrics are known
+      const macroMetrics = ['GDP Growth','Inflation (CPI)','Unemployment','Budget Deficit','Current Account','Policy Rate'];
+      if (filterSection === 'macro') return macroMetrics.includes(name);
+      if (filterSection === 'market') return !macroMetrics.includes(name);
+      return true;
+    });
+    if (!metricNames.length) continue;
+
+    totalCards++;
+    totalMetrics += metricNames.length;
+
+    const section = document.createElement('div');
+    section.className = 'country-section';
+    section.innerHTML = `<div class="country-heading"><span class="flag">${FLAGS[code]||''}</span>${code}</div>`;
+
+    for (const name of metricNames) {
+      section.appendChild(buildMetricCard(code, name, metrics[name]));
+    }
+    main.appendChild(section);
+  }
+
+  document.getElementById('progressText').innerHTML =
+    `Showing <span>${totalMetrics}</span> metrics across <span>${totalCards}</span> countries`;
+}
+
+// ── Build metric card ──────────────────────────────────────────────────────
+function buildMetricCard(code, name, levelData) {
+  const macroMetrics = ['GDP Growth','Inflation (CPI)','Unemployment','Budget Deficit','Current Account','Policy Rate'];
+  const sectionLabel = macroMetrics.includes(name) ? 'macro' : 'market';
+
+  const card = document.createElement('div');
+  card.className = 'metric-card';
+  card.id = `card-${code}-${name.replace(/\s/g,'_')}`;
+
+  // Header
+  const hdr = document.createElement('div');
+  hdr.className = 'metric-header';
+  hdr.innerHTML = `
+    <span class="metric-section">${sectionLabel}</span>
+    <span class="metric-name">${name}</span>
+    <span class="metric-chevron">▼</span>
+  `;
+  hdr.onclick = () => { card.classList.toggle('open'); };
+  card.appendChild(hdr);
+
+  // Body
+  const body = document.createElement('div');
+  body.className = 'metric-body';
+
+  // Level tabs
+  const tabs = document.createElement('div');
+  tabs.className = 'level-tabs';
+  let activeLevel = 'beginner';
+
+  const bulletContainers = {};
+  for (const lv of LEVELS) {
+    const tab = document.createElement('button');
+    tab.className = 'level-tab' + (lv === activeLevel ? ' active' : '');
+    tab.textContent = lv.charAt(0).toUpperCase() + lv.slice(1);
+    tab.onclick = () => {
+      tabs.querySelectorAll('.level-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      for (const l of LEVELS) {
+        bulletContainers[l].style.display = l === lv ? 'flex' : 'none';
+      }
+    };
+    tabs.appendChild(tab);
+  }
+  body.appendChild(tabs);
+
+  // Bullet editors per level
+  for (const lv of LEVELS) {
+    const container = document.createElement('div');
+    container.className = 'bullets';
+    container.style.display = lv === activeLevel ? 'flex' : 'none';
+    bulletContainers[lv] = container;
+
+    const bullets = (edited[code] && edited[code][name] && edited[code][name][lv]) || ['','',''];
+    for (let i = 0; i < 3; i++) {
+      const row = document.createElement('div');
+      row.className = 'bullet-row';
+      row.innerHTML = `<div class="bullet-num">${i+1}</div>`;
+      const ta = document.createElement('textarea');
+      ta.className = 'bullet-input';
+      ta.value = bullets[i] || '';
+      ta.rows = 2;
+      ta.oninput = () => {
+        if (!edited[code]) edited[code] = {};
+        if (!edited[code][name]) edited[code][name] = {};
+        if (!edited[code][name][lv]) edited[code][name][lv] = ['','',''];
+        edited[code][name][lv][i] = ta.value;
+        autoResize(ta);
+      };
+      ta.onload = autoResize(ta);
+      row.appendChild(ta);
+      container.appendChild(row);
+    }
+    body.appendChild(container);
+  }
+
+  card.appendChild(body);
+  return card;
+}
+
+function autoResize(ta) {
+  ta.style.height = 'auto';
+  ta.style.height = ta.scrollHeight + 'px';
+}
+
+// ── Export approved ────────────────────────────────────────────────────────
+function exportApproved() {
+  if (!draft) return;
+  const approved = {
+    date:         draft.date,
+    generated_at: draft.generated_at,
+    approved_at:  new Date().toISOString().slice(0,16).replace('T',' '),
+    countries:    edited
+  };
+  const blob = new Blob([JSON.stringify(approved, null, 2)], {type:'application/json'});
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  const dateStr = draft.date || new Date().toISOString().slice(0,10);
+  a.href     = url;
+  a.download = `metric_stories_approved_${dateStr}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  toast('Exported metric_stories_approved_' + dateStr + '.json');
+}
+
+// ── Toast ──────────────────────────────────────────────────────────────────
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2500);
+}
+</script>
+</body>
+</html>

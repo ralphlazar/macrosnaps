@@ -323,6 +323,14 @@ def fetch_recent_country_data(client, countries_data):
     return {}
 
 
+# ── Save harvest for reuse by update_metric_stories.py ───────────────────────
+def save_harvest(harvest):
+    filename = f"harvest_{TODAY}.json"
+    with open(filename, "w", encoding="utf-8") as f:
+        json.dump(harvest, f, indent=2, ensure_ascii=False)
+    return filename
+
+
 # ── Call 2: country batch (Haiku, writing only) ───────────────────────────────
 def draft_countries_batch(client, codes, countries_data, label, recent_data):
     """Draft stories for a subset of countries in one call."""
@@ -446,6 +454,7 @@ def draft_countries(client, data):
     batch3 = COUNTRY_ORDER[8:]
     countries_data = data.get("countries", {})
     recent_data = fetch_recent_country_data(client, countries_data)
+    save_harvest(recent_data)
     time.sleep(5)
     r1 = draft_countries_batch(client, batch1, countries_data, "1/3", recent_data)
     time.sleep(5)
