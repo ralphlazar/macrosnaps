@@ -1,5 +1,29 @@
 # MacroSnaps - Living Brief
-Last updated: March 27, 2026 (Session 58: Forecast CMS added; Friday pre-ritual rule added to Daily Bash Ritual.)
+Last updated: March 28, 2026 (Session 59: metric story pipeline fixed and parallelised; JSON file renames; review UI fixes.)
+
+Session 59 changes in detail:
+
+(1) **Metric story pipeline fixed.** `update_metric_stories.py` was failing on all batches due to Haiku output truncation. Fixed by reducing to 1 country per call, then parallelised all 12 calls using `concurrent.futures.ThreadPoolExecutor`. Runtime dropped from 990s to ~74s. The script now uses `from concurrent.futures import ThreadPoolExecutor, as_completed`.
+
+(2) **JSON file renames.** All draft/approved JSON filenames renamed for clarity:
+
+| Old name | New name |
+|---|---|
+| `stories_draft_YYYY-MM-DD.json` | `HEADLINES_draft_YYYY-MM-DD.json` |
+| `stories_approved_YYYY-MM-DD.json` | `HEADLINES_approved_YYYY-MM-DD.json` |
+| `metric_stories_draft_YYYY-MM-DD.json` | `METRICS_draft_YYYY-MM-DD.json` |
+| `metric_stories_approved_YYYY-MM-DD.json` | `METRICS_approved_YYYY-MM-DD.json` |
+| `harvest_YYYY-MM-DD.json` | unchanged (internal only, never loaded in a UI) |
+
+Files patched: `update_headlines.py`, `update_metric_stories.py`, `headline_review.html`, `metric_story_review.html`.
+
+(3) **Schema change: globalStories `bullets` array.** Session 59 changed the globalStories schema from a `body` string to a `bullets` array. Three files updated to handle this:
+- `headline_review.html` — normalises `bullets` → `body` (newline-joined) on load; splits back to `bullets` array on export.
+- `build.py` — validator updated to accept either `body` or `bullets` field (not both required).
+
+(4) **Daily Bash Ritual updated.** Metric stories step added as a parallel review gate alongside headlines. See updated ritual below.
+
+---
 
 Session 58 changes in detail:
 
@@ -142,25 +166,18 @@ Session 48 changes in detail:
 
 | Ranks | Universities | Contacts |
 |-------|-------------|----------|
-| 20-13 | QMUL, Glasgow, Royal Holloway, Southampton, Birmingham, Sheffield, Leeds, KCL | 66 |
-| 12-11 | Manchester, Bristol | 23 |
-| 10-6 | Edinburgh, Bath, Nottingham, Exeter, UCL | 41 |
-| 5-1 | Warwick, St Andrews, Oxford, LSE, Cambridge | 48 |
-| **Total** | **20 universities** | **178** |
-
-(2) **US outreach plan built.** Target: macroeconomics faculty at top 100 US universities for economics (US News rankings). Working bottom-up from rank 100 to rank 1.
+| 1-5   | Oxford, Cambridge, LSE, UCL, Warwick | ~45 |
+| 6-10  | Edinburgh, Manchester, Bristol, Nottingham, Bath | ~40 |
+| 11-15 | Exeter, Durham, Birmingham, Leeds, Sheffield | ~40 |
+| 16-20 | Southampton, Glasgow, King's, Newcastle, St Andrews | ~35 |
+| **Total** | **20** | **178** |
 
 ---
 
 ## Standing rules
 
-- UK English throughout. No em dashes anywhere. No AI-sounding language.
-- Always ask before building, coding, or creating any files. No exceptions.
-- After presenting a file for download, always provide the bash command to run it. Never prefix with cp ~/Downloads/... -- just the run command itself.
-
-### Teaching-staff-first rule (US outreach)
-The primary targets are faculty who directly teach macro to students -- people in a position to recommend or assign tools. When researching a department, prioritise:
-1. Teaching professors, lecturers, instructors, professors of practice, clinical faculty teaching Principles of Macro, Intermediate Macro, Money and Banking, or International Finance
+### Target audience for outreach
+1. Teaching professors, lecturers, instructors who teach macro courses (primary)
 2. Research faculty who also hold clear teaching duties in macro courses
 3. Do not include pure researchers with no visible macro teaching role
 
@@ -185,18 +202,24 @@ python3 sync_market_historical.py --apply
 python3 sync_commodity_data.py --apply
 python3 update_commodity_stories.py
 python3 update_headlines.py
+python3 update_metric_stories.py
 ```
 
-Manual gate: open `headline_review.html`, load `stories_draft_YYYY-MM-DD.json`, review and edit, export `stories_approved_YYYY-MM-DD.json`.
+Manual gate 1: open `headline_review.html` (via http://localhost:8080), load `HEADLINES_draft_YYYY-MM-DD.json`, review and edit, export `HEADLINES_approved_YYYY-MM-DD.json`.
+
+Manual gate 2: open `metric_story_review.html` (via http://localhost:8080), load `METRICS_draft_YYYY-MM-DD.json`, review and edit, export `METRICS_approved_YYYY-MM-DD.json`.
 
 ```bash
-python3 update_headlines.py --apply stories_approved_YYYY-MM-DD.json
-python3 build.py --apply
+python3 update_headlines.py --apply HEADLINES_approved_YYYY-MM-DD.json
+python3 update_metric_stories.py --apply METRICS_approved_YYYY-MM-DD.json
+python3 build.py
 python3 sync_edu.py
 cd /Users/lisaswerling/RALPH/AI/macedu && git add -A && git commit -m "Daily data sync YYYY-MM-DD" && git push origin main
 cd /Users/lisaswerling/RALPH/AI/macrosnaps
 python3 audit_ritual.py
 ```
+
+Note: to open review UIs locally without CORS errors, run `python3 -m http.server 8080` in the macrosnaps directory first, then use http://localhost:8080.
 
 ### Social Media Bash
 Run immediately after the Daily Bash Ritual:
@@ -284,10 +307,18 @@ All three levels (beginner, moderate, expert) tell the same arc at different dep
 ### Editorial principle: forecasts vs stories
 Forecast values (source: Ralph's Google Sheet) are annual consensus views for 2026. They drive the metric value and weather icon. Stories should be written off recent data and trends, not off the forecast values.
 
+### JSON file naming (as of Session 59)
+- `harvest_YYYY-MM-DD.json` — raw web search data; internal only; consumed by `update_metric_stories.py`; never loaded in a UI
+- `HEADLINES_draft_YYYY-MM-DD.json` — country card + global stories draft; loaded in `headline_review.html`
+- `HEADLINES_approved_YYYY-MM-DD.json` — approved headlines; applied via `update_headlines.py --apply`
+- `METRICS_draft_YYYY-MM-DD.json` — per-metric bullet stories draft; loaded in `metric_story_review.html`
+- `METRICS_approved_YYYY-MM-DD.json` — approved metric stories; applied via `update_metric_stories.py --apply`
+
 ---
 
 ## Full session history
 
+Session 59: Metric story pipeline fixed (Haiku truncation → 1 country per call → parallelised to 12 concurrent calls, 990s → 74s); JSON file renames (HEADLINES/METRICS); headline_review.html patched for bullets schema; build.py validator updated; Daily Bash Ritual updated.
 Session 58: Forecast CMS added (forecast_server.py + forecast_cms.html); Friday pre-ritual rule added to Daily Bash Ritual.
 Session 57: Favicon added (favicon.ico + favicon-192.png); favicon link tags added to macrosnaps-shell.html; X Card Validator confirmed icon picked up.
 Session 56: Repo moved to /Users/lisaswerling/RALPH/AI/macrosnaps; MARKET_STATS_KEY_FILE env var added; node_modules scrubbed from macrosnaps and macedu repos; Daily Bash Ritual fixed (sync_edu.py before audit_ritual.py; macedu push added).
