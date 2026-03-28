@@ -50407,9 +50407,9 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
 .w-icon.sunny{filter:none}
 .w-icon.cloudy{filter:brightness(.65) contrast(1.05) saturate(.3)}
 .w-icon.stormy{filter:brightness(.15) contrast(1.2) saturate(0) drop-shadow(0 0 4px rgba(255,255,255,.35)) drop-shadow(0 0 8px rgba(255,255,255,.15))}
-.c-stories{list-style:none;padding:0;margin:0}
-.c-stories li{font-size:13px;color:#bbb;line-height:1.6;padding-left:16px;position:relative;margin-bottom:3px}
-.c-stories li::before{content:"•";position:absolute;left:0;color:#00d4ff;font-weight:bold}
+.c-stories{list-style:none;padding:0;margin:0;counter-reset:story}
+.c-stories li{font-size:13px;color:#bbb;line-height:1.6;padding-left:26px;position:relative;margin-bottom:5px;counter-increment:story}
+.c-stories li::before{content:counter(story);position:absolute;left:0;top:2px;width:16px;height:16px;display:flex;align-items:center;justify-content:center;border-radius:50%;border:1.5px solid #00d4ff;color:#00d4ff;font-size:10px;font-weight:bold}
 .sec-head{margin:14px 0 8px;padding:6px 12px;background:linear-gradient(90deg,rgba(0,212,255,.2),transparent);border-left:3px solid #00d4ff;font-size:12px;color:#00d4ff;text-transform:uppercase;letter-spacing:2px;font-weight:700}
 .metrics{display:flex;flex-direction:column;margin-bottom:4px}
 .metrics.mkt{background:rgba(255,255,255,.015);border-radius:8px;padding:8px 0}
@@ -50797,7 +50797,7 @@ body{height:100vh;overflow:hidden;display:flex;flex-direction:column;background:
   .card-head .c-name{font-size:20px}
   .card-head{gap:10px;margin-bottom:8px}
   .w-icon{font-size:38px}
-  .c-stories li{font-size:12px;line-height:1.5;padding-left:14px}
+  .c-stories li{font-size:12px;line-height:1.5;padding-left:24px}
   .sec-head{font-size:11px;letter-spacing:1.5px;padding:5px 10px;margin:12px 0 6px}
   .metric{padding:9px 10px}
   .m-name{font-size:11px}
@@ -56670,7 +56670,7 @@ function assembleNewsData(idx) {
   const stories = newsData[currentLevel] || newsData.beginner || [];
   const story = stories[idx] || null;
   if (!story) return null;
-  return {icon: story.icon || '', label: story.label || 'Story', body: story.body || '', idx};
+  return {icon: story.icon || '', label: story.label || 'Story', body: story.body || '', bullets: story.bullets || null, idx};
 }
 
 function setActiveNewsIcon(idx) {}
@@ -56681,7 +56681,10 @@ function renderNews(d) {
   const _oldTT = [...document.querySelectorAll('.tooltip')];
   closeBubble();
   const tt = document.createElement('div'); tt.className = 'tooltip';
-  tt.innerHTML = applyGlossary(`<div class="tt-close">✕</div>${levelToggleHTML()}<div class="tt-title">${d.label}</div><div class="tt-story">${d.body}</div>`);
+  const bodyHTML = d.bullets && d.bullets.length
+    ? `<ol class="c-stories">${d.bullets.map(b => `<li>${b}</li>`).join('')}</ol>`
+    : `<div class="tt-story">${d.body}</div>`;
+  tt.innerHTML = applyGlossary(`<div class="tt-close">✕</div>${levelToggleHTML()}<div class="tt-title">${d.label}</div>${bodyHTML}`);
   document.body.appendChild(tt); tt.offsetHeight; tt.classList.add('active'); attachGlossary(tt);
   _oldTT.forEach(t => t.remove());
   tt.querySelector('.tt-close').addEventListener('click', e => { e.stopPropagation(); tt.remove(); clearActiveNewsIcon(); });
@@ -56801,7 +56804,7 @@ function showCommoditiesCard() {
     <div class="card-close" onclick="this.closest('.card-overlay').remove()">\u2715</div>
     ${levelToggleHTML()}
     <div class="card-head"><span class="c-flag">\u{1F6E2}\uFE0F</span><span class="c-name">Commodities</span>${cardNavHTML()}</div>
-    <div class="weather-sec"><div class="w-icon ${weatherClass}">${comm.weather || '☁️'}</div><ul class="c-stories">${storiesList}</ul></div>
+    <div class="weather-sec"><div class="w-icon ${weatherClass}">${comm.weather || '☁️'}</div><ol class="c-stories">${storiesList}</ol></div>
     ${sectionsHTML}
     <div class="comm-footer">As of ${comm.asOf} \u00b7 ${comm.source}</div>
   </div>`;
@@ -57219,7 +57222,7 @@ function renderCard(d, co, existingOverlay) {
   const macroSection = d.macroMetrics.length > 0 ? `<div class="sec-head">MACRO FORECASTS (2026)</div><div class="metrics">${mH}</div>` : '';
   const marketSection = d.marketMetrics.length > 0 ? `<div class="sec-head">MARKETS</div><div class="metrics mkt">${mkH}</div>` : '';
 
-  const cardInnerHTML = `<div class="card-close" onclick="this.closest('.card-overlay').remove()">✕</div>${levelToggleHTML()}<div class="card-head"><span class="c-flag">${d.flag}</span><span class="c-name">${d.name}</span>${cardNavHTML()}</div><div class="weather-sec"><div class="w-icon ${d.weatherClass}">${d.weather}</div><ul class="c-stories">${d.stories.map(s => `<li>${applyGlossary(s)}</li>`).join('')}</ul></div>${macroSection}${marketSection}`;
+  const cardInnerHTML = `<div class="card-close" onclick="this.closest('.card-overlay').remove()">✕</div>${levelToggleHTML()}<div class="card-head"><span class="c-flag">${d.flag}</span><span class="c-name">${d.name}</span>${cardNavHTML()}</div><div class="weather-sec"><div class="w-icon ${d.weatherClass}">${d.weather}</div><ol class="c-stories">${d.stories.map(s => `<li>${applyGlossary(s)}</li>`).join('')}</ol></div>${macroSection}${marketSection}`;
 
   let o;
   if (existingOverlay) {

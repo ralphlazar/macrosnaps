@@ -58,9 +58,9 @@ COUNTRY_ORDER = [
 ]
 
 LEVEL_GUIDANCE = {
-    "beginner": "3 short sentences. No jargon. What does this mean for an ordinary person?",
-    "moderate": "3-4 sentences. Include one piece of context: a historical comparison, a regional comparison, or the key causal driver.",
-    "expert":   "4-5 sentences. Specific numbers, a directional signal, and one forward-looking implication."
+    "beginner": "3 punchy points. No jargon. Answer: what's the story? Interpret, never describe the data.",
+    "moderate": "3 punchy points. Interpret the story, add one piece of context: a historical comparison, a regional comparison, or the key causal driver.",
+    "expert":   "3 punchy points. Specific numbers, a directional signal, one forward implication. Interpret, the reader can see the data.",
 }
 
 STYLE_GUIDE = """
@@ -208,27 +208,31 @@ The three cards must tell one coherent story, not three unrelated headlines. A r
 
 All story text must be plain prose only. Never include HTML tags, <cite> tags, citation markup, markdown, or any other formatting. No angle brackets of any kind in story text.
 
+Each card's content must be exactly 3 bullet points, not prose. Interpret, never describe. Answer: what is the story? What does it mean? What to watch next?
+
+GOLDEN RULE: The reader can see the data. Do not describe it. Tell them what it means, why it matters, and what to watch.
+
 Output ONLY a JSON object in this exact format with no preamble and no markdown fences:
 {{
   "beginner": [
-    {{"icon": "emoji", "label": "Short headline max 8 words", "body": "2-3 plain-English sentences. Max 55 words.", "source": "Source name"}},
-    {{"icon": "emoji", "label": "...", "body": "...", "source": "..."}},
-    {{"icon": "emoji", "label": "...", "body": "...", "source": "..."}}
+    {{"icon": "emoji", "label": "Short headline max 8 words", "bullets": ["bullet 1 (plain English, no jargon)", "bullet 2", "bullet 3"], "source": "Source name"}},
+    {{"icon": "emoji", "label": "...", "bullets": ["...", "...", "..."], "source": "..."}},
+    {{"icon": "emoji", "label": "...", "bullets": ["...", "...", "..."], "source": "..."}}
   ],
   "moderate": [
-    {{"icon": "emoji", "label": "Short headline max 8 words", "body": "3-4 sentences with one piece of context. Max 80 words.", "source": "Source name"}},
-    {{"icon": "emoji", "label": "...", "body": "...", "source": "..."}},
-    {{"icon": "emoji", "label": "...", "body": "...", "source": "..."}}
+    {{"icon": "emoji", "label": "Short headline max 8 words", "bullets": ["bullet 1 (add one piece of context: historical, regional, or causal)", "bullet 2", "bullet 3"], "source": "Source name"}},
+    {{"icon": "emoji", "label": "...", "bullets": ["...", "...", "..."], "source": "..."}},
+    {{"icon": "emoji", "label": "...", "bullets": ["...", "...", "..."], "source": "..."}}
   ],
   "expert": [
-    {{"icon": "emoji", "label": "Short headline max 8 words", "body": "4-5 sentences. Specific numbers and a forward implication. Max 110 words.", "source": "Source name"}},
-    {{"icon": "emoji", "label": "...", "body": "...", "source": "..."}},
-    {{"icon": "emoji", "label": "...", "body": "...", "source": "..."}}
+    {{"icon": "emoji", "label": "Short headline max 8 words", "bullets": ["bullet 1 (specific numbers, directional signal)", "bullet 2", "bullet 3 (forward implication)"], "source": "Source name"}},
+    {{"icon": "emoji", "label": "...", "bullets": ["...", "...", "..."], "source": "..."}},
+    {{"icon": "emoji", "label": "...", "bullets": ["...", "...", "..."], "source": "..."}}
   ],
   "sources": [{{"title": "source name", "url": "https://..."}}]
 }}
 
-Card 1 is always Today's Story. Card 2 is always Biggest Movers. Card 3 is always The Connection. The icon and label must be the same across all three levels. Only the body depth changes."""
+Card 1 is always Today's Story. Card 2 is always Biggest Movers. Card 3 is always The Connection. The icon and label must be the same across all three levels. Only the bullet depth changes. Each level must have exactly 3 bullets per card."""
 
 
 def build_global_user():
@@ -381,6 +385,12 @@ def draft_countries_batch(client, codes, countries_data, label, recent_data):
             val = v.get("value") if isinstance(v, dict) else v
             lines.append(f"  {k}: {val}")
         lines.append("")
+    lines.append("GOLDEN RULE: The reader can see the data on the chart. Do not describe it.")
+    lines.append("Your job is to answer the question: what is the story with this country right now?")
+    lines.append("Tell them what the data means, why it matters today, and what to watch next.")
+    lines.append("Never write: 'Inflation is at 3.2%.' The chart says that.")
+    lines.append("Write: why 3.2% matters right now, given what else is happening.")
+    lines.append("")
     lines.append("BULLET COUNT RULE: EVERY level for EVERY country must have EXACTLY 3 bullets. Not 2, not 4. Exactly 3.")
     lines.append("If you run out of things to say, write a third bullet drawing on the forecast context.")
     lines.append("A response with any level containing fewer than 3 bullets is invalid.")
