@@ -417,9 +417,9 @@ function initDraft(filename) {
   // Global stories first so GLOBAL is the default selection and first in print order
   const gs = draft.globalStories || {};
   editedData['GLOBAL'] = {
-    beginner: (gs.beginner || []).map(x => ({icon: x.icon||'', label: x.label||'', body: x.body||'', source: x.source||''})),
-    moderate: (gs.moderate || []).map(x => ({icon: x.icon||'', label: x.label||'', body: x.body||'', source: x.source||''})),
-    expert:   (gs.expert   || []).map(x => ({icon: x.icon||'', label: x.label||'', body: x.body||'', source: x.source||''})),
+    beginner: (gs.beginner || []).map(x => ({icon: x.icon||'', label: x.label||'', body: Array.isArray(x.bullets) ? x.bullets.join('\n') : (x.body||''), source: x.source||''})),
+    moderate: (gs.moderate || []).map(x => ({icon: x.icon||'', label: x.label||'', body: Array.isArray(x.bullets) ? x.bullets.join('\n') : (x.body||''), source: x.source||''})),
+    expert:   (gs.expert   || []).map(x => ({icon: x.icon||'', label: x.label||'', body: Array.isArray(x.bullets) ? x.bullets.join('\n') : (x.body||''), source: x.source||''})),
     sources:  gs.sources || []
   };
 
@@ -700,10 +700,11 @@ function exportApproved() {
   for (const key of approvedKeys) {
     if (key === 'GLOBAL') {
       const d = editedData['GLOBAL'];
-      out.globalStories = {
-        beginner: d.beginner,
-        moderate: d.moderate,
-        expert:   d.expert
+      function toArr(s){ return s.split('\n').map(l=>l.trim()).filter(Boolean); }
+        out.globalStories = {
+        beginner: d.beginner.map(x=>({...x, bullets: toArr(x.body), body: undefined})),
+        moderate: d.moderate.map(x=>({...x, bullets: toArr(x.body), body: undefined})),
+        expert:   d.expert.map(x=>({...x, bullets: toArr(x.body), body: undefined}))
       };
       // sources excluded from apply file (stay in draft for reference only)
     } else {

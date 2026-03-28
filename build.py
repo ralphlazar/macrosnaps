@@ -263,9 +263,11 @@ for lv in STORY_LEVELS:
             if not isinstance(story, dict):
                 err(f"globalStories.{lv}[{i}] must be a dict with icon/label/body/source")
             else:
-                for field in ["icon","label","body","source"]:
+                for field in ["icon","label","source"]:
                     if field not in story:
                         err(f"globalStories.{lv}[{i}] missing '{field}'")
+                if "body" not in story and "bullets" not in story:
+                    err(f"globalStories.{lv}[{i}] missing 'body' or 'bullets'")
 
 if not errors:
     ok("Schema validation passed — all required fields present and valid")

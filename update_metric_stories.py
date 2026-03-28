@@ -258,9 +258,18 @@ def generate_draft(client, data):
     recent_data    = load_harvest()
 
     batches = [
-        (COUNTRY_ORDER[0:4],  "1/3"),
-        (COUNTRY_ORDER[4:8],  "2/3"),
-        (COUNTRY_ORDER[8:12], "3/3"),
+        ([COUNTRY_ORDER[0]],  "1/12"),
+        ([COUNTRY_ORDER[1]],  "2/12"),
+        ([COUNTRY_ORDER[2]],  "3/12"),
+        ([COUNTRY_ORDER[3]],  "4/12"),
+        ([COUNTRY_ORDER[4]],  "5/12"),
+        ([COUNTRY_ORDER[5]],  "6/12"),
+        ([COUNTRY_ORDER[6]],  "7/12"),
+        ([COUNTRY_ORDER[7]],  "8/12"),
+        ([COUNTRY_ORDER[8]],  "9/12"),
+        ([COUNTRY_ORDER[9]],  "10/12"),
+        ([COUNTRY_ORDER[10]], "11/12"),
+        ([COUNTRY_ORDER[11]], "12/12"),
     ]
 
     for codes, label in batches:
@@ -359,7 +368,7 @@ def main():
     print("  MacroSnaps - Draft Metric Stories")
     print(f"  {TODAY}")
     print("="*60)
-    print(f"\n  3 Haiku batch calls (4 countries each)\n")
+    print(f"\n  12 Haiku batch calls (1 country each)\n")
 
     client  = get_client()
     t0      = time.time()

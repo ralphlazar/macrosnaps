@@ -1,5 +1,6 @@
 {
   "date": "2026-03-28",
+  "generated_at": "2026-03-28 20:01",
   "countries": {
     "USA": {
       "stories": {
@@ -18,7 +19,8 @@
           "Employment revisions imply the output gap opened wider than consensus believed, yet the Fed cannot respond aggressively because core inflation sits above target and tariff-driven pass-through will likely push CPI above the 2.3% full-year forecast, creating a growth-inflation bind that caps cumulative cuts to 50bp in 2026.",
           "Watch for tariff implementation layering (autos and consumer goods typically land Q2-Q3) to break down core PCE momentum; if it accelerates past 2.6%, the Fed's terminal rate floor becomes 3.5% and unemployment drift toward 4.8% becomes tolerable collateral damage."
         ]
-      }
+      },
+      "sources": []
     },
     "CAN": {
       "stories": {
@@ -37,7 +39,8 @@
           "The unemployment forecast of 6.5% for full-year 2026 implies only modest reversion from current levels, signaling the BoC expects tariffs to remain a structural drag on employment; further cuts would steepen CAD depreciation (already material year-to-date) and risk import cost pass-through that violates the 2% inflation target.",
           "Watch for tariff reciprocal measures on Canadian softwood and energy exports (timing uncertain but likely Q2) to further depress commodity prices and widen the output gap; if unemployment stays above 6.5% through Q3 and inflation stays below 2%, the BoC may have to cut despite currency risk."
         ]
-      }
+      },
+      "sources": []
     },
     "GBR": {
       "stories": {
@@ -56,7 +59,8 @@
           "The unemployment path (5.2% in November 2025, forecast 5.0% by year-end) provides the BoE with a shallow output gap buffer, allowing 100bp of cumulative cuts through 2026 without over-stimulating demand or breaking the sterling carry trade that has supported GBP year-to-date.",
           "Watch for Q2 CPI prints (goods and services separately) to confirm wage-price dynamics have decoupled; if core services inflation stalls below 3.5% and wage growth data show sub-3% trends, the BoE will accelerate cuts to 50bp in back-to-back meetings, front-loading the easing cycle."
         ]
-      }
+      },
+      "sources": []
     },
     "JPN": {
       "stories": {
@@ -75,7 +79,8 @@
           "Japan's 4.8% current account surplus and tight labor market (2.4% unemployment) provide the BoJ political space to hold through 2026 even as growth stumbles, because tariff-driven deflation risk is rising and headline inflation expectations remain anchored at 2.0% or below.",
           "Watch for Q1 2026 export volumes (autos and semiconductors separately) and yen trading dynamics against USD; if tariffs trigger a demand collapse steeper than 0.4% consensus (say, minus 0.1% for 2H 2026), the BoJ may signal an easing bias in spring 2026 despite inflation outlook, preempting a wage-deflation trap."
         ]
-      }
+      },
+      "sources": []
     },
     "DEU": {
       "stories": {
@@ -94,7 +99,8 @@
           "CPI at 2.08% in January and policy rate at 2.15% mean real rates remain negative, providing tailwind to investment while unemployment at 3.6% constrains wage pressures, a goldilocks setup for non-inflationary expansion.",
           "Watch whether the euro area energy shock (driving the consensus 0.8% zone forecast) materially undercuts German export demand, a tail risk that could force fiscal overperformance to compensate."
         ]
-      }
+      },
+      "sources": []
     },
     "FRA": {
       "stories": {
@@ -113,7 +119,8 @@
           "The 0.9% 2026 forecast explicitly assumes inventory rebuilding ends and other engines take over, but France's services-led recovery is competing against German defense spending stimulus and Italian cost advantages, leaving limited upside.",
           "Watch whether the 4.8% budget deficit forces fiscal consolidation in 2027, a headwind that could suppress the forecast 1.1% growth unless the ECB loosens further or global demand surprises sharply higher."
         ]
-      }
+      },
+      "sources": []
     },
     "ITA": {
       "stories": {
@@ -132,7 +139,8 @@
           "Southern Europe's outperformance (driven partly by Italy's shift to higher value-added activities) is directionally sound, but the 3.2% budget deficit and 0.8% current account surplus constrain fiscal stimulus if global demand rolls over.",
           "Monitor whether Chinese energy competition pushes Italian industrial capacity utilization below consensus expectations, a tail risk that could drag the services recovery if manufacturing job losses accelerate faster than services creation."
         ]
-      }
+      },
+      "sources": []
     },
     "CHN": {
       "stories": {
@@ -151,7 +159,8 @@
           "OECD March projections show China easing from 4.8% (2025) to 4.5% (2026) to 4.3% (2027), a consistent deceleration path that reflects fiscal stimulus peaking in 2026 as structural headwinds (demographics, property sector weakness, trade friction) reassert.",
           "Watch whether January CPI deflation broadens into February-March prints; if so, deflationary expectations could lock in, forcing larger fiscal doses or policy rate cuts (currently 2.75%) to prevent 2026 growth from falling below the 4.5% line and disappointing export-dependent trading partners."
         ]
-      }
+      },
+      "sources": []
     },
     "IND": {
       "stories": {
@@ -170,7 +179,8 @@
           "Growth downgrade from 6.8% prior consensus to 6.2% reflects trade restrictions now materializing faster than modeled. Watch whether services exports hold up as merchandise trade contracts, since services represent India's structural advantage and will determine whether the 6.2% floor holds or breaks further.",
           "Current account at 1.2% of GDP deficit and budget deficit at 7.2% of GDP create a fiscal-external constraint. If the RBI cuts as inflation data suggests they should, rupee depreciation accelerates, pulling CPI back up and forcing policy tightening mid-cycle, a dynamic to monitor through Q2 print."
         ]
-      }
+      },
+      "sources": []
     },
     "ZAF": {
       "stories": {
@@ -189,7 +199,8 @@
           "Growth acceleration from 1.0% to 1.2% is modest but directionally meaningful if sustained. Load shedding has declined from 6,000+ MWh per day to under 2,000 MWh as new renewable capacity came online, removing the main drag on manufacturing utilization and productivity. Monitor Q1 factory output as a leading signal of whether this reform benefit persists.",
           "32.5% unemployment against 1.2% growth creates a policy trap. Even if the SARB cuts rates to stimulate demand, GDP growth must accelerate toward 3-4% to absorb new labor force entrants and bring unemployment down meaningfully. If reforms stall and growth stays stuck below 2%, political pressure for fiscal expansion will force central bank accommodation, risking a renewed inflation cycle."
         ]
-      }
+      },
+      "sources": []
     },
     "BRA": {
       "stories": {
@@ -208,7 +219,8 @@
           "Growth downgrade to 1.7% reflects both external demand weakness and domestic policy drag from fiscal uncertainty. Unemployment at 6.78% is tight relative to growth, signaling either labor hoarding from employers anticipating recovery or structural unemployment rising due to skills mismatch. The 0.3 percentage point cut from prior consensus suggests consensus was slow to incorporate protectionist headwinds and domestic demand fragility.",
           "The central bank's easing path assumes the real stabilizes near current levels and wage inflation moderates by mid-year as CPI declines. If the real weakens another 5% or if labor cost inflation persists above 4%, the BRL will face a new round of depreciation and the central bank will have to stop cutting and eventually reverse, fracturing the growth recovery narrative. Monitor the BRL and wage growth data closely through Q2."
         ]
-      }
+      },
+      "sources": []
     },
     "RUS": {
       "stories": {
@@ -227,7 +239,8 @@
           "Unemployment at 2.15% masks true labor slack because military conscription and casualties have shrunk the labor force by an estimated 2-3 million workers since 2022. Participation rate has fallen, lowering the NAIRU and creating an illusion of tight labor markets. Wage growth remains elevated (likely 8-12% annually), confirming that nominal wage inflation is real and feeding CPI persistence.",
           "The current account surplus of 2% of GDP has compressed from 4-5% pre-war despite oil and gas prices above $80 per barrel, signaling severe trade disruption and capital flight continuing. Growth at 1.2% reflects both war-related productive destruction and sanctions-induced import substitution inefficiency. Unless the war ends or terms of trade shift sharply, Russia faces a decade of sub-potential growth, high inflation, and capital scarcity, making the ultra-tight 15.5% rate potentially a permanent feature rather than cyclical tightening."
         ]
-      }
+      },
+      "sources": []
     }
   },
   "globalStories": {
@@ -235,97 +248,120 @@
       {
         "icon": "🔥",
         "label": "Oil Crisis Hits Global Markets",
-        "source": "Rio Times",
         "bullets": [
           "Iran shut down a key shipping route for oil, sending prices above $110 per barrel",
           "Stock markets are falling everywhere as investors worry about rising fuel costs",
           "The US is preparing military action to reopen this critical oil passage"
-        ]
+        ],
+        "source": "Rio Times"
       },
       {
         "icon": "📉",
         "label": "Major Markets Enter Sharp Decline",
-        "source": "Rio Times",
         "bullets": [
           "US stocks fell heavily, with the S&P 500 down over 1.6% to seven-month lows",
           "European markets also dropped as inflation fears spread globally",
           "This is the worst monthly performance for stocks since late 2022"
-        ]
+        ],
+        "source": "Rio Times"
       },
       {
         "icon": "🔗",
         "label": "Energy Crisis Triggers Policy Shifts",
-        "source": "BlackRock",
         "bullets": [
           "Central banks now expect to raise interest rates instead of cutting them",
           "Higher oil prices mean everything from gas to food will cost more",
           "Markets are betting this energy crisis will last months, not weeks"
-        ]
+        ],
+        "source": "BlackRock"
       }
     ],
     "moderate": [
       {
         "icon": "🔥",
         "label": "Oil Crisis Hits Global Markets",
-        "source": "Rio Times",
         "bullets": [
           "Iran's closure of the Strait of Hormuz has disrupted 20% of global oil supply, echoing 1970s energy shocks",
           "Brent crude peaked at $126 before settling around $110, with US strategic reserves being released",
           "The crisis represents the largest oil supply disruption in history according to the IEA"
-        ]
+        ],
+        "source": "Rio Times"
       },
       {
         "icon": "📉",
         "label": "Major Markets Enter Sharp Decline",
-        "source": "Rio Times",
         "bullets": [
           "The Dow entered correction territory alongside Nasdaq, with all three major indices posting fifth consecutive weekly losses",
           "Michigan consumer sentiment crashed to 53.3 while inflation expectations surged to 3.8%, signaling stagflation fears",
           "Italian BTP yields spiked 78 basis points in a single auction, the sharpest increase since 2022"
-        ]
+        ],
+        "source": "Rio Times"
       },
       {
         "icon": "🔗",
         "label": "Energy Crisis Triggers Policy Shifts",
-        "source": "BlackRock",
         "bullets": [
           "Fed rate hike probability crossed 50% for the first time as markets abandon cut expectations",
           "ECB revised 2026 inflation forecasts to 2.6% from 1.9%, signaling extended hawkish policy",
           "Goldman Sachs warns Brent could exceed 2008 record highs if Hormuz remains disrupted for 10 weeks"
-        ]
+        ],
+        "source": "BlackRock"
       }
     ],
     "expert": [
       {
         "icon": "🔥",
         "label": "Oil Crisis Hits Global Markets",
-        "source": "Rio Times",
         "bullets": [
           "Hormuz closure eliminated 10mb/d of production by March 12, forcing Gulf states to cut output while strategic reserve releases provide temporary buffer",
           "WTI-Brent spread widening signals structural supply disruption beyond risk premium, with insurance withdrawal effectively shutting commercial flows",
           "Mid-April timeline becomes critical inflection point as current 5mb/d supply loss doubles without resolution"
-        ]
+        ],
+        "source": "Rio Times"
       },
       {
         "icon": "📉",
         "label": "Major Markets Enter Sharp Decline",
-        "source": "Rio Times",
         "bullets": [
           "S&P 500 at 6,368.85 represents 6.8% March decline, worst since December 2022, while VIX spike signals bear steepening in yield curves",
           "BTP 10-year clearing at 4.09% (+78bp) reflects peripheral repricing under extended energy shock scenarios",
           "Michigan 1-year inflation expectations at 3.8% crossed Fed's comfort threshold, triggering policy pivot in fed funds futures"
-        ]
+        ],
+        "source": "Rio Times"
       },
       {
         "icon": "🔗",
         "label": "Energy Crisis Triggers Policy Shifts",
-        "source": "BlackRock",
         "bullets": [
           "Fed funds futures now price 52% probability of year-end hike versus cuts, complete reversal from February positioning",
           "ECB's adverse scenario (4% peak inflation) becoming base case, supporting multiple 25bp hikes through Q3",
           "Policy divergence creates systematic repricing of duration risk globally, with European periphery most vulnerable to sustained energy disruption"
-        ]
+        ],
+        "source": "BlackRock"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Rio Times",
+        "url": "https://www.riotimesonline.com/global-economy-briefing-dow-correction-michigan-plunge/"
+      },
+      {
+        "title": "BlackRock",
+        "url": "https://www.blackrock.com/us/individual/insights/blackrock-investment-institute/weekly-commentary"
+      },
+      {
+        "title": "CNBC",
+        "url": "https://www.cnbc.com/2026/03/28/oil-gas-prices-iran-war-hormuz.html"
+      },
+      {
+        "title": "IEA",
+        "url": "https://www.iea.org/reports/oil-market-report-march-2026"
+      },
+      {
+        "title": "ECB",
+        "url": "https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.mp260319~3057739775.en.html"
       }
     ]
-  }
+  },
+  "_failures": []
 }
