@@ -1,24 +1,24 @@
 {
   "_meta": {
-    "generated": "2026-03-23T09:27:08.412373Z",
+    "generated": "2026-03-27T09:56:03.440237Z",
     "model": "claude-haiku-4-5-20251001",
-    "elapsed_s": 112
+    "elapsed_s": 117
   },
   "countries": {
     "USA": {
       "GDP_Growth": {
-        "value": 2.4,
-        "source": "IMF WEO",
-        "date": "Jan 2026",
-        "prior": 2.1,
-        "notes": "Revised up from Oct 2025"
+        "value": 2.0,
+        "source": "OECD",
+        "date": "Mar 2026",
+        "prior": 1.7,
+        "notes": "Revised up 0.3pp from Dec 2025 outlook; reflects AI investment strength"
       },
       "Inflation": {
-        "value": 2.4,
-        "source": "IMF WEO",
-        "date": "Jan 2026",
+        "value": 4.2,
+        "source": "OECD",
+        "date": "Mar 2026",
         "prior": null,
-        "notes": "Annual average expected"
+        "notes": "Revised up 1.2pp from prior; energy price shocks from Middle East conflict"
       },
       "Unemployment": {
         "value": null,
@@ -32,7 +32,7 @@
         "source": "OECD",
         "date": "Dec 2025",
         "prior": null,
-        "notes": "% of GDP, expected to remain roughly same size"
+        "notes": "% of GDP; expected to remain roughly same in 2026"
       },
       "Current_Account": {
         "value": null,
@@ -42,99 +42,99 @@
         "notes": ""
       },
       "Policy_Rate": {
-        "value": 3.375,
-        "source": "OECD",
+        "value": 3.25,
+        "source": "Goldman Sachs",
         "date": "Dec 2025",
-        "prior": 3.875,
-        "notes": "Terminal target range midpoint 3.25-3.5% by end-2026"
+        "prior": null,
+        "notes": "Year-end forecast; 50 bps reduction in 2026"
       }
     },
     "CHN": {
       "GDP_Growth": {
         "value": 4.5,
         "source": "IMF WEO",
-        "date": "Dec 2025",
+        "date": "Jan 2026",
         "prior": 4.2,
-        "notes": "Revised up 0.3 ppt from Oct 2025 WEO"
+        "notes": "Revised up 0.3pp from Oct 2025 WEO; revised again in Dec 2025 Article IV to 4.5%"
       },
       "Inflation": {
         "value": 0.8,
         "source": "IMF WEO",
-        "date": "Dec 2025",
+        "date": "Jan 2026",
         "prior": null,
-        "notes": "Headline CPI, revised from Oct estimate"
+        "notes": "Headline CPI; rise from 0% in 2025"
       },
       "Unemployment": {
         "value": null,
         "source": "Not found",
-        "date": null,
+        "date": "",
         "prior": null,
         "notes": ""
       },
       "Budget_Deficit": {
         "value": null,
         "source": "Not found",
-        "date": null,
+        "date": "",
         "prior": null,
         "notes": ""
       },
       "Current_Account": {
-        "value": null,
-        "source": "Not found",
-        "date": null,
+        "value": 3.3,
+        "source": "IMF",
+        "date": "Dec 2025",
         "prior": null,
-        "notes": ""
+        "notes": "% of GDP; projected for 2026; surplus estimated at 3.3% for 2025"
       },
       "Policy_Rate": {
         "value": null,
         "source": "Not found",
-        "date": null,
+        "date": "",
         "prior": null,
-        "notes": ""
+        "notes": "No year-end 2026 forecast found for PBOC policy rate"
       }
     },
     "DEU": {
       "GDP_Growth": {
         "value": 1.1,
-        "source": "IMF WEO",
+        "source": "Goldman Sachs",
         "date": "Jan 2026",
-        "prior": 0.9,
-        "notes": "Revised up from Oct 2025; January 2026 update forecast 1.1% for Germany"
+        "prior": null,
+        "notes": "Up from 0.3% in 2025; Bundesbank: 0.6% (calendar-adjusted); OECD: 1.0%; ifo: 0.8%"
       },
       "Inflation": {
-        "value": 2.1,
-        "source": "European Commission",
-        "date": "Nov 2025",
+        "value": 2.2,
+        "source": "Bundesbank",
+        "date": "Dec 2025",
         "prior": 2.3,
-        "notes": "HICP 2026 forecast"
+        "notes": "HICP inflation; EC: 2.1%; Goldman Sachs consistent with 2.2%"
       },
       "Unemployment": {
-        "value": 3.4,
-        "source": "European Commission",
-        "date": "Nov 2025",
+        "value": null,
+        "source": "Not found",
+        "date": "",
         "prior": null,
-        "notes": "Expected to fall from 3.6% in 2025"
+        "notes": "EC projects decline to 3.3% by 2027 from 3.6% in 2025; ifo: 6.3% in 2025, flat 2026"
       },
       "Budget_Deficit": {
         "value": -4.0,
         "source": "European Commission",
         "date": "Nov 2025",
         "prior": -3.1,
-        "notes": "General government balance % of GDP; revised up to -4.0 from -3.1 prior"
+        "notes": "General government deficit % of GDP; revised up from -3.1% in 2025"
       },
       "Current_Account": {
-        "value": 3.9,
+        "value": 3.2,
         "source": "Bundesbank",
         "date": "Dec 2025",
         "prior": 4.7,
-        "notes": "% of GDP; declining from 4.7% in 2025"
+        "notes": "% of GDP; declining from 4.7% in 2025 as imports rise"
       },
       "Policy_Rate": {
-        "value": 2.0,
-        "source": "ECB",
-        "date": "Dec 2025",
+        "value": null,
+        "source": "Not found",
+        "date": "",
         "prior": null,
-        "notes": "ECB deposit rate expected to hold at 2.0% through end-2026"
+        "notes": "ECB policy rate year-end 2026 forecast not specified in available sources"
       }
     },
     "JPN": {
@@ -143,160 +143,160 @@
         "source": "IMF WEO",
         "date": "Jan 2026",
         "prior": 0.9,
-        "notes": "Downward revision; from Oct 2025 WEO downside risks to activity"
+        "notes": "Revised down from Oct 2025 WEO (0.9%)"
       },
       "Inflation": {
-        "value": 2.3,
-        "source": "IMF WEO",
-        "date": "Jan 2026",
-        "prior": 2.1,
-        "notes": "CPI; upward revision from Oct WEO"
-      },
-      "Unemployment": {
-        "value": 2.3,
+        "value": 2.0,
         "source": "OECD",
         "date": "Dec 2025",
         "prior": null,
-        "notes": "Economic Outlook Volume 2025 Issue 2"
+        "notes": "Headline CPI; around 2% target in 2026-27"
+      },
+      "Unemployment": {
+        "value": null,
+        "source": "Not found",
+        "date": "",
+        "prior": null,
+        "notes": ""
       },
       "Budget_Deficit": {
         "value": null,
         "source": "Not found",
-        "date": null,
+        "date": "",
         "prior": null,
         "notes": ""
       },
       "Current_Account": {
         "value": null,
         "source": "Not found",
-        "date": null,
+        "date": "",
         "prior": null,
         "notes": ""
       },
       "Policy_Rate": {
         "value": 1.0,
-        "source": "OECD",
-        "date": "Dec 2025",
-        "prior": 0.5,
-        "notes": "Year-end 2026 forecast; BoJ range 0.75-1.25% implied from gradual normalization path"
+        "source": "Deloitte",
+        "date": "Jan 2026",
+        "prior": null,
+        "notes": "Expected to reach neutral level (1%) by end 2026"
       }
     },
     "IND": {
       "GDP_Growth": {
-        "value": 6.2,
-        "source": "IMF WEO",
-        "date": "Jan 2026",
-        "prior": 6.5,
-        "notes": "Downward revision; calendar year basis. FY2026-27 forecast 6.4% per other sources."
+        "value": 6.1,
+        "source": "OECD",
+        "date": "Mar 2026",
+        "prior": 6.3,
+        "notes": "FY2026-27; prior from June 2025 OECD Economic Outlook"
       },
       "Inflation": {
-        "value": 3.2,
+        "value": 5.1,
         "source": "OECD",
-        "date": "Dec 2025",
-        "prior": null,
-        "notes": "Expected to converge toward 4% target. RBI forecasts 2.0% for FY26."
+        "date": "Mar 2026",
+        "prior": 2.9,
+        "notes": "FY2026-27; revised up due to energy price surge from Middle East conflict"
       },
       "Unemployment": {
-        "value": 4.8,
-        "source": "Government Data",
-        "date": "Nov 2025",
-        "prior": 5.4,
-        "notes": "Latest available; declining trajectory. Forecasts for 2026 unavailable from sources."
+        "value": null,
+        "source": "Not found",
+        "date": null,
+        "prior": null,
+        "notes": "No 2026 unemployment forecast found from major institutions"
       },
       "Budget_Deficit": {
         "value": -4.5,
         "source": "OECD",
         "date": "Dec 2025",
         "prior": -4.9,
-        "notes": "% of GDP. FY2025-26 to FY2026-27 forecast."
+        "notes": "FY2025-26; general government balance as % of GDP. FY2026-27 projected to remain broadly constant"
       },
       "Current_Account": {
         "value": null,
         "source": "Not found",
-        "date": "",
+        "date": null,
         "prior": null,
-        "notes": "No 2026 forecast found in available sources."
+        "notes": "Current account forecasts for 2026 not found in search results"
       },
       "Policy_Rate": {
-        "value": 4.75,
+        "value": null,
         "source": "OECD",
-        "date": "Dec 2025",
-        "prior": null,
-        "notes": "Expected to gradually decline toward 5% by FY2026-27 if inflation remains anchored."
+        "date": "Mar 2026",
+        "prior": 5.25,
+        "notes": "OECD projects temporary rate increase in Q2 2026; prior rate was 5.25% as of March 2026. Point estimate for year-end not provided"
       }
     },
     "GBR": {
       "GDP_Growth": {
-        "value": 1.3,
-        "source": "IMF WEO",
-        "date": "Jan 2026",
-        "prior": null,
-        "notes": ""
+        "value": 0.7,
+        "source": "OECD",
+        "date": "Mar 2026",
+        "prior": 1.2,
+        "notes": "Revised down 0.5pp due to Middle East energy crisis; interim report March 2026"
       },
       "Inflation": {
-        "value": 2.5,
+        "value": 4.0,
         "source": "OECD",
-        "date": "Dec 2025",
-        "prior": null,
-        "notes": "Headline CPI; revised up from prior estimates"
+        "date": "Mar 2026",
+        "prior": 2.5,
+        "notes": "Revised up 1.5pp due to energy price spike; interim report March 2026"
       },
       "Unemployment": {
         "value": 4.9,
         "source": "OECD",
         "date": "Dec 2025",
         "prior": null,
-        "notes": "Annual average for 2026; rises to 5.0% by 2027"
+        "notes": "2026 forecast from December outlook; annual average projected"
       },
       "Budget_Deficit": {
         "value": null,
         "source": "Not found",
-        "date": "",
+        "date": null,
         "prior": null,
         "notes": ""
       },
       "Current_Account": {
         "value": null,
         "source": "Not found",
-        "date": "",
+        "date": null,
         "prior": null,
         "notes": ""
       },
       "Policy_Rate": {
-        "value": 3.5,
-        "source": "OECD",
-        "date": "Dec 2025",
+        "value": 3.0,
+        "source": "Goldman Sachs",
+        "date": "Jan 2026",
         "prior": null,
-        "notes": "Bank Rate terminal value; two more 25bp cuts expected by Q2 2026"
+        "notes": "Year-end forecast; three further 25bp cuts expected to 3% terminal rate"
       }
     },
     "FRA": {
       "GDP_Growth": {
         "value": 1.0,
-        "source": "IMF",
-        "date": "May 2025",
+        "source": "IMF WEO",
+        "date": "Jan 2026",
         "prior": 0.6,
-        "notes": "Article IV consultation; Oct 2025 WEO had 0.9-1.0% range"
+        "notes": "May 2025 forecast was 0.6%; Jan 2026 maintains 1.0%"
       },
       "Inflation": {
         "value": 1.3,
         "source": "European Commission",
         "date": "Oct 2025",
         "prior": null,
-        "notes": ""
+        "notes": "OECD Dec 2025 similar estimate; IMF Jan 2026 maintains euro area at 1.9%"
       },
       "Unemployment": {
-        "value": 7.4,
-        "source": "Not found",
-        "date": null,
-        "prior": null,
-        "notes": ""
+        "value": 7.8,
+        "source": "Banque de France",
+        "date": "Dec 2025",
+        "prior": 7.6,
+        "notes": "Expected to rise slightly from 7.6% in 2025"
       },
       "Budget_Deficit": {
-        "value": -5.2,
-        "source": "OECD",
-        "date": "Dec 2025",
-        "prior": -5.4,
-        "notes": "Revised down from earlier estimates; fiscal consolidation offset by policy uncertainty"
+        "value": -4.9,
+        "source": "European Commission",
+        "date": "Oct 2025",
+        "prior": null,
+        "notes": "OECD Dec 2025 forecasts -5.2%; range -4.9% to -5.2%"
       },
       "Current_Account": {
         "value": null,
@@ -306,11 +306,11 @@
         "notes": ""
       },
       "Policy_Rate": {
-        "value": 2.0,
-        "source": "Allianz Research",
-        "date": "Dec 2025",
+        "value": null,
+        "source": "Not found",
+        "date": null,
         "prior": null,
-        "notes": "ECB rate forecast; risks tilted downside"
+        "notes": "ECB sets rate for entire eurozone, not France-specific"
       }
     },
     "ITA": {
@@ -319,42 +319,42 @@
         "source": "IMF WEO",
         "date": "Jan 2026",
         "prior": null,
-        "notes": "From January 2026 WEO update"
+        "notes": "Also confirmed by OECD Nov 2025 at 0.6%, Bank of Italy Dec 2025 at 0.6%, UPB Feb 2026 at 0.7%"
       },
       "Inflation": {
-        "value": 1.5,
+        "value": 1.4,
         "source": "Bank of Italy",
         "date": "Dec 2025",
         "prior": null,
-        "notes": "CPI inflation forecast for 2026"
+        "notes": "CPI annual average; ISTAT household deflator 1.4% in 2026"
       },
       "Unemployment": {
         "value": 6.1,
         "source": "ISTAT",
-        "date": "Nov 2025",
+        "date": "Dec 2025",
         "prior": 6.2,
-        "notes": "Slight improvement from 2025 forecast of 6.2%"
+        "notes": "2025 forecast was 6.2%; 2026 forecast 6.1%"
       },
       "Budget_Deficit": {
         "value": -2.8,
         "source": "European Commission",
-        "date": "Oct 2025",
+        "date": "Nov 2025",
         "prior": -3.0,
-        "notes": "% of GDP, projected to narrow slightly from 2025"
+        "notes": "% of GDP; narrowing from 3.0% in 2025"
       },
       "Current_Account": {
         "value": null,
         "source": "Not found",
-        "date": "",
+        "date": null,
         "prior": null,
-        "notes": "No reliable 2026 forecast found"
+        "notes": "No specific 2026 current account forecast found in searches"
       },
       "Policy_Rate": {
         "value": null,
         "source": "Not found",
-        "date": "",
+        "date": null,
         "prior": null,
-        "notes": "ECB policy rate forecasts not available; Italy uses euro area rate"
+        "notes": "ECB policy rate (applies to Italy as eurozone member); ECB typically provides range rather than Italy-specific forecasts"
       }
     },
     "BRA": {
@@ -363,86 +363,86 @@
         "source": "IMF WEO",
         "date": "Jan 2026",
         "prior": 1.9,
-        "notes": "Downgraded 0.3pp from Oct 2025 WEO; largest downgrade among Latin American countries"
+        "notes": "Revised down from Oct 2025; Brazil saw largest downgrade of 0.3pp in LAC region"
       },
       "Inflation": {
         "value": 4.2,
         "source": "OECD",
         "date": "Dec 2025",
         "prior": 5.0,
-        "notes": "OECD Outlook Vol 2025 Issue 2; prior from Issue 1 (Jun 2025)"
+        "notes": "Inflation expectations above 3% target; revised down from earlier outlooks"
       },
       "Unemployment": {
-        "value": 6.4,
+        "value": null,
         "source": "Not found",
-        "date": null,
+        "date": "",
         "prior": null,
-        "notes": "Marginal increase from ~5.5% expected; cited in Feb 2026 sources but no official forecast found"
+        "notes": ""
       },
       "Budget_Deficit": {
-        "value": -0.3,
+        "value": -0.25,
         "source": "Not found",
-        "date": null,
+        "date": "",
         "prior": null,
-        "notes": "Primary balance deficit; government targets surplus of 0.25% but likely to miss"
+        "notes": "Government targets 0.25% primary surplus but achievement uncertain"
       },
       "Current_Account": {
         "value": null,
         "source": "Not found",
-        "date": null,
+        "date": "",
         "prior": null,
-        "notes": "Expected to narrow due to real depreciation and soft demand; specific 2026 forecast not found"
+        "notes": ""
       },
       "Policy_Rate": {
-        "value": 11.5,
-        "source": "BBVA Research",
-        "date": "Dec 2025",
+        "value": null,
+        "source": "Not found",
+        "date": "",
         "prior": null,
-        "notes": "Selic rate expected to end 2026 at 11.5%; monetary easing cycle expected early 2026"
+        "notes": "Rate at 15% as of mid-2025; gradual easing expected through 2026 but year-end target not found"
       }
     },
     "CAN": {
       "GDP_Growth": {
-        "value": 1.6,
-        "source": "IMF WEO",
-        "date": "Jan 2026",
-        "prior": 2.0,
-        "notes": "Revised down from Oct 2025 WEO by 0.4 percentage points due to slowing external demand and elevated borrowing costs"
+        "value": 1.3,
+        "source": "OECD",
+        "date": "Dec 2025",
+        "prior": 1.1,
+        "notes": "Revised up from June 2025 forecast; expects rebound from trade slowdown"
       },
       "Inflation": {
         "value": 2.0,
-        "source": "OECD Economic Outlook",
+        "source": "OECD",
         "date": "Dec 2025",
         "prior": null,
-        "notes": "Headline inflation expected near 2% throughout 2026"
+        "notes": "Headline remains close to 2%; temporary uptick mid-2026 as fuel charge removal effect ends"
       },
       "Unemployment": {
         "value": null,
         "source": "Not found",
-        "date": "",
+        "date": null,
         "prior": null,
-        "notes": "Specific 2026 annual average unemployment rate forecast not found in credible sources"
+        "notes": "OECD indicates gradual improvement; ATB forecast 6.4% for Alberta only"
       },
       "Budget_Deficit": {
         "value": null,
         "source": "Not found",
-        "date": "",
+        "date": null,
         "prior": null,
-        "notes": "2026 budget balance forecast not available in searched sources"
+        "notes": "2024 deficit: 2.0% of GDP; OECD projects mild easing in 2026"
       },
       "Current_Account": {
         "value": null,
         "source": "Not found",
-        "date": "",
+        "date": null,
         "prior": null,
-        "notes": "2026 current account forecast not found in credible sources"
+        "notes": "IMF and OECD data not granular in search results"
       },
       "Policy_Rate": {
         "value": 2.25,
-        "source": "Bank of Canada",
-        "date": "Jan 2026",
+        "source": "OECD",
+        "date": "Dec 2025",
         "prior": null,
-        "notes": "Policy rate held at 2.25% in Jan 2026; OECD expects rate to remain unchanged at current level for 2026"
+        "notes": "Year-end rate expected to remain unchanged at 2.25%; no further cuts expected"
       }
     },
     "RUS": {
@@ -451,42 +451,42 @@
         "source": "IMF WEO",
         "date": "Jan 2026",
         "prior": 1.0,
-        "notes": "Revised down 0.2pp from Oct 2025 WEO"
+        "notes": "Revised down 0.2pp from October 2025 WEO forecast"
       },
       "Inflation": {
-        "value": 5.2,
+        "value": 5.5,
         "source": "IMF WEO",
         "date": "Jan 2026",
         "prior": null,
-        "notes": "Easing from elevated 2025 levels"
+        "notes": ""
       },
       "Unemployment": {
-        "value": null,
-        "source": "Not found",
-        "date": null,
+        "value": 3.5,
+        "source": "IMF WEO",
+        "date": "Jan 2026",
         "prior": null,
-        "notes": "Annual average 2026 forecast not published by major institutions"
+        "notes": ""
       },
       "Budget_Deficit": {
-        "value": -2.7,
-        "source": "World Bank",
-        "date": "Oct 2025",
-        "prior": -2.9,
-        "notes": "General government balance; projected ~2.7% of GDP for 2026-27"
+        "value": -2.8,
+        "source": "Bank of Russia Survey",
+        "date": "Mar 2026",
+        "prior": null,
+        "notes": "% of GDP; median analyst forecast, revised up 0.3pp"
       },
       "Current_Account": {
         "value": null,
         "source": "Not found",
         "date": null,
         "prior": null,
-        "notes": "Specific 2026 forecast not found in available sources"
+        "notes": ""
       },
       "Policy_Rate": {
-        "value": null,
-        "source": "Not found",
-        "date": null,
+        "value": 14.0,
+        "source": "Bank of Russia Survey",
+        "date": "Mar 2026",
         "prior": null,
-        "notes": "CBR target 4% by end-2026; specific year-end rate forecast not quantified"
+        "notes": "Year-end 2026 forecast; median analyst estimate slightly lowered 0.1pp"
       }
     },
     "ZAF": {
@@ -495,42 +495,42 @@
         "source": "IMF WEO",
         "date": "Jan 2026",
         "prior": 1.2,
-        "notes": "Revised up 0.2pp from Oct 2025 WEO; World Bank also forecasts 1.4% (Jan 2026)"
+        "notes": "Revised up 0.2pp from Oct 2025"
       },
       "Inflation": {
-        "value": 3.6,
+        "value": 4.2,
         "source": "OECD",
-        "date": "Dec 2025",
+        "date": "Jun 2025",
         "prior": null,
-        "notes": "OECD Economic Outlook Dec 2025; expected to ease to 3.2% in 2027"
+        "notes": "Survey indicates likely increase in 2026 due to food prices"
       },
       "Unemployment": {
         "value": null,
         "source": "Not found",
-        "date": "",
+        "date": null,
         "prior": null,
-        "notes": "Specific 2026 unemployment rate forecast not located in available sources"
+        "notes": ""
       },
       "Budget_Deficit": {
         "value": null,
         "source": "Not found",
-        "date": "",
+        "date": null,
         "prior": null,
-        "notes": "Specific general government balance % of GDP for 2026 not found in search results"
+        "notes": "OECD notes fiscal consolidation improving primary balance"
       },
       "Current_Account": {
         "value": null,
         "source": "Not found",
-        "date": "",
+        "date": null,
         "prior": null,
-        "notes": "Current account forecast for 2026 not located"
+        "notes": "IMF indicates current account remained stable in 2025"
       },
       "Policy_Rate": {
         "value": null,
-        "source": "Not found",
-        "date": "",
+        "source": "OECD",
+        "date": "Jun 2025",
         "prior": null,
-        "notes": "Year-end 2026 SARB policy rate forecast not found; OECD notes 50bp cuts expected through 2026"
+        "notes": "OECD forecasts further 50bp rate cut by end 2026"
       }
     }
   }

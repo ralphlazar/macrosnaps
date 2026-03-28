@@ -1,5 +1,17 @@
 # MacroSnaps - Living Brief
-Last updated: March 26, 2026 (Session 57: favicon added to macrosnaps-shell.html.)
+Last updated: March 27, 2026 (Session 58: Forecast CMS added; Friday pre-ritual rule added to Daily Bash Ritual.)
+
+Session 58 changes in detail:
+
+(1) **Forecast CMS added.** `forecast_server.py` and `forecast_cms.html` added to the repo. The Forecast CMS is a local Flask proxy for reviewing and editing 2026 forecast values (Column AB) in the Macro-stats Google Sheet. Run every Friday before the Daily Bash Ritual:
+```bash
+cd /Users/lisaswerling/RALPH/AI/macrosnaps && python3 forecast_server.py
+```
+Then open `forecast_cms.html` in your browser. The server runs on `http://localhost:5050`.
+
+(2) **Friday pre-ritual rule added.** Every Friday, run the Forecast CMS before starting the Daily Bash Ritual. The Daily Bash Ritual now detects Fridays and prompts accordingly.
+
+---
 
 Session 57 changes in detail:
 
@@ -158,6 +170,12 @@ In the Notes field, flag whether a contact is teaching-primary or research-prima
 Since the site and app are live, all changes must be tested locally before pushing to git. Claude must always provide a local preview step before giving any git push command. Never combine build and push into a single command.
 
 ### Daily Bash Ritual
+**Friday only -- run this first, before anything else:**
+```bash
+cd /Users/lisaswerling/RALPH/AI/macrosnaps && python3 forecast_server.py
+```
+Open `forecast_cms.html` in your browser, review and update forecasts, then close the server before proceeding.
+
 Run in order, pasting output after each step:
 
 ```bash
@@ -270,6 +288,7 @@ Forecast values (source: Ralph's Google Sheet) are annual consensus views for 20
 
 ## Full session history
 
+Session 58: Forecast CMS added (forecast_server.py + forecast_cms.html); Friday pre-ritual rule added to Daily Bash Ritual.
 Session 57: Favicon added (favicon.ico + favicon-192.png); favicon link tags added to macrosnaps-shell.html; X Card Validator confirmed icon picked up.
 Session 56: Repo moved to /Users/lisaswerling/RALPH/AI/macrosnaps; MARKET_STATS_KEY_FILE env var added; node_modules scrubbed from macrosnaps and macedu repos; Daily Bash Ritual fixed (sync_edu.py before audit_ritual.py; macedu push added).
 Session 55: macroeconomics.education data layer complete. sync_edu.py added to Daily Bash Ritual. macedu pushed to GitHub.
