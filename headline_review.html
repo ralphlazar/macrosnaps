@@ -358,7 +358,7 @@
       <div id="drop-zone">
         <div class="drop-icon">&#x25A4;</div>
         <h2>Load your draft file</h2>
-        <p>Drop a <code>stories_draft_YYYY-MM-DD.json</code> file here,<br>or click to browse.</p>
+        <p>Drop a <code>HEADLINES_draft_YYYY-MM-DD.json</code> file here,<br>or click to browse.</p>
         <button class="btn-load" onclick="document.getElementById('file-input').click()">Choose file</button>
         <input type="file" id="file-input" accept=".json">
       </div>
@@ -726,7 +726,7 @@ function exportApproved() {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `stories_approved_${out.date}.json`;
+  a.download = `HEADLINES_approved_${out.date}.json`;
   a.click();
   URL.revokeObjectURL(url);
 

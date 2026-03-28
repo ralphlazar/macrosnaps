@@ -7,15 +7,15 @@ Drafts fresh 3-bullet metric stories for all 12 countries across all metrics.
 Architecture:
   - Reads harvest_{TODAY}.json produced by update_headlines.py (reuses the
     Sonnet+search harvest, no extra API cost)
-  - 3 Haiku batch calls (4 countries each): generates 3 bullets per metric
+  - 12 parallel Haiku calls (1 country each): generates 3 bullets per metric
     per level (beginner / moderate / expert)
-  - Saves metric_stories_draft_{TODAY}.json for review in metric_story_review.html
+  - Saves METRICS_draft_{TODAY}.json for review in metric_story_review.html
   - Apply step writes approved bullets back into data.json
 
 Usage:
     python3 update_metric_stories.py                          # generate draft
     python3 update_metric_stories.py --apply                  # apply most recent approved
-    python3 update_metric_stories.py --apply metric_stories_approved_2026-03-28.json
+    python3 update_metric_stories.py --apply METRICS_approved_2026-03-28.json
 
 Requires:
     ANTHROPIC_API_KEY in .env
@@ -25,6 +25,7 @@ Requires:
 """
 
 import json, os, sys, time, glob, argparse, re
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import date, datetime
 
 try:
@@ -272,27 +273,33 @@ def generate_draft(client, data):
         ([COUNTRY_ORDER[11]], "12/12"),
     ]
 
-    for codes, label in batches:
+    def run_batch(args):
+        codes, label = args
         try:
             result = draft_batch(client, codes, countries_data, recent_data, label)
-            for code in codes:
-                if code in result:
-                    draft["countries"][code] = result[code]
-                else:
-                    draft["_failures"].append(code)
-        except KeyboardInterrupt:
-            print("\n  Interrupted. Saving partial draft...")
-            break
+            return codes, label, result, None
         except Exception as e:
-            print(f"  [BATCH {label}] FAILED: {e}")
-            draft["_failures"].extend(codes)
-        time.sleep(5)
+            return codes, label, {}, str(e)
+
+    with ThreadPoolExecutor(max_workers=12) as executor:
+        futures = {executor.submit(run_batch, b): b for b in batches}
+        for future in as_completed(futures):
+            codes, label, result, error = future.result()
+            if error:
+                print(f"  [BATCH {label}] FAILED: {error}")
+                draft["_failures"].extend(codes)
+            else:
+                for code in codes:
+                    if code in result:
+                        draft["countries"][code] = result[code]
+                    else:
+                        draft["_failures"].append(code)
 
     return draft
 
 
 def save_draft(draft):
-    filename = f"metric_stories_draft_{TODAY}.json"
+    filename = f"METRICS_draft_{TODAY}.json"
     with open(filename, "w", encoding="utf-8") as f:
         json.dump(draft, f, indent=2, ensure_ascii=False)
     return filename
@@ -345,9 +352,9 @@ def main():
 
     if args.apply is not None:
         if args.apply == "__latest__":
-            candidates = sorted(glob.glob("metric_stories_approved_*.json"), reverse=True)
+            candidates = sorted(glob.glob("METRICS_approved_*.json"), reverse=True)
             if not candidates:
-                candidates = sorted(glob.glob("metric_stories_draft_*.json"), reverse=True)
+                candidates = sorted(glob.glob("METRICS_draft_*.json"), reverse=True)
             if not candidates:
                 print("\n  FATAL: No approved or draft file found.\n")
                 sys.exit(1)
@@ -368,7 +375,7 @@ def main():
     print("  MacroSnaps - Draft Metric Stories")
     print(f"  {TODAY}")
     print("="*60)
-    print(f"\n  12 Haiku batch calls (1 country each)\n")
+    print(f"\n  12 parallel Haiku calls (1 country each)\n")
 
     client  = get_client()
     t0      = time.time()
@@ -384,8 +391,8 @@ def main():
     print(f"  Saved: {filename}")
     print(f"\n  Next steps:")
     print(f"  1. Open metric_story_review.html and load {filename}")
-    print(f"  2. Review, edit, approve, export metric_stories_approved_{TODAY}.json")
-    print(f"  3. python3 update_metric_stories.py --apply metric_stories_approved_{TODAY}.json")
+    print(f"  2. Review, edit, approve, export METRICS_approved_{TODAY}.json")
+    print(f"  3. python3 update_metric_stories.py --apply METRICS_approved_{TODAY}.json")
     print(f"  4. python3 build.py\n")
 
 

@@ -15,7 +15,7 @@ Architecture (3 API calls total):
 Usage:
     python3 update_headlines.py                          # generate draft
     python3 update_headlines.py --apply                  # apply most recent approved file
-    python3 update_headlines.py --apply stories_approved_2026-03-11.json
+    python3 update_headlines.py --apply HEADLINES_approved_2026-03-11.json
 
 Requires:
     ANTHROPIC_API_KEY in .env
@@ -582,7 +582,7 @@ def generate_draft(client, data):
 
 # ── Save / apply ──────────────────────────────────────────────────────────────
 def save_draft(draft):
-    filename = f"stories_draft_{TODAY}.json"
+    filename = f"HEADLINES_draft_{TODAY}.json"
     with open(filename, "w", encoding="utf-8") as f:
         json.dump(draft, f, indent=2, ensure_ascii=False)
     return filename
@@ -652,9 +652,9 @@ def main():
 
     if args.apply is not None:
         if args.apply == "__latest__":
-            candidates = sorted(glob.glob("stories_approved_*.json"), reverse=True)
+            candidates = sorted(glob.glob("HEADLINES_approved_*.json"), reverse=True)
             if not candidates:
-                candidates = sorted(glob.glob("stories_draft_*.json"), reverse=True)
+                candidates = sorted(glob.glob("HEADLINES_draft_*.json"), reverse=True)
             if not candidates:
                 print("\n  FATAL: No approved or draft file found.\n")
                 sys.exit(1)
@@ -694,8 +694,8 @@ def main():
     print(f"  Saved: {filename}")
     print(f"\n  Next steps:")
     print(f"  1. Open headline_review.html and load {filename}")
-    print(f"  2. Review, edit, approve, export stories_approved_{TODAY}.json")
-    print(f"  3. python3 update_headlines.py --apply stories_approved_{TODAY}.json")
+    print(f"  2. Review, edit, approve, export HEADLINES_approved_{TODAY}.json")
+    print(f"  3. python3 update_headlines.py --apply HEADLINES_approved_{TODAY}.json")
     print(f"  4. python3 build.py\n")
 
 

@@ -310,10 +310,10 @@ function exportApproved() {
   const a    = document.createElement('a');
   const dateStr = draft.date || new Date().toISOString().slice(0,10);
   a.href     = url;
-  a.download = `metric_stories_approved_${dateStr}.json`;
+  a.download = `METRICS_approved_${dateStr}.json`;
   a.click();
   URL.revokeObjectURL(url);
-  toast('Exported metric_stories_approved_' + dateStr + '.json');
+  toast('Exported METRICS_approved_' + dateStr + '.json');
 }
 
 // ── Toast ──────────────────────────────────────────────────────────────────
