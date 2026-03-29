@@ -50,21 +50,21 @@ THRESHOLDS = {
 DEFAULT_THRESHOLD = 0.05
 
 STYLE_GUIDE = """
-STORY WRITING RULES - apply to every story at every level:
+STORY WRITING RULES - apply to every bullet at every level:
 - No em dashes or en dashes, ever. Use commas, periods, or parentheses instead.
 - No passive voice where an active version is natural.
 - No hedging openers. Never start with "It is worth noting" or "It is important to understand."
-- No AI-typical sentence starters. Do not begin consecutive sentences with "This commodity" or "This reflects."
-- Vary sentence length deliberately. Mix short punchy sentences with longer ones.
+- No AI-typical sentence starters. Do not begin consecutive bullets with "This commodity" or "This reflects."
 - Write numbers as real and specific. "Gold hit $3,200" not "gold prices are elevated."
 - No filler conclusions. Never end with "overall," "in summary," or "taken together."
 - No committee language. Write as if explaining to a smart friend, not presenting a report.
+- Each bullet must be a complete, standalone sentence or two. Not a fragment.
 """.strip()
 
 LEVEL_GUIDANCE = {
-    "beginner": "2-3 sentences. What this commodity is and why its price matters to ordinary people.",
-    "moderate": "3-4 sentences. Include one driver of the current price level and one downstream effect.",
-    "expert":   "4-5 sentences. Include specific price, directional trend, supply/demand driver, and one forward implication.",
+    "beginner": "3 bullets. Bullet 1: what this commodity is and why it exists. Bullet 2: why its price matters to ordinary people. Bullet 3: one plain-English takeaway from the current price level.",
+    "moderate": "3 bullets. Bullet 1: current price in context (vs recent trend). Bullet 2: one specific supply or demand driver behind the current level. Bullet 3: one downstream effect on the economy or markets.",
+    "expert":   "3 bullets. Bullet 1: current price, direction, and key data point. Bullet 2: primary supply/demand or macro driver with specifics. Bullet 3: one forward implication or risk to watch.",
 }
 
 
@@ -152,16 +152,17 @@ def check_drift(items):
 
 
 # ── Draft stories ─────────────────────────────────────────────────────────────
-def draft_stories(client, flagged_items):
+def draft_batch(client, batch):
     """
-    Single Haiku call covering all flagged commodities.
-    Returns a dict keyed by symbol: { beginner: "...", moderate: "...", expert: "..." }
+    Single Haiku call for a batch of up to 3 commodities.
+    Returns a dict keyed by symbol.
     """
     lines = []
     lines.append(f"Today is {TODAY}.")
     lines.append("")
     lines.append("Write commodity stories for each of the following commodities.")
-    lines.append("Each commodity needs one story at each of 3 audience levels: beginner, moderate, expert.")
+    lines.append("Each commodity needs stories at 3 audience levels: beginner, moderate, expert.")
+    lines.append("Each level must have EXACTLY 3 bullet points, each a complete sentence or two.")
     lines.append("")
     lines.append(STYLE_GUIDE)
     lines.append("")
@@ -172,17 +173,22 @@ def draft_stories(client, flagged_items):
     lines.append("Commodities to write (current live prices):")
     lines.append("")
 
-    for item, reason in flagged_items:
+    for item, reason in batch:
         lines.append(f"  {item['name']} ({item['symbol']})")
         lines.append(f"    Current price: {item['price']} {item['unit']}")
         lines.append(f"    YoY change: {item.get('change', 'n/a')}%")
         lines.append(f"    Category: {item.get('cat', 'n/a')}")
         lines.append("")
 
-    lines.append("Output ONLY a JSON object keyed by symbol. Each value has beginner, moderate, and expert keys.")
-    lines.append("Each value is a plain string (not an object, not a list). No preamble, no markdown fences.")
+    lines.append("Output ONLY a JSON object keyed by symbol.")
+    lines.append("Each level is an ARRAY of exactly 3 strings (the bullet points).")
+    lines.append("No preamble, no markdown fences.")
     lines.append("{")
-    lines.append('  "CL": { "beginner": "story text", "moderate": "story text", "expert": "story text" },')
+    lines.append('  "CL": {')
+    lines.append('    "beginner": ["bullet 1 text", "bullet 2 text", "bullet 3 text"],')
+    lines.append('    "moderate": ["bullet 1 text", "bullet 2 text", "bullet 3 text"],')
+    lines.append('    "expert":   ["bullet 1 text", "bullet 2 text", "bullet 3 text"]')
+    lines.append('  },')
     lines.append("  ...")
     lines.append("}")
 
@@ -197,33 +203,49 @@ def draft_stories(client, flagged_items):
         text = response.content[0].text
         parsed = extract_json(text)
 
-        # Validate all symbols and levels present
         missing = []
-        for item, _ in flagged_items:
+        for item, _ in batch:
             sym = item["symbol"]
             if sym not in parsed:
                 missing.append(sym)
                 continue
             for lv in ("beginner", "moderate", "expert"):
-                if lv not in parsed[sym] or not parsed[sym][lv]:
+                val = parsed[sym].get(lv)
+                if not val or not isinstance(val, list) or len(val) < 3:
                     missing.append(f"{sym}/{lv}")
 
         if not missing:
             return parsed
 
         if attempt == 0:
-            print(f"  (missing: {', '.join(missing)}, retrying...)", end=" ", flush=True)
+            print(f"  (missing/invalid: {', '.join(missing)}, retrying...)", end=" ", flush=True)
             time.sleep(5)
         else:
             raise ValueError(f"Still missing after retry: {', '.join(missing)}")
 
-    raise ValueError("draft_stories failed after retries")
+    raise ValueError("draft_batch failed after retries")
+
+
+def draft_stories(client, flagged_items):
+    """Draft stories in batches of 3. Returns merged dict keyed by symbol."""
+    result = {}
+    batch_size = 3
+    batches = [flagged_items[i:i+batch_size] for i in range(0, len(flagged_items), batch_size)]
+    for i, batch in enumerate(batches, 1):
+        names = ', '.join(item['name'] for item, _ in batch)
+        print(f"  Batch {i}/{len(batches)}: {names}...", end=" ", flush=True)
+        parsed = draft_batch(client, batch)
+        result.update(parsed)
+        print("OK")
+        if i < len(batches):
+            time.sleep(3)
+    return result
 
 
 # ── Apply to data.json ────────────────────────────────────────────────────────
 def apply_stories(data, flagged_items, new_stories):
     """
-    Writes new stories and updates storyWrittenAtPrice in data.json.
+    Writes new stories (as bullet arrays) and updates storyWrittenAtPrice in data.json.
     """
     applied = []
     for item, _ in flagged_items:
@@ -233,9 +255,9 @@ def apply_stories(data, flagged_items, new_stories):
             continue
         stories = new_stories[sym]
         item["story"] = {
-            "beginner": stories["beginner"],
-            "moderate": stories["moderate"],
-            "expert":   stories["expert"],
+            "beginner": stories["beginner"][:3],
+            "moderate": stories["moderate"][:3],
+            "expert":   stories["expert"][:3],
         }
         item["storyWrittenAtPrice"] = item["price"]
         item["storyUpdatedDate"]    = TODAY

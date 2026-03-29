@@ -182,7 +182,7 @@ def check_commodities(data, issues):
             issues += fail(f"{name}  change blank")
             clean = False
         spark = item.get("spark", [])
-        if len(spark) < EXPECTED_SPARK_PTS - 3:   # allow up to 3 months of lag
+        if len(spark) < 300:   # commodity data starts ~Jul 2000, ~307 pts expected
             issues += warn(f"{name}  spark has {len(spark)} pts (expected ~{EXPECTED_SPARK_PTS})")
             clean = False
 

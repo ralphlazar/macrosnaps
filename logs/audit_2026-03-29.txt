@@ -1,7 +1,7 @@
 MacroSnaps Daily Audit - 2026-03-29
 ============================================================
 data.json generated : 2026-03-29
-Issues found        : 9
+Issues found        : 1
 ============================================================
 
 All checks passed.
