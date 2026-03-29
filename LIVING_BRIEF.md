@@ -1,5 +1,28 @@
 # MacroSnaps - Living Brief
-Last updated: March 28, 2026 (Session 60: MARKET-STATS daily append fixed; 12-country backfill Mar 16–27; MACRO-MONTHLY unemployment and policy rate gaps filled.)
+Last updated: March 29, 2026 (Session 61: Daily ritual completed; commodity stories migrated to bullet arrays; bug fixes to sync_market_historical.py, audit_ritual.py, build.py; Brent Crude backfill complete; macedu deployed to Cloudflare Pages.)
+
+Session 61 changes in detail:
+
+(1) **Daily ritual completed 2026-03-29.** Full ritual ran successfully. Notable: `update_headlines.py` failed on first attempt (JSON parse error batch 1), succeeded on retry. All 12/12 metric stories completed in 86s (parallel). Build successful, pushed to master. macedu daily sync pushed to main.
+
+(2) **`update_commodity_stories.py` — migrated to bullet arrays.** Stories now stored as arrays `["bullet1", "bullet2", "bullet3"]` per level, matching the country story schema. Changes:
+- `LEVEL_GUIDANCE` updated to specify 3 bullets per level.
+- Prompt updated to request JSON arrays not prose strings.
+- `apply_stories` stores arrays.
+- Batching fixed: was attempting all 9 commodities in one call (output truncated). Fixed by splitting into `draft_batch` (3 commodities per call) + `draft_stories` wrapper (3 batches of 3). All 9 commodity stories regenerated as bullet arrays.
+- Shell renderer at line 56864 already handled both formats (`Array.isArray` → `<ol>`, string → `<div>`). No shell change needed.
+
+(3) **`sync_market_historical.py` — CHN tab crash fixed.** Root cause: `get_all_values()` pads all rows to the width of the widest row, creating empty-string duplicate column names. `pd.to_numeric()` received a DataFrame instead of a Series. Fix: strip trailing empty headers; truncate data rows to match header length.
+
+(4) **`audit_ritual.py` — two fixes:**
+- Global stories: audit now accepts either `body` or `bullets` field (was requiring `body`, failing since Session 59 schema change to `bullets`).
+- Commodity spark threshold: changed from `EXPECTED_SPARK_PTS - 3` to `300`. Commodity data starts 2000-07-17 (Yahoo Finance limit), giving ~307–309 pts max, not 315.
+
+(5) **`build.py` — globalStories validator updated.** Accepts `bullets` or `body` (not both required). Committed as `"audit_ritual: accept bullets as well as body for global stories"`.
+
+(6) **Brent Crude backfill — complete.** `export_brent_csv.py` built and run. `brent_backfill.csv` (1,687 rows, 2000-07-17 to ~2007) pasted into Commodities tab; `sync_commodity_data.py --apply` + `build.py` run successfully.
+
+---
 
 Session 60 changes in detail:
 
@@ -87,7 +110,7 @@ Session 55 changes in detail:
 
 (1) **macroeconomics.education data layer complete.** `sync_edu.py` reads `data.json` and writes `edu-data.json` to the macedu app, providing live snapshot values and 10-year historical chart series for all six education concepts across all six countries. Added as final step of the Daily Bash Ritual.
 
-(2) **macedu GitHub repo created.** `https://github.com/ralphlazar/macedu` -- separate from macrosnaps. All six chart components now read from `edu-data.json` (not hardcoded). Design pass complete (fonts, colours, section compartmentalisation). Deployment to Cloudflare Pages is the next step.
+(2) **macedu GitHub repo created.** `https://github.com/ralphlazar/macedu` -- separate from macrosnaps. All six chart components now read from `edu-data.json` (not hardcoded). Design pass complete (fonts, colours, section compartmentalisation). Deployed to Cloudflare Pages.
 
 ---
 
