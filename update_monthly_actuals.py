@@ -45,7 +45,13 @@ FRED_KEY    = os.environ.get('FRED_API_KEY', '')
 
 # USA and BRA removed from IMF LS — USA uses FRED instead (BRA has no viable monthly source)
 UNEMP_IMF   = ['CAN', 'JPN', 'DEU', 'FRA', 'ITA', 'RUS']
-UNEMP_BLANK = ['CHN', 'IND', 'ZAF', 'BRA']  # BRA: PNAD Contínua is quarterly only, no monthly source
+UNEMP_BLANK = ['CHN', 'IND', 'ZAF']  # BRA now fetched from IBGE SIDRA
+
+# IBGE SIDRA API — PNAD Contínua monthly unemployment (table 6381, variable 4099)
+IBGE_SIDRA_URL = (
+    'https://apisidra.ibge.gov.br/values/t/6381/n1/all/v/4099'
+    '/p/all/d/v4099%201'
+)
 
 # FRED series for unemployment countries not covered by IMF LS
 UNEMP_FRED = {
@@ -195,6 +201,34 @@ def fetch_inflation(fetch_start, new_dates):
         print('  No new data found.')
     return result
 
+def fetch_ibge_bra(new_dates):
+    """
+    Fetch BRA unemployment from IBGE SIDRA table 6381 (PNAD Contínua).
+    Period key D3C format: '202503' = rolling quarter ending March 2025.
+    Returns dict of {date: float} for dates in new_dates.
+    """
+    try:
+        r = requests.get(IBGE_SIDRA_URL, timeout=30)
+        r.raise_for_status()
+        data = r.json()
+        result = {}
+        for item in data[1:]:  # skip header row
+            period = item.get('D3C', '')
+            value  = item.get('V', '')
+            if len(period) != 6 or not value or value.strip() in ('-', '...', ''):
+                continue
+            try:
+                d = date(int(period[:4]), int(period[4:6]), 1)
+                if d in new_dates:
+                    result[d] = round(float(value), 2)
+            except (ValueError, IndexError):
+                continue
+        return result
+    except Exception as e:
+        print(f'  BRA (IBGE SIDRA): error — {e}')
+        return {}
+
+
 def fetch_unemployment(fetch_start, new_dates):
     print('Fetching Unemployment from IMF (dataset: LS)...')
     key = '+'.join(UNEMP_IMF) + '.U.PT.M'
@@ -212,7 +246,7 @@ def fetch_unemployment(fetch_start, new_dates):
             print(f'  {country}: {len(series)} new months  last={max(series)}')
         result[country] = series
 
-    # FRED fallbacks: USA (BLS), GBR (ONS), BRA (IBGE PNAD)
+    # FRED fallbacks: USA (BLS), GBR (ONS)
     for country, sid in UNEMP_FRED.items():
         try:
             all_data = fred_fetch(sid, fetch_start)
@@ -222,7 +256,12 @@ def fetch_unemployment(fetch_start, new_dates):
             result[country] = new
         except Exception as e:
             print(f'  {country} ({sid}): FRED error — {e}')
-            result[country] = {}
+
+    # IBGE SIDRA: BRA (PNAD Contínua monthly)
+    bra_data = fetch_ibge_bra(set(new_dates))
+    if bra_data:
+        print(f'  BRA (IBGE SIDRA): {len(bra_data)} new months  last={max(bra_data)}')
+    result['BRA'] = bra_data
 
     for country in UNEMP_BLANK:
         result[country] = {}
@@ -264,7 +303,7 @@ def fetch_policy_rate(fetch_start, new_dates):
 # Maps tab name → which countries are permanently blank (never fill these)
 KNOWN_BLANKS = {
     'Inflation':    [],
-    'Unemployment': ['CHN', 'IND', 'ZAF', 'BRA'],  # BRA: no monthly source (PNAD Contínua is quarterly)
+    'Unemployment': ['CHN', 'IND', 'ZAF'],           # BRA now fetched from IBGE SIDRA
     'Policy_Rate':  ['CHN', 'IND'],                  # IND: RBI repo rate not available monthly from BIS/FRED
 }
 

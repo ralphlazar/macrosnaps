@@ -136,8 +136,11 @@ def read_country_tab(sheet, code):
         log.warning(f"  [{code}] tab is empty — skipping")
         return None
 
-    headers = rows[0]
-    data    = rows[1:]
+    # Strip trailing empty column names; truncate each data row to match.
+    # get_all_values() pads all rows to the width of the widest row, which
+    # can introduce empty-string duplicate column names and break pd.to_numeric.
+    headers = [h for h in rows[0] if h]
+    data    = [r[:len(headers)] for r in rows[1:]]
 
     df = pd.DataFrame(data, columns=headers)
 

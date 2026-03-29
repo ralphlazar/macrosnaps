@@ -1,5 +1,30 @@
 # MacroSnaps - Living Brief
-Last updated: March 28, 2026 (Session 59: metric story pipeline fixed and parallelised; JSON file renames; review UI fixes.)
+Last updated: March 28, 2026 (Session 60: MARKET-STATS daily append fixed; 12-country backfill Mar 16–27; MACRO-MONTHLY unemployment and policy rate gaps filled.)
+
+Session 60 changes in detail:
+
+(1) **MARKET-STATS daily append fixed.** `fetch_market_data.py` was not writing daily rows to MARKET-STATS country tabs (USA–RUS). Root cause: the append function was never built. Patched to append one row per country per day with columns: Date, Stock_Market_Index, FX_Rate, Bond_Yield_10Y, Bond_Yield_3M, Yield_Curve, Stock_Market_YTD_USD. New helper `yf_ytd_and_level()` added to fetch index level alongside YTD% in one Yahoo call. Tab names in MARKET-STATS match country codes exactly (USA, CAN, GBR, JPN, DEU, FRA, ITA, CHN, IND, ZAF, BRA, RUS).
+
+(2) **MARKET-STATS backfilled Mar 16–27.** `backfill_market_stats.py` built to insert missing trading days into all 12 country tabs in date order. Idempotent. Rate-limited to avoid Google Sheets quota (1.2s/row, 3s between countries). `patch_bond_yields.py` built to fill missing bond yield columns for the backfill period using FRED carry-forward values.
+
+(3) **MACRO-MONTHLY Unemployment — IND and ZAF backfilled.** `backfill_unemployment.py` built:
+- ZAF: FRED `LRUNTTTTZAQ156S` (OECD quarterly, SA) → linear interpolation to monthly. Covers Q3 2000–Q4 2024.
+- IND: World Bank `SL.UEM.TOTL.ZS` (annual) → July midpoint interpolation to monthly. Covers 1991–2025.
+- `MACRO_MONTHLY_SHEET_ID=1-s4hppAkoTZbjGGEkHSUDK2H7E00RHhVuHrYKWLuHpI` added to .env.
+- CHN: no free programmatic source — permanent blank.
+
+(4) **MACRO-MONTHLY Unemployment — BRA wired into daily ritual.** `update_monthly_actuals.py` patched to fetch BRA unemployment from IBGE SIDRA table 6381 (PNAD Contínua, monthly, free, no key). BRA removed from `UNEMP_BLANK` and `KNOWN_BLANKS`. IBGE SIDRA period key is `D3C` (format: `YYYYMM`). Historical gap Jan 2000–Dec 2011 backfilled via FRED `LRUNTTTTBRM156S`. Jan–Feb 2012 remain blank (PNAD Contínua started Mar 2012).
+
+(5) **MACRO-MONTHLY historical gaps filled.** `backfill_historical_gaps.py` built and run:
+- Unemployment DEU 2000–2006: FRED `LRHUTTTTDEM156S` (84 cells)
+- Unemployment FRA 2000–2002: FRED `LRHUTTTTFRM156S` (36 cells)
+- Policy Rate JPN 2000–2006 and 2013–2016: FRED `IRSTCI01JPM156N` (106 cells)
+- Policy Rate DEU/FRA/ITA 2000–2008: hardcoded ECB MRO step function (297 cells) — FRED and ECB APIs both non-functional for this series; hardcoded from official ECB historical rate table.
+- RUS unemployment 2000–2009: permanent gap — no free programmatic source exists.
+
+(6) **MACRO-MONTHLY backfill applied.** `update_monthly_actuals.py --backfill --apply` run: 13 cells filled (inflation Feb 2026 for 9 countries; ITA unemployment Dec 2025; ECB policy rate Mar 2026 for DEU/FRA/ITA).
+
+---
 
 Session 59 changes in detail:
 
@@ -314,10 +339,24 @@ Forecast values (source: Ralph's Google Sheet) are annual consensus views for 20
 - `METRICS_draft_YYYY-MM-DD.json` — per-metric bullet stories draft; loaded in `metric_story_review.html`
 - `METRICS_approved_YYYY-MM-DD.json` — approved metric stories; applied via `update_metric_stories.py --apply`
 
+### MACRO-MONTHLY sheet (as of Session 60)
+- Sheet ID: `1-s4hppAkoTZbjGGEkHSUDK2H7E00RHhVuHrYKWLuHpI` (env var: `MACRO_MONTHLY_SHEET_ID`)
+- Three tabs: Inflation, Unemployment, Policy_Rate
+- Unemployment sources by country:
+  - USA: FRED `UNRATE` (BLS, monthly)
+  - CAN/JPN/DEU/FRA/ITA/RUS: IMF LS dataset (monthly)
+  - GBR: FRED `LRHUTTTTGBM156S` (ONS via FRED, monthly)
+  - BRA: IBGE SIDRA table 6381 (PNAD Contínua, monthly) — wired into `update_monthly_actuals.py`
+  - ZAF: FRED `LRUNTTTTZAQ156S` (OECD quarterly, interpolated) — backfilled via `backfill_unemployment.py`
+  - IND: World Bank `SL.UEM.TOTL.ZS` (annual, interpolated) — backfilled via `backfill_unemployment.py`
+  - CHN: no free programmatic source — permanent blank
+  - RUS 2000–2009: no free programmatic source — permanent blank
+
 ---
 
 ## Full session history
 
+Session 60: MARKET-STATS daily append fixed (fetch_market_data.py patched; yf_ytd_and_level() added); Mar 16–27 backfill run across 12 country tabs (backfill_market_stats.py); bond yield patch script built (patch_bond_yields.py); MACRO-MONTHLY unemployment backfilled for IND/ZAF (backfill_unemployment.py) and BRA (update_bra_unemployment.py); BRA IBGE SIDRA wired into update_monthly_actuals.py; historical unemployment and policy rate gaps filled via backfill_historical_gaps.py (DEU/FRA unemployment 2000–2006, JPN policy rate 2000–2016, DEU/FRA/ITA policy rate 2000–2008 from hardcoded ECB MRO table); backfill --apply run (13 cells); MACRO_MONTHLY_SHEET_ID added to .env.
 Session 59: Metric story pipeline fixed (Haiku truncation → 1 country per call → parallelised to 12 concurrent calls, 990s → 74s); JSON file renames (HEADLINES/METRICS); headline_review.html patched for bullets schema; build.py validator updated; Daily Bash Ritual updated.
 Session 58: Forecast CMS added (forecast_server.py + forecast_cms.html); Friday pre-ritual rule added to Daily Bash Ritual.
 Session 57: Favicon added (favicon.ico + favicon-192.png); favicon link tags added to macrosnaps-shell.html; X Card Validator confirmed icon picked up.

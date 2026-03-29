@@ -86,6 +86,14 @@ COMMODITY_COL_ORDER = [
     "Wheat", "Corn", "Soybeans",
 ]
 
+# Tab names in MARKET-STATS sheet — one per country.
+# Update these if your sheet tabs use different names.
+MARKET_STATS_TABS = {
+    "USA": "USA", "CAN": "CAN", "GBR": "GBR", "JPN": "JPN",
+    "DEU": "DEU", "FRA": "FRA", "ITA": "ITA", "CHN": "CHN",
+    "IND": "IND", "ZAF": "ZAF", "BRA": "BRA", "RUS": "RUS",
+}
+
 # ---------------------------------------------------------------------------
 # LOGGING
 # ---------------------------------------------------------------------------
@@ -328,10 +336,32 @@ def yf_ytd_return(ticker):
         log.warning(f"    Yahoo YTD {ticker}: {exc}")
         return None
 
+def yf_ytd_and_level(ticker):
+    """
+    Fetch latest close price AND YTD % return for a stock/index ticker in one call.
+    Returns (ytd_pct_float, current_level_float) or (None, None).
+    """
+    try:
+        start = f"{date.today().year}-01-01"
+        t = yf.Ticker(ticker)
+        hist = t.history(start=start)
+        closes = hist["Close"].dropna()
+        if closes.empty or len(closes) < 2:
+            return None, None
+        open_price = float(closes.iloc[0])
+        last_price = float(closes.iloc[-1])
+        if open_price == 0:
+            return None, last_price
+        ytd = (last_price - open_price) / open_price * 100
+        return ytd, last_price
+    except Exception as exc:
+        log.warning(f"    Yahoo YTD/level {ticker}: {exc}")
+        return None, None
+
 
 def yf_price_and_ytd(ticker):
     """
-    Fetch latest close and YTD % change for a futures ticker.
+    Fetch latest close and YoY % change for a futures ticker.
     Uses the first available close on or after Jan 1 of the current year
     as the base price, matching the convention used for stock indices.
     Returns (current_price_float, ytd_pct_float) or (None, None).
@@ -479,36 +509,71 @@ def fetch_fx(code):
 
 def process_country(code, country_data):
     """
-    Fetch all 4 market metrics for one country and return a dict of
-    {metric_label: new_value_string} for metrics that were successfully fetched.
+    Fetch all 4 market metrics for one country.
+    Returns a tuple of:
+      - updates: dict of {metric_label: formatted_string} for data.json
+      - raw: dict of raw floats for sheet append
     """
     log.info(f"\n{'='*52}")
     log.info(f"  {code}")
     log.info(f"{'='*52}")
 
     updates = {}
+    raw = {
+        "stock_level":     None,
+        "stock_ytd":       None,
+        "fx":              None,
+        "bond_10y":        None,
+        "short_rate":      None,
+        "yield_curve_bps": None,
+    }
 
-    # Stock Market YTD
-    val = fetch_stock_ytd(code)
-    if val:
-        updates["Stock Market YTD"] = val
-        log.info(f"  Stock Market YTD    {val}")
+    # Stock Market YTD (+ index level for sheet)
+    if code == "RUS":
+        val = fetch_moex_index()
+        if val:
+            updates["Stock Market YTD"] = val
+            log.info(f"  Stock Market YTD    {val}")
+            try:
+                raw["stock_ytd"] = float(val.replace("%", "").replace("+", ""))
+            except Exception:
+                pass
+        else:
+            log.warning(f"  Stock Market YTD    FAILED")
     else:
-        log.warning(f"  Stock Market YTD    FAILED")
+        ticker = STOCK_TICKERS.get(code)
+        if ticker:
+            ytd_pct, level = yf_ytd_and_level(ticker)
+            if ytd_pct is not None:
+                sign = "+" if ytd_pct >= 0 else ""
+                val = f"{sign}{ytd_pct:.1f}%"
+                updates["Stock Market YTD"] = val
+                raw["stock_ytd"] = round(ytd_pct, 2)
+                log.info(f"  Stock Market YTD    {val}")
+            else:
+                log.warning(f"  Stock Market YTD    FAILED")
+            if level is not None:
+                raw["stock_level"] = round(level, 2)
+        else:
+            log.warning(f"  Stock Market YTD    FAILED")
 
     # 10Y Bond Yield
     ten_y_float, ten_y_str = fetch_bond_10y(code)
     if ten_y_str:
         updates["10Y Bond Yield"] = ten_y_str
+        raw["bond_10y"] = ten_y_float
         log.info(f"  10Y Bond Yield      {ten_y_str}")
     else:
         log.warning(f"  10Y Bond Yield      FAILED (no FRED series)")
 
     # Yield Curve (needs 10Y and short rate)
     short_rate = fetch_short_rate(code)
+    raw["short_rate"] = short_rate
     yc = fetch_yield_curve(ten_y_float, short_rate)
     if yc:
         updates["Yield Curve"] = yc
+        if ten_y_float is not None and short_rate is not None:
+            raw["yield_curve_bps"] = round((ten_y_float - short_rate) * 100)
         log.info(f"  Yield Curve         {yc}")
     else:
         log.warning(f"  Yield Curve         FAILED")
@@ -518,11 +583,12 @@ def process_country(code, country_data):
     fx_label = FX_LABELS.get(code)
     if fx_str and fx_label:
         updates[fx_label] = fx_str
+        raw["fx"] = fx_float
         log.info(f"  {fx_label:<20}{fx_str}")
     else:
         log.warning(f"  FX                  FAILED")
 
-    return updates
+    return updates, raw
 
 # ---------------------------------------------------------------------------
 # WRITE UPDATES INTO DATA.JSON
@@ -651,10 +717,92 @@ def append_commodity_row_to_sheet(items):
 
         row = [TODAY] + [price_map.get(col, "") for col in COMMODITY_COL_ORDER]
         ws.append_row(row, value_input_option="USER_ENTERED")
-        log.info(f"  Sheet: appended row for {TODAY} to '{COMMODITY_TAB}' tab \u2713")
+        log.info(f"  Sheet: appended row for {TODAY} to '{COMMODITY_TAB}' tab ✓")
 
     except Exception as exc:
         log.warning(f"  Sheet append FAILED (data.json still updated): {exc}")
+
+
+# ---------------------------------------------------------------------------
+# APPEND TODAY'S ROW TO EACH COUNTRY TAB IN MARKET-STATS
+# ---------------------------------------------------------------------------
+
+def append_market_stats_rows(all_raw):
+    """
+    Append today's daily row to each country tab in the MARKET-STATS sheet.
+
+    Columns: Date | Stock_Market_Index | FX_Rate | Bond_Yield_10Y |
+             Bond_Yield_3M | Yield_Curve | Stock_Market_YTD_USD
+
+    Idempotent: skips any tab where today's date is already the last row.
+    Never raises — sheet failures are logged as warnings so data.json is
+    never blocked.
+    """
+    if not _GSPREAD_AVAILABLE:
+        log.warning("  Market stats append skipped: gspread not installed")
+        return
+    if not MARKET_SHEET_ID:
+        log.warning("  Market stats append skipped: MARKET_STATS_SHEET_ID not set in .env")
+        return
+    if not os.path.exists(MARKET_KEY_FILE):
+        log.warning(f"  Market stats append skipped: key file not found at {MARKET_KEY_FILE}")
+        return
+
+    try:
+        scopes = [
+            "https://www.googleapis.com/auth/spreadsheets",
+            "https://www.googleapis.com/auth/drive",
+        ]
+        creds = Credentials.from_service_account_file(MARKET_KEY_FILE, scopes=scopes)
+        gc    = gspread.authorize(creds)
+        sh    = gc.open_by_key(MARKET_SHEET_ID)
+    except Exception as exc:
+        log.warning(f"  Market stats sheet connect FAILED: {exc}")
+        return
+
+    ok = 0
+    skipped = 0
+    failed = 0
+
+    for code, raw in all_raw.items():
+        tab_name = MARKET_STATS_TABS.get(code, code)
+        try:
+            ws = sh.worksheet(tab_name)
+        except gspread.WorksheetNotFound:
+            log.warning(f"  [{code}] tab '{tab_name}' not found — skipping")
+            failed += 1
+            continue
+
+        try:
+            all_values = ws.get_all_values()
+            if len(all_values) >= 2:
+                last_date = all_values[-1][0].strip() if all_values[-1] else ""
+                if last_date == TODAY:
+                    log.info(f"  [{code}] today's row already present — skipping")
+                    skipped += 1
+                    continue
+
+            row = [
+                TODAY,
+                raw.get("stock_level", ""),
+                raw.get("fx", ""),
+                raw.get("bond_10y", ""),
+                raw.get("short_rate", ""),
+                raw.get("yield_curve_bps", ""),
+                raw.get("stock_ytd", ""),
+            ]
+            # Replace None with empty string
+            row = ["" if v is None else v for v in row]
+            ws.append_row(row, value_input_option="USER_ENTERED")
+            log.info(f"  [{code}] appended ✓")
+            ok += 1
+
+        except Exception as exc:
+            log.warning(f"  [{code}] append FAILED: {exc}")
+            failed += 1
+
+    log.info(f"  Market stats: {ok} appended, {skipped} skipped, {failed} failed")
+
 
 # ---------------------------------------------------------------------------
 # MAIN
@@ -685,6 +833,7 @@ def main():
                  "CHN", "IND", "ZAF", "BRA", "RUS"]
 
     all_updates  = {}
+    all_raw      = {}
     total_ok     = 0
     total_failed = 0
 
@@ -693,8 +842,9 @@ def main():
             log.warning(f"\n[{code}] not found in data.json - skipping")
             continue
 
-        updates = process_country(code, countries[code])
+        updates, raw = process_country(code, countries[code])
         all_updates[code] = updates
+        all_raw[code]     = raw
         total_ok     += len(updates)
         total_failed += (4 - len(updates))
 
@@ -726,6 +876,12 @@ def main():
     log.info("  COMMODITIES → SHEET APPEND")
     log.info(f"{'='*52}")
     append_commodity_row_to_sheet(data.get("commodities", {}).get("items", []))
+
+    # Append today's market data to each country tab in MARKET-STATS
+    log.info(f"\n{'='*52}")
+    log.info("  MARKET-STATS → SHEET APPEND")
+    log.info(f"{'='*52}")
+    append_market_stats_rows(all_raw)
 
     log.info(f"\nWriting {DATA_FILE} ...")
     with open(DATA_FILE, "w", encoding="utf-8") as f:
