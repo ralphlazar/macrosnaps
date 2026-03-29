@@ -276,7 +276,7 @@ def check_global_stories(data, issues):
             continue
         for card in cards[:3]:
             label = card.get("label", "unlabelled")
-            body = card.get("body", "")
+            body = card.get("body", "") or " ".join(card.get("bullets", []))
             if is_blank(body):
                 issues += fail(f"Global story [{tier}] [{label}] body missing")
                 clean = False
