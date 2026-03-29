@@ -62,7 +62,7 @@ STORY WRITING RULES - apply to every bullet at every level:
 """.strip()
 
 LEVEL_GUIDANCE = {
-    "beginner": "3 bullets. Bullet 1: what the current price tells us right now, in plain English. Bullet 2: one real-world effect ordinary people would recognise (fuel, food, energy bills). Bullet 3: one word on direction — is this getting better or worse for consumers?",
+    "beginner": "3 bullets. Bullet 1: what the current price tells us right now, in plain English. Bullet 2: one real-world effect ordinary people would recognise (fuel, food, energy bills). Bullet 3: one concrete implication for ordinary people — what does this price level actually mean for their wallet, their savings, or their daily costs?",
     "moderate": "3 bullets. Bullet 1: current price vs recent trend, with a number. Bullet 2: the single biggest driver of the current level. Bullet 3: one concrete downstream effect on the economy or markets.",
     "expert":   "3 bullets. Bullet 1: current price, direction, and one hard data point. Bullet 2: primary macro or supply/demand driver, with specifics. Bullet 3: one forward risk or implication worth watching.",
 }

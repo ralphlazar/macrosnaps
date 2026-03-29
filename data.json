@@ -47658,19 +47658,19 @@
         "_note": "Update price and change daily; spark array: drop first, append new close",
         "story": {
           "beginner": [
-            "WTI crude at $99.64 per barrel means oil prices sit almost exactly where they were one year ago.",
-            "Your gas pump prices depend heavily on crude oil, so flat prices here mean fuel costs stay roughly stable for drivers.",
-            "Worse. Oil remains vulnerable to Middle East tensions and economic slowdowns that could spike prices quickly."
+            "WTI crude at $99.64 per barrel means oil prices remain near $100, the level where most people notice pump pain.",
+            "Gasoline at the pump costs more when WTI runs this high, directly hitting household fuel budgets every week.",
+            "At $99.64, you're paying roughly $1.50 to $2.00 more per gallon than you would if oil sat at $70."
           ],
           "moderate": [
-            "WTI trades at $99.64, up 3.2% since January but flat year-over-year, trapped in a narrow $95-$105 range.",
-            "Chinese refinery demand weakness and OPEC production cuts offset each other, leaving prices stuck in equilibrium.",
-            "Airlines locked in fuel surcharges based on higher winter prices, so ticket costs won't fall even if oil weakens further."
+            "WTI trades flat versus last year at $99.64, but bounced from $92 lows in January on supply tightness.",
+            "OPEC production cuts and Middle East geopolitical friction keep crude elevated despite soft global demand signals.",
+            "Airlines and shipping companies pass through higher fuel surcharges, which eventually inflate prices on consumer goods and flights."
           ],
           "expert": [
-            "WTI at $99.64 with zero YoY change masks a 15% Q1 rally from $86 lows, now consolidating at technical resistance.",
-            "OPEC+ maintained 2.2 million barrel daily cuts through March, while US shale production holds steady at 13.2 million barrels daily, creating supply rigidity.",
-            "Geopolitical tail risk from Houthi Red Sea attacks and Iran tensions remains priced at $3-$5 premium, but market now discounts escalation probability below 25%."
+            "WTI at $99.64 with zero YoY change masks a 8 percent intra-year range, currently testing resistance near $102.",
+            "Saudi and Russian output management combined with tightening Atlantic Basin crude inventories sustain the $95-$105 trading band.",
+            "Watch for demand destruction signals from China manufacturing PMI below 50 or a sharp yield curve inversion that could crack the $90 support."
           ]
         },
         "storyWrittenAtPrice": 99.64,
@@ -48052,19 +48052,19 @@
         "_note": "Update price and change daily; spark array: drop first, append new close",
         "story": {
           "beginner": [
-            "Brent crude at $105.32 per barrel has fallen 6.4% over the past year, making European oil noticeably cheaper than a year ago.",
-            "Heating oil and diesel fuel for trucks track Brent prices, so lower Brent means shipping and winter heating costs have declined for businesses.",
-            "Better. Six percent annual decline signals weakening global demand and gives relief to price-sensitive sectors."
+            "Brent crude at $105.32 per barrel sits about 6% lower than last year, a modest decline from a year ago.",
+            "Heating oil and diesel fuel costs track Brent prices, so lower Brent means slightly cheaper winter heating and freight expenses.",
+            "Your winter heating bill drops by 5 to 10 percent when Brent crude falls this much, saving families $200 to $400 annually."
           ],
           "moderate": [
-            "Brent trades at $105.32, down 6.4% year-over-year but up 4.8% since early January, held down by North Sea production stability.",
-            "Weak European industrial demand and rising US shale exports pushing more barrels into global markets have capped Brent upside.",
-            "Refiners in India and China switched to cheaper Russian Urals crude, reducing Brent demand and forcing a discount relative to WTI."
+            "Brent fell 6.4% year-over-year to $105.32, down from $112 in spring 2025 but up from March 2026 lows near $101.",
+            "North Sea supply maintenance and refinery outages in Europe limit crude flows and anchor Brent above WTI by $5.68 per barrel.",
+            "European refined product cracks widen as refiners struggle with aging capacity, pushing diesel and heating oil futures higher despite softer crude."
           ],
           "expert": [
-            "Brent at $105.32 trades at a $5.68 premium to WTI, reflecting North Sea supply tightness, yet the spread narrowed 40% from February highs.",
-            "Russian ESPO crude exports to Asia hit 3.1 million barrels daily following sanctions workarounds, while Libyan outages remain unresolved at 400 thousand barrels daily offline.",
-            "Monitor Libyan political negotiations closely. Resolution of Sirte Basin disputes could release 600 thousand barrels daily within 90 days and pressure Brent below $100."
+            "Brent at $105.32 trades 5.7 percent above WTI, reflecting persistent Forties crude outages and structural Atlantic arbitrage closure.",
+            "Russian Urals sanctions and Arctic production declines remove 2 million barrels daily from global flows, supporting the Brent-WTI spread.",
+            "Monitor UK North Sea maintenance calendars and Libyan port stability closely, as geopolitical shocks could spike Brent $10 within weeks."
           ]
         },
         "storyWrittenAtPrice": 105.32,
@@ -48529,19 +48529,19 @@
         "_note": "Update price and change daily; spark array: drop first, append new close",
         "story": {
           "beginner": [
-            "Natural gas at $3.03 per million BTU costs about 2.3% less than it did one year ago, making it relatively affordable.",
-            "Heating bills and electricity costs depend on natural gas prices, so this slight decline means homeowners and utilities saved a little money this year.",
-            "Better. Lower gas prices reduce pressure on household energy costs heading into spring and summer."
+            "Natural gas at $3.03 per million BTU costs 2% less than last year, a modest decline that eases winter heating pressure.",
+            "Cheaper natural gas means lower heating bills for homes and businesses that rely on gas furnaces through spring months.",
+            "Your monthly heating bill drops 10 to 15 percent when gas prices fall this much, saving a typical household $30 to $50 per month."
           ],
           "moderate": [
-            "Natural gas sits at $3.03, down 2.3% year-over-year but up 18% since November lows of $2.56, recovering from winter oversupply.",
-            "Warmer winter weather reduced heating demand and LNG export capacity constraints eased in Q1, flooding the market with excess supply.",
-            "Power plants are switching back to coal in some regions because natural gas futures imply peak summer demand won't justify current high storage levels."
+            "Natural gas slipped 2.3% YoY to $3.03, up from $2.75 January lows but below the $3.50 peaks seen last summer.",
+            "Warm winter temperatures reduced heating demand, and LNG export capacity remains constrained, flooding the market with supply.",
+            "Power generators switching away from coal and toward gas-fired plants will boost demand next summer, but storage builds suppress prices now."
           ],
           "expert": [
-            "HH natural gas at $3.03 with volatility at 32% annualized, up from 22% in February, signals elevated tail risk around summer demand forecasts.",
-            "Working gas inventories sit at 1.91 trillion cubic feet, 15% above five-year average for late March, while LNG export growth to 13.2 billion cubic feet daily faces pipeline bottleneck constraints.",
-            "Watch Texas summer weather patterns closely. A heat dome above 105 degrees Fahrenheit for 60+ days could drain storage by August and spike prices to $4.50, triggering industrial demand destruction and power rationing risk."
+            "Henry Hub at $3.03 trades in the lower quartile of the $2.50 to $5.00 range, with storage inventories 4% above seasonal norms.",
+            "Mild weather patterns and record LNG plant maintenance in Texas reduce export demand, while domestic production holds steady near 100 bcf per day.",
+            "Watch for summer cooling demand and any supply disruptions from Gulf of Mexico hurricanes, which could reverse the downtrend if storage draws accelerate."
           ]
         },
         "storyWrittenAtPrice": 3.03,
@@ -49006,19 +49006,19 @@
         "_note": "Update price and change daily; spark array: drop first, append new close",
         "story": {
           "beginner": [
-            "Gold costs $4,524 per ounce today, roughly unchanged from last year despite global uncertainty.",
-            "Jewelry and investment demand for gold remains steady, keeping prices stable for consumers buying rings or coins.",
-            "Prices are holding firm, neither surging nor collapsing."
+            "Gold costs $4,524 per ounce, meaning a wedding ring sized piece costs roughly $150.",
+            "Jewelry stores charge more for gold rings and necklaces because the raw material price stays high.",
+            "Your grandmother's gold jewelry retains value better than cash savings would over decades."
           ],
           "moderate": [
-            "Gold trades at $4,524, up marginally 0.7% year-over-year but flat since mid-February as central banks pause rate hikes.",
-            "US dollar strength and higher real yields cap gold appreciation despite persistent inflation above 2.5%.",
-            "Stable gold prices reduce urgency for central banks to diversify reserves, potentially slowing emerging market buying cycles."
+            "Gold trades at $4,524, up slightly from $4,490 a year ago, showing remarkable price stability.",
+            "Central banks continue purchasing gold as reserves, supporting prices despite modest economic growth.",
+            "High gold prices make mining stocks attractive to investors seeking inflation hedges and portfolio diversification."
           ],
           "expert": [
-            "Gold at $4,524 consolidates near Q1 2026 highs with real yields between 2.1% and 2.3%, suppressing further rallies.",
-            "Fed pause rhetoric and market expectations for 50bps cuts by Q4 2026 compete against geopolitical hedging demand from Middle East tensions.",
-            "Watch whether PCE inflation stays above 2.4% through Q2, as persistent price pressures could trigger yield curve steepening and cap upside above $4,650."
+            "Spot gold at $4,524 exhibits sideways momentum with 0.7% YoY appreciation and low volatility regime.",
+            "Persistent central bank accumulation and geopolitical uncertainty anchor bids despite 2025 Fed rate stability.",
+            "Currency depreciation cycles and real rate compression risk repricing if US fiscal deficits trigger inflation acceleration."
           ]
         },
         "storyWrittenAtPrice": 4524.3,
@@ -49483,19 +49483,19 @@
         "_note": "Update price and change daily; spark array: drop first, append new close",
         "story": {
           "beginner": [
-            "Silver costs $69.80 per ounce, virtually flat compared to last year despite industrial demand shifts.",
-            "Silver jewelry and silverware prices remain stable, so consumers replacing flatware or buying gifts see steady costs.",
-            "No major movement either direction."
+            "Silver costs $69.80 per ounce, making it roughly 65 times cheaper than gold per unit.",
+            "Solar panel manufacturers buy silver for electrical contacts, so panel costs reflect silver prices indirectly.",
+            "Buying silver coins or bars costs more when silver rises, making them a less affordable savings vehicle."
           ],
           "moderate": [
-            "Silver trades at $69.80, up only 0.4% year-over-year and trading 12% below its August 2020 peak of $79.50.",
-            "Weak solar panel demand growth in China and slower US renewable installations have reduced industrial consumption by 3% since late 2025.",
-            "Constrained silver prices weaken incentives for mining firms to boost supply, risking supply tightness if renewable energy accelerates."
+            "Silver trades at $69.80, essentially flat from $69.50 a year ago despite industrial demand growth.",
+            "Solar installation growth drives steady industrial silver demand, keeping prices supported above $65 per ounce.",
+            "Silver's dual role as commodity and inflation hedge creates price stickiness when interest rates stabilize."
           ],
           "expert": [
-            "Silver at $69.80 reflects a 18-month consolidation under $72 resistance, with gold-silver ratio at 64.8 suggesting mean reversion risk to 60.",
-            "Industrial demand stalled due to China's manufacturing PMI at 49.2 in February 2026 and US capex delays in renewable infrastructure through Q2.",
-            "Monitor jewelry demand revival in India during April wedding season and potential supply disruptions from Peru labor strikes, either of which could break the $72 ceiling."
+            "Silver at $69.80 shows 0.4% YoY appreciation with gold/silver ratio at 64.8, near 5-year lows.",
+            "Photovoltaic capacity installations totaling 500 GW globally in 2025 anchored industrial demand despite macro headwinds.",
+            "Monetary policy divergence and currency volatility pose tail risks to silver's inflation hedge premium if real rates rise."
           ]
         },
         "storyWrittenAtPrice": 69.8,
@@ -49960,19 +49960,19 @@
         "_note": "Update price and change daily; spark array: drop first, append new close",
         "story": {
           "beginner": [
-            "Copper costs $5.49 per pound, stable year-over-year as building and power grid demand remains moderate.",
-            "Copper prices directly affect your home renovation costs, electrical wiring expenses, and utility infrastructure investments.",
-            "Holding steady without notable pressure."
+            "Copper costs $5.49 per pound, making it affordable enough for massive building and electrical wiring projects.",
+            "Home construction costs rise when copper prices climb, since wiring and plumbing use substantial copper quantities.",
+            "Buying a new house becomes slightly more expensive when copper hits higher prices like today."
           ],
           "moderate": [
-            "Copper trades at $5.49 per pound, up just 0.4% year-over-year but down 8% from its March 2025 peak of $5.98 per pound.",
-            "China's property sector contraction and 4.5% GDP growth target for 2026 have suppressed construction copper demand below 2024 levels.",
-            "Subdued copper prices reduce margins for Chilean and Peruvian miners, potentially delaying mine expansion projects worth 2 million tonnes annually by 2030."
+            "Copper trades at $5.49 per pound, virtually unchanged from $5.47 a year ago in sideways consolidation.",
+            "Global electric vehicle manufacturing expansion drives copper demand higher as EV motors use three times more copper than gas engines.",
+            "Construction activity across Asia remains the primary demand driver, preventing any sustained price weakness below $5.30."
           ],
           "expert": [
-            "Copper at $5.49 holds above the 200-day moving average near $5.35 but trades 8% below its March 2025 peak, signaling structural demand weakness.",
-            "China's property sales contracted 22% year-over-year in Q1 2026, while US infrastructure capex remains lumpy pending final appropriations for EV charging networks.",
-            "Track whether China stimulus announcements gain traction above the current 2.4 trillion yuan baseline, as copper would spike 12% to $6.15 on renewed construction signals."
+            "Copper at $5.49 with 0.4% YoY change shows demand resilience despite China construction slowdown and inventory builds.",
+            "EV battery and motor production growth offsets structural weakness in traditional construction copper demand in developed markets.",
+            "Chinese property credit cycles and geopolitical supply chain fragmentation create asymmetric downside risk if global growth disappoints."
           ]
         },
         "storyWrittenAtPrice": 5.49,
@@ -50438,19 +50438,19 @@
         "_note": "Update price and change daily; spark array: drop first, append new close",
         "story": {
           "beginner": [
-            "Wheat costs $6.06 per bushel today, essentially unchanged from last year despite global uncertainty.",
-            "Stable wheat prices keep bread and flour affordable for families buying groceries this week.",
-            "Neutral, since prices have held steady rather than climbing or falling sharply."
+            "Wheat costs $6.06 per bushel today, meaning farmers get paid about the same as last year.",
+            "Bread and pasta prices stayed roughly flat because wheat costs haven't moved much since 2025.",
+            "Your grocery bill for wheat products won't change noticeably, but farmers earn thin margins on current prices."
           ],
           "moderate": [
-            "Wheat trades at 605.75 cents, up 2.1% from the 2026 low of 593 cents in January.",
-            "Global inventory levels remain robust, with Russia and Ukraine combined holding record carryover stocks.",
-            "Millers pass through modest cost stability to retailers, preventing flour price inflation that would ripple through bakeries and CPG brands."
+            "Wheat trades at 605.75 cents per bushel, essentially unchanged from March 2025 despite seasonal volatility.",
+            "Global production oversupply from Russia, Ukraine, and North America keeps prices anchored despite occasional weather scares.",
+            "Flat wheat pricing supports cheap animal feed costs, which stabilizes meat and dairy prices downstream for consumers."
           ],
           "expert": [
-            "Wheat at 605.75 cents shows a quiet consolidation range between 590 and 620 cents over the past eight weeks.",
-            "Black Sea production forecasts of 86 million tonnes anchor bearish sentiment, while Chinese import demand remains subdued at 10.2 million tonnes year-to-date.",
-            "Monitor Argentine drought risk through April harvest; soil moisture deficits in Buenos Aires province could tighten global supplies if yields fall 8% or more."
+            "ZW trades 605.75 cents/bu with near-zero year-on-year momentum; March futures show weak seasonal lift despite typical spring support.",
+            "Structural oversupply from 2024/2025 harvest (Russia 86 MT, Ukraine recovery, North American acreage) overwhelms geopolitical risk premiums.",
+            "Watch Black Sea corridor disruptions and spring planting in Canada (possible frost delays); sustained production gluts risk breaking 600-cent support through Q2."
           ]
         },
         "storyWrittenAtPrice": 605.75,
@@ -50916,19 +50916,19 @@
         "_note": "Update price and change daily; spark array: drop first, append new close",
         "story": {
           "beginner": [
-            "Corn trades at $4.62 per bushel, holding its exact level from one year ago.",
-            "Cheap corn keeps animal feed costs low for poultry and livestock producers, protecting meat prices at the supermarket.",
-            "Stable, with no material pressure on consumers buying corn products or meat."
+            "Corn costs $4.62 per bushel today, exactly matching last year's price with zero change.",
+            "Animal feed makers pay the same for corn as they did a year ago, keeping chicken and pork relatively affordable.",
+            "Your meat and dairy costs won't jump because corn prices give farmers and ranchers no reason to raise animal feed expenses."
           ],
           "moderate": [
-            "Corn sits at 462 cents, down 1.8% from the March high of 470 cents but still 4.2% above the February low.",
-            "US stockpile forecasts of 2.31 billion bushels exceed normal carry levels, pressuring prices despite steady ethanol and feed demand.",
-            "Feed manufacturers absorb flat corn costs without raising poultry or hog input expenses, keeping wholesale meat prices competitive for grocers."
+            "Corn trades at 462 cents per bushel flat year-over-year, caught between adequate US supplies and moderate Chinese demand.",
+            "US ethanol policy uncertainty and weak export demand to China limit upside despite potential South American production shortfalls.",
+            "Stable corn pricing allows livestock operators to lock margins, which supports steady poultry and beef production without cost-push inflation."
           ],
           "expert": [
-            "Corn at 462 cents trades in a narrow 455 to 475 cent band, reflecting market indecision between ample domestic stocks and potential crop weather risks.",
-            "USDA season-average prices of 4.10 dollars anchor farmer hedging, while Brazilian safrinha production estimates of 48 million tonnes supply competitive import alternatives.",
-            "Watch Brazilian real weakness; if currency falls below 5.25 per dollar, Brazilian corn export competitiveness rises sharply and could suppress US basis bids into harvest season."
+            "ZC holds 462 cents/bu with zero YoY change; front-month contract shows structural resistance at 475 cents despite seasonal strength window.",
+            "US carryover stocks remain elevated (37 MT estimated) while Chinese purchases stall due to domestic policy and tariff uncertainty.",
+            "Monitor spring planting intentions and South American (Argentina, Brazil) final yield data; Chinese tariff escalation could spark speculative buying rallies above 480 cents."
           ]
         },
         "storyWrittenAtPrice": 462.0,
@@ -51392,19 +51392,19 @@
         "_note": "Update price and change daily; spark array: drop first, append new close",
         "story": {
           "beginner": [
-            "Soybeans cost $11.59 per bushel today, matching last year's level exactly with no net movement.",
-            "Steady soybean prices keep tofu, soy sauce, and animal feed costs predictable for grocers and food manufacturers.",
-            "Neutral, as prices remain locked in place rather than trending up or down."
+            "Soybeans cost $11.59 per bushel today, unchanged from a year ago despite global trade tensions.",
+            "Cooking oil, tofu, and animal feed prices stay stable because soybean costs haven't moved, keeping food prices predictable.",
+            "Your grocery bill for soy-based products won't spike because farmers face the same prices they did last March."
           ],
           "moderate": [
-            "Soybeans trade at 1,159.25 cents, up 3.1% from the February low of 1,124 cents but down 1.9% from the December peak.",
-            "South American harvest completion and record Argentine output of 51 million tonnes weigh on prices, while Chinese buying remains cautious at 15.8 million tonnes imported year-to-date.",
-            "Food processors holding steady soybean oil and meal costs delay input price hikes, allowing packaged food margins to stabilize through the second quarter."
+            "Soybeans trade at 1,159.25 cents per bushel flat year-over-year despite China tariff threats and South American yield concerns.",
+            "US export competitiveness against Argentina and Brazil, combined with Chinese demand weakness from domestic soy production, anchors prices near technical support.",
+            "Flat soybean costs allow feed manufacturers to hold livestock input expenses steady, supporting meat processor margins and consumer protein affordability."
           ],
           "expert": [
-            "Soybeans at 1,159.25 cents consolidate within a 1,100 to 1,200 cent range, with open interest clustering at 1,150 and 1,200 strikes.",
-            "South American production of 201 million tonnes (Argentina 51, Brazil 150 million) floods global supplies, while Chinese crushes of 65 million tonnes year-to-date remain 8% below prior year pace.",
-            "Monitor Chinese tariff policy on US beans; a 15% retaliatory levy would redirect 8 to 12 million tonnes toward Brazilian sources and steepen the US crush margin contraction through Q3 2026."
+            "ZS trades 1,159.25 cents/bu with zero YoY momentum; contract holds above 1,140-cent support but shows limited conviction for seasonal rally.",
+            "Chinese crushing margins remain compressed (tariff premiums offset demand, domestic crushing at 8 MT run rates), while Argentine harvest (56 MT expected) provides ample global supply.",
+            "Key risk: escalating US-China tariffs could trigger speculative panic above 1,200 cents; monitor South American weather (drought risk in Rio Grande do Sul) and Chinese policy signals on import quotas."
           ]
         },
         "storyWrittenAtPrice": 1159.25,
