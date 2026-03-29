@@ -62,9 +62,9 @@ STORY WRITING RULES - apply to every bullet at every level:
 """.strip()
 
 LEVEL_GUIDANCE = {
-    "beginner": "3 bullets. Bullet 1: what this commodity is and why it exists. Bullet 2: why its price matters to ordinary people. Bullet 3: one plain-English takeaway from the current price level.",
-    "moderate": "3 bullets. Bullet 1: current price in context (vs recent trend). Bullet 2: one specific supply or demand driver behind the current level. Bullet 3: one downstream effect on the economy or markets.",
-    "expert":   "3 bullets. Bullet 1: current price, direction, and key data point. Bullet 2: primary supply/demand or macro driver with specifics. Bullet 3: one forward implication or risk to watch.",
+    "beginner": "3 bullets. Bullet 1: what the current price tells us right now, in plain English. Bullet 2: one real-world effect ordinary people would recognise (fuel, food, energy bills). Bullet 3: one word on direction — is this getting better or worse for consumers?",
+    "moderate": "3 bullets. Bullet 1: current price vs recent trend, with a number. Bullet 2: the single biggest driver of the current level. Bullet 3: one concrete downstream effect on the economy or markets.",
+    "expert":   "3 bullets. Bullet 1: current price, direction, and one hard data point. Bullet 2: primary macro or supply/demand driver, with specifics. Bullet 3: one forward risk or implication worth watching.",
 }
 
 
@@ -162,7 +162,7 @@ def draft_batch(client, batch):
     lines.append("")
     lines.append("Write commodity stories for each of the following commodities.")
     lines.append("Each commodity needs stories at 3 audience levels: beginner, moderate, expert.")
-    lines.append("Each level must have EXACTLY 3 bullet points, each a complete sentence or two.")
+    lines.append("Each level must have EXACTLY 3 bullet points. Each bullet is one sentence only. Maximum 20 words per bullet.")
     lines.append("")
     lines.append(STYLE_GUIDE)
     lines.append("")
