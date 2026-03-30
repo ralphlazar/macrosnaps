@@ -1,5 +1,5 @@
 # MacroSnaps - Living Brief
-Last updated: March 29, 2026 (Session 61: Daily ritual completed; commodity stories migrated to bullet arrays; bug fixes to sync_market_historical.py, audit_ritual.py, build.py; Brent Crude backfill complete; macedu deployed to Cloudflare Pages.)
+Last updated: March 29, 2026 (Session 61: Daily ritual completed; commodity stories migrated to bullet arrays; bug fixes to sync_market_historical.py, audit_ritual.py, build.py; Brent Crude backfill complete; macedu deployed to Cloudflare Pages; commodity story prompt overhauled — tighter bullets, beginner level rewritten to be price-anchored.)
 
 Session 61 changes in detail:
 
@@ -20,7 +20,11 @@ Session 61 changes in detail:
 
 (5) **`build.py` — globalStories validator updated.** Accepts `bullets` or `body` (not both required). Committed as `"audit_ritual: accept bullets as well as body for global stories"`.
 
-(6) **Brent Crude backfill — complete.** `export_brent_csv.py` built and run. `brent_backfill.csv` (1,687 rows, 2000-07-17 to ~2007) pasted into Commodities tab; `sync_commodity_data.py --apply` + `build.py` run successfully.
+(7) **`update_commodity_stories.py` — prompt overhauled.** Commodity stories were too long and the beginner level was effectively commodity-101 boilerplate rather than price-anchored interpretation. Two changes:
+- Bullet length: "each a complete sentence or two" → "one sentence only, maximum 20 words per bullet"
+- Beginner LEVEL_GUIDANCE rewritten: all 3 bullets now anchored to current price. Bullet 1: what the current price tells us right now in plain English. Bullet 2: one real-world effect ordinary people would recognise (fuel, food, energy bills). Bullet 3: one concrete implication for ordinary people — what does this price level actually mean for their wallet, their savings, or their daily costs? (Previous beginner guidance opened with "what this commodity is and why it exists" — evergreen boilerplate, not interpretation.)
+
+ `export_brent_csv.py` built and run. `brent_backfill.csv` (1,687 rows, 2000-07-17 to ~2007) pasted into Commodities tab; `sync_commodity_data.py --apply` + `build.py` run successfully.
 
 ---
 
@@ -231,7 +235,27 @@ Session 48 changes in detail:
 
 In the Notes field, flag whether a contact is teaching-primary or research-primary.
 
-### Local preview rule
+### ABSOLUTE NON-NEGOTIABLE OUTPUT RULES
+
+These apply to EVERY SINGLE RESPONSE. No exceptions. Ever.
+
+**RULE 1 — FILE DOWNLOADS: ALWAYS provide the cp command.**
+After presenting any file for download, ALWAYS provide the bash command to copy it into the correct repo path, followed by the run command. Always in that order. ALWAYS. ALWAYS. ALWAYS. ALWAYS. ALWAYS.
+
+Format (every time, no exceptions):
+```bash
+cp ~/Downloads/filename /Users/lisaswerling/RALPH/AI/macrosnaps/filename
+```
+Then the run command.
+
+Never present a file without this. Never give only the run command. Never skip the cp step. ALWAYS. ALWAYS. ALWAYS.
+
+**RULE 2 — URLs: ALWAYS format as clickable links.**
+Every URL in every response must be a clickable markdown link. Never paste a bare URL. ALWAYS. ALWAYS. ALWAYS. ALWAYS. ALWAYS.
+
+Example: [http://localhost:8080](http://localhost:8080) — never `http://localhost:8080` as plain text.
+
+
 Since the site and app are live, all changes must be tested locally before pushing to git. Claude must always provide a local preview step before giving any git push command. Never combine build and push into a single command.
 
 ### Daily Bash Ritual
