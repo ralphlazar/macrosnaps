@@ -6,6 +6,10 @@ Google Sheet and writes a monthly_actuals block into each country in data.json.
 
 The monthly_actuals field is story context only - it is never displayed in the UI.
 
+Also writes full chronological series into _frozen_historical for countries that
+are excluded from the automated update_monthly_actuals.py pipeline (manual data
+sources). Currently: CHN and BRA unemployment, CHN policy rate.
+
 Run with --preview to print what would be written without touching data.json.
 Run with --apply to write to data.json.
 """
@@ -25,6 +29,15 @@ DATA_JSON = os.path.join(os.path.dirname(__file__), "data.json")
 
 COUNTRIES = ["USA", "CAN", "GBR", "JPN", "DEU", "FRA", "ITA", "CHN", "IND", "ZAF", "BRA", "RUS"]
 MONTHS_TO_KEEP = 36
+
+# Countries/series excluded from the automated pipeline that must be written
+# into _frozen_historical from the manually-maintained sheet columns.
+# Format: (tab_name, country_code, _frozen_historical key)
+FROZEN_BACKFILL_TARGETS = [
+    ("Unemployment", "CHN", "Unemployment"),
+    ("Unemployment", "BRA", "Unemployment"),
+    ("Policy_Rate",  "CHN", "Policy Rate"),
+]
 
 
 def get_sheets_service():
@@ -74,8 +87,41 @@ def read_tab(service, sheet_id, tab_name):
                 except (ValueError, TypeError):
                     pass
 
-    # trim to last 6 non-null entries
+    # trim to last 36 non-null entries
     return {c: per_country[c][:MONTHS_TO_KEEP] for c in COUNTRIES}
+
+
+def read_tab_full_series(service, sheet_id, tab_name, country_code):
+    """
+    Read a full tab column for one country and return a flat list of floats
+    in chronological order (oldest first), nulls excluded.
+    Used for _frozen_historical which needs the complete history.
+    """
+    result = service.spreadsheets().values().get(
+        spreadsheetId=sheet_id,
+        range=tab_name
+    ).execute()
+    values = result.get("values", [])
+    if not values or len(values) < 2:
+        return []
+
+    header = values[0]
+    if country_code not in header:
+        print(f"  WARNING: column {country_code} not found in {tab_name} tab")
+        return []
+
+    col_idx = header.index(country_code)
+    series = []
+    for row in values[1:]:
+        raw = row[col_idx].strip() if col_idx < len(row) else ""
+        if raw in ("", None, "N/A", "n/a", "-"):
+            continue
+        try:
+            series.append(round(float(raw), 2))
+        except ValueError:
+            continue
+
+    return series  # chronological order (sheet is oldest-first)
 
 
 def main():
@@ -127,6 +173,16 @@ def main():
         print(f"  {country}  inflation: {inf_str}  unemployment: {unemp_str}  policy_rate: {rate_str}")
     print()
 
+    # Read full series for _frozen_historical backfill targets
+    print("Reading full series for _frozen_historical backfill...")
+    frozen_updates = {}
+    for tab_name, country_code, frozen_key in FROZEN_BACKFILL_TARGETS:
+        series = read_tab_full_series(service, MACRO_MONTHLY_SHEET_ID, tab_name, country_code)
+        frozen_updates[(country_code, frozen_key)] = series
+        status = f"{len(series)} pts" if series else "no data"
+        print(f"  {country_code} {frozen_key}: {status}")
+    print()
+
     if preview:
         print("Preview complete. Run with --apply to write to data.json.")
         return
@@ -136,6 +192,7 @@ def main():
     with open(DATA_JSON, "r", encoding="utf-8") as f:
         data = json.load(f)
 
+    # Write monthly_actuals
     updated = 0
     for country in COUNTRIES:
         if country in data.get("countries", {}):
@@ -144,12 +201,31 @@ def main():
         else:
             print(f"  WARNING: {country} not found in data.json countries - skipped")
 
+    print(f"  Updated monthly_actuals for {updated} countries.")
+
+    # Write _frozen_historical for pipeline-excluded series
+    frozen_updated = 0
+    for (country_code, frozen_key), series in frozen_updates.items():
+        if not series:
+            print(f"  SKIPPED _frozen_historical: {country_code} {frozen_key} (no data)")
+            continue
+        country = data.get("countries", {}).get(country_code)
+        if not country:
+            print(f"  WARNING: {country_code} not found in data.json - skipped")
+            continue
+        fh = country.setdefault("_frozen_historical", {})
+        if frozen_key not in fh:
+            fh[frozen_key] = {"type": "line"}
+        fh[frozen_key]["v"] = series
+        frozen_updated += 1
+        print(f"  Updated _frozen_historical: {country_code} {frozen_key} ({len(series)} pts)")
+
     with open(DATA_JSON, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
-    print(f"  Updated monthly_actuals for {updated} countries.")
     print()
-    print("Done. Run python3 build.py to rebuild the output.")
+    print(f"Done. monthly_actuals: {updated} countries. _frozen_historical: {frozen_updated} series.")
+    print("Run python3 build.py to rebuild the output.")
 
 
 if __name__ == "__main__":

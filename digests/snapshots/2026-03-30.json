@@ -1,0 +1,205 @@
+{
+  "USA": {
+    "macro": {
+      "GDP Growth": "+2.2%",
+      "Unemployment": "4.2%",
+      "Budget Deficit": "-6.9% GDP",
+      "Current Account": "-3.7% GDP",
+      "Policy Rate": "3.25%"
+    },
+    "market": {
+      "Stock Market YTD": "-7.1%",
+      "Stock Market YTD (USD)": -3.12,
+      "10Y Bond Yield": "4.42%",
+      "Yield Curve": "+82bps",
+      "FX Rate": "100.495"
+    }
+  },
+  "CAN": {
+    "macro": {
+      "GDP Growth": "+1.7%",
+      "Unemployment": "6.5%",
+      "Budget Deficit": "-1.5% GDP",
+      "Current Account": "-0.5% GDP",
+      "Policy Rate": "2.25%"
+    },
+    "market": {
+      "Stock Market YTD": "+0.2%",
+      "Stock Market YTD (USD)": 2.78,
+      "10Y Bond Yield": "3.29%",
+      "Yield Curve": "+111bps",
+      "FX Rate": "0.729"
+    }
+  },
+  "GBR": {
+    "macro": {
+      "GDP Growth": "+1.5%",
+      "Unemployment": "5%",
+      "Budget Deficit": "-4% GDP",
+      "Current Account": "-2.5% GDP",
+      "Policy Rate": "3.25%"
+    },
+    "market": {
+      "Stock Market YTD": "+0.9%",
+      "Stock Market YTD (USD)": 5.25,
+      "10Y Bond Yield": "4.43%",
+      "Yield Curve": "+72bps",
+      "FX Rate": "1.322"
+    }
+  },
+  "JPN": {
+    "macro": {
+      "GDP Growth": "+0.8%",
+      "Unemployment": "2.5%",
+      "Budget Deficit": "-1.2% GDP",
+      "Current Account": "+4.8% GDP",
+      "Policy Rate": "1.25%"
+    },
+    "market": {
+      "Stock Market YTD": "+0.1%",
+      "Stock Market YTD (USD)": 4.7,
+      "10Y Bond Yield": "2.11%",
+      "Yield Curve": "+88bps",
+      "FX Rate": "159.72"
+    }
+  },
+  "DEU": {
+    "macro": {
+      "GDP Growth": "+1.2%",
+      "Unemployment": "3.8%",
+      "Budget Deficit": "-2% GDP",
+      "Current Account": "+4.5% GDP",
+      "Policy Rate": "2.5%"
+    },
+    "market": {
+      "Stock Market YTD": "-9.0%",
+      "Stock Market YTD (USD)": -1.54,
+      "10Y Bond Yield": "2.81%",
+      "Yield Curve": "+81bps",
+      "FX Rate": "1.1423"
+    }
+  },
+  "FRA": {
+    "macro": {
+      "GDP Growth": "+1.4%",
+      "Unemployment": "7.7%",
+      "Budget Deficit": "-4.8% GDP",
+      "Current Account": "+1% GDP",
+      "Policy Rate": "2.5%"
+    },
+    "market": {
+      "Stock Market YTD": "-5.7%",
+      "Stock Market YTD (USD)": -0.17,
+      "10Y Bond Yield": "3.40%",
+      "Yield Curve": "+140bps",
+      "FX Rate": "1.1423"
+    }
+  },
+  "ITA": {
+    "macro": {
+      "GDP Growth": "+1%",
+      "Unemployment": "5.6%",
+      "Budget Deficit": "-3.2% GDP",
+      "Current Account": "+0.8% GDP",
+      "Policy Rate": "2.5%"
+    },
+    "market": {
+      "Stock Market YTD": "-4.0%",
+      "Stock Market YTD (USD)": 1.4,
+      "10Y Bond Yield": "3.39%",
+      "Yield Curve": "+139bps",
+      "FX Rate": "1.1423"
+    }
+  },
+  "CHN": {
+    "macro": {
+      "GDP Growth": "+4.7%",
+      "Unemployment": "5.1%",
+      "Budget Deficit": "-6.8% GDP",
+      "Current Account": "+2.5% GDP",
+      "Policy Rate": "2.75%"
+    },
+    "market": {
+      "Stock Market YTD": "-2.5%",
+      "Stock Market YTD (USD)": 4.7,
+      "10Y Bond Yield": "2.40%",
+      "Yield Curve": "+35bps",
+      "FX Rate": "6.8954"
+    }
+  },
+  "IND": {
+    "macro": {
+      "GDP Growth": "+6.3%",
+      "Unemployment": "4.7%",
+      "Budget Deficit": "-7.2% GDP",
+      "Current Account": "-1.2% GDP",
+      "Policy Rate": "6%"
+    },
+    "market": {
+      "Stock Market YTD": "-15.2%",
+      "Stock Market YTD (USD)": -15.01,
+      "10Y Bond Yield": "6.78%",
+      "Yield Curve": "+128bps",
+      "FX Rate": "92.45"
+    }
+  },
+  "ZAF": {
+    "macro": {
+      "GDP Growth": "+1.5%",
+      "Unemployment": "32.5%",
+      "Budget Deficit": "-4.8% GDP",
+      "Current Account": "-1.4% GDP",
+      "Policy Rate": "6.25%"
+    },
+    "market": {
+      "Stock Market YTD": "-3.8%",
+      "Stock Market YTD (USD)": -2.5,
+      "10Y Bond Yield": "8.26%",
+      "Yield Curve": "+151bps",
+      "FX Rate": "16.8775"
+    }
+  },
+  "BRA": {
+    "macro": {
+      "GDP Growth": "+1.7%",
+      "Unemployment": "6.5%",
+      "Budget Deficit": "-6.7% GDP",
+      "Current Account": "-2.6% GDP",
+      "Policy Rate": "12%"
+    },
+    "market": {
+      "Stock Market YTD": "+13.1%",
+      "Stock Market YTD (USD)": 13.88,
+      "10Y Bond Yield": "13.80%",
+      "Yield Curve": "-140bps",
+      "FX Rate": "5.3019"
+    }
+  },
+  "RUS": {
+    "macro": {
+      "GDP Growth": "+1.2%",
+      "Unemployment": "2.5%",
+      "Budget Deficit": "-2.5% GDP",
+      "Current Account": "+2% GDP",
+      "Policy Rate": "12.5%"
+    },
+    "market": {
+      "Stock Market YTD": "+1.2%",
+      "Stock Market YTD (USD)": 2.33,
+      "10Y Bond Yield": "13.5%",
+      "Yield Curve": "-140bps",
+      "FX Rate": "80.025"
+    }
+  },
+  "_commodities": {
+    "WTI Crude": 100.93,
+    "Brent Crude": 107.66,
+    "Natural Gas": 2.92,
+    "Gold": 4564.4,
+    "Silver": 71.05,
+    "Copper": 5.52,
+    "Wheat": 602.0,
+    "Corn": 461.75,
+    "Soybeans": 1165.25
+  }
+}
