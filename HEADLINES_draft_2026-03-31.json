@@ -1,0 +1,359 @@
+{
+  "date": "2026-03-31",
+  "generated_at": "2026-03-31 10:20",
+  "countries": {
+    "USA": {
+      "stories": {
+        "beginner": [
+          "The Fed is staying put on interest rates for the rest of 2026. Markets shifted hard toward this view this week because oil prices spiked from the Middle East conflict, and rate hikes would fight inflation that's already mostly solved.",
+          "Trump just slapped 50% tariffs on Indian goods and is eyeing tariffs as high as 500%. This creates a totally different inflation problem than energy prices, one the Fed can't solve by sitting still.",
+          "Unemployment sits at 4.4% and inflation at 2.41%, both near the Fed's comfort zone. The real risk now is that tariff-driven price hikes could force the Fed back into tightening mode later in the year."
+        ],
+        "moderate": [
+          "Futures markets just flipped to 60% odds the Fed holds rates steady through 2026, up from 47% a week ago, as energy shock risks offset any remaining case for cuts. The timing matters: oil-driven inflation is temporary, but the Fed needs to signal patience without signaling weakness on tariffs.",
+          "Trump's tariff escalation (50% on India, up to 500% on the table) creates a policy-driven inflation channel the Fed can't ignore. Unlike 2022, when supply shocks dominated, tariffs hit demand and pricing power simultaneously, forcing different policy math.",
+          "At 2.41% CPI and 4.4% unemployment, the Fed has room to absorb an energy shock without overheating, but only if tariff pass-through stays contained. Watch Q2 inflation prints for the critical signal on whether tariffs translate into actual price stickiness or just margin compression."
+        ],
+        "expert": [
+          "The 60% hold probability reflects genuine Fed optionality: CPI at 2.41% absorbs an energy shock without breaching 3%, and unemployment at 4.4% sits above the 4.2% forecast, giving the Fed cover to skip cuts. The 2026 policy rate forecast of 3.25% is now a floor, not a midpoint.",
+          "India tariffs at 50% (the world's highest) signal tariff escalation will be selective and targeted rather than global. Forward-implied tariff pass-through into CPI depends on the trade volume elasticity and competition dynamics in specific sectors, but the Fed's reaction function will shift toward accommodation only if tariffs crater growth without raising core inflation.",
+          "Capital goods demand remains resilient (not yet priced into consensus forecasts), and the 2.2% GDP growth forecast assumes tariff-drag is moderate. If tariffs compress profit margins without reducing volumes, Q2 capex data becomes the directional signal for whether the Fed pivots to easing or holds through a slower-growth, higher-volatility path."
+        ]
+      },
+      "sources": []
+    },
+    "CAN": {
+      "stories": {
+        "beginner": [
+          "Canada was supposed to get rate cuts this spring because growth has been weak, but the energy shock from the Middle East is changing the calculus. Higher oil prices are actually good for Canada since it exports energy, so the Bank of Canada might keep rates on hold instead.",
+          "At 1.78% inflation and 6.74% unemployment, Canada looks recession-adjacent. But as an energy exporter, it dodges the worst of an oil shock that would devastate energy importers, giving the central bank breathing room to think about growth instead of just fighting prices.",
+          "The Bank of Canada's March decision will signal whether it pivots to growth support or waits for clarity on energy prices and tariff impacts. Watch how policymakers frame the energy windfall, because that language predicts whether rate cuts come in April or get delayed."
+        ],
+        "moderate": [
+          "Rate cut expectations have been live all year due to soft growth and low inflation at 1.78%, but the energy shock from Middle East conflict has created a policy dilemma: higher oil revenues support the currency and demand, but also raise input costs and uncertainty. The Bank of Canada is weighing whether to hold in March and assess the net effect.",
+          "Canada's position as a net energy exporter insulates it from the worst tariffs-and-energy-shock combinations hitting importers, but 6.74% unemployment and 1.7% forecast growth suggest the economy is already fragile. A rate hold now doesn't mean forever, just tactical patience on the inflation front.",
+          "The BOJ just held steady despite hawkish intent, and the BoC faces a similar bind: inflation at 1.78% is below target, unemployment above forecast, but energy upside and tariff risk create two-way optionality. The March meeting sets the tone for whether 2.25% is a floor (cuts later) or a holding pattern (cuts delayed into H2)."
+        ],
+        "expert": [
+          "The Bank of Canada was priced for April cuts on the back of 1.78% CPI and 6.74% unemployment, but energy prices flip the calculus: higher oil props up the currency (CAD) and corporate revenues, removing some urgency from growth support. The March decision will likely signal a hold and conditional forward guidance rather than a rate cut.",
+          "Canada's 1.7% growth forecast assumes tariff headwinds offset energy windfall. If tariffs hit harder than modeled (Trump's India precedent suggests escalation risk is real), unemployment could spike and force rate cuts even if oil prices stay elevated. The critical data point is April labor market print post-tariff implementation.",
+          "The BoC's March hold probability is rising not because inflation pressures exist, but because energy upside and tariff optionality demand more information. Watch the policy rate language for 'data-dependent' framing on tariffs. If the statement emphasizes tariff monitoring, cuts are likely deferred to May or later, extending the 2.25% hold through Q2."
+        ]
+      },
+      "sources": []
+    },
+    "GBR": {
+      "stories": {
+        "beginner": [
+          "The Bank of England is in a genuine bind: inflation at 3.24% is still above target, so raising rates looks right, but growth is so weak that another rate hike could push the UK into recession. The energy shock from the Middle East makes this choice even harder because it raises prices while dampening demand.",
+          "Even a mild energy shock could tip the UK into recession because the economy is already running on fumes. That means the BoE has to choose between fighting inflation or saving growth, and it probably can't do both with rates at 3.75%.",
+          "Watch the BoE's next decision as a barometer of how hawkish central banks stay when growth turns fragile. If the BoE cuts rates despite 3.24% inflation, it signals central banks prioritize recession risk over price overshoots. If it holds or hikes, it bets that tariffs and energy shocks don't kill demand."
+        ],
+        "moderate": [
+          "The BoE faces a policy trilemma: CPI at 3.24% is stubbornly above the 2.5% target, unemployment at 5.2% is tight, but growth at 1.5% forecast is anemic and vulnerable. The energy shock adds urgency because it raises inflation near-term while killing demand medium-term, forcing the BoE to choose between levels and cycles.",
+          "Historical precedent: the UK slipped into recession in 2023 with unemployment at 4%, so the current 5.2% print, combined with 1.5% growth, puts recession risk in the tail already. The BoE's tolerance for above-target inflation depends on how much slack it believes exists in the labor market; at 5.2%, that's shrinking fast.",
+          "The BoE cannot look through energy inflation as the Fed can (energy shock is temporary and well-understood), because UK growth is too fragile. If the BoE hikes in response to 3.24% CPI despite recession risk, the signal is that inflation credibility trumps growth. If it holds or cuts, it admits stagflation risk dominates and will tolerate a price overshoot."
+        ],
+        "expert": [
+          "The BoE held at 3.75% through Q1 with CPI at 3.24%, a 74bps cushion above target that looks hawkish until you see the growth picture: 1.5% GDP forecast is fragile, and the BoE's own OBR projections show unemployment rising if tariffs hit hard. The March decision frameworks will reveal whether the BoE privileges inflation persistence (hawkish) or recession avoidance (dovish).",
+          "Energy shock dynamics differ from the Fed because the UK is a net importer: higher oil tightens domestic financial conditions and raises real rates via inflation expectations. With unemployment already at 5.2% and growth at 1.5% forecast, a 25bps cut in Q2 is now the modal outcome if energy prices stay elevated and tariff impact data starts showing demand destruction.",
+          "Forward signal: watch for BoE rhetoric on 'balance of risks.' If the March statement tilts toward downside growth risks (instead of upside inflation risks), rate cuts are likely by May. If the BoE emphasizes inflation persistence and credibility, it will hold through H1 and accept that UK recession probability is rising. The 2.5% full-year CPI forecast is too low; expect 3.0%+ if energy stays elevated."
+        ]
+      },
+      "sources": []
+    },
+    "JPN": {
+      "stories": {
+        "beginner": [
+          "The Bank of Japan kept rates on hold at 0.75% despite Governor Ueda wanting to raise them, because inflation at 1.26% isn't strong enough to justify tightening yet. But Q4 capex surged 6.5%, which is exactly the signal the BOJ needs to start normalizing rates.",
+          "Japan's economy is finally showing real momentum: business investment jumped way above expectations, which gives the BOJ ammunition to raise rates without worrying about killing growth. This is the opposite of the West, where energy shocks and tariffs threaten recession.",
+          "The BOJ is the only major central bank that can actually hike rates right now because growth is solid and unemployment is 2.4%. Watch for the next rate hike announcement, which could come as soon as the next meeting if capex data holds up."
+        ],
+        "moderate": [
+          "The BOJ held at 0.75% in March despite Ueda's normalization bias, but Q4 capex spiked 6.5% YoY (vs. 3.0% consensus), signaling domestic demand is robust enough to support tightening. The March hold was patient, not dovish, and sets up rate hikes in the back half as inflation stays above the 1.8% target and capex momentum confirms.",
+          "Japan's capex surprise matters because it breaks the deflation-and-stagnation narrative: business investment growth of 6.5% suggests pricing power and confidence are returning. Combined with 2.4% unemployment, this is the tightest labor market among major economies, creating room for the BOJ to exit accommodation without dampening growth.",
+          "The BOJ's policy rate at 0.75% is already above the Fed's effective rate (3.64% nominal, ~2.5% real given 2.41% CPI), so the rate hiking cycle is actually underway in real terms. The next BOJ move is likely a 25bps hike by June if capex holds and inflation stays above 1.8%, supporting the 1.25% year-end forecast."
+        ],
+        "expert": [
+          "The BOJ left rates at 0.75% on the basis of inflation at 1.26% (0.54bps below target) despite capex printing 6.5% YoY, more than double consensus. This is a hold, not a pause, and the policy language will frame the inflation and capex data as grounds for future tightening, not dovish optionality.",
+          "Capital spending acceleration (6.5% vs. 3.0% consensus) is the critical directional signal because it shows corporate Japan sees pricing power and demand resilience amid energy shock and tariff uncertainty. If March/April capex data confirms, the BOJ will have justification to hike to 1.0% by mid-year, supporting the 1.25% forecast and closing the real rate gap with the Fed.",
+          "Forward implication: the BOJ's policy path diverges from the Fed in 2026. While the Fed is stuck, the BOJ can normalize rates because inflation above target (1.26% is only -0.54bps below 1.8% target) and capex momentum are both supportive. Watch for BoJ forward guidance language on 'gradual normalization' in the March summary; a shift to 'data-dependent' (instead of 'patient') signals hikes are coming by June."
+        ]
+      },
+      "sources": []
+    },
+    "DEU": {
+      "stories": {
+        "beginner": [
+          "Germany's factories just started growing again for the first time in three and a half years, driven by new orders and government spending on infrastructure and defense.",
+          "This matters because Germany is Europe's largest economy, and when it moves, the rest of the continent tends to follow.",
+          "Watch whether this momentum spreads beyond manufacturing into services and consumer spending, or stays confined to government-backed projects."
+        ],
+        "moderate": [
+          "Germany's manufacturing PMI hit 50.9 in March, breaking a long contraction streak thanks to rising new orders fueled by defense and infrastructure spending from Berlin's rearmament push.",
+          "The timing is striking: Germany's unemployment sits at 3.6% and inflation at 1.9%, so the economy has room to run without overheating, unlike 2021-2022.",
+          "The real test comes next: whether private sector demand joins the party or whether growth stays tethered to government contracts, which would limit the multiplier effect."
+        ],
+        "expert": [
+          "Manufacturing PMI crossed 50.9 in March after 42 months in contraction, with new orders and employment components signaling broad-based stabilization rather than single-factor rebound.",
+          "CPI at 1.9% and policy rate at 2.15% suggest ECB cuts remain on the table if core momentum doesn't accelerate, giving Berlin's fiscal impulse room to transmit without tightening headwinds.",
+          "Full-year 1.2% GDP growth forecast assumes sustained momentum; watch Q2 PMI for evidence that infrastructure and defense orders translate into sustained capex rather than temporary order volatility."
+        ]
+      },
+      "sources": []
+    },
+    "FRA": {
+      "stories": {
+        "beginner": [
+          "France's factory activity barely held its ground in March with a PMI of 50.1, and underneath that number is a story of weakness: private demand is soft and orders from abroad are falling.",
+          "A manufacturing reading this close to contraction (50 is the line between growth and shrinkage) signals that France is not riding the same wave as Germany despite being neighbors.",
+          "France will chair the G7 in June without China at the table, but at home, the economic backdrop is fragile enough to limit the country's diplomatic leverage."
+        ],
+        "moderate": [
+          "France's manufacturing PMI of 50.1 in March masks deteriorating fundamentals: export orders are declining and private sector activity remains anemic, leaving the country dependent on domestic policy support.",
+          "Compare this to Germany's 50.9 driven by new orders: France's weakness is structural, not cyclical. Inflation at 0.9% and unemployment stuck at 7.7% suggest demand destruction rather than supply constraints.",
+          "The G7 summit in June arrives as France's economy struggles to accelerate above 1.4% growth, undermining the country's ability to lead on economic coordination while managing domestic fiscal stress."
+        ],
+        "expert": [
+          "Manufacturing PMI of 50.1 conceals contraction in new orders and export activity, signaling demand-side weakness that low inflation (0.9% in February) does not offset.",
+          "Unemployment at 7.7% and forecast budget deficit of 4.8% of GDP indicate structural labor market slack and constrained fiscal space, even as ECB policy rate sits at 2.15%.",
+          "Watch whether France's Q2 data breaks below 50 PMI: a slide into contraction would force Lyon to choose between fiscal tightening (EU pressure) and stimulus (electoral pressure), with limited room for either."
+        ]
+      },
+      "sources": []
+    },
+    "ITA": {
+      "stories": {
+        "beginner": [
+          "Italy's factories are growing with optimism at multi-year highs, riding the wave of German orders as German defense and infrastructure spending spills over the border.",
+          "Italy benefits from being tightly woven into German supply chains, so when Germany spends, Italian factories get orders.",
+          "The risk: Italy's growth depends on Germany keeping the spending spigot open, which means it's not controlling its own destiny right now."
+        ],
+        "moderate": [
+          "Italy's manufacturing PMI of 50.6 reflects a trade-driven rebound rather than domestic strength, with optimism driven by German infrastructure and defense orders flowing through supply chains.",
+          "Inflation at 1.51% and unemployment at 5.6% give Italy room to benefit from this external impulse without overheating, unlike the early 2020s boom.",
+          "The vulnerability: Italy's growth is borrowing from Germany's fiscal cycle, so if Berlin tightens or if new order momentum stalls, Italy's expansion reverses faster than it arrived."
+        ],
+        "expert": [
+          "Manufacturing PMI of 50.6 driven by German spillover demand, with confidence metrics at multi-year highs indicating sustained order flow rather than inventory adjustment.",
+          "CPI at 1.51% and unemployment at 5.6% suggest limited domestic demand pressure, making Italy a pure conduit for German fiscal impulse without generating inflationary bleed-through.",
+          "Forward signal: if Italy sustains PMI above 51 into Q2, German infrastructure spending is translating into capex, not just order volatility; if it rolls over below 50.5, demand is weaker than sentiment suggests and Italy faces deceleration by midyear."
+        ]
+      },
+      "sources": []
+    },
+    "CHN": {
+      "stories": {
+        "beginner": [
+          "China's factories and shoppers both perked up in the first two months of 2026: investment growth returned for the first time since August, and consumer spending hit its best pace since October.",
+          "The boost came from infrastructure and manufacturing investment, while property investment kept falling, showing Beijing is pushing money into growth but the real estate crisis persists.",
+          "Lunar New Year shopping drove the retail sales bump, so watch April and May to see if demand momentum holds or if it was just a seasonal fluke."
+        ],
+        "moderate": [
+          "Fixed-asset investment grew 1.8% year-over-year in the first two months, with infrastructure surging 11.4%, marking the first growth cycle since August and signaling Beijing's stimulus is gaining traction.",
+          "Retail sales at 2.8% growth (best since October) show consumers are responding to holiday spending and perhaps more cautiously to policy support, but property investment fell 11.1%, confirming the sector remains a dead weight.",
+          "Inflation at 0.23% means Beijing has room to cut rates if momentum stalls, but deflationary pressures suggest weak underlying demand outside the government-driven sectors that are being propped up."
+        ],
+        "expert": [
+          "Fixed-asset investment posted 1.8% YoY growth with infrastructure at 11.4% and manufacturing at 3.1%, reversing the August contraction and signaling front-loaded deployment of stimulus via state-owned enterprises.",
+          "Retail sales at 2.8% (best since October) and CPI at 0.23% indicate consumer demand is tepid relative to state investment, creating a two-tier recovery dependent on fiscal impulse rather than autonomous demand.",
+          "Watch March onwards: property investment at -11.1% is still dragging; if April FAI data falls back below 1% or retail turns negative after Lunar New Year, Beijing will face pressure to accelerate rate cuts despite the 2.75% policy rate, signaling underlying fragility beneath headline growth."
+        ]
+      },
+      "sources": []
+    },
+    "IND": {
+      "stories": {
+        "beginner": [
+          "Trump just slapped 50% tariffs on Indian goods and threatened up to 500% more, while pulling the US out of India's solar alliance. New Delhi has to navigate the fallout while chairing BRICS and staying neutral on Middle East conflicts it can't afford to take sides on.",
+          "Inflation sits at 1.33%, well below the forecast 4.2%, which sounds great until you realize it signals weak demand across the economy. The Reserve Bank's 5.25% rate is cushioning against future price shocks, but won't help if trade wars crater exports.",
+          "India chairs BRICS through September, a moment of soft power leadership that collides directly with US protectionism. The geopolitical pressure cooker (Iran tensions, Trump tariffs, BRICS unity) forces New Delhi to choose between economic self-interest and alliance credibility."
+        ],
+        "moderate": [
+          "Trump's tariff barrage landed just as India holds the BRICS chair, forcing New Delhi to manage both economic retaliation and diplomatic neutrality simultaneously. The 50% baseline with 500% on the table means Indian exporters face sudden, severe margin compression across sectors from textiles to IT services.",
+          "CPI at 1.33% sits 290 basis points below the 4.2% full-year forecast, reflecting a demand-side slowdown masking beneath soft headline numbers. The RBI's 5.25% policy rate remains restrictive in real terms, but rate cuts risk imported inflation if the rupee weakens under tariff pressure.",
+          "The May foreign minister meeting and September BRICS summit put India on stage just as US trade policy targets it directly. Watch whether tariff escalation forces rate cuts (signaling panic) or holds firm (signaling confidence the economy can weather the shock), and monitor rupee stability as the first tell on capital flight risk."
+        ],
+        "expert": [
+          "Trump tariffs (50% actual, 500% threatened) land on CPI of 1.33% and unemployment of 4.22%, suggesting the RBI has room to cut if trade shock demands it, though 5.25% policy rate vs 1.33% realized inflation already implies heavy real restriction. The tariff threat alone depresses capex expectations and narrows the 6.3% GDP growth forecast.",
+          "BRICS chair amplifies India's geopolitical exposure during the Iran-US-Israel crisis precisely when trade wars demand inward focus. The fiscal position (7.2% deficit) and current account (1.2% deficit) leave limited buffer for currency volatility or capital outflows if tariff escalation hardens.",
+          "Forward signal: watch RBI decision timing and language around rate cuts relative to tariff escalation announcements. A rate cut in April/May would suggest the RBI is pricing a demand shock; holding at 5.25% signals confidence structural growth (6.3% forecast) survives. Currency management becomes the real constraint if tariffs drive rupee weakness faster than inflation stabilizes."
+        ]
+      },
+      "sources": []
+    },
+    "ZAF": {
+      "stories": {
+        "beginner": [
+          "South Africa is running military drills with China, Russia, and Iran in a show of BRICS muscle right as the West condemns Iran's blockade of shipping lanes. The exercises signal South Africa backing the Global South's counter to Western naval dominance, but the move isolates it further from Western trade partners it desperately needs.",
+          "Unemployment sits at 31.88%, nearly 2 percentage points above the 32.5% forecast, meaning the labor market is actually slightly better than expected. But that's window dressing on a catastrophe. One in three working-age South Africans can't find a job, and military theater changes nothing about that reality.",
+          "The naval exercises are South Africa's way of asserting influence within BRICS while the bloc itself fractures (Russia and China skipping the July Brazil summit). Johannesburg is choosing geopolitical alignment with Beijing and Moscow over the economic restructuring that could actually dent unemployment."
+        ],
+        "moderate": [
+          "South Africa leads Will for Peace drills with China, Russia, and Iran starting January 11, framed as protecting Global South maritime interests against Western hegemony. The timing matters: it comes three days after the US seized a Russian oil tanker, so the exercises telegraph that BRICS won't tolerate Western sanctions enforcement in their waters.",
+          "CPI at 2.96% sits below the 3.5% forecast, but unemployment at 31.88% (vs 32.5% forecast) masks structural collapse in labor absorption. The SARB's 6.75% policy rate is fighting headline inflation while real joblessness worsens, a classic policy bind when growth (1.5% forecast) is too weak to create jobs.",
+          "The naval exercises boost Johannesburg's standing in BRICS, but the bloc's credibility is questionable: Russia and China won't even attend the July summit. South Africa's real constraint is a 4.8% budget deficit and 1.4% current account deficit that force reliance on Western capital inflows the naval posturing may now jeopardize."
+        ],
+        "expert": [
+          "Will for Peace drills launched January 11 with China, Russia, Iran signal South Africa's pivot toward defending BRICS shipping corridors from Western enforcement. The timing (three days post-US tanker seizure) and composition (exclude Western navies) suggest operational response, not just symbolism. CPI 2.96% and 6.75% SARB rate leave room for cuts if global growth disappoints.",
+          "Unemployment 31.88% vs 32.5% forecast masks the real story: labor force participation collapsed, not improved. With 1.5% GDP growth forecast and 4.8% fiscal deficit, South Africa cannot afford both BRICS alignment and Western capital market access. The naval exercises are a credibility signal to Beijing and Moscow that Johannesburg won't abandon the bloc.",
+          "Forward watch: monitor capital flow direction through Q2 (emerging market fund flows will reveal whether Western investors punish the Iran/Russia alignment) and the July BRICS summit (if Russia/China continue skipping, South Africa's exercises cost credibility with the West for no BRICS benefit). The current account deficit of 1.4% is the hard constraint if FX inflows slow."
+        ]
+      },
+      "sources": []
+    },
+    "BRA": {
+      "stories": {
+        "beginner": [
+          "Brazil's factories are barely moving. Manufacturing PMI inched up to 47.3 from 47.0, still deep in contraction, which means businesses are cutting production and pushing back orders. At this pace, the 1.7% GDP growth forecast is optimistic.",
+          "Brazil's hosting the BRICS summit in July, but China and Russia said they won't show up. That's a public snub that undermines Johannesburg's authority as a bloc leader right when global governance and South cooperation are supposed to be the agenda. Rio gets the stage with no A-list guests.",
+          "Interest rates are at 15%, the highest in the BRICS pack, but inflation is only 3.81% and falling. The central bank is choking growth to kill price pressures that aren't even that bad anymore. Manufacturing contraction is the real problem, and higher rates make it worse, not better."
+        ],
+        "moderate": [
+          "Manufacturing PMI at 47.3 (unchanged from 47.0) signals factories are not recovering from contraction, a drag on the 1.7% growth forecast that assumes improvement. CPI at 3.81% is falling fast, yet the BCB keeps rates at 15%, suggesting policy lags the disinflation and risks deepening the manufacturing slump.",
+          "The July BRICS summit lands in Rio with Russia and China declining to attend, stripping symbolic power from Brazil's host role and signaling the bloc's structural weakness on geopolitical unity. Brazil cannot leverage this moment to reset global governance narratives if its BRICS peers stay home.",
+          "The 6.7% fiscal deficit and 2.6% current account deficit constrain Brazil's room to ease rates despite slowing inflation and contracting manufacturing. Forward guidance from the BCB will reveal whether officials believe 15% rates can return to neutral without triggering deeper output losses, or whether the summit's geopolitical weakness signals inward focus on internal stabilization."
+        ],
+        "expert": [
+          "Manufacturing PMI at 47.3 (flat from 47.0) confirms contraction persists despite BCB holding rates at 15% since February. CPI 3.81% tracks 80 basis points below the 4.2% forecast, allowing rate cuts, but BCB's hawkish hold suggests officials expect upside surprise or fear pass-through from currency weakness if cuts trigger capital outflows.",
+          "BRICS summit July 6-7 in Rio designed to showcase Global South governance leadership; Russia and China's absence signals the bloc cannot deliver unified positions on Ukraine, Iran, or US multipolarity rhetoric. The summit becomes a domestic political spectacle in Brazil rather than a geopolitical inflection point, limiting Brasilia's ability to reset expectations on rate path or fiscal direction.",
+          "Watch for BCB signals in April/May communications on terminal rate: if officials hint at 14.5% or lower ahead of Q2 CPI print, they're betting manufacturing contraction (PMI 47.3) forces rate cuts by June/July despite fiscal constraints (6.7% deficit). If they hold hawkish language through the summit, the real story is that geopolitical isolation and growth weakness force fiscal discipline, not rate easing."
+        ]
+      },
+      "sources": []
+    },
+    "RUS": {
+      "stories": {
+        "beginner": [
+          "Thirty countries including the UK, France, Germany, Japan, and Canada just condemned Iran for attacking commercial ships and choking off the Strait of Hormuz. Russia stayed silent publicly, but three days after the West seized a Russian oil tanker for sanctions violations, the BRICS naval drills with Iran and China are Russia's answer. Moscow is doubling down on the Iran alliance despite the oil tanker seizure.",
+          "Russia's unemployment at 2.15% is nearly full employment, and inflation at 6.01% is climbing back. The central bank's 15.5% rate is working, but it's also strangling any hope of growth beyond the 1.2% forecast. Russia is tightening into a slowing economy, which means the labor market will eventually crack.",
+          "Russia is isolated from Western capital markets and locked into BRICS alignment with China and Iran. The naval exercises are theatre (military posturing), not policy. What matters for Russians is whether 15.5% rates and sanctions can be sustained without triggering a wage-price spiral or capital flight."
+        ],
+        "moderate": [
+          "The US seized a Russian oil tanker for sanctions evasion in the North Atlantic; Russia responded three days later by leading BRICS naval exercises with Iran and China, doubling down on the Iran alliance. The message is clear: Russia won't abandon Tehran to appease Western sanctions enforcement, even as its energy revenues face increasing pressure.",
+          "CPI 6.01% sits above the 4.7% full-year forecast, suggesting inflation expectations are re-anchoring upward despite the 15.5% policy rate. Unemployment at 2.15% near full employment means the labor market is tight, but the central bank's aggressive hold is a war economy posture: Russia is constraining demand, not growth.",
+          "Russia's current account surplus of 2% (forecast) and 1.2% GDP growth signal a Russia in managed contraction, pulling back energy supplies and buying time. The naval exercises broadcast BRICS alignment to Western audiences, but the real constraint is whether sustained 15.5% rates and sanctions can keep inflation from re-accelerating as expectations shift."
+        ],
+        "expert": [
+          "CBR held policy rate at 15.5% into CPI 6.01% (above 4.7% forecast) and unemployment 2.15%, signaling war economy monetary settings. The US oil tanker seizure and BRICS naval exercises (January 14) represent tit-for-tat escalation, with Russia betting the exercises broadcast commitment to Iran and China while CBR tightens to stabilize the ruble and contain wage-price feedback loops.",
+          "Russia's 2% current account surplus and 1.2% growth forecast mask the underlying story: managed contraction with positive external balances sustained by energy quotas, not private sector dynamism. The labor market at 2.15% unemployment is structurally tight; higher rates are working to cool wage growth, but the margin between rate hold and demand destruction is narrowing.",
+          "Forward signal: watch CBR communications in April/May for forward guidance on rate trajectory. A hold at 15.5% through Q2 signals confidence inflation will re-anchor below 5% and that the labor market's tightness (2.15%) can be managed without cuts. Rate cuts would signal CBR believes the 6.01% print is temporary and growth (1.2% forecast) can sustain without stimulus, a high-conviction call in a sanctions regime."
+        ]
+      },
+      "sources": []
+    }
+  },
+  "globalStories": {
+    "beginner": [
+      {
+        "icon": "🛢️",
+        "label": "Trump Peace Deal Hopes Shake Oil",
+        "bullets": [
+          "Oil prices dropped when Trump said he might accept a deal leaving Iran still blocking the shipping route",
+          "Markets jumped on any sign the war might end because it sent energy costs soaring",
+          "The fighting started a month ago and has been shutting down a key oil passage"
+        ],
+        "source": "Wall Street Journal"
+      },
+      {
+        "icon": "📈",
+        "label": "Stocks Rally on War Optimism",
+        "bullets": [
+          "Stock markets surged when news broke that Trump might end attacks on Iran",
+          "Energy companies fell the most since their stocks went up during the oil crisis",
+          "Gold prices also rose as investors sought safety during uncertain times"
+        ],
+        "source": "Bloomberg"
+      },
+      {
+        "icon": "🏦",
+        "label": "Central Banks Fight Energy Inflation",
+        "bullets": [
+          "Australia raised interest rates again because the oil shock is making prices rise faster",
+          "The US Federal Reserve is holding rates steady but worried about energy pushing up inflation",
+          "Both banks are trying to prevent oil price spikes from causing broader price increases"
+        ],
+        "source": "Reserve Bank of Australia"
+      }
+    ],
+    "moderate": [
+      {
+        "icon": "🛢️",
+        "label": "Trump Peace Deal Hopes Shake Oil",
+        "bullets": [
+          "Oil fell below $110 after surging past $116 when Trump suggested accepting Iran keeping the Strait of Hormuz closed",
+          "This reverses his earlier demand that Iran reopen the shipping route that handles 20% of global oil",
+          "Markets are torn between hope for peace talks and fear that energy supplies stay disrupted"
+        ],
+        "source": "Wall Street Journal"
+      },
+      {
+        "icon": "📈",
+        "label": "Stocks Rally on War Optimism",
+        "bullets": [
+          "S&P 500 futures jumped 1.1% after hitting their worst month since 2022 due to the energy crisis",
+          "The rally came despite oil staying above $100 and uncertainty about whether Trump actually has a deal",
+          "Defensive assets like gold also gained as investors hedge against geopolitical risks"
+        ],
+        "source": "Bloomberg"
+      },
+      {
+        "icon": "🏦",
+        "label": "Central Banks Fight Energy Inflation",
+        "bullets": [
+          "RBA hiked to 4.1% in a split decision, citing energy costs adding to already elevated domestic inflation at 3.7%",
+          "Fed held at 3.5-3.75% but raised 2026 inflation forecasts due to oil impact on broader price pressures",
+          "Both face the classic energy shock dilemma of fighting inflation while risking growth slowdowns"
+        ],
+        "source": "Reserve Bank of Australia"
+      }
+    ],
+    "expert": [
+      {
+        "icon": "🛢️",
+        "label": "Trump Peace Deal Hopes Shake Oil",
+        "bullets": [
+          "Brent crude dropped from $116 to below $110 on WSJ report Trump would accept deal without Hormuz reopening",
+          "Shift from his March 30 ultimatum threatening destruction of all Iranian energy infrastructure by April 6",
+          "Market pricing 70% chance of extended closure despite 20% of seaborne oil transit typically flowing through strait"
+        ],
+        "source": "Wall Street Journal"
+      },
+      {
+        "icon": "📈",
+        "label": "Stocks Rally on War Optimism",
+        "bullets": [
+          "S&P 500 futures +1.1% reversing from -8% March decline, worst since October 2022 energy crisis",
+          "VIX fell from 31 to below 30 but remains 50% above 20 historical average, signaling persistent uncertainty",
+          "Magnificent Seven underperforming with MSFT -26% YTD vs S&P 500 -1%, reflecting growth stock vulnerability to rates"
+        ],
+        "source": "Bloomberg"
+      },
+      {
+        "icon": "🏦",
+        "label": "Central Banks Fight Energy Inflation",
+        "bullets": [
+          "RBA's 5-4 split hike to 4.1% reflects board division on energy pass-through to core inflation running 3.7%",
+          "Fed dot plot signals one cut in 2026 vs two previously, with PCE forecast raised to 2.7% from 2.4%",
+          "Both banks face 1970s-style stagflation risk if energy shock proves persistent rather than transitory"
+        ],
+        "source": "Reserve Bank of Australia"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Wall Street Journal",
+        "url": "https://www.wsj.com"
+      },
+      {
+        "title": "Bloomberg",
+        "url": "https://www.bloomberg.com/news/articles/2026-03-30/stock-market-today-dow-s-p-live-updates"
+      },
+      {
+        "title": "Reserve Bank of Australia",
+        "url": "https://www.rba.gov.au/"
+      }
+    ]
+  },
+  "_failures": []
+}
