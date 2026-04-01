@@ -1,5 +1,13 @@
 # MacroSnaps - Living Brief
-Last updated: March 29, 2026 (Session 61: Daily ritual completed; commodity stories migrated to bullet arrays; bug fixes to sync_market_historical.py, audit_ritual.py, build.py; Brent Crude backfill complete; macedu deployed to Cloudflare Pages; commodity story prompt overhauled — tighter bullets, beginner level rewritten to be price-anchored.)
+Last updated: March 31, 2026 (Session 62: Daily ritual completed; sync_edu.py path fix — script runs from macrosnaps repo, not macedu; Daily Bash Ritual updated accordingly.)
+
+Session 62 changes in detail:
+
+(1) **Daily ritual completed 2026-03-31.** Full ritual ran successfully. Silver commodity story rewritten (5.2% move). Headlines 13/13. Metric stories 12/12 (CAN failed on first run, succeeded on retry). Build successful, pushed to master. macedu synced and pushed to main.
+
+(2) **`sync_edu.py` path fix.** Script lives in the macrosnaps repo (`/Users/lisaswerling/RALPH/AI/macrosnaps/`), not in macedu. Daily Bash Ritual updated to run it explicitly from the macrosnaps directory.
+
+---
 
 Session 61 changes in detail:
 
@@ -285,10 +293,9 @@ Manual gate 2: open `metric_story_review.html` (via http://localhost:8080), load
 python3 update_headlines.py --apply HEADLINES_approved_YYYY-MM-DD.json
 python3 update_metric_stories.py --apply METRICS_approved_YYYY-MM-DD.json
 python3 build.py
-python3 sync_edu.py
-cd /Users/lisaswerling/RALPH/AI/macedu && git add -A && git commit -m "Daily data sync YYYY-MM-DD" && git push origin main
-cd /Users/lisaswerling/RALPH/AI/macrosnaps
-python3 audit_ritual.py
+cd /Users/lisaswerling/RALPH/AI/macrosnaps && python3 sync_edu.py
+cd /Users/lisaswerling/RALPH/AI/macedu && git add -A && git commit -m "Daily sync YYYY-MM-DD" && git push origin main
+cd /Users/lisaswerling/RALPH/AI/macrosnaps && python3 audit_ritual.py
 ```
 
 Note: to open review UIs locally without CORS errors, run `python3 -m http.server 8080` in the macrosnaps directory first, then use http://localhost:8080.
@@ -403,6 +410,8 @@ Forecast values (source: Ralph's Google Sheet) are annual consensus views for 20
 
 ## Full session history
 
+Session 62: Daily ritual completed 2026-03-31; sync_edu.py path fix (runs from macrosnaps repo, not macedu); Daily Bash Ritual updated.
+Session 61: Daily ritual completed 2026-03-29; commodity stories migrated to bullet arrays; sync_market_historical.py/audit_ritual.py/build.py bug fixes; Brent Crude backfill complete; macedu deployed to Cloudflare Pages; commodity story prompt overhauled.
 Session 60: MARKET-STATS daily append fixed (fetch_market_data.py patched; yf_ytd_and_level() added); Mar 16–27 backfill run across 12 country tabs (backfill_market_stats.py); bond yield patch script built (patch_bond_yields.py); MACRO-MONTHLY unemployment backfilled for IND/ZAF (backfill_unemployment.py) and BRA (update_bra_unemployment.py); BRA IBGE SIDRA wired into update_monthly_actuals.py; historical unemployment and policy rate gaps filled via backfill_historical_gaps.py (DEU/FRA unemployment 2000–2006, JPN policy rate 2000–2016, DEU/FRA/ITA policy rate 2000–2008 from hardcoded ECB MRO table); backfill --apply run (13 cells); MACRO_MONTHLY_SHEET_ID added to .env.
 Session 59: Metric story pipeline fixed (Haiku truncation → 1 country per call → parallelised to 12 concurrent calls, 990s → 74s); JSON file renames (HEADLINES/METRICS); headline_review.html patched for bullets schema; build.py validator updated; Daily Bash Ritual updated.
 Session 58: Forecast CMS added (forecast_server.py + forecast_cms.html); Friday pre-ritual rule added to Daily Bash Ritual.
