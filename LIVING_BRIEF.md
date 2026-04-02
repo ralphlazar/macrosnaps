@@ -1,5 +1,18 @@
 # MacroSnaps - Living Brief
-Last updated: March 31, 2026 (Session 62: Daily ritual completed; sync_edu.py path fix — script runs from macrosnaps repo, not macedu; Daily Bash Ritual updated accordingly.)
+Last updated: April 2, 2026 (Session 63: Daily ritual completed; build.py timezone fix — date stamp now uses Europe/London instead of UTC; http.server must be run from macrosnaps directory for review UIs to work.)
+
+Session 63 changes in detail:
+
+(1) **Daily ritual completed 2026-04-02.** Full ritual ran successfully. WTI commodity story updated. Headlines 13/13. Metric stories 12/12 in 84s. Build successful, pushed to master. macedu synced and pushed to main. Audit: all checks passed.
+
+(2) **`build.py` — timezone fix.** Date stamp was using UTC, causing the site to show yesterday's date when the ritual runs after midnight UTC (e.g. during BST). Fixed by importing `ZoneInfo` and using `Europe/London` for both `TODAY` and `NOW`. Handles GMT/BST automatically. Change: `date.today()` and `datetime.now()` replaced with `datetime.now(tz=ZoneInfo("Europe/London"))`.
+
+(3) **http.server must run from macrosnaps directory.** When opening `headline_review.html` or `metric_story_review.html` via [http://localhost:8080](http://localhost:8080), the server must be started from `/Users/lisaswerling/RALPH/AI/macrosnaps/`. Running it from any other directory causes a 404. Correct command:
+```bash
+cd /Users/lisaswerling/RALPH/AI/macrosnaps && python3 -m http.server 8080
+```
+
+---
 
 Session 62 changes in detail:
 
@@ -410,6 +423,7 @@ Forecast values (source: Ralph's Google Sheet) are annual consensus views for 20
 
 ## Full session history
 
+Session 63: Daily ritual completed 2026-04-02; build.py timezone fix (UTC → Europe/London for date stamp); http.server must run from macrosnaps directory for review UIs.
 Session 62: Daily ritual completed 2026-03-31; sync_edu.py path fix (runs from macrosnaps repo, not macedu); Daily Bash Ritual updated.
 Session 61: Daily ritual completed 2026-03-29; commodity stories migrated to bullet arrays; sync_market_historical.py/audit_ritual.py/build.py bug fixes; Brent Crude backfill complete; macedu deployed to Cloudflare Pages; commodity story prompt overhauled.
 Session 60: MARKET-STATS daily append fixed (fetch_market_data.py patched; yf_ytd_and_level() added); Mar 16–27 backfill run across 12 country tabs (backfill_market_stats.py); bond yield patch script built (patch_bond_yields.py); MACRO-MONTHLY unemployment backfilled for IND/ZAF (backfill_unemployment.py) and BRA (update_bra_unemployment.py); BRA IBGE SIDRA wired into update_monthly_actuals.py; historical unemployment and policy rate gaps filled via backfill_historical_gaps.py (DEU/FRA unemployment 2000–2006, JPN policy rate 2000–2016, DEU/FRA/ITA policy rate 2000–2008 from hardcoded ECB MRO table); backfill --apply run (13 cells); MACRO_MONTHLY_SHEET_ID added to .env.

@@ -396,6 +396,36 @@ Rules:
 - Return JSON only: {"blurb": ["bullet 1", "bullet 2", "bullet 3"]}
 - No markdown, no preamble, no explanation outside the JSON"""
 
+BLURB_SYSTEM_AP = """You write 3-bullet analysis copy for a Bloomberg-style AP Macroeconomics teaching platform.
+
+Rules:
+- US English throughout (labor not labour, behavior not behaviour, recognize not recognise)
+- 3 bullets, each 1-2 punchy sentences
+- Direction and context only — never cite specific numbers, percentages, or data values
+- No hedging ("generally", "it is worth noting", "broadly speaking")
+- No wasted openers ("This shows that...", "The data suggests...")
+- No double hyphens — use "to" for ranges or rewrite
+- No em dashes
+- Confident, wry, authoritative teacher voice — not dry, not municipal
+- Frame analysis in AP Macroeconomics terms where natural (aggregate demand, FOMC, natural rate, etc.)
+- Return JSON only: {"blurb": ["bullet 1", "bullet 2", "bullet 3"]}
+- No markdown, no preamble, no explanation outside the JSON"""
+
+BLURB_SYSTEM_AP = """You write 3-bullet analysis copy for a Bloomberg-style AP Macroeconomics teaching platform.
+
+Rules:
+- US English throughout (labor not labour, behavior not behaviour, recognize not recognise)
+- 3 bullets, each 1-2 punchy sentences
+- Direction and context only — never cite specific numbers, percentages, or data values
+- No hedging ("generally", "it is worth noting", "broadly speaking")
+- No wasted openers ("This shows that...", "The data suggests...")
+- No double hyphens — use "to" for ranges or rewrite
+- No em dashes
+- Confident, wry, authoritative teacher voice — not dry, not municipal
+- Frame analysis in AP Macroeconomics terms where natural (aggregate demand, FOMC, natural rate, etc.)
+- Return JSON only: {"blurb": ["bullet 1", "bullet 2", "bullet 3"]}
+- No markdown, no preamble, no explanation outside the JSON"""
+
 def should_generate_blurb(metric_slug, released_days_ago, has_cached):
     """Return True if blurb should be regenerated this run."""
     if not has_cached:
@@ -404,7 +434,7 @@ def should_generate_blurb(metric_slug, released_days_ago, has_cached):
         return True                    # FX: regenerate daily
     return released_days_ago == 0     # others: only on new release
 
-def generate_blurb(client, metric_slug, country_slug, direction, icon_slug, reveal):
+def generate_blurb(client, system, metric_slug, country_slug, direction, icon_slug, reveal):
     """Call Claude Haiku for a 3-bullet blurb. Returns list[str] or []."""
     user_prompt = (
         f"Country: {COUNTRY_NAMES[country_slug]}\n"
@@ -418,7 +448,7 @@ def generate_blurb(client, metric_slug, country_slug, direction, icon_slug, reve
         resp  = client.messages.create(
             model='claude-haiku-4-5-20251001',
             max_tokens=300,
-            system=BLURB_SYSTEM,
+            system=system,
             messages=[{'role': 'user', 'content': user_prompt}],
         )
         raw   = resp.content[0].text.strip()
@@ -550,13 +580,24 @@ for metric_slug in METRIC_SLUGS:
 
         if should_generate_blurb(metric_slug, released_days_ago, has_cached) and claude:
             print(f'  Generating blurb: {metric_slug}/{country_slug}...')
-            new_blurb = generate_blurb(claude, metric_slug, country_slug, direction, icon_slug_val, reveal)
+            new_blurb = generate_blurb(claude, BLURB_SYSTEM, metric_slug, country_slug, direction, icon_slug_val, reveal)
             if new_blurb:
                 blurb_cache[cache_key] = new_blurb
                 blurbs_generated += 1
             blurb = blurb_cache.get(cache_key, [])
         else:
             blurb = blurb_cache.get(cache_key, [])
+
+        # ── AP blurb ─────────────────────────────────────────────────────────
+        ap_cache_key  = f'ap:{metric_slug}:{country_slug}'
+        ap_has_cached = bool(blurb_cache.get(ap_cache_key))
+        if should_generate_blurb(metric_slug, released_days_ago, ap_has_cached) and claude:
+            print(f'  Generating AP blurb: {metric_slug}/{country_slug}...')
+            new_ap_blurb = generate_blurb(claude, BLURB_SYSTEM_AP, metric_slug, country_slug, direction, icon_slug_val, reveal)
+            if new_ap_blurb:
+                blurb_cache[ap_cache_key] = new_ap_blurb
+                blurbs_generated += 1
+        blurb_ap = blurb_cache.get(ap_cache_key, [])
 
         countries_out[country_slug] = {
             'flag':            flag,
@@ -568,6 +609,7 @@ for metric_slug in METRIC_SLUGS:
             'correctIcon':     icon_slug_val,
             'weatherReason':   reveal,
             'blurb':           blurb,
+            'blurbAp':         blurb_ap,
             'chartDates':      chart_dates,
             'chartSeries':     chart_series,
             'movePercent':     move_percent,
@@ -585,7 +627,11 @@ for metric_slug in METRIC_SLUGS:
 
 # ── Write metrics.js ──────────────────────────────────────────────────────────
 
+from datetime import date as _date
+last_updated = _date.today().strftime("%-d %B %Y")
+
 js_content = 'export const metrics = ' + json.dumps(metrics, indent=2, ensure_ascii=False) + '\n'
+js_content += f'\nexport const lastUpdated = "{last_updated}";\n'
 
 os.makedirs(os.path.dirname(METRICS_JS), exist_ok=True)
 with open(METRICS_JS, 'w', encoding='utf-8') as f:
