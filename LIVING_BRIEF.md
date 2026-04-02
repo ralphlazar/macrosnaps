@@ -1,5 +1,11 @@
 # MacroSnaps - Living Brief
-Last updated: April 2, 2026 (Session 63: Daily ritual completed; build.py timezone fix — date stamp now uses Europe/London instead of UTC; http.server must be run from macrosnaps directory for review UIs to work.)
+Last updated: April 3, 2026 (Session 64: Intraday Bash Ritual added — update_global_stories.py built; ad hoc mid-day refresh procedure documented in Standing Rules.)
+
+Session 64 changes in detail:
+
+(1) **Intraday Bash Ritual added.** `update_global_stories.py` built -- a stripped, no-gate version of the global story generation from `update_headlines.py`. One Sonnet + web search call. Writes directly to `data.json`, no draft file, no review UI. Run 2-4x per day when news is moving fast. Full procedure documented in Standing Rules under "Intraday Bash Ritual."
+
+---
 
 Session 63 changes in detail:
 
@@ -322,6 +328,22 @@ python3 digest_server.py
 
 This starts the local server and automatically opens the MacroSnaps Digest UI (`digest_ui.html`) at `http://localhost:PORT`. From there: select format (Daily Post, Weekly Digest, or Substack Notes), generate, edit, and copy content for Substack, X, and LinkedIn. Note: `macrosnaps-digest.html` is an older redundant file -- ignore it.
 
+### Intraday Bash Ritual (ad hoc, news-driven)
+
+Run when markets are moving fast and the global story needs refreshing mid-day. Can be run 2-4x per day. No review gates. Takes 2-3 minutes.
+
+```bash
+cd /Users/lisaswerling/RALPH/AI/macrosnaps
+
+python3 fetch_market_data.py --apply
+python3 sync_commodity_data.py --apply
+python3 update_global_stories.py
+python3 build.py --apply
+```
+
+Updates: live market prices, live commodity prices, global stories (fresh Sonnet + web search call).
+Does not touch: metric stories, country card headlines, commodity stories, historical syncs.
+
 ### Outreach email (default)
 
 Subject: MacroSnaps: a free macro resource for your students
@@ -423,6 +445,7 @@ Forecast values (source: Ralph's Google Sheet) are annual consensus views for 20
 
 ## Full session history
 
+Session 64: Intraday Bash Ritual added (update_global_stories.py built; ad hoc mid-day refresh procedure documented).
 Session 63: Daily ritual completed 2026-04-02; build.py timezone fix (UTC → Europe/London for date stamp); http.server must run from macrosnaps directory for review UIs.
 Session 62: Daily ritual completed 2026-03-31; sync_edu.py path fix (runs from macrosnaps repo, not macedu); Daily Bash Ritual updated.
 Session 61: Daily ritual completed 2026-03-29; commodity stories migrated to bullet arrays; sync_market_historical.py/audit_ritual.py/build.py bug fixes; Brent Crude backfill complete; macedu deployed to Cloudflare Pages; commodity story prompt overhauled.
