@@ -19,6 +19,7 @@ import os
 import re
 import shutil
 from datetime import date, datetime
+from zoneinfo import ZoneInfo
 from copy import deepcopy
 
 # ── Config ──────────────────────────────────────────────────────────────────
@@ -26,8 +27,9 @@ SHELL_FILE   = "macrosnaps-shell.html"
 DATA_FILE    = "data.json"
 OUTPUT_FILE  = "index.html"
 BACKUP_DIR   = "backups"
-TODAY        = date.today().isoformat()          # e.g. "2026-03-08"
-NOW          = datetime.now().strftime("%Y-%m-%d %H:%M")
+_LONDON      = ZoneInfo("Europe/London")
+TODAY        = datetime.now(tz=_LONDON).date().isoformat()   # e.g. "2026-03-08"
+NOW          = datetime.now(tz=_LONDON).strftime("%Y-%m-%d %H:%M")
 
 # All 12 country codes expected
 EXPECTED_COUNTRIES = {"USA","CAN","GBR","JPN","DEU","FRA","ITA","CHN","IND","ZAF","BRA","RUS"}
