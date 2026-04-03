@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MacroSnaps · Weekly Digest · 3 April 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono:wght@400;500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #080d1a;
+    --navy-2: #0d1525;
+    --navy-3: #111d30;
+    --cyan: #00e5ff;
+    --cyan-dim: rgba(0,229,255,0.10);
+    --border: rgba(0,229,255,0.18);
+    --border-dim: rgba(255,255,255,0.07);
+    --text: #c8d8e8;
+    --text-dim: #6a7f96;
+    --amber: #ffb347;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--navy);
+    color: var(--text);
+    font-family: 'Instrument Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  /* Top bar */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 28px;
+    background: var(--navy-2);
+    border-bottom: 1px solid var(--border-dim);
+    flex-shrink: 0;
+  }
+  .topbar-left { display: flex; align-items: baseline; gap: 12px; }
+  .logo { font-family: 'DM Serif Display', serif; font-size: 20px; color: #fff; }
+  .logo span { color: var(--cyan); }
+  .badge {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    color: var(--cyan); background: var(--cyan-dim);
+    border: 1px solid var(--border); padding: 2px 8px;
+    border-radius: 3px; letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .topbar-right { display: flex; align-items: center; gap: 12px; }
+  .meta { font-size: 12px; color: var(--text-dim); }
+  .copy-btn {
+    background: linear-gradient(135deg, rgba(0,229,255,0.15), rgba(0,229,255,0.08));
+    border: 1px solid var(--cyan); border-radius: 8px;
+    padding: 9px 20px; color: var(--cyan);
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 14px; font-weight: 600; cursor: pointer;
+    transition: all 0.18s; letter-spacing: 0.02em;
+  }
+  .copy-btn:hover {
+    background: linear-gradient(135deg, rgba(0,229,255,0.25), rgba(0,229,255,0.15));
+    box-shadow: 0 0 20px rgba(0,229,255,0.2);
+  }
+  .copy-btn.copied { background: rgba(74,222,128,0.15); border-color: #4ade80; color: #4ade80; }
+
+  /* Main layout */
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    flex: 1;
+    overflow: hidden;
+    height: calc(100vh - 57px);
+  }
+
+  /* Preview pane */
+  .pane {
+    overflow-y: auto;
+    padding: 36px 40px;
+    border-right: 1px solid var(--border-dim);
+  }
+  .pane-label {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text-dim); margin-bottom: 24px;
+  }
+
+  /* Preview typography */
+  .preview-body h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px; color: #fff; line-height: 1.2;
+    margin-bottom: 20px; letter-spacing: -0.3px;
+  }
+  .preview-body h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px; color: #fff; margin: 28px 0 10px;
+  }
+  .preview-body p { margin-bottom: 14px; line-height: 1.75; font-size: 15px; }
+  .preview-body strong { color: #fff; font-weight: 600; }
+  .preview-body em { color: var(--amber); font-style: italic; }
+  .preview-body a { color: var(--cyan); text-decoration: none; }
+  .preview-body a:hover { text-decoration: underline; }
+  .preview-body hr { border: none; border-top: 1px solid var(--border-dim); margin: 24px 0; }
+  .preview-body ul { padding-left: 20px; margin-bottom: 14px; }
+  .preview-body li { margin-bottom: 6px; line-height: 1.7; font-size: 15px; }
+  .preview-body blockquote {
+    border-left: 3px solid var(--cyan); padding: 10px 16px;
+    background: var(--cyan-dim); border-radius: 0 6px 6px 0;
+    font-style: italic; color: var(--text-dim); margin-bottom: 20px;
+    font-size: 14px; line-height: 1.6;
+  }
+  .subject-line {
+    background: var(--navy-3); border: 1px solid var(--border);
+    border-radius: 6px; padding: 10px 14px;
+    font-size: 14px; margin-bottom: 24px;
+  }
+  .subject-label {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    color: var(--cyan); letter-spacing: 0.1em;
+    text-transform: uppercase; margin-right: 8px;
+  }
+
+  /* Edit pane */
+  .edit-pane {
+    overflow-y: auto;
+    padding: 36px 40px;
+    display: flex;
+    flex-direction: column;
+  }
+  .edit-pane .pane-label { margin-bottom: 16px; }
+  .hint {
+    font-size: 12px; color: var(--text-dim);
+    margin-bottom: 16px; line-height: 1.5;
+  }
+  textarea {
+    flex: 1;
+    width: 100%;
+    min-height: calc(100vh - 200px);
+    background: var(--navy-3);
+    border: 1px solid var(--border-dim);
+    border-radius: 8px;
+    padding: 20px;
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    line-height: 1.75;
+    resize: none;
+    outline: none;
+    transition: border-color 0.18s;
+  }
+  textarea:focus { border-color: var(--cyan); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Macro<span>Snaps</span></div>
+    <div class="badge">Weekly Digest</div>
+    <span class="meta">3 April 2026</span>
+  </div>
+  <div class="topbar-right">
+    <span class="meta">Edit on the right · Copy · Paste into Substack</span>
+    <button class="copy-btn" onclick="copyText()">Copy to clipboard</button>
+  </div>
+</div>
+
+<div class="main">
+  <div class="pane">
+    <div class="pane-label">Preview</div>
+    <div class="preview-body" id="preview">
+      <strong>Trump's Iran Strikes Risk Pushing Oil Past $115</strong>
+
+<strong>What moved</strong>
+
+<ul><li>WTI crude surged 4.7% to $112.06 on escalating Middle East tensions; geopolitical premium now drives pricing above fundamentals. Oil price floors lift airline and shipping costs globally, feeding back into consumer goods inflation.</li>
+<li>Japan's stock market jumped 240bps to +3.7% YTD as weak yen (159.7 USD/JPY) boosts exporters; Bank of Japan rate hikes now appear premature against 0.8% growth.</li>
+<li>India's equities collapsed 50bps to -14.2% YTD despite 6.3% GDP growth, signaling investors fear currency weakness and RBI rate cuts will accelerate rupee depreciation below 95 USD.</li>
+<li>Germany's equities rallied 130bps to -5.1% YTD on electricity subsidy relief; industrial rebound now priced in, but Caixin PMI weakness in China threatens export demand.</li>
+</ul>
+<strong>What to watch</strong>
+
+<ul><li>RBI monetary policy decision (May 29): growth print below 5.8% triggers 50bps cut; above 6.5% means hold. Rupee defense versus growth support will define next quarter.</li>
+<li>US April employment data (May 2): labor market miss validates Fed pivot to cuts faster than December guidance. One 20k+ job loss month guarantees 50bps cut by June.</li>
+<li>ECB rate decision (May 1): Q2 CPI data determines cut pace. Two cuts by year-end locks EUR weakness; four cuts unlocks euro rally toward 1.17.</li>
+</ul>
+<p>Track it live across 12 economies: https://macrosnaps.app</p>
+
+<hr>
+<p>https://macrosnaps.app</p>
+    </div>
+  </div>
+
+  <div class="edit-pane">
+    <div class="pane-label">Edit</div>
+    <p class="hint">Edit the text below, then hit Copy. Paste directly into Substack.</p>
+    <textarea id="editor" oninput="updatePreview(this.value)">**Trump's Iran Strikes Risk Pushing Oil Past $115**
+
+**What moved**
+
+- WTI crude surged 4.7% to $112.06 on escalating Middle East tensions; geopolitical premium now drives pricing above fundamentals. Oil price floors lift airline and shipping costs globally, feeding back into consumer goods inflation.
+- Japan's stock market jumped 240bps to +3.7% YTD as weak yen (159.7 USD/JPY) boosts exporters; Bank of Japan rate hikes now appear premature against 0.8% growth.
+- India's equities collapsed 50bps to -14.2% YTD despite 6.3% GDP growth, signaling investors fear currency weakness and RBI rate cuts will accelerate rupee depreciation below 95 USD.
+- Germany's equities rallied 130bps to -5.1% YTD on electricity subsidy relief; industrial rebound now priced in, but Caixin PMI weakness in China threatens export demand.
+
+**What to watch**
+
+- RBI monetary policy decision (May 29): growth print below 5.8% triggers 50bps cut; above 6.5% means hold. Rupee defense versus growth support will define next quarter.
+- US April employment data (May 2): labor market miss validates Fed pivot to cuts faster than December guidance. One 20k+ job loss month guarantees 50bps cut by June.
+- ECB rate decision (May 1): Q2 CPI data determines cut pace. Two cuts by year-end locks EUR weakness; four cuts unlocks euro rally toward 1.17.
+
+Track it live across 12 economies: https://macrosnaps.app
+
+---
+https://macrosnaps.app</textarea>
+  </div>
+</div>
+
+<script>
+// Simple markdown -> HTML for live preview
+function mdToHtml(md) {
+  let h = md;
+  h = h.replace(/^SUBJECT:\s*(.+)$/gm, '<p class="subject-line"><span class="subject-label">Subject:</span> $1</p>');
+  h = h.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+  h = h.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+  h = h.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  h = h.replace(/\*(.+?)\*/g, '<em>$1</em>');
+  h = h.replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+  h = h.replace(/^---$/gm, '<hr>');
+  h = h.replace(/^- (.+)$/gm, '<li>$1</li>');
+  h = h.replace(/^> (.+)$/gm, '<blockquote>$1</blockquote>');
+  const lines = h.split('\n');
+  return lines.map(line => {
+    const s = line.trim();
+    if (!s) return '<br>';
+    if (s.startsWith('<')) return s;
+    return '<p>' + s + '</p>';
+  }).join('\n');
+}
+
+function updatePreview(val) {
+  document.getElementById('preview').innerHTML = mdToHtml(val);
+}
+
+function copyText() {
+  const text = document.getElementById('editor').value;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = 'Copied ✓';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copy to clipboard';
+      btn.classList.remove('copied');
+    }, 2500);
+  });
+}
+</script>
+</body>
+</html>
