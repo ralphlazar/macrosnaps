@@ -1,15 +1,11 @@
 #!/usr/bin/env python3
 """
-sync_edu.py  (rewritten Session 22)
+sync_edu.py
 =====================================
 Reads MacroSnaps data.json.
-Writes metrics.js to macedu/app/data/ with:
+Writes metrics.js to macedu-v2/app/data/ with:
   - Snapshot: value, direction, releasedDaysAgo, icon, correctIcon, weatherReason per country
   - Charts: chartDates, chartSeries (last point forced to match value)
-  - Blurbs: generated via Claude API (Haiku)
-      All metrics:       only on new release (releasedDaysAgo == 0)
-      Exchange rates:    regenerated daily
-      No cached blurb:   generated immediately (bootstrap on first run)
 
 Run after build.py in the Daily Bash Ritual:
     python3 sync_edu.py
@@ -27,21 +23,11 @@ import sys
 from datetime import date, datetime
 from dateutil.relativedelta import relativedelta
 
-try:
-    from dotenv import load_dotenv
-    load_dotenv('/Users/lisaswerling/RALPH/AI/macrosnaps/.env')
-    import anthropic
-    HAS_ANTHROPIC = True
-except ImportError:
-    HAS_ANTHROPIC = False
-    print('WARNING: anthropic not installed. Blurb generation disabled.')
-
 # ── Paths ─────────────────────────────────────────────────────────────────────
 
 MACROSNAPS_DIR = '/Users/lisaswerling/RALPH/AI/macrosnaps'
-MACEDU_DIR     = '/Users/lisaswerling/RALPH/AI/macedu'
+MACEDU_DIR     = '/Users/lisaswerling/RALPH/AI/macedu-v2'
 METRICS_JS     = os.path.join(MACEDU_DIR, 'app/data/metrics.js')
-BLURB_CACHE    = os.path.join(MACEDU_DIR, 'app/data/blurb-cache.json')
 DATA_FILE      = os.path.join(MACROSNAPS_DIR, 'data.json')
 BACKUP_DIR     = os.path.join(MACROSNAPS_DIR, 'backups')
 TODAY          = date.today()
@@ -95,14 +81,6 @@ FX_DECIMALS = {
 ICON_MAP = {'sunny': '☀️', 'cloudy': '☁️', 'stormy': '⛈️'}
 
 # ── Release calendar ──────────────────────────────────────────────────────────
-# Update monthly with official announced release dates.
-# Sources:
-#   UK:       https://www.ons.gov.uk/releases
-#   US:       https://www.bls.gov/schedule/ and https://www.bea.gov/news/schedule
-#   Eurozone: https://ec.europa.eu/eurostat/news/release-calendar
-#   ECB/BoE:  central bank meeting calendars
-#   Japan:    https://www.stat.go.jp/english/info/news/index.html
-#   Brazil:   https://www.ibge.gov.br/en/news-agency/release-schedule.html
 
 RELEASE_DATES = {
     'inflation': {
@@ -145,7 +123,7 @@ RELEASE_DATES = {
         'japan':    date(2026, 3,  5),
         'brazil':   date(2026, 2, 25),
     },
-    # exchange-rates: always 0 — handled separately
+    # exchange-rates: always 0 -- handled separately
 }
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
@@ -188,7 +166,6 @@ def format_pct(val, decimals=1, sign=False):
     return formatted
 
 def parse_value_float(value_str):
-    """Parse a formatted value string back to float for chartSeries alignment."""
     if value_str is None:
         return None
     s = str(value_str).strip().replace('%', '').replace('GDP', '').replace('+', '').strip()
@@ -256,17 +233,17 @@ def inflation_icon_label(country, val, direction):
         return 'cloudy', f'No inflation data available for {name} right now.'
     diff = val - target
     if abs(diff) <= 0.3:
-        return 'sunny',  f'Inflation is right on the {name} central bank target -- that is a sunny read.'
+        return 'sunny',  f'Inflation is right on the {name} central bank target.'
     elif diff > 0:
         if direction == 'up':
-            return 'stormy', f'Inflation in {name} is above target and still rising -- stormy.'
+            return 'stormy', f'Inflation in {name} is above target and still rising.'
         else:
-            return 'cloudy', f'Inflation in {name} is above target but falling -- cloudy, heading in the right direction.'
+            return 'cloudy', f'Inflation in {name} is above target but falling.'
     else:
         if direction == 'down':
-            return 'cloudy', f'Inflation in {name} is below target and still dropping -- deflation risk makes this cloudy.'
+            return 'cloudy', f'Inflation in {name} is below target and still dropping.'
         else:
-            return 'sunny',  f'Inflation in {name} is just below target and stable -- close enough to call it sunny.'
+            return 'sunny',  f'Inflation in {name} is just below target and stable.'
 
 def unemployment_icon_label(country, val, direction):
     structural = STRUCTURAL_U.get(country, 5.0)
@@ -275,14 +252,14 @@ def unemployment_icon_label(country, val, direction):
         return 'cloudy', f'No unemployment data available for {name} right now.'
     diff = val - structural
     if diff <= 0.3:
-        return 'sunny',  f'Unemployment in {name} is at or below its normal level -- a sunny labour market.'
+        return 'sunny',  f'Unemployment in {name} is at or below its normal level.'
     elif diff <= 2.0:
         if direction == 'up':
-            return 'stormy', f'Unemployment in {name} is above its normal level and rising -- that is a stormy read.'
+            return 'stormy', f'Unemployment in {name} is above its normal level and rising.'
         else:
-            return 'cloudy', f'Unemployment in {name} is above its normal level but improving -- cloudy for now.'
+            return 'cloudy', f'Unemployment in {name} is above its normal level but improving.'
     else:
-        return 'stormy', f'Unemployment in {name} is well above its normal level -- stormy.'
+        return 'stormy', f'Unemployment in {name} is well above its normal level.'
 
 def gdp_icon_label(country, val, direction):
     trend = GDP_TREND.get(country, 2.0)
@@ -290,53 +267,51 @@ def gdp_icon_label(country, val, direction):
     if val is None:
         return 'cloudy', f'No GDP data available for {name} right now.'
     if val < 0:
-        return 'stormy', f'The {name} economy is shrinking -- negative growth is a stormy read.'
+        return 'stormy', f'The {name} economy is shrinking.'
     elif val >= trend * 0.75:
-        return 'sunny',  f'{name} is growing at or near its normal rate -- that is a sunny read.'
+        return 'sunny',  f'{name} is growing at or near its normal rate.'
     else:
-        return 'cloudy', f'{name} is growing, but well below its usual pace -- cloudy.'
+        return 'cloudy', f'{name} is growing, but well below its usual pace.'
 
 def interest_icon_label(country, val, direction):
     name = COUNTRY_NAMES[country]
     if val is None:
         return 'cloudy', f'No interest rate data available for {name} right now.'
     if val <= 1.0:
-        return 'sunny',  f'{name} rates are very low -- cheap borrowing is designed to boost the economy, a sunny signal.'
+        return 'sunny',  f'{name} rates are very low.'
     elif val <= 4.0:
         if direction == 'down':
-            return 'sunny',  f'{name} is cutting rates -- the central bank thinks inflation is under control, a sunny read.'
+            return 'sunny',  f'{name} is cutting rates.'
         elif direction == 'up':
-            return 'cloudy', f'{name} is raising rates to fight inflation -- tightening makes this cloudy.'
+            return 'cloudy', f'{name} is raising rates to fight inflation.'
         else:
-            return 'cloudy', f'{name} rates are on hold -- the central bank is waiting for more data, cloudy.'
+            return 'cloudy', f'{name} rates are on hold.'
     else:
-        return 'stormy', f'{name} rates are high and squeezing borrowing -- that is a stormy read.'
+        return 'stormy', f'{name} rates are high and squeezing borrowing.'
 
 def fx_icon_label(country, val, direction):
     name = COUNTRY_NAMES[country]
     if val is None:
         return 'cloudy', f'No exchange rate data available for {name} right now.'
     if direction == 'up':
-        return 'cloudy', f'The {name} currency is strengthening -- good for importers, bad for exporters, so cloudy overall.'
+        return 'cloudy', f'The {name} currency is strengthening.'
     elif direction == 'down':
-        return 'cloudy', f'The {name} currency is weakening -- helps exporters but pushes up import costs, cloudy.'
+        return 'cloudy', f'The {name} currency is weakening.'
     else:
-        return 'sunny',  f'The {name} exchange rate is holding steady -- stability is a sunny signal.'
+        return 'sunny',  f'The {name} exchange rate is holding steady.'
 
 def trade_icon_label(country, val, direction):
     name = COUNTRY_NAMES[country]
     if val is None:
         return 'cloudy', f'No current account data available for {name} right now.'
     if abs(val) <= 1.0:
-        return 'sunny',  f'{name} imports and exports are broadly balanced -- a sunny read.'
+        return 'sunny',  f'{name} imports and exports are broadly balanced.'
     elif val > 0:
-        if abs(val) > 4.0:
-            return 'sunny', f'{name} is selling far more to the world than it buys -- a large surplus, sunny.'
-        return 'sunny',     f'{name} is selling more to the world than it buys -- a surplus is a sunny read.'
+        return 'sunny',  f'{name} is selling more to the world than it buys.'
     elif abs(val) <= 4.0:
-        return 'cloudy', f'{name} is buying more from the world than it sells -- a deficit makes this cloudy.'
+        return 'cloudy', f'{name} is buying more from the world than it sells.'
     else:
-        return 'stormy', f'{name} has a large current account deficit -- a significant imbalance, stormy.'
+        return 'stormy', f'{name} has a large current account deficit.'
 
 ICON_FNS = {
     'inflation':      inflation_icon_label,
@@ -380,89 +355,6 @@ def build_fx_chart(data, country_slug):
     dates  = tail_dates(ALL_MONTHLY, v, W_MON)
     return list(dates), series
 
-# ── Blurb generation ──────────────────────────────────────────────────────────
-
-BLURB_SYSTEM = """You write 3-bullet analysis copy for a Bloomberg-style A-level economics teaching platform.
-
-Rules:
-- UK English throughout
-- 3 bullets, each 1-2 punchy sentences
-- Direction and context only — never cite specific numbers, percentages, or data values
-- No hedging ("generally", "it is worth noting", "broadly speaking")
-- No wasted openers ("This shows that...", "The data suggests...")
-- No double hyphens — use "to" for ranges or rewrite
-- No em dashes
-- Confident, wry, authoritative teacher voice — not dry, not municipal
-- Return JSON only: {"blurb": ["bullet 1", "bullet 2", "bullet 3"]}
-- No markdown, no preamble, no explanation outside the JSON"""
-
-BLURB_SYSTEM_AP = """You write 3-bullet analysis copy for a Bloomberg-style AP Macroeconomics teaching platform.
-
-Rules:
-- US English throughout (labor not labour, behavior not behaviour, recognize not recognise)
-- 3 bullets, each 1-2 punchy sentences
-- Direction and context only — never cite specific numbers, percentages, or data values
-- No hedging ("generally", "it is worth noting", "broadly speaking")
-- No wasted openers ("This shows that...", "The data suggests...")
-- No double hyphens — use "to" for ranges or rewrite
-- No em dashes
-- Confident, wry, authoritative teacher voice — not dry, not municipal
-- Frame analysis in AP Macroeconomics terms where natural (aggregate demand, FOMC, natural rate, etc.)
-- Return JSON only: {"blurb": ["bullet 1", "bullet 2", "bullet 3"]}
-- No markdown, no preamble, no explanation outside the JSON"""
-
-BLURB_SYSTEM_AP = """You write 3-bullet analysis copy for a Bloomberg-style AP Macroeconomics teaching platform.
-
-Rules:
-- US English throughout (labor not labour, behavior not behaviour, recognize not recognise)
-- 3 bullets, each 1-2 punchy sentences
-- Direction and context only — never cite specific numbers, percentages, or data values
-- No hedging ("generally", "it is worth noting", "broadly speaking")
-- No wasted openers ("This shows that...", "The data suggests...")
-- No double hyphens — use "to" for ranges or rewrite
-- No em dashes
-- Confident, wry, authoritative teacher voice — not dry, not municipal
-- Frame analysis in AP Macroeconomics terms where natural (aggregate demand, FOMC, natural rate, etc.)
-- Return JSON only: {"blurb": ["bullet 1", "bullet 2", "bullet 3"]}
-- No markdown, no preamble, no explanation outside the JSON"""
-
-def should_generate_blurb(metric_slug, released_days_ago, has_cached):
-    """Return True if blurb should be regenerated this run."""
-    if not has_cached:
-        return True                    # bootstrap: always generate if no cache
-    if metric_slug == 'exchange-rates':
-        return True                    # FX: regenerate daily
-    return released_days_ago == 0     # others: only on new release
-
-def generate_blurb(client, system, metric_slug, country_slug, direction, icon_slug, reveal):
-    """Call Claude Haiku for a 3-bullet blurb. Returns list[str] or []."""
-    user_prompt = (
-        f"Country: {COUNTRY_NAMES[country_slug]}\n"
-        f"Metric: {METRIC_META[metric_slug]['title']}\n"
-        f"Direction: {direction}\n"
-        f"Weather icon: {icon_slug}\n"
-        f"Context: {reveal}\n\n"
-        f"Write 3 bullets for the snapshot card."
-    )
-    try:
-        resp  = client.messages.create(
-            model='claude-haiku-4-5-20251001',
-            max_tokens=300,
-            system=system,
-            messages=[{'role': 'user', 'content': user_prompt}],
-        )
-        raw   = resp.content[0].text.strip()
-        raw   = raw.strip('`').lstrip('json').strip()
-        data  = json.loads(raw)
-        blurb = data.get('blurb', [])
-        if isinstance(blurb, list) and len(blurb) == 3:
-            return blurb
-        print(f'    WARNING: unexpected blurb shape for {metric_slug}/{country_slug}')
-        return []
-    except Exception as e:
-        print(f'    ERROR generating blurb for {metric_slug}/{country_slug}: {e}')
-        return []
-
 # ── Load data ─────────────────────────────────────────────────────────────────
 
 print(f'\nsync_edu.py — {TODAY.isoformat()}')
@@ -474,7 +366,6 @@ with open(DATA_FILE, encoding='utf-8') as f:
     data = json.load(f)
 print('data.json loaded.')
 
-# Most recent backup for direction comparison
 backup_data = None
 if os.path.isdir(BACKUP_DIR):
     backups = sorted([
@@ -487,30 +378,13 @@ if os.path.isdir(BACKUP_DIR):
             backup_data = json.load(f)
         print(f'Backup loaded: {os.path.basename(backups[-1])}')
 
-# Blurb cache
-blurb_cache = {}
-if os.path.exists(BLURB_CACHE):
-    with open(BLURB_CACHE, encoding='utf-8') as f:
-        blurb_cache = json.load(f)
-print(f'Blurb cache: {len(blurb_cache)} entries')
-
-# Claude client
-claude = None
-if HAS_ANTHROPIC:
-    try:
-        claude = anthropic.Anthropic()
-        print('Claude API: ready')
-    except Exception as e:
-        print(f'Claude API: unavailable ({e}). Blurb generation disabled.')
-
 # ── Build metrics ─────────────────────────────────────────────────────────────
 
 print('\nBuilding metrics...')
 metrics = {}
-blurbs_generated = 0
 
 for metric_slug in METRIC_SLUGS:
-    meta         = METRIC_META[metric_slug]
+    meta          = METRIC_META[metric_slug]
     countries_out = {}
 
     for country_slug in COUNTRY_SLUGS:
@@ -539,7 +413,7 @@ for metric_slug in METRIC_SLUGS:
 
         # ── Released days ago ────────────────────────────────────────────────
         if metric_slug == 'exchange-rates':
-            released_days_ago = 0   # overridden below after chart is built
+            released_days_ago = 0
         else:
             release_date      = RELEASE_DATES.get(metric_slug, {}).get(country_slug)
             released_days_ago = max(0, (TODAY - release_date).days) if release_date else None
@@ -562,7 +436,6 @@ for metric_slug in METRIC_SLUGS:
             chart_series[-1] = val_float
 
         # ── Exchange rate move filter ────────────────────────────────────────
-        # Only count FX as live/updated if rate moved >5% year-on-year.
         move_percent = None
         if metric_slug == 'exchange-rates':
             if len(chart_series) >= 13:
@@ -570,34 +443,8 @@ for metric_slug in METRIC_SLUGS:
                 curr      = chart_series[-1]
                 if prev_year and prev_year != 0:
                     move_percent = round((curr - prev_year) / prev_year * 100, 1)
-            # Gate: only include in stats if abs move > 5%
             if move_percent is None or abs(move_percent) < 5:
-                released_days_ago = None   # excluded from homepage stats
-
-        # ── Blurb ────────────────────────────────────────────────────────────
-        cache_key  = f'{metric_slug}:{country_slug}'
-        has_cached = bool(blurb_cache.get(cache_key))
-
-        if should_generate_blurb(metric_slug, released_days_ago, has_cached) and claude:
-            print(f'  Generating blurb: {metric_slug}/{country_slug}...')
-            new_blurb = generate_blurb(claude, BLURB_SYSTEM, metric_slug, country_slug, direction, icon_slug_val, reveal)
-            if new_blurb:
-                blurb_cache[cache_key] = new_blurb
-                blurbs_generated += 1
-            blurb = blurb_cache.get(cache_key, [])
-        else:
-            blurb = blurb_cache.get(cache_key, [])
-
-        # ── AP blurb ─────────────────────────────────────────────────────────
-        ap_cache_key  = f'ap:{metric_slug}:{country_slug}'
-        ap_has_cached = bool(blurb_cache.get(ap_cache_key))
-        if should_generate_blurb(metric_slug, released_days_ago, ap_has_cached) and claude:
-            print(f'  Generating AP blurb: {metric_slug}/{country_slug}...')
-            new_ap_blurb = generate_blurb(claude, BLURB_SYSTEM_AP, metric_slug, country_slug, direction, icon_slug_val, reveal)
-            if new_ap_blurb:
-                blurb_cache[ap_cache_key] = new_ap_blurb
-                blurbs_generated += 1
-        blurb_ap = blurb_cache.get(ap_cache_key, [])
+                released_days_ago = None
 
         countries_out[country_slug] = {
             'flag':            flag,
@@ -608,8 +455,6 @@ for metric_slug in METRIC_SLUGS:
             'icon':            icon,
             'correctIcon':     icon_slug_val,
             'weatherReason':   reveal,
-            'blurb':           blurb,
-            'blurbAp':         blurb_ap,
             'chartDates':      chart_dates,
             'chartSeries':     chart_series,
             'movePercent':     move_percent,
@@ -638,11 +483,5 @@ with open(METRICS_JS, 'w', encoding='utf-8') as f:
     f.write(js_content)
 size_kb = os.path.getsize(METRICS_JS) // 1024
 print(f'\nWritten: {METRICS_JS} ({size_kb} KB)')
-
-# ── Write blurb cache ─────────────────────────────────────────────────────────
-
-with open(BLURB_CACHE, 'w', encoding='utf-8') as f:
-    json.dump(blurb_cache, f, indent=2, ensure_ascii=False)
-print(f'Blurb cache: {len(blurb_cache)} entries ({blurbs_generated} generated this run)')
 
 print('\nsync_edu complete.\n')
