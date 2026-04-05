@@ -40,7 +40,7 @@
       "Policy Rate": "3.25%"
     },
     "market": {
-      "Stock Market YTD": "+4.2%",
+      "Stock Market YTD": "+4.9%",
       "Stock Market YTD (USD)": 5.25,
       "10Y Bond Yield": "4.43%",
       "Yield Curve": "+72bps",
@@ -56,7 +56,7 @@
       "Policy Rate": "1.25%"
     },
     "market": {
-      "Stock Market YTD": "+3.7%",
+      "Stock Market YTD": "+1.2%",
       "Stock Market YTD (USD)": 4.7,
       "10Y Bond Yield": "2.11%",
       "Yield Curve": "+88bps",
@@ -72,7 +72,7 @@
       "Policy Rate": "2.5%"
     },
     "market": {
-      "Stock Market YTD": "-5.1%",
+      "Stock Market YTD": "-5.6%",
       "Stock Market YTD (USD)": -1.54,
       "10Y Bond Yield": "2.81%",
       "Yield Curve": "+81bps",
@@ -88,7 +88,7 @@
       "Policy Rate": "2.5%"
     },
     "market": {
-      "Stock Market YTD": "-2.6%",
+      "Stock Market YTD": "-2.8%",
       "Stock Market YTD (USD)": -0.17,
       "10Y Bond Yield": "3.40%",
       "Yield Curve": "+140bps",
@@ -104,7 +104,7 @@
       "Policy Rate": "2.5%"
     },
     "market": {
-      "Stock Market YTD": "+0.8%",
+      "Stock Market YTD": "+0.6%",
       "Stock Market YTD (USD)": 1.4,
       "10Y Bond Yield": "3.39%",
       "Yield Curve": "+139bps",
@@ -120,7 +120,7 @@
       "Policy Rate": "2.75%"
     },
     "market": {
-      "Stock Market YTD": "-1.9%",
+      "Stock Market YTD": "-2.6%",
       "Stock Market YTD (USD)": 4.7,
       "10Y Bond Yield": "2.40%",
       "Yield Curve": "+35bps",
@@ -136,7 +136,7 @@
       "Policy Rate": "6%"
     },
     "market": {
-      "Stock Market YTD": "-14.2%",
+      "Stock Market YTD": "-13.9%",
       "Stock Market YTD (USD)": -15.01,
       "10Y Bond Yield": "6.78%",
       "Yield Curve": "+128bps",
@@ -152,7 +152,7 @@
       "Policy Rate": "6.25%"
     },
     "market": {
-      "Stock Market YTD": "+0.4%",
+      "Stock Market YTD": "+0.0%",
       "Stock Market YTD (USD)": -2.5,
       "10Y Bond Yield": "8.26%",
       "Yield Curve": "+151bps",
@@ -184,7 +184,7 @@
       "Policy Rate": "12.5%"
     },
     "market": {
-      "Stock Market YTD": "+0.6%",
+      "Stock Market YTD": "+0.1%",
       "Stock Market YTD (USD)": 2.33,
       "10Y Bond Yield": "13.5%",
       "Yield Curve": "-140bps",
