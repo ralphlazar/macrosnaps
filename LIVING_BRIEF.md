@@ -1,5 +1,34 @@
 # MacroSnaps - Living Brief
-Last updated: April 6, 2026 (Session 65: Daily Bash Ritual updated — mv commands added after each review gate for HEADLINES_approved and METRICS_approved files.)
+Last updated: April 6, 2026 (Session 66: _frozen_historical date alignment architecture fixed; CPI charts extended with monthly_actuals data; IND/JPN/RUS CPI flagged for manual review.)
+
+Session 66 changes in detail:
+
+(1) **_frozen_historical date alignment bug fixed.** The tooltip chart for UK inflation (and all countries) was showing peak dates and end dates shifted 12 months too late. Root cause: the JS right-aligned all historical arrays to the current month of the label array. Arrays kept live by `sync_market_historical.py` (Yield Curve, Bond Yield, Stock Market, FX) are always 316 points and align correctly. Frozen arrays (Inflation CPI, and others) fall behind by one month for every month that passes since they were frozen. After 12 months this produced a 1-year forward shift in all tooltip labels.
+
+(2) **Architecture fix: `startDate` added to all `_frozen_historical` series.** Three patch scripts delivered and run:
+
+- `patch_data_json_startdates.py` — adds `"startDate": "YYYY-MM"` to all 86 monthly `_frozen_historical` series across all 12 countries. Inflation (CPI) uses the April 2025 freeze reference (label count 304); all other series use the current April 2026 reference (label count 316).
+- `patch_shell_alignment.py` — replaces right-align logic in `hasChartData()` and `renderMetricChart()` in `macrosnaps-shell.html` with left-align-from-startDate. When `startDate` is present the chart anchors from that date forward. Frozen series show a null gap for months since the freeze. Annual series and the commodity spark chart are untouched.
+- `patch_cpi_extend.py` — extends each country's `_frozen_historical['Inflation (CPI)'].v` array with newer values from `monthly_actuals.inflation`, eliminating the gap. Uses value-matching (tolerance 0.05%) to find the splice point. Results: BRA +10, CAN +1, CHN +8, DEU +6, FRA +2, GBR +11, ITA +10, USA +0 (already current), ZAF +13. GBR now runs Jan 2001 to Mar 2026 (303 pts), peak correctly labelled Nov 2022.
+
+(3) **Three countries require manual CPI data review (not auto-fixed):**
+- **IND** — frozen tail (2.95%) does not match any value in `monthly_actuals.inflation` (which opens at 1.33%). The two series appear to be from different data sources. Requires a fresh FRED pull and array rebuild.
+- **JPN** — frozen tail (0.10%) is from Japan's deflationary era. The historical data is very stale and the series needs a full backfill from a current FRED/ONS source.
+- **RUS** — frozen tail (16.70%) is from the 2022 sanctions price spike. The gap to current `monthly_actuals` (~6%) is too large to bridge automatically. Requires manual splice or a fresh array.
+
+(4) **Design principle going forward.** The `startDate` field is now the canonical anchor for all `_frozen_historical` monthly series. Any future series added to `_frozen_historical` must include a `startDate`. The JS left-aligns from this field; right-alignment is only a fallback for series lacking it (none currently). When arrays are extended with new data (monthly_actuals splicing), `startDate` stays fixed — only `v` grows.
+
+---
+
+Session 65 changes in detail:
+
+(1) **Daily Bash Ritual updated.** After each review gate, the approved file must be explicitly moved from `~/Downloads/` into the macrosnaps repo before running the `--apply` command. Two `mv` commands added to the ritual:
+```bash
+mv ~/Downloads/HEADLINES_approved_YYYY-MM-DD.json /Users/lisaswerling/RALPH/AI/macrosnaps/
+mv ~/Downloads/METRICS_approved_YYYY-MM-DD.json /Users/lisaswerling/RALPH/AI/macrosnaps/
+```
+
+---
 
 Session 64 changes in detail:
 
@@ -110,7 +139,7 @@ Session 58 changes in detail:
 ```bash
 cd /Users/lisaswerling/RALPH/AI/macrosnaps && python3 forecast_server.py
 ```
-Then open `forecast_cms.html` in your browser. The server runs on `http://localhost:5050`.
+Then open `forecast_cms.html` in your browser. The server runs on [http://localhost:5050](http://localhost:5050).
 
 (2) **Friday pre-ritual rule added.** Every Friday, run the Forecast CMS before starting the Daily Bash Ritual. The Daily Bash Ritual now detects Fridays and prompts accordingly.
 
@@ -210,7 +239,7 @@ Session 50 changes in detail:
 ```bash
 python3 digest_server.py
 ```
-This starts the local server and automatically opens the MacroSnaps Digest UI at `http://localhost:PORT`. From there, generate, edit, and copy content for Substack, X, and LinkedIn. The UI file is `digest_ui.html` (note: `macrosnaps-digest.html` is an older redundant version).
+This starts the local server and automatically opens the MacroSnaps Digest UI at [http://localhost:PORT](http://localhost:PORT). From there, generate, edit, and copy content for Substack, X, and LinkedIn. The UI file is `digest_ui.html` (note: `macrosnaps-digest.html` is an older redundant version).
 
 (2) **Local preview rule added.** Since the site and app are live, all changes must be tested locally before pushing to git. Claude must always provide a local preview step before giving any git push command. Never combine build and push into a single command.
 
@@ -304,12 +333,12 @@ python3 update_headlines.py
 python3 update_metric_stories.py
 ```
 
-Manual gate 1: open `headline_review.html` (via http://localhost:8080), load `HEADLINES_draft_YYYY-MM-DD.json`, review and edit, export `HEADLINES_approved_YYYY-MM-DD.json`. Then move the approved file into the repo:
+Manual gate 1: open `headline_review.html` (via [http://localhost:8080](http://localhost:8080)), load `HEADLINES_draft_YYYY-MM-DD.json`, review and edit, export `HEADLINES_approved_YYYY-MM-DD.json`. Then move the approved file into the repo:
 ```bash
 mv ~/Downloads/HEADLINES_approved_YYYY-MM-DD.json /Users/lisaswerling/RALPH/AI/macrosnaps/
 ```
 
-Manual gate 2: open `metric_story_review.html` (via http://localhost:8080), load `METRICS_draft_YYYY-MM-DD.json`, review and edit, export `METRICS_approved_YYYY-MM-DD.json`. Then move the approved file into the repo:
+Manual gate 2: open `metric_story_review.html` (via [http://localhost:8080](http://localhost:8080)), load `METRICS_draft_YYYY-MM-DD.json`, review and edit, export `METRICS_approved_YYYY-MM-DD.json`. Then move the approved file into the repo:
 ```bash
 mv ~/Downloads/METRICS_approved_YYYY-MM-DD.json /Users/lisaswerling/RALPH/AI/macrosnaps/
 ```
@@ -323,7 +352,7 @@ cd /Users/lisaswerling/RALPH/AI/macedu && git add -A && git commit -m "Daily syn
 cd /Users/lisaswerling/RALPH/AI/macrosnaps && python3 audit_ritual.py
 ```
 
-Note: to open review UIs locally without CORS errors, run `python3 -m http.server 8080` in the macrosnaps directory first, then use http://localhost:8080.
+Note: to open review UIs locally without CORS errors, run `python3 -m http.server 8080` in the macrosnaps directory first, then use [http://localhost:8080](http://localhost:8080).
 
 ### Social Media Bash
 Run immediately after the Daily Bash Ritual:
@@ -332,7 +361,7 @@ Run immediately after the Daily Bash Ritual:
 python3 digest_server.py
 ```
 
-This starts the local server and automatically opens the MacroSnaps Digest UI (`digest_ui.html`) at `http://localhost:PORT`. From there: select format (Daily Post, Weekly Digest, or Substack Notes), generate, edit, and copy content for Substack, X, and LinkedIn. Note: `macrosnaps-digest.html` is an older redundant file -- ignore it.
+This starts the local server and automatically opens the MacroSnaps Digest UI (`digest_ui.html`) at [http://localhost:PORT](http://localhost:PORT). From there: select format (Daily Post, Weekly Digest, or Substack Notes), generate, edit, and copy content for Substack, X, and LinkedIn. Note: `macrosnaps-digest.html` is an older redundant file -- ignore it.
 
 ### Intraday Bash Ritual (ad hoc, news-driven)
 
@@ -417,6 +446,14 @@ Key invariants:
 - These two scripts must never touch each other's fields
 - build.py fails with a clear error if value_at_generation differs from current value for any metric story
 
+### _frozen_historical alignment (as of Session 66)
+- Every monthly `_frozen_historical` series carries a `"startDate": "YYYY-MM"` field
+- The JS left-aligns from `startDate`: data is placed at the correct label position regardless of array length or build date
+- Live series (Yield Curve, Bond Yield, Stock Market, FX) are kept at 316 pts by `sync_market_historical.py` and are always current
+- Frozen series (Inflation CPI) are pinned by `startDate` and show a null gap after their freeze date — honest representation
+- IND/JPN/RUS Inflation CPI arrays are stale and cannot be auto-spliced — flagged for manual FRED pull and rebuild
+- IND 10Y Bond Yield and IND Yield Curve have only 2 data points — need FRED backfill (separate job)
+
 ### Story formula (three-act global arc)
 - Card 1 - The Trigger: one economic event or data print driving global attention
 - Card 2 - Biggest Movers: which markets, currencies, or economies are reacting and how
@@ -451,6 +488,7 @@ Forecast values (source: Ralph's Google Sheet) are annual consensus views for 20
 
 ## Full session history
 
+Session 66: _frozen_historical date alignment architecture fixed (startDate added to all 86 monthly series; JS updated to left-align from startDate); CPI arrays extended with monthly_actuals data (9 countries auto-spliced; IND/JPN/RUS flagged for manual review); IND 10Y Bond Yield and Yield Curve flagged as placeholder arrays needing FRED backfill.
 Session 65: Daily Bash Ritual updated — mv commands added after each review gate for HEADLINES_approved and METRICS_approved files.
 Session 64: Intraday Bash Ritual added (update_global_stories.py built; ad hoc mid-day refresh procedure documented).
 Session 63: Daily ritual completed 2026-04-02; build.py timezone fix (UTC → Europe/London for date stamp); http.server must run from macrosnaps directory for review UIs.

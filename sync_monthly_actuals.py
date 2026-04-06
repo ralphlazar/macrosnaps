@@ -75,7 +75,12 @@ def read_tab(service, sheet_id, tab_name):
         date_str = row[0] if row else None
         if not date_str:
             continue
-        month_str = date_str[:7]  # YYYY-MM
+        # Sheet stores dates as DD/MM/YYYY — parse and reformat as YYYY-MM
+        try:
+            from datetime import datetime as _dt
+            month_str = _dt.strptime(date_str.strip(), '%d/%m/%Y').strftime('%Y-%m')
+        except ValueError:
+            month_str = date_str[:7]  # fallback for unexpected formats
         for country in COUNTRIES:
             col = country_cols[country]
             if col is None:
