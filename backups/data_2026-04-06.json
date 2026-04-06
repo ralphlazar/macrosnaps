@@ -1908,7 +1908,8 @@
             2.39,
             2.43
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2000-03"
         },
         "Unemployment": {
           "v": [
@@ -2226,7 +2227,8 @@
             4.3,
             4.4
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2000-04"
         },
         "Budget Deficit": {
           "v": [
@@ -2612,7 +2614,8 @@
             3.64
           ],
           "type": "line",
-          "stepped": true
+          "stepped": true,
+          "startDate": "2000-03"
         },
         "Stock Market YTD": {
           "v": [
@@ -2934,7 +2937,8 @@
             6582.69
           ],
           "type": "line",
-          "indexLabel": true
+          "indexLabel": true,
+          "startDate": "2000-01"
         },
         "10Y Bond Yield": {
           "v": [
@@ -3255,7 +3259,8 @@
             4.44,
             4.31
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2000-01"
         },
         "Yield Curve": {
           "v": [
@@ -3577,7 +3582,8 @@
             70.0
           ],
           "type": "line",
-          "zeroLine": true
+          "zeroLine": true,
+          "startDate": "2000-01"
         },
         "USD/DXY": {
           "v": [
@@ -3898,7 +3904,8 @@
             100.44,
             99.84
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2000-01"
         },
         "FX Rate": {
           "v": [
@@ -4218,7 +4225,8 @@
             97.61,
             100.495
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2000-02"
         }
       },
       "_frozen_weatherGrid": {
@@ -6593,7 +6601,8 @@
             111.0
           ],
           "type": "line",
-          "zeroLine": true
+          "zeroLine": true,
+          "startDate": "2000-01"
         },
         "GDP Growth": {
           "v": [
@@ -6923,7 +6932,8 @@
             2.64,
             2.32
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2001-01"
         },
         "Unemployment": {
           "v": [
@@ -7241,7 +7251,8 @@
             6.8,
             6.5
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2000-04"
         },
         "Current Account": {
           "v": [
@@ -7594,7 +7605,8 @@
             2.25
           ],
           "type": "line",
-          "stepped": true
+          "stepped": true,
+          "startDate": "2000-03"
         },
         "10Y Bond Yield": {
           "v": [
@@ -7915,7 +7927,8 @@
             3.288,
             3.288
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2000-01"
         },
         "Stock Market YTD": {
           "v": [
@@ -8237,7 +8250,8 @@
             33108.2
           ],
           "type": "line",
-          "indexLabel": true
+          "indexLabel": true,
+          "startDate": "2000-01"
         },
         "CAD/USD": {
           "v": [
@@ -8514,7 +8528,8 @@
             0.72,
             0.72
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2003-09"
         },
         "Budget Deficit": {
           "v": [
@@ -8823,7 +8838,8 @@
             0.7312,
             0.7335
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2003-10"
         }
       },
       "_frozen_weatherGrid": {
@@ -11195,7 +11211,8 @@
             72.0
           ],
           "type": "line",
-          "zeroLine": true
+          "zeroLine": true,
+          "startDate": "2000-01"
         },
         "GDP Growth": {
           "v": [
@@ -11525,7 +11542,8 @@
             3.67,
             3.42
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2001-01"
         },
         "Current Account": {
           "v": [
@@ -11879,7 +11897,8 @@
             4.432,
             4.432
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2000-01"
         },
         "Stock Market YTD": {
           "v": [
@@ -12201,7 +12220,8 @@
             10436.3
           ],
           "type": "line",
-          "indexLabel": true
+          "indexLabel": true,
+          "startDate": "2000-01"
         },
         "Policy Rate": {
           "v": [
@@ -12521,7 +12541,8 @@
             3.75
           ],
           "type": "line",
-          "stepped": true
+          "stepped": true,
+          "startDate": "2000-03"
         },
         "GBP/USD": {
           "v": [
@@ -12795,7 +12816,8 @@
             1.32,
             1.33
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2003-12"
         },
         "Unemployment": {
           "v": [
@@ -13110,7 +13132,8 @@
             5.1,
             5.1
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2000-07"
         },
         "Budget Deficit": {
           "v": [
@@ -13416,7 +13439,8 @@
             1.3491,
             1.3353
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2004-01"
         }
       },
       "_frozen_weatherGrid": {
@@ -15782,7 +15806,8 @@
             0.3,
             0.1
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2003-11"
         },
         "Unemployment": {
           "v": [
@@ -16099,7 +16124,8 @@
             2.6,
             2.6
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2000-05"
         },
         "Budget Deficit": {
           "v": [
@@ -16379,7 +16405,8 @@
             0.75
           ],
           "type": "line",
-          "stepped": true
+          "stepped": true,
+          "startDate": "2009-01"
         },
         "Stock Market YTD": {
           "v": [
@@ -16701,7 +16728,8 @@
             53413.68
           ],
           "type": "line",
-          "indexLabel": true
+          "indexLabel": true,
+          "startDate": "2000-01"
         },
         "10Y Bond Yield": {
           "v": [
@@ -17022,7 +17050,8 @@
             2.11,
             2.11
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2000-01"
         },
         "Yield Curve": {
           "v": [
@@ -17317,7 +17346,8 @@
             88.0
           ],
           "type": "line",
-          "zeroLine": true
+          "zeroLine": true,
+          "startDate": "2002-04"
         },
         "USD/JPY": {
           "v": [
@@ -17638,7 +17668,8 @@
             159.53,
             159.35
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2000-01"
         },
         "FX Rate": {
           "v": [
@@ -17958,7 +17989,8 @@
             155.859,
             159.206
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2000-02"
         }
       },
       "_frozen_weatherGrid": {
@@ -20330,7 +20362,8 @@
             81.0
           ],
           "type": "line",
-          "zeroLine": true
+          "zeroLine": true,
+          "startDate": "2000-01"
         },
         "GDP Growth": {
           "v": [
@@ -20660,7 +20693,8 @@
             2.29,
             2.19
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2001-01"
         },
         "Current Account": {
           "v": [
@@ -20915,7 +20949,8 @@
             2.15
           ],
           "type": "line",
-          "stepped": true
+          "stepped": true,
+          "startDate": "2008-05"
         },
         "10Y Bond Yield": {
           "v": [
@@ -21236,7 +21271,8 @@
             2.807,
             2.807
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2000-01"
         },
         "Stock Market YTD": {
           "v": [
@@ -21558,7 +21594,8 @@
             23168.08
           ],
           "type": "line",
-          "indexLabel": true
+          "indexLabel": true,
+          "startDate": "2000-01"
         },
         "EUR/USD": {
           "v": [
@@ -21832,7 +21869,8 @@
             1.15,
             1.16
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2003-12"
         },
         "Unemployment": {
           "v": [
@@ -22149,7 +22187,8 @@
             3.8,
             3.8
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2000-05"
         },
         "Budget Deficit": {
           "v": [
@@ -22455,7 +22494,8 @@
             1.1803,
             1.1423
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2004-01"
         }
       },
       "_frozen_weatherGrid": {
@@ -24827,7 +24867,8 @@
             140.0
           ],
           "type": "line",
-          "zeroLine": true
+          "zeroLine": true,
+          "startDate": "2000-01"
         },
         "GDP Growth": {
           "v": [
@@ -25157,7 +25198,8 @@
             0.8,
             0.76
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2001-01"
         },
         "Current Account": {
           "v": [
@@ -25412,7 +25454,8 @@
             2.15
           ],
           "type": "line",
-          "stepped": true
+          "stepped": true,
+          "startDate": "2008-05"
         },
         "10Y Bond Yield": {
           "v": [
@@ -25733,7 +25776,8 @@
             3.4,
             3.4
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2000-01"
         },
         "Stock Market YTD": {
           "v": [
@@ -26055,7 +26099,8 @@
             7962.39
           ],
           "type": "line",
-          "indexLabel": true
+          "indexLabel": true,
+          "startDate": "2000-01"
         },
         "EUR/USD": {
           "v": [
@@ -26329,7 +26374,8 @@
             1.15,
             1.16
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2003-12"
         },
         "Unemployment": {
           "v": [
@@ -26646,7 +26692,8 @@
             7.7,
             7.7
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2000-05"
         },
         "Budget Deficit": {
           "v": [
@@ -26952,7 +26999,8 @@
             1.1803,
             1.1423
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2004-01"
         }
       },
       "_frozen_weatherGrid": {
@@ -29331,7 +29379,8 @@
             1.58,
             1.91
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2001-01"
         },
         "Unemployment": {
           "v": [
@@ -29648,7 +29697,8 @@
             5.6,
             5.6
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2000-05"
         },
         "Budget Deficit": {
           "v": [
@@ -29936,7 +29986,8 @@
             2.15
           ],
           "type": "line",
-          "stepped": true
+          "stepped": true,
+          "startDate": "2008-05"
         },
         "Stock Market YTD": {
           "v": [
@@ -30258,7 +30309,8 @@
             45625.0
           ],
           "type": "line",
-          "indexLabel": true
+          "indexLabel": true,
+          "startDate": "2000-01"
         },
         "10Y Bond Yield": {
           "v": [
@@ -30579,7 +30631,8 @@
             3.388,
             3.388
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2000-01"
         },
         "Yield Curve": {
           "v": [
@@ -30901,7 +30954,8 @@
             139.0
           ],
           "type": "line",
-          "zeroLine": true
+          "zeroLine": true,
+          "startDate": "2000-01"
         },
         "EUR/USD": {
           "v": [
@@ -31175,7 +31229,8 @@
             1.15,
             1.16
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2003-12"
         },
         "FX Rate": {
           "v": [
@@ -31448,7 +31503,8 @@
             1.1803,
             1.1423
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2004-01"
         }
       },
       "_frozen_weatherGrid": {
@@ -33228,7 +33284,8 @@
             -0.1,
             -0.07
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2000-12"
         },
         "Current Account": {
           "v": [
@@ -33587,7 +33644,8 @@
             3913.72
           ],
           "type": "line",
-          "indexLabel": true
+          "indexLabel": true,
+          "startDate": "2000-02"
         },
         "USD/CNY": {
           "v": [
@@ -33890,7 +33948,8 @@
             6.84,
             6.91
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2001-07"
         },
         "Budget Deficit": {
           "type": "bar",
@@ -34240,7 +34299,8 @@
             4.8,
             4.9
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2000-05"
         },
         "FX Rate": {
           "v": [
@@ -34543,7 +34603,8 @@
             6.8409,
             6.8689
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2001-07"
         },
         "10Y Bond Yield": {
           "v": [],
@@ -36172,7 +36233,8 @@
             128.0,
             128.0
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2026-03"
         },
         "GDP Growth": {
           "v": [
@@ -36502,7 +36564,8 @@
             2.59,
             2.95
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2001-01"
         },
         "Current Account": {
           "v": [
@@ -36854,7 +36917,8 @@
             5.25
           ],
           "type": "line",
-          "stepped": true
+          "stepped": true,
+          "startDate": "2000-04"
         },
         "Stock Market YTD": {
           "v": [
@@ -37176,7 +37240,8 @@
             73757.66
           ],
           "type": "line",
-          "indexLabel": true
+          "indexLabel": true,
+          "startDate": "2000-01"
         },
         "USD/INR": {
           "v": [
@@ -37450,7 +37515,8 @@
             93.92,
             93.08
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2003-12"
         },
         "Budget Deficit": {
           "v": [
@@ -37760,14 +37826,16 @@
             91.0074,
             92.3899
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2004-01"
         },
         "10Y Bond Yield": {
           "v": [
             6.783,
             6.783
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2026-03"
         }
       },
       "_frozen_weatherGrid": {
@@ -39999,7 +40067,8 @@
             2.88,
             3.08
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2001-03"
         },
         "Unemployment": {
           "v": [],
@@ -40323,7 +40392,8 @@
             6.75
           ],
           "type": "line",
-          "stepped": true
+          "stepped": true,
+          "startDate": "2000-03"
         },
         "10Y Bond Yield": {
           "v": [
@@ -40644,7 +40714,8 @@
             8.26,
             8.26
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2000-01"
         },
         "Stock Market YTD": {
           "v": [
@@ -40821,7 +40892,8 @@
             116122.8
           ],
           "type": "line",
-          "indexLabel": true
+          "indexLabel": true,
+          "startDate": "2012-02"
         },
         "Current Account": {
           "v": [
@@ -41128,7 +41200,8 @@
             17.1,
             16.83
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2003-12"
         },
         "Yield Curve": {
           "v": [
@@ -41450,7 +41523,8 @@
             151.0
           ],
           "type": "line",
-          "zeroLine": true
+          "zeroLine": true,
+          "startDate": "2000-01"
         },
         "Budget Deficit": {
           "v": [
@@ -41756,7 +41830,8 @@
             15.9173,
             16.7562
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2004-01"
         }
       },
       "_frozen_weatherGrid": {
@@ -43491,7 +43566,8 @@
             5.48,
             5.53
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2000-12"
         },
         "Unemployment": {
           "v": [
@@ -43808,7 +43884,8 @@
             5.4,
             5.8
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2000-05"
         },
         "Policy Rate": {
           "v": [
@@ -44128,7 +44205,8 @@
             15.0
           ],
           "type": "line",
-          "stepped": true
+          "stepped": true,
+          "startDate": "2000-03"
         },
         "10Y Bond Yield": {
           "v": [],
@@ -44454,7 +44532,8 @@
             188052.0
           ],
           "type": "line",
-          "indexLabel": true
+          "indexLabel": true,
+          "startDate": "2000-01"
         },
         "Current Account": {
           "v": [
@@ -44761,7 +44840,8 @@
             5.25,
             5.16
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2003-12"
         },
         "Yield Curve": {
           "v": [],
@@ -45071,7 +45151,8 @@
             5.1366,
             5.2439
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2004-01"
         }
       },
       "_frozen_weatherGrid": {
@@ -46604,7 +46685,8 @@
             9.16,
             16.7
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2004-01"
         },
         "Unemployment": {
           "v": [],
@@ -46928,7 +47010,8 @@
             15.5
           ],
           "type": "line",
-          "stepped": true
+          "stepped": true,
+          "startDate": "2000-03"
         },
         "10Y Bond Yield": {
           "v": [],
@@ -47253,7 +47336,8 @@
             2789.61
           ],
           "type": "line",
-          "indexLabel": true
+          "indexLabel": true,
+          "startDate": "2000-02"
         },
         "Current Account": {
           "v": [
@@ -47597,7 +47681,8 @@
             81.19,
             78.94
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2003-12"
         },
         "FX Rate": {
           "v": [
@@ -47870,7 +47955,8 @@
             76.8715,
             79.4975
           ],
-          "type": "line"
+          "type": "line",
+          "startDate": "2004-01"
         }
       },
       "_frozen_weatherGrid": {

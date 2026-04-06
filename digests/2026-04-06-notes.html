@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MacroSnaps · Substack Notes · 6 April 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono:wght@400;500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #080d1a;
+    --navy-2: #0d1525;
+    --navy-3: #111d30;
+    --cyan: #00e5ff;
+    --cyan-dim: rgba(0,229,255,0.10);
+    --border: rgba(0,229,255,0.18);
+    --border-dim: rgba(255,255,255,0.07);
+    --text: #c8d8e8;
+    --text-dim: #6a7f96;
+    --amber: #ffb347;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--navy);
+    color: var(--text);
+    font-family: 'Instrument Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  /* Top bar */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 28px;
+    background: var(--navy-2);
+    border-bottom: 1px solid var(--border-dim);
+    flex-shrink: 0;
+  }
+  .topbar-left { display: flex; align-items: baseline; gap: 12px; }
+  .logo { font-family: 'DM Serif Display', serif; font-size: 20px; color: #fff; }
+  .logo span { color: var(--cyan); }
+  .badge {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    color: var(--cyan); background: var(--cyan-dim);
+    border: 1px solid var(--border); padding: 2px 8px;
+    border-radius: 3px; letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .topbar-right { display: flex; align-items: center; gap: 12px; }
+  .meta { font-size: 12px; color: var(--text-dim); }
+  .copy-btn {
+    background: linear-gradient(135deg, rgba(0,229,255,0.15), rgba(0,229,255,0.08));
+    border: 1px solid var(--cyan); border-radius: 8px;
+    padding: 9px 20px; color: var(--cyan);
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 14px; font-weight: 600; cursor: pointer;
+    transition: all 0.18s; letter-spacing: 0.02em;
+  }
+  .copy-btn:hover {
+    background: linear-gradient(135deg, rgba(0,229,255,0.25), rgba(0,229,255,0.15));
+    box-shadow: 0 0 20px rgba(0,229,255,0.2);
+  }
+  .copy-btn.copied { background: rgba(74,222,128,0.15); border-color: #4ade80; color: #4ade80; }
+
+  /* Main layout */
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    flex: 1;
+    overflow: hidden;
+    height: calc(100vh - 57px);
+  }
+
+  /* Preview pane */
+  .pane {
+    overflow-y: auto;
+    padding: 36px 40px;
+    border-right: 1px solid var(--border-dim);
+  }
+  .pane-label {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text-dim); margin-bottom: 24px;
+  }
+
+  /* Preview typography */
+  .preview-body h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px; color: #fff; line-height: 1.2;
+    margin-bottom: 20px; letter-spacing: -0.3px;
+  }
+  .preview-body h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px; color: #fff; margin: 28px 0 10px;
+  }
+  .preview-body p { margin-bottom: 14px; line-height: 1.75; font-size: 15px; }
+  .preview-body strong { color: #fff; font-weight: 600; }
+  .preview-body em { color: var(--amber); font-style: italic; }
+  .preview-body a { color: var(--cyan); text-decoration: none; }
+  .preview-body a:hover { text-decoration: underline; }
+  .preview-body hr { border: none; border-top: 1px solid var(--border-dim); margin: 24px 0; }
+  .preview-body ul { padding-left: 20px; margin-bottom: 14px; }
+  .preview-body li { margin-bottom: 6px; line-height: 1.7; font-size: 15px; }
+  .preview-body blockquote {
+    border-left: 3px solid var(--cyan); padding: 10px 16px;
+    background: var(--cyan-dim); border-radius: 0 6px 6px 0;
+    font-style: italic; color: var(--text-dim); margin-bottom: 20px;
+    font-size: 14px; line-height: 1.6;
+  }
+  .subject-line {
+    background: var(--navy-3); border: 1px solid var(--border);
+    border-radius: 6px; padding: 10px 14px;
+    font-size: 14px; margin-bottom: 24px;
+  }
+  .subject-label {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    color: var(--cyan); letter-spacing: 0.1em;
+    text-transform: uppercase; margin-right: 8px;
+  }
+
+  /* Edit pane */
+  .edit-pane {
+    overflow-y: auto;
+    padding: 36px 40px;
+    display: flex;
+    flex-direction: column;
+  }
+  .edit-pane .pane-label { margin-bottom: 16px; }
+  .hint {
+    font-size: 12px; color: var(--text-dim);
+    margin-bottom: 16px; line-height: 1.5;
+  }
+  textarea {
+    flex: 1;
+    width: 100%;
+    min-height: calc(100vh - 200px);
+    background: var(--navy-3);
+    border: 1px solid var(--border-dim);
+    border-radius: 8px;
+    padding: 20px;
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    line-height: 1.75;
+    resize: none;
+    outline: none;
+    transition: border-color 0.18s;
+  }
+  textarea:focus { border-color: var(--cyan); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Macro<span>Snaps</span></div>
+    <div class="badge">Substack Notes</div>
+    <span class="meta">6 April 2026</span>
+  </div>
+  <div class="topbar-right">
+    <span class="meta">Edit on the right · Copy · Paste into Substack</span>
+    <button class="copy-btn" onclick="copyText()">Copy to clipboard</button>
+  </div>
+</div>
+
+<div class="main">
+  <div class="pane">
+    <div class="pane-label">Preview</div>
+    <div class="preview-body" id="preview">
+      <p>NOTE 1:</p>
+<p>Brazil's policy rate at 12% now matches Russia's desperation level, signaling emerging markets are trapped between inflation credibility and growth collapse.</p>
+
+<p>NOTE 2:</p>
+<p>US growth decelerated 70% quarter-on-quarter while the Fed holds steady, creating a hawkish surprise risk if tariffs stick and markets' 125bps of expected cuts evaporate.</p>
+
+<p>NOTE 3:</p>
+<p>Canada's sub-1% growth with 6.5% unemployment proves tariffs are structural, not cyclical, meaning rate cuts alone cannot revive an economy restructuring away from US supply chains.</p>
+    </div>
+  </div>
+
+  <div class="edit-pane">
+    <div class="pane-label">Edit</div>
+    <p class="hint">Edit the text below, then hit Copy. Paste directly into Substack.</p>
+    <textarea id="editor" oninput="updatePreview(this.value)">NOTE 1:
+Brazil's policy rate at 12% now matches Russia's desperation level, signaling emerging markets are trapped between inflation credibility and growth collapse.
+
+NOTE 2:
+US growth decelerated 70% quarter-on-quarter while the Fed holds steady, creating a hawkish surprise risk if tariffs stick and markets' 125bps of expected cuts evaporate.
+
+NOTE 3:
+Canada's sub-1% growth with 6.5% unemployment proves tariffs are structural, not cyclical, meaning rate cuts alone cannot revive an economy restructuring away from US supply chains.</textarea>
+  </div>
+</div>
+
+<script>
+// Simple markdown -> HTML for live preview
+function mdToHtml(md) {
+  let h = md;
+  h = h.replace(/^SUBJECT:\s*(.+)$/gm, '<p class="subject-line"><span class="subject-label">Subject:</span> $1</p>');
+  h = h.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+  h = h.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+  h = h.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  h = h.replace(/\*(.+?)\*/g, '<em>$1</em>');
+  h = h.replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+  h = h.replace(/^---$/gm, '<hr>');
+  h = h.replace(/^- (.+)$/gm, '<li>$1</li>');
+  h = h.replace(/^> (.+)$/gm, '<blockquote>$1</blockquote>');
+  const lines = h.split('\n');
+  return lines.map(line => {
+    const s = line.trim();
+    if (!s) return '<br>';
+    if (s.startsWith('<')) return s;
+    return '<p>' + s + '</p>';
+  }).join('\n');
+}
+
+function updatePreview(val) {
+  document.getElementById('preview').innerHTML = mdToHtml(val);
+}
+
+function copyText() {
+  const text = document.getElementById('editor').value;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = 'Copied ✓';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copy to clipboard';
+      btn.classList.remove('copied');
+    }, 2500);
+  });
+}
+</script>
+</body>
+</html>

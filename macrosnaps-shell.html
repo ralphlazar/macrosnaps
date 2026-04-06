@@ -55817,7 +55817,19 @@ function hasChartData(metricName, countryCode){
   const isAnnual=cfg.type==='bar';
   const totalLen=(isAnnual?histAnnualLabels:histMonthlyLabels).length;
   const rawVals=cfg.v||[];
-  const padded=totalLen>rawVals.length?Array(totalLen-rawVals.length).fill(null).concat(rawVals):rawVals.slice(rawVals.length-totalLen);
+  // Left-align from startDate when present; fall back to right-align for
+  // series without startDate (e.g. annual). Non-null check is alignment-invariant.
+  let padded;
+  if(!isAnnual && cfg.startDate){
+    const [sy,sm]=cfg.startDate.split('-').map(Number);
+    const startIdx=(sy-2000)*12+(sm-1);
+    const trail=Math.max(0,totalLen-startIdx-rawVals.length);
+    padded=Array(startIdx).fill(null).concat(rawVals).concat(Array(trail).fill(null));
+  } else {
+    padded=totalLen>rawVals.length
+      ?Array(totalLen-rawVals.length).fill(null).concat(rawVals)
+      :rawVals.slice(rawVals.length-totalLen);
+  }
   return padded.some(v=>v!==null&&v!==undefined);
 }
 
@@ -55831,12 +55843,24 @@ function renderMetricChart(container, metricName, countryCode, rangeMonths){
   const isAnnual=cfg.type==='bar';
   const allLabels=isAnnual?histAnnualLabels:histMonthlyLabels;
   const rawVals=cfg.v||[];
-  // Fixed window: Jan 2000 → current month/year. Right-align data into the full label
-  // range, left-padding with nulls so gaps are visible rather than the axis shrinking.
+  // Fixed window: Jan 2000 → current month/year.
+  // Left-align from cfg.startDate so frozen series (e.g. Inflation) render at the
+  // correct historical dates regardless of array length or build date.
+  // Live series whose startDate equals their genuine FRED start align identically
+  // to the previous right-align behaviour. Trailing nulls appear as a visible gap
+  // for months after the freeze — honest representation of data staleness.
   const totalLen=allLabels.length;
-  const padded=totalLen>rawVals.length
-    ?Array(totalLen-rawVals.length).fill(null).concat(rawVals)
-    :rawVals.slice(rawVals.length-totalLen);
+  let padded;
+  if(!isAnnual && cfg.startDate){
+    const [sy,sm]=cfg.startDate.split('-').map(Number);
+    const startIdx=(sy-2000)*12+(sm-1);
+    const trail=Math.max(0,totalLen-startIdx-rawVals.length);
+    padded=Array(startIdx).fill(null).concat(rawVals).concat(Array(trail).fill(null));
+  } else {
+    padded=totalLen>rawVals.length
+      ?Array(totalLen-rawVals.length).fill(null).concat(rawVals)
+      :rawVals.slice(rawVals.length-totalLen);
+  }
   const n=rangeMonths||totalLen;
   const sliceVals=padded.slice(-n);
   const sliceLabels=allLabels.slice(-n);
