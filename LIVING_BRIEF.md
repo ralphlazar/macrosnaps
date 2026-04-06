@@ -1,5 +1,5 @@
 # MacroSnaps - Living Brief
-Last updated: April 3, 2026 (Session 64: Intraday Bash Ritual added — update_global_stories.py built; ad hoc mid-day refresh procedure documented in Standing Rules.)
+Last updated: April 6, 2026 (Session 65: Daily Bash Ritual updated — mv commands added after each review gate for HEADLINES_approved and METRICS_approved files.)
 
 Session 64 changes in detail:
 
@@ -304,9 +304,15 @@ python3 update_headlines.py
 python3 update_metric_stories.py
 ```
 
-Manual gate 1: open `headline_review.html` (via http://localhost:8080), load `HEADLINES_draft_YYYY-MM-DD.json`, review and edit, export `HEADLINES_approved_YYYY-MM-DD.json`.
+Manual gate 1: open `headline_review.html` (via http://localhost:8080), load `HEADLINES_draft_YYYY-MM-DD.json`, review and edit, export `HEADLINES_approved_YYYY-MM-DD.json`. Then move the approved file into the repo:
+```bash
+mv ~/Downloads/HEADLINES_approved_YYYY-MM-DD.json /Users/lisaswerling/RALPH/AI/macrosnaps/
+```
 
-Manual gate 2: open `metric_story_review.html` (via http://localhost:8080), load `METRICS_draft_YYYY-MM-DD.json`, review and edit, export `METRICS_approved_YYYY-MM-DD.json`.
+Manual gate 2: open `metric_story_review.html` (via http://localhost:8080), load `METRICS_draft_YYYY-MM-DD.json`, review and edit, export `METRICS_approved_YYYY-MM-DD.json`. Then move the approved file into the repo:
+```bash
+mv ~/Downloads/METRICS_approved_YYYY-MM-DD.json /Users/lisaswerling/RALPH/AI/macrosnaps/
+```
 
 ```bash
 python3 update_headlines.py --apply HEADLINES_approved_YYYY-MM-DD.json
@@ -445,6 +451,7 @@ Forecast values (source: Ralph's Google Sheet) are annual consensus views for 20
 
 ## Full session history
 
+Session 65: Daily Bash Ritual updated — mv commands added after each review gate for HEADLINES_approved and METRICS_approved files.
 Session 64: Intraday Bash Ritual added (update_global_stories.py built; ad hoc mid-day refresh procedure documented).
 Session 63: Daily ritual completed 2026-04-02; build.py timezone fix (UTC → Europe/London for date stamp); http.server must run from macrosnaps directory for review UIs.
 Session 62: Daily ritual completed 2026-03-31; sync_edu.py path fix (runs from macrosnaps repo, not macedu); Daily Bash Ritual updated.
