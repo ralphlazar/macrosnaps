@@ -188,10 +188,9 @@ def get_fx_raw(code, src):
 
 def get_frozen(code, key, src):
     try:
-        entry = src['countries'][code]['_frozen_historical'][key]
-        return entry['v'], entry.get('startDate')
+        return src['countries'][code]['_frozen_historical'][key]['v']
     except (KeyError, TypeError):
-        return [], None
+        return []
 
 def make_monthly_dates(n, fmt='%b %Y'):
     today = datetime.today()
@@ -206,22 +205,6 @@ def make_monthly_dates(n, fmt='%b %Y'):
 def make_annual_dates(n):
     today = datetime.today()
     return [str(ANNUAL_START + i) for i in range(n) if ANNUAL_START + i <= today.year]
-
-def make_dates_from_start(start_str, n_values, fmt='%b %Y'):
-    """Generate n_values monthly date labels starting from start_str ('YYYY-MM').
-    Falls back to SERIES_START if start_str is missing or unparseable."""
-    try:
-        start = datetime.strptime(start_str, '%Y-%m')
-    except (ValueError, TypeError):
-        start = SERIES_START
-    today = datetime.today()
-    dates = []
-    for i in range(n_values):
-        d = start + relativedelta(months=i)
-        if d > today:
-            break
-        dates.append(d.strftime(fmt))
-    return dates
 
 def tail(values, n):
     return values[-n:] if len(values) >= n else values
@@ -345,18 +328,17 @@ W_MON = 120
 W_ANN = 10
 
 def build_monthly_chart(data, hist_key, country_slug):
-    code            = SLUG_TO_CODE[country_slug]
-    v, start_date   = get_frozen(code, hist_key, data)
+    code   = SLUG_TO_CODE[country_slug]
+    v      = get_frozen(code, hist_key, data)
     if not v:
         return [], []
-    all_dates = make_dates_from_start(start_date, len(v))
-    series    = round_series(tail(v, W_MON))
-    dates     = all_dates[-W_MON:] if len(all_dates) >= W_MON else all_dates
+    series = round_series(tail(v, W_MON))
+    dates  = tail_dates(ALL_MONTHLY, v, W_MON)
     return list(dates), series
 
 def build_annual_chart(data, hist_key, country_slug):
     code   = SLUG_TO_CODE[country_slug]
-    v, _   = get_frozen(code, hist_key, data)
+    v      = get_frozen(code, hist_key, data)
     if not v:
         return [], []
     series = round_series(tail(v, W_ANN))
@@ -366,14 +348,11 @@ def build_annual_chart(data, hist_key, country_slug):
 def build_fx_chart(data, country_slug):
     code     = SLUG_TO_CODE[country_slug]
     hist_key = FX_HIST_KEYS[code]
-    v, start_date = get_frozen(code, hist_key, data)
-    if not v:
-        v, start_date = get_frozen(code, 'FX Rate', data)
+    v        = get_frozen(code, hist_key, data) or get_frozen(code, 'FX Rate', data)
     if not v:
         return [], []
-    all_dates = make_dates_from_start(start_date, len(v))
-    series    = round_series(tail(v, W_MON))
-    dates     = all_dates[-W_MON:] if len(all_dates) >= W_MON else all_dates
+    series = round_series(tail(v, W_MON))
+    dates  = tail_dates(ALL_MONTHLY, v, W_MON)
     return list(dates), series
 
 # ── Load data ─────────────────────────────────────────────────────────────────
