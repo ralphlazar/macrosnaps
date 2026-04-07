@@ -1,0 +1,331 @@
+{
+  "date": "2026-04-07",
+  "countries": {
+    "USA": {
+      "stories": {
+        "beginner": [
+          "Inflation barely budged in February, staying at 2.4% year-over-year, which means the Fed's rate cuts last fall didn't spark a price spiral. The central bank now plans to sit tight with rates until December, betting inflation stays under control.",
+          "The job market remains solid with unemployment at 4.4%, but that's high enough to keep wage pressure manageable. The Fed wants to see more cooling before it cuts rates again.",
+          "The next inflation report drops April 10, and it matters because it will show whether price momentum is building or fading. One soft month doesn't tell the whole story yet."
+        ],
+        "moderate": [
+          "Core inflation at 2.5% in February signals the Fed's three half-point cuts in late 2025 achieved their goal without overshooting. Compare this to the 3.2% core peak in early 2024, and you see disinflation working. The Fed now expects to hold steady until December because goods prices stabilized and services inflation cooled just enough to justify patience.",
+          "Unemployment at 4.4% sits meaningfully above the Fed's long-run estimate of 4.2%, reducing the urgency to cut. Slack in the labor market buys the Fed time to wait for clearer evidence that inflation won't tick back up.",
+          "The April 10 CPI print is critical because February's stillness could reflect seasonal weakness. A March pop would force the Fed to recalibrate its hold-steady outlook and could delay any summer cuts that markets are starting to price in."
+        ],
+        "expert": [
+          "February CPI printed at 2.41% with core at 2.53%, nearly centered on the Fed's 2% target but with a directional signal embedded in the data: goods disinflation has plateaued while services remain sticky above 3%. The Fed's hold guidance through December reflects confidence that the Phillips curve has flattened enough to tolerate 4.4% unemployment without igniting wage-price spirals.",
+          "The 3.64% policy rate sits 241 basis points above the neutral estimate baked into the Fed's dot plot (1.0%), leaving substantial restrictive stance in place. The full-year 2.3% inflation forecast vs. 2.41% actual suggests the Fed is calibrating for a modest rebound, not the disinflation narrative of twelve months ago.",
+          "Watch the March CPI release April 10 for the magnitude of shelter and transportation moves. If core reinflates above 2.7%, the Fed's December-hold thesis breaks and forward rate expectations (currently pricing two 25bp cuts in late 2026) compress sharply."
+        ]
+      }
+    },
+    "CAN": {
+      "stories": {
+        "beginner": [
+          "Canada's inflation collapsed to 1.78% in February, undershooting the central bank's 2% target, which means the Bank of Canada stopped cutting rates for good reason. Underlying inflation ticked up unexpectedly, signaling the economy is tighter than the headline number suggests.",
+          "Unemployment jumped to 6.74%, the highest in years, so the labor market is genuinely cooling despite the hot underlying inflation. The Bank of Canada faces a puzzle: headline inflation is too low to justify more cuts, but jobs are disappearing fast.",
+          "The central bank won't cut again until inflation returns to target in mid-2026, which means the 2.25% rate is frozen. The next move depends on whether unemployment keeps rising and pulls wages down."
+        ],
+        "moderate": [
+          "February CPI at 1.78% masks a divergence: headline inflation fell below target while core inflation rose, a pattern the Bank of Canada signaled as a warning sign in March. The surprise uptick in underlying inflation reflects goods prices stabilizing and shelter costs staying stubborn, leaving the central bank reluctant to ease further despite the unemployment shock.",
+          "The 6.74% jobless rate in January (February data delayed) represents a 50 basis point jump year-over-year and reflects energy sector weakness and broader labor market softening. This rivals the unemployment spike in 2020, yet the Bank of Canada held rates because core inflation remains above 2.5%, preventing the case for emergency cuts.",
+          "The Bank of Canada's forecast for underlying inflation to return to the 2-3% range by H2 2026 hinges on continued labor market weakness pulling down wage growth. If unemployment stabilizes above 6.5% without further disinflation, the bank faces pressure to cut despite elevated core, creating a policy fork."
+        ],
+        "expert": [
+          "February CPI at 1.78% with 1.5% for trimmed mean inflation suggests headline undershoots target by 30bp while core runs 50bp hot. The Bank of Canada's pause reflects its forward guidance that underlying inflation won't hit 2.5% (midpoint) until Q3 2026, requiring monetary restraint even as unemployment drifts to structural highs.",
+          "The 6.74% unemployment rate (January) marks a 140bp year-over-year increase and signals a labor demand shock, likely energy-driven. The policy rate of 2.25% sits 75bp above the estimated neutral neutral rate (1.5%), amplifying restraint on job creation.",
+          "Forward implication: if the Bank of Canada begins cutting in Q2 2026 as market pricing suggests, it faces a 100bp easing bias through end-year despite its mid-year inflation return forecast. A deterioration in core inflation below 2.25% combined with jobless rates above 7% would force accelerated cuts and test the credibility of the H2 2026 inflation rebound."
+        ]
+      }
+    },
+    "GBR": {
+      "stories": {
+        "beginner": [
+          "UK inflation is running at 3.24% in February, well above the Bank of England's 2% target, so rate cuts are still risky. But the real problem isn't demand, it's structural: tight labor markets and weak productivity mean services prices won't come down easily.",
+          "The Bank of England faces a trap: inflation is high enough to prevent aggressive cutting, but the labor market is cooling enough that waiting too long could choke growth. Goldman Sachs thinks quarterly cuts will start soon and bring rates to 3% by mid-2026.",
+          "Watch services inflation most closely. If wage growth slows faster than forecast, the Bank of England could cut earlier. If services stay sticky, it stays stuck."
+        ],
+        "moderate": [
+          "February CPI at 3.24% reflects services inflation still around 4%, a 50bp stubborn premium to goods that traces to tight labor markets (5.2% unemployment is low by post-pandemic standards) and weak productivity growth. The Bank of England's caution on cuts makes sense: headline inflation would need to fall another 70bp for the central bank to gain political cover.",
+          "Goldman Sachs' forecast for quarterly cuts bringing rates to 3% by Q3 2026 assumes services disinflation accelerates as labor market slack builds. This is plausible but not certain: UK wage growth (3% annualized in recent data) remains elevated, and if it stays above 3%, services inflation will stick above 3.5%, forcing the Bank of England to hold longer.",
+          "The policy rate at 3.75% is only 50bp above the full-year forecast of 3.25%, meaning markets are pricing significant easing. But services inflation dynamics are the key: if firms can't easily absorb wage pressure through productivity gains, the Bank of England will disappoint cut-hungry investors."
+        ],
+        "expert": [
+          "February CPI at 3.24% with services component near 4% reflects a structural inflation problem anchored in tight labor markets and weak productivity (trending near 0% growth). The 5.2% unemployment rate from November is a floor, not a trend, because labor force participation remains below pre-pandemic, masking slack.",
+          "The 3.75% policy rate is priced to move to 3.25% by end-year per Goldman Sachs' quarterly-cut path. This assumes nominal wage growth (currently 3.0-3.2%) decelerates to 2.5% by Q3 2026, a 75bp drop that requires visible unemployment rises above 5.8%. The forward guidance signal is conditional on data acceleration, not determined.",
+          "Critical implication: the Bank of England's cut cycle is a bet on wage disinflation outpacing any labor market softening. If the April-May inflation prints show services staying above 3.8% while wage growth remains 3%+, rate cuts will compress to two 25bp moves (not four quarterly cuts), and the terminal rate moves to 3.50% not 3.00%."
+        ]
+      }
+    },
+    "JPN": {
+      "stories": {
+        "beginner": [
+          "Japan's inflation is at 1.26% in February and expected to fall below 2% through mid-2026, which gives the Bank of Japan room to finally raise rates. The central bank plans a 50 basis point hike this year, the first tightening after decades of ultra-loose policy.",
+          "Unemployment is incredibly low at 2.4%, nearly full employment, so wage growth is real even if inflation is soft. The Bank of Japan is confident enough in sustained price momentum to start normalizing rates.",
+          "The key question is whether the Bank of Japan can actually execute a 50bp hike without breaking confidence in the reflation story. Markets worry that tightening too fast will collapse the fragile wage-growth momentum that finally brought inflation above 1%."
+        ],
+        "moderate": [
+          "February CPI at 1.26% tracks below the Bank of Japan's 2% target, but the composition matters: core inflation is running above headline, and goods prices are stabilizing after the earlier cost shocks. The Bank of Japan's 50bp hike forecast for 2026 assumes inflation settles in the 1.5-1.8% range, stable enough to tolerate modest tightening without triggering deflation psychology.",
+          "The 2.4% unemployment rate is the tightest in the post-1990s period and wage growth (trending 2.5%+ in nominal terms) finally reflects actual labor scarcity. The Bank of Japan sees this as sufficient evidence that the deflationary trap has broken, justifying the first rate increase since 2023.",
+          "The 0.75% policy rate is deeply accommodative relative to the 1.25% full-year forecast, implying 50bp of tightening is built into guidance. If the Bank of Japan executes as planned, the full-year rate will sit near neutral (1.0-1.25%), but watch wage growth: if it slips below 2.0% before the first hike, the central bank will likely defer tightening into 2027."
+        ],
+        "expert": [
+          "February CPI at 1.26% with core inflation at 1.5% reflects the tail end of earlier commodity pass-through and genuine disinflation in goods. The Bank of Japan's guidance for below-2% inflation through H1 2026 followed by a return to 1.8% by end-year suggests the central bank models a stable reflation, not acceleration. The 0.75% policy rate is 50bp above the December 2025 low, signaling the hiking cycle has already begun.",
+          "The unemployment rate of 2.4% is a structural signal: labor force participation is 62.4%, below the peak of 63.2%, creating genuine slack only if measured via participation-adjusted metrics. Nominal wage growth at 2.3% YoY (diffusion index at 68%) indicates genuine wage momentum, but the acceleration slowed in February compared to prior months.",
+          "Forward signal: the Bank of Japan's 50bp hike projection for 2026 is contingent on sustained wage growth above 2.2% and inflation holding above 1.3%. If the April-May inflation print falls below 1.1% and wage growth momentum falters, the central bank will compress to a single 25bp hike in Q4 2026, pushing normalization into 2027. Watch core inflation and tankan wage expectations (next survey May) as decision gates."
+        ]
+      }
+    },
+    "DEU": {
+      "stories": {
+        "beginner": [
+          "Germany's government is spending heavily right now, which should push the economy faster than the 1.2% forecast for the year.",
+          "The European Central Bank cut rates four times in 2025 and stopped cutting in March, so borrowing costs have fallen sharply and German consumers and businesses can spend more easily.",
+          "Inflation at 1.9% in February sits almost exactly where the ECB wants it, so there is no pressure to cut rates further or tighten policy."
+        ],
+        "moderate": [
+          "Federal spending is the main engine of German growth in 2026, a sharp reversal from the country's historical austerity bias and a direct bet that demand stimulus will work faster than structural reforms.",
+          "The ECB's four 25-basis-point cuts in 2025 brought the deposit rate from 3.75% to 2%, making monetary policy substantially less restrictive than during 2022-2024 when rates were climbing; Germany is now getting both fiscal and monetary tailwinds simultaneously.",
+          "Unemployment at 3.6% in December sits below the 3.8% forecast, showing the labor market is already tight and wage growth could accelerate if fiscal spending sticks, putting upside pressure on inflation later in the year."
+        ],
+        "expert": [
+          "Federal spending is driving near-term growth, but the full-year 1.2% GDP forecast assumes momentum fades as fiscal support normalizes; watch Q2 and Q3 consumption data to see if the multiplier effect holds.",
+          "The ECB held rates at 2.15% in March after four cuts, signaling a pause; with CPI at 1.9% and core inflation likely sticky, the next rate move is data-dependent, not automatic.",
+          "Current account surplus of 4.5% GDP and budget deficit of 2% GDP are structurally mismatched (Germany runs external surpluses while fiscal stimulus widens internal deficits), a dynamic that pressures the euro and raises questions about the sustainability of fiscal expansion beyond 2026."
+        ]
+      }
+    },
+    "FRA": {
+      "stories": {
+        "beginner": [
+          "France's inflation has fallen to 0.9% in February, well below the European Central Bank's 2% target, which means the ECB is unlikely to cut rates further and French consumers are getting a break on prices.",
+          "France is benefiting from Germany's fiscal spending and Spain's strong growth, because those countries buy French goods and services, lifting France's forecast to 1.4% growth even though France itself is not spending more.",
+          "Unemployment remains stubbornly high at 7.7%, nearly double Germany's rate, which is a structural problem that no single year of growth can solve."
+        ],
+        "moderate": [
+          "Inflation at 0.9% is the lowest in the euro area and reflects weak domestic demand; France is not generating its own price pressure, unlike Germany, which means consumer spending is constrained and firms lack pricing power.",
+          "France's growth forecast of 1.4% relies entirely on spillovers from German fiscal stimulus and Spanish momentum, a passive position that leaves France vulnerable if either neighbor stumbles; the budget deficit of 4.8% GDP is among the highest in Europe, yet France is not spending that money to drive its own growth.",
+          "The 7.7% unemployment rate is sticky because French labor markets remain rigid; even with euro area growth in 2026, France's structural job creation lagged peers, and this year's low inflation suggests demand is still too weak to force employers to compete aggressively for workers."
+        ],
+        "expert": [
+          "CPI at 0.9% in February signals disinflationary pressure in France's service sector and confirms that domestic demand is subdued; the ECB's 2.15% policy rate is accommodative in real terms (real rates near 1.25%), but France is not translating that into spending.",
+          "Growth forecast of 1.4% is contingent on external demand (Germany +1.2% and Spain driving euro area +1.3%); if German fiscal support underperforms or Spain's cycle turns, France's growth target drops sharply because France's internal demand engines (consumption and business investment) are not self-sustaining.",
+          "Budget deficit of 4.8% GDP against growth of 1.4% means the fiscal multiplier is weak; watch the ratio of deficit-to-growth in Q2 earnings and spending reports to see whether French fiscal consolidation pressure builds or whether the EU grants relief on deficit rules."
+        ]
+      }
+    },
+    "ITA": {
+      "stories": {
+        "beginner": [
+          "Italy's inflation at 1.51% in February is moderate and stable, giving the European Central Bank no reason to cut rates faster, so Italian borrowers will not get cheaper credit anytime soon.",
+          "Italy is growing at only a 1% forecast despite the euro area benefiting from German and Spanish stimulus, because Italy faces headwinds that Germany and Spain do not: aging population, too much regulation, and high energy costs that make it hard to compete.",
+          "Unemployment at 5.6% is low by Italian standards, but it masks a broader problem: young Italians and workers in the south of the country struggle to find jobs, and this structural unemployment will not improve much even if the economy accelerates."
+        ],
+        "moderate": [
+          "Inflation at 1.51% is above the euro area average of 0.9% (France) to 1.9% (Germany), reflecting Italy's higher energy costs and less competitive energy markets; this inflation floor limits the ECB's willingness to cut, keeping real rates higher for Italian borrowers than peers.",
+          "The 1% growth forecast is the slowest in the euro area, despite fiscal spillovers from Germany and Spain, because Italy's structural challenges (demographic decline, regulatory burden, and energy prices) act as a brake on investment and productivity; this gap between Italy's growth and the euro area average will likely persist through 2026.",
+          "Unemployment at 5.6% appears healthy against the 5.6% forecast, but regional divergence is severe (southern Italy's youth unemployment exceeds 30%), and this geographic mismatch means headline unemployment figures mask deep labor market dysfunction that limits wage growth and demand."
+        ],
+        "expert": [
+          "CPI at 1.51% in February sits 62 basis points above France's 0.9% and 39 basis points above Germany's 1.9%, a persistent gap driven by Italy's energy import dependence and lower price competition; this inflation differential keeps Italy's real policy rate (2.15% minus 1.51%) at 0.64% versus Germany's 0.26%, a 38-basis-point disadvantage that compounds over quarters.",
+          "Growth forecast of 1% versus euro area +1.3% implies Italy is losing relative competitiveness; the current account surplus of 0.8% GDP (versus Germany's 4.5%) masks weak underlying export dynamics and suggests Italian firms are not gaining market share from euro area growth.",
+          "Watch Italy's budget deficit path: at 3.2% GDP forecast against 1% growth, the fiscal impulse is nearly three times larger than growth, signaling either that public spending is highly inefficient or that the deficit is being used to offset private sector weakness; if growth disappoints, deficit-to-GDP will breach 3.5%, triggering EU pressure for consolidation."
+        ]
+      }
+    },
+    "CHN": {
+      "stories": {
+        "beginner": [
+          "Chinese shoppers bought more stuff in the first two months of 2026, with retail sales up 2.8% year-over-year and Lunar New Year spending strong, showing that consumers are finally opening their wallets again.",
+          "China's inflation is barely moving at 0.23% in January, which means prices are not rising and deflation risk is still lurking; this keeps the Chinese central bank under pressure to cut rates or spend more to boost demand.",
+          "The 4.7% growth forecast for the full year is well below China's 5-6% historical average, a sign that the economy is slowing structurally and that the days of double-digit growth are permanently over."
+        ],
+        "moderate": [
+          "Retail sales at 2.8% year-over-year in the first two months mark the best performance since October, but this remains weak in absolute terms; the bounce is partly seasonal (Lunar New Year spending is lumpy), and underlying consumption momentum is still fragile, not a sign of broad-based recovery.",
+          "Inflation at 0.23% in January continues China's deflationary drift, a trend that has persisted despite monetary easing; this suggests demand is still soft and firms lack pricing power, so even with consumer spending picking up, deflation remains a structural headwind that the central bank will struggle to overcome with rate cuts alone.",
+          "The 4.7% growth forecast is underpinned by government stimulus (budget deficit of 6.8% GDP is the highest in this peer group), yet growth still lags historical norms, indicating that fiscal multipliers are declining and that stimulus is delivering less bang for the buck than it did a decade ago."
+        ],
+        "expert": [
+          "Retail sales growth of 2.8% year-over-year in the first two months (a 27-month high) is a directional positive but masks underlying weakness in durable goods demand; watch March-April retail data to confirm whether the bounce is cyclical (Lunar New Year carryover) or structural (household balance sheets strengthening).",
+          "CPI at 0.23% in January and persistent deflationary drag signal that the output gap remains large and that monetary policy transmission is broken; the central bank's policy rate remains above the trend real rate, and further cuts may be necessary to prevent deflation from entrenching.",
+          "The 4.7% growth forecast requires sustained fiscal support (6.8% budget deficit), but diminishing returns on stimulus (each percentage point of fiscal spending is generating less growth than before) suggest that China will need structural reforms (service-sector deregulation, labor market flexibility, capital reallocation from real estate) to sustain growth above 4.5% beyond 2026; monitor government spending announcements in Q2 to gauge commitment to structural change versus reliance on fresh stimulus."
+        ]
+      }
+    },
+    "IND": {
+      "stories": {
+        "beginner": [
+          "India's inflation has collapsed to near zero, giving the central bank room to cut interest rates and boost growth without overheating the economy.",
+          "The RBI is easing policy in January and February because prices aren't rising, which means borrowing costs will fall for businesses and families.",
+          "Watch whether growth picks up as rates drop. At 6.3% forecast growth, India needs lower borrowing costs to hit that target."
+        ],
+        "moderate": [
+          "December CPI printed at 1.33%, a record low and far below the RBI's 4% target, allowing the central bank to cut 25bp in January with a neutral bias that signals more cuts ahead.",
+          "This deflationary moment is unusual for India. A decade ago, the RBI was fighting 10% inflation; now it's fighting disinflation, a shift that changes the entire monetary playbook.",
+          "The risk is that low inflation masks weak demand rather than strong supply. If unemployment rises above the 4.22% recent print, rate cuts could struggle to reignite growth toward the 6.3% forecast."
+        ],
+        "expert": [
+          "CPI at 1.33% in December 2025 and RBI at 5.25% repo (25bp cut in January, neutral stance retained) signals a shift toward accommodation despite 6.3% potential growth, suggesting the central bank sees slack in the economy.",
+          "The deflation is broad-based, not supply-driven volatility, evidenced by sticky core measures and weak wage growth (unemployment 4.22%), pointing to demand destruction rather than oil-driven relief.",
+          "Watch Q4 GDP and credit growth in March data. If 6.3% growth forecasts hold, the RBI may pause cuts; if actuals come in below 6%, expect another 50bp easing in Q2 2026."
+        ]
+      }
+    },
+    "ZAF": {
+      "stories": {
+        "beginner": [
+          "South Africa's economy is barely growing at 1.2% despite government infrastructure spending and fixing power cuts, so the central bank is holding rates high to fight price pressures.",
+          "Unemployment at 31.88% is catastrophic and the policy rate at 6.75% suggests the central bank fears inflation will spike if they cut too fast, trapping workers in a low-growth trap.",
+          "The Middle East conflict and dollar strength in 2026 have reversed the EM rally that helped South Africa in late 2025, adding external pressure on growth."
+        ],
+        "moderate": [
+          "Recent CPI at 2.96% in February sits benignly below the 3.5% forecast, yet the SARB holds rates at 6.75% because wage growth remains sticky and electricity cost pass-through risks a reacceleration.",
+          "The unemployment rate of 31.88% is the worst in the BRICS bloc by far, reflecting structural labor market dysfunction that neither growth nor inflation targets can fix directly.",
+          "Infrastructure reforms and energy fixes are the only growth lever, but they require fiscal space the government doesn't have; the 4.8% deficit forecast leaves little room for stimulus if dollar flows reverse."
+        ],
+        "expert": [
+          "CPI at 2.96% in February 2026 and rates at 6.75% reflect the SARB's hawkish hold despite 1.2% growth, signaling it prioritizes inflation credibility over employment given wage indexation risks.",
+          "The 30bp miss of the 3.25% midpoint suggests the SARB will cut only if energy normalization persists and wage settlements cool; current data trajectory supports late-2026 cuts, not near-term easing.",
+          "Watch energy supply data and wage negotiation outcomes in Q2. If electricity generation normalizes and mining wages settle below 7% (2025 actuals), the SARB has room to cut 100bp through year-end; if not, rates stay at 6.5% through 2026."
+        ]
+      }
+    },
+    "BRA": {
+      "stories": {
+        "beginner": [
+          "Brazil is cutting interest rates hard because inflation is already tame at 3.81%, well below target, giving the central bank a green light to make borrowing cheaper and boost growth.",
+          "Unemployment is low at 5.8%, so the economy has room to expand without creating price pressures, which justifies the aggressive 300bp rate cut cycle planned for 2026.",
+          "Watch the currency. If the real weakens too much against the dollar, imported inflation could creep back up and force the central bank to pause cuts, derailing the growth plan."
+        ],
+        "moderate": [
+          "Brazil's central bank is cutting rates aggressively (300bp expected in 2026 from a 15% starting point in February) because inflation at 3.81% is already below the 4.2% forecast, giving policymakers cover to prioritize growth.",
+          "Unemployment at 5.8% is low by emerging market standards, suggesting the labor market can absorb faster rate cuts without demand getting away from the central bank.",
+          "The risk is currency weakness. A weaker real makes imports (and inflation) more expensive, potentially reversing the disinflation trend and forcing the central bank to slow cuts mid-year."
+        ],
+        "expert": [
+          "CPI at 3.81% in February 2026 (41bp below the 4.2% forecast) and unemployment at 5.8% justify the central bank's 300bp easing path from 15% starting rate, signaling confidence in disinflationary momentum.",
+          "The pass-through from BRL weakness (dollar strength since early 2026) is lagging; import deflation is masking real wage growth, creating a false signal of demand slack that the central bank is exploiting.",
+          "Monitor March CPI and USD/BRL levels. If the real depreciates beyond 5.5 per dollar and CPI ticks above 4%, expect the central bank to slow the cut pace to 200bp for 2026; current 300bp assumes BRL stabilizes near 5.2."
+        ]
+      }
+    },
+    "RUS": {
+      "stories": {
+        "beginner": [
+          "Russia's inflation is rising (6.01% in January 2026) because the war is draining resources for the military, pushing up prices for food and energy across the economy.",
+          "The central bank is keeping interest rates super high at 15.5% to try to cool down price growth, but this is slowing the economy and making borrowing expensive for businesses and families.",
+          "Supply chain disruptions from the Ukraine conflict mean Russia can't import goods anymore, making shortages and higher prices a permanent feature of the wartime economy."
+        ],
+        "moderate": [
+          "CPI at 6.01% in January 2026 is running above the 4.7% full-year forecast, and the central bank holds rates at 15.5% because fiscal spending on the war is overheating demand relative to a supply-constrained wartime economy.",
+          "Unemployment at 2.15% (artificially low due to military conscription) masks real labor scarcity, which is being papered over by wages rising faster than productivity, fueling inflation pass-through.",
+          "The 2% current account surplus masks capital flight and sanctions-driven trade diversion; the central bank is defending the ruble by starving the domestic economy of credit, a strategy that works only if war spending doesn't accelerate."
+        ],
+        "expert": [
+          "CPI at 6.01% in January 2026 (130bp above the 4.7% forecast) and rates at 15.5% reflect the CBR's tightening bias despite 1.2% growth forecast, signaling concern that fiscal war spending will reignite inflation in Q2.",
+          "The unemployment rate of 2.15% is structural full employment in a mobilized wartime economy; wage growth is running 10%+ (implicit from CPI-wages gap), indicating the CBR has lost pricing power and inflation expectations are unanchored.",
+          "Watch defense budget execution in March and energy prices in April. If Urals crude stays above $70 and military spending accelerates into Q2, expect CPI to breach 7% by May, forcing the CBR to hold rates at 16% through 2026; if war spending moderates, room emerges for 150bp cuts in H2."
+        ]
+      }
+    }
+  },
+  "globalStories": {
+    "beginner": [
+      {
+        "icon": "🛢️",
+        "label": "Trump threatens oil shock Tuesday",
+        "source": "Bloomberg",
+        "bullets": [
+          "President Trump signals Iran strikes could start Tuesday",
+          "Oil prices jump above $112 per barrel",
+          "Stock markets swing wildly between fear and hope"
+        ]
+      },
+      {
+        "icon": "📈",
+        "label": "Wall Street cuts growth forecasts",
+        "source": "KKR",
+        "bullets": [
+          "S&P 500 target dropped from 7,600 to 7,300",
+          "Companies face higher costs from expensive oil",
+          "Inflation fears return as energy prices spike"
+        ]
+      },
+      {
+        "icon": "🌍",
+        "label": "Fed stuck between energy and jobs",
+        "source": "Federal Reserve",
+        "bullets": [
+          "Federal Reserve holds rates steady at 3.5-3.75%",
+          "Energy shock threatens inflation comeback",
+          "China exports boom as world economy slows"
+        ]
+      }
+    ],
+    "moderate": [
+      {
+        "icon": "🛢️",
+        "label": "Trump threatens oil shock Tuesday",
+        "source": "Bloomberg",
+        "bullets": [
+          "Military escalation threatens Strait of Hormuz shipping lane that handles 40% of global energy",
+          "Oil trading in rare dislocation with WTI premium to Brent signals severe supply disruption",
+          "Markets pricing $130-150 WTI peak amid sustained conflict scenario"
+        ]
+      },
+      {
+        "icon": "📈",
+        "label": "Wall Street cuts growth forecasts",
+        "source": "KKR",
+        "bullets": [
+          "KKR slashes S&P earnings growth from 11% to 8% on $90-100 oil environment drag",
+          "GDP forecasts drop to 2.0% in 2026 as energy acts as consumer tax",
+          "Corporate margins under pressure from energy costs and sticky 3.8% headline inflation"
+        ]
+      },
+      {
+        "icon": "🌍",
+        "label": "Fed stuck between energy and jobs",
+        "source": "Federal Reserve",
+        "bullets": [
+          "Powell cites energy shock uncertainty while job gains remain weak at 4.4% unemployment",
+          "China manufacturing resilience at 6.4% growth contrasts with emerging market stress",
+          "Dollar strength from conflict hurts emerging markets uneven across energy dependencies"
+        ]
+      }
+    ],
+    "expert": [
+      {
+        "icon": "🛢️",
+        "label": "Trump threatens oil shock Tuesday",
+        "source": "Bloomberg",
+        "bullets": [
+          "Hormuz closure risk drives WTI-Brent inversion to rare premium signaling acute supply dislocation",
+          "Futures pricing $100-110 Brent versus KKR base case $130-150 peak creates material options vol",
+          "Energy import dependencies vary dramatically: China 20% versus Japan 85% creates asymmetric impacts"
+        ]
+      },
+      {
+        "icon": "📈",
+        "label": "Wall Street cuts growth forecasts",
+        "source": "KKR",
+        "bullets": [
+          "KKR cuts 2026 EPS growth to 8% from 11% on $10 oil premium to current futures pricing",
+          "Inflation revision to 3.8% headline CPI well above 3.0% consensus threatens Fed dovish pivot",
+          "Credit spreads widening as capex-heavy AI investments meet energy cost pressures"
+        ]
+      },
+      {
+        "icon": "🌍",
+        "label": "Fed stuck between energy and jobs",
+        "source": "Federal Reserve",
+        "bullets": [
+          "Fed dot plot maintains one cut despite 2.7% PCE revision suggesting hawkish recalibration ahead",
+          "China 6.4% manufacturing growth versus EM dollar stress creates policy divergence opportunities",
+          "Long-term breakevens stable at 2.2% providing Fed credibility anchor despite near-term energy spike"
+        ]
+      }
+    ]
+  }
+}

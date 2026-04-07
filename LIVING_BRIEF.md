@@ -1,22 +1,36 @@
 # MacroSnaps - Living Brief
-Last updated: April 6, 2026 (Session 66: _frozen_historical date alignment architecture fixed; CPI charts extended with monthly_actuals data; IND/JPN/RUS CPI flagged for manual review.)
+Last updated: April 6, 2026 (Session 66: _frozen_historical date alignment architecture fixed; Inflation (CPI) historical rebuilt from sheet for all 12 countries; monthly_actuals date bug fixed; IND 10Y Bond Yield and Yield Curve flagged for FRED backfill.)
 
 Session 66 changes in detail:
 
 (1) **_frozen_historical date alignment bug fixed.** The tooltip chart for UK inflation (and all countries) was showing peak dates and end dates shifted 12 months too late. Root cause: the JS right-aligned all historical arrays to the current month of the label array. Arrays kept live by `sync_market_historical.py` (Yield Curve, Bond Yield, Stock Market, FX) are always 316 points and align correctly. Frozen arrays (Inflation CPI, and others) fall behind by one month for every month that passes since they were frozen. After 12 months this produced a 1-year forward shift in all tooltip labels.
 
-(2) **Architecture fix: `startDate` added to all `_frozen_historical` series.** Three patch scripts delivered and run:
+(2) **Architecture fix: `startDate` added to all `_frozen_historical` series.** Two patch scripts delivered and run:
 
-- `patch_data_json_startdates.py` — adds `"startDate": "YYYY-MM"` to all 86 monthly `_frozen_historical` series across all 12 countries. Inflation (CPI) uses the April 2025 freeze reference (label count 304); all other series use the current April 2026 reference (label count 316).
+- `patch_data_json_startdates.py` — adds `"startDate": "YYYY-MM"` to all 86 monthly `_frozen_historical` series across all 12 countries.
 - `patch_shell_alignment.py` — replaces right-align logic in `hasChartData()` and `renderMetricChart()` in `macrosnaps-shell.html` with left-align-from-startDate. When `startDate` is present the chart anchors from that date forward. Frozen series show a null gap for months since the freeze. Annual series and the commodity spark chart are untouched.
-- `patch_cpi_extend.py` — extends each country's `_frozen_historical['Inflation (CPI)'].v` array with newer values from `monthly_actuals.inflation`, eliminating the gap. Uses value-matching (tolerance 0.05%) to find the splice point. Results: BRA +10, CAN +1, CHN +8, DEU +6, FRA +2, GBR +11, ITA +10, USA +0 (already current), ZAF +13. GBR now runs Jan 2001 to Mar 2026 (303 pts), peak correctly labelled Nov 2022.
 
-(3) **Three countries require manual CPI data review (not auto-fixed):**
-- **IND** — frozen tail (2.95%) does not match any value in `monthly_actuals.inflation` (which opens at 1.33%). The two series appear to be from different data sources. Requires a fresh FRED pull and array rebuild.
-- **JPN** — frozen tail (0.10%) is from Japan's deflationary era. The historical data is very stale and the series needs a full backfill from a current FRED/ONS source.
-- **RUS** — frozen tail (16.70%) is from the 2022 sanctions price spike. The gap to current `monthly_actuals` (~6%) is too large to bridge automatically. Requires manual splice or a fresh array.
+(3) **`Inflation (CPI)` historical rebuilt from sheet — permanent fix.** `rebuild_cpi_historical.py` reads the full MACRO-MONTHLY Inflation tab (the source of truth) and rebuilds `_frozen_historical['Inflation (CPI)']` for all 12 countries from scratch with real dates and real values. No patching, no freeze-date assumptions, no value-matching. Result: all 12 countries run Jan 2000 → Feb 2026 (CHN/RUS to Jan 2026, IND to Dec 2025, reflecting actual data availability). `startDate` set from first non-null row per country. Gaps filled with `None`. This script should be re-run whenever the Inflation tab is materially updated.
 
-(4) **Design principle going forward.** The `startDate` field is now the canonical anchor for all `_frozen_historical` monthly series. Any future series added to `_frozen_historical` must include a `startDate`. The JS left-aligns from this field; right-alignment is only a fallback for series lacking it (none currently). When arrays are extended with new data (monthly_actuals splicing), `startDate` stays fixed — only `v` grows.
+Results:
+| Country | Points | Start | End |
+|---------|--------|-------|-----|
+| USA | 314 | 2000-01 | 2026-02 |
+| CAN | 314 | 2000-01 | 2026-02 |
+| GBR | 314 | 2000-01 | 2026-02 |
+| JPN | 314 | 2000-01 | 2026-02 |
+| DEU | 314 | 2000-01 | 2026-02 |
+| FRA | 314 | 2000-01 | 2026-02 |
+| ITA | 314 | 2000-01 | 2026-02 |
+| CHN | 313 | 2000-01 | 2026-01 |
+| IND | 312 | 2000-01 | 2025-12 |
+| ZAF | 314 | 2000-01 | 2026-02 |
+| BRA | 314 | 2000-01 | 2026-02 |
+| RUS | 313 | 2000-01 | 2026-01 |
+
+(4) **Design principle going forward.** The `startDate` field is the canonical anchor for all `_frozen_historical` monthly series. Any future series added must include a `startDate`. The JS left-aligns from this field. The MACRO-MONTHLY sheet is the source of truth for all macro series — `rebuild_cpi_historical.py` is the pattern to follow for any future historical rebuilds.
+
+(5) **`sync_monthly_actuals.py` — date format bug fixed.** `monthly_actuals` in `data.json` had corrupt date strings (`'01/02/2'` instead of `'2026-02'`). Root cause: line 78 did `date_str[:7]` assuming ISO format (`YYYY-MM-DD`), but the MACRO-MONTHLY sheet stores dates as `DD/MM/YYYY` (written by `update_monthly_actuals.py`). So `'01/02/2026'[:7]` = `'01/02/2'`. Fixed by parsing with `strptime('%d/%m/%Y')` and reformatting as `'%Y-%m'`. `sync_monthly_actuals.py --apply` re-run; `data.json` now has correct `YYYY-MM` date strings throughout `monthly_actuals`. Note: this field is story context only and is not displayed in the UI, but `data.json` is used by other projects so correctness matters.
 
 ---
 
@@ -450,9 +464,13 @@ Key invariants:
 - Every monthly `_frozen_historical` series carries a `"startDate": "YYYY-MM"` field
 - The JS left-aligns from `startDate`: data is placed at the correct label position regardless of array length or build date
 - Live series (Yield Curve, Bond Yield, Stock Market, FX) are kept at 316 pts by `sync_market_historical.py` and are always current
-- Frozen series (Inflation CPI) are pinned by `startDate` and show a null gap after their freeze date — honest representation
-- IND/JPN/RUS Inflation CPI arrays are stale and cannot be auto-spliced — flagged for manual FRED pull and rebuild
-- IND 10Y Bond Yield and IND Yield Curve have only 2 data points — need FRED backfill (separate job)
+- Inflation (CPI) is rebuilt from the MACRO-MONTHLY sheet via `rebuild_cpi_historical.py` — re-run this whenever the sheet is materially updated
+- All other frozen series are pinned by `startDate` and show a null gap after their freeze date
+- Any future series added to `_frozen_historical` must include a `startDate`
+
+**Known data quality gaps — require FRED backfill:**
+- **IND 10Y Bond Yield** — only 2 data points; placeholder array; needs FRED backfill
+- **IND Yield Curve** — only 2 data points; placeholder array; needs FRED backfill
 
 ### Story formula (three-act global arc)
 - Card 1 - The Trigger: one economic event or data print driving global attention
@@ -488,7 +506,7 @@ Forecast values (source: Ralph's Google Sheet) are annual consensus views for 20
 
 ## Full session history
 
-Session 66: _frozen_historical date alignment architecture fixed (startDate added to all 86 monthly series; JS updated to left-align from startDate); CPI arrays extended with monthly_actuals data (9 countries auto-spliced; IND/JPN/RUS flagged for manual review); IND 10Y Bond Yield and Yield Curve flagged as placeholder arrays needing FRED backfill.
+Session 66: _frozen_historical date alignment architecture fixed (startDate added to all 86 monthly series; JS updated to left-align from startDate); Inflation (CPI) historical rebuilt from MACRO-MONTHLY sheet for all 12 countries (rebuild_cpi_historical.py); sync_monthly_actuals.py date format bug fixed (DD/MM/YYYY[:7] → strptime YYYY-MM); IND 10Y Bond Yield and Yield Curve flagged for FRED backfill.
 Session 65: Daily Bash Ritual updated — mv commands added after each review gate for HEADLINES_approved and METRICS_approved files.
 Session 64: Intraday Bash Ritual added (update_global_stories.py built; ad hoc mid-day refresh procedure documented).
 Session 63: Daily ritual completed 2026-04-02; build.py timezone fix (UTC → Europe/London for date stamp); http.server must run from macrosnaps directory for review UIs.

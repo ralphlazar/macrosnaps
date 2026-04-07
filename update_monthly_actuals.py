@@ -78,6 +78,11 @@ RATE_SERIES_FRED = {
     'CHN': None,
 }
 
+# ONS public API — CPI All Items 12-month rate (not CPIH).
+# Series D7G7 in dataset MM23 is the figure on every AQA mark scheme.
+# Used to override the IMF CPI feed for GBR (IMF returns CPIH for UK).
+ONS_CPI_URL = 'https://api.ons.gov.uk/v1/timeseries/D7BT/dataset/MM23/data'
+
 # ── Utilities ─────────────────────────────────────────────────────────────────
 
 def months_between(start, end):
@@ -116,6 +121,29 @@ def fred_fetch(series_id, start):
             continue
         d = datetime.strptime(obs['date'], '%Y-%m-%d').date().replace(day=1)
         out[d] = float(obs['value'])
+    return out
+
+def fetch_gbr_cpi_ons():
+    """
+    Fetch UK CPI All Items 12-month rate from ONS public API.
+    Series D7G7 / dataset MM23. Returns {date: float} for all available months.
+    Values are already annual % change — e.g. 11.1 for Oct 2022.
+    """
+    from datetime import datetime
+    r = requests.get(ONS_CPI_URL, timeout=30)
+    r.raise_for_status()
+    months = r.json().get('months', [])
+    out = {}
+    for item in months:
+        raw   = item.get('date', '').strip()   # e.g. "2022 OCT"
+        value = item.get('value', '').strip()
+        if not raw or not value or value == '-':
+            continue
+        try:
+            d = datetime.strptime(raw.title(), '%Y %b').date().replace(day=1)
+            out[d] = round(float(value), 2)
+        except (ValueError, TypeError):
+            pass
     return out
 
 def bis_fetch_policy_rates(start):
@@ -194,9 +222,19 @@ def fetch_inflation(fetch_start, new_dates):
             if d in cdf.index and prev in cdf.index and cdf[prev] != 0:
                 yoy[d] = round((cdf[d] / cdf[prev] - 1) * 100, 2)
         result[country] = yoy
+    # ONS fallback: GBR (IMF dataset returns CPIH for UK, not CPI)
+    try:
+        all_gbr = fetch_gbr_cpi_ons()
+        gbr_yoy = {d: v for d, v in all_gbr.items() if d in new_dates}
+        result['GBR'] = gbr_yoy
+        if gbr_yoy:
+            print(f'  GBR (ONS D7G7/MM23): {len(gbr_yoy)} new months  last={max(gbr_yoy.values()):.2f}')
+        else:
+            print(f'  GBR (ONS D7G7/MM23): no new data')
+    except Exception as e:
+        print(f'  GBR (ONS D7G7/MM23): error — {e}  (IMF CPIH value retained)')
+
     any_new = {c: v for c, v in result.items() if v}
-    for country, yoy in any_new.items():
-        print(f'  {country}: {len(yoy)} new months  last={max(yoy)}')
     if not any_new:
         print('  No new data found.')
     return result

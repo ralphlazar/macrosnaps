@@ -25,14 +25,18 @@ from dateutil.relativedelta import relativedelta
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
 
-MACROSNAPS_DIR = '/Users/lisaswerling/RALPH/AI/macrosnaps'
-MACEDU_DIR     = '/Users/lisaswerling/RALPH/AI/macedu-v2'
-METRICS_JS     = os.path.join(MACEDU_DIR, 'app/data/metrics.js')
-DATA_FILE      = os.path.join(MACROSNAPS_DIR, 'data.json')
-BACKUP_DIR     = os.path.join(MACROSNAPS_DIR, 'backups')
-TODAY          = date.today()
-SERIES_START   = datetime(2000, 1, 1)
-ANNUAL_START   = 2000
+MACROSNAPS_DIR           = '/Users/lisaswerling/RALPH/AI/macrosnaps'
+MACEDU_DIR               = '/Users/lisaswerling/RALPH/AI/macedu-v2'
+BRAINSMOOTHIE_DIR        = '/Users/lisaswerling/RALPH/AI/BRAINsmoothie'
+
+METRICS_JS               = os.path.join(MACEDU_DIR,        'app/data/metrics.js')
+BRAINSMOOTHIE_METRICS_JS = os.path.join(BRAINSMOOTHIE_DIR, 'content/economics/metrics.js')
+
+DATA_FILE                = os.path.join(MACROSNAPS_DIR, 'data.json')
+BACKUP_DIR               = os.path.join(MACROSNAPS_DIR, 'backups')
+TODAY                    = date.today()
+SERIES_START             = datetime(2000, 1, 1)
+ANNUAL_START             = 2000
 
 # ── Metric metadata ───────────────────────────────────────────────────────────
 
@@ -504,5 +508,11 @@ with open(METRICS_JS, 'w', encoding='utf-8') as f:
     f.write(js_content)
 size_kb = os.path.getsize(METRICS_JS) // 1024
 print(f'\nWritten: {METRICS_JS} ({size_kb} KB)')
+
+os.makedirs(os.path.dirname(BRAINSMOOTHIE_METRICS_JS), exist_ok=True)
+with open(BRAINSMOOTHIE_METRICS_JS, 'w', encoding='utf-8') as f:
+    f.write(js_content)
+size_kb = os.path.getsize(BRAINSMOOTHIE_METRICS_JS) // 1024
+print(f'Written: {BRAINSMOOTHIE_METRICS_JS} ({size_kb} KB)')
 
 print('\nsync_edu complete.\n')
