@@ -30,7 +30,7 @@ MACEDU_DIR               = '/Users/lisaswerling/RALPH/AI/macedu-v2'
 BRAINSMOOTHIE_DIR        = '/Users/lisaswerling/RALPH/AI/BRAINsmoothie'
 
 METRICS_JS               = os.path.join(MACEDU_DIR,        'app/data/metrics.js')
-BRAINSMOOTHIE_METRICS_JS = os.path.join(BRAINSMOOTHIE_DIR, 'content/economics/metrics.js')
+BRAINSMOOTHIE_METRICS_JS = os.path.join(BRAINSMOOTHIE_DIR, 'content/macroeconomics/metrics.js')
 
 DATA_FILE                = os.path.join(MACROSNAPS_DIR, 'data.json')
 BACKUP_DIR               = os.path.join(MACROSNAPS_DIR, 'backups')
