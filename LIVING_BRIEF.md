@@ -1,5 +1,19 @@
 # MacroSnaps - Living Brief
-Last updated: April 6, 2026 (Session 66: _frozen_historical date alignment architecture fixed; Inflation (CPI) historical rebuilt from sheet for all 12 countries; monthly_actuals date bug fixed; IND 10Y Bond Yield and Yield Curve flagged for FRED backfill.)
+Last updated: April 7, 2026 (Session 67: Daily ritual completed 2026-04-07; macedu-v2 confirmed as live edu repo; Social Media Bash ritual instructions updated to open digest_ui.html directly and stop http.server first.)
+
+Session 67 changes in detail:
+
+(1) **Daily ritual completed 2026-04-07.** Full ritual ran successfully. WTI and Brent commodity stories rewritten (7.3% and 5.7% moves respectively). Headlines 13/13. Metric stories 12/12 in 133s. Build successful, pushed to master. macedu-v2 synced and pushed to main. Audit: all checks passed.
+
+(2) **macedu-v2 confirmed as live edu repo.** `sync_edu.py` writes to `/Users/lisaswerling/RALPH/AI/macedu-v2/app/data/metrics.js`. The correct push command is:
+```bash
+cd /Users/lisaswerling/RALPH/AI/macedu-v2 && git add -A && git commit -m "Daily sync YYYY-MM-DD" && git push origin main
+```
+GitHub remote: `ralphlazar/macedu-v2`. All references to `macedu` updated to `macedu-v2` throughout this brief.
+
+(3) **Social Media Bash — digest UI fix.** `digest_server.py` runs on port 8080, same as the `http.server` used for review gates. The `http.server` must be stopped (Ctrl+C) before running `digest_server.py`. The browser must be pointed directly to `digest_ui.html` — the server homepage is the macrosnaps site, not the digest UI. Ritual instructions updated accordingly.
+
+---
 
 Session 66 changes in detail:
 
@@ -362,20 +376,26 @@ python3 update_headlines.py --apply HEADLINES_approved_YYYY-MM-DD.json
 python3 update_metric_stories.py --apply METRICS_approved_YYYY-MM-DD.json
 python3 build.py
 cd /Users/lisaswerling/RALPH/AI/macrosnaps && python3 sync_edu.py
-cd /Users/lisaswerling/RALPH/AI/macedu && git add -A && git commit -m "Daily sync YYYY-MM-DD" && git push origin main
+cd /Users/lisaswerling/RALPH/AI/macedu-v2 && git add -A && git commit -m "Daily sync YYYY-MM-DD" && git push origin main
 cd /Users/lisaswerling/RALPH/AI/macrosnaps && python3 audit_ritual.py
 ```
 
 Note: to open review UIs locally without CORS errors, run `python3 -m http.server 8080` in the macrosnaps directory first, then use [http://localhost:8080](http://localhost:8080).
 
 ### Social Media Bash
-Run immediately after the Daily Bash Ritual:
+Run immediately after the Daily Bash Ritual.
+
+**Important:** Stop the `http.server` (Ctrl+C) before running this — both use port 8080 and will conflict.
 
 ```bash
-python3 digest_server.py
+cd /Users/lisaswerling/RALPH/AI/macrosnaps && python3 digest_server.py
 ```
 
-This starts the local server and automatically opens the MacroSnaps Digest UI (`digest_ui.html`) at [http://localhost:PORT](http://localhost:PORT). From there: select format (Daily Post, Weekly Digest, or Substack Notes), generate, edit, and copy content for Substack, X, and LinkedIn. Note: `macrosnaps-digest.html` is an older redundant file -- ignore it.
+Then open directly: [http://localhost:8080/digest_ui.html](http://localhost:8080/digest_ui.html)
+
+(Do not use the server homepage — it opens the macrosnaps site, not the digest UI.)
+
+From there: select format (Daily Post, Weekly Digest, or Substack Notes), generate, edit, and copy content for Substack, X, and LinkedIn. Note: `macrosnaps-digest.html` is an older redundant file -- ignore it.
 
 ### Intraday Bash Ritual (ad hoc, news-driven)
 
@@ -506,6 +526,7 @@ Forecast values (source: Ralph's Google Sheet) are annual consensus views for 20
 
 ## Full session history
 
+Session 67: Daily ritual completed 2026-04-07; macedu-v2 confirmed as live edu repo (sync_edu.py writes to macedu-v2/app/data/metrics.js); Social Media Bash ritual instructions updated (stop http.server first; open digest_ui.html directly).
 Session 66: _frozen_historical date alignment architecture fixed (startDate added to all 86 monthly series; JS updated to left-align from startDate); Inflation (CPI) historical rebuilt from MACRO-MONTHLY sheet for all 12 countries (rebuild_cpi_historical.py); sync_monthly_actuals.py date format bug fixed (DD/MM/YYYY[:7] → strptime YYYY-MM); IND 10Y Bond Yield and Yield Curve flagged for FRED backfill.
 Session 65: Daily Bash Ritual updated — mv commands added after each review gate for HEADLINES_approved and METRICS_approved files.
 Session 64: Intraday Bash Ritual added (update_global_stories.py built; ad hoc mid-day refresh procedure documented).
