@@ -1,0 +1,331 @@
+{
+  "date": "2026-04-08",
+  "countries": {
+    "USA": {
+      "stories": {
+        "beginner": [
+          "Inflation ticked up in February to 2.4%, the fastest pace in months, which means the Fed's plan to keep interest rates on hold through December is now under pressure.",
+          "The March CPI report drops tomorrow (April 10) and could force the Fed to reconsider whether waiting until December is still the right call.",
+          "This matters because higher inflation erodes purchasing power for workers, and if the trend continues, borrowing costs could rise sooner than expected."
+        ],
+        "moderate": [
+          "CPI accelerated to 2.4% in February after tracking 2.1% in December, a clear reversal of the disinflationary trend that dominated late 2025, and March data tomorrow will signal whether this is momentum or noise.",
+          "The Fed's hold-steady guidance through December now looks vulnerable if momentum persists, a sharp contrast to the rate-cut environment most of last year when inflation was perceived as under control.",
+          "Unemployment sits at 4.4%, above the 4.2% full-year forecast, suggesting the labor market is cooling just as price pressure re-emerges, a combination that leaves little room for rate cuts and raises recession risk if growth slows further."
+        ],
+        "expert": [
+          "Core CPI momentum has reversed: February's 0.3% print (2.4% annualized) breaks the disinflationary tail from Q4 2025, and the March release on April 10 will determine if the Fed's December hold is credible or a policy error in waiting.",
+          "The Fed funds rate sits at 3.64%, 41 basis points above forecast equilibrium (3.25%), and with unemployment at 4.4% (20 bps above the 4.2% forecast), the policy stance has tightened in real terms as inflation re-accelerates.",
+          "Forward signal: a March print above 2.5% annualized could force Fed communication to shift toward optionality (hikes or extended holds) well before December, collapsing the certainty premium priced into long-dated bonds and widening term spreads."
+        ]
+      }
+    },
+    "CAN": {
+      "stories": {
+        "beginner": [
+          "Trump's renegotiation of USMCA could drag Chinese tariffs into Canada and Mexico's trade arrangements, which would raise prices for Canadian importers and consumers.",
+          "Canada's inflation is already well-controlled at 1.78%, but new tariffs would push it higher and force the Bank of Canada to reconsider rate cuts it might otherwise pursue.",
+          "The real risk is a trade shock that disrupts supply chains and forces manufacturers to pass costs through, reversing the disinflationary gains Canada has built."
+        ],
+        "moderate": [
+          "USMCA renegotiation to embed China tariffs creates asymmetric shock risk for Canada: inflation is benign at 1.78%, but tariff extension could force a 50 to 100 bps upside surprise to the 2% full-year forecast within months.",
+          "The Bank of Canada holds rates at 2.25%, 0% above forecast equilibrium and well below US rates (3.64%), leaving room to cut if trade pressure doesn't materialize, but tariff news removes that optionality rapidly.",
+          "Unemployment sits at 6.74% (January), already 24 bps above the 6.5% forecast, indicating slack in the labor market that should've supported BoC cuts but now faces tariff-driven inflation risk that reverses those cuts."
+        ],
+        "expert": [
+          "USMCA China tariff extension would transmit to Canadian CPI through import channel (Mexico re-exports to Canada), and with core inflation already tracking forecast at 1.78%, a 50 to 80 bps shock to H2 2026 prints is a downside risk to the 2% full-year call.",
+          "BoC policy rate at 2.25% is 0 bps above forecast, but forward curve had priced in 25 to 50 bps of cuts by Q3 2026, those cuts now face rollback risk if tariff momentum persists and forces inflation expectations higher.",
+          "Watch May USMCA signaling and April trade data: if Chinese export values to Canada via Mexico surge pre-tariff implementation, BoC cuts disappear and CAD weakens on policy divergence (Fed hold, BoC pin), widening the carry advantage for USD positioning."
+        ]
+      }
+    },
+    "GBR": {
+      "stories": {
+        "beginner": [
+          "The UK fell into recession in November, contracting for two straight months, and tomorrow's GDP report will confirm whether the economy has started recovering or if weakness persists.",
+          "Inflation in the UK is sticky at 3.24%, well above the Bank of England's 2% target and much higher than the US, which limits the Bank's ability to cut rates even if growth stays weak.",
+          "This is the worst scenario: inflation too high to cut rates, but growth too weak to justify holding them, leaving UK businesses and savers stuck in a low-growth, high-rate environment."
+        ],
+        "moderate": [
+          "The UK economy contracted in two straight months before November's recession confirmation, and the monthly GDP release tomorrow will signal whether that was a bottom or the start of a deeper downturn that extends through Q2 2026.",
+          "CPI at 3.24% is a full percentage point above the Bank of England's 2% target and towers over the Fed's 2.4%, forcing the BoE to hold rates at 3.75% despite below-trend growth of just 1.5% forecast, a policy bind unlike peers.",
+          "Unemployment at 5.2% is already near the 5% forecast with no slack to exploit, meaning the BoE faces a stagflation-lite scenario where neither rate cuts nor demand stimulus is available without risking inflation unanchoring further."
+        ],
+        "expert": [
+          "UK GDP contraction in November confirmed recession entry (two-month negative carry into September data), and April 10 release will reveal Q1 2026 momentum; tracking below the 1.5% full-year forecast would signal structural weakness, not cyclical dip.",
+          "CPI at 3.24% (February) against 2.5% forecast suggests sticky supply or wage dynamics, and with Bank Rate at 3.75% (25 bps above forecast equilibrium of 3.25%), policy is in overdrive relative to growth, creating a policy error signal if momentum doesn't improve.",
+          "Forward play: if April GDP confirms Q1 contraction continuation, BoE communication shifts toward optionality (cuts on the table by summer 2026), but CPI stickiness means any cut cycle is shallow (25 to 50 bps max by year-end), leaving GBP vulnerable to carry unwinding and gilts steepening."
+        ]
+      }
+    },
+    "JPN": {
+      "stories": {
+        "beginner": [
+          "Japan is about to lose its spot as the world's third-largest economy to India in 2026, a historic shift that reflects decades of slow growth and demographic decline.",
+          "Japan's growth forecast is just 0.8%, the slowest among major economies, and inflation is subdued at 1.26%, which leaves little room for the Bank of Japan to raise rates much higher despite the policy rate at 0.75%.",
+          "The real story is that Japan's economy has stalled while peers have moved on, and this ranking change is a symptom of structural challenges, not a cyclical setback."
+        ],
+        "moderate": [
+          "India surpassing Japan as the 4th largest economy in 2026 marks a tectonic shift in global economic order, driven by Japan's 0.8% growth forecast (lowest among G7 peers) and persistent demographic headwinds that no monetary policy can overcome.",
+          "Bank of Japan holds the policy rate at 0.75%, up from negative territory but still well below the 1.25% full-year forecast, and with CPI at just 1.26% (February), there's minimal pressure to tighten further despite global peers holding steady or hiking.",
+          "The BoJ faces an inversion of normal constraints: it has room to raise rates (positive carry to generate), but no domestic demand to support it, making any policy normalization a gamble that currency appreciation and capital outflows offset."
+        ],
+        "expert": [
+          "India's ascent to 4th largest economy in 2026 compounds Japan's structural narrative: 0.8% growth forecast (vs. 2.2% US, 1.7% Canada, 1.5% UK) reflects aging population and productivity stagnation, not cyclical weakness, implying multi-year growth ceiling of 1% or below.",
+          "BoJ policy rate at 0.75% is 50 bps below the 1.25% full-year forecast, suggesting BoJ is cautious on timing the next move; February CPI at 1.26% gives room to hold or move, but forward guidance signal matters more than the level given structural deflation risk.",
+          "Implication: if BoJ moves to 1% in coming months, JPY carry trade unwinds accelerate (already volatile in 2024-2025), and with BoJ unlikely to reach 2% real rates (inflation too low), capital flows remain a transmission channel more powerful than domestic demand, making JPY volatility a forward-looking macro hedge."
+        ]
+      }
+    },
+    "DEU": {
+      "stories": {
+        "beginner": [
+          "Germany just cut industrial electricity prices in half, from 12-18 cents per kilowatt-hour down to 5 cents. This is a desperate move to keep factories competitive because exports have collapsed and manufacturers are bleeding money.",
+          "The economy barely grew in 2025 at just 0.2%, and that's the real problem. Germany built its wealth on exporting cars and machines to the world, but US tariffs and weak global demand killed that engine.",
+          "Inflation has fallen to 1.9% and unemployment sits at 3.6%, so the labor market is stable. But stable doesn't matter if factories aren't producing anything to sell."
+        ],
+        "moderate": [
+          "Germany's industrial electricity subsidy targets the core problem: manufacturers cannot compete on price while energy costs triple those in the US. The 0.2% growth in 2025 followed a contraction in 2024, making this two years of stagnation in Europe's largest economy.",
+          "Unemployment at 3.6% masks the real weakness. Job losses are concentrated in manufacturing, where order books have collapsed due to US tariffs and China's competitive pressure in export markets. Service sector employment has held up.",
+          "The ECB kept rates at 2.15% in March despite growth grinding to a halt. The central bank won't cut fast enough to help Germany unless inflation continues falling, but electricity subsidies may slow that decline."
+        ],
+        "expert": [
+          "Germany's 0.2% 2025 print tracks well below the 1.2% full-year 2026 forecast, signaling the electricity subsidy alone won't restore growth without demand recovery. Watch whether Q1 2026 GDP accelerates or continues sliding, which will force the ECB's hand on rate cuts before May.",
+          "The EUR 0.05 per kilowatt-hour cap for three years costs roughly EUR 3-4 billion annually but locks in a structural cost advantage only if US tariffs stabilize. If tariffs climb further, subsidies become a band-aid on a deeper export collapse.",
+          "CPI at 1.9% gives the ECB room to cut, but the risk is that subsidies reignite inflation in 2027 when the program expires. Forward guidance now matters more than the current rate path."
+        ]
+      }
+    },
+    "FRA": {
+      "stories": {
+        "beginner": [
+          "France's economy is stuck in slow motion. Growth hit just 0.7% in 2025 and won't accelerate much, even though the forecast expects 0.9% this year. The government is tightening spending and the job market is weak.",
+          "Unemployment at 7.7% is the real anchor weighing on growth. When families worry about jobs, they stop spending on restaurants, clothes, and cars. That kills demand for everyone else in the economy.",
+          "Inflation crashed to 0.9% in February, which sounds great but isn't. Low inflation means consumers aren't getting raises, so weak job security plus no wage growth equals no spending power."
+        ],
+        "moderate": [
+          "France's 0.7% growth in 2025 relied on a temporary boost from aircraft inventory rebuilding in the aeronautics sector, a one-time event that won't repeat. Strip that out and underlying demand was even weaker, explaining why the government faces pressure to cut spending.",
+          "The unemployment rate at 7.7% is nearly double Germany's, and fiscal tightening is making that worse. Political uncertainty around the government's stability further discouraged business investment and hiring in early 2026.",
+          "Deflation risk is rising. At 0.9% inflation, the ECB cannot cut rates fast enough without pushing real rates into contractionary territory. France needs demand stimulus, but the fiscal path points the opposite direction."
+        ],
+        "expert": [
+          "France's 0.7% 2025 read tracks below consensus expectations, with the aeronautics inventory lift masking a deteriorating underlying trend. Current-quarter momentum suggests the 0.9% 2026 forecast is at risk, particularly if consumption remains subdued through Q2.",
+          "At 7.7% unemployment versus Germany's 3.6%, France faces a structural labor market problem that neither fiscal consolidation nor the 2.15% policy rate addresses. The widening employment gap signals capital flight to Germany, worsening France's external position.",
+          "CPI at 0.9% is below the ECB's 2% target and deflationary pressure will intensify if demand continues sliding. The forward signal is that the ECB will cut ahead of the full-year 2.5% rate forecast, but that easing won't offset fiscal drag."
+        ]
+      }
+    },
+    "ITA": {
+      "stories": {
+        "beginner": [
+          "Italy's export machine broke in 2025. Sales to countries outside the eurozone, especially the US, fell sharply because of tariffs and weak global demand. This hit factories hard across the country.",
+          "Growth slowed to barely positive levels last year with very moderate expansion expected to continue. Italy depends on exports more than France or Spain, so when global trade contracts, Italian jobs disappear faster.",
+          "Inflation at 1.51% is the lowest in the group, which means Italian wages and profits are getting squeezed. Companies can't raise prices to survive, so they cut costs and workers instead."
+        ],
+        "moderate": [
+          "Italy's industrial downturn mirrors Germany's but runs less deep due to lower export exposure to the US. However, contracted goods exports outside the eurozone in 2025 signal that supply chain restructuring away from China is freezing orders, not boosting them yet.",
+          "Unemployment at 5.6% is better than France's 7.7% but worse than Germany's 3.6%, and the spread is widening as northern eurozone factories shed workers while southern ones remain under-utilized. This divergence will deepen if trade barriers persist.",
+          "At 1.51% inflation, Italy sits furthest below the ECB's target within the eurozone. This creates political tension: fiscal rules prevent spending to support demand, rate cuts are too slow to help manufacturing, and wages stagnate."
+        ],
+        "expert": [
+          "Italy's 2025 slowdown to very moderate growth tracks with the 1% full-year 2026 forecast, suggesting consensus expects continued weakness rather than a rebound. Forward implication: if Q1 exports don't stabilize, 2026 growth could undershoot the 1% forecast, forcing the ECB into deeper cuts.",
+          "The contraction in exports outside the eurozone, particularly to the US, reduced Italian merchandise orders by roughly 5-7% year-over-year. Recovery hinges on tariff stabilization and Chinese demand revival, neither of which appears imminent as of April 2026.",
+          "At 1.51% CPI versus 2.2% in Germany and 0.9% in France, Italy sits in a narrow band where real wage compression is occurring but disinflation hasn't triggered deflationary expectations. Watch for Q2 CPI if it falls below 1%, triggering downside ECB surprises."
+        ]
+      }
+    },
+    "CHN": {
+      "stories": {
+        "beginner": [
+          "US-China trade collapsed by roughly $170 billion in 2025, about one quarter of the total. When the world's two largest economies stop trading with each other, it's not just their problem, it's everyone's problem.",
+          "China's government announced bigger spending plans to hit a 4.5% growth target this year. That's a step up from 2025's weakness, but growth that depends on government checkbooks instead of real demand tends to fizzle fast.",
+          "Inflation at 0.23% in January is dangerously low. China's consumers are holding back on spending because prices keep falling, which means businesses can't sell anything at good margins. That traps the economy in a deflationary spiral."
+        ],
+        "moderate": [
+          "The $170 billion trade collapse with the US in 2025 represents roughly 12-15% of bilateral merchandise flow, a structural shock rather than cyclical weakness. China's 4.5% growth forecast assumes expansionary fiscal policy will offset lost export demand, but that substitution is incomplete.",
+          "Inflation at 0.23% in January signals persistent deflationary pressures despite government stimulus. Historical precedent from 2015-2016 shows that low inflation paired with slowing external demand creates downward pressure on wages and investment, offsetting fiscal support.",
+          "The unemployment rate at 4.9% masks hidden weakness in graduate employment and gig work. Urban labor markets are tightening in services, but manufacturing job losses haven't fully materialized yet, suggesting layoffs are still coming as trade barriers persist."
+        ],
+        "expert": [
+          "China's January CPI of 0.23% sits well below the 2% full-year forecast, and deflationary surprises through early 2026 suggest the trend will worsen if fiscal stimulus proves insufficient. Forward signal: if Q2 CPI remains below 1%, expect emergency rate cuts or larger fiscal injections by May.",
+          "The $170 billion trade loss in 2025 is equivalent to roughly 1.4% of China's annual merchandise exports. If tariffs remain in place and the US supply chain rebalancing accelerates through 2026, China's export growth could turn negative, undercutting the 4.5% GDP assumption that requires fiscal spending to rise by 2-3 percentage points.",
+          "Policy rate around 2.75% remains above the deflation-adjusted real rate, tightening monetary conditions when the economy needs easing. The 4.7% full-year forecast incorporates fiscal expansion but not a policy rate cut, a signal that the central bank is preparing to ease further if trade volatility deepens."
+        ]
+      }
+    },
+    "IND": {
+      "stories": {
+        "beginner": [
+          "India just became the world's 4th largest economy, leapfrogging Japan. This matters because it signals the shift of economic power toward Asia and means Indian companies now compete on a genuinely global stage.",
+          "Growth hit 6.16% while inflation collapsed to 1.33%, giving India's central bank room to cut rates. The RBI is holding at 5.25%, which means they can pause here and let growth run without overheating.",
+          "India is now threatening tariffs on Chinese goods to fix a stubborn trade deficit. Watch whether this escalates into a broader trade war or settles into managed friction, because it shapes how much Chinese capital flows into Indian tech and manufacturing."
+        ],
+        "moderate": [
+          "India's economy grew 6.16% while inflation fell to 1.33%, the lowest print in over a year. This undercuts the full-year forecast of 4.2% inflation, signaling the RBI can stay patient on rate cuts despite holding at 5.25% in January.",
+          "Unemployment sits at 4.22%, tight by emerging market standards. India is growing faster than Brazil, Russia, or South Africa combined, making it the engine of EM growth right now and attracting capital flows away from struggling peers.",
+          "New tariff threats on Chinese exports reflect India's widening trade deficit and rising domestic political pressure. Unlike Brazil, India has leverage to impose sector-specific barriers without crippling its own supply chains, since it sources less from China than its peers do."
+        ],
+        "expert": [
+          "At 6.16% growth and 1.33% CPI, India's real rate stands near 3.9%, well above the full-year inflation forecast of 4.2%. The RBI's 5.25% policy rate in January signals confidence inflation stays benign, leaving room for 75 basis points of cuts if growth weakens.",
+          "India's unemployment rate of 4.22% reflects tight labor markets despite 6.16% growth, typical of an economy where productivity gains outpace job creation. Current account deficit of 1.2% GDP remains manageable but widening tariffs on Chinese goods could trigger reciprocal actions that disrupt export competitiveness.",
+          "India's threatened barriers on Chinese imports signal a shift from passive tariff acceptance to active industrial policy, similar to Brazil's posture but with stronger domestic political mandate. Watch for sector-specific implementation (solar, steel, electronics) rather than blanket tariffs, which would preserve FDI inflows critical to meeting the 6.3% growth forecast."
+        ]
+      }
+    },
+    "ZAF": {
+      "stories": {
+        "beginner": [
+          "South Africa's unemployment is stuck at 31.88%, the highest in the world by far. This is a jobs crisis masquerading as a normal economy, and it drains growth because people without work can't spend or invest.",
+          "Inflation fell to 2.96% in February, well below the forecast of 3.5%, so the central bank cut rates to 6.75%. This gives households breathing room, but it won't solve the jobs problem.",
+          "South Africa is buying cheap Chinese solar panels to reduce dependence on expensive imported fuel. This is smart for energy independence, but it also means China is capturing South African infrastructure spending that could have gone to local companies."
+        ],
+        "moderate": [
+          "Unemployment at 31.88% towers above any peer economy and reflects structural failures in education and manufacturing. Even as inflation fell to 2.96%, well ahead of the 3.5% forecast, the Reserve Bank's rate cut to 6.75% cannot create jobs.",
+          "South Africa's pivot to Chinese solar panels reflects a rational cost play but also reveals industrial weakness. Unlike India or Brazil, which threaten tariffs to protect domestic capacity, South Africa lacks the manufacturing base to make solar competitive at home.",
+          "Middle East geopolitical risk and dollar strength have rattled markets, adding to uncertainty for a country that runs a 1.4% GDP current account deficit. The combination of 31.88% unemployment and external vulnerability means growth will stay weak even if inflation cooperates."
+        ],
+        "expert": [
+          "CPI at 2.96% in February is tracking 54 basis points below the full-year forecast of 3.5%, allowing the SARB to cut to 6.75% despite 31.88% unemployment suggesting massive economic slack. Real policy rate now sits near 3.79%, restrictive by EM standards but justified by currency depreciation risk.",
+          "Unemployment of 31.88% reflects a structural mismatch, not cyclical slack. Youth joblessness exceeds 55%, indicating education and skill gaps that rate cuts cannot bridge. Current account deficit of 1.4% GDP constrains the space for countercyclical fiscal stimulus.",
+          "Chinese solar panel imports are reducing import bills but signal South Africa's retreat from manufacturing competition. Watch whether government uses tariff space to protect emerging renewable equipment sectors or accepts permanent import dependence as inflation stabilizes, determining whether the 1.5% growth forecast holds."
+        ]
+      }
+    },
+    "BRA": {
+      "stories": {
+        "beginner": [
+          "Brazil's central bank is holding rates at 15%, the highest in the world, because inflation keeps creeping up. CPI hit 3.81% in February, and the bank fears it will drift toward the 4.2% full-year forecast, so they are staying tough.",
+          "Brazil is benefiting from cheap Chinese solar panels to lower energy costs, but it is also threatening tariffs on Chinese steel. This is contradictory, which shows how much Brazil depends on China for both deals and friction.",
+          "Unemployment fell to 5.8%, which is solid, but it is not enough to offset the damage from 15% interest rates killing business investment. High rates strangle growth and make the 1.7% forecast harder to hit."
+        ],
+        "moderate": [
+          "Brazil's policy rate of 15% in February reflects stubborn inflation at 3.81%, running ahead of the full-year forecast despite unemployment at 5.8%. The central bank is betting that pain now prevents wage-price spiral later, but this kills investment in a country that needs growth.",
+          "Brazil's threat of sector-specific tariffs on Chinese steel contradicts its reliance on Chinese capital for infrastructure projects and solar installations. Unlike India, which can impose barriers without major retaliation, Brazil risks losing FDI if it escalates trade tensions.",
+          "The 6.7% budget deficit weighs on medium-term credibility and limits fiscal support for growth. With rates at 15% and growth forecast at 1.7%, Brazil is betting on external demand and commodity prices rather than domestic strength."
+        ],
+        "expert": [
+          "CPI at 3.81% in February sits 39 basis points below the full-year forecast of 4.2%, yet the Banco Central holds at 15% real policy rate of 11.19%. This suggests hawkish forward guidance tied to service sector inflation and exchange rate depreciation risk rather than headline momentum.",
+          "Unemployment of 5.8% in February sits 70 basis points below the full-year forecast of 6.5%, indicating tight labor markets that sustain wage pressures. Current account deficit of 2.6% GDP constrains policy space and makes currency depreciation a cost-inflation channel rather than a growth lever.",
+          "Threatened sector-specific tariffs on Chinese steel signal industrial policy ambitions but lack enforcement credibility given 6.7% budget deficit and heavy Chinese investment exposure. Watch whether tariffs materialize (signaling political priority over growth) or get traded away for capital commitment, determining if the 1.7% forecast survives."
+        ]
+      }
+    },
+    "RUS": {
+      "stories": {
+        "beginner": [
+          "Russia and the United States control 87% of the world's nuclear weapons, and the last arms control treaty between them expires in February 2026. This is a turning point, because without New START, there are no limits on either side's nuclear arsenals.",
+          "Russia's inflation jumped to 6.01% in January, above the full-year forecast of 4.7%, forcing the central bank to keep rates at 15.5%. War spending and sanctions are driving costs up, and that is eating into real wages.",
+          "Russia's unemployment is just 2.15%, the tightest in the world, but that is because of military conscription and war deaths, not healthy job creation. This masks a weakening economy where growth is forecast at only 1.2%."
+        ],
+        "moderate": [
+          "Russia's CPI hit 6.01% in January, overshooting the 4.7% full-year forecast, forcing the central bank to hold rates at 15.5%. War spending drives persistent inflation, and the 2.15% unemployment rate reflects military mobilization rather than strong labor demand.",
+          "New START expires in February 2026 without a replacement, ending the only binding nuclear weapons limit between superpowers. Russia's current account surplus of 2% GDP is built on war-related commodity demand and sanctions-driven import cuts, not sustainable growth.",
+          "Russia's 1.2% growth forecast masks military-driven distortions. High rates and inflation reduce real wages despite tight labor markets, constraining domestic demand and leaving growth dependent on energy exports and geopolitical risk premiums."
+        ],
+        "expert": [
+          "CPI at 6.01% in January runs 131 basis points above the full-year forecast of 4.7%, signaling base effects from prior year war spending will persist. The 15.5% policy rate delivers a 9.49% real rate, the highest among major economies, indicating aggressive disinflation bias despite mobilization pressures.",
+          "Unemployment of 2.15% reflects military conscription and war attrition, not labor market equilibrium. Current account surplus of 2% GDP is transitory, built on sanctions-driven import collapse and temporary commodity demand, not structural competitiveness.",
+          "New START expiration in February 2026 removes the last constraint on strategic arsenal expansion, signaling escalation risk. Watch whether Russia signals arms race intent (raising military spending further and pushing inflation) or seeks negotiated settlement (allowing rate normalization), determining if the 1.2% growth forecast is floor or ceiling."
+        ]
+      }
+    }
+  },
+  "globalStories": {
+    "beginner": [
+      {
+        "icon": "🛑",
+        "label": "US Iran Ceasefire Drops Oil 19%",
+        "source": "Bloomberg",
+        "bullets": [
+          "America and Iran agreed to a two-week pause in fighting",
+          "Oil prices crashed because Middle East supplies look safer now",
+          "Stock markets jumped as investors felt less worried about war"
+        ]
+      },
+      {
+        "icon": "📈",
+        "label": "Markets Surge on Peace News",
+        "source": "Bloomberg",
+        "bullets": [
+          "US stocks rose sharply after the ceasefire announcement",
+          "Energy companies fell as oil prices dropped",
+          "Gold stayed high as people still want safety"
+        ]
+      },
+      {
+        "icon": "🔗",
+        "label": "War Fear Drives Everything",
+        "source": "Bloomberg",
+        "bullets": [
+          "When war looks less likely, oil falls and stocks rise",
+          "Middle East fighting controls global energy prices",
+          "Peace talks give markets hope for stability"
+        ]
+      }
+    ],
+    "moderate": [
+      {
+        "icon": "🛑",
+        "label": "US Iran Ceasefire Drops Oil 19%",
+        "source": "Bloomberg",
+        "bullets": [
+          "Trump agreed to suspend bombing Iran for two weeks, reopening Strait of Hormuz shipping",
+          "WTI crude fell 19% to around $81 as supply fears eased after months of conflict",
+          "This marks the biggest oil drop in almost six years"
+        ]
+      },
+      {
+        "icon": "📈",
+        "label": "Markets Surge on Peace News",
+        "source": "Multiple",
+        "bullets": [
+          "S&P 500 gained as geopolitical risk premium unwound from recent highs",
+          "Energy sector underperformed while tech and consumer stocks led gains",
+          "China benefits as higher oil prices had been helping fight deflation"
+        ]
+      },
+      {
+        "icon": "🔗",
+        "label": "War Fear Drives Everything",
+        "source": "Multiple",
+        "bullets": [
+          "The Strait of Hormuz carries 20% of global oil, making any closure economically devastating",
+          "Markets had priced in sustained $90-100 oil, now scrambling to readjust",
+          "Private credit turmoil continues as retail investors flee amid broader uncertainty"
+        ]
+      }
+    ],
+    "expert": [
+      {
+        "icon": "🛑",
+        "label": "US Iran Ceasefire Drops Oil 19%",
+        "source": "Bloomberg/KKR",
+        "bullets": [
+          "WTI tumbled to $81 from $100+ highs, Brent down 14% to $93.90 as Hormuz reopens",
+          "KKR cuts 2026 GDP forecast to 2.0% from 2.5%, S&P target to 7,300 from 7,600",
+          "Energy shock tax effect now reversed, supporting growth momentum into Q2"
+        ]
+      },
+      {
+        "icon": "📈",
+        "label": "Markets Surge on Peace News",
+        "source": "Multiple",
+        "bullets": [
+          "Energy sector reversing 34% Q1 gains while broad market rally lifts risk assets",
+          "China stocks hit 5-year highs on deflation relief, yuan strengthening significantly",
+          "Private credit redemptions spike 21.9% at Blue Owl as retail panic accelerates"
+        ]
+      },
+      {
+        "icon": "🔗",
+        "label": "War Fear Drives Everything",
+        "source": "Multiple",
+        "bullets": [
+          "Oil volatility premium collapse opens Fed easing path as inflation pressures ease",
+          "Two-week ceasefire creates tactical opportunity but structural tensions remain",
+          "Watch for Trump deadline Tuesday 8pm ET as next catalyst for energy markets"
+        ]
+      }
+    ]
+  }
+}
