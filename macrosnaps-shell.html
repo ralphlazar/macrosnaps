@@ -55757,15 +55757,13 @@ Promise.resolve(window.__MACRO_DATA__).then(data => {
 
     console.log('[MacroSnaps] data.json loaded — generated: ' + (data._meta && data._meta.generated));
 
-    // Set header "Updated DD Mon YYYY" from _meta.generated.
+    // Set header "Updated DD Mon YYYY" — always today's date in GMT.
+    // Using the browser clock (UTC) so the site never looks stale,
+    // regardless of when build.py last ran.
     (function() {
-      const genStr = data._meta && data._meta.generated;
-      if (genStr) {
-        const d = new Date(genStr);
-        const label = d.toLocaleDateString('en-GB', {day:'numeric', month:'short', year:'numeric'});
-        const el = document.getElementById('headerUpdated');
-        if (el) el.textContent = 'Updated ' + label;
-      }
+      const label = new Date().toLocaleDateString('en-GB', {day:'numeric', month:'short', year:'numeric', timeZone:'UTC'});
+      const el = document.getElementById('headerUpdated');
+      if (el) el.textContent = 'Updated ' + label;
     })();
 
     // Build monthly chart labels dynamically from Jan 2000 to _meta.generated.
