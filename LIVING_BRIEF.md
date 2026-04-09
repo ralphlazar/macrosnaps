@@ -1,5 +1,13 @@
 # MacroSnaps - Living Brief
-Last updated: April 8, 2026 (Session 68: Daily ritual completed 2026-04-08; header date fix — top-left "Updated" date now always shows today's GMT date from browser clock, not stale build date; sync_edu.py now also writes to BRAINsmoothie repo.)
+Last updated: April 9, 2026 (Session 69: Daily ritual completed 2026-04-09; sync_edu.py and macedu-v2 push removed from Daily Bash Ritual permanently.)
+
+Session 69 changes in detail:
+
+(1) **Daily ritual completed 2026-04-09.** Full ritual ran successfully. No commodity stories rewritten (all within threshold). Headlines 13/13 in 172s. Metric stories 12/12 in 77s. Build: 24 metric changes, 9 commodity changes, 0 story changes. Pushed to master. Audit: all checks passed.
+
+(2) **sync_edu.py and macedu-v2 removed from Daily Bash Ritual.** `sync_edu.py`, the macedu-v2 git push, and the BRAINsmoothie git push have been removed from the Daily Bash Ritual permanently. These steps are no longer part of the standard daily sequence.
+
+---
 
 Session 68 changes in detail:
 
@@ -389,9 +397,6 @@ mv ~/Downloads/METRICS_approved_YYYY-MM-DD.json /Users/lisaswerling/RALPH/AI/mac
 python3 update_headlines.py --apply HEADLINES_approved_YYYY-MM-DD.json
 python3 update_metric_stories.py --apply METRICS_approved_YYYY-MM-DD.json
 python3 build.py
-cd /Users/lisaswerling/RALPH/AI/macrosnaps && python3 sync_edu.py
-cd /Users/lisaswerling/RALPH/AI/macedu-v2 && git add -A && git commit -m "Daily sync YYYY-MM-DD" && git push origin main
-cd /Users/lisaswerling/RALPH/AI/BRAINsmoothie && git add -A && git commit -m "Daily sync YYYY-MM-DD" && git push origin master
 cd /Users/lisaswerling/RALPH/AI/macrosnaps && python3 audit_ritual.py
 ```
 
@@ -546,6 +551,7 @@ Forecast values (source: Ralph's Google Sheet) are annual consensus views for 20
 
 ## Full session history
 
+Session 69: Daily ritual completed 2026-04-09; sync_edu.py and macedu-v2 push removed from Daily Bash Ritual permanently.
 Session 68: Daily ritual completed 2026-04-08; header date fix (macrosnaps-shell.html top-left "Updated" now uses browser clock UTC, not stale data._meta.generated); sync_edu.py now writes to BRAINsmoothie as well as macedu-v2; Daily Bash Ritual updated to push BRAINsmoothie.
 Session 67: Daily ritual completed 2026-04-07; macedu-v2 confirmed as live edu repo (sync_edu.py writes to macedu-v2/app/data/metrics.js); Social Media Bash ritual instructions updated (stop http.server first; open digest_ui.html directly).
 Session 66: _frozen_historical date alignment architecture fixed (startDate added to all 86 monthly series; JS updated to left-align from startDate); Inflation (CPI) historical rebuilt from MACRO-MONTHLY sheet for all 12 countries (rebuild_cpi_historical.py); sync_monthly_actuals.py date format bug fixed (DD/MM/YYYY[:7] → strptime YYYY-MM); IND 10Y Bond Yield and Yield Curve flagged for FRED backfill.
