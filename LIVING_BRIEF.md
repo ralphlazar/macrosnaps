@@ -1,5 +1,19 @@
 # MacroSnaps - Living Brief
-Last updated: April 7, 2026 (Session 67: Daily ritual completed 2026-04-07; macedu-v2 confirmed as live edu repo; Social Media Bash ritual instructions updated to open digest_ui.html directly and stop http.server first.)
+Last updated: April 8, 2026 (Session 68: Daily ritual completed 2026-04-08; header date fix — top-left "Updated" date now always shows today's GMT date from browser clock, not stale build date; sync_edu.py now also writes to BRAINsmoothie repo.)
+
+Session 68 changes in detail:
+
+(1) **Daily ritual completed 2026-04-08.** Full ritual ran successfully. WTI and Brent commodity stories rewritten (WTI -16.2%, Brent -14.9% — major moves). Headlines 13/13 in 157s. Metric stories 12/12 in 107s (RUS retried once). Build successful, pushed to master. macedu-v2 and BRAINsmoothie synced and pushed. Audit: all checks passed.
+
+(2) **Header date fix — macrosnaps-shell.html.** The top-left "Updated" date was reading from `data._meta.generated` (a static value stamped at build time), causing the site to look stale between builds. Fixed by patching the JS IIFE to use `new Date()` in UTC instead. The date now always reflects the current day in GMT when the page loads in the browser, regardless of when `build.py` last ran. Script: `patch_header_date.py`. Committed as `"Fix header date: always show today GMT, not stale build date"`.
+
+(3) **sync_edu.py now writes to BRAINsmoothie.** `sync_edu.py` writes `metrics.js` to two destinations:
+- `/Users/lisaswerling/RALPH/AI/macedu-v2/app/data/metrics.js`
+- `/Users/lisaswerling/RALPH/AI/BRAINsmoothie/content/macroeconomics/metrics.js`
+
+Daily ritual updated: both macedu-v2 and BRAINsmoothie must be pushed after `sync_edu.py` runs.
+
+---
 
 Session 67 changes in detail:
 
@@ -377,6 +391,7 @@ python3 update_metric_stories.py --apply METRICS_approved_YYYY-MM-DD.json
 python3 build.py
 cd /Users/lisaswerling/RALPH/AI/macrosnaps && python3 sync_edu.py
 cd /Users/lisaswerling/RALPH/AI/macedu-v2 && git add -A && git commit -m "Daily sync YYYY-MM-DD" && git push origin main
+cd /Users/lisaswerling/RALPH/AI/BRAINsmoothie && git add -A && git commit -m "Daily sync YYYY-MM-DD" && git push origin master
 cd /Users/lisaswerling/RALPH/AI/macrosnaps && python3 audit_ritual.py
 ```
 
@@ -480,6 +495,11 @@ Key invariants:
 - These two scripts must never touch each other's fields
 - build.py fails with a clear error if value_at_generation differs from current value for any metric story
 
+### Header date (as of Session 68)
+- The top-left "Updated" date in `macrosnaps-shell.html` is set by a JS IIFE using `new Date()` in UTC
+- It always reflects today's GMT date when the page loads — it does not read from `data._meta.generated`
+- This means the site never looks stale between builds
+
 ### _frozen_historical alignment (as of Session 66)
 - Every monthly `_frozen_historical` series carries a `"startDate": "YYYY-MM"` field
 - The JS left-aligns from `startDate`: data is placed at the correct label position regardless of array length or build date
@@ -526,6 +546,7 @@ Forecast values (source: Ralph's Google Sheet) are annual consensus views for 20
 
 ## Full session history
 
+Session 68: Daily ritual completed 2026-04-08; header date fix (macrosnaps-shell.html top-left "Updated" now uses browser clock UTC, not stale data._meta.generated); sync_edu.py now writes to BRAINsmoothie as well as macedu-v2; Daily Bash Ritual updated to push BRAINsmoothie.
 Session 67: Daily ritual completed 2026-04-07; macedu-v2 confirmed as live edu repo (sync_edu.py writes to macedu-v2/app/data/metrics.js); Social Media Bash ritual instructions updated (stop http.server first; open digest_ui.html directly).
 Session 66: _frozen_historical date alignment architecture fixed (startDate added to all 86 monthly series; JS updated to left-align from startDate); Inflation (CPI) historical rebuilt from MACRO-MONTHLY sheet for all 12 countries (rebuild_cpi_historical.py); sync_monthly_actuals.py date format bug fixed (DD/MM/YYYY[:7] → strptime YYYY-MM); IND 10Y Bond Yield and Yield Curve flagged for FRED backfill.
 Session 65: Daily Bash Ritual updated — mv commands added after each review gate for HEADLINES_approved and METRICS_approved files.
