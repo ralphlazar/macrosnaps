@@ -1,5 +1,13 @@
 # MacroSnaps - Living Brief
-Last updated: April 9, 2026 (Session 69: Daily ritual completed 2026-04-09; sync_edu.py and macedu-v2 push removed from Daily Bash Ritual permanently.)
+Last updated: April 10, 2026 (Session 70: Daily ritual completed 2026-04-10; Copper and Wheat commodity stories rewritten; Google Sheets 429 quota hit on first sync_market_historical.py run — resolved by waiting 60s and rerunning.)
+
+Session 70 changes in detail:
+
+(1) **Daily ritual completed 2026-04-10.** Full ritual ran successfully. Copper (5.6% move) and Wheat (5.0% move) commodity stories rewritten. Headlines 13/13 in 164s. Metric stories 12/12 in 126s (RUS retried once). Build: 24 metric changes, 36 story changes, 9 commodity changes. Pushed to master. Audit: all checks passed.
+
+(2) **Google Sheets 429 quota hit.** On the first run of `sync_market_historical.py`, DEU through RUS tabs all returned 429 (quota exceeded). USA, CAN, GBR, JPN completed cleanly. `sync_commodity_data.py` also failed immediately. Fix: wait ~60s and rerun both scripts. Second run completed all 12 countries cleanly. No data loss.
+
+---
 
 Session 69 changes in detail:
 
@@ -551,6 +559,7 @@ Forecast values (source: Ralph's Google Sheet) are annual consensus views for 20
 
 ## Full session history
 
+Session 70: Daily ritual completed 2026-04-10; Copper and Wheat commodity stories rewritten; Google Sheets 429 quota hit on first sync_market_historical.py run — resolved by waiting 60s and rerunning.
 Session 69: Daily ritual completed 2026-04-09; sync_edu.py and macedu-v2 push removed from Daily Bash Ritual permanently.
 Session 68: Daily ritual completed 2026-04-08; header date fix (macrosnaps-shell.html top-left "Updated" now uses browser clock UTC, not stale data._meta.generated); sync_edu.py now writes to BRAINsmoothie as well as macedu-v2; Daily Bash Ritual updated to push BRAINsmoothie.
 Session 67: Daily ritual completed 2026-04-07; macedu-v2 confirmed as live edu repo (sync_edu.py writes to macedu-v2/app/data/metrics.js); Social Media Bash ritual instructions updated (stop http.server first; open digest_ui.html directly).
