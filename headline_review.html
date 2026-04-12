@@ -686,7 +686,7 @@ function updateProgress() {
 }
 
 // ── Export ───────────────────────────────────────────────────────────────────
-function exportApproved() {
+async function exportApproved() {
   saveEditsFromDom();
 
   const approvedKeys = Object.keys(approved);
@@ -722,14 +722,34 @@ function exportApproved() {
   // Remove null globalStories if not approved
   if (!out.globalStories) delete out.globalStories;
 
-  const blob = new Blob([JSON.stringify(out, null, 2)], { type: 'application/json' });
+  const json = JSON.stringify(out, null, 2);
+  const filename = `HEADLINES_approved_${out.date}.json`;
+
+  if (window.showSaveFilePicker) {
+    try {
+      const handle = await window.showSaveFilePicker({
+        suggestedName: filename,
+        types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }]
+      });
+      const writable = await handle.createWritable();
+      await writable.write(json);
+      await writable.close();
+      showToast(`Saved ${approvedKeys.length} approved items.`);
+      return;
+    } catch (err) {
+      if (err.name === 'AbortError') return;
+      // fall through to legacy download on unexpected error
+    }
+  }
+
+  // Fallback for browsers without File System Access API
+  const blob = new Blob([json], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `HEADLINES_approved_${out.date}.json`;
+  a.download = filename;
   a.click();
   URL.revokeObjectURL(url);
-
   showToast(`Exported ${approvedKeys.length} approved items.`);
 }
 

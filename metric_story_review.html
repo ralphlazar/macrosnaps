@@ -297,7 +297,7 @@ function autoResize(ta) {
 }
 
 // ── Export approved ────────────────────────────────────────────────────────
-function exportApproved() {
+async function exportApproved() {
   if (!draft) return;
   const approved = {
     date:         draft.date,
@@ -305,12 +305,33 @@ function exportApproved() {
     approved_at:  new Date().toISOString().slice(0,16).replace('T',' '),
     countries:    edited
   };
-  const blob = new Blob([JSON.stringify(approved, null, 2)], {type:'application/json'});
+  const json    = JSON.stringify(approved, null, 2);
+  const dateStr = draft.date || new Date().toISOString().slice(0,10);
+  const filename = `METRICS_approved_${dateStr}.json`;
+
+  if (window.showSaveFilePicker) {
+    try {
+      const handle = await window.showSaveFilePicker({
+        suggestedName: filename,
+        types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }]
+      });
+      const writable = await handle.createWritable();
+      await writable.write(json);
+      await writable.close();
+      toast('Saved METRICS_approved_' + dateStr + '.json');
+      return;
+    } catch (err) {
+      if (err.name === 'AbortError') return;
+      // fall through to legacy download on unexpected error
+    }
+  }
+
+  // Fallback for browsers without File System Access API
+  const blob = new Blob([json], {type:'application/json'});
   const url  = URL.createObjectURL(blob);
   const a    = document.createElement('a');
-  const dateStr = draft.date || new Date().toISOString().slice(0,10);
   a.href     = url;
-  a.download = `METRICS_approved_${dateStr}.json`;
+  a.download = filename;
   a.click();
   URL.revokeObjectURL(url);
   toast('Exported METRICS_approved_' + dateStr + '.json');
