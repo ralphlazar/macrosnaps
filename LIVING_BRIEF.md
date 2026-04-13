@@ -1,5 +1,13 @@
 # MacroSnaps - Living Brief
-Last updated: April 10, 2026 (Session 70: Daily ritual completed 2026-04-10; Copper and Wheat commodity stories rewritten; Google Sheets 429 quota hit on first sync_market_historical.py run — resolved by waiting 60s and rerunning.)
+Last updated: April 12, 2026 (Session 71: Daily ritual completed 2026-04-12; both review UIs patched to save approved JSON directly to repo via File System Access API (showSaveFilePicker) with ~/Downloads/ fallback.)
+
+Session 71 changes in detail:
+
+(1) **Daily ritual completed 2026-04-12.** Full ritual ran successfully. No commodity stories rewritten (all within threshold). Headlines 13/13 in 175s. Metric stories 12/12 in 71s. Build successful, pushed to master. Audit: all checks passed.
+
+(2) **Review UI export patched — direct repo save.** `patch_review_export.py` patches both `headline_review.html` and `metric_story_review.html` to use the browser File System Access API (`showSaveFilePicker`) instead of forcing a download to `~/Downloads/`. On export, a save dialog opens; navigate to `/Users/lisaswerling/RALPH/AI/macrosnaps/` once and the browser remembers it. Falls back to the old `~/Downloads/` behaviour if the API is unavailable. The `mv` step after each review gate is no longer needed once the browser has the repo location saved.
+
+---
 
 Session 70 changes in detail:
 
@@ -559,6 +567,7 @@ Forecast values (source: Ralph's Google Sheet) are annual consensus views for 20
 
 ## Full session history
 
+Session 71: Daily ritual completed 2026-04-12; both review UIs (headline_review.html, metric_story_review.html) patched to save approved JSON directly to repo via showSaveFilePicker (File System Access API) with ~/Downloads/ fallback (patch_review_export.py).
 Session 70: Daily ritual completed 2026-04-10; Copper and Wheat commodity stories rewritten; Google Sheets 429 quota hit on first sync_market_historical.py run — resolved by waiting 60s and rerunning.
 Session 69: Daily ritual completed 2026-04-09; sync_edu.py and macedu-v2 push removed from Daily Bash Ritual permanently.
 Session 68: Daily ritual completed 2026-04-08; header date fix (macrosnaps-shell.html top-left "Updated" now uses browser clock UTC, not stale data._meta.generated); sync_edu.py now writes to BRAINsmoothie as well as macedu-v2; Daily Bash Ritual updated to push BRAINsmoothie.
