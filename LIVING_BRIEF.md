@@ -1,5 +1,13 @@
 # MacroSnaps - Living Brief
-Last updated: April 12, 2026 (Session 71: Daily ritual completed 2026-04-12; both review UIs patched to save approved JSON directly to repo via File System Access API (showSaveFilePicker) with ~/Downloads/ fallback.)
+Last updated: April 16, 2026 (Session 72: Daily ritual completed 2026-04-16; 4 commodity stories rewritten (WTI, Silver, Copper, Wheat); headlines 13/13 in 188s; metric stories 12/12 in 80s; all checks passed.)
+
+Session 72 changes in detail:
+
+(1) **Daily ritual completed 2026-04-16.** Full ritual ran successfully. 4 commodity stories rewritten: WTI Crude (-7.2% move), Silver (+7.4%), Copper (+5.0%), Wheat (+6.9%). Headlines 13/13 drafted in 188s. Metric stories 12/12 in 80s, no retries needed. Build successful, auto-committed and pushed to master. Audit: all checks passed.
+
+(2) **No procedural changes this session.** Both review gates used the File System Access API (showSaveFilePicker, Session 71) to save approved JSON directly into the repo — no `mv` step needed. `sync_edu.py` and the macedu-v2/BRAINsmoothie pushes remain removed from the ritual (Session 69).
+
+---
 
 Session 71 changes in detail:
 
@@ -399,15 +407,9 @@ python3 update_headlines.py
 python3 update_metric_stories.py
 ```
 
-Manual gate 1: open `headline_review.html` (via [http://localhost:8080](http://localhost:8080)), load `HEADLINES_draft_YYYY-MM-DD.json`, review and edit, export `HEADLINES_approved_YYYY-MM-DD.json`. Then move the approved file into the repo:
-```bash
-mv ~/Downloads/HEADLINES_approved_YYYY-MM-DD.json /Users/lisaswerling/RALPH/AI/macrosnaps/
-```
+Manual gate 1: open `headline_review.html` (via [http://localhost:8080](http://localhost:8080)), load `HEADLINES_draft_YYYY-MM-DD.json`, review and edit, export `HEADLINES_approved_YYYY-MM-DD.json`. The browser save dialog (File System Access API, Session 71) writes directly into the repo — no `mv` step needed. If the browser prompts for a location, navigate to `/Users/lisaswerling/RALPH/AI/macrosnaps/` once and it will remember.
 
-Manual gate 2: open `metric_story_review.html` (via [http://localhost:8080](http://localhost:8080)), load `METRICS_draft_YYYY-MM-DD.json`, review and edit, export `METRICS_approved_YYYY-MM-DD.json`. Then move the approved file into the repo:
-```bash
-mv ~/Downloads/METRICS_approved_YYYY-MM-DD.json /Users/lisaswerling/RALPH/AI/macrosnaps/
-```
+Manual gate 2: open `metric_story_review.html` (via [http://localhost:8080](http://localhost:8080)), load `METRICS_draft_YYYY-MM-DD.json`, review and edit, export `METRICS_approved_YYYY-MM-DD.json`. Same as above: the file is saved directly into the repo via the browser save dialog.
 
 ```bash
 python3 update_headlines.py --apply HEADLINES_approved_YYYY-MM-DD.json
@@ -567,6 +569,7 @@ Forecast values (source: Ralph's Google Sheet) are annual consensus views for 20
 
 ## Full session history
 
+Session 72: Daily ritual completed 2026-04-16; 4 commodity stories rewritten (WTI -7.2%, Silver +7.4%, Copper +5.0%, Wheat +6.9%); headlines 13/13 in 188s; metric stories 12/12 in 80s, no retries; all checks passed. No procedural changes.
 Session 71: Daily ritual completed 2026-04-12; both review UIs (headline_review.html, metric_story_review.html) patched to save approved JSON directly to repo via showSaveFilePicker (File System Access API) with ~/Downloads/ fallback (patch_review_export.py).
 Session 70: Daily ritual completed 2026-04-10; Copper and Wheat commodity stories rewritten; Google Sheets 429 quota hit on first sync_market_historical.py run — resolved by waiting 60s and rerunning.
 Session 69: Daily ritual completed 2026-04-09; sync_edu.py and macedu-v2 push removed from Daily Bash Ritual permanently.
