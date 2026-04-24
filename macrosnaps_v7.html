@@ -1,0 +1,196 @@
+
+<h2 class="sr-only">MacroSnaps homepage with correct three weather icons only</h2>
+
+<style>
+.wi{line-height:1;display:inline-block;}
+.wi.sunny{filter:none;}
+.wi.cloudy{filter:brightness(.65) contrast(1.05) saturate(.3);}
+.wi.stormy{filter:brightness(.4) contrast(1.2) saturate(0);}
+</style>
+
+<div style="background:#ffffff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;border-radius:12px;overflow:hidden;border:1px solid #e8e8e5;">
+
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 28px;border-bottom:1px solid #e8e8e5;">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div style="width:28px;height:28px;background:#fff;border-radius:6px;border:1px solid #e8e8e5;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#1e2a38;flex-shrink:0;line-height:1;">M</div>
+      <div>
+        <div style="font-size:15px;font-weight:600;color:#1a1a18;letter-spacing:-0.01em;line-height:1.2;">MacroSnaps</div>
+        <div style="font-size:11px;color:#5f5e5a;">global macro · daily</div>
+      </div>
+    </div>
+    <div style="font-size:11px;color:#999896;">12 April 2026</div>
+  </div>
+
+  <div id="ms-grid" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:16px 24px 28px;"></div>
+
+</div>
+
+<script>
+const grid=document.getElementById('ms-grid');
+
+function wi(cls,sz=15){
+  const e={sunny:'☀️',cloudy:'☁️',stormy:'⛈️'};
+  return`<span class="wi ${cls}" style="font-size:${sz}px;">${e[cls]}</span>`;
+}
+const W={sunny:wi('sunny'),cloudy:wi('cloudy'),stormy:wi('stormy')};
+
+function mkMatrix(rgb,num,color,title,sub,gridData){
+  const[r,g,b]=rgb;
+  const el=document.createElement('div');
+  el.style.cssText=`grid-column:span 2;border:2px solid rgba(${r},${g},${b},0.25);background:rgba(${r},${g},${b},0.025);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:border-color 0.15s,box-shadow 0.15s;min-width:0;`;
+  el.onmouseenter=()=>{el.style.borderColor=`rgba(${r},${g},${b},0.5)`;el.style.boxShadow='0 2px 12px rgba(0,0,0,0.08)';};
+  el.onmouseleave=()=>{el.style.borderColor=`rgba(${r},${g},${b},0.25)`;el.style.boxShadow='none';};
+  const yrs=["'20","'21","'22","'23","'24","'25","'26"];
+  el.innerHTML=`
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;padding:16px 18px 12px;flex-shrink:0;">
+      <div>
+        <div style="font-size:17px;font-weight:600;letter-spacing:-0.01em;color:#1a1a18;display:flex;align-items:center;gap:10px;">
+          <span style="width:24px;height:24px;border-radius:50%;background:${color};display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:700;flex-shrink:0;">${num}</span>${title}
+        </div>
+        <div style="font-size:11px;color:#5f5e5a;margin-top:3px;padding-left:34px;">${sub}</div>
+      </div>
+      <div style="font-size:14px;color:#c8c8c4;padding-left:10px;margin-top:2px;">→</div>
+    </div>
+    <div style="padding:0 18px 14px;">
+      <div style="display:grid;grid-template-columns:24px repeat(7,1fr);row-gap:2px;column-gap:3px;">
+        <div></div>${yrs.map(y=>`<div style="font-size:8px;color:#c8c8c4;text-align:center;padding-bottom:4px;font-weight:500;">${y}</div>`).join('')}
+        ${gridData.map(([code,...conds])=>
+          `<div style="font-size:9px;color:#999896;font-weight:600;display:flex;align-items:center;">${code}</div>`+
+          conds.map(c=>`<div style="display:flex;justify-content:center;align-items:center;background:rgba(0,0,0,0.025);border-radius:3px;padding:3px 0;">${W[c]}</div>`).join('')
+        ).join('')}
+      </div>
+      <div style="margin-top:9px;font-size:10px;color:#c8c8c4;">Click any country to explore →</div>
+    </div>`;
+  grid.appendChild(el);
+}
+
+function mkToday(rgb,num,color,title,sub,bullets){
+  const[r,g,b]=rgb;
+  const el=document.createElement('div');
+  el.style.cssText=`grid-column:span 2;border:2px solid rgba(${r},${g},${b},0.25);background:rgba(${r},${g},${b},0.025);border-radius:12px;display:flex;flex-direction:column;min-width:0;`;
+  el.innerHTML=`
+    <div style="padding:16px 18px 12px;flex-shrink:0;">
+      <div style="font-size:17px;font-weight:600;letter-spacing:-0.01em;color:#1a1a18;display:flex;align-items:center;gap:10px;">
+        <span style="width:24px;height:24px;border-radius:50%;background:${color};display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:700;flex-shrink:0;">${num}</span>${title}
+      </div>
+      <div style="font-size:11px;color:#5f5e5a;margin-top:3px;padding-left:34px;">${sub}</div>
+    </div>
+    <div style="padding:0 18px 16px;flex:1;display:flex;flex-direction:column;gap:8px;">
+      ${bullets.map(t=>`<div style="padding:10px 12px;border-left:2.5px solid rgba(${r},${g},${b},0.3);background:rgba(${r},${g},${b},0.04);border-radius:0 6px 6px 0;flex:1;display:flex;align-items:center;"><p style="font-size:12.5px;color:#1a1a18;line-height:1.5;margin:0;">${t}</p></div>`).join('')}
+    </div>`;
+  grid.appendChild(el);
+}
+
+// Growth: sunny ≥3%, cloudy 0-3%, stormy <0%
+const gGrid=[
+  ['US','stormy','sunny', 'cloudy','cloudy','cloudy','cloudy','cloudy'],
+  ['CA','stormy','sunny', 'cloudy','cloudy','cloudy','cloudy','cloudy'],
+  ['GB','stormy','sunny', 'cloudy','cloudy','cloudy','cloudy','cloudy'],
+  ['JP','stormy','cloudy','cloudy','cloudy','cloudy','cloudy','cloudy'],
+  ['DE','stormy','cloudy','cloudy','stormy','stormy','stormy','stormy'],
+  ['FR','stormy','sunny', 'cloudy','cloudy','cloudy','cloudy','cloudy'],
+  ['IT','stormy','sunny', 'cloudy','cloudy','cloudy','cloudy','cloudy'],
+  ['CN','cloudy','sunny', 'cloudy','sunny', 'sunny', 'sunny', 'sunny' ],
+  ['IN','stormy','sunny', 'sunny', 'sunny', 'sunny', 'sunny', 'sunny' ],
+  ['ZA','stormy','cloudy','cloudy','cloudy','cloudy','cloudy','cloudy'],
+  ['BR','stormy','sunny', 'cloudy','cloudy','cloudy','cloudy','cloudy'],
+  ['RU','stormy','sunny', 'cloudy','sunny', 'sunny', 'sunny', 'sunny' ],
+];
+
+// Inflation: sunny 1-3%, cloudy otherwise, stormy <0% or >5%
+const iGrid=[
+  ['US','sunny', 'cloudy','stormy','cloudy','cloudy','cloudy','cloudy'],
+  ['CA','sunny', 'cloudy','stormy','cloudy','sunny', 'sunny', 'sunny' ],
+  ['GB','sunny', 'cloudy','stormy','stormy','cloudy','cloudy','cloudy'],
+  ['JP','sunny', 'sunny', 'cloudy','cloudy','sunny', 'sunny', 'sunny' ],
+  ['DE','sunny', 'cloudy','stormy','cloudy','sunny', 'sunny', 'sunny' ],
+  ['FR','sunny', 'cloudy','stormy','cloudy','sunny', 'sunny', 'sunny' ],
+  ['IT','sunny', 'cloudy','stormy','cloudy','sunny', 'sunny', 'sunny' ],
+  ['CN','sunny', 'sunny', 'cloudy','sunny', 'sunny', 'cloudy','cloudy'],
+  ['IN','cloudy','stormy','stormy','cloudy','cloudy','cloudy','cloudy'],
+  ['ZA','cloudy','cloudy','stormy','cloudy','cloudy','stormy','stormy'],
+  ['BR','cloudy','stormy','stormy','cloudy','cloudy','stormy','stormy'],
+  ['RU','cloudy','stormy','stormy','stormy','stormy','stormy','stormy'],
+];
+
+// Stocks: sunny >5% YTD, cloudy flat/modest, stormy very negative
+const sGrid=[
+  ['US','sunny', 'sunny', 'stormy','sunny', 'sunny', 'sunny', 'cloudy'],
+  ['CA','sunny', 'sunny', 'cloudy','cloudy','cloudy','cloudy','cloudy'],
+  ['GB','cloudy','sunny', 'cloudy','cloudy','cloudy','cloudy','cloudy'],
+  ['JP','sunny', 'sunny', 'cloudy','sunny', 'sunny', 'cloudy','cloudy'],
+  ['DE','sunny', 'sunny', 'stormy','sunny', 'sunny', 'sunny', 'cloudy'],
+  ['FR','sunny', 'sunny', 'cloudy','sunny', 'sunny', 'cloudy','cloudy'],
+  ['IT','sunny', 'sunny', 'cloudy','sunny', 'sunny', 'cloudy','cloudy'],
+  ['CN','sunny', 'cloudy','stormy','cloudy','cloudy','cloudy','cloudy'],
+  ['IN','sunny', 'sunny', 'cloudy','sunny', 'sunny', 'cloudy','cloudy'],
+  ['ZA','cloudy','sunny', 'cloudy','cloudy','sunny', 'cloudy','cloudy'],
+  ['BR','cloudy','cloudy','cloudy','cloudy','stormy','stormy','stormy'],
+  ['RU','cloudy','sunny', 'stormy','cloudy','cloudy','cloudy','cloudy'],
+];
+
+mkToday([42,53,69],1,'#2a3545','Today','Three things worth knowing',
+  ['India just overtook Japan to become the world\'s third-largest economy. For the first time, Asia holds four of the top six spots.',
+   'Germany has contracted for the second quarter running. Europe\'s biggest economy is stalling and nobody has a convincing plan to fix it.',
+   'The Fed held again. Markets are pricing the first cut in September -- if inflation keeps cooperating.']);
+
+mkMatrix([26,74,46], 2,'#1a4a2e','Growth',       'GDP conditions, 12 economies',    gGrid);
+mkMatrix([139,26,26],3,'#8b1a1a','Inflation',     'Price conditions, 12 economies',   iGrid);
+mkMatrix([74,111,163],4,'#4a6fa3','Stock Markets','Equity performance, 12 economies', sGrid);
+
+// Country tiles: g = growth condition, i = inflation condition
+const ctries=[
+  {flag:'🇺🇸',name:'United States', g:'cloudy',i:'cloudy'},
+  {flag:'🇨🇳',name:'China',         g:'sunny', i:'cloudy'},
+  {flag:'🇩🇪',name:'Germany',       g:'stormy',i:'sunny'},
+  {flag:'🇯🇵',name:'Japan',         g:'cloudy',i:'sunny'},
+  {flag:'🇮🇳',name:'India',         g:'sunny', i:'cloudy'},
+  {flag:'🇬🇧',name:'United Kingdom',g:'cloudy',i:'cloudy'},
+  {flag:'🇨🇦',name:'Canada',        g:'cloudy',i:'sunny'},
+  {flag:'🇫🇷',name:'France',        g:'cloudy',i:'sunny'},
+  {flag:'🇮🇹',name:'Italy',         g:'cloudy',i:'sunny'},
+  {flag:'🇿🇦',name:'South Africa',  g:'cloudy',i:'stormy'},
+  {flag:'🇧🇷',name:'Brazil',        g:'cloudy',i:'stormy'},
+  {flag:'🇷🇺',name:'Russia',        g:'sunny', i:'stormy'},
+];
+
+const cr=[26,58,92];
+ctries.forEach(({flag,name,g,i})=>{
+  const el=document.createElement('div');
+  el.style.cssText=`align-self:start;border:2px solid rgba(${cr[0]},${cr[1]},${cr[2]},0.25);background:rgba(${cr[0]},${cr[1]},${cr[2]},0.025);border-radius:12px;cursor:pointer;transition:border-color 0.15s,box-shadow 0.15s;padding:13px 15px;min-width:0;`;
+  el.onmouseenter=()=>{el.style.borderColor=`rgba(${cr[0]},${cr[1]},${cr[2]},0.5)`;el.style.boxShadow='0 2px 12px rgba(0,0,0,0.08)';};
+  el.onmouseleave=()=>{el.style.borderColor=`rgba(${cr[0]},${cr[1]},${cr[2]},0.25)`;el.style.boxShadow='none';};
+  el.innerHTML=`
+    <div style="display:flex;align-items:center;gap:7px;margin-bottom:9px;">
+      <span style="font-size:20px;line-height:1;">${flag}</span>
+      <span style="font-size:12px;font-weight:600;color:#1a1a18;letter-spacing:-0.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${name}</span>
+    </div>
+    <div style="display:flex;gap:14px;">
+      <div><div style="font-size:8px;color:#c8c8c4;margin-bottom:2px;letter-spacing:0.03em;">growth</div>${wi(g,20)}</div>
+      <div><div style="font-size:8px;color:#c8c8c4;margin-bottom:2px;letter-spacing:0.03em;">prices</div>${wi(i,20)}</div>
+    </div>`;
+  grid.appendChild(el);
+});
+
+const commEl=document.createElement('div');
+commEl.style.cssText=`grid-column:1/5;align-self:start;border:2px solid rgba(193,127,0,0.25);background:rgba(193,127,0,0.025);border-radius:12px;padding:16px 18px;cursor:pointer;transition:border-color 0.15s,box-shadow 0.15s;`;
+commEl.onmouseenter=()=>{commEl.style.borderColor='rgba(193,127,0,0.5)';commEl.style.boxShadow='0 2px 12px rgba(0,0,0,0.08)';};
+commEl.onmouseleave=()=>{commEl.style.borderColor='rgba(193,127,0,0.25)';commEl.style.boxShadow='none';};
+commEl.innerHTML=`
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <span style="width:24px;height:24px;border-radius:50%;background:#c17f00;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:700;">5</span>
+      <span style="font-size:17px;font-weight:600;letter-spacing:-0.01em;color:#1a1a18;">Commodities</span>
+    </div>
+    <span style="font-size:11px;color:#5f5e5a;">Key prices and weekly moves</span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px;">
+    ${[['Oil (WTI)','$61.40','-4.1%',-1],['Gold','$3,218','+1.2%',1],['Copper','$4.82','-1.8%',-1],['Wheat','$512','+0.6%',1],['Nat Gas','$2.14','-0.9%',-1],['Silver','$32.10','+0.4%',1]]
+    .map(([n,v,c,d])=>`<div style="background:rgba(0,0,0,0.025);border-radius:8px;padding:10px 12px;">
+      <div style="font-size:10px;color:#999896;margin-bottom:5px;">${n}</div>
+      <div style="font-size:15px;font-weight:600;color:#1a1a18;margin-bottom:2px;">${v}</div>
+      <div style="font-size:11px;font-weight:600;color:${d===1?'#2d9b5a':'#d4542a'};">${c} this week</div>
+    </div>`).join('')}
+  </div>`;
+grid.appendChild(commEl);
+</script>
