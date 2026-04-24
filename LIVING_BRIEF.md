@@ -1,5 +1,15 @@
 # MacroSnaps - Living Brief
-Last updated: April 16, 2026 (Session 72: Daily ritual completed 2026-04-16; 4 commodity stories rewritten (WTI, Silver, Copper, Wheat); headlines 13/13 in 188s; metric stories 12/12 in 80s; all checks passed.)
+Last updated: April 24, 2026 (Session 73: Daily ritual completed 2026-04-24; 0 commodity stories rewritten (all within threshold); headlines 13/13 in 177s; metric stories 12/12 in 78s, no retries; all checks passed; Social Media Bash skipped.)
+
+Session 73 changes in detail:
+
+(1) **Daily ritual completed 2026-04-24.** Full ritual ran successfully. Friday pre-ritual: forecast CMS opened and 2026 forecasts reviewed. No commodity stories rewritten (all 9 within 5% threshold — WTI, Brent, Nat Gas, Gold, Silver, Copper, Wheat, Corn, Soybeans). Headlines 13/13 drafted in 177s (Sonnet + web search, healthy runtime). Metric stories 12/12 in 78s, no retries. Both review gates (headline_review.html, metric_story_review.html) passed. Build successful, auto-committed and pushed to master. Audit: all checks passed. Social Media Bash skipped per Ralph's instruction.
+
+(2) **No procedural changes this session.** URL-as-clickable-hyperlinks rule (RULE 2 under ABSOLUTE NON-NEGOTIABLE OUTPUT RULES) re-confirmed and added to Claude's persistent memory for reinforcement across sessions. No code, script, or ritual changes.
+
+(3) **Forecast CMS 404 quirk noted.** `forecast_server.py` (Flask on :5050) only serves API endpoints (`/forecasts`, `/forecast`, `/external_forecasts`, `/run_fetch`, `/fetch_status`, `/health`) — it does not serve `forecast_cms.html` as a static route. The CMS page must be opened directly from the filesystem: `open /Users/lisaswerling/RALPH/AI/macrosnaps/forecast_cms.html`. The page itself then makes CORS requests to the Flask server on :5050 for data. No fix needed — behaviour is as designed, just not intuitive from the 404 in the server log.
+
+---
 
 Session 72 changes in detail:
 
@@ -569,6 +579,7 @@ Forecast values (source: Ralph's Google Sheet) are annual consensus views for 20
 
 ## Full session history
 
+Session 73: Daily ritual completed 2026-04-24; 0 commodity stories rewritten (all within threshold); headlines 13/13 in 177s; metric stories 12/12 in 78s, no retries; all checks passed; Social Media Bash skipped per Ralph's instruction. No procedural changes — URL clickable-link rule reconfirmed and added to Claude memory.
 Session 72: Daily ritual completed 2026-04-16; 4 commodity stories rewritten (WTI -7.2%, Silver +7.4%, Copper +5.0%, Wheat +6.9%); headlines 13/13 in 188s; metric stories 12/12 in 80s, no retries; all checks passed. No procedural changes.
 Session 71: Daily ritual completed 2026-04-12; both review UIs (headline_review.html, metric_story_review.html) patched to save approved JSON directly to repo via showSaveFilePicker (File System Access API) with ~/Downloads/ fallback (patch_review_export.py).
 Session 70: Daily ritual completed 2026-04-10; Copper and Wheat commodity stories rewritten; Google Sheets 429 quota hit on first sync_market_historical.py run — resolved by waiting 60s and rerunning.
