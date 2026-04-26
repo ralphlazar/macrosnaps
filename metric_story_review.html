@@ -26,6 +26,8 @@
   .filter-sep { width: 1px; height: 24px; background: #30363d; }
   .progress { font-size: 12px; color: #666; margin-left: auto; }
   .progress span { color: #00d4ff; font-weight: 600; }
+  .progress .regen-count { color: #f0b94a; }
+  .progress .carry-count { color: #555; }
 
   /* ── Layout ── */
   .main { max-width: 960px; margin: 0 auto; padding: 24px; }
@@ -34,9 +36,12 @@
   .country-section { margin-bottom: 32px; }
   .country-heading { font-size: 14px; font-weight: 700; color: #00d4ff; padding: 8px 0; border-bottom: 1px solid #21262d; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
   .country-heading .flag { font-size: 18px; }
+  .country-heading .country-summary { font-size: 11px; color: #555; font-weight: 400; margin-left: auto; }
 
   /* ── Metric card ── */
-  .metric-card { background: #161b22; border: 1px solid #30363d; border-radius: 8px; margin-bottom: 12px; overflow: hidden; }
+  .metric-card { background: #161b22; border: 1px solid #30363d; border-radius: 8px; margin-bottom: 12px; overflow: hidden; transition: opacity 0.2s; }
+  .metric-card.carried { opacity: 0.55; }
+  .metric-card.carried:hover { opacity: 0.85; }
   .metric-header { padding: 10px 14px; display: flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; }
   .metric-header:hover { background: #1c2128; }
   .metric-name { font-size: 13px; font-weight: 600; color: #e6edf3; flex: 1; }
@@ -44,6 +49,12 @@
   .metric-section { font-size: 11px; color: #444; background: #21262d; padding: 2px 6px; border-radius: 4px; }
   .metric-chevron { font-size: 11px; color: #444; transition: transform 0.2s; }
   .metric-card.open .metric-chevron { transform: rotate(180deg); }
+
+  /* ── Status badge ── */
+  .status-badge { font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 600; letter-spacing: 0.3px; text-transform: uppercase; }
+  .status-badge.regen  { background: #3a2810; color: #f0b94a; border: 1px solid #5a3d18; }
+  .status-badge.carry  { background: #1a1f26; color: #555; border: 1px solid #30363d; }
+  .trigger-reason { font-size: 11px; color: #777; margin-left: 4px; font-style: italic; }
 
   .metric-body { display: none; padding: 0 14px 14px; border-top: 1px solid #21262d; }
   .metric-card.open .metric-body { display: block; }
@@ -57,8 +68,10 @@
   .bullets { display: flex; flex-direction: column; gap: 6px; }
   .bullet-row { display: flex; align-items: flex-start; gap: 8px; }
   .bullet-num { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid #00d4ff; color: #00d4ff; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 8px; }
+  .metric-card.carried .bullet-num { border-color: #555; color: #555; }
   .bullet-input { flex: 1; background: #0d1117; border: 1px solid #30363d; border-radius: 5px; color: #ccc; padding: 7px 10px; font-size: 12px; line-height: 1.5; resize: none; min-height: 52px; font-family: inherit; transition: border-color 0.15s; }
   .bullet-input:focus { outline: none; border-color: #00d4ff; }
+  .metric-card.carried .bullet-input { background: #14181f; color: #888; }
 
   /* ── Empty / load state ── */
   .empty-state { text-align: center; padding: 80px 24px; color: #444; }
@@ -93,6 +106,13 @@
     <option value="macro">Macro</option>
     <option value="market">Market</option>
   </select>
+  <div class="filter-sep"></div>
+  <label>Status</label>
+  <select id="filterStatus" onchange="render()">
+    <option value="">All</option>
+    <option value="regen">Regenerated only</option>
+    <option value="carry">Carried forward only</option>
+  </select>
   <div class="progress" id="progressText"></div>
 </div>
 
@@ -109,12 +129,12 @@
 <script>
 // ── State ──────────────────────────────────────────────────────────────────
 let draft      = null;
-let edited     = {};   // edited[code][metric][level] = [b1, b2, b3]
-let metaData   = {};   // metaData[code] = {name, flag, metrics: [{section, name, value}]}
+let edited     = {};   // edited[code][metric] = { beginner, moderate, expert, _regenerated, _trigger_reason, _section, _value }
 
 const LEVELS   = ['beginner','moderate','expert'];
 const COUNTRY_ORDER = ['USA','CAN','GBR','JPN','DEU','FRA','ITA','CHN','IND','ZAF','BRA','RUS'];
 const FLAGS    = {USA:'🇺🇸',CAN:'🇨🇦',GBR:'🇬🇧',JPN:'🇯🇵',DEU:'🇩🇪',FRA:'🇫🇷',ITA:'🇮🇹',CHN:'🇨🇳',IND:'🇮🇳',ZAF:'🇿🇦',BRA:'🇧🇷',RUS:'🇷🇺'};
+const MACRO_METRICS = ['GDP Growth','Inflation (CPI)','Unemployment','Budget Deficit','Current Account','Policy Rate'];
 
 // ── Load file ──────────────────────────────────────────────────────────────
 function loadFile(e) {
@@ -125,23 +145,31 @@ function loadFile(e) {
     try {
       draft  = JSON.parse(ev.target.result);
       edited = {};
-      // Deep-copy draft into edited
+      // Deep-copy draft into edited, preserving metadata flags
       for (const [code, metrics] of Object.entries(draft.countries || {})) {
         edited[code] = {};
-        for (const [name, levels] of Object.entries(metrics)) {
-          edited[code][name] = {};
+        for (const [name, payload] of Object.entries(metrics)) {
+          edited[code][name] = {
+            _regenerated:    payload._regenerated !== false,
+            _trigger_reason: payload._trigger_reason || '',
+            _section:        payload._section || (MACRO_METRICS.includes(name) ? 'macro' : 'market'),
+            _value:          payload._value || '',
+          };
           for (const lv of LEVELS) {
-            edited[code][name][lv] = (levels[lv] || ['','','']).slice(0,3);
-            while (edited[code][name][lv].length < 3) edited[code][name][lv].push('');
+            const arr = (payload[lv] || ['','','']).slice(0,3);
+            while (arr.length < 3) arr.push('');
+            edited[code][name][lv] = arr;
           }
         }
       }
-      document.getElementById('meta').textContent = `${file.name} — ${draft.date || ''} ${draft.generated_at || ''}`;
+      const tot = countMetrics();
+      document.getElementById('meta').textContent =
+        `${file.name} — ${draft.date || ''} ${draft.generated_at || ''} — ${tot.regen} regen / ${tot.carry} carried`;
       document.getElementById('exportBtn').disabled = false;
       document.getElementById('filters').style.display = 'flex';
       populateCountryFilter();
       render();
-      toast('Draft loaded');
+      toast(`Loaded: ${tot.regen} regen, ${tot.carry} carried forward`);
     } catch(err) {
       alert('Could not parse JSON: ' + err.message);
     }
@@ -150,12 +178,24 @@ function loadFile(e) {
   e.target.value = '';
 }
 
+// ── Counts ─────────────────────────────────────────────────────────────────
+function countMetrics() {
+  let regen = 0, carry = 0;
+  for (const metrics of Object.values(edited)) {
+    for (const m of Object.values(metrics)) {
+      if (m._regenerated) regen++;
+      else carry++;
+    }
+  }
+  return { regen, carry, total: regen + carry };
+}
+
 // ── Populate country filter ────────────────────────────────────────────────
 function populateCountryFilter() {
   const sel = document.getElementById('filterCountry');
   sel.innerHTML = '<option value="">All countries</option>';
   for (const code of COUNTRY_ORDER) {
-    if (draft.countries && draft.countries[code]) {
+    if (edited[code]) {
       const opt = document.createElement('option');
       opt.value = code;
       opt.textContent = `${FLAGS[code]||''} ${code}`;
@@ -169,38 +209,43 @@ function render() {
   if (!draft) return;
   const filterCode    = document.getElementById('filterCountry').value;
   const filterSection = document.getElementById('filterSection').value;
+  const filterStatus  = document.getElementById('filterStatus').value;
   const main          = document.getElementById('main');
   main.innerHTML      = '';
 
-  const codes = filterCode ? [filterCode] : COUNTRY_ORDER.filter(c => draft.countries && draft.countries[c]);
+  const codes = filterCode ? [filterCode] : COUNTRY_ORDER.filter(c => edited[c]);
 
-  let totalMetrics = 0, totalCards = 0;
+  let totalShown = 0, regenShown = 0, carryShown = 0, countriesShown = 0;
 
   for (const code of codes) {
-    const metrics = draft.countries[code];
+    const metrics = edited[code];
     if (!metrics) continue;
 
-    // Filter metrics by section if needed
-    // We need to know which section each metric belongs to — store in draft or infer
     const metricNames = Object.keys(metrics).filter(name => {
-      if (!filterSection) return true;
-      // Section info embedded in draft if available
-      const sectionInfo = draft._sections && draft._sections[code] && draft._sections[code][name];
-      if (sectionInfo) return sectionInfo === filterSection;
-      // Fallback: macro metrics are known
-      const macroMetrics = ['GDP Growth','Inflation (CPI)','Unemployment','Budget Deficit','Current Account','Policy Rate'];
-      if (filterSection === 'macro') return macroMetrics.includes(name);
-      if (filterSection === 'market') return !macroMetrics.includes(name);
+      const m = metrics[name];
+      if (filterSection && m._section !== filterSection) return false;
+      if (filterStatus === 'regen' && !m._regenerated) return false;
+      if (filterStatus === 'carry' &&  m._regenerated) return false;
       return true;
     });
     if (!metricNames.length) continue;
 
-    totalCards++;
-    totalMetrics += metricNames.length;
+    countriesShown++;
+    let countryRegen = 0, countryCarry = 0;
+    for (const name of metricNames) {
+      if (metrics[name]._regenerated) countryRegen++; else countryCarry++;
+    }
+    totalShown += metricNames.length;
+    regenShown += countryRegen;
+    carryShown += countryCarry;
 
     const section = document.createElement('div');
     section.className = 'country-section';
-    section.innerHTML = `<div class="country-heading"><span class="flag">${FLAGS[code]||''}</span>${code}</div>`;
+    section.innerHTML = `
+      <div class="country-heading">
+        <span class="flag">${FLAGS[code]||''}</span>${code}
+        <span class="country-summary">${countryRegen} regen, ${countryCarry} carried</span>
+      </div>`;
 
     for (const name of metricNames) {
       section.appendChild(buildMetricCard(code, name, metrics[name]));
@@ -209,17 +254,21 @@ function render() {
   }
 
   document.getElementById('progressText').innerHTML =
-    `Showing <span>${totalMetrics}</span> metrics across <span>${totalCards}</span> countries`;
+    `Showing <span>${totalShown}</span> across <span>${countriesShown}</span> countries ` +
+    `(<span class="regen-count">${regenShown}</span> regen, <span class="carry-count">${carryShown}</span> carried)`;
 }
 
 // ── Build metric card ──────────────────────────────────────────────────────
-function buildMetricCard(code, name, levelData) {
-  const macroMetrics = ['GDP Growth','Inflation (CPI)','Unemployment','Budget Deficit','Current Account','Policy Rate'];
-  const sectionLabel = macroMetrics.includes(name) ? 'macro' : 'market';
-
+function buildMetricCard(code, name, payload) {
   const card = document.createElement('div');
-  card.className = 'metric-card';
+  const isCarried = !payload._regenerated;
+  card.className = 'metric-card' + (isCarried ? ' carried' : '');
   card.id = `card-${code}-${name.replace(/\s/g,'_')}`;
+
+  const sectionLabel = payload._section || (MACRO_METRICS.includes(name) ? 'macro' : 'market');
+  const badgeClass   = isCarried ? 'carry' : 'regen';
+  const badgeLabel   = isCarried ? 'carried' : 'regen';
+  const reason       = payload._trigger_reason || '';
 
   // Header
   const hdr = document.createElement('div');
@@ -227,6 +276,8 @@ function buildMetricCard(code, name, levelData) {
   hdr.innerHTML = `
     <span class="metric-section">${sectionLabel}</span>
     <span class="metric-name">${name}</span>
+    <span class="status-badge ${badgeClass}">${badgeLabel}</span>
+    ${reason ? `<span class="trigger-reason">${reason}</span>` : ''}
     <span class="metric-chevron">▼</span>
   `;
   hdr.onclick = () => { card.classList.toggle('open'); };
@@ -299,6 +350,8 @@ function autoResize(ta) {
 // ── Export approved ────────────────────────────────────────────────────────
 async function exportApproved() {
   if (!draft) return;
+  // Preserve _regenerated / _trigger_reason / _section / _value flags so apply step
+  // can skip carried-forward metrics and leave their stamps untouched.
   const approved = {
     date:         draft.date,
     generated_at: draft.generated_at,

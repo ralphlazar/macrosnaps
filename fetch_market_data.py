@@ -8,10 +8,11 @@ into data.json in place. Never touches historical arrays, stories, macro
 metrics, or any other field.
 
 Metrics updated:
-  Stock Market YTD   - Yahoo Finance (YTD % change from Jan 1 close)
-  10Y Bond Yield     - FRED daily series
-  Yield Curve        - Derived: 10Y minus 2Y (FRED)
-  FX pair            - Yahoo Finance
+  Stock Market YTD       - Yahoo Finance (YTD % change from Jan 1 close)
+  Stock Market YTD (USD) - Derived: local YTD adjusted by FX YTD (USA = local)
+  10Y Bond Yield         - FRED daily series
+  Yield Curve            - Derived: 10Y minus 2Y (FRED)
+  FX pair                - Yahoo Finance
 
 Run:
   cd ~/Downloads/macrosnaps
@@ -522,6 +523,7 @@ def process_country(code, country_data):
     raw = {
         "stock_level":     None,
         "stock_ytd":       None,
+        "stock_ytd_usd":   None,
         "fx":              None,
         "bond_10y":        None,
         "short_rate":      None,
@@ -587,6 +589,51 @@ def process_country(code, country_data):
         log.info(f"  {fx_label:<20}{fx_str}")
     else:
         log.warning(f"  FX                  FAILED")
+
+    # Stock Market YTD (USD) — derived from local YTD and FX YTD.
+    # For USA, USD return == local return by definition (no FX adjustment).
+    # For all others, compound: (1 + local%) * (1 + USD-per-local%) - 1.
+    local_ytd = raw["stock_ytd"]
+    if local_ytd is None:
+        log.warning(f"  Stock Market YTD (USD)  FAILED (no local YTD)")
+    elif code == "USA":
+        usd_ytd = round(local_ytd, 2)
+        updates["Stock Market YTD (USD)"] = usd_ytd
+        raw["stock_ytd_usd"] = usd_ytd
+        log.info(f"  Stock Market YTD (USD)  {usd_ytd:+.2f}  (= local, no FX adjust)")
+    else:
+        fx_ticker = FX_TICKERS.get(code)
+        raw_fx_current, raw_fx_ytd = (None, None)
+        if fx_ticker:
+            raw_fx_current, raw_fx_ytd = yf_price_and_ytd(fx_ticker)
+        if raw_fx_ytd is None:
+            log.warning(f"  Stock Market YTD (USD)  FAILED (no FX YTD)")
+        else:
+            # Yahoo ticker direction:
+            #   <LOCAL>USD=X (e.g. GBPUSD=X, BRLUSD=X) -> raw is USD per LOCAL
+            #   USD<LOCAL>=X (e.g. USDRUB=X)          -> raw is LOCAL per USD
+            # We need YTD % of (USD per LOCAL).
+            if fx_ticker.startswith("USD"):
+                denom = 1.0 + raw_fx_ytd / 100.0
+                if denom == 0:
+                    fx_usd_per_local_ytd = None
+                else:
+                    fx_usd_per_local_ytd = (1.0 / denom - 1.0) * 100.0
+            else:
+                fx_usd_per_local_ytd = raw_fx_ytd
+
+            if fx_usd_per_local_ytd is None:
+                log.warning(f"  Stock Market YTD (USD)  FAILED (FX YTD math)")
+            else:
+                usd_ytd = ((1.0 + local_ytd / 100.0)
+                           * (1.0 + fx_usd_per_local_ytd / 100.0) - 1.0) * 100.0
+                usd_ytd = round(usd_ytd, 2)
+                updates["Stock Market YTD (USD)"] = usd_ytd
+                raw["stock_ytd_usd"] = usd_ytd
+                log.info(
+                    f"  Stock Market YTD (USD)  {usd_ytd:+.2f}  "
+                    f"(local {local_ytd:+.2f}%, fx {fx_usd_per_local_ytd:+.2f}%)"
+                )
 
     return updates, raw
 
