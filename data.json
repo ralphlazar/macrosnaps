@@ -1543,7 +1543,7 @@
             "story_value_snapshot": "98.7"
           },
           "Stock Market YTD (USD)": {
-            "value": 4.47,
+            "value": 4.5,
             "last_updated": "2026-04-26",
             "tier": "daily",
             "story": {
@@ -6291,7 +6291,7 @@
             "story_value_snapshot": "0.73"
           },
           "Stock Market YTD (USD)": {
-            "value": 6.64,
+            "value": 6.48,
             "last_updated": "2026-04-26",
             "tier": "daily",
             "story": {
@@ -15616,7 +15616,7 @@
             "story_value_snapshot": "159.5"
           },
           "Stock Market YTD (USD)": {
-            "value": 13.03,
+            "value": 13.15,
             "last_updated": "2026-04-26",
             "tier": "daily",
             "story": {
@@ -40156,7 +40156,7 @@
             "story_value_snapshot": "16.56"
           },
           "Stock Market YTD (USD)": {
-            "value": 0.33,
+            "value": 0.34,
             "last_updated": "2026-04-26",
             "tier": "daily",
             "story": {
@@ -49128,7 +49128,7 @@
         "symbol": "CL",
         "cat": "energy",
         "unit": "$/bbl",
-        "price": 96.51,
+        "price": 96.5,
         "change": 68.4,
         "spark": [
           33.1,
@@ -50563,7 +50563,7 @@
         "symbol": "GC",
         "cat": "metals",
         "unit": "$/oz",
-        "price": 4699.6,
+        "price": 4700.2,
         "change": 8.9,
         "spark": [
           278.3,
@@ -51041,7 +51041,7 @@
         "symbol": "SI",
         "cat": "metals",
         "unit": "$/oz",
-        "price": 75.07,
+        "price": 75.08,
         "change": 6.4,
         "spark": [
           5.003,
@@ -51519,8 +51519,8 @@
         "symbol": "HG",
         "cat": "metals",
         "unit": "$/lb",
-        "price": 6.01,
-        "change": 6.6,
+        "price": 6.02,
+        "change": 6.7,
         "spark": [
           0.885,
           0.915,

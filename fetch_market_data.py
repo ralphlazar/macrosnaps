@@ -597,10 +597,20 @@ def process_country(code, country_data):
     if local_ytd is None:
         log.warning(f"  Stock Market YTD (USD)  FAILED (no local YTD)")
     elif code == "USA":
-        usd_ytd = round(local_ytd, 2)
-        updates["Stock Market YTD (USD)"] = usd_ytd
-        raw["stock_ytd_usd"] = usd_ytd
-        log.info(f"  Stock Market YTD (USD)  {usd_ytd:+.2f}  (= local, no FX adjust)")
+        # USA: USD return == local return by definition. Mirror the exact
+        # parsed value of the local YTD string so the homepage's two columns
+        # render bit-identically (avoids any double-rounding drift).
+        local_str = updates.get("Stock Market YTD")
+        if local_str is None:
+            log.warning(f"  Stock Market YTD (USD)  FAILED (no local YTD string)")
+        else:
+            try:
+                usd_ytd = float(local_str.replace("%", "").replace("+", ""))
+            except (ValueError, AttributeError):
+                usd_ytd = round(local_ytd, 1)
+            updates["Stock Market YTD (USD)"] = usd_ytd
+            raw["stock_ytd_usd"] = usd_ytd
+            log.info(f"  Stock Market YTD (USD)  {usd_ytd:+.2f}  (= local, mirrored)")
     else:
         fx_ticker = FX_TICKERS.get(code)
         raw_fx_current, raw_fx_ytd = (None, None)
