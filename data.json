@@ -6291,7 +6291,7 @@
             "story_value_snapshot": "0.73"
           },
           "Stock Market YTD (USD)": {
-            "value": 6.48,
+            "value": 6.64,
             "last_updated": "2026-04-26",
             "tier": "daily",
             "story": {
@@ -10948,7 +10948,7 @@
             "story_value_snapshot": "1.35"
           },
           "Stock Market YTD (USD)": {
-            "value": 4.61,
+            "value": 4.62,
             "last_updated": "2026-04-26",
             "tier": "daily",
             "story": {
@@ -15616,7 +15616,7 @@
             "story_value_snapshot": "159.5"
           },
           "Stock Market YTD (USD)": {
-            "value": 13.17,
+            "value": 13.03,
             "last_updated": "2026-04-26",
             "tier": "daily",
             "story": {
@@ -39861,7 +39861,7 @@
             "story_value_snapshot": "+230bps"
           },
           "USD/ZAR": {
-            "value": "16.57",
+            "value": "16.56",
             "tier": "daily",
             "last_updated": "2026-04-26",
             "story": {
@@ -40156,7 +40156,7 @@
             "story_value_snapshot": "16.56"
           },
           "Stock Market YTD (USD)": {
-            "value": 0.32,
+            "value": 0.33,
             "last_updated": "2026-04-26",
             "tier": "daily",
             "story": {
@@ -49128,8 +49128,8 @@
         "symbol": "CL",
         "cat": "energy",
         "unit": "$/bbl",
-        "price": 96.6,
-        "change": 68.5,
+        "price": 96.51,
+        "change": 68.4,
         "spark": [
           33.1,
           30.86,
@@ -49606,8 +49606,8 @@
         "symbol": "BZ",
         "cat": "energy",
         "unit": "$/bbl",
-        "price": 101.49,
-        "change": 67.1,
+        "price": 101.34,
+        "change": 66.8,
         "spark": [
           25.3,
           35.08,
@@ -50563,7 +50563,7 @@
         "symbol": "GC",
         "cat": "metals",
         "unit": "$/oz",
-        "price": 4699.2,
+        "price": 4699.6,
         "change": 8.9,
         "spark": [
           278.3,
@@ -51041,8 +51041,8 @@
         "symbol": "SI",
         "cat": "metals",
         "unit": "$/oz",
-        "price": 75.01,
-        "change": 6.3,
+        "price": 75.07,
+        "change": 6.4,
         "spark": [
           5.003,
           4.899,
