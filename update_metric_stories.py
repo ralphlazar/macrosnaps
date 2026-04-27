@@ -374,7 +374,7 @@ def draft_country(client, code, country_data, recent_data, label, force_all):
 
         # Validate: each requested metric must have 3 bullets per level
         problems = []
-        for _, name, _ in to_regen:
+        for _, name, _, _ in to_regen:
             if name not in parsed:
                 problems.append(f"missing: {name}")
                 continue

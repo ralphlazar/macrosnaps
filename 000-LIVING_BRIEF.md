@@ -1,5 +1,28 @@
 # MacroSnaps - Living Brief
-Last updated: April 25, 2026 (Session 76: Daily cost review and trigger-based metric story regeneration shipped. Decided to harvest the metric story saving first (biggest API win, no editorial downside) and leave headlines and forecasts alone for now. Three triggers fire a regen per metric: new monthly print, daily-tier value moved 5% or more relative to story snapshot, or staleness past tier ceiling (daily=7d, weekly=14d, structural=30d). Anything else is carried forward at zero API cost. New fields story_last_updated, story_value_snapshot, story_last_print_month added to every metric in data.json. backfill_story_freshness.py ran, 132 metrics stamped. Expected 75-85% Haiku call reduction in steady state.)
+Last updated: April 26, 2026 (Session 77: Bug fix - USA Stock Market YTD on homepage showed +4.20% local / -3.12% USD, an embarrassing mismatch since USD return must equal local for USA by definition. Root cause: metrics.market['Stock Market YTD (USD)'] in data.json was only written by sync_sheet.py --market which is not in any scheduled ritual; field had been stale since 2026-03-22 while local YTD refreshed daily. Fix: moved USD-YTD computation into fetch_market_data.py as a derived metric. USA mirrors the exact local YTD string verbatim. Other countries compute compound (1 + local%) * (1 + USD-per-local%) - 1 from local YTD and FX YTD via yf_price_and_ytd(). RULE 15 added (USA col2 = col1, no separate calculation). GitHub HTTPS auth refreshed via gh auth login after PAT expiry. Pushed to master.)
+
+Session 77 changes in detail:
+
+(1) **Bug report.** Homepage Stock Market YTD ranking for USA showed +4.20% local / -3.12% USD on the same day. USD return must equal local return for USA by definition (USA's local currency is USD, so no FX conversion). Visible only on USA because for every other country the spread is real and small enough that staleness is invisible.
+
+(2) **Root cause.** The render layer is fine. Homepage reads `metrics.market['Stock Market YTD'].value` for col1 and `metrics.market['Stock Market YTD (USD)'].value` for col2. The local field refreshes daily via fetch_market_data.py. The USD field was only ever written by `sync_sheet.py --market` which is not in any scheduled ritual. Last sync was 2026-03-22; the field had been silently rotting for five weeks while local YTD updated each day.
+
+(3) **Architectural fix: USD-YTD moved into fetch_market_data.py as a derived metric.** Removes dependency on sync_sheet.py for this field. After the existing FX block in `process_country()`, compute and write `Stock Market YTD (USD)` to `metrics.market[...]['value']` with today's `last_updated` stamp. USA mirrors the parsed value of the local YTD string (e.g. "+4.5%" -> 4.5) to guarantee bit-identical homepage display. All other countries compute compound USD return: `(1 + local%) * (1 + USD-per-local%) - 1`. FX YTD pulled via existing `yf_price_and_ytd()` helper. Direction depends on Yahoo ticker convention: tickers ending `USD=X` (GBPUSD=X, BRLUSD=X, etc) return USD-per-LOCAL directly so raw_ytd is USD-per-local YTD; tickers starting `USD` (USDRUB=X) return LOCAL-per-USD and need inversion via `1/(1 + raw_ytd/100) - 1`. Storage is Python float rounded to 2dp for non-USA, parsed-from-local-string for USA. Format matches what sync_sheet.py was writing so generate_digest.py and other consumers continue to work.
+
+(4) **sync_sheet.py left untouched.** Its `Stock_Market_YTD_USD` mapping becomes dead-but-harmless. fetch_market_data.py overwrites the field daily so any future `sync_sheet.py --market` run gets immediately superseded. Cleanup deferred.
+
+(5) **Top-level fields not addressed.** `country.stock_market_ytd_usd` and `country.stock_market_ytd` at the data.json top level are stale (separate from the `metrics.market` entries the homepage reads). Neither is on the homepage render path. Different writer, separate fix if ever needed.
+
+(6) **GitHub HTTPS auth refreshed.** Cached PAT in macOS Keychain had expired (90-day default rotation, last successful use was Session 73 on 2026-04-24). Auto-push from build.py failed with "No anonymous write access". Resolved by installing `gh` (GitHub CLI) via Homebrew and running `gh auth login` (HTTPS, web browser flow) which writes a fresh token into the system keyring. No PAT manually generated. Future pushes work silently again. New tool installed: gh 2.91.0 at /opt/homebrew/bin/gh.
+
+(7) **New rule.** RULE 15 added under ABSOLUTE NON-NEGOTIABLE OUTPUT RULES: USA Stock Market YTD (USD) must equal local YTD verbatim - col2 mirrors col1, no separate calculation.
+
+(8) **Files shipped this session:**
+- fetch_market_data.py: docstring updated to list `Stock Market YTD (USD)` as a written metric. Added `stock_ytd_usd` field to `raw` dict in process_country(). New ~50-line block at end of process_country() after the FX section deriving USD-YTD per country with USA special-cased to mirror local string.
+
+(9) **Pipeline integration: no changes to the Daily Bash Ritual itself.** fetch_market_data.py runs in the same slot, writes one extra field per country. Headlines flow, commodity stories, build.py and audit all unchanged.
+
+---
 
 Session 76 changes in detail:
 
@@ -199,6 +222,9 @@ If a file needs a patch, Claude writes a patch script, delivers it to Downloads,
 **RULE 14 - There is no Lisa.**
 "Lisa" is the name of Ralph's MacBook (which is why home is `/Users/lisaswerling/`). Ralph is the operator, designer, owner, and only human in the loop. All language in briefs and responses refers to Ralph. The directory path stays unchanged - it's just a hostname.
 
+**RULE 15 - USA Stock Market YTD (USD) must equal local YTD verbatim.**
+On the homepage Stock Market YTD ranking, the USA row's USD column (col2) must display identically to the local column (col1). USA's local currency is USD, so any FX adjustment is conceptually zero. In fetch_market_data.py, the USA branch parses the local YTD string back to a float and stores that as the USD value. Never apply DXY or any other FX-adjusted calculation to USA. Other countries continue to use the standard compound formula.
+
 ### Other standing notes
 
 **Local preview before push.** Since the site is live, all changes must be tested locally before pushing. Always provide a local preview step before any git push command. Never combine build and push.
@@ -372,6 +398,7 @@ Do not position against Bloomberg or data terminals. The competition is a good m
 
 ## Full session history
 
+Session 77: Bug fix - USA Stock Market YTD homepage glitch (showed +4.20% local / -3.12% USD, an embarrassing mismatch since USD return must equal local for USA by definition). Root cause: metrics.market['Stock Market YTD (USD)'] was only written by sync_sheet.py --market (not in any scheduled ritual); field had been stale since 2026-03-22. Fix: USD-YTD computation moved into fetch_market_data.py as a derived metric. USA hard-coded to mirror local YTD string verbatim; other countries computed via FX YTD compound (1 + local%) * (1 + USD-per-local%) - 1 using yf_price_and_ytd() and Yahoo ticker direction (LOCALUSD=X gives USD-per-local, USDLOCAL=X gives local-per-USD requiring inversion). RULE 15 added (USA col2 = col1, no separate calculation). GitHub HTTPS auth refreshed via gh auth login after PAT expiry in macOS Keychain (gh 2.91.0 installed via Homebrew). Pushed to origin master.
 Session 76: Daily cost review and trigger-based metric story regeneration shipped. Replaces "regenerate all 132 metrics daily" with per-metric triggers (new monthly print, daily-tier move 5%+ relative to snapshot, or staleness past tier ceiling 7/14/30d); anything else carried forward at zero API cost. New fields story_last_updated, story_value_snapshot, story_last_print_month added to data.json. backfill_story_freshness.py ran (132 stamped, 35 with print month). update_metric_stories.py rewritten (per-country prompt requesting only to-regen metrics, --force-all escape hatch, modified apply step that preserves carried-forward stamps). metric_story_review.html rewritten with carry/regen badges, status filter, header counter. Daily Bash Ritual unchanged. Expected 75-85% Haiku call reduction steady state. Headlines and IMF forecast swap parked for separate sessions.
 Session 75: Cards system Phase 1 built end-to-end (static cards working for all 13 PNGs from live data.json) then entire face / cards / animation concept aborted by Ralph. Animation synthesis (ping-pong sequencing + per-frame jitter on sparse 3-frame library) couldn't substitute for hand-drawn variation. All Session 75 scripts (render_cards.py, card_config.py, card_text_draft.json, prep_faces.py, make_animated_previews.py, make_animated_cards.py, sync_face_library.py), faces/ directory (72 PNGs), and fonts/ directory removed from repo. Existing dashboard architecture preserved unchanged. Cards system design spec from Session 74 deleted from active brief sections.
 Session 74: Strategy / design session. No code, no ritual, no commits. Decision taken to redesign the site around hand-drawn faces (24-face library, 3 boil variants each, drawn by Ralph). Country card and homepage mocks built and approved. Three-layer site architecture locked: homepage 12-face grid → country card → existing dashboard. Per-country-per-day permalinks. Metric rotation rule defined. 14 absolute operating rules formalised. "Lisa" clarified as computer name only; Ralph is the sole operator.
