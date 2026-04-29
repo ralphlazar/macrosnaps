@@ -1,5 +1,21 @@
 # MacroSnaps - Living Brief
-Last updated: April 26, 2026 (Session 77: Bug fix - USA Stock Market YTD on homepage showed +4.20% local / -3.12% USD, an embarrassing mismatch since USD return must equal local for USA by definition. Root cause: metrics.market['Stock Market YTD (USD)'] in data.json was only written by sync_sheet.py --market which is not in any scheduled ritual; field had been stale since 2026-03-22 while local YTD refreshed daily. Fix: moved USD-YTD computation into fetch_market_data.py as a derived metric. USA mirrors the exact local YTD string verbatim. Other countries compute compound (1 + local%) * (1 + USD-per-local%) - 1 from local YTD and FX YTD via yf_price_and_ytd(). RULE 15 added (USA col2 = col1, no separate calculation). GitHub HTTPS auth refreshed via gh auth login after PAT expiry. Pushed to master.)
+Last updated: April 28, 2026 (Session 78: Daily ritual completed 2026-04-28. First in-the-wild run of the Session 76 trigger-based metric story regeneration system - 17 regenerated, 115 carried forward (87% saved), 12/12 countries in 13s. 1 commodity story rewrite (Silver, moved 6.4% vs 5% threshold). Headlines 13/13 in 200s. Both review gates passed. Build successful, pushed to master. Audit clean. DEU MARKET-STATS sheet append failed in step 1 with Google 502; retried via fetch_market_data.py rerun and DEU + CHN both appended (idempotent skip behaviour also caught a quietly-missing CHN row). Procedural change: Manual Gate 2 (metric stories review) RETIRED. New sequence: update_metric_stories.py -> update_metric_stories.py --apply METRICS_draft_YYYY-MM-DD.json. No review UI, no rename step. Manual Gate 1 (headlines) remains in place.)
+
+Session 78 changes in detail:
+
+(1) **Daily ritual completed 2026-04-28.** Full ritual ran successfully. No Friday pre-ritual (Tuesday). 1 commodity story rewrite: Silver (moved 6.4%, was 78.86 now 73.83). Headlines 13/13 drafted in 200s. Metric stories 12/12 countries in 13s. Both review gates (headline_review.html, metric_story_review.html) passed. Build successful, auto-committed and pushed to master. Audit: all checks passed.
+
+(2) **First production run of trigger-based metric story regeneration (Session 76 system).** Of 132 metrics across 12 countries, 17 regenerated and 115 carried forward at zero API cost. Per-country regen counts: USA 0, CAN 1, GBR 2, JPN 2, DEU 2, FRA 2, ITA 2, CHN 2, IND 1, ZAF 2, BRA 0, RUS 1. Several large relative-move flags surfaced (ZAF 111%, FRA 77%, DEU 72%, ZAF 60%, FRA 30%, ITA 26.5%, ITA 14.1%, GBR 13.2%, CHN 12.5%, RUS 11.2%) - these are bps moves on small base values where the relative-change formula `abs(cur - snap) / max(abs(snap), 1.0) * 100` amplifies optically. System working as designed; eyeballed in the review UI without issue. 87% API savings vs the old "regenerate all 132 daily" baseline.
+
+(3) **DEU MARKET-STATS sheet append failure recovered.** First run of fetch_market_data.py: 11/12 countries appended cleanly to MARKET-STATS Google Sheet, DEU returned a Google 502 (`The server encountered a temporary error and could not complete your request.`). data.json itself was fine - DEU values written correctly to data.json - only the historical sheet row for DEU on 2026-04-28 failed to append. Retried at end of ritual by re-running `python3 fetch_market_data.py`; the script's idempotent skip behaviour (checks for today's row already present) appended only the missing rows. Result: DEU appended successfully, plus CHN also appended (suggests CHN had been quietly missing from an earlier session - the retry caught it). Net: 2 appended, 10 skipped, 0 failed.
+
+(4) **Intraday data.json delta after retry left as-is.** The retry of fetch_market_data.py also pulled fresh intraday market values, leaving data.json with small deltas vs the build that had already been pushed to master (e.g. DEU stock -1.7 -> -1.6, GBR +4.1 -> +4.2, ITA +6.2 -> +6.4, EUR/USD 1.1700 -> 1.1693, plus minor commodity moves). Per Ralph's call, no intraday rebuild ran - next daily or intraday ritual will overwrite cleanly. Note for future: the build.py value_at_generation integrity check could trip on these deltas if a build were attempted before another fetch.
+
+(5) **Procedural change: Manual Gate 2 (metric stories review) RETIRED.** Effective immediately, the Daily Bash Ritual no longer includes the metric_story_review.html gate. New sequence: `python3 update_metric_stories.py` (writes METRICS_draft_YYYY-MM-DD.json) -> `python3 update_metric_stories.py --apply METRICS_draft_YYYY-MM-DD.json`. The --apply step takes the draft file directly. No review UI, no copy/rename to "approved". Manual Gate 1 (headlines via headline_review.html) remains in place unchanged. Daily Bash Ritual section below updated to reflect the new sequence.
+
+(6) **No code changes this session.** All changes are procedural. metric_story_review.html and the METRICS_approved file convention remain in the repo as inert artefacts (can be cleaned up in a future tidy-up session if desired).
+
+---
 
 Session 77 changes in detail:
 
@@ -257,18 +273,18 @@ python3 update_headlines.py
 python3 update_metric_stories.py
 ```
 
-Manual gate 1: open `headline_review.html` (via [http://localhost:8080](http://localhost:8080)), load `HEADLINES_draft_YYYY-MM-DD.json`, review and edit, export `HEADLINES_approved_YYYY-MM-DD.json`. The browser save dialog (File System Access API, Session 71) writes directly into the repo - no `mv` step needed.
+Manual gate (headlines only - metric stories gate retired Session 78): open `headline_review.html` (via [http://localhost:8080](http://localhost:8080)), load `HEADLINES_draft_YYYY-MM-DD.json`, review and edit, export `HEADLINES_approved_YYYY-MM-DD.json`. The browser save dialog (File System Access API, Session 71) writes directly into the repo - no `mv` step needed.
 
-Manual gate 2: open `metric_story_review.html` (via [http://localhost:8080](http://localhost:8080)), load `METRICS_draft_YYYY-MM-DD.json`, review and edit, export `METRICS_approved_YYYY-MM-DD.json`. Same as above.
+Metric stories now apply directly from the draft file - no review UI, no rename step.
 
 ```bash
 python3 update_headlines.py --apply HEADLINES_approved_YYYY-MM-DD.json
-python3 update_metric_stories.py --apply METRICS_approved_YYYY-MM-DD.json
+python3 update_metric_stories.py --apply METRICS_draft_YYYY-MM-DD.json
 python3 build.py
 cd /Users/lisaswerling/RALPH/AI/macrosnaps && python3 audit_ritual.py
 ```
 
-Note: to open review UIs locally without CORS errors, run `python3 -m http.server 8080` in the macrosnaps directory first, then use [http://localhost:8080](http://localhost:8080).
+Note: to open the headline review UI locally without CORS errors, run `python3 -m http.server 8080` in the macrosnaps directory first, then use [http://localhost:8080](http://localhost:8080).
 
 ### Social Media Bash
 Run immediately after the Daily Bash Ritual.
@@ -398,6 +414,7 @@ Do not position against Bloomberg or data terminals. The competition is a good m
 
 ## Full session history
 
+Session 78: Daily ritual completed 2026-04-28. First production run of Session 76 trigger-based metric story system - 17 regenerated, 115 carried forward (87% saved), 12/12 countries in 13s. 1 commodity story rewrite (Silver, moved 6.4%, was 78.86 now 73.83). Headlines 13/13 in 200s. Both review gates passed. Build successful, pushed to master. Audit clean. DEU MARKET-STATS sheet append failed in step 1 with Google 502; retried via fetch_market_data.py rerun and DEU + CHN both appended (idempotent skip caught a quietly-missing CHN row from an earlier session; net 2 appended, 10 skipped, 0 failed). Intraday data.json delta after retry left as-is per Ralph's call. Procedural change: Manual Gate 2 (metric stories review via metric_story_review.html) RETIRED. New sequence: update_metric_stories.py -> update_metric_stories.py --apply METRICS_draft_YYYY-MM-DD.json. No review UI, no copy/rename to "approved". Manual Gate 1 (headlines) remains in place. Daily Bash Ritual section in brief updated.
 Session 77: Bug fix - USA Stock Market YTD homepage glitch (showed +4.20% local / -3.12% USD, an embarrassing mismatch since USD return must equal local for USA by definition). Root cause: metrics.market['Stock Market YTD (USD)'] was only written by sync_sheet.py --market (not in any scheduled ritual); field had been stale since 2026-03-22. Fix: USD-YTD computation moved into fetch_market_data.py as a derived metric. USA hard-coded to mirror local YTD string verbatim; other countries computed via FX YTD compound (1 + local%) * (1 + USD-per-local%) - 1 using yf_price_and_ytd() and Yahoo ticker direction (LOCALUSD=X gives USD-per-local, USDLOCAL=X gives local-per-USD requiring inversion). RULE 15 added (USA col2 = col1, no separate calculation). GitHub HTTPS auth refreshed via gh auth login after PAT expiry in macOS Keychain (gh 2.91.0 installed via Homebrew). Pushed to origin master.
 Session 76: Daily cost review and trigger-based metric story regeneration shipped. Replaces "regenerate all 132 metrics daily" with per-metric triggers (new monthly print, daily-tier move 5%+ relative to snapshot, or staleness past tier ceiling 7/14/30d); anything else carried forward at zero API cost. New fields story_last_updated, story_value_snapshot, story_last_print_month added to data.json. backfill_story_freshness.py ran (132 stamped, 35 with print month). update_metric_stories.py rewritten (per-country prompt requesting only to-regen metrics, --force-all escape hatch, modified apply step that preserves carried-forward stamps). metric_story_review.html rewritten with carry/regen badges, status filter, header counter. Daily Bash Ritual unchanged. Expected 75-85% Haiku call reduction steady state. Headlines and IMF forecast swap parked for separate sessions.
 Session 75: Cards system Phase 1 built end-to-end (static cards working for all 13 PNGs from live data.json) then entire face / cards / animation concept aborted by Ralph. Animation synthesis (ping-pong sequencing + per-frame jitter on sparse 3-frame library) couldn't substitute for hand-drawn variation. All Session 75 scripts (render_cards.py, card_config.py, card_text_draft.json, prep_faces.py, make_animated_previews.py, make_animated_cards.py, sync_face_library.py), faces/ directory (72 PNGs), and fonts/ directory removed from repo. Existing dashboard architecture preserved unchanged. Cards system design spec from Session 74 deleted from active brief sections.
