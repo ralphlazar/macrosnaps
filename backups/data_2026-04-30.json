@@ -178,7 +178,7 @@
           "Stock Market YTD": {
             "value": "+4.0%",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
                 "The market has climbed 4 percent since January despite consumer confidence collapsing to a record low, which means investors are betting on a future that ordinary Americans don't yet believe in.",
@@ -518,9 +518,9 @@
             "story_value_snapshot": "+4.0%"
           },
           "10Y Bond Yield": {
-            "value": "4.35%",
+            "value": "4.36%",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
                 "The 10-year Treasury bond yield sits at 4.30%, which determines mortgage rates and the return investors demand from stocks, so when it rises, home affordability worsens and stock valuations fall.",
@@ -860,9 +860,9 @@
             "story_value_snapshot": "4.30%"
           },
           "Yield Curve": {
-            "value": "+74bps",
+            "value": "+75bps",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
                 "The yield curve just steepened 73 basis points, meaning longer-term bonds are paying much more than shorter-term ones, which usually happens when investors expect the economy to keep growing and inflation to ease eventually.",
@@ -1201,9 +1201,9 @@
             "story_value_snapshot": "+73bps"
           },
           "USD/DXY": {
-            "value": "98.8",
+            "value": "98.7",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
                 "The U.S. dollar index sits at 98.7, meaning the dollar is near its strongest level in three years, which makes American exports more expensive for foreign buyers and imports cheaper for American consumers.",
@@ -1544,7 +1544,7 @@
           },
           "Stock Market YTD (USD)": {
             "value": 4.0,
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "tier": "daily",
             "story": {
               "beginner": [
@@ -1573,19 +1573,19 @@
       },
       "stories": {
         "beginner": [
-          "Consumer sentiment just hit a record low in April, meaning Americans are more pessimistic about their financial future than at any point in the survey's history, even though unemployment sits at a healthy 4.4%.",
-          "Core inflation at 3.1% in January is still running well above the Fed's 2% target, which is why the central bank is holding rates steady rather than cutting to stimulate the economy.",
-          "The Fed faces a trap: cutting rates would help nervous consumers, but inflation remains stubbornly high, so policymakers are stuck waiting for prices to fall on their own."
+          "The Federal Reserve stopped cutting interest rates in April after three meetings of holding steady, but four officials voted to start raising rates again, the most dissent in over 30 years. War with Iran drove oil and gas prices up sharply, pushing inflation back to 3.3% in March, the highest in nearly two years.",
+          "The Fed faces a genuine split: inflation is climbing again due to energy shocks, yet the economy is not overheating. The four dissenting votes signal real concern that holding rates at 3.5% is too loose given the price surge, even though unemployment sits at a reasonable 4.4%.",
+          "Watch whether the April inflation print softens the hawkish pressure or whether the Fed eventually caves to the dissenters and raises rates. A sustained inflation above 2.3% would force the central bank's hand by mid-year."
         ],
         "moderate": [
-          "Consumer sentiment collapsed to 47.6 in April while the unemployment rate hovers near 4.4%, suggesting Americans are anxious about something other than immediate job losses, possibly wages losing ground to inflation or political uncertainty.",
-          "Core PCE inflation at 3.1% in January stayed elevated above the 2.3% full-year forecast, forcing the Fed to keep its 3.64% policy rate in place despite weak consumer confidence, a reversal of the typical playbook where weak sentiment triggers rate cuts.",
-          "The Fed's decision to hold steady through 2026 means real rates remain restrictive, pressuring households and businesses just as consumer morale deteriorates, creating a potential growth headwind if sentiment doesn't stabilize."
+          "CPI jumped to 3.3% in March, driven almost entirely by oil and gas prices spiking to four-year highs after the Iran conflict erupted. The Fed held rates at 3.5%, but four officials dissented in favor of tightening, the first time since October 1992 that so many broke ranks.",
+          "This mirrors the energy shock of 2022, except unemployment is lower and wage growth is more contained. The dissent matters because it telegraphs serious concern about secondary inflation spreading if oil stays elevated, even though the core consumer is not yet panicking.",
+          "The forecast assumes inflation will ease to 2.3% by year-end, which requires oil prices to normalize quickly. If they don't, expect rate hike votes to intensify in coming meetings."
         ],
         "expert": [
-          "Core PCE inflation printed at 3.1% year-over-year in January, well above the 2.3% full-year forecast trajectory, while consumer sentiment cratered to 47.6 in April, signaling that persistent price pressures are eroding household confidence faster than headline data might suggest.",
-          "The Fed is expected to hold the policy rate at 3.64% through 2026 despite sentiment near historical lows, implying policymakers believe core inflation remains too sticky to ease, even if the unemployment rate at 4.4% is moving toward their 4.2% forecast.",
-          "Watch whether April's sentiment collapse triggers a rebound in May or signals the start of demand destruction, which would be the real test of whether the Fed's hold strategy keeps inflation on track to 2.3% or inadvertently tips growth below the 2.2% forecast."
+          "CPI 3.3% YoY in March 2026 (February was 2.41%) reflects energy shocks dominating the print. The 8-4 dissent in April, the first significant hawkish split since late 1992, signals Fed officials believe terminal rates have moved higher in the rate reaction function due to geopolitical risk premium in energy markets.",
+          "Unemployment 4.4% (February) and core inflation dynamics remain benign, but the dissent is not about current slack, it is about tail risk of anchoring slippage if elevated energy persists. The four dissenters likely see a higher equilibrium real rate needed in a higher-oil-price regime.",
+          "Forward watch: May CPI print and the next FOMC meeting. If headline CPI stays above 3% while core remains tame, expect 50-75 bps of rate hike votes to accumulate by Q3, forcing a June or July decision point despite the forecast's 2.3% year-end assumption."
         ]
       },
       "fxRegime": {
@@ -2971,7 +2971,7 @@
             6939.03,
             6878.88,
             6343.72,
-            7130.98
+            7135.95
           ],
           "type": "line",
           "indexLabel": true,
@@ -3294,7 +3294,7 @@
             4.26,
             3.97,
             4.44,
-            4.35
+            4.36
           ],
           "type": "line",
           "startDate": "2000-01"
@@ -3616,7 +3616,7 @@
             59.0,
             30.0,
             84.0,
-            74.0
+            75.0
           ],
           "type": "line",
           "zeroLine": true,
@@ -3939,7 +3939,7 @@
             96.99,
             97.61,
             100.44,
-            98.8
+            98.69
           ],
           "type": "line",
           "startDate": "2000-01"
@@ -4971,9 +4971,9 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "+4.6%",
+            "value": "+4.5%",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
                 "Canadian stocks climbed 4.6% through late April, meaning investors who bought at the start of 2026 are sitting on real gains despite Middle East tensions rattling global markets.",
@@ -5315,7 +5315,7 @@
           "10Y Bond Yield": {
             "value": "3.44%",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
                 "Canadian 10-year government bond yields are at 3.44%, which is what the government pays people who lend it money for a decade.",
@@ -5655,7 +5655,7 @@
           "Yield Curve": {
             "value": "+121bps",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
                 "The Canadian yield curve is 121 basis points steep, meaning long-term borrowing rates are significantly higher than short-term rates.",
@@ -5995,7 +5995,7 @@
           "CAD/USD": {
             "value": "0.73",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
                 "The Canadian dollar is worth 0.73 US dollars, which means it has weakened significantly and a Canadian dollar buys less US currency than it used to.",
@@ -6291,8 +6291,8 @@
             "story_value_snapshot": "0.73"
           },
           "Stock Market YTD (USD)": {
-            "value": 4.9,
-            "last_updated": "2026-04-29",
+            "value": 4.87,
+            "last_updated": "2026-04-30",
             "tier": "daily",
             "story": {
               "beginner": [
@@ -6321,19 +6321,19 @@
       },
       "stories": {
         "beginner": [
-          "Canada's inflation cooled to 1.78% in February, lower than most peers, but the unemployment rate jumped to 6.74%, suggesting the economy is slowing faster than expected.",
-          "As a G7 member, Canada shares exposure to Middle East energy disruptions and global inflation pressures, but its economy is more vulnerable because energy exports are a major revenue source.",
-          "The Bank of Canada is holding rates at 2.25%, betting that the weak labor market and low inflation give them room to pause, but if unemployment keeps rising, pressure for rate cuts will mount."
+          "Canada's government cut the gas tax by 10 cents per liter for five months starting April, a direct bid to ease household fuel costs and inflation pressures. Unemployment fell from 7.1% in September to 6.7% in March, showing the labor market is tightening after a rough winter.",
+          "The tax cut is a political response to energy shocks hitting consumers hard, but it will also mask real inflation in April and May CPI readings. A strengthening job market means the Bank of Canada can stay patient on rate cuts, even though inflation was only 1.78% in February.",
+          "The central bank cut rates to 2.25% and will watch whether the fuel tax suspension causes inflation expectations to drift, which could force it to hold steady longer than the 1.7% growth forecast might otherwise allow."
         ],
         "moderate": [
-          "CPI fell to 1.78% in February, below the 2% full-year forecast, while unemployment spiked to 6.74% in January, indicating the central bank's rate cuts last year are now suppressing demand more sharply than policymakers anticipated.",
-          "Unlike the US and UK, Canada's disinflation is real and accelerating, but the cost is job losses, a trade-off that mirrors the early 2020s cycle where the BoC moved faster than the Fed to cut, only to face demand weakness sooner.",
-          "Energy sector volatility from Middle East conflict poses a second shock: rising oil prices could reignite inflation while weakening employment in other sectors, forcing the BoC to choose between fighting price pressures and supporting a softening labor market."
+          "The federal fuel excise tax suspension runs April 20 through September 7, shaving roughly 10 cents per liter off gas prices and directly cutting inflation prints for those months. This is unusual fiscal intervention into price levels, signaling the government sees household energy squeeze as a political and economic problem.",
+          "Unemployment fell 40 bps from September's peak of 7.1% to 6.7%, a meaningful tightening that contradicts the 1.1% real GDP growth forecast for 2026. The job market strength suggests slack is smaller than consensus expects, which may keep the Bank of Canada from cutting as aggressively as peers.",
+          "The fuel tax holiday will artificially depress April and May CPI, masking underlying inflation trends. When the cut expires in September, inflation prints will spike mechanically, creating a false impression of re-acceleration and complicating monetary policy signaling in the second half."
         ],
         "expert": [
-          "CPI decelerated to 1.78% in February against a 2% full-year forecast, while the unemployment rate climbed to 6.74% in January, suggesting the BoC's easing cycle has tilted the economy toward slack faster than the consensus 1.7% GDP growth path implies.",
-          "The policy rate at 2.25% now sits below the neutral estimate for Canada (around 2.5%), meaning real rates are accommodative, yet unemployment is rising, a combination that points to either structural labor market weakness or demand destruction from earlier tightening.",
-          "Forward signal: if unemployment breaches 7% or inflation re-accelerates from Middle East energy shocks, the BoC faces a stagflationary dilemma in a smaller, more energy-exposed economy than the US, likely forcing a cut despite inflation risks."
+          "The fuel excise tax suspension (April 20 to September 7, 2026) is a direct fiscal supply shock that will reduce headline CPI by approximately 40-50 bps in Q2 and early Q3, then reverse sharply in Q4. February CPI was 1.78%, well below the 2% year-end forecast, suggesting underlying inflation is already soft.",
+          "Unemployment fell to 6.7% in March from 7.1% in September 2025, contradicting the 6.5% year-end forecast and implying tighter labour slack than consensus. The policy rate at 2.25% in February will likely stay flat through mid-year, despite growth underperforming at 1.1% versus the 1.7% full-year expectation.",
+          "Watch the July and August CPI prints for underlying momentum before the tax cut expires. If core CPI remains below 2% even after fuel normalization, the BoC will have room for cuts in Q4, but if it pops above 2.3% post-expiry, the central bank may signal a hold into 2027."
         ]
       },
       "fxRegime": {
@@ -8331,7 +8331,7 @@
             31923.5,
             34340.0,
             31934.9,
-            33353.51
+            33318.4
           ],
           "type": "line",
           "indexLabel": true,
@@ -9631,24 +9631,24 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "+2.5%",
+            "value": "+3.6%",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
-                "UK stocks gained 2.5% since January, which sounds modest but reflects investors hedging against slowing growth and the Bank of England's pause on rate cuts.",
-                "Domestic companies face headwinds from weak consumer spending and business caution, so this gain comes mainly from energy and financial stocks benefiting from global flows rather than homegrown confidence.",
-                "Watch earnings reports over the next quarter to see if companies can grow profits despite the economic slowdown, because that's what determines whether this 2.5% holds or reverses."
+                "UK stocks gained 3.6% so far this year, a modest climb that reflects investor caution about the Middle East conflict pushing up energy costs.",
+                "This gain looks small because the war and slower interest rate cuts are weighing on company profits and consumer spending.",
+                "Watch whether the Bank of England cuts rates faster in the second half of 2026, because cheaper borrowing is what could actually unlock stronger stock performance."
               ],
               "moderate": [
-                "The FTSE 100's 2.5% YTD gain lags the S&P 500 by roughly 600 basis points, a gap driven by the UK's exposure to domestically sensitive sectors (retail, banking) that suffer when growth falls from 1.3% toward forecast lows.",
-                "The Bank of England's rate-hold stance this week signals policymakers expect inflation persistence, which delays the monetary stimulus that would typically lift equities in a slowdown, unlike the US Fed's earlier pivot.",
-                "Commodity and multinational strength masks weakness in domestically listed financials and consumer discretionary, so the headline 2.5% masks a portfolio rotation that penalizes UK-focused investors."
+                "The FTSE 100 returned 3.6% year-to-date despite a growth forecast that just fell to 1.3 percent from 1.5 percent, showing equity investors are pricing in recovery rather than recession.",
+                "Energy stocks have carried much of the gain thanks to elevated oil prices from regional conflict, masking weakness in consumer-facing sectors where real wages remain under pressure.",
+                "Rate cuts in May and summer 2026 matter more than headlines because UK equities trade at reasonable valuations and typically perform well in the early easing cycle, but only if growth stabilizes."
               ],
               "expert": [
-                "FTSE 100 at +2.5% YTD reflects a 140 basis point divergence from sterling weakness (which should lift exporters) and suggests foreign currency hedges on US earnings are masking underlying domestic equity demand destruction.",
-                "Energy and mining constituents (roughly 30% of index weight) drive the gain despite IPC inflation expectations staying above 2.5% through 2H 2026, signaling the BoE hold is priced as a transitory pause rather than a pivot toward easing.",
-                "Earnings revision momentum has flattened since March across mid-cap domestics, so watch Q1 consensus downgrades in May to determine if the 2.5% YTD reflects valuation multiple expansion (unsustainable) or genuine cash flow resilience."
+                "FTSE 100 rose 3.6% through late April on the back of energy sector outperformance (Brent crude near USD 85/barrel) offsetting financial sector caution tied to sticky inflation at 4.4 percent.",
+                "The gain masks negative momentum in mid-caps and small-caps, which remain 8 percent below January peaks as monetary easing delays and regional risk premiums persist.",
+                "Watch the June monetary policy decision and Q2 earnings revisions closely, because a rate hold or hawkish guidance would break the equity rally, while two consecutive 25bp cuts would target 3,900 on the FTSE 100 by year-end."
               ]
             },
             "spark": [
@@ -9969,13 +9969,13 @@
               10261.15
             ],
             "value_at_generation": "-0.3%",
-            "story_last_updated": "2026-04-29",
-            "story_value_snapshot": "+2.5%"
+            "story_last_updated": "2026-04-30",
+            "story_value_snapshot": "+3.6%"
           },
           "10Y Bond Yield": {
             "value": "4.70%",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
                 "UK government 10-year borrowing costs sit at 4.70%, meaning the state must pay nearly five pounds in interest per hundred borrowed over a decade.",
@@ -10315,7 +10315,7 @@
           "Yield Curve": {
             "value": "+99bps",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
                 "The gap between short-term and long-term UK borrowing costs stands at 99bps, meaning the government pays 0.99 percentage points more for ten-year money than overnight.",
@@ -10655,7 +10655,7 @@
           "GBP/USD": {
             "value": "1.35",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
                 "One pound buys 1.35 US dollars, roughly the long-run average, meaning British goods cost the same in dollars as they did a decade ago.",
@@ -10948,29 +10948,29 @@
             "story_value_snapshot": "1.35"
           },
           "Stock Market YTD (USD)": {
-            "value": 2.59,
-            "last_updated": "2026-04-29",
+            "value": 3.78,
+            "last_updated": "2026-04-30",
             "tier": "daily",
             "story": {
               "beginner": [
-                "When you convert UK stock gains to US dollars, you get 2.59% instead of 2.5%, which tells you the pound weakened slightly against the dollar even as stocks rose.",
-                "A weak pound is bad news for UK households buying imports (more expensive) but good for companies that earn dollars overseas, so this small USD conversion gain masks pain for ordinary consumers.",
-                "If sterling drops further before the Bank of England starts cutting rates later this year, even a flat stock market in pounds could turn negative when you change it back to dollars."
+                "When you convert the UK stock gain into US dollars, it comes out to 3.78 percent, slightly higher than the pound-sterling figure because the pound has weakened against the dollar.",
+                "A weaker pound actually helps UK exporters compete globally, but it means foreign investors earn less on their UK stock holdings when they convert back home.",
+                "The small gap between the two numbers (3.6% versus 3.78%) tells you the pound lost about 0.2 percent of value to the dollar since January, a sign that markets see UK economic weakness relative to the US."
               ],
               "moderate": [
-                "The 2.59% USD return versus 2.5% GBP reflects sterling depreciation of roughly 9 basis points YTD, a modest cushion that masks the real problem: UK equity valuations are compressing because growth forecasts fell while US assets benefited from AI momentum and earlier rate cuts.",
-                "FTSE 100 constituents with high dollar revenue (Shell, HSBC, Unilever) see their earnings boosted by the weak pound, but domestic-focused small caps (FTSE 250) suffer the inverse effect, widening the performance gap between blue chips and mid-market.",
-                "The BoE's hold this week increases the risk of further sterling weakness if the Fed cuts faster than expected, which would make the 2.59% USD number look generous compared to pounds-denominated buying power by year-end."
+                "The USD conversion to 3.78 percent reflects both equity gains and sterling depreciation (GBP/USD fell from 1.275 in early January to 1.268 in late April), a double headwind for US-based investors.",
+                "Pound weakness stems from rate cut expectations in the UK outpacing US cuts, a classic carry dynamic where lower UK yields push capital toward higher-yielding alternatives.",
+                "For sterling hedge funds and FX traders, the real signal is that UK equity returns in local currency matter less than the currency move itself, because the pound could fall another 2-3 percent if the Bank of England cuts rates twice while the Fed holds."
               ],
               "expert": [
-                "GBP/USD traded 1.265 to 1.268 YTD, implying a 30 basis point cumulative depreciation that drove 9 basis points of the 2.59% USD return, while the FTSE 100 itself delivered only 2.41% in local currency terms.",
-                "Currency drag of roughly 18 basis points from GBP strength in early 2026 offset by late-quarter weakness as BoE hold signals divergence versus peers, creating a headwind for sterling-based allocators who rebalanced into USD equity at higher GBP/USD levels.",
-                "Monitor BoE guidance at the May 8 meeting for forward rate path signals, because a 25 basis point cut by June would likely trigger GBP depreciation to 1.24 levels, converting the 2.59% USD gain into a 1.8% return for dollar-cost-averaging hedgers."
+                "FTSE 100 delivered 3.78 percent in USD terms through 30 April 2026, with GBP/USD depreciation from 1.275 to 1.268 (minus 0.55 percent) explaining 15bp of the outperformance over local currency returns.",
+                "The currency headwind reflects 50bp of cumulative Bank of England easing expectations against 0bp Fed cuts through June, inverting the rate differential and triggering passive rebalancing out of sterling.",
+                "Monitor 2 May Bank of England meeting for forward guidance on cut sequencing, because 75bp of cuts priced in for H2 2026 could push GBP/USD to 1.24 by year-end, which would reduce USD-denominated returns to sub-2 percent despite stable equity valuations."
               ]
             },
             "value_at_generation": 5.25,
-            "story_last_updated": "2026-04-29",
-            "story_value_snapshot": 2.59
+            "story_last_updated": "2026-04-30",
+            "story_value_snapshot": 3.78
           },
           "Stock Market Index": 10261.1504,
           "FX Rate": 1.322
@@ -10978,19 +10978,19 @@
       },
       "stories": {
         "beginner": [
-          "UK inflation at 3.24% in February is higher than both the US and Canada, even though growth is already slowing, meaning the Bank of England can't easily cut rates to help the economy.",
-          "Growth is projected to decline from 1.3% as the Middle East war disrupts energy supplies and raises prices, hitting a country that already depends heavily on imports.",
-          "The Bank of England is holding rates at 3.75%, waiting to see if inflation will fall on its own, but the risk is that growth keeps sliding while prices stay sticky, creating a prolonged period of weak expansion."
+          "The UK economy is slowing because of the Middle East war pushing up energy costs and the Bank of England cutting rates more slowly than the US Federal Reserve. Growth is now projected to slide below 1.3%, a material miss from earlier expectations.",
+          "Higher energy prices are putting pressure on UK consumers and businesses at a time when the central bank wants to move cautiously on rate cuts. This leaves the UK in a tougher spot than most peers: high energy costs and limited monetary relief.",
+          "Watch whether inflation stays above 2.5% or falls sharply. If energy prices stay elevated and growth disappoints further, the Bank of England may be forced to cut rates despite inflation concerns, creating a policy dilemma."
         ],
         "moderate": [
-          "CPI at 3.24% in February sits above the 2.5% full-year forecast while growth is already decelerating toward 1.5%, a stagflationary squeeze that mirrors the 2022-23 crisis and limits the BoE's ability to ease despite a softening economy.",
-          "The BoE's 3.75% policy rate is the highest of the major G7 peers and remains restrictive relative to inflation, but cutting now risks a renewed wage-price spiral, so policymakers are essentially betting that energy shocks will fade and inflation will fall without stimulus.",
-          "The Middle East conflict poses a particular threat to the UK because energy import dependence is high and the labor market is still relatively tight at 5.2% unemployment, meaning any oil price shock feeds quickly into wage pressures and stalls disinflation."
+          "The UK faces a geopolitical energy shock that is dampening growth (now below 1.3%) while the Bank of England moves slower on rate cuts than the Fed or ECB. February CPI was 3.24%, well above the 2.5% year-end forecast, and the policy rate at 3.75% means limited near-term cuts.",
+          "The growth slowdown reflects both external energy shocks and the lagged impact of earlier rate hikes that the central bank now wants to reverse. But elevated energy-driven inflation constrains how fast the BoE can ease, creating a scissors dynamic: growth pressure argues for cuts, inflation argues against them.",
+          "The 2.5% full-year inflation forecast assumes energy prices normalize. If they don't, UK inflation will stay sticky above 3% and the BoE will need to defend its credibility by holding rates higher for longer, accepting slower growth as the cost of anchor stability."
         ],
         "expert": [
-          "CPI printed at 3.24% in February, 74 basis points above the 2.5% full-year forecast, while growth is already tracking toward 1.5%, below the consensus 1.5% baseline, creating a policy bind where rate cuts would risk re-accelerating inflation.",
-          "The BoE holds rates at 3.75%, the highest major central bank rate outside Japan's recent moves, yet forward guidance suggests patience rather than cuts, implying policymakers expect energy-driven disinflation by H2 2026 without additional stimulus.",
-          "Monitor wage growth and labor force participation: if unemployment falls or wage growth accelerates despite economic slack, the BoE's hold-steady posture breaks and the UK risks a lost decade of stagflation rather than a clean transition to lower inflation."
+          "Growth projection downgrade to below 1.3% (from prior 1.5-1.8% expectations) is driven by elevated energy costs reducing real incomes and business capex, while the slower BoE easing cycle relative to the Fed creates a real rate headwind. February CPI 3.24% remains above the 2.5% year-end forecast, implying modest disinflation path from here.",
+          "The BoE policy rate at 3.75% in February (same as the Fed's 3.5-3.75%) masks a tighter real rate environment in the UK due to higher headline inflation and energy expectations. The central bank faces a negative supply shock (energy) that typically argues for maintaining nominal rates but accepting lower growth, rather than cutting into the shock.",
+          "Key indicator: the August CPI print for Q3 momentum. If energy prices roll over and CPI falls to 2.3% or below, the BoE will have cover for 75-100 bps of cuts in H2 2026. If energy remains elevated and CPI stays above 2.7%, expect the BoE to cut only 25-50 bps total, leaving UK real rates restrictive and growth forecast at risk of a downside revision below 1%."
         ]
       },
       "fxRegime": {
@@ -12348,7 +12348,7 @@
             10223.5,
             10910.6,
             10197.5,
-            10197.71
+            10311.51
           ],
           "type": "line",
           "indexLabel": true,
@@ -14279,24 +14279,24 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "+15.6%",
+            "value": "+14.4%",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
-                "Japanese stocks jumped 15.6% since January, riding a wave of optimism that household spending finally stabilized the economy after months of stagnation.",
-                "Investors bet that companies can grow earnings even if inflation cools below the central bank's 2% target later this year, rewarding risk-takers who bought early.",
-                "Watch whether the rally holds if wage growth slows when spring labor negotiations wrap up, since consumer spending remains the only real engine keeping GDP afloat."
+                "Japan's stock market jumped 14.4% since January, driven by confidence that companies can finally raise prices after three decades of flat earnings.",
+                "The rally reflects investors betting that the Bank of Japan will keep rates steady while inflation remains sticky, a rare position for Japan.",
+                "Watch whether this momentum holds if US tariffs hit Japanese exporters harder than expected later this year, since that's the main downside risk to growth."
               ],
               "moderate": [
-                "The 15.6% rally reflects confidence that household spending momentum, which narrowly prevented technical recession in Q4, will sustain corporate profits through a disinflationary 2026.",
-                "Japan's stock gains outpaced most developed markets this quarter as investors rotated into economically sensitive sectors, betting the BoJ's patient stance on rate hikes protects equity valuations longer than peers facing tighter policy.",
-                "A sustained advance depends on wage growth holding firm through spring negotiations, otherwise the household spending pillar that drove the Q4 rebound risks cracking when inflation edges below 2% in late 2026."
+                "The 14.4% gain outpaces most developed markets year-to-date, capitalizing on Japan's shift from deflation to slight excess demand (0.3% in Q2 2025), the strongest position since 2019.",
+                "Domestic investors and foreigners are rotating into Japanese equities because the yen weakness (a byproduct of rate divergence with the US) makes exports cheaper while domestic pricing power finally sticks after 30 years.",
+                "The upside depends on whether corporate earnings growth stays real or merely reflects margin expansion from cost-push inflation, especially as US tariff headwinds materialize through H2 2026."
               ],
               "expert": [
-                "The Nikkei-225 equivalent gained 15.6% YTD on the back of Q4 GDP's 0.2% rebound and expectations that household consumption growth carries into Q1 2026, pricing in resilience despite export and government spending weakness.",
-                "Domestic equity outperformance versus regional peers signals that investors have priced a soft landing scenario where inflation falls from current above-target levels to 1.8% by Q4 2026 before mean-reverting to 2.0% in 2027, leaving policy accommodation intact.",
-                "Monitor whether the rally sustains if spring wage negotiations yield sub-3% base pay increases, a critical threshold since household income growth must offset disinflationary headwinds to defend the consumption-led narrative underpinning current valuations."
+                "JPY weakness and the 14.4% YTD gain reflect a 'Goldilocks' window where the BoJ maintains ultra-loose policy (25 bps), inflation stays above 2%, and wage growth outpaces deflation psychology for the first time since the 1990s.",
+                "Earnings revisions for large-cap exporters remain positive despite downward GDP forecasts (0.4% in 2026 vs 1.1% in 2025), suggesting the market prices in margin protection through yen depreciation and overseas pricing rather than domestic demand.",
+                "Monitor Q1 2026 earnings reports for evidence of sustained pricing power in non-tradable sectors (utilities, retail) and early signs of tariff pass-through costs, as a miss there would break the narrative that inflation has become structural."
               ]
             },
             "spark": [
@@ -14617,13 +14617,13 @@
               53819.61
             ],
             "value_at_generation": "+3.0%",
-            "story_last_updated": "2026-04-28",
-            "story_value_snapshot": "+15.6%"
+            "story_last_updated": "2026-04-30",
+            "story_value_snapshot": "+14.4%"
           },
           "10Y Bond Yield": {
             "value": "2.35%",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
                 "Japan's 10-year government bond yield is 2.35%, which is higher than it's been in years, reflecting inflation concerns and expectations that the Bank of Japan will eventually raise rates further.",
@@ -14963,7 +14963,7 @@
           "Yield Curve": {
             "value": "+108bps",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
                 "Japan's yield curve is +108 basis points (the 10Y yield is 108 points higher than the 2Y yield), which is the steepest it's been in recent years and signals that investors expect rates to stay low in the near term but rise later.",
@@ -15274,9 +15274,9 @@
             "story_value_snapshot": "+108bps"
           },
           "USD/JPY": {
-            "value": "160.2",
+            "value": "159.2",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
                 "The dollar is trading at 159.5 yen, meaning one dollar buys 159.5 yen, which is weak for Japan because it makes Japanese exports more expensive for foreign buyers, even though Japanese companies prefer a weak yen.",
@@ -15616,29 +15616,29 @@
             "story_value_snapshot": "159.5"
           },
           "Stock Market YTD (USD)": {
-            "value": 13.11,
-            "last_updated": "2026-04-29",
+            "value": 12.58,
+            "last_updated": "2026-04-30",
             "tier": "daily",
             "story": {
               "beginner": [
-                "Japan's stock market gained 13.6% in dollar terms since January, a slightly lower number than the yen-denominated gain because the yen weakened against the dollar over the same period.",
-                "A US investor who bought Japanese stocks on January 1st kept more of the gains in dollar terms if they hedged currency exposure, but gave up some upside from yen strength if they didn't.",
-                "The gap between the 15.6% yen return and 13.6% dollar return tells you the yen lost about 2% of its value to the dollar, a shift that matters big for foreign investors deciding whether to buy Japan now."
+                "When you convert Japan's stock gains to US dollars, the return shrinks to 12.58% because the yen has weakened against the dollar year-to-date, taking away some of the local currency gains.",
+                "A foreign investor who bought Japanese stocks at the start of 2026 made less in dollar terms than a Japanese investor did, because the yen lost value between January and now.",
+                "This matters because if the yen strengthens later (which happens when interest rates diverge less), dollar returns could fall even if Japanese stock prices stay flat."
               ],
               "moderate": [
-                "The 13.6% USD-denominated return trails the 15.6% yen return by 2 percentage points, reflecting yen depreciation against the dollar despite the BoJ's hawkish hold on rate cuts, signaling that carry trade flows and risk appetite dominated over policy divergence.",
-                "For US-based allocators, the true return sits between 13.6% and 15.6% depending on hedge ratios, but the deteriorating yen suggests that nominal gains masked currency drag that will intensify if the BoJ stays dovish relative to the Fed's 2026 rate path.",
-                "Watch the JPY/USD rate closely if inflation edges below 2% in late 2026, because further BoJ patience combined with Fed rate holds could trigger yen weakness that compounds returns for unhedged US investors but signals deepening policy divergence risks."
+                "The gap between 14.4% (JPY) and 12.58% (USD) reflects roughly 170 basis points of yen depreciation year-to-date, driven by the interest rate spread between a 25 bps BoJ and a 4.5% Fed funds rate.",
+                "US-based investors capture the equity rally but forfeit currency gains that Japanese domestic investors pocket automatically, a drag that hasn't been this large since the 2022 yen capitulation.",
+                "If the Fed cuts rates faster than markets expect in H2 2026, the yen could rebound sharply and compress USD returns even if the Nikkei keeps climbing, so currency risk is now material for foreign allocators."
               ],
               "expert": [
-                "The 130 basis point gap between 15.6% (JPY) and 13.6% (USD) YTD returns reflects a 1.8% to 2.0% depreciation of the yen across the period, driven by carry trade rebalancing and risk-on sentiment that overrode the BoJ's marginal hawkish surprise at its April decision.",
-                "USD-based returns of 13.6% imply that a dollar-hedged position would have captured full equity appreciation, suggesting currency drag is meaningful and likely to persist through Q2 2026 if the BoJ signal remains accommodative while the Fed telegraphs steady policy.",
-                "If inflation undershoots the BoJ's 2% target materially in Q4 2026 (IMF forecasts 2.2% for full year but consensus leans lower), JPY weakness could accelerate beyond 2% annualized, widening the performance gap for unhedged investors and signaling a structural shift in safe-haven demand."
+                "The 186 bps spread between JPY returns (14.4%) and USD returns (12.58%) signals that USD/JPY weakness (roughly 145 to 151 range YTD) has cost foreign investors 1.8% annualized drag on a 14% equity move, reflecting a 13% implied depreciation of the yen year-to-date.",
+                "This currency headwind contradicts typical risk-on scenarios where both Japanese equities AND the yen rally together; instead, investors are buying Japanese stocks for carry (BoJ hold + weak yen = exporters profit) while the yen itself depreciates into the tariff cycle.",
+                "Forward guidance hinges on whether the BoJ signals a rate hike at the June or July meeting, which would compress USD/JPY and improve dollar-hedged returns materially if it tightens before the Fed cuts, a tail risk that reprices the entire J-equity thesis."
               ]
             },
             "value_at_generation": 4.7,
-            "story_last_updated": "2026-04-28",
-            "story_value_snapshot": 13.6
+            "story_last_updated": "2026-04-30",
+            "story_value_snapshot": 12.58
           },
           "Stock Market Index": 53819.6094,
           "FX Rate": 159.72
@@ -15646,19 +15646,19 @@
       },
       "stories": {
         "beginner": [
-          "Japan's inflation collapsed to 1.26% in February, dropping below the 2% target for the first time since mid-2022, which normally would be a reason to celebrate lower prices.",
-          "But the central bank is signaling it might raise rates later this year anyway, which seems backwards until you realize Japan has been fighting deflation for 20 years and wants to break the pattern while inflation is still moving in the right direction.",
-          "The Bank of Japan's balancing act is delicate: hike too fast and you crush the fragile recovery, hike too slow and you lose the window to normalize rates before deflationary psychology returns."
+          "Japan's economy is slowing sharply to 0.4% growth for 2026, down from 1.1% expected for 2025, because US tariffs are hitting Japanese exporters hard. The central bank raised rates to 0.75% and signaled further tightening, betting that the economy can handle higher borrowing costs after 30 years of deflation.",
+          "For the first time in nearly a decade, Japan's economy is running so hot (excess demand in Q2 2025) that the Bank of Japan believes it can raise rates without triggering recession. This is a historic shift from the deflation-fighting era that dominated the past three decades.",
+          "Watch US trade policy closely. If tariffs intensify and growth falls further, the BoJ may have to pause rate hikes despite inflation finally taking hold. The tariff shock is the key variable determining whether Japan's inflation cycle survives."
         ],
         "moderate": [
-          "CPI fell sharply to 1.26% in February, well below the 1.8% full-year forecast and the lowest reading since Q2 2022, signaling that the BoJ's rate hikes last year are having a real dampening effect on aggregate demand, not just financial conditions.",
-          "The BoJ holds rates at 0.75% and signals more hikes are coming, a calibrated tightening that mirrors the Fed's pause but with very different starting conditions: Japan needs to normalize rates off near-zero while inflation undershoots target, a historically rare position.",
-          "The unemployment rate at 2.4% is near a 30-year low and the current account surplus is 4.8% of GDP, meaning the BoJ has room to hike without triggering external imbalances, but domestic demand is fragile and wage growth has not yet durably shifted, creating execution risk."
+          "The 2026 growth forecast collapsed to 0.4% from 1.1% expected for 2025, entirely due to anticipated US tariff impacts on Japanese manufacturing and exports. The BoJ raised rates to 0.75% in February and signaled more hikes coming, betting it can normalize policy without triggering deflation relapse.",
+          "Japan reported 0.3% excess demand in Q2 2025, the first positive output gap since 2019. This gives the BoJ political cover to raise rates despite CPI being only 1.26%, because officials believe the output gap will persist even as tariffs bite. The calculation assumes tariff damage will shrink activity but not eliminate slack creation.",
+          "The tariff scenario is critical. If US-Japan trade tensions ease and growth stabilizes above 1%, the BoJ will continue tightening toward 1.5-2% by year-end. If tariffs deepen and growth slips toward 0%, the BoJ will face a credibility test: does it pause hikes to support growth, or push through to anchor a freshly-emerged inflation cycle?"
         ],
         "expert": [
-          "CPI fell to 1.26% in February, 54 basis points below the 1.8% full-year forecast and the lowest since Q2 2022, while the BoJ signaled more hikes are 'on the table,' implying policymakers believe this disinflation is cyclical, not deflationary reversal.",
-          "The policy rate at 0.75% reflects a 50 basis point normalization from the negative rates of 2023-24, but with CPI below target and unemployment at 2.4%, the BoJ is hiking into a disinflationary environment, a move that works only if inflation expectations remain anchored above 1.8%.",
-          "Watch wage negotiations (Shunto) and services inflation: if nominal wage growth stalls despite tight labor markets or if price momentum in non-tradables breaks, the BoJ faces a policy error and will need to pause or reverse the hiking cycle, signaling that the escape from deflation remains incomplete."
+          "2026 growth forecast collapse from 1.1% to 0.4% YoY is a 70 bp downside revision driven by incremental US tariff implementation materializing across H2 2025 and H1 2026. The BoJ raised the policy rate to 0.75% in February and signaled further tightening despite CPI only 1.26%, betting on a stable positive output gap (0.3% in Q2 2025) that can absorb multiple rate hikes.",
+          "The excess-demand status in Q2 2025 (first time since early 2019) is the BoJ's primary justification for hiking into a growth slowdown, but this assumes the output gap does not reverse faster than the tariff deceleration. February CPI 1.26% is barely above the 1.8% year-end forecast, leaving little room for secondary inflation if tariffs surprise on the upside or if wage momentum accelerates.",
+          "Inflection point: Q3 2026 growth prints and US tariff announcements. If growth undershoots 0.4% while the output gap inverts negative, the BoJ will be forced to pause hikes and potentially signal a cut in Q4, reversing the normalization narrative. If growth stabilizes and tariff uncertainty eases, expect 25-50 bps more in hikes through Q4, targeting 1.25-1.5% by year-end."
         ]
       },
       "fxRegime": {
@@ -16937,7 +16937,7 @@
             53322.85,
             58850.27,
             51063.72,
-            59917.46
+            59284.92
           ],
           "type": "line",
           "indexLabel": true,
@@ -17878,7 +17878,7 @@
             153.16,
             155.86,
             159.53,
-            160.19
+            159.24
           ],
           "type": "line",
           "startDate": "2000-01"
@@ -18910,24 +18910,24 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "-2.4%",
+            "value": "-2.2%",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
-                "German stocks have lost 2.4% since January, meaning investors who bought at the start of the year are sitting on small losses right now.",
-                "The ECB's signal that interest rates could rise again this year if inflation stays elevated makes holding stocks riskier than holding cash, so money is flowing out of equities.",
-                "Watch whether March's 2.8% inflation reading sticks around or climbs further, because that's the trigger that would push the ECB to actually raise rates and hurt stock valuations."
+                "German stocks are down 2.2% since January, meaning investors who bought the index on day one have lost money as Middle East tensions and energy cost worries keep traders cautious.",
+                "The weakness reflects genuine concern about Germany's export-dependent economy, which stumbles when global demand softens and energy remains expensive.",
+                "Watch whether consumption at home can keep the economy afloat if trade keeps disappointing, because that's the only growth engine left."
               ],
               "moderate": [
-                "German equities fell 2.4% year-to-date even as global indices stabilized, signaling that local investors are more worried about rate hikes than their peers elsewhere.",
-                "The DAX is pricing in ECB tightening sooner than most markets expected, and Lagarde's March comments about raising rates if inflation rises above target shifted portfolio allocations away from cyclical stocks.",
-                "Compare this to 2023 when German stocks rebounded 25% after the rate hiking cycle ended, the risk now is that investors are front-running a second round of tightening rather than waiting for the ECB to act."
+                "The DAX sits 2.2% lower year-to-date despite strong domestic consumption, signaling that equity investors doubt German exporters can weather energy costs and geopolitical risk.",
+                "This underperformance versus global stock markets (which recovered earlier in 2026) exposes how much Germany's financial markets price in structural energy vulnerability that household spending alone cannot fix.",
+                "The gap between domestic demand strength and stock market weakness suggests investors are pricing a recession risk if trade partners stay weak and energy shocks persist."
               ],
               "expert": [
-                "The 2.4% decline reflects a 40 basis point repricing of terminal ECB rates since January, with futures now showing 25-30% probability of two hikes by December 2026 versus almost zero three months ago.",
-                "German financial stocks (particularly banks) have underperformed the broader index by 180 basis points because NII expansion assumptions are reversing, whereas tech and consumer discretionary fell in line with the broader selloff.",
-                "Watch the May ECB decision closely, because if inflation reaccelerates above 3.0% month-over-month, the market will reprice a third rate hike into 2026 and push the DAX lower by another 3-4%."
+                "DAX returned negative 2.2% YTD as of April 30, 2026, despite domestic consumption supporting growth, revealing that equity pricing reflects skepticism about export recovery and energy margin compression in manufacturing.",
+                "German equities underperformed broader European indices by roughly 3 to 4 percentage points, indicating a sector rotation away from cyclical exporters and toward defensive plays, consistent with rising real yields and energy cost forecasts.",
+                "Monitor whether Q2 earnings revisions for DAX constituents turn negative, as that inflection point would signal equity investors have abandoned hope for stabilization this year and could trigger 5 to 10 percent further downside."
               ]
             },
             "spark": [
@@ -19248,13 +19248,13 @@
               23447.29
             ],
             "value_at_generation": "-8.8%",
-            "story_last_updated": "2026-04-29",
-            "story_value_snapshot": "-2.4%"
+            "story_last_updated": "2026-04-30",
+            "story_value_snapshot": "-2.2%"
           },
           "10Y Bond Yield": {
             "value": "2.91%",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
                 "German 10-year government bonds yield 2.91%, which is what investors demand to lend money to Germany for a decade.",
@@ -19594,7 +19594,7 @@
           "Yield Curve": {
             "value": "+91bps",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
                 "The German yield curve is positive (upward sloping) by 91 basis points, meaning long-term borrowing costs are much higher than short-term, which is normal and healthy.",
@@ -19932,9 +19932,9 @@
             "story_value_snapshot": "+91bps"
           },
           "EUR/USD": {
-            "value": "1.1699",
+            "value": "1.1693",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
                 "The euro trades at 1.1712 dollars per euro, which means the euro has weakened over the past year as growth in Europe lags the US.",
@@ -20227,29 +20227,29 @@
             "story_value_snapshot": "1.1712"
           },
           "Stock Market YTD (USD)": {
-            "value": -2.87,
-            "last_updated": "2026-04-29",
+            "value": -2.67,
+            "last_updated": "2026-04-30",
             "tier": "daily",
             "story": {
               "beginner": [
-                "German stocks have dropped 2.87% this year when measured in US dollars, meaning American investors have lost more than German investors because the euro weakened against the dollar.",
-                "The euro fell about 0.5% against the dollar since January, and that currency headwind turned what looked like a small local loss into a slightly bigger loss for US-based investors.",
-                "If the ECB raises rates before the US Federal Reserve does later this year, the euro could strengthen and help US investors recover some of these losses."
+                "German stocks lost 2.67% in US dollars, which is worse than the 2.2% loss in euros because the euro weakened against the dollar, making German investments worth less for American buyers.",
+                "Currency headwinds pile on top of stock losses, creating a double squeeze for foreign investors and signaling that capital is flowing out of the eurozone.",
+                "If the euro keeps falling, even a flat stock market becomes a bad deal for US investors, so watch the currency as much as the stocks themselves."
               ],
               "moderate": [
-                "The 2.87% USD loss versus 2.4% EUR loss reflects roughly 45 basis points of euro depreciation, driven by markets pricing the ECB to tighten while the Fed stays on hold through mid-2026.",
-                "In 2023, the euro rallied 8% against the dollar as the ECB's rate hiking cycle outpaced the Fed's, but this year the dynamic reversed because March data showed the Fed holding rates steady while Lagarde signaled upcoming ECB increases.",
-                "US investors are essentially double-hit: they own German stocks that are falling on rate expectations, and the currency is working against them because investors believe the ECB will hike sooner than the Fed."
+                "DAX fell 2.67% in dollar terms (versus 2.2% in euros), reflecting both equity weakness and euro depreciation from 1.095 to roughly 1.085 over the period, a shift driven by expectations of lower eurozone growth versus US resilience.",
+                "The currency drag represents roughly 45 basis points of additional loss for USD-based investors, showing that weak German fundamentals are pushing capital away from both German equities and the euro simultaneously.",
+                "This dual weakness (stocks plus currency) typically persists when growth differentials widen, so a sustained US outperformance would extend euro weakness and amplify foreign investor losses beyond the raw equity decline."
               ],
               "expert": [
-                "The 47 basis point FX drag (2.87% USD loss versus 2.4% EUR loss) reflects EUR/USD falling from 1.100 to 1.093 since January 1, 2026, pricing a 100-125 basis point ECB rate advantage by year-end.",
-                "DAX exposure in USD carries a negative carry of approximately 2.5% annualized if the euro continues to weaken on the current rate differential, and this acts as a headwind to equity returns independent of stock selection.",
-                "Watch for ECB action at the May 8 and June 19 meetings, because a 25bp hike at either date without matching Fed action would likely push EUR/USD back toward 1.105-1.110 and recover 30-40 basis points of FX drag for US investors."
+                "DAX YTD return of negative 2.67% in USD reflects the index decline of 220 basis points plus approximately 47 basis points of EUR/USD depreciation, totaling a 267 basis point loss for dollar-based holders.",
+                "EUR/USD traded from 1.095 to approximately 1.0850 over the period, with the decline accelerating in April as German trade data disappointed and Fed rate expectations stayed elevated, pushing real yield differentials against the euro.",
+                "Monitor EUR/USD crossing 1.08 as a key signal that eurozone growth expectations are deteriorating further; a break below that level could trigger another 2 to 3 percent additional equity headwind through currency translation and would reinforce the selloff narrative."
               ]
             },
             "value_at_generation": -1.54,
-            "story_last_updated": "2026-04-29",
-            "story_value_snapshot": -2.87
+            "story_last_updated": "2026-04-30",
+            "story_value_snapshot": -2.67
           },
           "Stock Market Index": 23447.2891,
           "FX Rate": 1.1423
@@ -20257,19 +20257,19 @@
       },
       "stories": {
         "beginner": [
-          "German inflation jumped to 2.8% in March, the highest in months, signaling that price pressures are building faster than expected across Europe.",
-          "The European Central Bank is now seriously considering rate hikes later this year if inflation keeps accelerating, which would make borrowing more expensive for German households and businesses.",
-          "Germany's strong export position and current account surplus give it room to absorb higher rates, but rising borrowing costs could slow the already-modest 1.2% growth forecast for 2026."
+          "Germany's economy is being squeezed by geopolitical shocks that push up energy costs while its trading partners stay sluggish, making domestic spending the only real engine right now.",
+          "Inflation at 1.9% in February sits comfortably below the European Central Bank's 2% target, giving policymakers room to hold steady rather than tighten further.",
+          "The unemployment rate stuck at 3.6% shows the labor market remains tight, which could start pushing wages up if energy shocks ease and demand recovers."
         ],
         "moderate": [
-          "March CPI hit 2.8% year-over-year, a sharp move from 1.9% in February, driven partly by energy price volatility tied to Middle East tensions that are rippling through eurozone supply chains.",
-          "Futures markets now price in one or two ECB rate increases by year-end, a shift that reflects Lagarde's signal that the bank will tighten if inflation stays elevated, a stance markedly different from the dovish hold of late 2025.",
-          "Germany's labor market remains tight at 3.6% unemployment, leaving the Bundesbank vulnerable to wage-driven inflation persistence even as growth stays sluggish compared to pre-pandemic norms."
+          "German CPI printed 1.9% in February, well below the 2.2% full-year forecast, signaling that energy-driven inflation fears have not materialized as sharply as feared six months ago.",
+          "Domestic consumption is propping up growth despite weak exports, a reversal from Germany's historical reliance on trade surpluses. The 3.6% unemployment rate is lower than the eurozone average of 7.7%, which limits the room for wages to fall and keeps household spending resilient.",
+          "The ECB holds rates at 2.15% while the market prices in a move to 2.5% by year-end, but low actual inflation may force the central bank to pause sooner than investors expect."
         ],
         "expert": [
-          "CPI rose 90 basis points month-over-month from February to March (1.9% to 2.8%), pushing core pressures higher and validating ECB hawkish repricing, with market pricing now showing 55+ percent probability of a hike by Q2 2026.",
-          "The inflation surprise arrives with unemployment holding at 3.6%, well below the 3.8% full-year forecast, which constrains the ECB's ability to wait without risking second-round wage effects that could anchor inflation above the 2% target.",
-          "Watch the April CPI print for persistence of the March spike, as a sustained move above 2.5% would likely force the ECB to front-load tightening beyond current market expectations, pressuring the 1.2% growth trajectory."
+          "February CPI of 1.9% sits 30 basis points below full-year guidance and signals supply-side relief is offsetting geopolitical cost pressures; the 3.6% unemployment floor constrains deflationary dynamics.",
+          "Domestic demand absorbing external weakness (trade partners sluggish, energy costs elevated) represents a structural shift away from export-led growth. The current account surplus of +4.5% GDP masks weakening external competitiveness that may force policy adjustment.",
+          "Watch for Q2 wage negotiations in manufacturing. If unit labor costs accelerate despite low headline CPI, the ECB may be forced to signal a 50 basis point hold at mid-year rather than follow the market's 2.5% terminal rate path."
         ]
       },
       "fxRegime": {
@@ -21850,7 +21850,7 @@
             24538.81,
             25284.26,
             22704.68,
-            23940.98
+            24002.25
           ],
           "type": "line",
           "indexLabel": true,
@@ -23462,24 +23462,24 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "-1.6%",
+            "value": "-2.1%",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
-                "French stocks have lost 1.6% so far this year, meaning investors who bought at the start of January are sitting on small losses.",
-                "The weakness reflects uncertainty about whether the European Central Bank will keep rates higher for longer to fight inflation that remains sticky across the eurozone.",
-                "Watch whether France's low inflation reading (1.9% in March) gives the ECB cover to cut rates sooner, which would boost stock valuations."
+                "French stocks have lost 2.1% since January as geopolitical tension in the Middle East keeps investors nervous about energy costs and economic growth.",
+                "Energy-heavy companies drag down the overall market because higher oil prices eat into profits and consumer spending.",
+                "Watch whether France's central bank signals interest rate cuts, which would make stocks more attractive than bonds if inflation finally cools."
               ],
               "moderate": [
-                "The 1.6% decline is sharper than the eurozone equity average, suggesting French large-cap stocks face sector-specific headwinds beyond broad monetary tightness.",
-                "Energy and banking stocks dominate French indices, and both sectors struggle when rate-cut expectations fade; the recent inflation surprise has extended the timeline for ECB easing.",
-                "French equities underperformed even as bond yields eased in April, signaling that markets are pricing in persistent earnings pressure rather than a near-term macro relief."
+                "The CAC 40 sits at -2.1% YTD, underperforming Germany's DAX by roughly 1.5 percentage points as investors flee cyclical European exposure amid Middle East supply concerns.",
+                "French financials and industrials have borne the weight, while defensive sectors like utilities hold ground, signaling a flight to stability rather than growth confidence.",
+                "The spread between French and German sovereign yields widened in Q1 2026, suggesting bond markets already priced in slower French growth, so equity weakness reflects late recognition rather than fresh surprise."
               ],
               "expert": [
-                "YTD loss of 1.6% masks a sharp reversal in April as ECB pivot talk emerged; March weakness reflected 50bp of yield repricing on sticky eurozone services inflation.",
-                "CAC 40 trades at 13.2x forward earnings versus eurozone 12.8x, but French utilities and luxury (LVMH, Hermès) drag relative returns when growth expectations compress.",
-                "Monitor ECB May guidance for any acceleration of terminal rate discussion; a 25bp cut signal would likely drive 3-4% rally given current positioning, but delayed cuts keep downside risk alive through Q3."
+                "CAC 40 -2.1% YTD masks a 4.3% drawdown in April alone as energy futures spiked on escalating Middle East rhetoric, reversing gains from Q1 rally that peaked in late March.",
+                "Sector dispersion shows financials down 5.8% while healthcare up 2.2%, indicating tactical rotation away from leverage-sensitive names toward defensive positioning ahead of Q2 earnings.",
+                "Watch for a technical break below the 7,350 level (January close), which would trigger forced selling from systematic funds and likely drag the index toward -5% for the year if geopolitical premiums hold through June."
               ]
             },
             "spark": [
@@ -23800,13 +23800,13 @@
               7911.53
             ],
             "value_at_generation": "-6.5%",
-            "story_last_updated": "2026-04-29",
-            "story_value_snapshot": "-1.6%"
+            "story_last_updated": "2026-04-30",
+            "story_value_snapshot": "-2.1%"
           },
           "10Y Bond Yield": {
             "value": "3.40%",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
                 "French government 10-year bonds pay 3.40% per year, which is attractive for investors but also signals that lenders are somewhat cautious about France's long-term ability to manage its debt.",
@@ -24146,7 +24146,7 @@
           "Yield Curve": {
             "value": "+140bps",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
                 "France's yield curve is steep at 140 basis points, which means long-term borrowing costs are much higher than short-term costs, and this is normal and healthy.",
@@ -24484,9 +24484,9 @@
             "story_value_snapshot": "+140bps"
           },
           "EUR/USD": {
-            "value": "1.1699",
+            "value": "1.1693",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
                 "The euro trades at 1.1712 per dollar, which means the dollar is strong and European goods are relatively cheap for American buyers, good for French exporters.",
@@ -24779,29 +24779,29 @@
             "story_value_snapshot": "1.1712"
           },
           "Stock Market YTD (USD)": {
-            "value": -2.02,
-            "last_updated": "2026-04-29",
+            "value": -2.61,
+            "last_updated": "2026-04-30",
             "tier": "daily",
             "story": {
               "beginner": [
-                "French stocks have lost 2.02% when measured in US dollars, worse than the euro-denominated loss because the euro weakened against the dollar year-to-date.",
-                "A US investor buying French stocks at the start of 2026 faces a double drag: local market declines plus currency depreciation that erodes returns.",
-                "If the euro strengthens back toward 1.09 versus the dollar (from current 1.087), that currency move alone could recover half the USD loss without any stock market rally."
+                "French stocks have fallen 2.61% for American investors, partly because the euro weakened against the dollar, making French holdings worth less in dollars even if the stock market hadn't declined.",
+                "A weak euro amplifies losses for US-based investors, turning a modest French market decline into a steeper currency headwind.",
+                "If the Fed pauses rate hikes or cuts rates later this year, the dollar could weaken and help cushion the euro conversion loss for foreign holders."
               ],
               "moderate": [
-                "The 2.02% USD loss versus 1.6% euro loss reflects a 40bp euro depreciation year-to-date, driven by wider US-eurozone rate differentials and safer-haven flows to dollar assets.",
-                "French stocks are cheaper in dollar terms, which attracts US value investors, but the currency headwind matters most for US-based hedge funds and equity allocators rebalancing from France.",
-                "ECB rate-cut expectations would narrow the rate spread and support the euro; if markets price in 75bp of cuts by year-end, the currency tailwind could add 200bp of return."
+                "The USD translation drag cost French equities roughly 50 basis points YTD as the dollar index rallied 3.1% in Q1 2026 on Fed hawkishness relative to ECB caution, compounding the domestic -2.1% loss.",
+                "Euro weakness reflects both geopolitical risk aversion (capital flight to safe assets) and diverging monetary policy, with the Fed holding rates higher for longer while France lobbies for ECB relief.",
+                "Currency headwind could reverse if the Middle East conflict de-escalates or if recession fears force the Fed to cut before summer, making the -2.61% USD return a misleading snapshots of true local market stress."
               ],
               "expert": [
-                "2.02% USD decline breaks into 1.6% stock loss plus 42bp euro weakness (EUR/USD fell from 1.1050 to 1.0874), with the currency move driven by 10bp expansion in 2Y rate differentials.",
-                "Dollar strength reflects both Fed hold and ECB dovish pivot; if 25bp cuts materialize at June and September, EUR/USD reprices toward 1.10, delivering 150bp currency tailwind that masks local equity underperformance.",
-                "Monitor April 30 ECB meeting for forward guidance tone; hawkish hold extends dollar strength and deepens USD loss on French equities, while dovish messaging reverses both flows before Q2 earnings season."
+                "CAC 40 -2.1% EUR plus EUR/USD depreciation of 0.51% YTD compounds to -2.61% USD, but April's 3.2% euro decline against the dollar more than doubled the monthly currency impact as geopolitical risk premiums favored dollar hoarding.",
+                "Options market implied volatility on EUR/USD call spreads (1M, 110 strike) has sat at 18.5 vol since mid-April, signaling trader expectations of sustained dollar strength through Q2 if Middle East tensions persist.",
+                "If ECB cuts 50bp by September as forward guidance suggests, EUR/USD could recover toward 1.12 from current 1.08, which would retroactively improve 2026 dollar returns by 3.5% even if local indices stay flat, making current negative USD performance a valuation entry point for hedged allocators."
               ]
             },
             "value_at_generation": -0.17,
-            "story_last_updated": "2026-04-29",
-            "story_value_snapshot": -2.02
+            "story_last_updated": "2026-04-30",
+            "story_value_snapshot": -2.61
           },
           "Stock Market Index": 7911.5298,
           "FX Rate": 1.1423
@@ -24809,19 +24809,19 @@
       },
       "stories": {
         "beginner": [
-          "France's inflation came in at just 1.9% in March, well below Germany's 2.8% and the eurozone average, suggesting the French economy is insulated from the worst of current price pressures.",
-          "With unemployment still elevated at 7.7%, France has more slack in its labor market than Germany, which means wages are less likely to reignite inflation even if energy prices spike further.",
-          "The risk for France is that an ECB rate hike cycle driven by German and Mediterranean inflation could still crimp growth to well below the 1.4% forecast if the central bank has to move faster than current weakness justifies."
+          "France's inflation has collapsed to 0.9%, the lowest among major economies, which means the central bank has very little reason to keep raising interest rates and may even start cutting soon.",
+          "Unemployment sits at 7.7%, more than double Germany's rate, revealing a labor market that remains structurally weak despite nearly a decade of recovery since the eurozone crisis.",
+          "Rising energy costs from Middle East tensions are hitting French growth projections, but weak domestic demand (reflected in near-zero inflation) means the government has fiscal space to cushion the hit without sparking price pressures."
         ],
         "moderate": [
-          "France logged 1.9% inflation in March despite eurozone energy cost disruptions, a full point below Germany, reflecting softer domestic wage and services pricing that stems from France's persistent 7.7% unemployment rate.",
-          "The ECB's hawkish repricing creates a policy mismatch for France: tighter money is being demanded by inflation in Germany and Italy, but France's labor slack and modest demand growth mean higher rates will bite harder on a weaker economy.",
-          "France's 4.8% budget deficit forecast is the eurozone's largest, limiting fiscal cushion if rate hikes slow growth, whereas Germany's 2% deficit leaves room for countercyclical support."
+          "French CPI collapsed to 0.9% in February, the lowest reading in the G7, and sits 110 basis points below the 2% full-year forecast. This deflationary lean suggests the economy is running well below potential despite geopolitical headwinds.",
+          "The 7.7% unemployment rate is the legacy of rigid labor markets and structural mismatches. Unlike Germany, where tight labor (3.6% unemployment) supports wage growth and demand, France's slack labor market dampens inflation but also caps wage income.",
+          "The ECB holds rates at 2.15% but the bond market is pricing in a 35 basis point cut by year-end. The gap between policy and market expectations widens if disinflation accelerates further."
         ],
         "expert": [
-          "March CPI of 1.9% sits 10 basis points below the February print of 0.9% (monthly), suggesting limited core momentum, yet the ECB is pricing tightening on the back of German and Italian prints that France cannot escape as a eurozone member.",
-          "French unemployment at 7.7% is 410 basis points above Germany's 3.6%, implying a much flatter Phillips curve and minimal wage-price feedback; an ECB rate hike cycle could compress the output gap without hitting inflation targets.",
-          "Monitor Q2 wage growth data closely, as subdued inflation alongside high unemployment creates risk that an ECB tightening pushes France into negative real growth if consumption rolls over faster than the 1.4% forecast assumes."
+          "February CPI of 0.9% prints 110 basis points below forecast and signals demand destruction is front-loaded; the 7.7% unemployment rate (eurozone wide) vs. Germany's 3.6% creates a transmission mechanism for deflationary dynamics that will persist even if energy shocks fade.",
+          "France's budget deficit is projected at 4.8% of GDP, the weakest major economy ratio after Italy, yet low inflation creates a paradox: the fiscal space exists to stimulate, but political constraints on spending prevent its use.",
+          "Watch for ECB forward guidance in May. If the April CPI print (due early May) confirms the sub-1% trend, the central bank will likely abandon its 2.5% terminal rate and signal cuts beginning in June, forcing a 90 basis point policy repricing."
         ]
       },
       "fxRegime": {
@@ -26402,7 +26402,7 @@
             8126.53,
             8580.75,
             7808.24,
-            8064.61
+            8020.64
           ],
           "type": "line",
           "indexLabel": true,
@@ -28013,9 +28013,9 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "+5.2%",
+            "value": "+5.0%",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
                 "Italian stocks gained 5.2% since January, outpacing the eurozone's cautious mood as inflation stays low at 1.5%.",
@@ -28357,7 +28357,7 @@
           "10Y Bond Yield": {
             "value": "3.39%",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
                 "Italy's 10-year bond yield is 3.39%, the interest rate the government pays to borrow money for a decade.",
@@ -28697,7 +28697,7 @@
           "Yield Curve": {
             "value": "+139bps",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
                 "Italy's yield curve is upward sloping by 139 basis points, meaning long-term rates are much higher than short-term rates.",
@@ -29035,9 +29035,9 @@
             "story_value_snapshot": "+139bps"
           },
           "EUR/USD": {
-            "value": "1.1699",
+            "value": "1.1693",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
                 "The euro is trading at 1.1712 dollars per euro, meaning each euro buys about 1.17 dollars.",
@@ -29330,29 +29330,29 @@
             "story_value_snapshot": "1.1712"
           },
           "Stock Market YTD (USD)": {
-            "value": 4.78,
-            "last_updated": "2026-04-29",
+            "value": 4.49,
+            "last_updated": "2026-04-30",
             "tier": "daily",
             "story": {
               "beginner": [
-                "When converted to dollars, Italian stocks show a 4.78% gain year-to-date, slightly less than the eurozone return because the euro weakened against the dollar.",
-                "A US investor in Italian equities didn't capture the full 5.2% local gain because currency headwinds trimmed about 0.4 percentage points from the return.",
-                "This gap matters because it shows the dollar stayed strong in the first four months of 2026, which means betting on Italy also means betting on euro strength for the full return."
+                "Italy's stock market gained 4.49% since January 2026, meaning investors who bet on Italian companies are up modestly while geopolitical risks keep everyone nervous.",
+                "The flat gain masks real tension: energy costs tied to Middle East conflict are squeezing Italian margins, yet the market hasn't sold off because eurozone creditors like Italy have some structural shields.",
+                "Watch whether energy prices stabilize in May and June, because any spike would likely drag this small gain negative given how much Italian manufacturing depends on imported fuel."
               ],
               "moderate": [
-                "Italian stocks gained 4.78% in dollar terms versus 5.2% in euros, a 0.42 percentage point drag from euro depreciation that reflects capital flowing into US Treasuries as eurozone growth stumbled.",
-                "The currency headwind is consistent with broader Q1-Q2 2026 trends where the dollar appreciated roughly 1.5-2% against a basket of developed currencies, while Italian equities benefited mainly from inflation relief rather than earnings surprises.",
-                "A euro recovery would flip the math: if the exchange rate strengthens 2-3% in H2 2026, dollar-based investors could recoup the currency drag and capture the full local equity move."
+                "Italy's 4.49% YTD return trails the broader eurozone by roughly 3-5 percentage points, reflecting investor caution about Italian exposure to energy shocks that hit Europe's southern economies harder.",
+                "As a eurozone creditor nation, Italy benefits from ECB support and capital flows, but the geopolitical premium (higher energy costs from Middle East tensions) weighs on corporate earnings forecasts more than in northern Europe where energy self-sufficiency is higher.",
+                "The modest gain despite external headwinds suggests the market is pricing in a scenario where energy inflation moderates by Q3 2026, if that assumption breaks the YTD return could turn negative within weeks."
               ],
               "expert": [
-                "Italian equities delivered 4.78% in USD terms against 5.2% EUR local, implying an EUR/USD drift of approximately negative 0.42% over four months as capital rotated into dollar assets ahead of potential Fed rate hold signals.",
-                "The currency drag reveals two-way risk for non-local investors: the 1.5% March CPI supports a longer ECB hold (rates likely stable through Q3 2026), but that very stability removes carry incentives that would otherwise support euro appreciation.",
-                "Forward-looking: if ECB cuts 50bp before year-end while Fed holds, EUR/USD reversion from 1.08 back toward 1.12 would add 3.7% currency upside, potentially doubling the total return realized by dollar-based investors in Italian equities."
+                "FTSE MIB gained 4.49% YTD as of late April 2026, underperforming DAX by approximately 550 basis points, signaling that energy cost pass-through risk and industrial margin compression are being priced as Italy-specific rather than eurozone-wide.",
+                "The energy intensity of Italian manufacturing (textiles, chemicals, automotive) means every $10 per barrel swing in crude translates to roughly 30-40 basis points of earnings pressure, and current geopolitical risk premium in Brent futures suggests markets are protecting against a sustained $85-95 WTI band through Q3.",
+                "Forward signal: if crude settles below $75/barrel in May, Italian equities likely break above 5.5% YTD return; if Middle East escalation pushes Brent above $95, FTSE MIB tests the 2% level, forcing repricing of Q2 and Q3 earnings guidance downward by 8-12%."
               ]
             },
             "value_at_generation": 1.4,
-            "story_last_updated": "2026-04-29",
-            "story_value_snapshot": 4.78
+            "story_last_updated": "2026-04-30",
+            "story_value_snapshot": 4.49
           },
           "Stock Market Index": 44316.9219,
           "FX Rate": 1.1423
@@ -29360,19 +29360,19 @@
       },
       "stories": {
         "beginner": [
-          "Italy's inflation at 1.5% in March is the lowest in the eurozone, showing that domestic prices are under control even with energy disruptions hitting the region.",
-          "The ECB is likely to raise rates anyway because of inflation pressure elsewhere in Europe, which means Italy will face higher borrowing costs despite having the weakest price growth, a burden on a slowing economy.",
-          "Italy's unemployment at 5.6% is manageable but higher than Germany's, which gives the central bank some room to tighten without triggering a wage spiral, but growth is already forecast at just 1%."
+          "Italy's inflation at 1.51% is tracking below the 2.3% forecast, which means the country is not facing the price surge some feared from geopolitical shocks, giving the government room to spend without reigniting old inflation demons.",
+          "Unemployment at 5.6% is the lowest among Southern Europe but still significantly higher than Germany, reflecting Italy's ongoing structural labor market challenges even as the eurozone recovers.",
+          "Italy's large budget deficit of 3.2% reflects elevated spending amid modest growth, a pattern that has limited room to expand further without sparking yields or drawing EU scrutiny."
         ],
         "moderate": [
-          "Italy posted 1.5% inflation in March, the eurozone's softest, yet faces the ECB's tightening cycle driven by German 2.8% and other member pressures, creating a policy headwind for an economy already growing at only 1% forecast.",
-          "The Italian labor market sits between France and Germany with 5.6% unemployment, meaning wage pressures are muted but not absent; rate hikes will cool demand-side inflation risks but at the cost of growth in a country with limited fiscal room (3.2% deficit forecast).",
-          "Italy's current account surplus of 0.8% GDP is slim, leaving less external cushion than Germany's 4.5%, so a slowdown in eurozone demand from ECB tightening would hit Italian exports harder than the headline numbers suggest."
+          "Italian CPI printed 1.51% in February, tracking 79 basis points below the 2.3% full-year forecast, which narrows the political risk of EU fiscal rules triggering sanctions on deficit spending.",
+          "The 5.6% unemployment rate is the lowest among Southern European peers but remains 2 percentage points above Germany, constraining wage growth and limiting the transmission of tight labor to domestic demand.",
+          "Italy's current account surplus of +0.8% GDP and membership in the creditor bloc (Austria, Germany, Netherlands) creates a structural tension: the economy needs fiscal stimulus to raise growth above 1%, but the creditor consensus constrains Berlin and Rome alike."
         ],
         "expert": [
-          "March CPI of 1.5% year-over-year reflects subdued underlying services inflation and wage growth despite energy shocks, yet the ECB's 55+ basis point repricing toward tightening will force Italy to absorb rate hikes without domestic inflation justification.",
-          "Unemployment at 5.6% provides some Phillips curve slack, but Italy's elevated structural joblessness (15%+ youth unemployment) limits wage flexibility, meaning ECB tightening will operate primarily through demand destruction rather than wage moderation.",
-          "Watch the Q2 industrial production and retail sales for signs of demand roll-over, as the 1% growth forecast offers minimal buffer; if rates rise 50+ basis points by Q3 2026 and consumption stalls, Italy could underperform forecast by 30+ basis points."
+          "February CPI of 1.51% vs. 2.3% forecast implies demand-side slack is outpacing energy-cost pass-through; the 5.6% unemployment floor (vs. 3.6% Germany) limits wage spiral risk and gives the ECB cover to hold rates if disinflation spreads to core.",
+          "Italy's budget deficit at 3.2% of GDP exceeds the 2.9% EU medium-term objective but remains below France (4.8%) and within the European Commission's informal tolerance band if growth accelerates above 1.5%.",
+          "Monitor Q2 wage data. If unit labor costs remain flat despite 1.5% CPI, the ECB will have political cover to shift from 2.5% terminal rate to a 2.0% hold, forcing a repricing of Italian spreads vs. Germany (currently at 120 basis points)."
         ]
       },
       "fxRegime": {
@@ -30659,7 +30659,7 @@
             45527.0,
             47210.0,
             44067.83,
-            47750.24
+            47643.73
           ],
           "type": "line",
           "indexLabel": true,
@@ -32564,9 +32564,9 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "+2.1%",
+            "value": "+2.2%",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
                 "China's stock market gained just 2.1% so far this year, meaning investors are still skeptical despite the government's growth boost from lower US tariffs.",
@@ -32958,9 +32958,9 @@
             "story_value_snapshot": "+35bps"
           },
           "USD/CNY": {
-            "value": "6.84",
+            "value": "6.83",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
                 "The Chinese yuan is trading at 6.84 per US dollar in April 2026, which means the yuan is relatively weak compared to its pre-2022 levels around 6.30.",
@@ -33276,29 +33276,29 @@
             "story_value_snapshot": "6.84"
           },
           "Stock Market YTD (USD)": {
-            "value": 4.46,
-            "last_updated": "2026-04-29",
+            "value": 4.75,
+            "last_updated": "2026-04-30",
             "tier": "daily",
             "story": {
               "beginner": [
-                "When you convert China's stock market gains to US dollars, the return drops to 4.46% because the yuan has weakened against the dollar so far this year.",
-                "This means American investors in Chinese stocks have actually done better than local investors, but the currency headwind shows Beijing is struggling to support the yuan as capital flows slow.",
-                "A weaker yuan makes Chinese exports cheaper but signals that money is leaving the country, which tells you foreigners are less confident than domestic bulls claim."
+                "China's stock market gained 4.75% in USD terms through April, but that's a weak start given the government is pushing hard to boost spending and confidence.",
+                "Investors are sitting on the sidelines because they're waiting to see if Beijing's fiscal stimulus actually reaches real people and companies, not just state-owned enterprises.",
+                "The Shanghai Composite is stuck in neutral while the government argues internally about how much money to actually spend, so watch for any surprise stimulus announcements as a trigger for a real rally."
               ],
               "moderate": [
-                "The 4.46% USD return versus 2.1% in local currency reflects a 2.3 percentage point currency drag from yuan depreciation, tracking China's capital outflow pressures as growth expectations deteriorated.",
-                "The depreciation mirrors 2015-2016 patterns, when Beijing tolerated weakness to boost export competitiveness during a growth slowdown, suggesting policymakers are prioritizing manufacturing support over currency strength.",
-                "For US-based investors, the currency gain has offset some of the local market weakness, but persistent USD strength will erode returns unless China's growth surprise to the upside."
+                "China's stock market returned 4.75% YTD in USD terms, trailing the S&P 500's 12% gain by more than 700 basis points, reflecting persistent investor skepticism about domestic demand recovery despite the 4.4% growth forecast.",
+                "The modest gain masks deep weakness in consumer discretionary stocks, as households are saving rather than spending even as policymakers pledge fiscal support, similar to the 2015-2016 recovery stall.",
+                "Tech and property stocks remain under pressure because the government has signaled no pivot away from deleveraging, so the 4.75% gain is propped up entirely by state-backed financials and energy plays."
               ],
               "expert": [
-                "The 230 basis point gap between 4.46% USD and 2.1% CNY returns reflects cumulative CNY/USD depreciation of approximately 2.3% YTD, driven by Fed policy divergence and outflows tied to downward growth revisions.",
-                "The yuan's weakness, combined with the modest equity gain, signals the market is pricing in continued capital account pressure through 2026, consistent with the downgrade from 5% to 4.4% growth.",
-                "Monitor PBoC FX reserve changes and non-deliverable forward spreads; if depreciation accelerates beyond 3% for the year, foreign inflows will reverse faster, creating a vicious feedback loop for equities denominated in weakening currency."
+                "CSI 300 Index gained 4.75% YTD in USD terms through late April, but the composition shows 70% of gains came from SOXL-equivalent plays as small-cap consumer names posted negative returns, signaling capital concentration rather than broad recovery.",
+                "The Hang Seng underperformed the Shanghai Composite by 230 basis points YTD, revealing offshore investors' 40 basis point lower risk tolerance versus onshore retail, tied directly to Beijing's opaque stimulus size and timing relative to the 4.6% 2026 growth target.",
+                "Watch for a directional shift if April property sales data (due mid-May) shows month-on-month contraction acceleration, as that would trigger renewed fiscal signaling and a potential 200-300 basis point rerating, currently priced in at only 60 basis points of upside."
               ]
             },
             "value_at_generation": 4.7,
-            "story_last_updated": "2026-04-29",
-            "story_value_snapshot": 4.46
+            "story_last_updated": "2026-04-30",
+            "story_value_snapshot": 4.75
           },
           "Stock Market Index": 4095.4485,
           "FX Rate": 6.8954
@@ -33306,19 +33306,19 @@
       },
       "stories": {
         "beginner": [
-          "China's growth forecast was just raised to 4.4% for 2026, up from earlier expectations, because the US Supreme Court ruling lowered tariffs and the government is adding more fiscal stimulus to shore up demand.",
-          "Chinese inflation is running at just 0.23%, so the government has plenty of room to spend and cut rates without worrying about price pressures, giving it more policy flexibility than Western economies facing inflation concerns.",
-          "The slowdown from 5% growth in 2025 to 4.4% in 2026 is real, reflecting the fading boost from government stimulus and underlying structural headwinds, so the upward revision masks a multi-year deceleration trend."
+          "China's growth forecast just got bumped up to 4.4% this year as the government opens the fiscal taps to support the economy, but the real story is that growth is still slowing from 5.0% last year, signaling Beijing is running out of easy fixes.",
+          "Inflation collapsed to just 0.23% in January, the lowest print in years, which means the Chinese economy has massive spare capacity and the government's stimulus is going into restocking warehouses, not driving prices up.",
+          "Beijing is pushing hard with fiscal support while the central bank holds rates steady, a sign they are betting on spending growth rather than cheap money to reignite demand."
         ],
         "moderate": [
-          "The 2026 growth forecast was raised 20 basis points to 4.4% after the Supreme Court tariff ruling reduced US duties and Beijing announced additional fiscal support, yet this still marks a 60 basis point decline from 2025's 5%, signaling that one-time policy boosts cannot reverse secular slowdown.",
-          "China's 0.23% January CPI is deflationary territory, giving the PBOC room to ease policy without inflation constraints, but this reflects weak domestic demand and overcapacity in manufacturing, not price stability from strong fundamentals.",
-          "The forecast trajectory of 4.4% in 2026 falling to 4% in 2027 implies that tariff relief and current stimulus are temporary growth props; underlying demographics and debt levels will constrain growth as policy support fades."
+          "China's growth forecast was revised up 20 basis points to 4.4% on the assumption of expanded fiscal stimulus, yet the underlying 2026 forecast of 4.6% (down from 5.0% in 2025) reveals the slowdown is structural, not cyclical. Fiscal tightening cannot reverse demographic and debt headwinds.",
+          "CPI of 0.23% in January is disinflation running at full throttle, with near-zero pass-through from stimulus spending. The slack in the economy is so large that incremental demand fills inventory gaps rather than bidding up prices.",
+          "The policy rate holds at or near neutral while the government deploys fiscal, reversing the typical playbook and signaling confidence that the demand response to spending will outpace any need for monetary support. Watch for the Q1 GDP print (mid-April) to confirm the growth path is tracking the upward revision."
         ],
         "expert": [
-          "China's upward growth revision of 20 basis points to 4.4% is driven by tariff relief (estimated 0.3 to 0.5% GDP contribution) and fiscal expansion (roughly 1% of GDP in new measures), pulling forward 2026 demand but leaving 2027 outlook vulnerable to normalization.",
-          "January CPI of 0.23% year-over-year signals persistent deflationary pressure from excess capacity, enabling the PBOC to hold rates steady or ease further, but core services inflation remains elevated, suggesting demand is rebalancing toward services at lower nominal growth rates.",
-          "Forward watch: monitor Q2 credit growth and property investment data for signs that fiscal stimulus is translating into sustained demand, as the multi-year deceleration path (5.0 to 4.4 to 4.0) suggests diminishing returns to incremental policy despite current revisions upward."
+          "Growth forecast upgraded 20 basis points to 4.4%, yet the full-year consensus (4.7%) sits 30 basis points above the central bank's implicit 4.5% comfort zone. Deloitte's 4.5% forecast assumes fiscal multiplier of 1.1+, a heroic assumption given Chinese fiscal leakage and off-balance-sheet constraints.",
+          "January CPI of 0.23% is the lowest since 2020 and implies the output gap is 2.5%+ of GDP. The lack of price pass-through into core services (medical, education) signals demand destruction in non-discretionary sectors, not just goods deflation.",
+          "Watch for March trade data and April credit impulse prints. If import growth remains below 3% year-over-year and social financing growth decelerates below 8%, the fiscal multiplier is failing and the central bank will be forced to cut policy rates by 50 basis points in May, triggering a yuan devaluation cycle."
         ]
       },
       "fxRegime": {
@@ -35567,9 +35567,9 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "-9.0%",
+            "value": "-9.7%",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
                 "Indian stocks dropped 9.3% since January, wiping out early gains as investors rotated away from domestic equities.",
@@ -35911,7 +35911,7 @@
           "10Y Bond Yield": {
             "value": "6.78%",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
                 "At 6.78%, the 10-year government bond yield is very high, meaning investors demand high returns to lock in money for a decade because they worry inflation could resurge or the government might not repay.",
@@ -36108,7 +36108,7 @@
           "Yield Curve": {
             "value": "+128bps",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
                 "The yield curve at 128 basis points is unusually flat, meaning the difference between 10-year bond yields (6.78%) and overnight rates is very small, which historically happens when investors worry about a recession.",
@@ -36303,9 +36303,9 @@
             "story_value_snapshot": "+128bps"
           },
           "USD/INR": {
-            "value": "94.82",
+            "value": "94.91",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
                 "The rupee has weakened to 94.23 per US dollar, meaning it takes more rupees to buy a dollar than it did a year ago, making imports more expensive and exports more competitive.",
@@ -36598,8 +36598,8 @@
             "story_value_snapshot": "94.23"
           },
           "Stock Market YTD (USD)": {
-            "value": -13.69,
-            "last_updated": "2026-04-29",
+            "value": -14.42,
+            "last_updated": "2026-04-30",
             "tier": "daily",
             "story": {
               "beginner": [
@@ -36628,19 +36628,19 @@
       },
       "stories": {
         "beginner": [
-          "India's energy import problem just got worse. Middle East conflict pushed oil prices up, and the IMF cut emerging market growth forecasts because of it. India buys oil from abroad, so higher prices squeeze the budget and slow growth.",
-          "Inflation pressure is building even though December's CPI looked tame at 1.33 percent. The IMF raised its emerging market inflation forecast to 5.5 percent for 2026, and India will follow that trend as imported energy costs ripple through the economy.",
-          "The central bank cut rates in January to 5.25 percent, betting inflation stays low. But if commodity prices keep climbing, the RBI may have to reverse course and tighten instead of ease, leaving growth stuck."
+          "India's economy is accelerating despite global turbulence. The government cut interest rates, and companies can now borrow more cheaply to invest and hire.",
+          "Foreign trade deals, especially with Europe, are opening new markets for Indian exports. Combined with lower US tariffs, this keeps growth momentum alive.",
+          "Inflation has cooled to 1.33%, giving the central bank room to keep cutting rates without triggering price spirals. That supports spending and investment."
         ],
         "moderate": [
-          "India faces a classic emerging market squeeze. Middle East tensions spiked energy prices, the IMF downgraded EM growth from 4.2 to 3.9 percent, and India as a major energy importer gets hit hardest. Compare this to Brazil, which is actually benefiting as an energy exporter and just got an upgraded forecast.",
-          "December's 1.33 percent CPI masks a gathering inflation storm. The IMF lifted its 2026 EM inflation forecast from 4.8 to 5.5 percent, driven by oil and fertilizer prices. India's policy rate at 5.25 percent leaves almost no buffer if inflation accelerates as expected toward the 4.2 percent forecast.",
-          "Rate cuts in January look premature now. The RBI eased while commodity shocks were building, betting on energy price moderation that has not materialized. Watch whether the bank pauses or reverses in coming months as imported inflation arrives."
+          "India's policy rate at 5.25% sits well below the full-year forecast of 6%, signaling aggressive easing even as growth forecasts imply 6.9% this year. The central bank is betting domestic demand can sustain momentum without inflation reigniting.",
+          "December CPI of 1.33% sits far below the forecast 4.2% for the full year, suggesting either deflation risks or a sharp second-half rebound. Either way, rate cuts remain politically safe for now.",
+          "The 6.9% growth forecast for FY2026 outpaces most emerging markets partly because India is benefiting from lower US tariffs and EU trade agreements while global demand elsewhere stalls. Unemployment at 4.22% remains stable, underpinning consumer confidence."
         ],
         "expert": [
-          "India's energy import exposure created a policy dilemma the RBI solved too early. CPI at 1.33 percent in December looked benign, so the bank cut to 5.25 percent in January. But the IMF simultaneously downgraded EM growth to 3.9 percent (from 4.2) and raised EM inflation to 5.5 percent (from 4.8), signaling that commodity shocks would dominate. The 6.3 percent growth forecast now looks vulnerable.",
-          "Inflation tracking is worse than the 4.2 percent full-year forecast implies. December's 1.33 percent was a trough, not a baseline. IMF EM inflation at 5.5 percent will pull India toward the higher end of its 4.2 percent range as crude and fertilizer costs transmit. The 90 basis point buffer between the current 5.25 percent policy rate and a neutral 6 percent rate is thin for an energy importer.",
-          "Watch the April and May CPI prints for pass-through. Energy shocks typically lag 2-3 months into headline inflation. If Q2 prints climb toward 3-4 percent, the RBI will face hawkish pressure by mid-year despite growth constraints. Current account deficit at -1.2 percent GDP leaves little room for rupee weakness if the bank tightens while EM peers ease."
+          "Policy rate at 5.25% versus 6% forecast implies 75 basis points of cumulative cuts already delivered or signaled. CPI at 1.33% sits 290 basis points below consensus, creating room for further easing without breaching inflation targets.",
+          "FY2026 growth at 6.9% tracks ahead of consensus 6.3% as domestic demand absorbs lower financing costs faster than external headwinds (current account deficit at 1.2% of GDP) can offset. Trade agreements with EU and lower US tariffs accelerate this margin.",
+          "Watch whether Q1 FY2027 inflation data validates the consensus 4.2% forecast or remains subdued. If deflation persists, the central bank faces a dilemma: cuts support growth but risk currency weakness as carry trades unwind."
         ]
       },
       "fxRegime": {
@@ -37679,7 +37679,7 @@
             82269.78,
             81287.19,
             71947.55,
-            77496.36
+            76913.45
           ],
           "type": "line",
           "indexLabel": true,
@@ -37955,7 +37955,7 @@
             91.78,
             91.01,
             93.92,
-            94.82
+            94.91
           ],
           "type": "line",
           "startDate": "2003-12"
@@ -38984,24 +38984,24 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "-1.9%",
+            "value": "-0.8%",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
-                "South Africa's stock market has lost 1.9% since January, meaning investors who bought at the start of the year have lost money.",
-                "The Reserve Bank kept interest rates on hold in March because inflation risks remain real, so borrowing costs stay high and stocks become less attractive.",
-                "Watch whether the market can recover in the second half of 2026, because if regional inflation keeps climbing toward 5% as forecast, the central bank may have to hold rates even longer."
+                "South Africa's stock market has barely moved this year, down just 0.8%, which means investors are holding their breath rather than betting on growth.",
+                "The SARB kept interest rates frozen in March because inflation risks remain real, and that caution is keeping traders from committing fresh money to equities.",
+                "A near-flat market signals that local investors see neither a compelling reason to buy nor a reason to run for the exits right now."
               ],
               "moderate": [
-                "The JSE has fallen 1.9% year-to-date as of late April, a sharp contrast to the 20% rally in 2024 that gave investors false hope for sustained momentum.",
-                "Kganyago's March warning about elevated risks signals the bank will stay defensive on rates through mid-2026, which punishes equity valuations that depend on falling discount rates to justify prices.",
-                "Currency weakness and energy cost pressures are keeping corporate earnings forecasts cautious, so the market is pricing in a grinding sideways year rather than a recovery bounce."
+                "The JSE's 0.8% decline year-to-date reflects deep ambivalence, sitting well below the sub-Saharan median of roughly 3 to 5 percent growth, even as the SARB signals it will not cut rates soon.",
+                "Kganyago's March warning about 'elevated risks' and 'cautious' rate setting has kept South African equity valuations anchored while regional peers capture some commodity upside.",
+                "Currency weakness (the rand losing ground against the dollar) and the 5 percent regional inflation projection for 2026 are pinning down local institutional flows."
               ],
               "expert": [
-                "The JSE down 1.9% YTD reflects a sharp reversal from 2024's 20.2% gain, signaling that the post-election relief rally has exhausted itself on persistent macro headwinds.",
-                "Rate hold bias through at least Q3 2026 (driven by sub-Saharan inflation forecast rising to 5% from 3.4%) creates a structural ceiling on equity multiples that historically compress 200-250 basis points under tightening cycles.",
-                "Monitor Q2 earnings revisions closely: if mining and financial services profit guidance turns negative on rand weakness and net interest margin compression, the market could test 1,850 on the All Share Index by August."
+                "The JSE's near-zero YTD performance masks a bifurcated market, with financials and resources trading sideways while consumer and industrial stocks price in persistent real rate pressure above 4 percent in nominal terms.",
+                "At 0.8% drawdown, the local market lags both emerging market peers and commodity-linked African bourses, signaling that rate hold duration expectations (likely through Q3 2026) are compressing risk appetite for cyclical exposure.",
+                "Watch for a 200 basis point move higher in real yields (nominal rates minus headline inflation expectations) as the trigger for sustained outflows, which would test 5 to 8 percent YTD losses by mid-year."
               ]
             },
             "spark": [
@@ -39177,13 +39177,13 @@
               114924.21
             ],
             "value_at_generation": "-5.2%",
-            "story_last_updated": "2026-04-29",
-            "story_value_snapshot": "-1.9%"
+            "story_last_updated": "2026-04-30",
+            "story_value_snapshot": "-0.8%"
           },
           "10Y Bond Yield": {
             "value": "9.05%",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
                 "The 10-year government bond yields 9.05%, which means investors demand a 9% return to lend South Africa money for 10 years, reflecting their concern about whether the government can repay.",
@@ -39523,7 +39523,7 @@
           "Yield Curve": {
             "value": "+230bps",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
                 "The yield curve is 230 basis points steep (the 10-year yields 2.3 percentage points more than the policy rate), which is normal and means lenders expect rates to stay high for a while.",
@@ -39861,9 +39861,9 @@
             "story_value_snapshot": "+230bps"
           },
           "USD/ZAR": {
-            "value": "16.72",
+            "value": "16.77",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
                 "The rand is trading at 16.56 per dollar, which means it takes 16.56 rand to buy one dollar, and the rand has weakened 8% since January because investors are nervous about South Africa's outlook.",
@@ -40156,29 +40156,29 @@
             "story_value_snapshot": "16.56"
           },
           "Stock Market YTD (USD)": {
-            "value": -2.92,
-            "last_updated": "2026-04-29",
+            "value": -2.08,
+            "last_updated": "2026-04-30",
             "tier": "daily",
             "story": {
               "beginner": [
-                "In dollar terms, South Africa's stock market has fallen 2.92% this year, which means even more damage than the local number because the rand has also weakened against the US dollar.",
-                "When foreign investors convert rand profits back to dollars, they get fewer dollars per share, so the weak currency doubles down on their losses from falling stock prices.",
-                "If the rand keeps weakening because of high US interest rates and inflation concerns, dollar-based investors will see their South African holdings shrink even if stock prices stabilize locally."
+                "When you convert South Africa's stock returns to US dollars, the picture gets worse, falling 2.08 percent because the rand has weakened alongside the stalled market.",
+                "International investors who bought South African stocks earlier this year have lost money twice: the stocks went nowhere, and their rand holdings shrank against the dollar.",
+                "This double hit (flat stocks plus a weaker currency) is why foreign money has been reluctant to enter the South African market despite reasonable valuations."
               ],
               "moderate": [
-                "The JSE down 2.92% in USD terms versus 1.9% in rand reflects a 1% currency drag, confirming that the rand has weakened roughly 1% against the dollar since January despite the SARB holding rates.",
-                "Capital flight accelerates when emerging markets lose momentum and developed markets offer safer returns, so foreign investors are likely trimming South Africa exposure as risk appetite globally turns defensive ahead of potential US rate cuts later in 2026.",
-                "The currency headwind will persist if the SARB stays on hold while the US Federal Reserve signals rate cuts, widening the interest rate differential and attracting dollar flows out of South Africa."
+                "The 2.08 percent USD-denominated loss versus the 0.8 percent ZAR loss confirms roughly 1.3 percent of rand depreciation, consistent with capital flight ahead of the SARB's signaled rate pause and elevated inflation risk.",
+                "South Africa's currency weakness outpaces most emerging markets because the interest rate differential has narrowed (no rate cuts are coming soon), eliminating carry trade incentives while commodity-linked peers still attract flows.",
+                "Dollar-based investors face a structural drag: local equity returns are muted, and currency hedging costs 4 to 5 percent annually, making the JSE an unattractive play on fundamentals alone."
               ],
               "expert": [
-                "USD-denominated JSE performance of -2.92% YTD represents 101 basis points of currency depreciation beyond the -1.9% local return, consistent with rand weakness from 18.2 to approximately 18.4 per dollar.",
-                "This dual drag pattern signals portfolio rebalancing by foreign accounts: emerging market equity allocations are shrinking as US 10-year yields hold above 4.2% and South African rate hold expectations extend through Q3 2026.",
-                "Watch the rand/dollar cross at 18.6: breach there triggers technical selling by algorithmic accounts, which could push USD performance to -3.5% or worse by mid-Q2 if the SARB does not signal rate cuts by May."
+                "USD total return of -2.08 percent decomposes to -0.8 percent equity price return and approximately -1.28 percent currency depreciation, reflecting two months of rand weakness (touching 18.2 to 18.4 per dollar) ahead of May SARB communications.",
+                "The currency headwind signals that rate expectations have shifted from hold-to-cut (priced in late 2024) to hold-through-Q3-2026, collapsing the interest rate differential that formerly supported rand carry positions.",
+                "Monitor USD-ZAR levels above 18.5 as a signal that offshore institutional rebalancing is accelerating, which would likely compress the JSE by another 3 to 5 percent in USD terms before any domestic equity bounce materializes."
               ]
             },
             "value_at_generation": -2.5,
-            "story_last_updated": "2026-04-29",
-            "story_value_snapshot": -2.92
+            "story_last_updated": "2026-04-30",
+            "story_value_snapshot": -2.08
           },
           "Stock Market Index": 114924.2109,
           "FX Rate": 16.8775
@@ -40186,19 +40186,19 @@
       },
       "stories": {
         "beginner": [
-          "South Africa's central bank chose to wait instead of cut. In March, Governor Kganyago held rates at 6.75 percent and warned that risks are too high to move. He is right to be cautious, because inflation across sub-Saharan Africa is about to jump.",
-          "The region's inflation will jump from 3.4 percent in 2025 to 5 percent in 2026, driven by oil and fertilizer prices. South Africa sits in the middle of sub-Saharan Africa, so those shocks will hit the country hard even though February's CPI looked calm at 2.96 percent.",
-          "South Africa has a hidden inflation time bomb: unemployment at 31.88 percent. When inflation arrives and the bank has to tighten, that jobless rate will spike even higher. The bank is right to stay on pause and let other countries move first."
+          "South Africa's central bank held interest rates flat in March, worried about dangers ahead. The governor explicitly warned of elevated risks, signaling no relief for borrowers yet.",
+          "Unemployment in South Africa sits at a crushing 31.88%, nearly one in three workers without jobs. This structural crisis persists despite rate holds, suggesting monetary policy alone cannot fix the problem.",
+          "Inflation across sub-Saharan Africa is climbing due to oil prices and fertilizer costs squeezing farmers and manufacturers. South Africa sits on the edge of that squeeze, with February CPI at 2.96% still contained but vulnerable to external shocks."
         ],
         "moderate": [
-          "Kganyago's caution in March was vindicated by regional inflation forecasts released the same week. Sub-Saharan Africa's median inflation rises from 3.4 to 5 percent in 2026, driven by energy and fertilizer prices from geopolitical shocks. South Africa's 2.96 percent February CPI is a temporary reprieve, not a trend. The bank will have to tighten eventually, but holding at 6.75 percent in March gave it room to assess.",
-          "South Africa's unemployment crisis makes tightening politically explosive. At 31.88 percent, joblessness is already devastating. If the bank raises rates while regional inflation accelerates, unemployment will worsen before any demand-side relief arrives. Holding steady buys time to see if commodity shocks fade or if they force a hand.",
-          "The current account deficit of -1.4 percent GDP and rising borrowing costs across emerging markets add pressure. South Africa cannot tighten aggressively without attracting expensive foreign capital. The pause at 6.75 percent reflects not confidence in the inflation outlook, but recognition that the economy cannot absorb a shock."
+          "The SARB's March hold contradicts the full-year forecast of 6.25%, implying rates stay elevated longer than consensus expected. Kganyago's cautious language reflects fears that external commodity shocks (oil, fertilizer) could reignite inflation faster than the bank can respond.",
+          "Sub-Saharan Africa median inflation is rising from 3.4% in 2025 to 5% in 2026 due to energy and commodity prices, yet South Africa's February CPI at 2.96% sits well below both its own forecast (3.5%) and regional trajectory. This lag may reflect domestic demand weakness offsetting external price pressures.",
+          "Unemployment at 31.88% is a structural trap: it prevents the central bank from easing even if inflation moderates, because jobless demand cannot generate the employment multipliers from rate cuts. The forecast 1.5% growth cannot absorb this cohort."
         ],
         "expert": [
-          "Kganyago's March hold and cautionary tone preceded a stark regional inflation upgrade. Sub-Saharan Africa's median inflation forecast rose to 5 percent for 2026 (from 3.4 percent in 2025), with oil and fertilizer prices as the primary drivers. South Africa's February CPI at 2.96 percent, well inside the 3-6 percent band, masks incoming cost pressures. The 6.75 percent policy rate implies 3-4 percent real rates, adequate for now but vulnerable if inflation accelerates toward the 3.5 percent full-year forecast.",
-          "Unemployment at 31.88 percent is the binding constraint on policy. The 1.5 percent growth forecast means joblessness will persist at elevated levels. If the bank raises rates into a regional inflation spike, unemployment rises further before any deflationary effect accrues. The pause preserves optionality and signals deference to global commodity cycles rather than domestic demand.",
-          "Watch the April-May CPI prints and any central bank communications from Nigeria or Kenya. If sub-Saharan Africa's median inflation reaches 5 percent by Q2, South Africa's policy rate gap versus regional peers will force Kganyago's hand. Current account at -1.4 percent GDP offers limited buffer for rand weakness if tightening lags peers."
+          "Policy rate held at 6.75% in February versus forecast 6.25%, with March guidance signaling continued caution. The hold suggests the SARB sees downside inflation risks from demand weakness offsetting upside from commodity prices, keeping rates on hold through at least Q2.",
+          "February CPI at 2.96% versus forecast 3.5% and sub-Saharan median rising to 5% indicates South Africa's demand weakness is suppressing headline inflation despite external commodity shocks. This creates a policy trap: easing risks currency depreciation and import-price pass-through, but holding risks deepening unemployment at 31.88%.",
+          "Forward signal: if March or April CPI drifts toward 3.5% forecast, the SARB likely cuts 25 basis points in May. If it stays below 3%, the bank holds through mid-year, betting that demand remains too weak to sustain inflation despite external pressures."
         ]
       },
       "fxRegime": {
@@ -41380,7 +41380,7 @@
             120045.7,
             128455.7,
             113320.44,
-            113865.92
+            115198.83
           ],
           "type": "line",
           "indexLabel": true,
@@ -41689,7 +41689,7 @@
             15.72,
             15.92,
             17.1,
-            16.72
+            16.77
           ],
           "type": "line",
           "startDate": "2003-12"
@@ -43030,24 +43030,24 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "+16.2%",
+            "value": "+15.1%",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
-                "Brazil's stock market jumped 16.2% since January, riding a wave of energy export gains as global oil and gas prices stayed elevated.",
-                "Energy companies dominate Brazil's index, so when commodity prices rise, the whole market tends to follow them upward.",
-                "The central bank's rate cuts in March made borrowing cheaper for companies, which helped push stocks higher alongside the energy boost."
+                "Brazilian stocks jumped 15.1% in the first four months of 2026 because energy prices are surging and the central bank cut interest rates in March.",
+                "This rally is happening even though economists warn growth will slow next year, which means investors are betting on today's energy windfall more than they fear tomorrow's headwinds.",
+                "The real test comes in late 2026 when inflation pressures start to bite and the central bank may have to pause or reverse those rate cuts."
               ],
               "moderate": [
-                "The 16.2% rally reflects Brazil's structural advantage as a net energy exporter capturing higher global prices in 2026, a tailwind that reverses when financial conditions tighten next year.",
-                "This outperformance sits well ahead of regional peers partly because the IMF upgraded Brazil's 2026 growth forecast to 1.9 percent, signaling confidence in the commodity-export story.",
-                "Rate cuts deployed through March provided cyclical support, but the gain masks a real question: how much of this rally survives when the energy price cycle rolls over in 2027."
+                "The 15.1% gain reflects a three-part tailwind: energy export revenues climbing as global oil prices rise, the IMF raising Brazil's 2026 growth forecast to 1.9%, and aggressive rate cuts by the central bank signaling confidence in the inflation outlook.",
+                "Brazil's stock market outperformance versus emerging market peers traces directly to its net energy exporter status, a structural advantage most EM peers lack as commodity prices rally.",
+                "The market is frontrunning the monetary pivot (rate cuts already in play), which means rallies typically decelerate once central banks exhaust their cutting cycle or inflation forces a reversal."
               ],
               "expert": [
-                "The 16.2% YTD gain correlates directly with energy price strength and the central bank's March rate-cut cycle, both conditions that IMF forecasts show reversing through 2027 as financial conditions tighten.",
-                "Brazil's equity risk premium compressed as the growth upgrade to 1.9 percent lifted real-rate expectations, but this math inverts when energy exports face structural headwinds next year.",
-                "Watch the energy sector's earnings revisions through Q2 2026, as consensus may not yet price in the 2027 demand slowdown flagged by the IMF, exposing downside risk to the current valuation."
+                "The 15.1% BRL-denominated rally through April 30 captured the entire reflation trade: energy prices lifting export revenues, the central bank's March rate cut signaling accommodation, and the IMF upgrade to 1.9% growth anchoring risk appetite.",
+                "Energy exporters typically lead in commodity rallies but fade as external tightening (USD strength, global rate hikes) offsets commodity gains; Brazil's advantage persists only as long as energy prices remain elevated and the central bank prioritizes growth over inflation control.",
+                "Watch for the May inflation print (CPI, core) as the critical inflection point: any acceleration to 5%+ CPI will force the central bank to halt cuts mid-cycle and compress multiples, erasing 300-500 basis points of year-to-date gains within two quarters."
               ]
             },
             "spark": [
@@ -43368,8 +43368,8 @@
               177653.31
             ],
             "value_at_generation": "+9.8%",
-            "story_last_updated": "2026-04-29",
-            "story_value_snapshot": "+16.2%"
+            "story_last_updated": "2026-04-30",
+            "story_value_snapshot": "+15.1%"
           },
           "10Y Bond Yield": {
             "value": "13.80%",
@@ -43424,9 +43424,9 @@
             "story_value_snapshot": "-140bps"
           },
           "USD/BRL": {
-            "value": "5.00",
+            "value": "5.01",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
                 "The Brazilian real is trading at 5.00 per US dollar, which is stronger than it was a few months ago, meaning the real has appreciated and the government is winning its currency defense battle.",
@@ -43701,29 +43701,29 @@
             "story_value_snapshot": "5.00"
           },
           "Stock Market YTD (USD)": {
-            "value": 28.24,
-            "last_updated": "2026-04-29",
+            "value": 26.68,
+            "last_updated": "2026-04-30",
             "tier": "daily",
             "story": {
               "beginner": [
-                "In US dollar terms, Brazil's stock market delivered a 28.24% gain year to date, beating the local currency return because the Brazilian real also strengthened against the dollar.",
-                "Higher commodity prices and the rate-cut cycle made Brazil look safer to foreign investors, drawing in dollars that pushed the currency higher alongside stocks.",
-                "Any US dollar investor in Brazil stocks pocketed both the market rally and currency appreciation, a double win that won't last if energy prices or growth expectations fade."
+                "When you convert the 15.1% Brazilian stock gain into US dollars, you get a 26.68% return, because the real currency strengthened alongside the rally.",
+                "Dollar-based investors got an extra bonus: not only did Brazilian stocks rise, but the Brazilian real appreciated, which means you made money on both the stocks and the currency bet.",
+                "That currency boost won't last forever; when inflation picks up next year and the central bank stops cutting rates, the real could weaken and erase some of those dollar gains."
               ],
               "moderate": [
-                "The 28.24% USD return exceeds the 16.2% local return by roughly 12 percentage points, reflecting real strength driven by carry-trade inflows and energy-export optimism that lifted the currency through April 2026.",
-                "This dual tailwind (equity gains plus real appreciation) mirrors 2024 patterns when commodity supercycles boosted both asset prices and currency, but historical reversals suggest the real is most vulnerable when central banks elsewhere raise rates.",
-                "The IMF's 2027 tightening forecast signals that dollar-strength could reverse course as capital flows turn, meaning foreign investors may face a headwind to repatriation even if equity gains hold."
+                "The 26.68% USD return exceeds the 15.1% BRL return by 1,158 basis points, signaling significant real currency appreciation driven by carry flows (investors borrowing cheap dollars to buy higher-yielding Brazilian assets) and the central bank rate cut cycle attracting inflows.",
+                "This currency tailwind is typical of commodity booms in EM, where rising commodity revenues strengthen the currency and amplify equity returns for USD investors, but the dynamic reverses sharply once the central bank pivots back to tightening.",
+                "Real weakness will compress USD returns from 26.68% to closer to the underlying 15% once inflation forces rate hikes in H2 2026, so USD investors are frontrunning a currency correction that offsets equity gains."
               ],
               "expert": [
-                "The 28.24% USD return reflects 16.2% equity appreciation plus approximately 10.4% real appreciation, with the currency move driven by positive carry spreads and energy-export flows that the IMF expects to decelerate in 2027.",
-                "Real strength above 5.10 per USD implies forward-looking carry trades are pricing in sustained rate differentials, a bet that faces pressure if the central bank pauses cuts or commodity tailwinds fade faster than consensus assumes.",
-                "Monitor the 12-month forward USD/BRL volatility and fund flows, as a reversal in either could compress the currency tail of returns even if domestic equity fundamentals remain intact, especially if global rates rise ahead of Brazil's 2027 pivot."
+                "The 1,158 basis point gap between BRL (15.1%) and USD (26.68%) returns reflects real appreciation of approximately 11.5% YTD, driven by carry unwind reversal (short-USD positions covering as risk appetite surges) and the central bank's March rate cut attracting hot inflows into fixed income.",
+                "Real strength persists only as long as the central bank maintains its rate-cutting bias and energy prices sustain elevated levels; the IMF's guidance on 2027 slowdown plus stated tightening pressures signal a peak in real strength likely by Q3 2026.",
+                "Monitor USD/BRL technicals for a break above 5.20 (current spot approximately 5.05) as the structural reversal signal; once inflation forces a 75-100 basis point rate hike cycle in late 2026, USD returns compress to 8-10% annualized as the currency erodes 400-600 basis points of the carry advantage."
               ]
             },
             "value_at_generation": 13.88,
-            "story_last_updated": "2026-04-29",
-            "story_value_snapshot": 28.24
+            "story_last_updated": "2026-04-30",
+            "story_value_snapshot": 26.68
           },
           "Stock Market Index": 177653.3125,
           "FX Rate": 5.3019
@@ -43731,19 +43731,19 @@
       },
       "stories": {
         "beginner": [
-          "Brazil is the only big emerging market winning from the Middle East conflict right now. Higher oil prices boost Brazil's exports and government revenues, so the IMF upgraded growth to 1.9 percent for 2026. The central bank cut rates in March because the country has energy wealth, not energy need.",
-          "Brazil's inflation at 3.81 percent in February is well behaved, and the bank is cutting rates from 15 percent toward the 12 percent forecast. That pace of easing is aggressive, which works only because Brazil exports energy instead of importing it. Oil revenues offset the risk of demand-side inflation.",
-          "The free pass will end in 2027. Financial conditions will tighten as the energy windfall fades and the world stabilizes, putting pressure on growth and forcing the bank to pause or reverse course. For now, Brazil gets to ease while peers struggle."
+          "Brazil's central bank cut interest rates in March, bringing them down from the punishing 15% level. The country is taking advantage of higher oil prices to ease pressure on borrowers.",
+          "As an oil exporter, Brazil makes money when energy prices spike. This windfall is cushioning the economy from the global slowdown, allowing growth to tick up to 1.9% instead of stalling.",
+          "Inflation at 3.81% is still rising, but the central bank is cutting anyway because the government needs cheaper borrowing costs to manage debt. This bet works only if oil stays high and inflation doesn't spike further."
         ],
         "moderate": [
-          "Brazil's energy exporter status created a rare win in 2026. The IMF upgraded growth to 1.9 percent, explicitly citing benefits from higher energy prices. The central bank cut rates in March to 15 percent (from higher levels), taking advantage of the export revenue boost. Compare this to India, which faces headwinds from the same shock.",
-          "February's CPI at 3.81 percent and the rate cut signal confidence that energy windfall revenues can sustain demand without inflation. The 4.2 percent full-year inflation forecast anchors expectations. However, this is a temporary advantage. The IMF notes slowdown in 2027 as financial conditions tighten globally, meaning the window for aggressive easing is narrow.",
-          "Watch the external balance sheet. Current account deficit at -2.6 percent GDP means Brazil is still importing capital despite energy export gains. If rate cuts accelerate demand faster than oil revenues offset it, the current account will widen and the real will weaken. The bank has room to cut, but not indefinitely."
+          "Brazil's central bank cut rates in March despite inflation at 3.81% (forecast 4.2%), signaling confidence that energy export revenues will stabilize prices. The 15% rate in February versus forecast 12% shows the bank had over-tightened and now unwinds aggressively.",
+          "The IMF upgraded Brazil's 2026 growth to 1.9% from prior expectations, mainly because oil export revenues shield the economy from external demand collapse. This is a geopolitical windfall tied to Middle East conflict, not domestic reform.",
+          "The forecast warns of tightening financial conditions and inflation reacceleration in 2027 as oil prices normalize and rate cuts work through the demand side. Unemployment at 5.8% remains low, so demand pressure could reignite inflation."
         ],
         "expert": [
-          "Brazil's energy export advantage produced the only positive IMF upgrade in the emerging market complex. Growth forecast rose to 1.9 percent for 2026, explicitly attributed to higher oil prices. The central bank cut to 15 percent in March, with the 12 percent full-year forecast implying 300 basis points of additional easing. February CPI at 3.81 percent provides cover for this pace because export revenues buttress the current account against demand-side inflation.",
-          "The easing cycle is front-loaded and will hit terminal rate before 2027. The IMF forecast shows slowdown next year as financial conditions tighten globally and energy prices normalize. The 6.5 percent unemployment forecast masks that growth is already sluggish (1.7 percent forecast). Rate cuts now are opportunistic, not structural.",
-          "Current account at -2.6 percent GDP is the constraint on further easing. Brazil is still a net capital importer despite energy export gains. If the central bank cuts rates too aggressively or energy prices fade before mid-2026, the real weakens and import costs spike. Monitor June-September oil prices and Q2 current account readings for evidence of slowing external improvement."
+          "Policy rate at 15.0% in February versus forecast 12% shows the central bank had front-loaded tightening in 2025. March cuts signal a pivot based on oil export revenues (Brazil is a net energy exporter) offsetting external demand weakness, justifying the IMF's 1.9% upgrade from prior 1.7% consensus.",
+          "CPI at 3.81% February versus forecast 4.2% implies current account relief from higher energy prices is suppressing headline inflation despite accommodative cuts. Current account deficit forecast at 2.6% of GDP is manageable with petrodollar inflows.",
+          "Watch April or May CPI prints for signs of demand acceleration from rate cuts. If inflation ticks above 4%, the central bank will pause cuts and risk 2027 rebound to 5%+ as oil prices revert and lagged demand effects materialize. Budget deficit at 6.7% of GDP leaves no room for policy error."
         ]
       },
       "fxRegime": {
@@ -45066,7 +45066,7 @@
             181364.0,
             188787.0,
             182514.0,
-            186563.62
+            184750.0
           ],
           "type": "line",
           "indexLabel": true,
@@ -45375,7 +45375,7 @@
             5.19,
             5.14,
             5.25,
-            5.0
+            5.01
           ],
           "type": "line",
           "startDate": "2003-12"
@@ -46396,24 +46396,24 @@
         },
         "market": {
           "Stock Market YTD": {
-            "value": "-2.2%",
+            "value": "-4.3%",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
-                "Russian stocks fell 2.2% this year because investors worry about sanctions and geopolitical risk more than they cheer for higher oil prices.",
-                "The market is stuck between two forces: energy companies profit when oil climbs, but Western restrictions keep foreign money out.",
-                "Watch whether the central bank's rate cuts spark domestic buying, or if capital controls keep the market pinned down."
+                "Russian stocks fell 4.3% this year even as oil money pours in, suggesting investors worry about sanctions and capital controls more than they trust the energy windfall.",
+                "The central bank cut rates in March to boost borrowing and spending, but the stock market kept sliding, meaning cheap money alone cannot overcome foreign investor nervousness.",
+                "Watch whether rate cuts continue through May and June, because if the central bank keeps easing while stocks keep falling, it signals investors see structural damage the bank cannot fix."
               ],
               "moderate": [
-                "The MOEX index lost 2.2% YTD despite oil prices near $80-90 per barrel, a pattern that mirrors 2022-2023 when sanctions fractured the market into domestic-only trading.",
-                "Energy stocks (Gazprom, Rosneft, Surgutneftegaz) carry the index but face frozen Western access, so gains stay locked inside Russia's closed financial system.",
-                "Central bank rate cuts in March signal confidence in ruble stability from energy revenues, yet foreign fund flows remain negative and will remain so until sanctions ease."
+                "Russian stocks down 4.3% YTD despite OPEC+ support for oil prices above $80 per barrel, a stark contrast to 2022 when sanctions cratered equities but energy revenues cushioned the blow.",
+                "The March rate cuts reflect the central bank's confidence in oil revenue stability, yet the stock decline shows foreign investors remain locked out by capital controls and remain unconvinced domestic demand will replace lost Western trade.",
+                "Compare this to Saudi Arabia's exchange, which gained ground in 2026 on similar oil tailwinds but without the same geopolitical discount, revealing how much Russia's equity risk premium exceeds its peers."
               ],
               "expert": [
-                "MOEX down 2.2% YTD despite Brent crude averaging 82-86 USD per barrel reflects a structural disconnect: oil revenues support the ruble (RUB appreciation is real) but equity valuations reprice downward as long-term growth prospects deteriorate under sanctions.",
-                "Domestic retail participation and state-owned enterprise stabilization buys offset selling pressure, keeping losses shallow rather than triggering a rout.",
-                "Watch for a threshold event: if Western sanctions ease or if oil breaks above 95 USD per barrel sustainably, foreign repatriation could unlock a 15-25% rally, but absent that signal expect range-bound trading in 2026-2027."
+                "RTS Index down 4.3% YTD (ruble terms) as of April 30 despite Brent crude averaging $85+ through Q2, indicating the oil price floor supports fiscal revenues but not equity risk appetite given capital account uncertainty.",
+                "Rate cuts from 16% in January to 14% in March failed to arrest the decline, signaling that monetary accommodation addresses liquidity for domestic savers, not the foreign investment drought that weighs on valuations.",
+                "Monitor June PMI data and June rate decision: if manufacturing remains below 50 and the central bank pauses cuts, the equity market faces a new test of whether domestic demand survives higher real rates, which would reset the fair value anchor downward."
               ]
             },
             "spark": [
@@ -46555,8 +46555,8 @@
               3215.91
             ],
             "value_at_generation": "+3.9%",
-            "story_last_updated": "2026-04-29",
-            "story_value_snapshot": "-2.2%"
+            "story_last_updated": "2026-04-30",
+            "story_value_snapshot": "-4.3%"
           },
           "10Y Bond Yield": {
             "value": "13.5%",
@@ -46611,9 +46611,9 @@
             "story_value_snapshot": "-140bps"
           },
           "USD/RUB": {
-            "value": "75.0",
+            "value": "74.8",
             "tier": "daily",
-            "last_updated": "2026-04-29",
+            "last_updated": "2026-04-30",
             "story": {
               "beginner": [
                 "The ruble is trading at 75.6 to the US dollar, which means it takes about 75 rubles to buy one dollar.",
@@ -46903,29 +46903,29 @@
             "story_value_snapshot": "75.6"
           },
           "Stock Market YTD (USD)": {
-            "value": 2.96,
-            "last_updated": "2026-04-29",
+            "value": 1.02,
+            "last_updated": "2026-04-30",
             "tier": "daily",
             "story": {
               "beginner": [
-                "In US dollar terms Russian stocks gained 2.96% this year because the ruble got stronger, even though the index itself fell in ruble terms.",
-                "A weaker dollar helps Russian exporters and makes their stocks look better when converted to USD, masking the real weakness in the market.",
-                "The ruble strength from oil revenues is real, but it cannot hide the fact that Russia's stock market is not attracting new money."
+                "When you convert Russian stocks to dollars, they gained 1.02%, which means the ruble strengthened enough to offset the local stock decline and deliver a tiny gain for foreign holders.",
+                "Oil money flowing into Russia pushed the ruble higher against the dollar, a dynamic that helps dollar-based investors even when the stock market itself stumbles.",
+                "If the ruble weakens later in the year, that USD gain could vanish fast, so watch the oil price and central bank reserves to see if the currency strength holds."
               ],
               "moderate": [
-                "MOEX down 2.2% in RUB but up 2.96% in USD reflects the ruble's appreciation from 93 to roughly 88-90 per USD, a move driven by energy export flows and capital controls that trap foreign earnings inside Russia.",
-                "This currency tailwind is a one-time gift: it masks fundamental equity weakness but cannot reverse the flight of foreign institutional capital, which remains the bigger story.",
-                "If oil prices fall or the ruble reverses, the USD-denominated return flips negative fast, exposing that domestic buyers alone cannot sustain the market."
+                "RTS Index in USD terms returned 1.02% YTD despite a 4.3% ruble-denominated loss, a clean example of how currency appreciation (roughly 5% ruble strength) masks underlying equity weakness for foreign investors.",
+                "Oil export inflows have supported the ruble even as capital controls lock in domestic savers, creating a two-tier market where the currency rallies but stocks stagnate because real money cannot rotate into equities.",
+                "Compare to 2022, when oil revenues and a similar ruble rally produced much sharper USD gains for foreign equity holders, showing that today's currency support comes without the equity rebound that accompanied post-sanctions normalization."
               ],
               "expert": [
-                "MOEX returned 2.96% in USD YTD despite a 220 bp ruble loss, driven by RUB appreciation of approximately 4-5% (93.5 to 88.8 per USD) as current account surplus from 82 USD per barrel Brent overwhelmed capital outflow pressure.",
-                "The currency tailwind masks a structural equity bear case: P/E compression (estimated 5-6x forward from 8-9x in 2019) and zero foreign flows suggest the market reprices risk, not growth.",
-                "Monitor USD/RUB and Brent crude correlation tightly; if Brent breaks below 75 USD or geopolitical de-escalation unexpectedly eases sanctions, the ruble reverses and USD returns disappear within 2-3 quarters."
+                "RTS in USD terms at 1.02% YTD masks a 4.3% ruble loss and approximately 5.2% ruble appreciation (USD/RUB from 105.5 to ~100), a currency tailwind driven by oil export settlement flows and central bank intervention rather than capital inflows.",
+                "The FX gain entirely offsets equity underperformance for unhedged USD holders, but the ruble strength is vulnerable if Brent crude falls below $75 or if geopolitical escalation triggers capital outflows that overwhelm oil inflows.",
+                "Watch June trade data and central bank FX reserve levels: if reserves decline or oil export volumes shrink without offsetting price gains, the ruble has no cushion and USD returns compress sharply, exposing the 4.3% equity loss to foreign holders in local currency terms."
               ]
             },
             "value_at_generation": 2.33,
-            "story_last_updated": "2026-04-29",
-            "story_value_snapshot": 2.96
+            "story_last_updated": "2026-04-30",
+            "story_value_snapshot": 1.02
           },
           "Stock Market Index": 2871.86,
           "FX Rate": 80.025
@@ -46933,19 +46933,19 @@
       },
       "stories": {
         "beginner": [
-          "Russia is making money on high oil prices despite sanctions and isolation. The country is an energy exporter, so Middle East conflict and supply constraints mean more revenue. The central bank cut rates in March, using the windfall to ease policy while other countries tighten.",
-          "Inflation at 6.01 percent in January is higher than most peers, but the 4.7 percent full-year forecast suggests the bank expects prices to cool. The 15.5 percent policy rate is punishingly high, which is why the cuts matter. Russia can afford to ease because oil sales offset the inflation risk.",
-          "The catch is isolation. Sanctions limit Russia's access to capital, technology, and imports. Energy revenues help the budget, but they do not solve the structural problems. The 1.2 percent growth forecast is evidence that sanctions still matter more than petrodollars."
+          "Russia's central bank cut interest rates in March even though inflation at 6.01% is climbing. The bank is confident because oil revenues are flooding in from higher global prices, giving the government cushion to ease.",
+          "As a major oil exporter benefiting from Middle East tensions, Russia's economy is getting a financial boost while most countries slow down. This windfall funds rate cuts that other central banks cannot afford.",
+          "Unemployment is near zero at 2.15%, showing the labor market is tight. Rate cuts will add demand pressure, but oil money gives the central bank room to take that risk."
         ],
         "moderate": [
-          "Russia's energy exporter status shields it from the regional inflation surge, but only partially. CPI at 6.01 percent in January sits above the 4.7 percent full-year forecast, yet the central bank still cut rates in March alongside Brazil. This signals confidence that oil revenues will prevent inflation from re-accelerating, not that domestic demand is weak.",
-          "The policy rate at 15.5 percent reflects both inflation history (the 2022-2023 shock) and external constraints. Sanctions limit Russia's ability to invest or import capital goods, so real rates do not need to be as high to suppress demand. The bank is cutting into an output gap constrained by geopolitical isolation, not overheating.",
-          "Watch the current account surplus at +2 percent GDP. This is the only major economy with a surplus, reflecting both energy exports and import suppression from sanctions. If oil prices peak and fall through mid-2026, that surplus disappears and the bank loses its policy cushion. The 1.2 percent growth forecast is already weak, and further rate cuts into a sanctions-constrained economy risk inflation reacceleration."
+          "Russia's central bank cut rates in March despite January CPI at 6.01% (forecast 4.7%), a divergence explained entirely by petrodollar windfalls offsetting external isolation. The bank is betting elevated oil revenues persist through 2026, justifying easing even as inflation lags nominal cuts.",
+          "Russia sits among 12 major oil exporters benefiting from the energy price spike tied to Middle East conflict. Unlike most emerging markets, the central bank cut in March while headline inflation exceeds forecast, implicitly assuming energy export revenues stabilize the ruble and domestic price level.",
+          "Policy rate at 15.5% in February versus forecast 12.5% shows the bank had tightened aggressively in 2025, likely to defend the ruble against sanctions-driven capital outflows. March cuts signal confidence that geopolitical petrodollars now stabilize currency and allow demand-side accommodation."
         ],
         "expert": [
-          "Russia's March rate cut was an energy-exporter's privilege, not a normalcy signal. CPI at 6.01 percent in January sits well above the 4.7 percent full-year forecast, implying the bank expects significant disinflation through the year. The 15.5 percent policy rate was cut despite that inflation, because oil revenues bolster the current account (surplus at +2 percent GDP) and offset demand-side risks. This works only if crude prices hold above 80 dollars per barrel.",
-          "Sanctions create an asymmetric constraint on monetary space. Normally, 15.5 percent policy rates suppress demand sufficiently to anchor inflation expectations. Russia's rate cuts into a 6 percent inflation environment reflect the fact that demand is already suppressed by import restrictions and capital controls, not monetary ease. The bank is not loosening to stimulate; it is cutting because the economy cannot grow enough to justify restrictive rates.",
-          "The fragility lies in oil price assumption. Current account surplus is narrow and energy-dependent. If Brent crude falls below 75 dollars per barrel (consistent with stabilization of Middle East tensions), the surplus evaporates by late 2026 and the bank faces a stagflation choice: defend the ruble with higher rates or tolerate depreciation into higher inflation. The 1.2 percent growth forecast offers no escape valve."
+          "Policy rate at 15.5% February versus forecast 12.5%, with cuts underway in March, indicates the central bank has shifted from defensive tightening (2025) to petrodollar-confident easing. January CPI at 6.01% versus forecast 4.7% reflects lagged pass-through from ruble weakness, not demand overheating.",
+          "Current account surplus forecast at 2% of GDP versus 2.6% for Brazil deficit underscores Russia's energy export windfall. Oil revenues stabilize the ruble and allow rate cuts despite inflation running above target, a policy luxury unavailable to non-commodity exporters.",
+          "Forward watch: if Brent crude stays above $80, the central bank can sustain cuts through mid-2026 and hit 12.5% forecast by Q3. If oil reverts below $70, inflation likely re-accelerates as ruble weakens and imports reprice, forcing the bank to pause cuts by Q4 2026."
         ]
       },
       "fxRegime": {
@@ -48298,7 +48298,7 @@
             75.25,
             76.87,
             81.19,
-            75.04
+            74.84
           ],
           "type": "line",
           "startDate": "2003-12"
@@ -49119,7 +49119,7 @@
     }
   },
   "commodities": {
-    "asOf": "Apr 29, 2026",
+    "asOf": "Apr 30, 2026",
     "source": "CME · ICE · COMEX · CBOT · Yahoo Finance",
     "weather": "⛈️",
     "items": [
@@ -49128,8 +49128,8 @@
         "symbol": "CL",
         "cat": "energy",
         "unit": "$/bbl",
-        "price": 105.39,
-        "change": 6.2,
+        "price": 106.49,
+        "change": 1.0,
         "spark": [
           33.1,
           30.86,
@@ -49439,7 +49439,7 @@
           65.21,
           67.02,
           101.94,
-          105.39
+          106.49
         ],
         "annual": [
           79.61,
@@ -49606,8 +49606,8 @@
         "symbol": "BZ",
         "cat": "energy",
         "unit": "$/bbl",
-        "price": 109.73,
-        "change": 5.2,
+        "price": 103.24,
+        "change": -5.9,
         "spark": [
           25.3,
           35.08,
@@ -49918,7 +49918,7 @@
           70.69,
           72.48,
           106.28,
-          109.73
+          103.24
         ],
         "annual": [
           79.5,
@@ -49943,23 +49943,23 @@
         "_note": "Update price and change daily; spark array: drop first, append new close",
         "story": {
           "beginner": [
-            "Brent crude at $109.73 per barrel signals continued global oil tightness, especially for European and Asian refineries buying seaborne barrels.",
-            "Diesel and heating fuel prices in Europe track Brent closely, so winter heating bills and truck transport costs stay elevated.",
-            "Your imported goods from Asia and goods shipped through Suez all carry the cost of Brent oil baked into their price."
+            "Brent crude trades at $103.24 per barrel, down about 6% from a year ago.",
+            "Cheaper oil means gas prices at the pump stay lower than they would otherwise.",
+            "Your household energy costs remain moderate, keeping monthly fuel and heating bills manageable for now."
           ],
           "moderate": [
-            "Brent sits at $109.73, up 5.2% year-over-year and holding a $4 to $5 premium to WTI due to arbitrage dynamics.",
-            "Russian export disruptions and North Sea production declines push Brent higher than US crude, tightening supply for non-American refiners.",
-            "This Brent-WTI spread inflates fuel costs for European consumers and manufacturers, adding to inflation pressures outside the United States."
+            "Brent sits at $103.24, roughly 8% below its January 2026 peak of $112.50 per barrel.",
+            "Middle East tensions and OPEC supply cuts prop up prices, offsetting global demand softness from slower economic growth.",
+            "Airlines and shipping companies lock in fuel surcharges below peak levels, easing margin pressure on transport stocks."
           ],
           "expert": [
-            "Brent at $109.73 supported by tight North Sea maintenance schedules and Russian Urals displacement into Asia creating structural supply tightness.",
-            "The four-dollar Brent-WTI spread reflects full trans-Atlantic arbitrage being captured, with Suez Canal risk and EU sanctions on Russian barrels binding.",
-            "Watch for Libya production restarts or a North Sea early maintenance completion; either could collapse the spread to $1 to $2 and drag Brent toward $102."
+            "Brent at $103.24 trades in range-bound consolidation with weak downside momentum, supported by geopolitical risk premium in Middle East.",
+            "Supply tightness from Saudi voluntary cuts and Iran sanctions counterbalance demand headwinds from Chinese economic slowdown and G10 manufacturing contraction.",
+            "Recession risk in developed markets could breach $95 support, while escalation in Red Sea shipping disruptions could spike prices above $115 within weeks."
           ]
         },
-        "storyWrittenAtPrice": 109.73,
-        "storyUpdatedDate": "2026-04-29",
+        "storyWrittenAtPrice": 103.24,
+        "storyUpdatedDate": "2026-04-30",
         "_frozen_historical": {
           "v": [
             66.78,
@@ -50085,8 +50085,8 @@
         "symbol": "NG",
         "cat": "energy",
         "unit": "$/mmBtu",
-        "price": 2.65,
-        "change": -2.2,
+        "price": 2.63,
+        "change": -0.8,
         "spark": [
           4.78,
           5.2,
@@ -50396,7 +50396,7 @@
           4.354,
           2.859,
           2.82,
-          2.65
+          2.63
         ],
         "annual": [
           4.39,
@@ -50563,8 +50563,8 @@
         "symbol": "GC",
         "cat": "metals",
         "unit": "$/oz",
-        "price": 4551.0,
-        "change": -1.9,
+        "price": 4637.2,
+        "change": 1.9,
         "spark": [
           278.3,
           273.6,
@@ -50874,7 +50874,7 @@
           4713.9,
           5230.5,
           4601.5,
-          4551.0
+          4637.2
         ],
         "annual": [
           1224.53,
@@ -51041,8 +51041,8 @@
         "symbol": "SI",
         "cat": "metals",
         "unit": "$/oz",
-        "price": 72.04,
-        "change": -2.4,
+        "price": 73.94,
+        "change": 2.6,
         "spark": [
           5.003,
           4.899,
@@ -51352,7 +51352,7 @@
           78.29,
           92.682,
           73.46,
-          72.04
+          73.94
         ],
         "annual": [
           20.19,
@@ -51519,8 +51519,8 @@
         "symbol": "HG",
         "cat": "metals",
         "unit": "$/lb",
-        "price": 5.95,
-        "change": -1.3,
+        "price": 5.99,
+        "change": 0.7,
         "spark": [
           0.885,
           0.915,
@@ -51830,7 +51830,7 @@
           5.897,
           6.004,
           5.52,
-          5.95
+          5.99
         ],
         "annual": [
           3.42,
@@ -51997,8 +51997,8 @@
         "symbol": "ZW",
         "cat": "agriculture",
         "unit": "¢/bu",
-        "price": 664.75,
-        "change": 3.7,
+        "price": 645.25,
+        "change": -2.9,
         "spark": [
           246.0,
           251.0,
@@ -52309,7 +52309,7 @@
           538.0,
           591.25,
           608.5,
-          664.75
+          645.25
         ],
         "annual": [
           597,
@@ -52476,8 +52476,8 @@
         "symbol": "ZC",
         "cat": "agriculture",
         "unit": "¢/bu",
-        "price": 477.0,
-        "change": 1.0,
+        "price": 474.75,
+        "change": -0.5,
         "spark": [
           180.25,
           182.0,
@@ -52788,7 +52788,7 @@
           428.25,
           438.75,
           455.0,
-          477.0
+          474.75
         ],
         "annual": [
           396,
@@ -52955,8 +52955,8 @@
         "symbol": "ZS",
         "cat": "agriculture",
         "unit": "¢/bu",
-        "price": 1196.5,
-        "change": 0.5,
+        "price": 1195.75,
+        "change": -0.1,
         "spark": [
           499.0,
           455.25,
@@ -53265,7 +53265,7 @@
           1064.25,
           1157.25,
           1161.75,
-          1196.5
+          1195.75
         ],
         "annual": [
           989,
@@ -53462,97 +53462,97 @@
   "globalStories": {
     "beginner": [
       {
-        "icon": "🎯",
-        "label": "Powell's Final Fed Meeting",
-        "source": "Kiplinger",
-        "bullets": [
-          "Fed Chair Jerome Powell holds his last meeting today as his term ends next month",
-          "Interest rates will stay at 3.5% to 3.75% as expected",
-          "Kevin Warsh will likely take over as the new Fed Chair in June"
-        ]
-      },
-      {
         "icon": "🛢️",
-        "label": "Oil Crisis Deepens",
-        "source": "CNN Business",
-        "bullets": [
-          "Oil prices hit $107 per barrel as Iran blocks shipping lanes",
-          "Gas prices are up 27% since the war started two months ago",
-          "Peace talks between the US and Iran collapsed over the weekend"
-        ]
-      },
-      {
-        "icon": "🔗",
-        "label": "Energy War Meets Money Policy",
+        "label": "Oil Crisis Grips Global Economy",
         "source": "CNBC",
         "bullets": [
-          "High oil prices are keeping inflation above the Fed's 2% target",
-          "The Fed can't cut rates while energy costs keep rising",
-          "This creates a tough situation for the economy going forward"
+          "Oil prices hit highest levels in years as the US blockade of Iran continues choking off global energy supplies",
+          "The war has blocked 80% of oil flows through the critical Strait of Hormuz shipping route",
+          "Energy costs are pushing up prices for everything from gas to food across the world"
+        ]
+      },
+      {
+        "icon": "📈",
+        "label": "Markets Split on War Response",
+        "source": "Financial Times",
+        "bullets": [
+          "US stocks stayed near record highs despite the Middle East crisis as tech companies report strong earnings",
+          "Asian markets fell sharply as oil prices jumped, showing the global economic strain",
+          "Currency markets are favoring the dollar as investors seek safety during the conflict"
+        ]
+      },
+      {
+        "icon": "🎯",
+        "label": "Federal Reserve Stays Cautious",
+        "source": "CBS News",
+        "bullets": [
+          "The Fed kept interest rates unchanged as energy price inflation threatens the economy",
+          "Officials worry that cutting rates now could make rising prices even worse",
+          "The central bank is caught between helping growth and controlling inflation from the oil shock"
         ]
       }
     ],
     "moderate": [
       {
-        "icon": "🎯",
-        "label": "Powell's Final Fed Meeting",
-        "source": "Kiplinger",
-        "bullets": [
-          "Powell's final FOMC meeting caps a contentious relationship with Trump who threatened to fire him",
-          "Markets price 100% probability of holding rates at 3.5-3.75% due to persistent inflation pressures",
-          "Justice Department ended its criminal investigation, clearing path for Warsh confirmation"
-        ]
-      },
-      {
         "icon": "🛢️",
-        "label": "Oil Crisis Deepens",
-        "source": "CNN Business",
-        "bullets": [
-          "Brent crude surged 55% since the Iran war began, with Strait of Hormuz effectively closed to 20% of global oil trade",
-          "Goldman Sachs raised oil forecasts to $90 by late 2026 as disruptions prove more persistent than expected",
-          "Failed Pakistan talks highlight ongoing stalemate between US and Iranian negotiators"
-        ]
-      },
-      {
-        "icon": "🔗",
-        "label": "Energy War Meets Money Policy",
+        "label": "Oil Crisis Grips Global Economy",
         "source": "CNBC",
         "bullets": [
-          "Energy crisis represents largest oil supply shock in history according to International Energy Agency",
-          "Fed faces dual pressure from sticky inflation above 2% target and potential economic slowdown from high energy costs",
-          "Policy transition to Warsh occurs amid unprecedented energy security challenge requiring delicate balance"
+          "Brent crude hit four-year highs above $126 as Trump rejected Iran's proposal to reopen the Strait of Hormuz until nuclear talks progress",
+          "The blockade has reduced exports through the strait to just 4% of normal levels, creating the largest supply disruption in oil market history",
+          "Goldman Sachs now expects prices to stay elevated longer, raising Brent forecasts to $90 by late 2026 from $80 previously"
+        ]
+      },
+      {
+        "icon": "📈",
+        "label": "Markets Split on War Response",
+        "source": "Financial Times",
+        "bullets": [
+          "US markets logged their best month since 2020 with the S&P 500 up 9.3% in April, driven by AI earnings optimism despite geopolitical risks",
+          "South Korea's Kospi surged 31% this month, its strongest gain since 1998, as semiconductor stocks soared on AI demand",
+          "European markets face deeper pressure as gas storage sits at just 30% capacity after harsh winter conditions"
+        ]
+      },
+      {
+        "icon": "🎯",
+        "label": "Federal Reserve Stays Cautious",
+        "source": "CBS News",
+        "bullets": [
+          "The Fed held rates at 3.5-3.75% with a rare 8-4 vote showing unusual division among officials about future policy direction",
+          "Jerome Powell announced he'll stay on as a governor to defend Fed independence, blocking Trump from another appointment",
+          "Kevin Warsh's confirmation as next Fed chair faces the challenge of building consensus amid the most dissent since 1992"
         ]
       }
     ],
     "expert": [
       {
-        "icon": "🎯",
-        "label": "Powell's Final Fed Meeting",
-        "source": "Kiplinger",
-        "bullets": [
-          "FOMC holds at 3.50-3.75% with 100% market pricing as Powell's tenure ends May 15 amid leadership transition uncertainty",
-          "Senate Banking Committee advanced Warsh nomination 13-11 along party lines after DOJ closed criminal probe Friday",
-          "Powell may signal board continuation through January 2028 governor term, unprecedented since 1948"
-        ]
-      },
-      {
         "icon": "🛢️",
-        "label": "Oil Crisis Deepens",
-        "source": "CNN Business",
+        "label": "Oil Crisis Grips Global Economy",
+        "source": "IEA",
         "bullets": [
-          "Brent at $107 after 55% surge from $72 pre-war as Hormuz flows drop to 3.8 mb/d from 20+ mb/d normal capacity",
-          "Goldman revises Brent forecast to $90 from $80 on delayed normalization now expected end-June versus earlier timeline",
-          "Global inventory draws at record 11-12 mb/d pace in April with alternative export routes capped at 7.2 mb/d"
+          "WTI and Brent crude up 60% since the blockade began, with inventories drawing at record 11-12mb/d pace as Hormuz flows fell to 3.8mb/d from 20mb/d pre-crisis",
+          "Supply destruction spreading beyond energy: global oil demand contracted 80kb/d in Q1 with a forecast 1.5mb/d Q2 decline, the sharpest since COVID-19",
+          "Secondary effects materializing in European gas markets (TTF doubled to €60/MWh) and food commodity chains as fertilizer production costs surge"
         ]
       },
       {
-        "icon": "🔗",
-        "label": "Energy War Meets Money Policy",
-        "source": "CNBC",
+        "icon": "📈",
+        "label": "Markets Split on War Response",
+        "source": "BlackRock",
         "bullets": [
-          "Energy shock drives 24% price surge threatening to entrench inflation above Fed's 2% target through 2026",
-          "Warsh's preference for trimmed inflation averages may lower action threshold versus current core PCE measures",
-          "Policy divergence risk as ECB holds 2.15% today while Fed maintains pause amid largest energy crisis in history"
+          "Equity resilience reflects 90% of S&P 500 Q1 earnings beats with 13% YoY EPS growth, but bond market diversification failing as 10-year Treasuries stayed elevated at 4.32%",
+          "Regional divergence widening: US tech momentum versus EM vulnerability, with IMF cutting global growth to 3.1% in 2026 from 3.2% previously",
+          "Corporate credit spreads rising 50-100bp across regions as energy-intensive industrials face margin compression from input cost inflation"
+        ]
+      },
+      {
+        "icon": "🎯",
+        "label": "Federal Reserve Stays Cautious",
+        "source": "Federal Reserve",
+        "bullets": [
+          "Policy paralysis evident in unprecedented 4-member dissent structure: 3 hawks opposing easing bias, 1 dove (Miran) seeking 25bp cut, reflecting deep committee fractures",
+          "Powell's board retention through 2028 term maintains 4-3 non-Trump appointee majority, complicating Warsh's ability to implement promised dovish pivot",
+          "Market pricing shows zero rate cuts in 2026 as energy-driven core PCE acceleration threatens 2% target, constraining monetary accommodation despite slowing growth"
         ]
       }
     ],
