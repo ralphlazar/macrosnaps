@@ -1,5 +1,39 @@
 # MacroSnaps - Living Brief
-Last updated: April 28, 2026 (Session 78: Daily ritual completed 2026-04-28. First in-the-wild run of the Session 76 trigger-based metric story regeneration system - 17 regenerated, 115 carried forward (87% saved), 12/12 countries in 13s. 1 commodity story rewrite (Silver, moved 6.4% vs 5% threshold). Headlines 13/13 in 200s. Both review gates passed. Build successful, pushed to master. Audit clean. DEU MARKET-STATS sheet append failed in step 1 with Google 502; retried via fetch_market_data.py rerun and DEU + CHN both appended (idempotent skip behaviour also caught a quietly-missing CHN row). Procedural change: Manual Gate 2 (metric stories review) RETIRED. New sequence: update_metric_stories.py -> update_metric_stories.py --apply METRICS_draft_YYYY-MM-DD.json. No review UI, no rename step. Manual Gate 1 (headlines) remains in place.)
+Last updated: April 29, 2026 (Session 79: Daily ritual completed 2026-04-29. New tooling: morning_bash.sh shipped - consolidates pre-review steps 1-6 of the Daily Bash Ritual into a single script with set -e, step banners, tee'd log to logs/morning_bash_YYYY-MM-DD.log, Friday forecast_server.py confirmation prompt with hard exit on "n", and runtime stamp. First run completed in 5m 15s, zero errors. 4 commodity rewrites (WTI +11.4%, Brent +6.0%, Gold +5.9%, Wheat +8.1%). Headlines 13/13 in 205s. Metric stories: 20 regenerated, 112 carried forward (84% saved), 24s. Build successful, auto-committed and pushed. Audit clean. Cosmetic noted: update_metric_stories.py end-of-run "Next steps" output still references the retired METRICS_approved convention; should be tidied to reference draft file directly per Session 78.)
+
+Session 79 changes in detail:
+
+(1) **Daily ritual completed 2026-04-29.** Full ritual ran successfully. No Friday pre-ritual (Wednesday). 4 commodity rewrites: WTI Crude (moved 11.4%, was 94.63 now 105.39), Brent Crude (moved 6.0%, was 103.54 now 109.73), Gold (moved 5.9%, was 4837.9 now 4551.0), Wheat (moved 8.1%, was 614.75 now 664.75). Headlines 13/13 drafted in 205s. Metric stories: 20 regenerated, 112 carried forward (84% saved), 12/12 countries in 24s. Headline review gate passed. Build successful, auto-committed and pushed to master. Audit: all checks passed.
+
+(2) **New tooling: morning_bash.sh shipped.** Consolidates pre-review steps 1-6 of the Daily Bash Ritual (fetch_market_data.py, sync_market_historical.py --apply, sync_commodity_data.py --apply, update_commodity_stories.py, update_headlines.py, update_metric_stories.py) into a single script. Replaces the previous step-by-step "paste output, get next command" flow for these six steps. Manual gate (headlines) remains unchanged after the script completes. Apply / build / audit steps remain separate as before.
+
+(3) **morning_bash.sh design choices:**
+- `set -e` plus `set -o pipefail` halts on the first non-zero exit code, preventing downstream steps from running on bad data
+- Friday-only check: `date +%u` returns 5 on Fridays, prompts "Have you run forecast_server.py and saved forecasts today? (y/n)". Hard exit on "n" with reminder of forecast server commands. Friday check runs before tee redirection so the prompt is direct, no buffering issues.
+- Step banners: `===== STEP N/6: description =====` between each step so failures are easy to locate visually
+- Logging: `exec > >(tee -a "$LOG") 2>&1` writes all output to both stdout and `logs/morning_bash_YYYY-MM-DD.log`. `mkdir -p logs` ensures the log directory exists.
+- Runtime stamp: `SECONDS` counter at start and end, prints total `Xm Ys` at the end (useful for the brief notes)
+- Final "next steps" message includes today's date already substituted into the apply commands so no manual YYYY-MM-DD replacement needed
+- Script lives at repo root, made executable via `chmod +x`
+
+(4) **First production run successful.** 5m 15s end-to-end, zero errors. All 12 countries appended cleanly to MARKET-STATS sheet on first try (no Google 502 this time, unlike Session 78). Commodities sheet append clean. All draft files written cleanly to repo root.
+
+(5) **Notable Stock Market YTD moves on the day:**
+- BRA: +18.1% to +16.2% (-2.64 USD)
+- GBR: +4.1% to +2.5% (sterling sold off)
+- CAN: +6.1% to +4.6%
+- ITA: +6.2% to +5.2%
+- RUS: -0.9% to -2.2%
+- USA: +4.2% to +4.0%
+
+(6) **Cosmetic flagged for future tidy.** `update_metric_stories.py` end-of-run "Next steps" message still references the retired METRICS_approved convention (`update_metric_stories.py --apply METRICS_approved_2026-04-29.json` plus the metric_story_review.html step). Per Session 78 the apply step takes the draft file directly. Script itself works correctly; only the on-screen instructions are stale. Worth tidying when next touched. Not actioned this session.
+
+(7) **Files shipped this session:**
+- `morning_bash.sh` (new): consolidated pre-review ritual script described above. ~90 lines of bash.
+
+(8) **Pipeline integration.** Daily Bash Ritual section in this brief updated to show the new flow: `bash morning_bash.sh` replaces the six individual `python3 ...` commands. Manual headline review gate, apply / build / audit steps, Social Media Bash all unchanged.
+
+---
 
 Session 78 changes in detail:
 
@@ -261,10 +295,15 @@ open /Users/lisaswerling/RALPH/AI/macrosnaps/forecast_cms.html
 ```
 Review and update forecasts, then close the server before proceeding.
 
-Run in order, pasting output after each step:
+Run the consolidated pre-review script (Session 79: replaces the six individual python3 commands that used to be run step-by-step):
 
 ```bash
-cd /Users/lisaswerling/RALPH/AI/macrosnaps
+cd /Users/lisaswerling/RALPH/AI/macrosnaps && bash morning_bash.sh
+```
+
+`morning_bash.sh` runs the following six steps in sequence with `set -e` (halts on first error), step banners, and tee'd logging to `logs/morning_bash_YYYY-MM-DD.log`:
+
+```
 python3 fetch_market_data.py
 python3 sync_market_historical.py --apply
 python3 sync_commodity_data.py --apply
@@ -272,6 +311,8 @@ python3 update_commodity_stories.py
 python3 update_headlines.py
 python3 update_metric_stories.py
 ```
+
+On Fridays, the script prompts to confirm `forecast_server.py` has been run first; "n" hard-exits and reminds you to run the forecast server before re-running morning_bash.sh.
 
 Manual gate (headlines only - metric stories gate retired Session 78): open `headline_review.html` (via [http://localhost:8080](http://localhost:8080)), load `HEADLINES_draft_YYYY-MM-DD.json`, review and edit, export `HEADLINES_approved_YYYY-MM-DD.json`. The browser save dialog (File System Access API, Session 71) writes directly into the repo - no `mv` step needed.
 
@@ -414,6 +455,7 @@ Do not position against Bloomberg or data terminals. The competition is a good m
 
 ## Full session history
 
+Session 79: Daily ritual completed 2026-04-29. New tooling: morning_bash.sh shipped, consolidates pre-review steps 1-6 of the Daily Bash Ritual into a single script with set -e (halts on first error), step banners, tee'd log to logs/morning_bash_YYYY-MM-DD.log, Friday forecast_server.py confirmation prompt with hard exit on "n", and runtime stamp. First production run completed in 5m 15s, zero errors, 12/12 MARKET-STATS countries appended cleanly. 4 commodity rewrites (WTI +11.4%, Brent +6.0%, Gold +5.9%, Wheat +8.1%). Headlines 13/13 in 205s. Metric stories: 20 regenerated, 112 carried forward (84% saved), 24s. Headline review gate passed. Build successful, auto-committed and pushed to master. Audit clean. Cosmetic noted for future tidy: update_metric_stories.py end-of-run "Next steps" output still references the retired METRICS_approved convention; should be tidied to reference draft file directly per Session 78. Daily Bash Ritual section in brief updated to show new bash morning_bash.sh entry point.
 Session 78: Daily ritual completed 2026-04-28. First production run of Session 76 trigger-based metric story system - 17 regenerated, 115 carried forward (87% saved), 12/12 countries in 13s. 1 commodity story rewrite (Silver, moved 6.4%, was 78.86 now 73.83). Headlines 13/13 in 200s. Both review gates passed. Build successful, pushed to master. Audit clean. DEU MARKET-STATS sheet append failed in step 1 with Google 502; retried via fetch_market_data.py rerun and DEU + CHN both appended (idempotent skip caught a quietly-missing CHN row from an earlier session; net 2 appended, 10 skipped, 0 failed). Intraday data.json delta after retry left as-is per Ralph's call. Procedural change: Manual Gate 2 (metric stories review via metric_story_review.html) RETIRED. New sequence: update_metric_stories.py -> update_metric_stories.py --apply METRICS_draft_YYYY-MM-DD.json. No review UI, no copy/rename to "approved". Manual Gate 1 (headlines) remains in place. Daily Bash Ritual section in brief updated.
 Session 77: Bug fix - USA Stock Market YTD homepage glitch (showed +4.20% local / -3.12% USD, an embarrassing mismatch since USD return must equal local for USA by definition). Root cause: metrics.market['Stock Market YTD (USD)'] was only written by sync_sheet.py --market (not in any scheduled ritual); field had been stale since 2026-03-22. Fix: USD-YTD computation moved into fetch_market_data.py as a derived metric. USA hard-coded to mirror local YTD string verbatim; other countries computed via FX YTD compound (1 + local%) * (1 + USD-per-local%) - 1 using yf_price_and_ytd() and Yahoo ticker direction (LOCALUSD=X gives USD-per-local, USDLOCAL=X gives local-per-USD requiring inversion). RULE 15 added (USA col2 = col1, no separate calculation). GitHub HTTPS auth refreshed via gh auth login after PAT expiry in macOS Keychain (gh 2.91.0 installed via Homebrew). Pushed to origin master.
 Session 76: Daily cost review and trigger-based metric story regeneration shipped. Replaces "regenerate all 132 metrics daily" with per-metric triggers (new monthly print, daily-tier move 5%+ relative to snapshot, or staleness past tier ceiling 7/14/30d); anything else carried forward at zero API cost. New fields story_last_updated, story_value_snapshot, story_last_print_month added to data.json. backfill_story_freshness.py ran (132 stamped, 35 with print month). update_metric_stories.py rewritten (per-country prompt requesting only to-regen metrics, --force-all escape hatch, modified apply step that preserves carried-forward stamps). metric_story_review.html rewritten with carry/regen badges, status filter, header counter. Daily Bash Ritual unchanged. Expected 75-85% Haiku call reduction steady state. Headlines and IMF forecast swap parked for separate sessions.
