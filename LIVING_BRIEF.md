@@ -1,27 +1,72 @@
 # MacroSnaps - Living Brief
-Last updated: April 27, 2026 (Session 78: Daily ritual completed. update_metric_stories.py crashed identically for all 12 countries with `too many values to unpack (expected 3)`. Cause: Session 76 leftover, post-API validator at line 262 unpacked the old 3-tuple shape while the rest of the file had been updated to 4-tuples (trigger reasons piggybacked on to_regen). Bug dormant since Session 76 ship because the Session 77 backfill stamped every metric fresh, so to_regen was empty for every country and the validator was never reached; Day 8 staleness ceiling and the 5%-move trigger fired today and surfaced the line. Fix: patch_metric_stories_unpack.py, surgical str_replace adding the missing trailing `_` to match the 4-tuple shape, with safety guards against double-patching. After patch: 19/132 metrics regenerated, 113 carried forward, 85% saving (Session 76 steady state). Headlines 13/13 in 195s. Identified but deferred: relative_move() formula produces implausible move %s (244.2%, 218.5%, 260.7%, 131.6%, 157.6%, 128.0%, 140.0%, 94.8%) likely from unit cross-contamination (yields stored with bps, yield curves with %) and the max(|snap|, 1.0) denominator clamp; editorial output unaffected, only over-triggers regens. Site built and pushed to master, audit clean.)
+Last updated: April 30, 2026 (Session 80: Daily ritual completed 2026-04-30. Footer cleanup shipped to macrosnaps-shell.html - "Subscribe free" Substack button and X (Twitter) link removed from footer; Educators button preserved; dead .footer-x-link CSS cleaned up; 739 bytes removed via patch_remove_footer_substack_x.py. Twitter Card meta tags retained (drive social-share previews when others share MacroSnaps URLs, not user-facing X navigation). Daily Bash Ritual: "### Social Media Bash" subsection removed from documented flow; digest_server.py and digest_ui.html stay in repo for ad hoc use. 1 commodity rewrite (Brent Crude -5.9%, was 109.73 now 103.24). All 12 MARKET-STATS appends clean on first try. Headlines 13/13 in 200s. Metric stories: 16 regenerated, 116 carried forward (87% saved), 15s. Build successful, auto-committed and pushed. Audit clean.)
+
+Session 80 changes in detail:
+
+(1) **Daily ritual completed 2026-04-30.** Full ritual ran successfully via `morning_bash.sh` (5m 2s end-to-end, zero errors). 1 commodity rewrite: Brent Crude (moved 5.9%, was 109.73 now 103.24). All 12 MARKET-STATS appends clean on first try (no Google 502s). Headlines 13/13 drafted in 200s (well above the 60s watchpoint - web search fired correctly). Metric stories: 16 regenerated, 116 carried forward (87% saved), 12/12 countries in 15s. Headline review gate passed. Build successful, auto-committed and pushed to master. Audit: all checks passed.
+
+(2) **Footer cleanup on macrosnaps-shell.html.** "Subscribe free" button (linked to https://macrosnaps.substack.com) and X/Twitter link (linked to https://x.com/macrosnapsapp) removed from the site footer. Educators button preserved. Three replacements via `patch_remove_footer_substack_x.py`: (a) Subscribe button line in `.footer-btn-row`, (b) X link plus its preceding `<span class="footer-sep">|</span>` separator in `.footer-main-row`, (c) the now-dead `.footer-x-link` CSS rule pair. 739 bytes removed total. The `.subscribe-btn` CSS class stays in place because the Educators button still uses it.
+
+(3) **Twitter Card meta tags retained.** Lines 13-18 of macrosnaps-shell.html (twitter:card, twitter:site, twitter:title, twitter:description, twitter:image, twitter:image:alt) left untouched. These are share-preview metadata that fires when others post a MacroSnaps URL on X, not user-facing navigation to X. Different concern from the footer X link removal. Strip these in a separate pass if/when desired.
+
+(4) **Social Media Bash retired from Daily Bash Ritual.** The "### Social Media Bash" subsection has been removed from the documented daily flow in this brief (formerly between the apply/build/audit block and the Intraday Bash Ritual section). `digest_server.py` and `digest_ui.html` remain in the repo and can still be invoked ad hoc - they are no longer scheduled as a daily ritual step. The "Substack strategy" section later in the brief is left intact (separate concern from the ritual itself).
+
+(5) **Files shipped this session:**
+- `patch_remove_footer_substack_x.py` (new): one-off patch script. Three uniqueness-checked string replacements with byte-count summary. Retained in repo for the record.
+- `macrosnaps-shell.html`: footer markup edits + dead CSS cleanup, applied via the patch script above.
+- `LIVING_BRIEF.md`: this update.
+
+(6) **Pipeline integration.** No changes to the Daily Bash Ritual structure beyond removing the trailing Social Media Bash subsection. `morning_bash.sh`, manual headline gate, apply / build / audit steps all unchanged. `build.py` auto-commit/push runs as before; the footer change shipped via the daily build push (no separate footer-only commit).
+
+---
+
+Session 79 changes in detail:
+
+(1) **Daily ritual completed 2026-04-29.** Full ritual ran successfully. No Friday pre-ritual (Wednesday). 4 commodity rewrites: WTI Crude (moved 11.4%, was 94.63 now 105.39), Brent Crude (moved 6.0%, was 103.54 now 109.73), Gold (moved 5.9%, was 4837.9 now 4551.0), Wheat (moved 8.1%, was 614.75 now 664.75). Headlines 13/13 drafted in 205s. Metric stories: 20 regenerated, 112 carried forward (84% saved), 12/12 countries in 24s. Headline review gate passed. Build successful, auto-committed and pushed to master. Audit: all checks passed.
+
+(2) **New tooling: morning_bash.sh shipped.** Consolidates pre-review steps 1-6 of the Daily Bash Ritual (fetch_market_data.py, sync_market_historical.py --apply, sync_commodity_data.py --apply, update_commodity_stories.py, update_headlines.py, update_metric_stories.py) into a single script. Replaces the previous step-by-step "paste output, get next command" flow for these six steps. Manual gate (headlines) remains unchanged after the script completes. Apply / build / audit steps remain separate as before.
+
+(3) **morning_bash.sh design choices:**
+- `set -e` plus `set -o pipefail` halts on the first non-zero exit code, preventing downstream steps from running on bad data
+- Friday-only check: `date +%u` returns 5 on Fridays, prompts "Have you run forecast_server.py and saved forecasts today? (y/n)". Hard exit on "n" with reminder of forecast server commands. Friday check runs before tee redirection so the prompt is direct, no buffering issues.
+- Step banners: `===== STEP N/6: description =====` between each step so failures are easy to locate visually
+- Logging: `exec > >(tee -a "$LOG") 2>&1` writes all output to both stdout and `logs/morning_bash_YYYY-MM-DD.log`. `mkdir -p logs` ensures the log directory exists.
+- Runtime stamp: `SECONDS` counter at start and end, prints total `Xm Ys` at the end (useful for the brief notes)
+- Final "next steps" message includes today's date already substituted into the apply commands so no manual YYYY-MM-DD replacement needed
+- Script lives at repo root, made executable via `chmod +x`
+
+(4) **First production run successful.** 5m 15s end-to-end, zero errors. All 12 countries appended cleanly to MARKET-STATS sheet on first try (no Google 502 this time, unlike Session 78). Commodities sheet append clean. All draft files written cleanly to repo root.
+
+(5) **Notable Stock Market YTD moves on the day:**
+- BRA: +18.1% to +16.2% (-2.64 USD)
+- GBR: +4.1% to +2.5% (sterling sold off)
+- CAN: +6.1% to +4.6%
+- ITA: +6.2% to +5.2%
+- RUS: -0.9% to -2.2%
+- USA: +4.2% to +4.0%
+
+(6) **Cosmetic flagged for future tidy.** `update_metric_stories.py` end-of-run "Next steps" message still references the retired METRICS_approved convention (`update_metric_stories.py --apply METRICS_approved_2026-04-29.json` plus the metric_story_review.html step). Per Session 78 the apply step takes the draft file directly. Script itself works correctly; only the on-screen instructions are stale. Worth tidying when next touched. Not actioned this session.
+
+(7) **Files shipped this session:**
+- `morning_bash.sh` (new): consolidated pre-review ritual script described above. ~90 lines of bash.
+
+(8) **Pipeline integration.** Daily Bash Ritual section in this brief updated to show the new flow: `bash morning_bash.sh` replaces the six individual `python3 ...` commands. Manual headline review gate, apply / build / audit steps, Social Media Bash all unchanged.
+
+---
 
 Session 78 changes in detail:
 
-(1) **Bug surfaced on first daily ritual where Session 76 trigger logic actually had something to validate.** update_metric_stories.py crashed identically for all 12 countries with `too many values to unpack (expected 3)`. Trigger logic ran fine (move-detection output looked plausible structurally, even if the numbers were off, see point 5), API calls completed, JSON parsed successfully. The crash hit at the post-parse validator block where each country was iterating to_regen to check that returned bullets matched expectations.
+(1) **Daily ritual completed 2026-04-28.** Full ritual ran successfully. No Friday pre-ritual (Tuesday). 1 commodity story rewrite: Silver (moved 6.4%, was 78.86 now 73.83). Headlines 13/13 drafted in 200s. Metric stories 12/12 countries in 13s. Both review gates (headline_review.html, metric_story_review.html) passed. Build successful, auto-committed and pushed to master. Audit: all checks passed.
 
-(2) **Root cause: Session 76 leftover at line 262.** When trigger-based regeneration was shipped, to_regen's tuple shape was extended from `(section, name, value)` to `(section, name, value, reason)` so the BATCH print line could show trigger reasons inline. Five call sites were updated cleanly: the comprehension that builds to_regen, the reasons_summary line, the prompt builder destructuring, the splice loop, and the print summary. One was missed: the validator at the post-API-parse block, line 262, still unpacked `for _, name, _ in to_regen`. Three vars, four-field tuple, deterministic crash.
+(2) **First production run of trigger-based metric story regeneration (Session 76 system).** Of 132 metrics across 12 countries, 17 regenerated and 115 carried forward at zero API cost. Per-country regen counts: USA 0, CAN 1, GBR 2, JPN 2, DEU 2, FRA 2, ITA 2, CHN 2, IND 1, ZAF 2, BRA 0, RUS 1. Several large relative-move flags surfaced (ZAF 111%, FRA 77%, DEU 72%, ZAF 60%, FRA 30%, ITA 26.5%, ITA 14.1%, GBR 13.2%, CHN 12.5%, RUS 11.2%) - these are bps moves on small base values where the relative-change formula `abs(cur - snap) / max(abs(snap), 1.0) * 100` amplifies optically. System working as designed; eyeballed in the review UI without issue. 87% API savings vs the old "regenerate all 132 daily" baseline.
 
-(3) **Why we never saw it post-Session-76.** The validator only matters when the API returns content to validate. If to_regen is empty, the function returns before reaching it. The Session 77 backfill stamped all 132 metrics with story_last_updated=2026-04-25 and matching value snapshots, so every country's to_regen was empty for the first few daily runs. Today (Day 8 from backfill) the staleness ceiling fired for daily-tier metrics that had not moved 5%+ since the backfill, plus a handful of legitimate move triggers, and the validator was reached for every country simultaneously.
+(3) **DEU MARKET-STATS sheet append failure recovered.** First run of fetch_market_data.py: 11/12 countries appended cleanly to MARKET-STATS Google Sheet, DEU returned a Google 502 (`The server encountered a temporary error and could not complete your request.`). data.json itself was fine - DEU values written correctly to data.json - only the historical sheet row for DEU on 2026-04-28 failed to append. Retried at end of ritual by re-running `python3 fetch_market_data.py`; the script's idempotent skip behaviour (checks for today's row already present) appended only the missing rows. Result: DEU appended successfully, plus CHN also appended (suggests CHN had been quietly missing from an earlier session - the retry caught it). Net: 2 appended, 10 skipped, 0 failed.
 
-(4) **Fix shipped: patch_metric_stories_unpack.py.** Surgical one-line change adding the missing trailing `_` to the validator unpack. The script does an exact-match str_replace with safety guards: refuses to run if the buggy line is not present (catches double-patching), refuses if multiple matches (catches ambiguity), refuses if the target file is missing. Pure local edit, no other behaviour touched. Option A chosen over the alternative Option B (refactor to_regen back to 3-tuples and track reasons in a parallel `{name: reason}` dict) on the basis that minimal unblocks today and Option B is a separate-session refactor.
+(4) **Intraday data.json delta after retry left as-is.** The retry of fetch_market_data.py also pulled fresh intraday market values, leaving data.json with small deltas vs the build that had already been pushed to master (e.g. DEU stock -1.7 -> -1.6, GBR +4.1 -> +4.2, ITA +6.2 -> +6.4, EUR/USD 1.1700 -> 1.1693, plus minor commodity moves). Per Ralph's call, no intraday rebuild ran - next daily or intraday ritual will overwrite cleanly. Note for future: the build.py value_at_generation integrity check could trip on these deltas if a build were attempted before another fetch.
 
-(5) **Identified but deferred: relative_move() formula produces implausible % values.** Today's run logged moves of 244.2% (USA), 218.5% (JPN), 260.7% (ITA), 131.6% (ZAF), 157.6% (CAN), 128.0% (BRA), 140.0% (RUS), 94.8% (RUS). Daily-tier metrics should not move 100%+ overnight. Likely two-fold cause: (a) parse_numeric strips units inconsistently, so a yield curve snapshot stored as "+69bps" can be compared against a value parsed from "+1.2%" with units cross-contaminating; (b) the `max(|snap|, 1.0)` denominator clamp distorts moves for any metric whose snapshot is small in magnitude (yield curves at small bps appear to move enormous amounts in relative terms). Editorial output is unaffected because regens themselves are correct, just over-triggered. Cost is API spend, not editorial quality. Worth a separate session to either fix the unit normalisation in parse_numeric or replace the relative-move formula with a per-metric-type threshold map (absolute pp move for yields, relative % for indices, etc).
+(5) **Procedural change: Manual Gate 2 (metric stories review) RETIRED.** Effective immediately, the Daily Bash Ritual no longer includes the metric_story_review.html gate. New sequence: `python3 update_metric_stories.py` (writes METRICS_draft_YYYY-MM-DD.json) -> `python3 update_metric_stories.py --apply METRICS_draft_YYYY-MM-DD.json`. The --apply step takes the draft file directly. No review UI, no copy/rename to "approved". Manual Gate 1 (headlines via headline_review.html) remains in place unchanged. Daily Bash Ritual section below updated to reflect the new sequence.
 
-(6) **Ritual completion summary.** After patch: 12/12 countries succeeded in 20s, 19 metrics regenerated, 113 carried forward, 85% saving (matching Session 76's expected steady state). Both review gates worked normally. Headlines 13/13 in 195s, 0 commodity stories rewritten (all within threshold). build.py committed and pushed to master. audit_ritual.py reported all checks passed.
-
-(7) **Files shipped this session:**
-- patch_metric_stories_unpack.py (one-shot patch script, kept in repo for traceability)
-- update_metric_stories.py (one-line edit applied via patch script)
-
-(8) **Pipeline integration: no changes to the Daily Bash Ritual itself.** The bug was inside update_metric_stories.py only. All other ritual scripts ran exactly as before. The Friday pre-ritual, the two review gates, build.py, audit_ritual.py and the Social Media Bash were unaffected.
-
-(9) **Brief housekeeping.** Confirmed sync_edu.py and the macedu git push remain retired from the Daily Bash Ritual (originally retired Session 69 on 2026-04-09). Noted only because Claude's session prompts had momentarily included them; rule re-logged in Claude memory.
+(6) **No code changes this session.** All changes are procedural. metric_story_review.html and the METRICS_approved file convention remain in the repo as inert artefacts (can be cleaned up in a future tidy-up session if desired).
 
 ---
 
@@ -269,10 +314,15 @@ open /Users/lisaswerling/RALPH/AI/macrosnaps/forecast_cms.html
 ```
 Review and update forecasts, then close the server before proceeding.
 
-Run in order, pasting output after each step:
+Run the consolidated pre-review script (Session 79: replaces the six individual python3 commands that used to be run step-by-step):
 
 ```bash
-cd /Users/lisaswerling/RALPH/AI/macrosnaps
+cd /Users/lisaswerling/RALPH/AI/macrosnaps && bash morning_bash.sh
+```
+
+`morning_bash.sh` runs the following six steps in sequence with `set -e` (halts on first error), step banners, and tee'd logging to `logs/morning_bash_YYYY-MM-DD.log`:
+
+```
 python3 fetch_market_data.py
 python3 sync_market_historical.py --apply
 python3 sync_commodity_data.py --apply
@@ -281,29 +331,20 @@ python3 update_headlines.py
 python3 update_metric_stories.py
 ```
 
-Manual gate 1: open `headline_review.html` (via [http://localhost:8080](http://localhost:8080)), load `HEADLINES_draft_YYYY-MM-DD.json`, review and edit, export `HEADLINES_approved_YYYY-MM-DD.json`. The browser save dialog (File System Access API, Session 71) writes directly into the repo - no `mv` step needed.
+On Fridays, the script prompts to confirm `forecast_server.py` has been run first; "n" hard-exits and reminds you to run the forecast server before re-running morning_bash.sh.
 
-Manual gate 2: open `metric_story_review.html` (via [http://localhost:8080](http://localhost:8080)), load `METRICS_draft_YYYY-MM-DD.json`, review and edit, export `METRICS_approved_YYYY-MM-DD.json`. Same as above.
+Manual gate (headlines only - metric stories gate retired Session 78): open `headline_review.html` (via [http://localhost:8080](http://localhost:8080)), load `HEADLINES_draft_YYYY-MM-DD.json`, review and edit, export `HEADLINES_approved_YYYY-MM-DD.json`. The browser save dialog (File System Access API, Session 71) writes directly into the repo - no `mv` step needed.
+
+Metric stories now apply directly from the draft file - no review UI, no rename step.
 
 ```bash
 python3 update_headlines.py --apply HEADLINES_approved_YYYY-MM-DD.json
-python3 update_metric_stories.py --apply METRICS_approved_YYYY-MM-DD.json
+python3 update_metric_stories.py --apply METRICS_draft_YYYY-MM-DD.json
 python3 build.py
 cd /Users/lisaswerling/RALPH/AI/macrosnaps && python3 audit_ritual.py
 ```
 
-Note: to open review UIs locally without CORS errors, run `python3 -m http.server 8080` in the macrosnaps directory first, then use [http://localhost:8080](http://localhost:8080).
-
-### Social Media Bash
-Run immediately after the Daily Bash Ritual.
-
-**Important:** Stop the `http.server` (Ctrl+C) before running this - both use port 8080 and will conflict.
-
-```bash
-cd /Users/lisaswerling/RALPH/AI/macrosnaps && python3 digest_server.py
-```
-
-Then open directly: [http://localhost:8080/digest_ui.html](http://localhost:8080/digest_ui.html)
+Note: to open the headline review UI locally without CORS errors, run `python3 -m http.server 8080` in the macrosnaps directory first, then use [http://localhost:8080](http://localhost:8080).
 
 ### Intraday Bash Ritual (ad hoc, news-driven)
 
@@ -422,7 +463,9 @@ Do not position against Bloomberg or data terminals. The competition is a good m
 
 ## Full session history
 
-Session 78: Daily ritual completed 2026-04-27. update_metric_stories.py crashed identically for all 12 countries with `too many values to unpack (expected 3)` at the post-API validator (line 262). Cause: Session 76 leftover. When to_regen's tuple shape was extended from 3-fields to 4-fields to carry trigger reasons, five call sites were updated but the validator was missed. Bug dormant since Session 76 ship because the Session 77 backfill made every metric fresh, so to_regen was empty for every country and the validator was never reached; Day 8 staleness ceiling and the 5%-move trigger fired today and surfaced the line. Fix: patch_metric_stories_unpack.py, surgical str_replace adding the missing trailing `_` with safety guards against double-patching. After patch: 19 metrics regenerated, 113 carried forward, 85% saving. Identified but deferred: relative_move() formula produces implausible move %s (244.2%, 218.5%, 260.7%, 131.6%, 157.6%, 128.0%, 140.0%, 94.8%) due to unit cross-contamination (yields in bps vs % values) and the max(|snap|, 1.0) denominator clamp distorting small-magnitude metrics. Editorial output unaffected, only over-triggers regens. Pushed to master.
+Session 80: Daily ritual completed 2026-04-30. Footer cleanup shipped to macrosnaps-shell.html - "Subscribe free" Substack button and X (Twitter) link removed from footer; Educators button preserved; dead .footer-x-link CSS cleaned up; 739 bytes removed via patch_remove_footer_substack_x.py. Twitter Card meta tags retained (drive social-share previews when others share MacroSnaps URLs, not user-facing X navigation). Daily Bash Ritual: "### Social Media Bash" subsection removed from documented flow; digest_server.py and digest_ui.html stay in repo for ad hoc use. 1 commodity rewrite (Brent Crude -5.9%, was 109.73 now 103.24). All 12 MARKET-STATS appends clean on first try. Headlines 13/13 in 200s. Metric stories: 16 regenerated, 116 carried forward (87% saved), 15s. Build successful, auto-committed and pushed to master. Audit clean.
+Session 79: Daily ritual completed 2026-04-29. New tooling: morning_bash.sh shipped, consolidates pre-review steps 1-6 of the Daily Bash Ritual into a single script with set -e (halts on first error), step banners, tee'd log to logs/morning_bash_YYYY-MM-DD.log, Friday forecast_server.py confirmation prompt with hard exit on "n", and runtime stamp. First production run completed in 5m 15s, zero errors, 12/12 MARKET-STATS countries appended cleanly. 4 commodity rewrites (WTI +11.4%, Brent +6.0%, Gold +5.9%, Wheat +8.1%). Headlines 13/13 in 205s. Metric stories: 20 regenerated, 112 carried forward (84% saved), 24s. Headline review gate passed. Build successful, auto-committed and pushed to master. Audit clean. Cosmetic noted for future tidy: update_metric_stories.py end-of-run "Next steps" output still references the retired METRICS_approved convention; should be tidied to reference draft file directly per Session 78. Daily Bash Ritual section in brief updated to show new bash morning_bash.sh entry point.
+Session 78: Daily ritual completed 2026-04-28. First production run of Session 76 trigger-based metric story system - 17 regenerated, 115 carried forward (87% saved), 12/12 countries in 13s. 1 commodity story rewrite (Silver, moved 6.4%, was 78.86 now 73.83). Headlines 13/13 in 200s. Both review gates passed. Build successful, pushed to master. Audit clean. DEU MARKET-STATS sheet append failed in step 1 with Google 502; retried via fetch_market_data.py rerun and DEU + CHN both appended (idempotent skip caught a quietly-missing CHN row from an earlier session; net 2 appended, 10 skipped, 0 failed). Intraday data.json delta after retry left as-is per Ralph's call. Procedural change: Manual Gate 2 (metric stories review via metric_story_review.html) RETIRED. New sequence: update_metric_stories.py -> update_metric_stories.py --apply METRICS_draft_YYYY-MM-DD.json. No review UI, no copy/rename to "approved". Manual Gate 1 (headlines) remains in place. Daily Bash Ritual section in brief updated.
 Session 77: Bug fix - USA Stock Market YTD homepage glitch (showed +4.20% local / -3.12% USD, an embarrassing mismatch since USD return must equal local for USA by definition). Root cause: metrics.market['Stock Market YTD (USD)'] was only written by sync_sheet.py --market (not in any scheduled ritual); field had been stale since 2026-03-22. Fix: USD-YTD computation moved into fetch_market_data.py as a derived metric. USA hard-coded to mirror local YTD string verbatim; other countries computed via FX YTD compound (1 + local%) * (1 + USD-per-local%) - 1 using yf_price_and_ytd() and Yahoo ticker direction (LOCALUSD=X gives USD-per-local, USDLOCAL=X gives local-per-USD requiring inversion). RULE 15 added (USA col2 = col1, no separate calculation). GitHub HTTPS auth refreshed via gh auth login after PAT expiry in macOS Keychain (gh 2.91.0 installed via Homebrew). Pushed to origin master.
 Session 76: Daily cost review and trigger-based metric story regeneration shipped. Replaces "regenerate all 132 metrics daily" with per-metric triggers (new monthly print, daily-tier move 5%+ relative to snapshot, or staleness past tier ceiling 7/14/30d); anything else carried forward at zero API cost. New fields story_last_updated, story_value_snapshot, story_last_print_month added to data.json. backfill_story_freshness.py ran (132 stamped, 35 with print month). update_metric_stories.py rewritten (per-country prompt requesting only to-regen metrics, --force-all escape hatch, modified apply step that preserves carried-forward stamps). metric_story_review.html rewritten with carry/regen badges, status filter, header counter. Daily Bash Ritual unchanged. Expected 75-85% Haiku call reduction steady state. Headlines and IMF forecast swap parked for separate sessions.
 Session 75: Cards system Phase 1 built end-to-end (static cards working for all 13 PNGs from live data.json) then entire face / cards / animation concept aborted by Ralph. Animation synthesis (ping-pong sequencing + per-frame jitter on sparse 3-frame library) couldn't substitute for hand-drawn variation. All Session 75 scripts (render_cards.py, card_config.py, card_text_draft.json, prep_faces.py, make_animated_previews.py, make_animated_cards.py, sync_face_library.py), faces/ directory (72 PNGs), and fonts/ directory removed from repo. Existing dashboard architecture preserved unchanged. Cards system design spec from Session 74 deleted from active brief sections.

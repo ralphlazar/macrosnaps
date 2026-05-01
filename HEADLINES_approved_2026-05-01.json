@@ -1,0 +1,331 @@
+{
+  "date": "2026-05-01",
+  "countries": {
+    "USA": {
+      "stories": {
+        "beginner": [
+          "Powell's Fed ends his chairmanship May 15 and Kevin Warsh is likely taking over, signaling a potential shift in how the central bank approaches interest rates going forward.",
+          "Three Fed officials just voted against the easing bias, suggesting some policymakers want to hit the brakes on rate cuts despite inflation sitting at 2.41% in February.",
+          "Stock markets surged well above where 2026 started, shaking off a war with Iran, which means investors are betting the economy stays resilient even with geopolitical risk."
+        ],
+        "moderate": [
+          "Powell's departure on May 15 with Warsh as likely successor matters because Warsh has hawkish credentials, and three recent dissents on the easing bias suggest the next Fed could pivot away from cuts faster than markets expect.",
+          "February CPI of 2.41% remains above the 2.3% full-year forecast, and the three dissents signal concern that cutting rates further could let inflation drift back up, breaking the inflation fight momentum.",
+          "The stock market's strong recovery despite active war with Iran shows investors are pricing in either a quick resolution or confidence that the Fed will support growth if needed, reducing downside risk."
+        ],
+        "expert": [
+          "Powell exits May 15 with Warsh positioned to succeed him, and the three dissents against the easing bias (Barr, Jefferson, Schmid signals) mark the first serious hawkish pushback, suggesting the terminal rate floor is higher than market pricing of 3.25% for year-end.",
+          "February CPI of 2.41% versus 2.3% YoY forecast tracking is benign, but the dissents reveal concern about cumulative rate cuts since 2024, implying risk of a pause or 'higher for longer' if momentum stalls.",
+          "War with Iran lifted rather than depressed equity valuations, a signal that rate-cut expectations dominate Iran geopolitical premium, leaving the June FOMC as the next pivot point if Warsh's confirmation hearing shifts market narrative toward hawkishness."
+        ]
+      }
+    },
+    "CAN": {
+      "stories": {
+        "beginner": [
+          "Canada's central bank held steady at 2.25% on April 30 and plans to keep rates there, while the US Fed is signaling it might hold firmer for longer, putting pressure on the Canadian dollar.",
+          "February inflation of 1.78% is so low it's undershooting the Bank of Canada's 2% target, giving policymakers room to cut if growth stumbles, but the hawkish turn elsewhere is making them cautious.",
+          "BlackRock is betting against Canadian government bonds because US policy is staying tight while non-US central banks sound more dovish, creating an unfavorable carry trade for Canadian rates."
+        ],
+        "moderate": [
+          "BoC held rates at 2.25% on April 30 as expected, but the backdrop shifted as the Fed signaled fewer cuts ahead, meaning the rate gap that favored Canadian assets is narrowing and the loonie faces headwind.",
+          "February CPI of 1.78% sits well below the 2% full-year target, suggesting the BoC has room to ease, but BlackRock's short positioning on Canadian government bonds reflects conviction that the BoC will lag the Fed's hawkish pivot, hurting relative value.",
+          "The April 30 rate decision came during a central bank cascade with the US, UK, and Eurozone all holding the same day, but only Canada's guidance remained dovish while others tilted hawkish, creating a relative policy divergence."
+        ],
+        "expert": [
+          "BoC held at 2.25% on April 30 with consensus to stay, but the Fed's three hawkish dissents and Powell's exit on May 15 mean the carry advantage Canada offered is evaporating, and BlackRock's short Canadian government bonds reflects 50+ bps of rate differential compression risk.",
+          "February CPI of 1.78% versus 2% forecast is well-anchored, but the unemployment rate of 6.74% in January signals slack that would normally justify cuts, yet the hawkish non-US central bank speeches cited by BlackRock indicate the BoC will wait for clarity on the Fed's Warsh-era bias.",
+          "The BlackRock short on Canadian bonds is a directional signal that the BoC will cut before the Fed does, but only after the Fed's May 15 transition settles and markets reprice the terminal rate gap; watch for the June BoC decision as the inflection point."
+        ]
+      }
+    },
+    "GBR": {
+      "stories": {
+        "beginner": [
+          "Trump just lifted all tariffs on Scotch whisky after King Charles III's state visit, a rare trade win that helps Diageo and other UK exporters breathe easier on the tariff front.",
+          "The Bank of England held rates on April 30 as expected, but traders are now betting there's a 50% chance the BoE will raise rates in June because inflation is still sticky at 3.24%, well above the 2.5% full-year target.",
+          "NatWest reported profit growth of 12.2% year-over-year in Q1 pre-tax profits reaching £2bn, yet shares fell 3.7%, suggesting investors are worried the BoE's rate hikes will slow loan growth or hurt asset quality going forward."
+        ],
+        "moderate": [
+          "Trump's surprise tariff lift on Scotch whisky after the King's state visit removes a major headwind for UK exporters and signals the US administration is willing to trade geopolitical gestures for tariff relief, brightening the UK export outlook for 2026.",
+          "BoE held rates at 3.75% on April 30, but the market's 50%+ probability of a June hike reflects February CPI of 3.24% running 74 bps above the 2.5% forecast, suggesting the BoE will tighten if sticky inflation persists into Q2.",
+          "NatWest's 12.2% profit growth masked a sharp share decline, likely because rising rate expectations signal the BoE will hike before it cuts, compressing net interest margins over the medium term and raising concerns about loan book deterioration."
+        ],
+        "expert": [
+          "Trump lifted all Scotch tariffs post-King Charles visit, removing a 25% drag on UK spirits exports and improving the trade deficit outlook, though the current account deficit of 2.5% GDP forecast suggests the UK still faces broader external imbalance.",
+          "BoE held at 3.75% on April 30 with 50%+ market probability of a June hike tied to February CPI of 3.24% tracking 74 bps above the 2.5% full-year consensus, signaling the BoE sees sticky service inflation and will tighten if wage growth remains elevated.",
+          "NatWest's Q1 pre-tax profit of £2bn up 12.2% YoY but shares down 3.7% reveals market expectations that rising rate expectations will compress net interest margins and loan growth will slow, making the June BoE decision a critical pivot for UK financial stocks."
+        ]
+      }
+    },
+    "JPN": {
+      "stories": {
+        "beginner": [
+          "The Bank of Japan's interest rate is at 0.75% and expected to stay there for now, but hints of a hike to 1.00% in June or July could send the yen sharply higher and hurt Japanese exporters.",
+          "February inflation came in at just 1.26%, below the 1.8% full-year forecast, so the BoJ has little urgency to raise rates from an inflation perspective, but core CPI is edging toward 1.7% and Governor Ueda's press conference will reveal if a hike is coming anyway.",
+          "Japan was JPMorgan's top developed-market bet for 2025 and the rally has continued into 2026, but valuations are getting fuller after the big move, making investors nervous about whether the stock market can keep climbing."
+        ],
+        "moderate": [
+          "BoJ's benchmark rate sits at 0.75% with an overnight meeting and Ueda's press conference signaling whether a June or July hike to 1.00% is on the table, and any hint of imminent tightening would snap the yen sharply stronger and pressure export competitiveness.",
+          "February CPI of 1.26% is 54 bps below the 1.8% full-year forecast, giving the BoJ room to hold, yet core CPI edges toward 1.7% and wage growth remains sticky, suggesting Ueda may signal a hike is coming even if February's print looks tame.",
+          "Japan was JPMorgan's key DM overweight for 2025 and continued rallying into 2026, but the forecast 0.8% GDP growth is the weakest in the peer set, and valuations are now fuller after the run-up, creating tension between momentum investors and fundamentals."
+        ],
+        "expert": [
+          "BoJ's rate at 0.75% with Ueda's press conference signaling a potential June or July hike to 1.00% creates a directional signal for JPY appreciation; any hawkish hint triggers immediate yen strength that would crimp export margins and slow 2026 GDP growth toward the 0.8% forecast.",
+          "February CPI of 1.26% versus 1.8% forecast is 54 bps below consensus, but core CPI trending toward 1.7% and the BoJ's shift from accommodative to data-dependent means Ueda will likely signal a hike pending Q2 wage prints, making the May jobs data a critical threshold.",
+          "JPMorgan's 2025 Japan overweight extended into 2026 with continued stock appreciation, but valuations are now fuller post-rally and 0.8% GDP growth forecast is the weakest in DM, signaling the momentum trade is vulnerable if the BoJ hikes in June and the yen spike reverses carry flows."
+        ]
+      }
+    },
+    "DEU": {
+      "stories": {
+        "beginner": [
+          "German consumers are getting more pessimistic, not less. The consumer confidence index is about to hit its worst level this cycle, which means people are pulling back on spending even as inflation stays tame at 1.9%.",
+          "The job market remains rock solid with unemployment at 3.6%, but that's not enough to lift mood. Something deeper is wrong: energy costs, red tape, and worry about pensions are eating away at confidence.",
+          "Growth is forecast at 1.2% for the year, but that depends on whether the government can actually fix the structural problems dragging people down. If it can't, that 1.2% is at risk."
+        ],
+        "moderate": [
+          "The German Consumer Climate index is tanking toward -30.2, the worst print of this cycle, even though the labor market (3.6% unemployment) remains one of Europe's strongest. This recession in confidence spans income levels, signaling it's not about job losses but anxiety over future purchasing power and government dysfunction.",
+          "Inflation at 1.9% gives the ECB room to cut, but German weakness may force earlier or deeper cuts than the central bank wants. Compare this to France and Italy, where confidence is holding up better despite similar inflation, suggesting Germany's problem is homegrown (energy policy, bureaucratic drag, pension reform fears).",
+          "The 1.2% growth forecast assumes policy makers address bureaucratic bottlenecks and energy costs this year. If structural reforms stall, watch for downward revisions by Q3."
+        ],
+        "expert": [
+          "Consumer Climate index consensus -30.2 versus prior -28.0 marks a new cycle trough and confirms demand destruction. CPI at 1.9% in February and policy rate at 2.15% leave room for ECB cuts, but the central bank may hesitate if German weakness spreads to the broader Eurozone.",
+          "German unemployment at 3.6% contrasts sharply with sentiment deterioration, isolating the shock as structural (energy transition costs, pension reform anxiety, regulatory burden) rather than cyclical. Italy's stock outperformance in April and France's relative resilience suggest Germany's malaise is country-specific.",
+          "1.2% full-year growth forecast hinges on fiscal action on energy and reform. If Q2 GDP and PMI data stay weak, watch for downward revisions and a 50bp ECB cut by summer."
+        ]
+      }
+    },
+    "FRA": {
+      "stories": {
+        "beginner": [
+          "French growth is grinding along slowly (0.7% in 2025), but the real story is hidden in the details. Two-thirds of that growth is coming from one sector, aeronautics, rebuilding inventory. That's not sustainable.",
+          "Once that inventory pile stops getting restocked, France will need growth from somewhere else: consumer spending, investment, exports. Right now those drivers are weak, which is why economists expect only modest speed-up to 0.9% in 2026.",
+          "BlackRock thinks France is the smart bet right now because investors are too focused on Germany's problems. That bet pays off only if consumption and business investment wake up in the second half of 2026."
+        ],
+        "moderate": [
+          "French growth of 0.7% in 2025 is a mirage: aeronautics inventory rebuilding accounts for two-thirds of it, leaving the underlying economy nearly flat. Once that inventory cycle normalizes (likely by mid-2026), France needs consumption and investment to accelerate or faces stagnation.",
+          "At 0.9% inflation and 7.7% unemployment, France has room for stimulus, but the budget deficit is already at 4.8% of GDP (versus Germany's -2% surplus), constraining fiscal space. Compare to Italy's lower joblessness (5.6%) and stronger stock performance: France is trapped between weak demand and tight finances.",
+          "BlackRock's underweight call on Germany and overweight on France assumes fiscal reform (pension, labor rules) can unlock consumption by 2026. Watch Q2 PMI and retail sales in June. If they don't tick up, the aeronautics tailwind won't matter."
+        ],
+        "expert": [
+          "2025 growth of 0.7% is 60% inventory rebuild (aeronautics), leaving organic growth near zero. CPI at 0.9% and policy rate at 2.15% signal persistent demand weakness despite favorable inflation backdrop.",
+          "Budget deficit at 4.8% of GDP limits fiscal space for demand stimulus, unlike Germany's 2% surplus. Unemployment at 7.7% versus Italy's 5.6% and Germany's 3.6% reflects structural labor market weakness (skill mismatch, rigid hiring rules) rather than cyclical slack.",
+          "Banque de France projects 0.9% growth in 2026 and 1.1% in 2027, implying aeronautics inventory tailwind ends and consumption/investment must fill the gap. If May-June PMI and retail sales stay flat, watch for downward revisions and pressure on the government to accelerate labor market reform."
+        ]
+      }
+    },
+    "ITA": {
+      "stories": {
+        "beginner": [
+          "Italian stocks just had their best month since early 2023. The Milan stock market jumped almost 9% in April while the rest of Europe barely moved. Something is working in Italy that isn't elsewhere.",
+          "This strength matters because it suggests investors are finally noticing Italy's advantages: lower unemployment (5.6%) than France (7.7%), stable inflation at 1.51%, and a government that has actually delivered on fiscal discipline. Italy is the European outlier doing things right.",
+          "Watch whether this momentum survives Q2 earnings season and ECB rate path signals. If Italian stocks keep outperforming while German confidence crashes, it means the market is repricing which Eurozone country has the best medium-term setup."
+        ],
+        "moderate": [
+          "Italian equities surged 9% in April (best month since January 2023), outpacing Stoxx 600 and DAX despite similar economic growth forecasts. The driver is relative merit: Italy's 5.6% unemployment beats France's 7.7%, inflation at 1.51% is lowest in the Eurozone, and the government has maintained budget discipline (3.2% deficit, manageable trajectory).",
+          "Compare to Germany and France: both are facing consumer confidence collapse and growth below 1%, while Italy's political stability and labor market progress are attracting flows. The 1% full-year growth forecast for Italy looks less exciting than France's 1.4%, but delivery on promises (not forecast revisions) is driving the premium.",
+          "Watch May PMI and Q2 earnings for confirmation. If Italian data stays resilient while German and French prints deteriorate, the outperformance is structural. Current Account at 0.8% GDP and low unemployment suggest domestic demand can sustain gains through summer."
+        ],
+        "expert": [
+          "FTSE MIB surged 8.9% in April (best month since January 2023), outperforming Stoxx 600 and DAX despite similar policy rate (2.15%) and only 1% growth forecast. The trade is relative: Italy's 5.6% unemployment (vs France 7.7%, Germany 3.6% but collapsing confidence) and CPI at 1.51% signal credible disinflation without demand collapse.",
+          "Budget deficit at 3.2% of GDP is manageable versus France's 4.8% and Germany's fiscal space constraints. May Day closure masked data flow, but watch May PMI and Q2 earnings for confirmation of momentum. Current Account at 0.8% GDP positive but modest.",
+          "If Italian equities sustain outperformance through May-June data and ECB holds at 2.15% (no cuts), repricing of Eurozone credit risk away from periphery is underway. Italy's political durability and labor reform progress (evident in unemployment decline) are now pricing in versus transient German confidence swings."
+        ]
+      }
+    },
+    "CHN": {
+      "stories": {
+        "beginner": [
+          "China's inflation is basically flat (0.23% in January), so there's almost no price pressure at all. That gives policy makers room to spend and cut rates if they want, but it also signals very weak demand across the economy.",
+          "Manufacturing is the bright spot keeping growth alive, and PMI data coming this week will tell us if factories are holding up. If PMI stays above 50, China keeps growing. If it dips below, the property slump is winning.",
+          "The forecast of 4.5% growth for 2026 assumes the government will keep stimulus flowing and the yuan stays firm as the dollar weakens. Watch whether those bets pan out. If the property sector keeps bleeding, all the manufacturing strength in the world won't be enough."
+        ],
+        "moderate": [
+          "CPI at 0.23% in January is deflation risk territory, giving Beijing room to deploy fiscal stimulus without fighting inflation. But that rate also tells you demand is barely alive: consumers aren't bidding prices up at all, which means real wages are rising but people aren't spending.",
+          "Manufacturing PMI data due this week will be critical. PMI readings around 50 are holding, and readings above 50 support yuan strength. Property remains the drag (construction weakness, developer defaults, household saving as families hoard cash). The 4.5% growth forecast depends on exports and fiscal package offsetting property collapse.",
+          "Compare to 2025: growth should decelerate from moderately slower pace as exports face U.S. tariff headwinds after Trump's initiatives. Watch May PMI and trade data. If exports roll over and property doesn't stabilize, the government will need to match its 2026 stimulus promise with actual disbursement by Q2."
+        ],
+        "expert": [
+          "CPI at 0.23% in January marks near-deflation regime, eliminating inflation constraint on policy. Manufacturing PMI hovering around 50 (above 50 positive for yuan) suggests fragile equilibrium: exports offsetting property weakness, but narrowly.",
+          "4.5% full-year growth forecast assumes expansionary fiscal policy (budget deficit 6.8% GDP) and firmer renminbi as dollar weakens. Property sector and consumption remain weak, concentrated damage in construction and household demand. Unemployment at 4.9% December stable but masks compositional shift to service sector.",
+          "Watch May PMI print and June trade data for directional signal on export resilience to U.S. tariff environment. If exports soften (likely by Q3 as 2025 Trump tariffs hit full year) and fiscal package delays, 4.5% becomes at risk. Government must front-load spending in Q2-Q3 to offset property drag."
+        ]
+      }
+    },
+    "IND": {
+      "stories": {
+        "beginner": [
+          "India's economy just grew 8% in the first half of the year, which is faster than most people expected and shows the country's fundamentals remain solid.",
+          "Wall Street is split on India right now: JPMorgan thinks it is a great bet for 2026, but BlackRock says Indian stocks have gotten too expensive and is betting against them.",
+          "Inflation sits near historic lows at 1.33%, giving the central bank room to cut interest rates if growth slows, but the challenge is that valuations may have already priced in this optimism."
+        ],
+        "moderate": [
+          "India's 8% growth in the first half significantly outpaces the full-year forecast of 6.3%, suggesting the economy is running hotter than consensus expected and may sustain momentum through 2026.",
+          "The valuation divide matters because India's stock surge has made it vulnerable to profit-taking if growth disappoints, similar to how overheated emerging markets corrected in 2022 when the Fed tightened aggressively.",
+          "With CPI at just 1.33% in December, the central bank has cut rates to 5.25% by January and can ease further if needed, but this accommodation only works if inflation stays anchored and the current account deficit does not widen dangerously."
+        ],
+        "expert": [
+          "Real GDP growth at 8% year-over-year in H1 2025-26 materially exceeds the 6.3% full-year forecast, signaling either stronger underlying demand or potential base effects that may fade, with the directional signal pointing to upside risk if capex and exports sustain momentum through Q4.",
+          "CPI at 1.33% and policy rate at 5.25% reflect a strongly disinflationary impulse, but forward watch is whether the RBI can keep rates accommodative without stoking external vulnerabilities, given current account deficit running at 1.2% of GDP and rupee sensitivity to Fed pivot timing.",
+          "BlackRock's short positioning on India despite JPMorgan's bullish stance signals consensus bifurcation on valuation risk, meaning near-term flows depend on whether earnings growth can justify current multiples or if growth moderates toward the 6.3% forecast baseline in H2."
+        ]
+      }
+    },
+    "ZAF": {
+      "stories": {
+        "beginner": [
+          "South Africa's economy is stuck in slow growth mode with only 1.5% expected for the full year, which is barely keeping pace with population growth and not creating enough jobs.",
+          "Unemployment sits at an alarming 31.88%, meaning nearly one in three people are out of work, a structural problem that no single policy change can fix quickly.",
+          "Inflation at 2.96% is well-controlled and the central bank has room to cut rates if it wants to support growth, but lower rates alone will not solve the jobs crisis without investment and productivity improvements."
+        ],
+        "moderate": [
+          "South Africa's 1.5% growth forecast is half the emerging market average and signals an economy trapped in low-productivity equilibrium, with structural constraints (power shortages, skill gaps) limiting what monetary policy can achieve.",
+          "The 31.88% unemployment rate is the highest in the peer group and reflects decades of underinvestment in education and skills training; by comparison, Brazil's 5.8% and Russia's 2.15% show how constrained South Africa's labor market truly is.",
+          "CPI at 2.96% in February gives the central bank flexibility to cut from 6.75%, but rate cuts only stimulate demand if businesses have incentive to invest and expand, which requires solving electricity supply and regulatory uncertainty first."
+        ],
+        "expert": [
+          "GDP growth forecast of 1.5% with unemployment at 31.88% defines a structural low-productivity trap where population growth (2.0% annually) exceeds job creation, and marginal rate cuts from 6.75% offer minimal relief without concurrent capex stimulus.",
+          "CPI at 2.96% in February tracks well below the 3.5% full-year forecast, suggesting disinflationary pressure from weak aggregate demand rather than supply-side disinflation, a negative signal for nominal wage growth and debt sustainability.",
+          "Forward watch is whether the government announces material fiscal stimulus or infrastructure investment announcements in the near term; without supply-side catalysts, further rate cuts from the RBI will simply compress spreads without creating jobs or attracting foreign direct investment."
+        ]
+      }
+    },
+    "BRA": {
+      "stories": {
+        "beginner": [
+          "Brazil's central bank has jacked rates up to 15%, which is extremely high and shows inflation remains a serious problem despite the economy growing slowly at only 1.7%.",
+          "JPMorgan likes Brazil as an emerging market bet for 2026, but BlackRock thinks Brazilian stocks are overvalued and is shorting them, creating tension between growth optimists and skeptics.",
+          "The central bank is stuck in a difficult spot: rates are high enough to choke growth, but inflation at 3.81% suggests they may not be high enough yet to anchor price expectations."
+        ],
+        "moderate": [
+          "Brazil's policy rate at 15% is the highest in the peer group by a wide margin, yet CPI at 3.81% in February still tracks above the 4.2% full-year forecast, signaling the central bank believes it must stay restrictive longer than markets hope.",
+          "The disagreement between JPMorgan's bullish stance and BlackRock's short positioning reflects fundamental uncertainty about whether the central bank can engineer a soft landing or whether the economy will crack under the weight of 15% rates before inflation truly breaks.",
+          "At 1.7% growth, Brazil is expanding slower than South Africa and Russia despite much higher rates, suggesting either structural headwinds (fiscal imbalance at 6.7% of GDP) or demand destruction that will eventually force the central bank to cut, creating a policy inflection point risk."
+        ],
+        "expert": [
+          "Policy rate at 15% with CPI at 3.81% in February implies the central bank is running real rates around 11%, the highest in the EM universe, yet the Selic trajectory signals further tightening bias if inflation prints exceed 4% through Q2, directly contradicting the 1.7% growth forecast.",
+          "JPMorgan's bullish call versus BlackRock's short creates a carry trade unwind risk; if the central bank signals a rate cut cycle beginning before June, positioning will reverse violently, with duration beneficiaries (equity and bonds) rallying sharply as the terminal rate reprices downward from current 15% level.",
+          "Forward watch is the fiscal responsibility law enforcement and whether Congress will anchor expectations on deficit consolidation toward the 6.7% of GDP target; without credible fiscal reform, the central bank cannot cut rates before August even if growth disappoints, creating a policy bind through mid-year."
+        ]
+      }
+    },
+    "RUS": {
+      "stories": {
+        "beginner": [
+          "Russia's economy is held hostage by the war in Ukraine, which creates so much uncertainty that nobody can forecast what will happen to growth, inflation, or investment in the coming months.",
+          "Inflation is running at 6.01% and the central bank has rates at 15.5%, both very high, but the real risk is geopolitical, not monetary: if peace breaks out, Russia could see faster growth, but continued conflict means prolonged economic stagnation.",
+          "Russia remains an outlier in the emerging market group because of sanctions and war risk, making traditional economic analysis less useful than geopolitical forecasting."
+        ],
+        "moderate": [
+          "Russia's CPI at 6.01% in January and policy rate at 15.5% in February reflect the central bank's attempt to control inflation under wartime conditions, but the 1.2% growth forecast implies the economy is barely expanding despite a strong current account surplus at 2% of GDP.",
+          "A peace agreement between Russia and Ukraine would likely unlock German growth momentum and could allow Russian capital to redeploy from wartime production back to civilian investment, but the probability and timing remain highly uncertain.",
+          "The 2.15% unemployment rate is historically low and reflects both labor market tightness from military conscription and strong resource sector demand, masking underlying industrial weakness that would emerge if war-related spending ended abruptly."
+        ],
+        "expert": [
+          "Policy rate at 15.5% with CPI at 6.01% yields real rates of 9.5%, consistent with a central bank fighting imported inflation and ruble weakness under sanctions, yet the 1.2% growth forecast implies demand destruction sufficient to keep inflation moderating toward the 4.7% full-year target if sanctions hold.",
+          "Russia's 2% current account surplus is the only EM peer in surplus, reflecting commodity export strength and crushed imports from sanctions, but this masks structural capital flight and the non-transferability of rouble assets, meaning nominal external strength is illusory for international capital allocation.",
+          "Forward directional signal depends entirely on geopolitical resolution; a Ukraine peace agreement would likely trigger an immediate repricing of Russian assets as sanctions expectations shift, but the central bank's inability to cut below 12-13% until war resolution creates a policy floor that caps any rally in nominal fixed income."
+        ]
+      }
+    }
+  },
+  "globalStories": {
+    "beginner": [
+      {
+        "icon": "⚠️",
+        "label": "Oil Choke Point Still Blocked",
+        "source": "CNN",
+        "bullets": [
+          "Iran has blocked the world's most important oil highway for two months during its war with the US and Israel",
+          "Only 5% of normal ship traffic is getting through the narrow waterway that usually carries 20% of global oil",
+          "Gas prices jumped 30% and oil hit $112 per barrel as the world economy feels the squeeze"
+        ]
+      },
+      {
+        "icon": "🏦",
+        "label": "Central Banks on High Alert",
+        "source": "BlackRock",
+        "bullets": [
+          "Four major central banks meet this week with oil-driven inflation threatening their plans",
+          "The Federal Reserve, European Central Bank, Bank of England and Bank of Japan all expected to pause rate cuts",
+          "Rising energy costs could force banks to keep borrowing costs higher for longer than planned"
+        ]
+      },
+      {
+        "icon": "🔗",
+        "label": "War Economics Take Hold",
+        "source": "IMF",
+        "bullets": [
+          "The shipping crisis shows how quickly global trade can break down during conflicts",
+          "Countries are scrambling to find alternative oil routes but can only handle half the normal flow",
+          "This crisis could reshape how the world thinks about energy security and trade routes"
+        ]
+      }
+    ],
+    "moderate": [
+      {
+        "icon": "⚠️",
+        "label": "Oil Choke Point Still Blocked",
+        "source": "CNN",
+        "bullets": [
+          "The Strait of Hormuz closure represents the largest oil supply disruption in history, exceeding 1970s shocks",
+          "Alternative pipelines through Saudi Arabia and UAE can only handle 9 million barrels daily versus the strait's 20 million capacity",
+          "US blockade of Iranian ports continues even during extended ceasefire, with 41 vessels turned away carrying 69 million barrels"
+        ]
+      },
+      {
+        "icon": "🏦",
+        "label": "Central Banks on High Alert",
+        "source": "BlackRock",
+        "bullets": [
+          "Energy-driven inflation threatens the post-pandemic monetary policy normalization that ECB's Lagarde declared complete",
+          "Markets expect Fed to signal only one rate cut in 2026 versus previous projections of multiple cuts",
+          "ECB and BoE face particular pressure as European economies bear heavier energy import costs than the US"
+        ]
+      },
+      {
+        "icon": "🔗",
+        "label": "War Economics Take Hold",
+        "source": "IMF",
+        "bullets": [
+          "The crisis demonstrates how geopolitical choke points can override traditional economic relationships and central bank policies",
+          "Countries are rebuilding strategic petroleum reserves and rethinking energy supply chains after decades of just-in-time globalization",
+          "Insurance costs for shipping have spiked from 0.25% to 5% of vessel value, fundamentally altering global trade economics"
+        ]
+      }
+    ],
+    "expert": [
+      {
+        "icon": "⚠️",
+        "label": "Oil Choke Point Still Blocked",
+        "source": "CNN",
+        "bullets": [
+          "Shipping through Hormuz remains at 5% of pre-war levels despite ceasefire extension, with Iran's IRGC controlling alternative routes through territorial waters",
+          "Brent crude at $112/barrel reflects structural supply constraints as Gulf producers cut output amid Iranian attacks on infrastructure",
+          "Mine clearance operations could take six months post-conflict, creating persistent risk premium even after political resolution"
+        ]
+      },
+      {
+        "icon": "🏦",
+        "label": "Central Banks on High Alert",
+        "source": "BlackRock",
+        "bullets": [
+          "Fed's dot plot this week likely shows hawkish shift with terminal rate projections rising above 3.37% as energy shocks complicate disinflationary path",
+          "ECB faces stagflationary dynamics with eurozone PMI showing cost pressures at highest since 2000 while composite index falls into contraction",
+          "BoJ increasingly likely to signal additional tightening as imported energy inflation threatens 2% target achievement"
+        ]
+      },
+      {
+        "icon": "🔗",
+        "label": "War Economics Take Hold",
+        "source": "IMF",
+        "bullets": [
+          "Current crisis validates BlackRock's 'diversification mirage' thesis as bond-equity correlations break down during supply shocks",
+          "Term premiums rising globally as debt sustainability concerns compound with energy-driven fiscal pressures in import-dependent economies",
+          "Structural shift toward energy security over efficiency suggests permanently higher inflation risk premiums across asset classes"
+        ]
+      }
+    ]
+  }
+}

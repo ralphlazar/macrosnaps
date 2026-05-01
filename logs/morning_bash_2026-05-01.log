@@ -1,0 +1,475 @@
+
+==================================================================
+  MORNING BASH STARTED 2026-05-01 10:43:19 BST
+==================================================================
+
+
+==================================================================
+  STEP 1/6: fetch_market_data.py
+==================================================================
+
+Reading /Users/lisaswerling/RALPH/AI/macrosnaps/data.json ...
+
+====================================================
+  USA
+====================================================
+  Stock Market YTD    +5.1%
+  10Y Bond Yield      4.42%
+  Yield Curve         +81bps
+  USD/DXY             98.1
+  Stock Market YTD (USD)  +5.10  (= local, mirrored)
+
+====================================================
+  CAN
+====================================================
+  Stock Market YTD    +6.5%
+  10Y Bond Yield      3.44%
+  Yield Curve         +121bps
+  CAD/USD             0.74
+  Stock Market YTD (USD)  +7.63  (local +6.53%, fx +1.03%)
+
+====================================================
+  GBR
+====================================================
+  Stock Market YTD    +3.6%
+  10Y Bond Yield      4.70%
+  Yield Curve         +99bps
+  GBP/USD             1.36
+  Stock Market YTD (USD)  +4.58  (local +3.61%, fx +0.94%)
+
+====================================================
+  JPN
+====================================================
+  Stock Market YTD    +14.8%
+  10Y Bond Yield      2.35%
+  Yield Curve         +108bps
+  USD/JPY             156.6
+  Stock Market YTD (USD)  +14.94  (local +14.82%, fx +0.11%)
+
+====================================================
+  DEU
+====================================================
+  Stock Market YTD    -1.0%
+  10Y Bond Yield      2.91%
+  Yield Curve         +91bps
+  EUR/USD             1.1741
+  Stock Market YTD (USD)  -1.09  (local -1.01%, fx -0.08%)
+
+====================================================
+  FRA
+====================================================
+  Stock Market YTD    -1.0%
+  10Y Bond Yield      3.40%
+  Yield Curve         +140bps
+  EUR/USD             1.1741
+  Stock Market YTD (USD)  -1.06  (local -0.98%, fx -0.08%)
+
+====================================================
+  ITA
+====================================================
+  Stock Market YTD    +6.3%
+  10Y Bond Yield      3.39%
+  Yield Curve         +139bps
+  EUR/USD             1.1741
+  Stock Market YTD (USD)  +6.25  (local +6.33%, fx -0.08%)
+
+====================================================
+  CHN
+====================================================
+  Stock Market YTD    +2.2%
+  10Y Bond Yield      FAILED (no FRED series)
+  Yield Curve         FAILED
+  USD/CNY             6.83
+  Stock Market YTD (USD)  +4.74  (local +2.21%, fx +2.48%)
+
+====================================================
+  IND
+====================================================
+  Stock Market YTD    -9.7%
+  10Y Bond Yield      6.78%
+  Yield Curve         +128bps
+  USD/INR             94.90
+  Stock Market YTD (USD)  -14.41  (local -9.71%, fx -5.20%)
+
+====================================================
+  ZAF
+====================================================
+  Stock Market YTD    -0.8%
+  10Y Bond Yield      9.05%
+  Yield Curve         +230bps
+  USD/ZAR             16.73
+  Stock Market YTD (USD)  -2.29  (local -0.79%, fx -1.51%)
+
+====================================================
+  BRA
+====================================================
+  Stock Market YTD    +16.7%
+  10Y Bond Yield      FAILED (no FRED series)
+  Yield Curve         FAILED
+  USD/BRL             4.96
+  Stock Market YTD (USD)  +29.90  (local +16.68%, fx +11.33%)
+
+====================================================
+  RUS
+====================================================
+  Stock Market YTD    -3.6%
+  10Y Bond Yield      FAILED (no FRED series)
+  Yield Curve         FAILED
+  USD/RUB             74.9
+  Stock Market YTD (USD)  +1.64  (local -3.60%, fx +5.44%)
+
+====================================================
+SUMMARY
+====================================================
+  USA  Stock Market YTD       -> +5.1%
+  USA  10Y Bond Yield         -> 4.42%
+  USA  Yield Curve            -> +81bps
+  USA  USD/DXY                -> 98.1
+  USA  Stock Market YTD (USD) -> 5.1
+  CAN  Stock Market YTD       -> +6.5%
+  CAN  10Y Bond Yield         -> 3.44%
+  CAN  Yield Curve            -> +121bps
+  CAN  CAD/USD                -> 0.74
+  CAN  Stock Market YTD (USD) -> 7.63
+  GBR  Stock Market YTD       -> +3.6%
+  GBR  10Y Bond Yield         -> 4.70%
+  GBR  Yield Curve            -> +99bps
+  GBR  GBP/USD                -> 1.36
+  GBR  Stock Market YTD (USD) -> 4.58
+  JPN  Stock Market YTD       -> +14.8%
+  JPN  10Y Bond Yield         -> 2.35%
+  JPN  Yield Curve            -> +108bps
+  JPN  USD/JPY                -> 156.6
+  JPN  Stock Market YTD (USD) -> 14.94
+  DEU  Stock Market YTD       -> -1.0%
+  DEU  10Y Bond Yield         -> 2.91%
+  DEU  Yield Curve            -> +91bps
+  DEU  EUR/USD                -> 1.1741
+  DEU  Stock Market YTD (USD) -> -1.09
+  FRA  Stock Market YTD       -> -1.0%
+  FRA  10Y Bond Yield         -> 3.40%
+  FRA  Yield Curve            -> +140bps
+  FRA  EUR/USD                -> 1.1741
+  FRA  Stock Market YTD (USD) -> -1.06
+  ITA  Stock Market YTD       -> +6.3%
+  ITA  10Y Bond Yield         -> 3.39%
+  ITA  Yield Curve            -> +139bps
+  ITA  EUR/USD                -> 1.1741
+  ITA  Stock Market YTD (USD) -> 6.25
+  CHN  Stock Market YTD       -> +2.2%
+  CHN  USD/CNY                -> 6.83
+  CHN  Stock Market YTD (USD) -> 4.74
+  IND  Stock Market YTD       -> -9.7%
+  IND  10Y Bond Yield         -> 6.78%
+  IND  Yield Curve            -> +128bps
+  IND  USD/INR                -> 94.90
+  IND  Stock Market YTD (USD) -> -14.41
+  ZAF  Stock Market YTD       -> -0.8%
+  ZAF  10Y Bond Yield         -> 9.05%
+  ZAF  Yield Curve            -> +230bps
+  ZAF  USD/ZAR                -> 16.73
+  ZAF  Stock Market YTD (USD) -> -2.29
+  BRA  Stock Market YTD       -> +16.7%
+  BRA  USD/BRL                -> 4.96
+  BRA  Stock Market YTD (USD) -> 29.9
+  RUS  Stock Market YTD       -> -3.6%
+  RUS  USD/RUB                -> 74.9
+  RUS  Stock Market YTD (USD) -> 1.64
+
+  Updated : 54
+  Failed  : -6
+
+====================================================
+  COMMODITIES
+====================================================
+  WTI Crude        105.60  (+84.2% YTD)
+  Brent Crude      111.50  (+83.5% YTD)
+  Natural Gas      2.80  (-22.7% YTD)
+  Gold             4581.40  (+6.2% YTD)
+  Silver           73.75  (+4.5% YTD)
+  Copper           5.98  (+6.1% YTD)
+  Wheat            634.25  (+25.2% YTD)
+  Corn             476.00  (+8.8% YTD)
+  Soybeans         1200.50  (+16.6% YTD)
+
+  Commodities updated: 9  failed: 0
+
+====================================================
+  COMMODITIES → SHEET APPEND
+====================================================
+  Sheet: appended row for 2026-05-01 to 'Commodities' tab ✓
+
+====================================================
+  MARKET-STATS → SHEET APPEND
+====================================================
+  [USA] appended ✓
+  [CAN] appended ✓
+  [GBR] appended ✓
+  [JPN] appended ✓
+  [DEU] appended ✓
+  [FRA] appended ✓
+  [ITA] appended ✓
+  [CHN] appended ✓
+  [IND] appended ✓
+  [ZAF] appended ✓
+  [BRA] appended ✓
+  [RUS] appended ✓
+  Market stats: 12 appended, 0 skipped, 0 failed
+
+Writing /Users/lisaswerling/RALPH/AI/macrosnaps/data.json ...
+Write complete.
+
+Next steps:
+  python3 sync_commodity_data.py --apply  # derive spark/change from sheet
+  python3 build.py && git add -A && git commit -m 'Daily market update' && git push origin master
+
+==================================================================
+  STEP 2/6: sync_market_historical.py --apply
+==================================================================
+
+[APPLY] sync_market_historical.py
+Source: MARKET-STATS sheet (1tL0BkihqRC0JHW0H43ZEfeU2-MS9Swu8F6xxwddUDKI)
+Start date: 2000-01-01  |  Stale threshold: 3 months
+
+Connecting to MARKET-STATS sheet ...
+Connected.
+
+========================================================
+  USA
+========================================================
+    ✓  Stock Market: 317 pts, last=2026-05
+    ✓  FX (USD/DXY): 317 pts, last=2026-05
+    ✓  10Y Bond Yield: 317 pts, last=2026-05
+    ✓  Yield Curve: 317 pts, last=2026-05
+
+========================================================
+  CAN
+========================================================
+    ✓  Stock Market: 317 pts, last=2026-05
+    ✓  FX (CAD/USD): 273 pts, last=2026-05
+    ✓  10Y Bond Yield: 317 pts, last=2026-05
+    ✓  Yield Curve: 317 pts, last=2026-05
+
+========================================================
+  GBR
+========================================================
+    ✓  Stock Market: 317 pts, last=2026-05
+    ✓  FX (GBP/USD): 270 pts, last=2026-05
+    ✓  10Y Bond Yield: 317 pts, last=2026-05
+    ✓  Yield Curve: 317 pts, last=2026-05
+
+========================================================
+  JPN
+========================================================
+    ✓  Stock Market: 317 pts, last=2026-05
+    ✓  FX (USD/JPY): 317 pts, last=2026-05
+    ✓  10Y Bond Yield: 317 pts, last=2026-05
+    ✓  Yield Curve: 290 pts, last=2026-05
+
+========================================================
+  DEU
+========================================================
+    ✓  Stock Market: 317 pts, last=2026-05
+    ✓  FX (EUR/USD): 270 pts, last=2026-05
+    ✓  10Y Bond Yield: 317 pts, last=2026-05
+    ✓  Yield Curve: 317 pts, last=2026-05
+
+========================================================
+  FRA
+========================================================
+    ✓  Stock Market: 317 pts, last=2026-05
+    ✓  FX (EUR/USD): 270 pts, last=2026-05
+    ✓  10Y Bond Yield: 317 pts, last=2026-05
+    ✓  Yield Curve: 317 pts, last=2026-05
+
+========================================================
+  ITA
+========================================================
+    ✓  Stock Market: 317 pts, last=2026-05
+    ✓  FX (EUR/USD): 270 pts, last=2026-05
+    ✓  10Y Bond Yield: 317 pts, last=2026-05
+    ✓  Yield Curve: 317 pts, last=2026-05
+
+========================================================
+  CHN
+========================================================
+    ✓  Stock Market: 315 pts, last=2026-03
+    ✓  FX (USD/CNY): 298 pts, last=2026-03
+    ⚠  10Y Bond Yield: EMPTY (expected for CHN/BRA/RUS)
+    ⚠  Yield Curve: EMPTY (expected for CHN/BRA/RUS)
+
+========================================================
+  IND
+========================================================
+    ✓  Stock Market: 317 pts, last=2026-05
+    ✓  FX (USD/INR): 270 pts, last=2026-05
+    ✓  10Y Bond Yield: 3 pts, last=2026-05
+    ✓  Yield Curve: 3 pts, last=2026-05
+
+========================================================
+  ZAF
+========================================================
+    ✓  Stock Market: 172 pts, last=2026-05
+    ✓  FX (USD/ZAR): 270 pts, last=2026-05
+    ✓  10Y Bond Yield: 317 pts, last=2026-05
+    ✓  Yield Curve: 317 pts, last=2026-05
+
+========================================================
+  BRA
+========================================================
+    ✓  Stock Market: 317 pts, last=2026-05
+    ✓  FX (USD/BRL): 270 pts, last=2026-05
+    ⚠  10Y Bond Yield: EMPTY (expected for CHN/BRA/RUS)
+    ⚠  Yield Curve: EMPTY (expected for CHN/BRA/RUS)
+
+========================================================
+  RUS
+========================================================
+    ✓  Stock Market: 315 pts, last=2026-03
+    ✓  FX (USD/RUB): 270 pts, last=2026-05
+    ⚠  10Y Bond Yield: EMPTY (expected for CHN/BRA/RUS)
+    ⚠  Yield Curve: EMPTY (expected for CHN/BRA/RUS)
+
+Writing /Users/lisaswerling/RALPH/AI/macrosnaps/data.json ...
+Done. 48 spark arrays written across 12 countries.
+
+Next: python3 build.py --apply
+
+==================================================================
+  STEP 3/6: sync_commodity_data.py --apply
+==================================================================
+
+
+============================================================
+  sync_commodity_data.py  [APPLY]
+============================================================
+
+Connecting to MARKET-STATS sheet ...
+Reading 'Commodities' tab ...
+  6505 data rows loaded (header: ['Date', 'WTI Crude', 'Brent Crude', 'Natural Gas', 'Gold', 'Silver', 'Copper', 'Wheat', 'Corn', 'Soybeans'])
+
+  WTI Crude         price: 105.6 → 105.6  change: 84.2 → -0.8  spark: 310 pts (was 309)
+  Brent Crude       price: 111.5 → 111.5  change: 83.5 → 8.0  spark: 311 pts (was 310)
+  Natural Gas       price: 2.8 → 2.8  change: -22.7 → 6.5  spark: 310 pts (was 309)
+  Gold              price: 4581.4 → 4581.4  change: 6.2 → -1.2  spark: 310 pts (was 309)
+  Silver            price: 73.75 → 73.75  change: 4.5 → -0.3  spark: 310 pts (was 309)
+  Copper            price: 5.98 → 5.98  change: 6.1 → -0.2  spark: 310 pts (was 309)
+  Wheat             price: 634.25 → 634.25  change: 25.2 → -1.7  spark: 311 pts (was 310)
+  Corn              price: 476.0 → 476.0  change: 8.8 → 0.3  spark: 311 pts (was 310)
+  Soybeans          price: 1200.5 → 1200.5  change: 16.6 → 0.4  spark: 309 pts (was 308)
+
+────────────────────────────────────────────────────────────
+  9 commodity/ies changed out of 9
+
+  ✓ data.json updated. Run build.py to rebuild the site.
+
+
+==================================================================
+  STEP 4/6: update_commodity_stories.py
+==================================================================
+
+
+============================================================
+  MacroSnaps - Commodity Story Update
+  2026-05-01
+============================================================
+
+  1 commodity flagged for rewrite:
+
+  Brent Crude      moved 8.0% vs 5% threshold (was 103.24, now 111.5)
+
+  Drafting stories (Haiku)...   Batch 1/1: Brent Crude... OK
+OK (4s)
+
+  Updated: Brent Crude
+  data.json saved.
+
+  Next step: python3 build.py
+
+
+==================================================================
+  STEP 5/6: update_headlines.py (draft)
+==================================================================
+
+
+============================================================
+  MacroSnaps - Draft Headlines
+  2026-05-01
+============================================================
+
+  3 API calls: Sonnet+search (harvest) + Haiku x3 (countries) + Sonnet+search (global)
+
+  [GLOBAL] Drafting global stories with web search (Sonnet)... OK
+  [HARVEST] Fetching recent data for all 12 countries (Sonnet+search)... FAILED (Could not parse JSON after repair attempts. Tail: ...conflict between the US, Israel, and Iran.</cite> <cite index=\"36-6,36-7\">The damage from the current energy shock is most severe for Gulf countries, echoing the 2022 commodity price surge.</cite>"})
+
+============================================================
+  Done: 1/13 in 117s
+  Failures: USA, CAN, GBR, JPN, DEU, FRA, ITA, CHN, IND, ZAF, BRA, RUS
+  Saved: HEADLINES_draft_2026-05-01.json
+
+  Next steps:
+  1. Open headline_review.html and load HEADLINES_draft_2026-05-01.json
+  2. Review, edit, approve, export HEADLINES_approved_2026-05-01.json
+  3. python3 update_headlines.py --apply HEADLINES_approved_2026-05-01.json
+  4. python3 build.py
+
+
+==================================================================
+  STEP 6/6: update_metric_stories.py (draft)
+==================================================================
+
+
+============================================================
+  MacroSnaps - Draft Metric Stories (trigger-based)
+  2026-05-01
+============================================================
+
+  12 parallel Haiku calls (per-country, only metrics needing regen)
+
+  [HARVEST] Today's harvest not found, using harvest_2026-04-30.json
+  [BATCH 1/12] USA: 3/11 regen [moved 11.0%, moved 27.5%]...   [BATCH 2/12] CAN: 2/11 regen [moved 41.3%, moved 55.7%]...   [BATCH 3/12] GBR: 1/11 regen [moved 21.2%]...   [BATCH 4/12] JPN: 1/11 regen [moved 18.8%]...   [BATCH 5/12] DEU: 2/11 regen [moved 54.5%, moved 59.2%]...   [BATCH 6/12] FRA: 2/11 regen [moved 52.4%, moved 59.4%]...   [BATCH 7/12] ITA: 2/11 regen [moved 21.2%, moved 39.2%]...   [BATCH 8/12] CHN: 0/11 regen, all carried forward
+  [BATCH 9/12] IND: 0/11 regen, all carried forward
+  [BATCH 10/12] ZAF: 1/11 regen [moved 10.1%]...   [BATCH 12/12] RUS: 2/11 regen [moved 16.3%, moved 60.8%]...   [BATCH 11/12] BRA: 2/11 regen [moved 10.6%, moved 12.1%]... OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+
+============================================================
+  Done: 12/12 countries in 18s
+  Metrics: 18 regenerated, 114 carried forward (of 132 total)
+  Savings: 86% of metric work skipped
+  Saved: METRICS_draft_2026-05-01.json
+
+  Next steps:
+  1. Open metric_story_review.html and load METRICS_draft_2026-05-01.json
+  2. Review, edit, approve, export METRICS_approved_2026-05-01.json
+  3. python3 update_metric_stories.py --apply METRICS_approved_2026-05-01.json
+  4. python3 build.py
+
+
+==================================================================
+  MORNING BASH COMPLETE - 3m 24s
+==================================================================
+
+Drafts ready. Next steps:
+
+  1. Start the local HTTP server (in a separate terminal):
+       cd /Users/lisaswerling/RALPH/AI/macrosnaps && python3 -m http.server 8080
+
+  2. Open http://localhost:8080/headline_review.html
+     Load HEADLINES_draft_2026-05-01.json, review, export approved.
+
+  3. Run the apply / build / audit steps:
+       python3 update_headlines.py --apply HEADLINES_approved_2026-05-01.json
+       python3 update_metric_stories.py --apply METRICS_draft_2026-05-01.json
+       python3 build.py
+       python3 audit_ritual.py
+
+Full log: /Users/lisaswerling/RALPH/AI/macrosnaps/logs/morning_bash_2026-05-01.log
+
