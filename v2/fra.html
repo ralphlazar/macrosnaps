@@ -110,18 +110,45 @@ a.box:active { transform: scale(.998); }
 /* ── Snapshot table ─────────────────────────────────────────────── */
 .snapshot {
   width: 100%; border-collapse: collapse;
-  font-family: var(--font-display); font-size: 12px;
+  font-family: var(--font-display); font-size: 13px;
   font-variant-numeric: tabular-nums; table-layout: fixed;
 }
-.snapshot th, .snapshot td { padding: 8px 4px; text-align: right; border-bottom: 1px solid var(--border-2); }
-.snapshot thead th { border-bottom: 1px solid rgba(0,0,0,.1); font-weight: 500; color: var(--text-5); font-size: 9px; letter-spacing: 1.4px; text-transform: uppercase; }
+.snapshot th, .snapshot td { padding: 11px 4px 12px; text-align: right; border-bottom: 1px solid var(--border-2); vertical-align: middle; }
+.snapshot thead th { border-bottom: 1px solid rgba(0,0,0,.1); font-weight: 500; color: var(--text-5); font-size: 9px; letter-spacing: 1.4px; text-transform: uppercase; padding: 9px 4px; }
 .snapshot th.sortable { cursor: pointer; user-select: none; transition: color .15s; }
 .snapshot th.sortable:hover { color: var(--text-3); }
 .snapshot th.sortable.active { color: var(--orange-dark); }
 .snapshot th .sort-arrow { display: inline-block; margin-left: 3px; color: var(--orange-dark); font-size: 10px; min-width: 6px; }
-.snapshot td:first-child, .snapshot th:first-child { text-align: left; padding-left: 6px; }
-.snapshot td:first-child { color: var(--text); font-weight: 500; }
+.snapshot td:first-child, .snapshot th:first-child { text-align: left; padding-left: 8px; }
+.snapshot td:first-child { color: var(--text); font-weight: 500; transition: color .15s; }
 .snapshot tbody tr:last-child td { border-bottom: none; }
+.snapshot tbody tr.clickable { cursor: pointer; transition: background-color .15s; }
+.snapshot tbody tr.clickable td { cursor: pointer; }
+.snapshot tbody tr.clickable:hover { background: rgba(249,115,22,.12); }
+.snapshot tbody tr.clickable:hover td:first-child .code-text { color: var(--orange-dark); }
+
+/* Country code cell: flag + code + hover arrow */
+.code-cell {
+  display: inline-flex; align-items: center; gap: 8px;
+  line-height: 1;
+}
+.row-flag {
+  display: inline-block; flex-shrink: 0;
+  width: 22px; height: 16px;
+  border-radius: 3px; overflow: hidden;
+  border: 1px solid rgba(0,0,0,.1);
+  line-height: 0;
+}
+.row-flag svg { display: block; width: 100%; height: 100%; }
+.code-text { transition: color .15s; }
+.row-arrow {
+  display: inline-block; margin-left: 2px;
+  color: var(--orange-dark); font-weight: 700;
+  opacity: 0; transition: opacity .15s;
+}
+.snapshot tbody tr.clickable:hover .row-arrow { opacity: 1; }
+
+/* Numeric cells: simple right-aligned values */
 .pos { color: var(--green); }
 .neg { color: var(--red); }
 .muted { color: var(--text-6); }
@@ -209,6 +236,49 @@ a.box:active { transform: scale(.998); }
 }
 .commodity-item .c-change { font-size: 11px; font-weight: 400; margin-left: 4px; }
 
+/* ── Countries grid (homepage) ──────────────────────────────────── */
+.countries-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px 14px;
+}
+.country-tile {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; gap: 9px;
+  padding: 6px 4px;
+  border-radius: 6px;
+  color: inherit; text-decoration: none;
+  transition: transform .15s, background .15s;
+}
+.country-tile:hover {
+  background: rgba(0,0,0,.025);
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+.flag-rect {
+  width: 80px; height: 60px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,.1);
+  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+  background: #fff;
+  transition: border-color .15s, box-shadow .15s;
+}
+.country-tile:hover .flag-rect {
+  border-color: var(--orange);
+  box-shadow: 0 2px 6px rgba(249,115,22,.18);
+}
+.flag-rect svg {
+  display: block;
+  width: 100%; height: 100%;
+}
+.country-tile-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-2);
+  line-height: 1.2;
+}
+
 /* ── Empty/placeholder ─────────────────────────────────────────────── */
 .note {
   text-align: center; padding: 18px;
@@ -232,8 +302,14 @@ a.box:active { transform: scale(.998); }
   .metric-head h2 { font-size: 22px; }
   .metric-value { font-size: 22px; }
   .commodities-grid { grid-template-columns: repeat(2, 1fr); }
-  .snapshot { font-size: 11px; }
-  .snapshot th, .snapshot td { padding: 7px 3px; }
+  .countries-grid { grid-template-columns: repeat(3, 1fr); gap: 16px 8px; }
+  .flag-rect { width: 64px; height: 48px; }
+  .country-tile-name { font-size: 12px; }
+  .snapshot { font-size: 12px; }
+  .snapshot th, .snapshot td { padding: 10px 3px 11px; }
+  .snapshot td:first-child, .snapshot th:first-child { padding-left: 6px; }
+  .row-flag { width: 18px; height: 13px; }
+  .code-cell { gap: 6px; }
 }
 </style>
 </head>
@@ -398,14 +474,14 @@ a.box:active { transform: scale(.998); }
     </div>
     <div class="box">
       <div class="metric-head">
-        <h2>Stock Market YTD</h2>
+        <h2>Stock Market</h2>
         <div class="metric-value pos">+1.3%</div>
       </div>
       <ol class="stories sm"><li>French stocks gained just 1.3% so far this year, meaning investors who bet on France are barely ahead while inflation sits at 1.9% and the ECB just raised its 2026 outlook.</li><li>The slow start reflects caution about energy costs spiking from Middle East tensions, which hit Europe harder than the U.S. and makes French exporters nervous about input expenses.</li><li>BlackRock calling France underowned matters because it signals big money sees better value here than in crowded Germany, which could attract fresh capital if inflation fears fade.</li></ol>
       
         <div class="metric-chart-wrap" data-metric="Stock Market YTD" data-chart='{&quot;v&quot;: [5659.81, 6190.96, 6286.05, 6419.72, 6426.26, 6446.54, 6542.49, 6625.42, 6266.63, 6397.66, 5928.08, 5926.42, 5998.49, 5367.48, 5180.45, 5640.03, 5454.19, 5225.33, 5085.51, 4689.34, 4079.02, 4341.29, 4476.06, 4624.58, 4461.87, 4462.99, 4688.02, 4462.74, 4274.64, 3897.99, 3415.38, 3366.21, 2777.45, 3150.04, 3326.65, 3063.91, 2937.88, 2754.07, 2618.46, 2953.67, 2991.75, 3084.1, 3210.27, 3311.42, 3134.99, 3373.2, 3424.79, 3557.9, 3638.44, 3725.44, 3625.23, 3674.28, 3669.63, 3732.99, 3647.1, 3594.28, 3640.61, 3706.82, 3753.75, 3821.16, 3913.69, 4027.16, 4067.78, 3911.71, 4120.73, 4229.35, 4451.74, 4399.36, 4600.02, 4436.45, 4567.41, 4715.23, 4947.99, 5000.45, 5220.85, 5188.4, 4930.18, 4965.96, 5009.42, 5165.04, 5250.01, 5348.73, 5327.64, 5541.76, 5608.31, 5516.32, 5634.16, 5960.04, 6104.0, 6054.93, 5751.08, 5662.7, 5715.69, 5847.95, 5670.57, 5614.08, 4869.79, 4790.66, 4707.07, 4996.54, 5014.28, 4434.85, 4392.36, 4482.6, 4032.1, 3487.07, 3262.68, 3217.97, 2973.92, 2702.48, 2807.34, 3159.85, 3277.65, 3140.44, 3426.27, 3653.54, 3795.41, 3607.69, 3680.15, 3936.33, 3739.46, 3708.8, 3974.01, 3816.99, 3507.56, 3442.89, 3643.14, 3490.79, 3715.18, 3833.5, 3610.44, 3850.76, 4005.5, 4110.35, 3989.18, 4106.92, 4006.94, 3982.21, 3672.77, 3256.76, 2981.96, 3242.84, 3154.62, 3159.81, 3298.55, 3452.45, 3423.81, 3212.8, 3017.01, 3196.65, 3291.66, 3413.07, 3354.82, 3429.27, 3557.28, 3620.25, 3732.6, 3723.0, 3731.42, 3856.75, 3948.59, 3738.91, 3992.69, 3933.78, 4143.44, 4299.89, 4295.21, 4295.95, 4165.72, 4408.08, 4391.5, 4487.39, 4519.57, 4422.84, 4246.14, 4381.04, 4416.24, 4233.09, 4390.18, 4272.75, 4604.25, 4951.48, 5033.64, 5046.49, 5007.89, 4790.2, 5082.61, 4652.95, 4455.29, 4897.66, 4957.6, 4677.14, 4417.02, 4353.55, 4385.06, 4428.96, 4505.62, 4237.48, 4439.81, 4438.22, 4448.26, 4509.26, 4578.34, 4862.31, 4748.9, 4858.58, 5122.51, 5267.33, 5283.63, 5120.68, 5093.77, 5085.59, 5329.81, 5503.29, 5372.79, 5312.56, 5481.93, 5320.49, 5167.3, 5520.5, 5398.4, 5323.53, 5511.3, 5406.85, 5493.49, 5093.44, 5003.92, 4730.69, 4992.72, 5240.53, 5350.53, 5586.41, 5207.63, 5538.97, 5518.9, 5480.48, 5677.79, 5729.86, 5905.17, 5978.06, 5806.34, 5309.9, 4396.12, 4572.18, 4695.44, 4935.99, 4783.69, 4947.22, 4803.44, 4594.24, 5518.55, 5551.41, 5399.21, 5703.22, 6067.23, 6269.48, 6447.17, 6507.83, 6612.76, 6680.18, 6520.01, 6830.34, 6721.16, 7153.03, 6999.2, 6658.83, 6659.87, 6533.77, 6468.8, 5922.86, 6448.5, 6125.1, 5762.34, 6266.77, 6738.55, 6473.76, 7082.42, 7267.93, 7322.39, 7491.5, 7098.7, 7400.06, 7497.78, 7316.7, 7135.06, 6885.65, 7310.77, 7543.18, 7656.75, 7927.43, 8205.81, 7984.93, 7992.87, 7479.4, 7531.49, 7630.95, 7635.75, 7350.37, 7235.11, 7380.74, 7950.17, 8111.63, 7790.71, 7593.87, 7751.89, 7665.91, 7771.97, 7703.9, 7895.94, 8121.07, 8122.71, 8149.5, 8126.53, 8580.75, 7808.24, 8020.64, 8300.95], &quot;startDate&quot;: &quot;2000-01&quot;, &quot;type&quot;: &quot;line&quot;}'>
           <div class="metric-chart-head">
-            <div class="metric-chart-title">Stock Market YTD · History since 2000</div>
+            <div class="metric-chart-title">Stock Market · History since 2000</div>
             <div class="metric-chart-range">
               <button class="mcr-btn" data-r="12">1Y</button>
               <button class="mcr-btn" data-r="24">2Y</button>
@@ -561,14 +637,17 @@ a.box:active { transform: scale(.998); }
 
   function monthLabelsFrom(startDateStr, n) {
     // startDateStr: "YYYY-MM"
+    // Emit "MMM 'YY" at every position so autoSkip has labels to pick from
+    // at any tick density (1Y, 2Y, 5Y, All).
     if (!startDateStr) return Array(n).fill('');
+    const MONTH_ABBR = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     const [y0, m0] = startDateStr.split('-').map(Number);
     const labels = [];
     for (let i = 0; i < n; i++) {
       const monthIdx = (m0 - 1) + i;
       const y = y0 + Math.floor(monthIdx / 12);
-      const m = (monthIdx % 12) + 1;
-      labels.push((m === 1 ? "'" + String(y).slice(2) : ''));
+      const m = monthIdx % 12;
+      labels.push(MONTH_ABBR[m] + " '" + String(y).slice(2));
     }
     return labels;
   }
@@ -682,7 +761,7 @@ a.box:active { transform: scale(.998); }
             ticks: {
               color: function (context) {
                 var label = sliceLabels[context.index];
-                return (label && label.toString().includes('F')) ? '#F97316' : TICK;
+                return (label && label.toString().endsWith('F')) ? '#F97316' : TICK;
               },
               font: { family: "'Space Mono', monospace", size: 8 },
               maxRotation: 0, autoSkip: true,

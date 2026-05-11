@@ -110,18 +110,45 @@ a.box:active { transform: scale(.998); }
 /* ── Snapshot table ─────────────────────────────────────────────── */
 .snapshot {
   width: 100%; border-collapse: collapse;
-  font-family: var(--font-display); font-size: 12px;
+  font-family: var(--font-display); font-size: 13px;
   font-variant-numeric: tabular-nums; table-layout: fixed;
 }
-.snapshot th, .snapshot td { padding: 8px 4px; text-align: right; border-bottom: 1px solid var(--border-2); }
-.snapshot thead th { border-bottom: 1px solid rgba(0,0,0,.1); font-weight: 500; color: var(--text-5); font-size: 9px; letter-spacing: 1.4px; text-transform: uppercase; }
+.snapshot th, .snapshot td { padding: 11px 4px 12px; text-align: right; border-bottom: 1px solid var(--border-2); vertical-align: middle; }
+.snapshot thead th { border-bottom: 1px solid rgba(0,0,0,.1); font-weight: 500; color: var(--text-5); font-size: 9px; letter-spacing: 1.4px; text-transform: uppercase; padding: 9px 4px; }
 .snapshot th.sortable { cursor: pointer; user-select: none; transition: color .15s; }
 .snapshot th.sortable:hover { color: var(--text-3); }
 .snapshot th.sortable.active { color: var(--orange-dark); }
 .snapshot th .sort-arrow { display: inline-block; margin-left: 3px; color: var(--orange-dark); font-size: 10px; min-width: 6px; }
-.snapshot td:first-child, .snapshot th:first-child { text-align: left; padding-left: 6px; }
-.snapshot td:first-child { color: var(--text); font-weight: 500; }
+.snapshot td:first-child, .snapshot th:first-child { text-align: left; padding-left: 8px; }
+.snapshot td:first-child { color: var(--text); font-weight: 500; transition: color .15s; }
 .snapshot tbody tr:last-child td { border-bottom: none; }
+.snapshot tbody tr.clickable { cursor: pointer; transition: background-color .15s; }
+.snapshot tbody tr.clickable td { cursor: pointer; }
+.snapshot tbody tr.clickable:hover { background: rgba(249,115,22,.12); }
+.snapshot tbody tr.clickable:hover td:first-child .code-text { color: var(--orange-dark); }
+
+/* Country code cell: flag + code + hover arrow */
+.code-cell {
+  display: inline-flex; align-items: center; gap: 8px;
+  line-height: 1;
+}
+.row-flag {
+  display: inline-block; flex-shrink: 0;
+  width: 22px; height: 16px;
+  border-radius: 3px; overflow: hidden;
+  border: 1px solid rgba(0,0,0,.1);
+  line-height: 0;
+}
+.row-flag svg { display: block; width: 100%; height: 100%; }
+.code-text { transition: color .15s; }
+.row-arrow {
+  display: inline-block; margin-left: 2px;
+  color: var(--orange-dark); font-weight: 700;
+  opacity: 0; transition: opacity .15s;
+}
+.snapshot tbody tr.clickable:hover .row-arrow { opacity: 1; }
+
+/* Numeric cells: simple right-aligned values */
 .pos { color: var(--green); }
 .neg { color: var(--red); }
 .muted { color: var(--text-6); }
@@ -209,6 +236,49 @@ a.box:active { transform: scale(.998); }
 }
 .commodity-item .c-change { font-size: 11px; font-weight: 400; margin-left: 4px; }
 
+/* ── Countries grid (homepage) ──────────────────────────────────── */
+.countries-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px 14px;
+}
+.country-tile {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; gap: 9px;
+  padding: 6px 4px;
+  border-radius: 6px;
+  color: inherit; text-decoration: none;
+  transition: transform .15s, background .15s;
+}
+.country-tile:hover {
+  background: rgba(0,0,0,.025);
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+.flag-rect {
+  width: 80px; height: 60px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,.1);
+  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+  background: #fff;
+  transition: border-color .15s, box-shadow .15s;
+}
+.country-tile:hover .flag-rect {
+  border-color: var(--orange);
+  box-shadow: 0 2px 6px rgba(249,115,22,.18);
+}
+.flag-rect svg {
+  display: block;
+  width: 100%; height: 100%;
+}
+.country-tile-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-2);
+  line-height: 1.2;
+}
+
 /* ── Empty/placeholder ─────────────────────────────────────────────── */
 .note {
   text-align: center; padding: 18px;
@@ -232,8 +302,14 @@ a.box:active { transform: scale(.998); }
   .metric-head h2 { font-size: 22px; }
   .metric-value { font-size: 22px; }
   .commodities-grid { grid-template-columns: repeat(2, 1fr); }
-  .snapshot { font-size: 11px; }
-  .snapshot th, .snapshot td { padding: 7px 3px; }
+  .countries-grid { grid-template-columns: repeat(3, 1fr); gap: 16px 8px; }
+  .flag-rect { width: 64px; height: 48px; }
+  .country-tile-name { font-size: 12px; }
+  .snapshot { font-size: 12px; }
+  .snapshot th, .snapshot td { padding: 10px 3px 11px; }
+  .snapshot td:first-child, .snapshot th:first-child { padding-left: 6px; }
+  .row-flag { width: 18px; height: 13px; }
+  .code-cell { gap: 6px; }
 }
 </style>
 </head>
@@ -386,14 +462,14 @@ a.box:active { transform: scale(.998); }
     </div>
     <div class="box">
       <div class="metric-head">
-        <h2>Stock Market YTD</h2>
+        <h2>Stock Market</h2>
         <div class="metric-value neg">-4.5%</div>
       </div>
       <ol class="stories sm"><li>Russian stocks have lost 4.5% since January despite the central bank cutting rates in March, meaning cheaper borrowing costs haven&#x27;t convinced investors to buy yet.</li><li>When a stock market falls even as the central bank tries to stimulate the economy by lowering rates, it signals traders fear something bigger than interest rates, like ongoing sanctions or war-related uncertainty.</li><li>Watch whether the market bounces when rate cuts actually reach businesses and consumers, or keeps falling if geopolitical risk remains the dominant concern.</li></ol>
       
         <div class="metric-chart-wrap" data-metric="Stock Market YTD" data-chart='{&quot;v&quot;: [188.81, 191.49, 254.68, 242.85, 217.05, 194.93, 200.22, 239.03, 204.61, 192.22, 149.84, 144.39, 167.74, 158.1, 166.67, 177.31, 207.71, 219.4, 200.64, 193.72, 167.33, 187.41, 213.32, 236.24, 260.77, 262.65, 302.96, 343.33, 333.61, 304.18, 281.81, 292.23, 289.96, 311.41, 321.41, 318.91, 307.78, 341.52, 325.56, 369.77, 421.08, 455.44, 430.3, 484.0, 515.17, 468.85, 484.73, 514.71, 551.72, 591.09, 644.64, 561.78, 535.4, 534.84, 502.81, 549.28, 611.03, 632.97, 570.76, 552.22, 575.74, 635.38, 598.04, 593.88, 603.89, 639.98, 700.65, 784.28, 892.5, 842.52, 944.55, 1011.0, 1171.44, 1320.83, 1299.19, 1486.85, 1281.5, 1331.39, 1380.24, 1448.72, 1367.24, 1426.86, 1550.58, 1693.47, 1656.94, 1655.25, 1698.08, 1678.27, 1570.34, 1665.96, 1734.42, 1677.02, 1759.44, 1874.73, 1850.64, 1888.86, 1574.33, 1660.42, 1628.43, 1667.35, 1925.24, 1753.67, 1495.33, 1348.92, 1027.66, 731.96, 611.32, 619.53, 624.9, 666.05, 772.93, 920.35, 1123.38, 971.55, 1053.3, 1091.98, 1197.2, 1237.18, 1284.95, 1370.01, 1419.42, 1323.72, 1450.15, 1436.04, 1332.62, 1309.31, 1397.12, 1368.9, 1440.3, 1523.39, 1565.52, 1687.99, 1723.42, 1777.84, 1813.59, 1741.84, 1666.3, 1666.59, 1705.18, 1546.05, 1366.54, 1498.6, 1499.62, 1402.23, 1514.03, 1597.67, 1517.34, 1469.65, 1306.42, 1387.52, 1407.02, 1422.91, 1458.26, 1425.7, 1405.97, 1474.72, 1546.76, 1486.04, 1436.62, 1386.69, 1343.99, 1331.24, 1377.6, 1364.54, 1463.13, 1509.62, 1479.78, 1503.39, 1454.05, 1444.71, 1369.29, 1306.01, 1432.03, 1476.38, 1379.61, 1400.71, 1411.07, 1488.47, 1533.68, 1396.61, 1647.69, 1758.97, 1626.18, 1688.34, 1609.19, 1654.55, 1669.0, 1733.17, 1642.97, 1711.53, 1771.05, 1761.36, 1784.92, 1840.17, 1871.15, 1953.05, 1899.01, 1891.09, 1944.62, 1971.59, 1978.0, 1989.64, 2104.91, 2232.72, 2217.39, 2035.77, 1995.9, 2016.71, 1900.38, 1879.5, 1919.53, 2022.22, 2077.19, 2064.31, 2100.62, 2109.74, 2289.99, 2296.8, 2285.53, 2301.49, 2302.88, 2295.95, 2321.11, 2345.85, 2475.36, 2352.71, 2392.5, 2358.5, 2521.1, 2485.27, 2497.1, 2559.32, 2665.33, 2765.85, 2739.5, 2740.04, 2747.18, 2893.98, 2935.37, 3045.87, 3076.65, 2785.08, 2508.81, 2650.56, 2734.83, 2743.2, 2911.57, 2966.2, 2905.81, 2690.59, 3107.58, 3289.02, 3277.08, 3346.64, 3541.72, 3544.0, 3721.63, 3841.85, 3771.58, 3918.96, 4103.52, 4150.0, 3890.59, 3787.26, 3530.38, 2470.48, 2703.51, 2445.17, 2355.75, 2204.85, 2213.81, 2400.08, 1957.31, 2166.61, 2174.53, 2154.12, 2225.6, 2253.16, 2450.67, 2634.94, 2717.64, 2797.37, 3073.5, 3227.99, 3133.26, 3200.97, 3165.79, 3099.11, 3214.19, 3256.8, 3332.53, 3469.83, 3217.19, 3154.36, 2942.68, 2650.32, 2857.56, 2560.2, 2578.0, 2883.04, 2948.1, 3200.48, 3013.36, 2918.47, 2828.83, 2847.38, 2732.12, 2899.38, 2684.6, 2525.2, 2676.42, 2766.62, 2782.74, 2799.14, 2789.61], &quot;startDate&quot;: &quot;2000-02&quot;, &quot;type&quot;: &quot;line&quot;}'>
           <div class="metric-chart-head">
-            <div class="metric-chart-title">Stock Market YTD · History since 2000</div>
+            <div class="metric-chart-title">Stock Market · History since 2000</div>
             <div class="metric-chart-range">
               <button class="mcr-btn" data-r="12">1Y</button>
               <button class="mcr-btn" data-r="24">2Y</button>
@@ -525,14 +601,17 @@ a.box:active { transform: scale(.998); }
 
   function monthLabelsFrom(startDateStr, n) {
     // startDateStr: "YYYY-MM"
+    // Emit "MMM 'YY" at every position so autoSkip has labels to pick from
+    // at any tick density (1Y, 2Y, 5Y, All).
     if (!startDateStr) return Array(n).fill('');
+    const MONTH_ABBR = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     const [y0, m0] = startDateStr.split('-').map(Number);
     const labels = [];
     for (let i = 0; i < n; i++) {
       const monthIdx = (m0 - 1) + i;
       const y = y0 + Math.floor(monthIdx / 12);
-      const m = (monthIdx % 12) + 1;
-      labels.push((m === 1 ? "'" + String(y).slice(2) : ''));
+      const m = monthIdx % 12;
+      labels.push(MONTH_ABBR[m] + " '" + String(y).slice(2));
     }
     return labels;
   }
@@ -646,7 +725,7 @@ a.box:active { transform: scale(.998); }
             ticks: {
               color: function (context) {
                 var label = sliceLabels[context.index];
-                return (label && label.toString().includes('F')) ? '#F97316' : TICK;
+                return (label && label.toString().endsWith('F')) ? '#F97316' : TICK;
               },
               font: { family: "'Space Mono', monospace", size: 8 },
               maxRotation: 0, autoSkip: true,

@@ -110,18 +110,45 @@ a.box:active { transform: scale(.998); }
 /* ── Snapshot table ─────────────────────────────────────────────── */
 .snapshot {
   width: 100%; border-collapse: collapse;
-  font-family: var(--font-display); font-size: 12px;
+  font-family: var(--font-display); font-size: 13px;
   font-variant-numeric: tabular-nums; table-layout: fixed;
 }
-.snapshot th, .snapshot td { padding: 8px 4px; text-align: right; border-bottom: 1px solid var(--border-2); }
-.snapshot thead th { border-bottom: 1px solid rgba(0,0,0,.1); font-weight: 500; color: var(--text-5); font-size: 9px; letter-spacing: 1.4px; text-transform: uppercase; }
+.snapshot th, .snapshot td { padding: 11px 4px 12px; text-align: right; border-bottom: 1px solid var(--border-2); vertical-align: middle; }
+.snapshot thead th { border-bottom: 1px solid rgba(0,0,0,.1); font-weight: 500; color: var(--text-5); font-size: 9px; letter-spacing: 1.4px; text-transform: uppercase; padding: 9px 4px; }
 .snapshot th.sortable { cursor: pointer; user-select: none; transition: color .15s; }
 .snapshot th.sortable:hover { color: var(--text-3); }
 .snapshot th.sortable.active { color: var(--orange-dark); }
 .snapshot th .sort-arrow { display: inline-block; margin-left: 3px; color: var(--orange-dark); font-size: 10px; min-width: 6px; }
-.snapshot td:first-child, .snapshot th:first-child { text-align: left; padding-left: 6px; }
-.snapshot td:first-child { color: var(--text); font-weight: 500; }
+.snapshot td:first-child, .snapshot th:first-child { text-align: left; padding-left: 8px; }
+.snapshot td:first-child { color: var(--text); font-weight: 500; transition: color .15s; }
 .snapshot tbody tr:last-child td { border-bottom: none; }
+.snapshot tbody tr.clickable { cursor: pointer; transition: background-color .15s; }
+.snapshot tbody tr.clickable td { cursor: pointer; }
+.snapshot tbody tr.clickable:hover { background: rgba(249,115,22,.12); }
+.snapshot tbody tr.clickable:hover td:first-child .code-text { color: var(--orange-dark); }
+
+/* Country code cell: flag + code + hover arrow */
+.code-cell {
+  display: inline-flex; align-items: center; gap: 8px;
+  line-height: 1;
+}
+.row-flag {
+  display: inline-block; flex-shrink: 0;
+  width: 22px; height: 16px;
+  border-radius: 3px; overflow: hidden;
+  border: 1px solid rgba(0,0,0,.1);
+  line-height: 0;
+}
+.row-flag svg { display: block; width: 100%; height: 100%; }
+.code-text { transition: color .15s; }
+.row-arrow {
+  display: inline-block; margin-left: 2px;
+  color: var(--orange-dark); font-weight: 700;
+  opacity: 0; transition: opacity .15s;
+}
+.snapshot tbody tr.clickable:hover .row-arrow { opacity: 1; }
+
+/* Numeric cells: simple right-aligned values */
 .pos { color: var(--green); }
 .neg { color: var(--red); }
 .muted { color: var(--text-6); }
@@ -209,6 +236,49 @@ a.box:active { transform: scale(.998); }
 }
 .commodity-item .c-change { font-size: 11px; font-weight: 400; margin-left: 4px; }
 
+/* ── Countries grid (homepage) ──────────────────────────────────── */
+.countries-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px 14px;
+}
+.country-tile {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; gap: 9px;
+  padding: 6px 4px;
+  border-radius: 6px;
+  color: inherit; text-decoration: none;
+  transition: transform .15s, background .15s;
+}
+.country-tile:hover {
+  background: rgba(0,0,0,.025);
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+.flag-rect {
+  width: 80px; height: 60px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,.1);
+  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+  background: #fff;
+  transition: border-color .15s, box-shadow .15s;
+}
+.country-tile:hover .flag-rect {
+  border-color: var(--orange);
+  box-shadow: 0 2px 6px rgba(249,115,22,.18);
+}
+.flag-rect svg {
+  display: block;
+  width: 100%; height: 100%;
+}
+.country-tile-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-2);
+  line-height: 1.2;
+}
+
 /* ── Empty/placeholder ─────────────────────────────────────────────── */
 .note {
   text-align: center; padding: 18px;
@@ -232,8 +302,14 @@ a.box:active { transform: scale(.998); }
   .metric-head h2 { font-size: 22px; }
   .metric-value { font-size: 22px; }
   .commodities-grid { grid-template-columns: repeat(2, 1fr); }
-  .snapshot { font-size: 11px; }
-  .snapshot th, .snapshot td { padding: 7px 3px; }
+  .countries-grid { grid-template-columns: repeat(3, 1fr); gap: 16px 8px; }
+  .flag-rect { width: 64px; height: 48px; }
+  .country-tile-name { font-size: 12px; }
+  .snapshot { font-size: 12px; }
+  .snapshot th, .snapshot td { padding: 10px 3px 11px; }
+  .snapshot td:first-child, .snapshot th:first-child { padding-left: 6px; }
+  .row-flag { width: 18px; height: 13px; }
+  .code-cell { gap: 6px; }
 }
 </style>
 </head>
@@ -257,7 +333,7 @@ a.box:active { transform: scale(.998); }
     <div class="section-label">Snapshot</div>
     
     <table class="snapshot">
-      <colgroup><col style="width:60px"><col><col><col><col><col><col><col></colgroup>
+      <colgroup><col style="width:96px"><col><col><col><col><col><col><col></colgroup>
       <thead>
         <tr>
           <th class="sortable" data-col="0"><span class="th-label"></span><span class="sort-arrow"></span></th>
@@ -265,128 +341,165 @@ a.box:active { transform: scale(.998); }
         </tr>
       </thead>
       <tbody>
-        <tr><td data-sort="USA">USA</td><td class="pos" data-sort="2.2">+2.2</td><td data-sort="2.3">2.3</td><td data-sort="4.2">4.2</td><td data-sort="3.25">3.25</td><td data-sort="4.45">4.45</td><td class="pos" data-sort="7.4">+7.4</td><td class="muted" data-sort="">—</td></tr><tr><td data-sort="CAN">CAN</td><td class="pos" data-sort="1.7">+1.7</td><td data-sort="2.0">2</td><td data-sort="6.5">6.5</td><td data-sort="2.25">2.25</td><td data-sort="3.44">3.44</td><td class="pos" data-sort="6.6">+6.6</td><td class="pos" data-sort="0.6">+0.6</td></tr><tr><td data-sort="GBR">GBR</td><td class="pos" data-sort="1.5">+1.5</td><td data-sort="2.5">2.5</td><td data-sort="5.0">5</td><td data-sort="3.25">3.25</td><td data-sort="4.7">4.70</td><td class="pos" data-sort="4.2">+4.2</td><td class="pos" data-sort="1.1">+1.1</td></tr><tr><td data-sort="JPN">JPN</td><td class="pos" data-sort="0.8">+0.8</td><td data-sort="1.8">1.8</td><td data-sort="2.5">2.5</td><td data-sort="1.25">1.25</td><td data-sort="2.35">2.35</td><td class="pos" data-sort="21.2">+21.2</td><td class="pos" data-sort="0.3">+0.3</td></tr><tr><td data-sort="DEU">DEU</td><td class="pos" data-sort="1.2">+1.2</td><td data-sort="2.2">2.2</td><td data-sort="3.8">3.8</td><td data-sort="2.5">2.5</td><td data-sort="2.91">2.91</td><td class="pos" data-sort="1.4">+1.4</td><td class="pos" data-sort="0.2">+0.2</td></tr><tr><td data-sort="FRA">FRA</td><td class="pos" data-sort="1.4">+1.4</td><td data-sort="2.0">2</td><td data-sort="7.7">7.7</td><td data-sort="2.5">2.5</td><td data-sort="3.4">3.40</td><td class="pos" data-sort="1.3">+1.3</td><td class="pos" data-sort="0.2">+0.2</td></tr><tr><td data-sort="ITA">ITA</td><td class="pos" data-sort="1.0">+1</td><td data-sort="2.3">2.3</td><td data-sort="5.6">5.6</td><td data-sort="2.5">2.5</td><td data-sort="3.39">3.39</td><td class="pos" data-sort="9.4">+9.4</td><td class="pos" data-sort="0.2">+0.2</td></tr><tr><td data-sort="CHN">CHN</td><td class="pos" data-sort="4.7">+4.7</td><td data-sort="2.0">2</td><td data-sort="5.1">5.1</td><td data-sort="2.75">2.75</td><td data-sort="2.4">2.40</td><td class="pos" data-sort="3.9">+3.9</td><td class="pos" data-sort="2.9">+2.9</td></tr><tr><td data-sort="IND">IND</td><td class="pos" data-sort="6.3">+6.3</td><td data-sort="4.2">4.2</td><td data-sort="4.7">4.7</td><td data-sort="6.0">6</td><td data-sort="6.78">6.78</td><td class="neg" data-sort="-8.4">−8.4</td><td class="neg" data-sort="-4.5">−4.5</td></tr><tr><td data-sort="ZAF">ZAF</td><td class="pos" data-sort="1.5">+1.5</td><td data-sort="3.5">3.5</td><td data-sort="32.5">32.5</td><td data-sort="6.25">6.25</td><td data-sort="9.05">9.05</td><td class="pos" data-sort="2.8">+2.8</td><td class="pos" data-sort="1.5">+1.5</td></tr><tr><td data-sort="BRA">BRA</td><td class="pos" data-sort="1.7">+1.7</td><td data-sort="4.2">4.2</td><td data-sort="6.5">6.5</td><td data-sort="12.0">12</td><td data-sort="13.8">13.80</td><td class="pos" data-sort="16.9">+16.9</td><td class="pos" data-sort="12.1">+12.1</td></tr><tr><td data-sort="RUS">RUS</td><td class="pos" data-sort="1.2">+1.2</td><td data-sort="4.7">4.7</td><td data-sort="2.5">2.5</td><td data-sort="12.5">12.5</td><td data-sort="13.5">13.5</td><td class="neg" data-sort="-4.5">−4.5</td><td class="pos" data-sort="5.8">+5.8</td></tr>
+        <tr class="clickable" data-href="usa.html"><td data-sort="USA"><span class="code-cell"><span class="row-flag"><svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-us" viewBox="0 0 640 480">
+  <path fill="#bd3d44" d="M0 0h640v480H0"/>
+  <path stroke="#fff" stroke-width="37" d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640"/>
+  <path fill="#192f5d" d="M0 0h364.8v258.5H0"/>
+  <marker id="us-a" markerHeight="30" markerWidth="30">
+    <path fill="#fff" d="m14 0 9 27L0 10h28L5 27z"/>
+  </marker>
+  <path fill="none" marker-mid="url(#us-a)" d="m0 0 16 11h61 61 61 61 60L47 37h61 61 60 61L16 63h61 61 61 61 60L47 89h61 61 60 61L16 115h61 61 61 61 60L47 141h61 61 60 61L16 166h61 61 61 61 60L47 192h61 61 60 61L16 218h61 61 61 61 60z"/>
+</svg>
+</span><span class="code-text">USA</span><span class="row-arrow">→</span></span></td><td class="pos" data-sort="2.2">+2.2</td><td data-sort="2.3">2.3</td><td data-sort="4.2">4.2</td><td data-sort="3.25">3.2</td><td data-sort="4.45">4.5</td><td class="pos" data-sort="7.4">+7.4</td><td class="muted" data-sort="">—</td></tr><tr class="clickable" data-href="chn.html"><td data-sort="CHN"><span class="code-cell"><span class="row-flag"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="flag-icons-cn" viewBox="0 0 640 480">
+  <defs>
+    <path id="cn-a" fill="#ff0" d="M-.6.8 0-1 .6.8-1-.3h2z"/>
+  </defs>
+  <path fill="#ee1c25" d="M0 0h640v480H0z"/>
+  <use xlink:href="#cn-a" width="30" height="20" transform="matrix(71.9991 0 0 72 120 120)"/>
+  <use xlink:href="#cn-a" width="30" height="20" transform="matrix(-12.33562 -20.5871 20.58684 -12.33577 240.3 48)"/>
+  <use xlink:href="#cn-a" width="30" height="20" transform="matrix(-3.38573 -23.75998 23.75968 -3.38578 288 95.8)"/>
+  <use xlink:href="#cn-a" width="30" height="20" transform="matrix(6.5991 -23.0749 23.0746 6.59919 288 168)"/>
+  <use xlink:href="#cn-a" width="30" height="20" transform="matrix(14.9991 -18.73557 18.73533 14.99929 240 216)"/>
+</svg>
+</span><span class="code-text">CHN</span><span class="row-arrow">→</span></span></td><td class="pos" data-sort="4.7">+4.7</td><td data-sort="2.0">2.0</td><td data-sort="5.1">5.1</td><td data-sort="2.75">2.8</td><td data-sort="2.4">2.4</td><td class="pos" data-sort="3.9">+3.9</td><td class="pos" data-sort="2.9">+2.9</td></tr><tr class="clickable" data-href="deu.html"><td data-sort="DEU"><span class="code-cell"><span class="row-flag"><svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-de" viewBox="0 0 640 480">
+  <path fill="#fc0" d="M0 320h640v160H0z"/>
+  <path fill="#000001" d="M0 0h640v160H0z"/>
+  <path fill="red" d="M0 160h640v160H0z"/>
+</svg>
+</span><span class="code-text">DEU</span><span class="row-arrow">→</span></span></td><td class="pos" data-sort="1.2">+1.2</td><td data-sort="2.2">2.2</td><td data-sort="3.8">3.8</td><td data-sort="2.5">2.5</td><td data-sort="2.91">2.9</td><td class="pos" data-sort="1.4">+1.4</td><td class="pos" data-sort="0.2">+0.2</td></tr><tr class="clickable" data-href="jpn.html"><td data-sort="JPN"><span class="code-cell"><span class="row-flag"><svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-jp" viewBox="0 0 640 480">
+  <defs>
+    <clipPath id="jp-a">
+      <path fill-opacity=".7" d="M-88 32h640v480H-88z"/>
+    </clipPath>
+  </defs>
+  <g fill-rule="evenodd" stroke-width="1pt" clip-path="url(#jp-a)" transform="translate(88 -32)">
+    <path fill="#fff" d="M-128 32h720v480h-720z"/>
+    <circle cx="523.1" cy="344.1" r="194.9" fill="#bc002d" transform="translate(-168.4 8.6)scale(.76554)"/>
+  </g>
+</svg>
+</span><span class="code-text">JPN</span><span class="row-arrow">→</span></span></td><td class="pos" data-sort="0.8">+0.8</td><td data-sort="1.8">1.8</td><td data-sort="2.5">2.5</td><td data-sort="1.25">1.2</td><td data-sort="2.35">2.4</td><td class="pos" data-sort="21.2">+21.2</td><td class="pos" data-sort="0.3">+0.3</td></tr><tr class="clickable" data-href="ind.html"><td data-sort="IND"><span class="code-cell"><span class="row-flag"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="flag-icons-in" viewBox="0 0 640 480">
+  <path fill="#f93" d="M0 0h640v160H0z"/>
+  <path fill="#fff" d="M0 160h640v160H0z"/>
+  <path fill="#128807" d="M0 320h640v160H0z"/>
+  <g transform="matrix(3.2 0 0 3.2 320 240)">
+    <circle r="20" fill="#008"/>
+    <circle r="17.5" fill="#fff"/>
+    <circle r="3.5" fill="#008"/>
+    <g id="in-d">
+      <g id="in-c">
+        <g id="in-b">
+          <g id="in-a" fill="#008">
+            <circle r=".9" transform="rotate(7.5 -8.8 133.5)"/>
+            <path d="M0 17.5.6 7 0 2l-.6 5z"/>
+          </g>
+          <use xlink:href="#in-a" width="100%" height="100%" transform="rotate(15)"/>
+        </g>
+        <use xlink:href="#in-b" width="100%" height="100%" transform="rotate(30)"/>
+      </g>
+      <use xlink:href="#in-c" width="100%" height="100%" transform="rotate(60)"/>
+    </g>
+    <use xlink:href="#in-d" width="100%" height="100%" transform="rotate(120)"/>
+    <use xlink:href="#in-d" width="100%" height="100%" transform="rotate(-120)"/>
+  </g>
+</svg>
+</span><span class="code-text">IND</span><span class="row-arrow">→</span></span></td><td class="pos" data-sort="6.3">+6.3</td><td data-sort="4.2">4.2</td><td data-sort="4.7">4.7</td><td data-sort="6.0">6.0</td><td data-sort="6.78">6.8</td><td class="neg" data-sort="-8.4">−8.4</td><td class="neg" data-sort="-4.5">−4.5</td></tr><tr class="clickable" data-href="gbr.html"><td data-sort="GBR"><span class="code-cell"><span class="row-flag"><svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-gb" viewBox="0 0 640 480">
+  <path fill="#012169" d="M0 0h640v480H0z"/>
+  <path fill="#FFF" d="m75 0 244 181L562 0h78v62L400 241l240 178v61h-80L320 301 81 480H0v-60l239-178L0 64V0z"/>
+  <path fill="#C8102E" d="m424 281 216 159v40L369 281zm-184 20 6 35L54 480H0zM640 0v3L391 191l2-44L590 0zM0 0l239 176h-60L0 42z"/>
+  <path fill="#FFF" d="M241 0v480h160V0zM0 160v160h640V160z"/>
+  <path fill="#C8102E" d="M0 193v96h640v-96zM273 0v480h96V0z"/>
+</svg>
+</span><span class="code-text">GBR</span><span class="row-arrow">→</span></span></td><td class="pos" data-sort="1.5">+1.5</td><td data-sort="2.5">2.5</td><td data-sort="5.0">5.0</td><td data-sort="3.25">3.2</td><td data-sort="4.7">4.7</td><td class="pos" data-sort="4.2">+4.2</td><td class="pos" data-sort="1.1">+1.1</td></tr><tr class="clickable" data-href="fra.html"><td data-sort="FRA"><span class="code-cell"><span class="row-flag"><svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-fr" viewBox="0 0 640 480">
+  <path fill="#000091" d="M0 0h213.3v480H0z"/>
+  <path fill="#fff" d="M213.3 0h213.4v480H213.3z"/>
+  <path fill="#e1000f" d="M426.7 0H640v480H426.7z"/>
+</svg>
+</span><span class="code-text">FRA</span><span class="row-arrow">→</span></span></td><td class="pos" data-sort="1.4">+1.4</td><td data-sort="2.0">2.0</td><td data-sort="7.7">7.7</td><td data-sort="2.5">2.5</td><td data-sort="3.4">3.4</td><td class="pos" data-sort="1.3">+1.3</td><td class="pos" data-sort="0.2">+0.2</td></tr><tr class="clickable" data-href="ita.html"><td data-sort="ITA"><span class="code-cell"><span class="row-flag"><svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-it" viewBox="0 0 640 480">
+  <g fill-rule="evenodd" stroke-width="1pt">
+    <path fill="#fff" d="M0 0h640v480H0z"/>
+    <path fill="#009246" d="M0 0h213.3v480H0z"/>
+    <path fill="#ce2b37" d="M426.7 0H640v480H426.7z"/>
+  </g>
+</svg>
+</span><span class="code-text">ITA</span><span class="row-arrow">→</span></span></td><td class="pos" data-sort="1.0">+1.0</td><td data-sort="2.3">2.3</td><td data-sort="5.6">5.6</td><td data-sort="2.5">2.5</td><td data-sort="3.39">3.4</td><td class="pos" data-sort="9.4">+9.4</td><td class="pos" data-sort="0.2">+0.2</td></tr><tr class="clickable" data-href="bra.html"><td data-sort="BRA"><span class="code-cell"><span class="row-flag"><svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-br" viewBox="0 0 640 480">
+  <g stroke-width="1pt">
+    <path fill="#229e45" fill-rule="evenodd" d="M0 0h640v480H0z"/>
+    <path fill="#f8e509" fill-rule="evenodd" d="m321.4 436 301.5-195.7L319.6 44 17.1 240.7z"/>
+    <path fill="#2b49a3" fill-rule="evenodd" d="M452.8 240c0 70.3-57.1 127.3-127.6 127.3A127.4 127.4 0 1 1 452.8 240"/>
+    <path fill="#ffffef" fill-rule="evenodd" d="m283.3 316.3-4-2.3-4 2 .9-4.5-3.2-3.4 4.5-.5 2.2-4 1.9 4.2 4.4.8-3.3 3m86 26.3-3.9-2.3-4 2 .8-4.5-3.1-3.3 4.5-.5 2.1-4.1 2 4.2 4.4.8-3.4 3.1m-36.2-30-3.4-2-3.5 1.8.8-3.9-2.8-2.9 4-.4 1.8-3.6 1.6 3.7 3.9.7-3 2.7m87-8.5-3.4-2-3.5 1.8.8-3.9-2.7-2.8 3.9-.4 1.8-3.5 1.6 3.6 3.8.7-2.9 2.6m-87.3-22-4-2.2-4 2 .8-4.6-3.1-3.3 4.5-.5 2.1-4.1 2 4.2 4.4.8-3.4 3.2m-104.6-35-4-2.2-4 2 1-4.6-3.3-3.3 4.6-.5 2-4.1 2 4.2 4.4.8-3.3 3.1m13.3 57.2-4-2.3-4 2 .9-4.5-3.2-3.3 4.5-.6 2.1-4 2 4.2 4.4.8-3.3 3.1m132-67.3-3.6-2-3.6 1.8.8-4-2.8-3 4-.5 1.9-3.6 1.7 3.8 4 .7-3 2.7m-6.7 38.3-2.7-1.6-2.9 1.4.6-3.2-2.2-2.3 3.2-.4 1.5-2.8 1.3 3 3 .5-2.2 2.2m-142.2 50.4-2.7-1.5-2.7 1.3.6-3-2.1-2.2 3-.4 1.4-2.7 1.3 2.8 3 .6-2.3 2M419 299.8l-2.2-1.1-2.2 1 .5-2.3-1.7-1.6 2.4-.3 1.2-2 1 2 2.5.5-1.9 1.5"/>
+    <path fill="#ffffef" fill-rule="evenodd" d="m219.3 287.6-2.7-1.5-2.7 1.3.6-3-2.1-2.2 3-.4 1.4-2.7 1.3 2.8 3 .6-2.3 2"/>
+    <path fill="#ffffef" fill-rule="evenodd" d="m219.3 287.6-2.7-1.5-2.7 1.3.6-3-2.1-2.2 3-.4 1.4-2.7 1.3 2.8 3 .6-2.3 2m42.3 3-2.6-1.4-2.7 1.3.6-3-2.1-2.2 3-.4 1.4-2.7 1.3 2.8 3 .5-2.3 2.1m-4.8 17-2.6-1.5-2.7 1.4.6-3-2.1-2.3 3-.4 1.4-2.7 1.3 2.8 3 .6-2.3 2m87.4-22.2-2.6-1.6-2.8 1.4.6-3-2-2.3 3-.3 1.4-2.7 1.2 2.8 3 .5-2.2 2.1m-25.1 3-2.7-1.5-2.7 1.4.6-3-2-2.3 3-.3 1.4-2.8 1.2 2.9 3 .5-2.2 2.1m-68.8-5.8-1.7-1-1.7.8.4-1.9-1.3-1.4 1.9-.2.8-1.7.8 1.8 1.9.3-1.4 1.3m167.8 45.4-2.6-1.5-2.7 1.4.6-3-2.1-2.3 3-.4 1.4-2.7 1.3 2.8 3 .6-2.3 2m-20.8 6-2.2-1.4-2.3 1.2.5-2.6-1.7-1.8 2.5-.3 1.2-2.3 1 2.4 2.5.4-1.9 1.8m10.4 2.3-2-1.2-2.1 1 .4-2.3-1.6-1.7 2.3-.3 1.1-2 1 2 2.3.5-1.7 1.6m29.1-22.8-2-1-2 1 .5-2.3-1.6-1.7 2.3-.3 1-2 1 2.1 2.1.4-1.6 1.6m-38.8 41.8-2.5-1.4-2.7 1.2.6-2.8-2-2 3-.3 1.3-2.5 1.2 2.6 3 .5-2.3 1.9m.6 14.2-2.4-1.4-2.4 1.3.6-2.8-1.9-2 2.7-.4 1.2-2.5 1.1 2.6 2.7.5-2 2m-19-23.1-1.9-1.2-2 1 .4-2.2-1.5-1.7 2.2-.2 1-2 1 2 2.2.4-1.6 1.6m-17.8 2.3-2-1.2-2 1 .5-2.2-1.6-1.7 2.3-.2 1-2 1 2 2.1.4-1.6 1.6m-30.4-24.6-2-1.1-2 1 .5-2.3-1.6-1.6 2.2-.3 1-2 1 2 2.2.5-1.6 1.5m3.7 57-1.6-.9-1.8.9.4-2-1.3-1.4 1.9-.2.9-1.7.8 1.8 1.9.3-1.4 1.3m-46.2-86.6-4-2.3-4 2 .9-4.5-3.2-3.3 4.5-.6 2.2-4 1.9 4.2 4.4.8-3.3 3.1"/>
+    <path fill="#fff" fill-rule="evenodd" d="M444.4 285.8a125 125 0 0 0 5.8-19.8c-67.8-59.5-143.3-90-238.7-83.7a125 125 0 0 0-8.5 20.9c113-10.8 196 39.2 241.4 82.6"/>
+    <path fill="#309e3a" d="m414 252.4 2.3 1.3a3 3 0 0 0-.3 2.2 3 3 0 0 0 1.4 1.7q1 .8 2 .7.9 0 1.3-.7l.2-.9-.5-1-1.5-1.8a8 8 0 0 1-1.8-3 4 4 0 0 1 2-4.4 4 4 0 0 1 2.3-.2 7 7 0 0 1 2.6 1.2q2.1 1.5 2.6 3.2a4 4 0 0 1-.6 3.3l-2.4-1.5q.5-1 .2-1.7-.2-.8-1.2-1.4a3 3 0 0 0-1.8-.7 1 1 0 0 0-.9.5q-.3.4-.1 1 .2.8 1.6 2.2t2 2.5a4 4 0 0 1-.3 4.2 4 4 0 0 1-1.9 1.5 4 4 0 0 1-2.4.3q-1.3-.3-2.8-1.3-2.2-1.5-2.7-3.3a5 5 0 0 1 .6-4zm-11.6-7.6 2.5 1.3a3 3 0 0 0-.2 2.2 3 3 0 0 0 1.4 1.6q1.1.8 2 .6.9 0 1.3-.8l.2-.8q0-.5-.5-1l-1.6-1.8q-1.7-1.6-2-2.8a4 4 0 0 1 .4-3.1 4 4 0 0 1 1.6-1.4 4 4 0 0 1 2.2-.3 7 7 0 0 1 2.6 1q2.3 1.5 2.7 3.1a4 4 0 0 1-.4 3.4l-2.5-1.4q.5-1 .2-1.7-.4-1-1.3-1.4a3 3 0 0 0-1.9-.6 1 1 0 0 0-.8.5q-.3.4-.1 1 .3.8 1.7 2.2 1.5 1.5 2 2.4a4 4 0 0 1 0 4.2 4 4 0 0 1-1.8 1.6 4 4 0 0 1-2.4.3 8 8 0 0 1-2.9-1.1 6 6 0 0 1-2.8-3.2 5 5 0 0 1 .4-4m-14.2-3.8 7.3-12 8.8 5.5-1.2 2-6.4-4-1.6 2.7 6 3.7-1.3 2-6-3.7-2 3.3 6.7 4-1.2 2zm-20.7-17 1.1-2 5.4 2.7-2.5 5q-1.2.3-3 .2a9 9 0 0 1-3.3-1 8 8 0 0 1-3-2.6 6 6 0 0 1-1-3.5 9 9 0 0 1 1-3.7 8 8 0 0 1 2.6-3 6 6 0 0 1 3.6-1.1q1.4 0 3.2 1 2.4 1.1 3.1 2.8a5 5 0 0 1 .3 3.5l-2.7-.8a3 3 0 0 0-.2-2q-.4-.9-1.6-1.4a4 4 0 0 0-3.1-.3q-1.5.5-2.6 2.6t-.7 3.8a4 4 0 0 0 2 2.4q.8.5 1.7.5h1.8l.8-1.6zm-90.2-22.3 2-14 4.2.7 1.1 9.8 3.9-9 4.2.6-2 13.8-2.7-.4 1.7-10.9-4.4 10.5-2.7-.4-1.1-11.3-1.6 11zm-14.1-1.7 1.3-14 10.3 1-.2 2.4-7.5-.7-.3 3 7 .7-.3 2.4-7-.7-.3 3.8 7.8.7-.2 2.4z"/>
+    <g stroke-opacity=".5">
+      <path fill="#309e3a" d="M216.5 191.3q0-2.2.7-3.6a7 7 0 0 1 1.4-1.9 5 5 0 0 1 1.8-1.2q1.5-.5 3-.5 3.1.1 5 2a7 7 0 0 1 1.6 5.5q0 3.3-2 5.3a7 7 0 0 1-5 1.7 7 7 0 0 1-4.8-2 7 7 0 0 1-1.7-5.3"/>
+      <path fill="#f7ffff" d="M219.4 191.3q0 2.3 1 3.6t2.8 1.3a4 4 0 0 0 2.8-1.1q1-1.2 1.1-3.7.1-2.4-1-3.6a4 4 0 0 0-2.7-1.3 4 4 0 0 0-2.8 1.2q-1.1 1.2-1.2 3.6"/>
+    </g>
+    <g stroke-opacity=".5">
+      <path fill="#309e3a" d="m233 198.5.2-14h6q2.2 0 3.2.5 1 .3 1.6 1.3c.6 1 .6 1.4.6 2.3a4 4 0 0 1-1 2.6 5 5 0 0 1-2.7 1.2l1.5 1.2q.6.6 1.5 2.3l1.7 2.8h-3.4l-2-3.2-1.4-2-.9-.6-1.4-.2h-.6v5.8z"/>
+      <path fill="#fff" d="M236 190.5h2q2.1 0 2.6-.2.5-.1.8-.5.4-.6.3-1 0-.9-.4-1.2-.3-.4-1-.6h-2l-2.3-.1z"/>
+    </g>
+    <g stroke-opacity=".5">
+      <path fill="#309e3a" d="m249 185.2 5.2.3q1.7 0 2.6.3a5 5 0 0 1 2 1.4 6 6 0 0 1 1.2 2.4q.4 1.4.3 3.3a9 9 0 0 1-.5 3q-.6 1.5-1.7 2.4a5 5 0 0 1-2 1q-1 .3-2.5.2l-5.3-.3z"/>
+      <path fill="#fff" d="m251.7 187.7-.5 9.3h3.8q.8 0 1.2-.5.5-.4.8-1.3t.4-2.6l-.1-2.5a3 3 0 0 0-.8-1.4l-1.2-.7-2.3-.3z"/>
+    </g>
+    <g stroke-opacity=".5">
+      <path fill="#309e3a" d="m317.6 210.2 3.3-13.6 4.4 1 3.2 1q1.1.6 1.6 1.9t.2 2.8q-.3 1.2-1 2a4 4 0 0 1-3 1.4q-1 0-3-.5l-1.7-.5-1.2 5.2z"/>
+      <path fill="#fff" d="m323 199.6-.8 3.8 1.5.4q1.6.4 2.2.3a2 2 0 0 0 1.6-1.5q0-.7-.2-1.3a2 2 0 0 0-1-.9l-1.9-.5-1.3-.3z"/>
+    </g>
+    <g stroke-opacity=".5">
+      <path fill="#309e3a" d="m330.6 214.1 4.7-13.2 5.5 2q2.2.8 3 1.4.8.7 1 1.8c.2 1.1.2 1.5 0 2.3q-.6 1.5-1.8 2.2-1.2.6-3 .3.6.7 1 1.6l.8 2.7.6 3.1-3.1-1.1-1-3.6-.7-2.4-.6-.8q-.3-.4-1.3-.7l-.5-.2-2 5.6z"/>
+      <path fill="#fff" d="m336 207.4 1.9.7q2 .7 2.5.7t.9-.3q.5-.3.6-.9.3-.6 0-1.2l-.8-.9-2-.7-2-.7-1.2 3.3z"/>
+    </g>
+    <g stroke-opacity=".5">
+      <path fill="#309e3a" d="M347 213.6a9 9 0 0 1 1.7-3.2l1.8-1.5 2-.7q1.5-.1 3.1.4a7 7 0 0 1 4.2 3.3q1.2 2.4.2 5.7a7 7 0 0 1-3.4 4.5q-2.3 1.3-5.2.4a7 7 0 0 1-4.2-3.3 7 7 0 0 1-.2-5.6"/>
+      <path fill="#fff" d="M349.8 214.4q-.7 2.3 0 3.8c.7 1.5 1.2 1.6 2.3 2q1.5.5 3-.4 1.4-.8 2.1-3.2.8-2.2 0-3.7a4 4 0 0 0-2.2-2 4 4 0 0 0-3 .3q-1.5.8-2.2 3.2"/>
+    </g>
+    <g stroke-opacity=".5">
+      <path fill="#309e3a" d="m374.3 233.1 6.4-12.4 5.3 2.7a10 10 0 0 1 2.7 1.9q.8.7.8 1.9c0 1.2 0 1.5-.4 2.2a4 4 0 0 1-2 2q-1.5.4-3.1-.2.6 1 .8 1.7.3.9.4 2.8l.2 3.2-3-1.5-.4-3.7-.3-2.5-.5-1-1.2-.7-.5-.3-2.7 5.2z"/>
+      <path fill="#fff" d="m380.5 227.2 1.9 1q1.8 1 2.3 1t1-.2q.4-.2.7-.8t.2-1.2l-.7-1-1.8-1-2-1z"/>
+    </g>
+    <g stroke-opacity=".5">
+      <path fill="#309e3a" d="M426.1 258.7a9 9 0 0 1 2.5-2.6 7 7 0 0 1 2.2-.9 6 6 0 0 1 2.2 0q1.5.3 2.8 1.2a7 7 0 0 1 3 4.4q.4 2.6-1.4 5.5a7 7 0 0 1-4.5 3.3 7 7 0 0 1-5.2-1.1 7 7 0 0 1-3-4.4q-.4-2.7 1.4-5.4"/>
+      <path fill="#fff" d="M428.6 260.3q-1.4 2-1.1 3.6a4 4 0 0 0 1.6 2.5q1.5 1 3 .6t2.9-2.4q1.4-2.1 1.1-3.6t-1.6-2.6c-1.4-1.1-2-.8-3-.5q-1.5.3-3 2.4z"/>
+    </g>
+    <path fill="#309e3a" d="m301.8 204.5 2.3-9.8 7.2 1.7-.3 1.6-5.3-1.2-.5 2.2 4.9 1.1-.4 1.7-4.9-1.2-.6 2.7 5.5 1.3-.4 1.6z"/>
+  </g>
+</svg>
+</span><span class="code-text">BRA</span><span class="row-arrow">→</span></span></td><td class="pos" data-sort="1.7">+1.7</td><td data-sort="4.2">4.2</td><td data-sort="6.5">6.5</td><td data-sort="12.0">12.0</td><td data-sort="13.8">13.8</td><td class="pos" data-sort="16.9">+16.9</td><td class="pos" data-sort="12.1">+12.1</td></tr><tr class="clickable" data-href="can.html"><td data-sort="CAN"><span class="code-cell"><span class="row-flag"><svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-ca" viewBox="0 0 640 480">
+  <path fill="#fff" d="M150.1 0h339.7v480H150z"/>
+  <path fill="#d52b1e" d="M-19.7 0h169.8v480H-19.7zm509.5 0h169.8v480H489.9zM201 232l-13.3 4.4 61.4 54c4.7 13.7-1.6 17.8-5.6 25l66.6-8.4-1.6 67 13.9-.3-3.1-66.6 66.7 8c-4.1-8.7-7.8-13.3-4-27.2l61.3-51-10.7-4c-8.8-6.8 3.8-32.6 5.6-48.9 0 0-35.7 12.3-38 5.8l-9.2-17.5-32.6 35.8c-3.5.9-5-.5-5.9-3.5l15-74.8-23.8 13.4q-3.2 1.3-5.2-2.2l-23-46-23.6 47.8q-2.8 2.5-5 .7L264 130.8l13.7 74.1c-1.1 3-3.7 3.8-6.7 2.2l-31.2-35.3c-4 6.5-6.8 17.1-12.2 19.5s-23.5-4.5-35.6-7c4.2 14.8 17 39.6 9 47.7"/>
+</svg>
+</span><span class="code-text">CAN</span><span class="row-arrow">→</span></span></td><td class="pos" data-sort="1.7">+1.7</td><td data-sort="2.0">2.0</td><td data-sort="6.5">6.5</td><td data-sort="2.25">2.2</td><td data-sort="3.44">3.4</td><td class="pos" data-sort="6.6">+6.6</td><td class="pos" data-sort="0.6">+0.6</td></tr><tr class="clickable" data-href="rus.html"><td data-sort="RUS"><span class="code-cell"><span class="row-flag"><svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-ru" viewBox="0 0 640 480">
+  <path fill="#fff" d="M0 0h640v160H0z"/>
+  <path fill="#0039a6" d="M0 160h640v160H0z"/>
+  <path fill="#d52b1e" d="M0 320h640v160H0z"/>
+</svg>
+</span><span class="code-text">RUS</span><span class="row-arrow">→</span></span></td><td class="pos" data-sort="1.2">+1.2</td><td data-sort="4.7">4.7</td><td data-sort="2.5">2.5</td><td data-sort="12.5">12.5</td><td data-sort="13.5">13.5</td><td class="neg" data-sort="-4.5">−4.5</td><td class="pos" data-sort="5.8">+5.8</td></tr><tr class="clickable" data-href="zaf.html"><td data-sort="ZAF"><span class="code-cell"><span class="row-flag"><svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-za" viewBox="0 0 640 480">
+  <defs>
+    <clipPath id="za-a">
+      <path fill-opacity=".7" d="M-71.9 0h682.7v512H-71.9z"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#za-a)" transform="translate(67.4)scale(.93748)">
+    <g fill-rule="evenodd" stroke-width="1pt">
+      <path fill="#000001" d="M-71.9 407.8V104.4L154 256.1z"/>
+      <path fill="#000c8a" d="m82.2 512.1 253.6-170.6H696V512H82.2z"/>
+      <path fill="#e1392d" d="M66 0h630v170.8H335.7S69.3-1.7 66 0"/>
+      <path fill="#ffb915" d="M-71.9 64v40.4L154 256-72 407.8v40.3l284.5-192z"/>
+      <path fill="#007847" d="M-71.9 64V0h95l301.2 204h371.8v104.2H324.3L23 512h-94.9v-63.9l284.4-192L-71.8 64z"/>
+      <path fill="#fff" d="M23 0h59.2l253.6 170.7H696V204H324.3zm0 512.1h59.2l253.6-170.6H696v-33.2H324.3L23 512z"/>
+    </g>
+  </g>
+</svg>
+</span><span class="code-text">ZAF</span><span class="row-arrow">→</span></span></td><td class="pos" data-sort="1.5">+1.5</td><td data-sort="3.5">3.5</td><td data-sort="32.5">32.5</td><td data-sort="6.25">6.2</td><td data-sort="9.05">9.1</td><td class="pos" data-sort="2.8">+2.8</td><td class="pos" data-sort="1.5">+1.5</td></tr>
       </tbody>
     </table>
   </div>
 
-  
-      <a class="box" href="usa.html">
-        <div class="country-card-head">
-          <div class="country-card-name">
-            <h2>United States</h2>
-          </div>
-          <span class="country-card-arrow">→</span>
-        </div>
-        <ol class="stories sm"><li>The economy bounced back hard in early 2026, growing at 2.0% after nearly stalling late last year, but energy prices from the Iran conflict pushed inflation back up to 3.5% and spooked investors into expecting the Fed to hold rates steady for months.</li><li>Those year-old tariffs on China are doing what they were supposed to (boosting domestic factories) but hitting consumers in the wallet at the same time, creating a tension the Fed now has to manage.</li><li>Markets have basically given up on rate cuts this year despite full-year inflation forecasts around 2.3%, meaning the Fed is betting that the energy spike proves temporary while staying cautious about letting up pressure.</li></ol>
-      </a>
-      <a class="box" href="can.html">
-        <div class="country-card-head">
-          <div class="country-card-name">
-            <h2>Canada</h2>
-          </div>
-          <span class="country-card-arrow">→</span>
-        </div>
-        <ol class="stories sm"><li>Canada&#x27;s economy is shrinking while inflation has cooled to just 1.78%, putting the Bank of Canada in an awkward spot where it can&#x27;t raise rates to fight price growth because there is none, and the government is spending heavily which the central bank just had to defend in parliament.</li><li>The Trump administration is threatening to extend tariffs and renegotiate USMCA in ways that could wall off Chinese goods from Mexico and Canada, a move that would devastate Canada&#x27;s role as a continental redistribution hub.</li><li>Meanwhile other countries like Australia are tightening policy on inflation concerns, but Canada is stuck defending loose fiscal policy and facing potential recession headwinds, making the country look increasingly isolated among developed economies.</li></ol>
-      </a>
-      <a class="box" href="gbr.html">
-        <div class="country-card-head">
-          <div class="country-card-name">
-            <h2>United Kingdom</h2>
-          </div>
-          <span class="country-card-arrow">→</span>
-        </div>
-        <ol class="stories sm"><li>Britain&#x27;s economy stayed weak in late 2025, but inflation finally came down sharply in early 2026, giving the Bank of England room to start raising rates later this year alongside the European Central Bank.</li><li>Markets are pricing in UK rate increases because traders expect inflation pressures in Europe to stay stronger than in the US, a bet that signals the UK is moving away from Fed policy and back toward defending sterling against currency weakness.</li><li>BlackRock is quietly highlighting the UK as undervalued compared to crowded trades in Germany and emerging markets, suggesting big money sees better relative value in UK assets now that growth stabilized and inflation eased.</li></ol>
-      </a>
-      <a class="box" href="jpn.html">
-        <div class="country-card-head">
-          <div class="country-card-name">
-            <h2>Japan</h2>
-          </div>
-          <span class="country-card-arrow">→</span>
-        </div>
-        <ol class="stories sm"><li>Japan finally achieved its long-sought goal of sustainable inflation paired with wage growth, so the Bank of Japan is now raising rates from 0.5% toward a neutral 1.0% because the economy no longer needs emergency support.</li><li>Household spending keeps growing even as energy and food prices stay elevated, and foreign tourists are now visiting Japan at higher rates than even before COVID hit, showing the economy has real underlying strength beyond just central bank money printing.</li><li>Inflation just fell below the 2% target for the first time in years, which sounds good for consumers but is exactly the kind of price weakness that justifies the BoJ&#x27;s gradual rate increases because the emergency is finally over.</li></ol>
-      </a>
-      <a class="box" href="deu.html">
-        <div class="country-card-head">
-          <div class="country-card-name">
-            <h2>Germany</h2>
-          </div>
-          <span class="country-card-arrow">→</span>
-        </div>
-        <ol class="stories sm"><li>German inflation jumped to 2.8% in March, the highest in the eurozone, which makes the ECB&#x27;s job harder because raising rates hurts the whole zone but Germany doesn&#x27;t need the medicine as much.</li><li>The eurozone economy is barely growing at 0.9% this year because of war-driven energy shocks and falling household budgets, so Germany can&#x27;t rely on neighbors pulling growth forward.</li><li>BlackRock says German stocks are too crowded with money already, meaning investors are already betting on this story and there&#x27;s less room for upside surprise.</li></ol>
-      </a>
-      <a class="box" href="fra.html">
-        <div class="country-card-head">
-          <div class="country-card-name">
-            <h2>France</h2>
-          </div>
-          <span class="country-card-arrow">→</span>
-        </div>
-        <ol class="stories sm"><li>French inflation at 1.9% in March is the lowest in the eurozone, giving the ECB political cover to cut rates without worrying France will overheat, which is good news for French growth stuck at 1.4%.</li><li>France has a much deeper unemployment problem at 7.7% compared to Germany&#x27;s 3.6%, so the economy needs rate cuts and fiscal support more urgently, and the low inflation print removes the excuse for delay.</li><li>BlackRock says France is under-owned and under-appreciated compared to its crowded German neighbor, suggesting investors haven&#x27;t yet rotated into the opportunity as the inflation narrative shifts.</li></ol>
-      </a>
-      <a class="box" href="ita.html">
-        <div class="country-card-head">
-          <div class="country-card-name">
-            <h2>Italy</h2>
-          </div>
-          <span class="country-card-arrow">→</span>
-        </div>
-        <ol class="stories sm"><li>Italian inflation at 1.5% in March is the lowest in the eurozone, meaning the ECB can cut rates without Italy overheating, which should help economic growth that&#x27;s stuck near 1%.</li><li>Italy&#x27;s real problem isn&#x27;t inflation, it&#x27;s an aging population that will slow growth and drain government finances over the next decade, so lower rates won&#x27;t solve what&#x27;s fundamentally a demographic squeeze.</li><li>Food prices drove most of Italy&#x27;s inflation in 2025, but that pressure is expected to ease in 2026, giving policymakers breathing room even if other eurozone countries face tougher inflation dynamics.</li></ol>
-      </a>
-      <a class="box" href="chn.html">
-        <div class="country-card-head">
-          <div class="country-card-name">
-            <h2>China</h2>
-          </div>
-          <span class="country-card-arrow">→</span>
-        </div>
-        <ol class="stories sm"><li>Chinese inflation jumped to 1.3% in February from near zero, driven by Lunar New Year holiday spending and rising service prices, showing the economy is starting to move again after months of stagnation.</li><li>The real estate market is still broken and consumer confidence is weak, so the government&#x27;s promises of stimulus may struggle to ignite spending because households are worried about jobs and property values.</li><li>Growth is forecast at 4.5% this year but the underlying momentum is fragile, dependent on government spending to prop things up rather than organic business investment or consumer demand driving the economy organically.</li></ol>
-      </a>
-      <a class="box" href="ind.html">
-        <div class="country-card-head">
-          <div class="country-card-name">
-            <h2>India</h2>
-          </div>
-          <span class="country-card-arrow">→</span>
-        </div>
-        <ol class="stories sm"><li>India is threatening to block Chinese products over lopsided trade, a sign the country is taking sides as global supply chains fracture.</li><li>The IMF just cut its forecast for emerging market growth and raised inflation expectations, meaning India faces headwinds even as it remains a bright spot.</li><li>Wall Street thinks India stocks are already priced for perfection, warning that the easy gains may be behind us.</li></ol>
-      </a>
-      <a class="box" href="zaf.html">
-        <div class="country-card-head">
-          <div class="country-card-name">
-            <h2>South Africa</h2>
-          </div>
-          <span class="country-card-arrow">→</span>
-        </div>
-        <ol class="stories sm"><li>South Africa&#x27;s unemployment hit 31.88%, a crisis that no growth forecast can fix without structural change.</li><li>The IMF cut emerging market growth and raised inflation fears, hitting South Africa harder than most because the country&#x27;s 1.5% growth forecast barely beats population growth.</li><li>High debt and fading aid squeeze South Africa&#x27;s ability to spend on jobs, trapping the country in a slow-growth trap.</li></ol>
-      </a>
-      <a class="box" href="bra.html">
-        <div class="country-card-head">
-          <div class="country-card-name">
-            <h2>Brazil</h2>
-          </div>
-          <span class="country-card-arrow">→</span>
-        </div>
-        <ol class="stories sm"><li>Brazil cut interest rates in March even as other emerging markets hit the brakes, betting its inflation fight is secure enough to prioritize growth.</li><li>Brazil wants tariffs on Chinese steel even though Chinese companies invest heavily there, showing that trade logic is breaking down across emerging markets.</li><li>BlackRock thinks Brazil stocks are crowded like India, warning that valuations have run ahead of fundamentals.</li></ol>
-      </a>
-      <a class="box" href="rus.html">
-        <div class="country-card-head">
-          <div class="country-card-name">
-            <h2>Russia</h2>
-          </div>
-          <span class="country-card-arrow">→</span>
-        </div>
-        <ol class="stories sm"><li>Russia cut rates in March alongside Brazil and Mexico, ignoring the war and betting inflation is tame enough to grow.</li><li>Russia&#x27;s inflation at 6.01% and policy rates at 15.5% mean the central bank is fighting persistent price pressures even as geopolitical risk stays elevated.</li><li>As an oil exporter, Russia benefits when energy prices rise, but prolonged war escalation or trade shocks could fracture that advantage.</li></ol>
-      </a>
-
   <div class="box">
     <div class="section-label">Commodities</div>
     <div class="commodities-grid">
-        <div class="commodity-item">
-          <div class="c-name">WTI Crude</div>
-          <div class="c-value">$92.93<span class="c-change neg">−5.7%</span></div>
-        </div>
         <div class="commodity-item">
           <div class="c-name">Brent Crude</div>
           <div class="c-value">$99.11<span class="c-change neg">−6.7%</span></div>
@@ -398,26 +511,6 @@ a.box:active { transform: scale(.998); }
         <div class="commodity-item">
           <div class="c-name">Gold</div>
           <div class="c-value">$4,737<span class="c-change pos">+1.1%</span></div>
-        </div>
-        <div class="commodity-item">
-          <div class="c-name">Silver</div>
-          <div class="c-value">$80.08<span class="c-change pos">+4.6%</span></div>
-        </div>
-        <div class="commodity-item">
-          <div class="c-name">Copper</div>
-          <div class="c-value">$6.21<span class="c-change pos">+1.8%</span></div>
-        </div>
-        <div class="commodity-item">
-          <div class="c-name">Wheat</div>
-          <div class="c-value">$612.25<span class="c-change neg">−1.2%</span></div>
-        </div>
-        <div class="commodity-item">
-          <div class="c-name">Corn</div>
-          <div class="c-value">$466.25<span class="c-change neg">−1.8%</span></div>
-        </div>
-        <div class="commodity-item">
-          <div class="c-name">Soybeans</div>
-          <div class="c-value">$1,192<span class="c-change neg">−1.5%</span></div>
         </div></div>
   </div>
 
@@ -442,6 +535,14 @@ a.box:active { transform: scale(.998); }
       headers[idx].addEventListener('click', function () { sortBy(idx); });
     })(i);
   }
+
+  // Row click navigates to the country page.
+  // Sort happens on <th> only, navigation on <td> only - no conflict.
+  Array.prototype.slice.call(tbody.rows).forEach(function (row) {
+    var href = row.getAttribute('data-href');
+    if (!href) return;
+    row.addEventListener('click', function () { window.location.href = href; });
+  });
 
   function sortBy(col) {
     var isText = (col === 0);
@@ -534,14 +635,17 @@ a.box:active { transform: scale(.998); }
 
   function monthLabelsFrom(startDateStr, n) {
     // startDateStr: "YYYY-MM"
+    // Emit "MMM 'YY" at every position so autoSkip has labels to pick from
+    // at any tick density (1Y, 2Y, 5Y, All).
     if (!startDateStr) return Array(n).fill('');
+    const MONTH_ABBR = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     const [y0, m0] = startDateStr.split('-').map(Number);
     const labels = [];
     for (let i = 0; i < n; i++) {
       const monthIdx = (m0 - 1) + i;
       const y = y0 + Math.floor(monthIdx / 12);
-      const m = (monthIdx % 12) + 1;
-      labels.push((m === 1 ? "'" + String(y).slice(2) : ''));
+      const m = monthIdx % 12;
+      labels.push(MONTH_ABBR[m] + " '" + String(y).slice(2));
     }
     return labels;
   }
@@ -655,7 +759,7 @@ a.box:active { transform: scale(.998); }
             ticks: {
               color: function (context) {
                 var label = sliceLabels[context.index];
-                return (label && label.toString().includes('F')) ? '#F97316' : TICK;
+                return (label && label.toString().endsWith('F')) ? '#F97316' : TICK;
               },
               font: { family: "'Space Mono', monospace", size: 8 },
               maxRotation: 0, autoSkip: true,
