@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MacroSnaps · Mon 11 May 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>/* ─────────────────────────────────────────────────────────────
+   MacroSnaps v2 (MACRO-MAY)
+   Light mode · orange palette · coral bullets
+   ───────────────────────────────────────────────────────────── */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --orange: #F97316;
+  --orange-dark: #C2410C;
+  --coral: #CC785C;
+  --green: #00b074;
+  --red: #d93a4f;
+  --text: #1a1a1a;
+  --text-2: #333;
+  --text-3: #444;
+  --text-4: #555;
+  --text-5: #888;
+  --text-6: #999;
+  --border: rgba(0,0,0,.06);
+  --border-2: rgba(0,0,0,.04);
+  --surface: #f5f5f4;
+  --card: #fff;
+  --pill-bg: rgba(0,0,0,.04);
+  --font-display: 'Space Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+}
+
+html { background: var(--surface); color: var(--text); font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
+body { min-height: 100vh; padding: 0; }
+
+a { color: var(--orange-dark); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.page { max-width: 760px; margin: 0 auto; padding: 18px 16px 64px; }
+
+/* ── Box (the modular container) ─────────────────────────────── */
+.box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px 22px;
+  margin-bottom: 14px;
+}
+.box.compact { padding: 16px 22px; }
+a.box { display: block; color: inherit; cursor: pointer; transition: border-color .15s, transform .05s; }
+a.box:hover { border-color: rgba(0,0,0,.12); text-decoration: none; }
+a.box:active { transform: scale(.998); }
+
+/* ── Header ───────────────────────────────────────────────────── */
+.head-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-bottom: 14px; border-bottom: 1px solid var(--border); margin-bottom: 18px;
+}
+.head-row.no-divider { padding-bottom: 0; border-bottom: none; margin-bottom: 0; }
+.back-link {
+  font-family: var(--font-display); font-size: 10px; letter-spacing: 1.4px;
+  text-transform: uppercase; color: var(--text-5); text-decoration: none;
+}
+.back-link:hover { color: var(--text-3); text-decoration: none; }
+.date {
+  font-family: var(--font-display); font-size: 10px; letter-spacing: 1.4px;
+  text-transform: uppercase; color: var(--text-5);
+}
+.brand {
+  margin: 0; font-size: 22px; font-weight: 500; letter-spacing: -.01em; line-height: 1;
+}
+.country-title { display: flex; align-items: baseline; gap: 14px; }
+.country-title h1 {
+  margin: 0; font-size: 30px; font-weight: 500; letter-spacing: -.02em; line-height: 1;
+}
+.flag-pill {
+  font-family: var(--font-display); font-size: 10px; letter-spacing: 1.6px;
+  color: var(--text-5); background: var(--pill-bg); padding: 3px 10px; border-radius: 3px; font-weight: 500;
+}
+
+/* ── Section label (the small uppercase header inside a box) ───── */
+.section-label {
+  font-family: var(--font-display); font-size: 10px; letter-spacing: 1.6px;
+  text-transform: uppercase; color: var(--text-5); margin-bottom: 14px;
+}
+
+/* ── Stories list (numbered with coral circles) ─────────────────── */
+.stories { list-style: none; padding: 0; margin: 0; counter-reset: story; }
+.stories li {
+  counter-increment: story;
+  font-size: 15px; color: var(--text-2); line-height: 1.65;
+  padding-left: 30px; position: relative; margin-bottom: 11px;
+}
+.stories li:last-child { margin-bottom: 0; }
+.stories li::before {
+  content: counter(story);
+  position: absolute; left: 0; top: 3px;
+  width: 18px; height: 18px; display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; border: 1.5px solid var(--coral); color: var(--coral);
+  font-size: 11px; font-weight: 700; font-family: var(--font-body);
+}
+.stories.sm li { font-size: 14px; color: var(--text-3); padding-left: 28px; margin-bottom: 8px; }
+.stories.sm li::before { width: 17px; height: 17px; font-size: 10px; }
+
+/* ── Snapshot table ─────────────────────────────────────────────── */
+.snapshot {
+  width: 100%; border-collapse: collapse;
+  font-family: var(--font-display); font-size: 12px;
+  font-variant-numeric: tabular-nums; table-layout: fixed;
+}
+.snapshot th, .snapshot td { padding: 8px 4px; text-align: right; border-bottom: 1px solid var(--border-2); }
+.snapshot thead th { border-bottom: 1px solid rgba(0,0,0,.1); font-weight: 500; color: var(--text-5); font-size: 9px; letter-spacing: 1.4px; text-transform: uppercase; }
+.snapshot th.sortable { cursor: pointer; user-select: none; transition: color .15s; }
+.snapshot th.sortable:hover { color: var(--text-3); }
+.snapshot th.sortable.active { color: var(--orange-dark); }
+.snapshot th .sort-arrow { display: inline-block; margin-left: 3px; color: var(--orange-dark); font-size: 10px; min-width: 6px; }
+.snapshot td:first-child, .snapshot th:first-child { text-align: left; padding-left: 6px; }
+.snapshot td:first-child { color: var(--text); font-weight: 500; }
+.snapshot tbody tr:last-child td { border-bottom: none; }
+.pos { color: var(--green); }
+.neg { color: var(--red); }
+.muted { color: var(--text-6); }
+
+/* ── Country card ────────────────────────────────────────────────── */
+.country-card-head {
+  display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;
+}
+.country-card-name { display: flex; align-items: center; gap: 11px; }
+.country-card-name h2 { margin: 0; font-size: 17px; font-weight: 500; }
+.country-card-arrow { color: var(--orange-dark); font-size: 14px; }
+
+/* ── Metric box ───────────────────────────────────────────────────── */
+.metric-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 20px; gap: 14px;
+}
+.metric-head h2 {
+  margin: 0; font-size: 26px; font-weight: 500; letter-spacing: -.01em; line-height: 1.1;
+}
+.metric-value {
+  font-size: 26px; font-weight: 500; color: var(--text);
+  font-variant-numeric: tabular-nums; letter-spacing: -.01em; line-height: 1; white-space: nowrap;
+}
+
+/* ── Chart panel (ported from existing site) ──────────────────────── */
+.metric-chart-wrap {
+  margin: 10px 0 0; padding: 12px 0 4px;
+  border-top: 1px solid var(--border);
+}
+.metric-chart-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.metric-chart-title {
+  font-family: var(--font-display); font-size: 8px; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text-5);
+}
+.metric-chart-range { display: flex; gap: 2px; }
+.mcr-btn {
+  font-family: var(--font-display); font-size: 8px; letter-spacing: .5px;
+  text-transform: uppercase; padding: 3px 8px;
+  border: 1px solid rgba(0,0,0,.08); border-radius: 2px;
+  background: transparent; color: var(--text-5); cursor: pointer; transition: all .15s;
+}
+.mcr-btn:hover { border-color: rgba(249,115,22,.4); color: var(--text-3); }
+.mcr-btn.active {
+  background: rgba(249,115,22,.08); border-color: rgba(249,115,22,.35);
+  color: var(--orange-dark);
+}
+.metric-chart-canvas { height: 140px; position: relative; }
+.metric-chart-canvas canvas { width: 100% !important; height: 100% !important; }
+
+/* ── Glossary block ───────────────────────────────────────────────── */
+.gloss { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
+.gloss-title {
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--text-5); margin-bottom: 6px;
+}
+.gloss-body { font-size: 13px; color: var(--text-4); line-height: 1.6; margin: 0; }
+.gloss-source {
+  font-family: var(--font-display); font-size: 8px; letter-spacing: .8px;
+  color: var(--text-6); margin-top: 12px;
+}
+
+/* ── FX regime callout (USD/DXY etc.) ─────────────────────────────── */
+.fx-regime {
+  background: rgba(249,115,22,.05); border-left: 2px solid rgba(249,115,22,.5);
+  padding: 13px 15px; margin-top: 14px; border-radius: 0 4px 4px 0;
+}
+.fx-regime .fx-label {
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--orange-dark); margin-bottom: 6px;
+}
+.fx-regime p { font-size: 13px; line-height: 1.6; color: var(--text-3); margin: 0; }
+
+/* ── Commodities ──────────────────────────────────────────────────── */
+.commodities-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 22px;
+}
+.commodity-item .c-name {
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--text-5); margin-bottom: 4px;
+}
+.commodity-item .c-value {
+  font-family: var(--font-display); font-size: 15px; font-weight: 500;
+  color: var(--text); font-variant-numeric: tabular-nums;
+}
+.commodity-item .c-change { font-size: 11px; font-weight: 400; margin-left: 4px; }
+
+/* ── Empty/placeholder ─────────────────────────────────────────────── */
+.note {
+  text-align: center; padding: 18px;
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--text-6);
+}
+
+/* ── Footer ────────────────────────────────────────────────────────── */
+.footer {
+  text-align: center; padding: 24px 12px; margin-top: 18px;
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--text-6);
+}
+.footer a { color: var(--text-5); }
+
+/* ── Responsive ────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .page { padding: 12px 10px 48px; }
+  .box { padding: 16px 16px; }
+  .country-title h1 { font-size: 26px; }
+  .metric-head h2 { font-size: 22px; }
+  .metric-value { font-size: 22px; }
+  .commodities-grid { grid-template-columns: repeat(2, 1fr); }
+  .snapshot { font-size: 11px; }
+  .snapshot th, .snapshot td { padding: 7px 3px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="box compact">
+    <div class="head-row no-divider">
+      <h1 class="brand">MacroSnaps</h1>
+      <span class="date">Mon 11 May 2026</span>
+    </div>
+  </div>
+
+  <div class="box">
+    <div class="section-label">Today's headlines</div>
+    <ol class="stories"><li>America and Iran are talking about ending their war with a simple one-page agreement</li><li>Samsung became worth over $1 trillion, making it only the second Asian company to reach this level</li><li>Stock markets around the world went up because investors think the Iran war might end soon</li></ol>
+  </div>
+
+  <div class="box">
+    <div class="section-label">Snapshot</div>
+    
+    <table class="snapshot">
+      <colgroup><col style="width:60px"><col><col><col><col><col><col><col></colgroup>
+      <thead>
+        <tr>
+          <th class="sortable" data-col="0"><span class="th-label"></span><span class="sort-arrow"></span></th>
+          <th class="sortable" data-col="1"><span class="th-label">GDP</span><span class="sort-arrow"></span></th><th class="sortable" data-col="2"><span class="th-label">CPI</span><span class="sort-arrow"></span></th><th class="sortable" data-col="3"><span class="th-label">Unemp</span><span class="sort-arrow"></span></th><th class="sortable" data-col="4"><span class="th-label">Policy</span><span class="sort-arrow"></span></th><th class="sortable" data-col="5"><span class="th-label">10Y</span><span class="sort-arrow"></span></th><th class="sortable" data-col="6"><span class="th-label">Stock</span><span class="sort-arrow"></span></th><th class="sortable" data-col="7"><span class="th-label">FX</span><span class="sort-arrow"></span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td data-sort="USA">USA</td><td class="pos" data-sort="2.2">+2.2</td><td data-sort="2.3">2.3</td><td data-sort="4.2">4.2</td><td data-sort="3.25">3.25</td><td data-sort="4.45">4.45</td><td class="pos" data-sort="7.4">+7.4</td><td class="muted" data-sort="">—</td></tr><tr><td data-sort="CAN">CAN</td><td class="pos" data-sort="1.7">+1.7</td><td data-sort="2.0">2</td><td data-sort="6.5">6.5</td><td data-sort="2.25">2.25</td><td data-sort="3.44">3.44</td><td class="pos" data-sort="6.6">+6.6</td><td class="pos" data-sort="0.6">+0.6</td></tr><tr><td data-sort="GBR">GBR</td><td class="pos" data-sort="1.5">+1.5</td><td data-sort="2.5">2.5</td><td data-sort="5.0">5</td><td data-sort="3.25">3.25</td><td data-sort="4.7">4.70</td><td class="pos" data-sort="4.2">+4.2</td><td class="pos" data-sort="1.1">+1.1</td></tr><tr><td data-sort="JPN">JPN</td><td class="pos" data-sort="0.8">+0.8</td><td data-sort="1.8">1.8</td><td data-sort="2.5">2.5</td><td data-sort="1.25">1.25</td><td data-sort="2.35">2.35</td><td class="pos" data-sort="21.2">+21.2</td><td class="pos" data-sort="0.3">+0.3</td></tr><tr><td data-sort="DEU">DEU</td><td class="pos" data-sort="1.2">+1.2</td><td data-sort="2.2">2.2</td><td data-sort="3.8">3.8</td><td data-sort="2.5">2.5</td><td data-sort="2.91">2.91</td><td class="pos" data-sort="1.4">+1.4</td><td class="pos" data-sort="0.2">+0.2</td></tr><tr><td data-sort="FRA">FRA</td><td class="pos" data-sort="1.4">+1.4</td><td data-sort="2.0">2</td><td data-sort="7.7">7.7</td><td data-sort="2.5">2.5</td><td data-sort="3.4">3.40</td><td class="pos" data-sort="1.3">+1.3</td><td class="pos" data-sort="0.2">+0.2</td></tr><tr><td data-sort="ITA">ITA</td><td class="pos" data-sort="1.0">+1</td><td data-sort="2.3">2.3</td><td data-sort="5.6">5.6</td><td data-sort="2.5">2.5</td><td data-sort="3.39">3.39</td><td class="pos" data-sort="9.4">+9.4</td><td class="pos" data-sort="0.2">+0.2</td></tr><tr><td data-sort="CHN">CHN</td><td class="pos" data-sort="4.7">+4.7</td><td data-sort="2.0">2</td><td data-sort="5.1">5.1</td><td data-sort="2.75">2.75</td><td data-sort="2.4">2.40</td><td class="pos" data-sort="3.9">+3.9</td><td class="pos" data-sort="2.9">+2.9</td></tr><tr><td data-sort="IND">IND</td><td class="pos" data-sort="6.3">+6.3</td><td data-sort="4.2">4.2</td><td data-sort="4.7">4.7</td><td data-sort="6.0">6</td><td data-sort="6.78">6.78</td><td class="neg" data-sort="-8.4">−8.4</td><td class="neg" data-sort="-4.5">−4.5</td></tr><tr><td data-sort="ZAF">ZAF</td><td class="pos" data-sort="1.5">+1.5</td><td data-sort="3.5">3.5</td><td data-sort="32.5">32.5</td><td data-sort="6.25">6.25</td><td data-sort="9.05">9.05</td><td class="pos" data-sort="2.8">+2.8</td><td class="pos" data-sort="1.5">+1.5</td></tr><tr><td data-sort="BRA">BRA</td><td class="pos" data-sort="1.7">+1.7</td><td data-sort="4.2">4.2</td><td data-sort="6.5">6.5</td><td data-sort="12.0">12</td><td data-sort="13.8">13.80</td><td class="pos" data-sort="16.9">+16.9</td><td class="pos" data-sort="12.1">+12.1</td></tr><tr><td data-sort="RUS">RUS</td><td class="pos" data-sort="1.2">+1.2</td><td data-sort="4.7">4.7</td><td data-sort="2.5">2.5</td><td data-sort="12.5">12.5</td><td data-sort="13.5">13.5</td><td class="neg" data-sort="-4.5">−4.5</td><td class="pos" data-sort="5.8">+5.8</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  
+      <a class="box" href="usa.html">
+        <div class="country-card-head">
+          <div class="country-card-name">
+            <h2>United States</h2>
+          </div>
+          <span class="country-card-arrow">→</span>
+        </div>
+        <ol class="stories sm"><li>The economy bounced back hard in early 2026, growing at 2.0% after nearly stalling late last year, but energy prices from the Iran conflict pushed inflation back up to 3.5% and spooked investors into expecting the Fed to hold rates steady for months.</li><li>Those year-old tariffs on China are doing what they were supposed to (boosting domestic factories) but hitting consumers in the wallet at the same time, creating a tension the Fed now has to manage.</li><li>Markets have basically given up on rate cuts this year despite full-year inflation forecasts around 2.3%, meaning the Fed is betting that the energy spike proves temporary while staying cautious about letting up pressure.</li></ol>
+      </a>
+      <a class="box" href="can.html">
+        <div class="country-card-head">
+          <div class="country-card-name">
+            <h2>Canada</h2>
+          </div>
+          <span class="country-card-arrow">→</span>
+        </div>
+        <ol class="stories sm"><li>Canada&#x27;s economy is shrinking while inflation has cooled to just 1.78%, putting the Bank of Canada in an awkward spot where it can&#x27;t raise rates to fight price growth because there is none, and the government is spending heavily which the central bank just had to defend in parliament.</li><li>The Trump administration is threatening to extend tariffs and renegotiate USMCA in ways that could wall off Chinese goods from Mexico and Canada, a move that would devastate Canada&#x27;s role as a continental redistribution hub.</li><li>Meanwhile other countries like Australia are tightening policy on inflation concerns, but Canada is stuck defending loose fiscal policy and facing potential recession headwinds, making the country look increasingly isolated among developed economies.</li></ol>
+      </a>
+      <a class="box" href="gbr.html">
+        <div class="country-card-head">
+          <div class="country-card-name">
+            <h2>United Kingdom</h2>
+          </div>
+          <span class="country-card-arrow">→</span>
+        </div>
+        <ol class="stories sm"><li>Britain&#x27;s economy stayed weak in late 2025, but inflation finally came down sharply in early 2026, giving the Bank of England room to start raising rates later this year alongside the European Central Bank.</li><li>Markets are pricing in UK rate increases because traders expect inflation pressures in Europe to stay stronger than in the US, a bet that signals the UK is moving away from Fed policy and back toward defending sterling against currency weakness.</li><li>BlackRock is quietly highlighting the UK as undervalued compared to crowded trades in Germany and emerging markets, suggesting big money sees better relative value in UK assets now that growth stabilized and inflation eased.</li></ol>
+      </a>
+      <a class="box" href="jpn.html">
+        <div class="country-card-head">
+          <div class="country-card-name">
+            <h2>Japan</h2>
+          </div>
+          <span class="country-card-arrow">→</span>
+        </div>
+        <ol class="stories sm"><li>Japan finally achieved its long-sought goal of sustainable inflation paired with wage growth, so the Bank of Japan is now raising rates from 0.5% toward a neutral 1.0% because the economy no longer needs emergency support.</li><li>Household spending keeps growing even as energy and food prices stay elevated, and foreign tourists are now visiting Japan at higher rates than even before COVID hit, showing the economy has real underlying strength beyond just central bank money printing.</li><li>Inflation just fell below the 2% target for the first time in years, which sounds good for consumers but is exactly the kind of price weakness that justifies the BoJ&#x27;s gradual rate increases because the emergency is finally over.</li></ol>
+      </a>
+      <a class="box" href="deu.html">
+        <div class="country-card-head">
+          <div class="country-card-name">
+            <h2>Germany</h2>
+          </div>
+          <span class="country-card-arrow">→</span>
+        </div>
+        <ol class="stories sm"><li>German inflation jumped to 2.8% in March, the highest in the eurozone, which makes the ECB&#x27;s job harder because raising rates hurts the whole zone but Germany doesn&#x27;t need the medicine as much.</li><li>The eurozone economy is barely growing at 0.9% this year because of war-driven energy shocks and falling household budgets, so Germany can&#x27;t rely on neighbors pulling growth forward.</li><li>BlackRock says German stocks are too crowded with money already, meaning investors are already betting on this story and there&#x27;s less room for upside surprise.</li></ol>
+      </a>
+      <a class="box" href="fra.html">
+        <div class="country-card-head">
+          <div class="country-card-name">
+            <h2>France</h2>
+          </div>
+          <span class="country-card-arrow">→</span>
+        </div>
+        <ol class="stories sm"><li>French inflation at 1.9% in March is the lowest in the eurozone, giving the ECB political cover to cut rates without worrying France will overheat, which is good news for French growth stuck at 1.4%.</li><li>France has a much deeper unemployment problem at 7.7% compared to Germany&#x27;s 3.6%, so the economy needs rate cuts and fiscal support more urgently, and the low inflation print removes the excuse for delay.</li><li>BlackRock says France is under-owned and under-appreciated compared to its crowded German neighbor, suggesting investors haven&#x27;t yet rotated into the opportunity as the inflation narrative shifts.</li></ol>
+      </a>
+      <a class="box" href="ita.html">
+        <div class="country-card-head">
+          <div class="country-card-name">
+            <h2>Italy</h2>
+          </div>
+          <span class="country-card-arrow">→</span>
+        </div>
+        <ol class="stories sm"><li>Italian inflation at 1.5% in March is the lowest in the eurozone, meaning the ECB can cut rates without Italy overheating, which should help economic growth that&#x27;s stuck near 1%.</li><li>Italy&#x27;s real problem isn&#x27;t inflation, it&#x27;s an aging population that will slow growth and drain government finances over the next decade, so lower rates won&#x27;t solve what&#x27;s fundamentally a demographic squeeze.</li><li>Food prices drove most of Italy&#x27;s inflation in 2025, but that pressure is expected to ease in 2026, giving policymakers breathing room even if other eurozone countries face tougher inflation dynamics.</li></ol>
+      </a>
+      <a class="box" href="chn.html">
+        <div class="country-card-head">
+          <div class="country-card-name">
+            <h2>China</h2>
+          </div>
+          <span class="country-card-arrow">→</span>
+        </div>
+        <ol class="stories sm"><li>Chinese inflation jumped to 1.3% in February from near zero, driven by Lunar New Year holiday spending and rising service prices, showing the economy is starting to move again after months of stagnation.</li><li>The real estate market is still broken and consumer confidence is weak, so the government&#x27;s promises of stimulus may struggle to ignite spending because households are worried about jobs and property values.</li><li>Growth is forecast at 4.5% this year but the underlying momentum is fragile, dependent on government spending to prop things up rather than organic business investment or consumer demand driving the economy organically.</li></ol>
+      </a>
+      <a class="box" href="ind.html">
+        <div class="country-card-head">
+          <div class="country-card-name">
+            <h2>India</h2>
+          </div>
+          <span class="country-card-arrow">→</span>
+        </div>
+        <ol class="stories sm"><li>India is threatening to block Chinese products over lopsided trade, a sign the country is taking sides as global supply chains fracture.</li><li>The IMF just cut its forecast for emerging market growth and raised inflation expectations, meaning India faces headwinds even as it remains a bright spot.</li><li>Wall Street thinks India stocks are already priced for perfection, warning that the easy gains may be behind us.</li></ol>
+      </a>
+      <a class="box" href="zaf.html">
+        <div class="country-card-head">
+          <div class="country-card-name">
+            <h2>South Africa</h2>
+          </div>
+          <span class="country-card-arrow">→</span>
+        </div>
+        <ol class="stories sm"><li>South Africa&#x27;s unemployment hit 31.88%, a crisis that no growth forecast can fix without structural change.</li><li>The IMF cut emerging market growth and raised inflation fears, hitting South Africa harder than most because the country&#x27;s 1.5% growth forecast barely beats population growth.</li><li>High debt and fading aid squeeze South Africa&#x27;s ability to spend on jobs, trapping the country in a slow-growth trap.</li></ol>
+      </a>
+      <a class="box" href="bra.html">
+        <div class="country-card-head">
+          <div class="country-card-name">
+            <h2>Brazil</h2>
+          </div>
+          <span class="country-card-arrow">→</span>
+        </div>
+        <ol class="stories sm"><li>Brazil cut interest rates in March even as other emerging markets hit the brakes, betting its inflation fight is secure enough to prioritize growth.</li><li>Brazil wants tariffs on Chinese steel even though Chinese companies invest heavily there, showing that trade logic is breaking down across emerging markets.</li><li>BlackRock thinks Brazil stocks are crowded like India, warning that valuations have run ahead of fundamentals.</li></ol>
+      </a>
+      <a class="box" href="rus.html">
+        <div class="country-card-head">
+          <div class="country-card-name">
+            <h2>Russia</h2>
+          </div>
+          <span class="country-card-arrow">→</span>
+        </div>
+        <ol class="stories sm"><li>Russia cut rates in March alongside Brazil and Mexico, ignoring the war and betting inflation is tame enough to grow.</li><li>Russia&#x27;s inflation at 6.01% and policy rates at 15.5% mean the central bank is fighting persistent price pressures even as geopolitical risk stays elevated.</li><li>As an oil exporter, Russia benefits when energy prices rise, but prolonged war escalation or trade shocks could fracture that advantage.</li></ol>
+      </a>
+
+  <div class="box">
+    <div class="section-label">Commodities</div>
+    <div class="commodities-grid">
+        <div class="commodity-item">
+          <div class="c-name">WTI Crude</div>
+          <div class="c-value">$92.93<span class="c-change neg">−5.7%</span></div>
+        </div>
+        <div class="commodity-item">
+          <div class="c-name">Brent Crude</div>
+          <div class="c-value">$99.11<span class="c-change neg">−6.7%</span></div>
+        </div>
+        <div class="commodity-item">
+          <div class="c-name">Natural Gas</div>
+          <div class="c-value">$2.72<span class="c-change neg">−2.2%</span></div>
+        </div>
+        <div class="commodity-item">
+          <div class="c-name">Gold</div>
+          <div class="c-value">$4,737<span class="c-change pos">+1.1%</span></div>
+        </div>
+        <div class="commodity-item">
+          <div class="c-name">Silver</div>
+          <div class="c-value">$80.08<span class="c-change pos">+4.6%</span></div>
+        </div>
+        <div class="commodity-item">
+          <div class="c-name">Copper</div>
+          <div class="c-value">$6.21<span class="c-change pos">+1.8%</span></div>
+        </div>
+        <div class="commodity-item">
+          <div class="c-name">Wheat</div>
+          <div class="c-value">$612.25<span class="c-change neg">−1.2%</span></div>
+        </div>
+        <div class="commodity-item">
+          <div class="c-name">Corn</div>
+          <div class="c-value">$466.25<span class="c-change neg">−1.8%</span></div>
+        </div>
+        <div class="commodity-item">
+          <div class="c-name">Soybeans</div>
+          <div class="c-value">$1,192<span class="c-change neg">−1.5%</span></div>
+        </div></div>
+  </div>
+
+  <div class="footer">
+    Built Mon 11 May 2026 · macrosnaps.app
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var table = document.querySelector('.snapshot');
+  if (!table) return;
+  var tbody = table.tBodies[0];
+  var headers = table.tHead.rows[0].cells;
+  var originalOrder = Array.prototype.slice.call(tbody.rows);
+  var currentCol = -1;
+  var asc = false;
+
+  for (var i = 0; i < headers.length; i++) {
+    (function (idx) {
+      headers[idx].addEventListener('click', function () { sortBy(idx); });
+    })(i);
+  }
+
+  function sortBy(col) {
+    var isText = (col === 0);
+    if (currentCol === col) {
+      asc = !asc;
+    } else {
+      asc = isText ? true : false;  // text: A→Z first; numeric: highest first
+      currentCol = col;
+    }
+    var rows = Array.prototype.slice.call(tbody.rows);
+    rows.sort(function (a, b) {
+      var av = a.cells[col].getAttribute('data-sort') || a.cells[col].textContent;
+      var bv = b.cells[col].getAttribute('data-sort') || b.cells[col].textContent;
+      if (isText) {
+        return av.localeCompare(bv);
+      }
+      var aNum = parseFloat(av);
+      var bNum = parseFloat(bv);
+      var aNull = isNaN(aNum);
+      var bNull = isNaN(bNum);
+      if (aNull && bNull) return 0;
+      if (aNull) return 1;
+      if (bNull) return -1;
+      return bNum - aNum;
+    });
+    if (asc) rows.reverse();
+    rows.forEach(function (r) { tbody.appendChild(r); });
+    updateArrows();
+  }
+
+  function updateArrows() {
+    for (var i = 0; i < headers.length; i++) {
+      var arrow = headers[i].querySelector('.sort-arrow');
+      headers[i].classList.toggle('active', i === currentCol);
+      if (arrow) {
+        arrow.textContent = (i === currentCol) ? (asc ? '↑' : '↓') : '';
+      }
+    }
+  }
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>/* ─────────────────────────────────────────────────────────────
+   MacroSnaps v2 — Chart rendering
+   Ported from existing renderMetricChart, adapted for light mode.
+   Reads chart data from each metric's mounted element's data-spark
+   attribute (JSON-encoded) and renders into the matching canvas.
+   ───────────────────────────────────────────────────────────── */
+
+(function () {
+  const ORANGE_RGB = '249,115,22';
+  const GREEN_RGB = '0,176,116';
+  const RED_RGB = '217,58,79';
+  const GRID = 'rgba(0,0,0,.05)';
+  const ZERO = 'rgba(0,0,0,.2)';
+  const TICK = '#888';
+  const TOOLTIP_BG = '#fff';
+  const TOOLTIP_BORDER = 'rgba(249,115,22,.4)';
+
+  // From shell-frozen.chartConfig.annualLabels
+  const ANNUAL_LABELS = [
+    '2000','2001','2002','2003','2004','2005','2006','2007','2008','2009',
+    '2010','2011','2012','2013','2014','2015','2016','2017','2018','2019',
+    '2020','2021','2022','2023','2024','2025','2026F'
+  ];
+
+  // Per-metric chart config
+  const METRIC_CFG = {
+    'GDP Growth':     { type: 'bar', zeroLine: true },
+    'Inflation (CPI)':{ type: 'line' },
+    'Unemployment':   { type: 'line' },
+    'Budget Deficit': { type: 'bar', zeroLine: true },
+    'Current Account':{ type: 'bar', zeroLine: true },
+    'Policy Rate':    { type: 'line', stepped: true },
+    'Stock Market YTD': { type: 'line', zeroLine: true },
+    '10Y Bond Yield': { type: 'line' },
+    'Yield Curve':    { type: 'line', zeroLine: true, segmentColor: true },
+    'USD/DXY':        { type: 'line', indexLabel: true },
+    'CAD/USD':        { type: 'line' },
+    'GBP/USD':        { type: 'line' },
+    'USD/JPY':        { type: 'line' },
+    'EUR/USD':        { type: 'line' },
+    'USD/CNY':        { type: 'line' },
+    'USD/INR':        { type: 'line' },
+    'USD/ZAR':        { type: 'line' },
+    'USD/BRL':        { type: 'line' },
+    'USD/RUB':        { type: 'line' },
+    'FX Rate':        { type: 'line' }
+  };
+
+  function monthLabelsFrom(startDateStr, n) {
+    // startDateStr: "YYYY-MM"
+    if (!startDateStr) return Array(n).fill('');
+    const [y0, m0] = startDateStr.split('-').map(Number);
+    const labels = [];
+    for (let i = 0; i < n; i++) {
+      const monthIdx = (m0 - 1) + i;
+      const y = y0 + Math.floor(monthIdx / 12);
+      const m = (monthIdx % 12) + 1;
+      labels.push((m === 1 ? "'" + String(y).slice(2) : ''));
+    }
+    return labels;
+  }
+
+  function sliceData(allVals, allLabels, rangeMonths) {
+    if (!rangeMonths || rangeMonths === 0 || rangeMonths >= allVals.length) {
+      return { vals: allVals, labels: allLabels };
+    }
+    return {
+      vals: allVals.slice(-rangeMonths),
+      labels: allLabels.slice(-rangeMonths)
+    };
+  }
+
+  function renderChart(canvas, metricName, metricData, rangeMonths) {
+    if (!window.Chart) { console.warn('Chart.js not loaded'); return; }
+    const cfg = METRIC_CFG[metricName] || { type: 'line' };
+    const isBar = cfg.type === 'bar';
+    const allVals = metricData.v || [];
+    if (!allVals.length) return;
+
+    // Build labels
+    let allLabels;
+    if (isBar) {
+      allLabels = ANNUAL_LABELS.slice(0, allVals.length);
+    } else {
+      allLabels = monthLabelsFrom(metricData.startDate, allVals.length);
+    }
+
+    const sliced = sliceData(allVals, allLabels, rangeMonths);
+    const sliceVals = sliced.vals;
+    const sliceLabels = sliced.labels;
+    const n = sliceVals.length;
+
+    // Axis range
+    const mn = Math.min(...sliceVals);
+    const mx = Math.max(...sliceVals);
+    const range = mx - mn;
+    const pad = (range * 0.15) || (Math.abs(mx) * 0.1) || 1;
+
+    // Destroy any prior chart on this canvas
+    if (canvas._chart) { canvas._chart.destroy(); canvas._chart = null; }
+    const ctx = canvas.getContext('2d');
+
+    let datasets;
+    if (isBar) {
+      const colors = sliceVals.map(v => v >= 0 ? `rgba(${ORANGE_RGB},.55)` : `rgba(${RED_RGB},.55)`);
+      const borders = sliceVals.map(v => v >= 0 ? `rgba(${ORANGE_RGB},.9)` : `rgba(${RED_RGB},.9)`);
+      datasets = [{
+        data: sliceVals,
+        backgroundColor: colors,
+        borderColor: borders,
+        borderWidth: 1,
+        barPercentage: 0.85,
+        categoryPercentage: 0.85
+      }];
+    } else if (cfg.segmentColor) {
+      // Yield curve: green above 0, red below 0
+      datasets = [{
+        data: sliceVals,
+        borderWidth: 1.5,
+        pointRadius: 0,
+        pointHitRadius: 8,
+        pointHoverRadius: 3,
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderWidth: 1,
+        tension: .3,
+        fill: false,
+        segment: {
+          borderColor: function (ctx2) {
+            const y0 = ctx2.p0.parsed.y, y1 = ctx2.p1.parsed.y;
+            if (y0 >= 0 && y1 >= 0) return `rgba(${GREEN_RGB},.8)`;
+            if (y0 < 0 && y1 < 0) return `rgba(${RED_RGB},.8)`;
+            return 'rgba(120,120,120,.6)';
+          }
+        }
+      }];
+    } else {
+      const grad = ctx.createLinearGradient(0, 0, 0, 140);
+      grad.addColorStop(0, `rgba(${ORANGE_RGB},.22)`);
+      grad.addColorStop(1, `rgba(${ORANGE_RGB},.01)`);
+      datasets = [{
+        data: sliceVals,
+        borderColor: `rgba(${ORANGE_RGB},.9)`,
+        borderWidth: 1.5,
+        backgroundColor: grad,
+        fill: true,
+        pointRadius: 0,
+        pointHitRadius: 8,
+        pointHoverRadius: 3,
+        pointHoverBackgroundColor: '#F97316',
+        pointHoverBorderColor: '#fff',
+        pointHoverBorderWidth: 1,
+        tension: .35,
+        stepped: cfg.stepped || false
+      }];
+    }
+
+    canvas._chart = new Chart(ctx, {
+      type: isBar ? 'bar' : 'line',
+      data: { labels: sliceLabels, datasets: datasets },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        events: ['mousemove', 'mouseout', 'touchstart', 'touchmove'],
+        layout: { padding: { left: 2, right: 2, top: 4, bottom: 0 } },
+        scales: {
+          x: {
+            display: true,
+            grid: { display: false },
+            ticks: {
+              color: function (context) {
+                var label = sliceLabels[context.index];
+                return (label && label.toString().includes('F')) ? '#F97316' : TICK;
+              },
+              font: { family: "'Space Mono', monospace", size: 8 },
+              maxRotation: 0, autoSkip: true,
+              maxTicksLimit: isBar ? 8 : (n <= 12 ? 6 : n <= 24 ? 8 : 10)
+            },
+            border: { display: false }
+          },
+          y: {
+            display: true,
+            position: 'right',
+            grid: {
+              color: function (context) {
+                if (cfg.zeroLine && context.tick.value === 0) return ZERO;
+                return GRID;
+              },
+              lineWidth: function (context) {
+                return (cfg.zeroLine && context.tick.value === 0) ? 1.2 : 1;
+              }
+            },
+            ticks: {
+              color: TICK, font: { family: "'Space Mono', monospace", size: 8 },
+              maxTicksLimit: 5,
+              callback: function (v) {
+                if (cfg.indexLabel && v >= 1000) return (v / 1000).toFixed(v % 1000 === 0 ? 0 : 1) + 'k';
+                return (v % 1 === 0) ? v : v.toFixed(1);
+              }
+            },
+            border: { display: false },
+            min: mn - pad,
+            max: mx + pad
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: TOOLTIP_BG,
+            borderColor: TOOLTIP_BORDER,
+            borderWidth: 1,
+            titleFont: { family: "'Space Mono', monospace", size: 9 },
+            bodyFont: { family: "'DM Sans', sans-serif", size: 11 },
+            titleColor: '#888', bodyColor: '#1a1a1a',
+            cornerRadius: 4, padding: 8, displayColors: false,
+            callbacks: {
+              label: function (ctx2) {
+                let v = ctx2.parsed.y;
+                if (cfg.indexLabel) return ' ' + v.toLocaleString();
+                if (cfg.segmentColor) return ' ' + (v >= 0 ? '+' : '') + v + ' bps';
+                return ' ' + v;
+              }
+            }
+          }
+        },
+        interaction: { mode: 'index', intersect: false },
+        animation: { duration: 350, easing: 'easeOutCubic' }
+      }
+    });
+  }
+
+  // Wire up all chart panels on the page
+  function initAllCharts() {
+    document.querySelectorAll('.metric-chart-wrap').forEach(wrap => {
+      const metricName = wrap.dataset.metric;
+      const dataAttr = wrap.dataset.chart;
+      if (!metricName || !dataAttr) return;
+      let metricData;
+      try { metricData = JSON.parse(dataAttr); } catch (e) { return; }
+
+      const canvas = wrap.querySelector('canvas');
+      if (!canvas) return;
+
+      const cfg = METRIC_CFG[metricName] || {};
+      const isBar = cfg.type === 'bar';
+
+      // Render with default range
+      const defaultRange = isBar ? 0 : 60; // bar = all years; line = 5Y default
+      renderChart(canvas, metricName, metricData, defaultRange);
+
+      // Wire range buttons (line charts only)
+      const btns = wrap.querySelectorAll('.mcr-btn');
+      btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          btns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const r = parseInt(btn.dataset.r) || 0;
+          renderChart(canvas, metricName, metricData, r);
+        });
+      });
+
+      // Mark default-active button
+      if (!isBar) {
+        btns.forEach(b => { if (parseInt(b.dataset.r) === 60) b.classList.add('active'); });
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAllCharts);
+  } else {
+    initAllCharts();
+  }
+})();
+</script>
+</body>
+</html>
