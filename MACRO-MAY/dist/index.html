@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MacroSnaps · Mon 11 May 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>/* ─────────────────────────────────────────────────────────────
+   MacroSnaps v2 (MACRO-MAY)
+   Light mode · orange palette · coral bullets
+   ───────────────────────────────────────────────────────────── */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --orange: #F97316;
+  --orange-dark: #C2410C;
+  --coral: #CC785C;
+  --green: #00b074;
+  --red: #d93a4f;
+  --text: #1a1a1a;
+  --text-2: #333;
+  --text-3: #444;
+  --text-4: #555;
+  --text-5: #888;
+  --text-6: #999;
+  --border: rgba(0,0,0,.06);
+  --border-2: rgba(0,0,0,.04);
+  --surface: #f5f5f4;
+  --card: #fff;
+  --pill-bg: rgba(0,0,0,.04);
+  --font-display: 'Space Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+}
+
+html { background: var(--surface); color: var(--text); font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
+body { min-height: 100vh; padding: 0; }
+
+a { color: var(--orange-dark); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.page { max-width: 760px; margin: 0 auto; padding: 18px 16px 64px; }
+
+/* ── Box (the modular container) ─────────────────────────────── */
+.box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px 22px;
+  margin-bottom: 14px;
+}
+.box.compact { padding: 16px 22px; }
+a.box { display: block; color: inherit; cursor: pointer; transition: border-color .15s, transform .05s; }
+a.box:hover { border-color: rgba(0,0,0,.12); text-decoration: none; }
+a.box:active { transform: scale(.998); }
+
+/* ── Header ───────────────────────────────────────────────────── */
+.head-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-bottom: 14px; border-bottom: 1px solid var(--border); margin-bottom: 18px;
+}
+.head-row.no-divider { padding-bottom: 0; border-bottom: none; margin-bottom: 0; }
+.back-link {
+  font-family: var(--font-display); font-size: 10px; letter-spacing: 1.4px;
+  text-transform: uppercase; color: var(--text-5); text-decoration: none;
+}
+.back-link:hover { color: var(--text-3); text-decoration: none; }
+.date {
+  font-family: var(--font-display); font-size: 10px; letter-spacing: 1.4px;
+  text-transform: uppercase; color: var(--text-5);
+}
+.brand {
+  margin: 0; font-size: 22px; font-weight: 500; letter-spacing: -.01em; line-height: 1;
+}
+.country-title { display: flex; align-items: baseline; gap: 14px; }
+.country-title h1 {
+  margin: 0; font-size: 30px; font-weight: 500; letter-spacing: -.02em; line-height: 1;
+}
+.flag-pill {
+  font-family: var(--font-display); font-size: 10px; letter-spacing: 1.6px;
+  color: var(--text-5); background: var(--pill-bg); padding: 3px 10px; border-radius: 3px; font-weight: 500;
+}
+
+/* ── Section label (the small uppercase header inside a box) ───── */
+.section-label {
+  font-family: var(--font-display); font-size: 10px; letter-spacing: 1.6px;
+  text-transform: uppercase; color: var(--text-5); margin-bottom: 14px;
+}
+
+/* ── Stories list (numbered with coral circles) ─────────────────── */
+.stories { list-style: none; padding: 0; margin: 0; counter-reset: story; }
+.stories li {
+  counter-increment: story;
+  font-size: 15px; color: var(--text-2); line-height: 1.65;
+  padding-left: 30px; position: relative; margin-bottom: 11px;
+}
+.stories li:last-child { margin-bottom: 0; }
+.stories li::before {
+  content: counter(story);
+  position: absolute; left: 0; top: 3px;
+  width: 18px; height: 18px; display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; border: 1.5px solid var(--coral); color: var(--coral);
+  font-size: 11px; font-weight: 700; font-family: var(--font-body);
+}
+.stories.sm li { font-size: 14px; color: var(--text-3); padding-left: 28px; margin-bottom: 8px; }
+.stories.sm li::before { width: 17px; height: 17px; font-size: 10px; }
+
+/* ── Snapshot table ─────────────────────────────────────────────── */
+.snapshot {
+  width: 100%; border-collapse: collapse;
+  font-family: var(--font-display); font-size: 13px;
+  font-variant-numeric: tabular-nums; table-layout: fixed;
+}
+.snapshot th, .snapshot td { padding: 11px 4px 12px; text-align: right; border-bottom: 1px solid var(--border-2); vertical-align: middle; }
+.snapshot thead th { border-bottom: 1px solid rgba(0,0,0,.1); font-weight: 500; color: var(--text-5); font-size: 9px; letter-spacing: 1.4px; text-transform: uppercase; padding: 9px 4px; }
+.snapshot th.sortable { cursor: pointer; user-select: none; transition: color .15s; }
+.snapshot th.sortable:hover { color: var(--text-3); }
+.snapshot th.sortable.active { color: var(--orange-dark); }
+.snapshot th .sort-arrow { display: inline-block; margin-left: 3px; color: var(--orange-dark); font-size: 10px; min-width: 6px; }
+.snapshot td:first-child, .snapshot th:first-child { text-align: left; padding-left: 8px; }
+.snapshot td:first-child { color: var(--text); font-weight: 500; transition: color .15s; }
+.snapshot tbody tr:last-child td { border-bottom: none; }
+.snapshot tbody tr.clickable { cursor: pointer; transition: background-color .15s; }
+.snapshot tbody tr.clickable td { cursor: pointer; }
+.snapshot tbody tr.clickable:hover { background: rgba(249,115,22,.12); }
+.snapshot tbody tr.clickable:hover td:first-child .code-text { color: var(--orange-dark); }
+
+/* Country code cell: flag + code + hover arrow */
+.code-cell {
+  display: inline-flex; align-items: center; gap: 8px;
+  line-height: 1;
+}
+.row-flag {
+  display: inline-block; flex-shrink: 0;
+  width: 22px; height: 16px;
+  border-radius: 3px; overflow: hidden;
+  border: 1px solid rgba(0,0,0,.1);
+  line-height: 0;
+}
+.row-flag svg { display: block; width: 100%; height: 100%; }
+.code-text { transition: color .15s; }
+.row-arrow {
+  display: inline-block; margin-left: 2px;
+  color: var(--orange-dark); font-weight: 700;
+  opacity: 0; transition: opacity .15s;
+}
+.snapshot tbody tr.clickable:hover .row-arrow { opacity: 1; }
+
+/* Numeric cells: simple right-aligned values */
+.pos { color: var(--green); }
+.neg { color: var(--red); }
+.muted { color: var(--text-6); }
+
+/* ── Country card ────────────────────────────────────────────────── */
+.country-card-head {
+  display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;
+}
+.country-card-name { display: flex; align-items: center; gap: 11px; }
+.country-card-name h2 { margin: 0; font-size: 17px; font-weight: 500; }
+.country-card-arrow { color: var(--orange-dark); font-size: 14px; }
+
+/* ── Metric box ───────────────────────────────────────────────────── */
+.metric-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 20px; gap: 14px;
+}
+.metric-head h2 {
+  margin: 0; font-size: 26px; font-weight: 500; letter-spacing: -.01em; line-height: 1.1;
+}
+.metric-value {
+  font-size: 26px; font-weight: 500; color: var(--text);
+  font-variant-numeric: tabular-nums; letter-spacing: -.01em; line-height: 1; white-space: nowrap;
+}
+
+/* ── Chart panel (ported from existing site) ──────────────────────── */
+.metric-chart-wrap {
+  margin: 10px 0 0; padding: 12px 0 4px;
+  border-top: 1px solid var(--border);
+}
+.metric-chart-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.metric-chart-title {
+  font-family: var(--font-display); font-size: 8px; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text-5);
+}
+.metric-chart-range { display: flex; gap: 2px; }
+.mcr-btn {
+  font-family: var(--font-display); font-size: 8px; letter-spacing: .5px;
+  text-transform: uppercase; padding: 3px 8px;
+  border: 1px solid rgba(0,0,0,.08); border-radius: 2px;
+  background: transparent; color: var(--text-5); cursor: pointer; transition: all .15s;
+}
+.mcr-btn:hover { border-color: rgba(249,115,22,.4); color: var(--text-3); }
+.mcr-btn.active {
+  background: rgba(249,115,22,.08); border-color: rgba(249,115,22,.35);
+  color: var(--orange-dark);
+}
+.metric-chart-canvas { height: 140px; position: relative; }
+.metric-chart-canvas canvas { width: 100% !important; height: 100% !important; }
+
+/* ── Glossary block ───────────────────────────────────────────────── */
+.gloss { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
+.gloss-title {
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--text-5); margin-bottom: 6px;
+}
+.gloss-body { font-size: 13px; color: var(--text-4); line-height: 1.6; margin: 0; }
+.gloss-source {
+  font-family: var(--font-display); font-size: 8px; letter-spacing: .8px;
+  color: var(--text-6); margin-top: 12px;
+}
+
+/* ── FX regime callout (USD/DXY etc.) ─────────────────────────────── */
+.fx-regime {
+  background: rgba(249,115,22,.05); border-left: 2px solid rgba(249,115,22,.5);
+  padding: 13px 15px; margin-top: 14px; border-radius: 0 4px 4px 0;
+}
+.fx-regime .fx-label {
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--orange-dark); margin-bottom: 6px;
+}
+.fx-regime p { font-size: 13px; line-height: 1.6; color: var(--text-3); margin: 0; }
+
+/* ── Commodities ──────────────────────────────────────────────────── */
+.commodities-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 22px;
+}
+.commodity-item .c-name {
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--text-5); margin-bottom: 4px;
+}
+.commodity-item .c-value {
+  font-family: var(--font-display); font-size: 15px; font-weight: 500;
+  color: var(--text); font-variant-numeric: tabular-nums;
+}
+.commodity-item .c-change { font-size: 11px; font-weight: 400; margin-left: 4px; }
+
+/* ── Countries grid (homepage) ──────────────────────────────────── */
+.countries-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px 14px;
+}
+.country-tile {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; gap: 9px;
+  padding: 6px 4px;
+  border-radius: 6px;
+  color: inherit; text-decoration: none;
+  transition: transform .15s, background .15s;
+}
+.country-tile:hover {
+  background: rgba(0,0,0,.025);
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+.flag-rect {
+  width: 80px; height: 60px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,.1);
+  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+  background: #fff;
+  transition: border-color .15s, box-shadow .15s;
+}
+.country-tile:hover .flag-rect {
+  border-color: var(--orange);
+  box-shadow: 0 2px 6px rgba(249,115,22,.18);
+}
+.flag-rect svg {
+  display: block;
+  width: 100%; height: 100%;
+}
+.country-tile-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-2);
+  line-height: 1.2;
+}
+
+/* ── Empty/placeholder ─────────────────────────────────────────────── */
+.note {
+  text-align: center; padding: 18px;
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--text-6);
+}
+
+/* ── Footer ────────────────────────────────────────────────────────── */
+.footer {
+  text-align: center; padding: 24px 12px; margin-top: 18px;
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--text-6);
+}
+.footer a { color: var(--text-5); }
+
+/* ── Responsive ────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .page { padding: 12px 10px 48px; }
+  .box { padding: 16px 16px; }
+  .country-title h1 { font-size: 26px; }
+  .metric-head h2 { font-size: 22px; }
+  .metric-value { font-size: 22px; }
+  .commodities-grid { grid-template-columns: repeat(2, 1fr); }
+  .countries-grid { grid-template-columns: repeat(3, 1fr); gap: 16px 8px; }
+  .flag-rect { width: 64px; height: 48px; }
+  .country-tile-name { font-size: 12px; }
+  .snapshot { font-size: 12px; }
+  .snapshot th, .snapshot td { padding: 10px 3px 11px; }
+  .snapshot td:first-child, .snapshot th:first-child { padding-left: 6px; }
+  .row-flag { width: 18px; height: 13px; }
+  .code-cell { gap: 6px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="box compact">
+    <div class="head-row no-divider">
+      <h1 class="brand">MacroSnaps</h1>
+      <span class="date">Mon 11 May 2026</span>
+    </div>
+  </div>
+
+  <div class="box">
+    <div class="section-label">Today's headlines</div>
+    <ol class="stories"><li>America and Iran are talking about ending their war with a simple one-page agreement</li><li>Samsung became worth over $1 trillion, making it only the second Asian company to reach this level</li><li>Stock markets around the world went up because investors think the Iran war might end soon</li></ol>
+  </div>
+
+  <div class="box">
+    <div class="section-label">Snapshot</div>
+    
+    <table class="snapshot">
+      <colgroup><col style="width:96px"><col><col><col><col><col><col><col></colgroup>
+      <thead>
+        <tr>
+          <th class="sortable" data-col="0"><span class="th-label"></span><span class="sort-arrow"></span></th>
+          <th class="sortable" data-col="1"><span class="th-label">GDP</span><span class="sort-arrow"></span></th><th class="sortable" data-col="2"><span class="th-label">CPI</span><span class="sort-arrow"></span></th><th class="sortable" data-col="3"><span class="th-label">Unemp</span><span class="sort-arrow"></span></th><th class="sortable" data-col="4"><span class="th-label">Policy</span><span class="sort-arrow"></span></th><th class="sortable" data-col="5"><span class="th-label">10Y</span><span class="sort-arrow"></span></th><th class="sortable" data-col="6"><span class="th-label">Stock</span><span class="sort-arrow"></span></th><th class="sortable" data-col="7"><span class="th-label">FX</span><span class="sort-arrow"></span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="clickable" data-href="usa.html"><td data-sort="USA"><span class="code-cell"><span class="row-flag"><svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-us" viewBox="0 0 640 480">
+  <path fill="#bd3d44" d="M0 0h640v480H0"/>
+  <path stroke="#fff" stroke-width="37" d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640"/>
+  <path fill="#192f5d" d="M0 0h364.8v258.5H0"/>
+  <marker id="us-a" markerHeight="30" markerWidth="30">
+    <path fill="#fff" d="m14 0 9 27L0 10h28L5 27z"/>
+  </marker>
+  <path fill="none" marker-mid="url(#us-a)" d="m0 0 16 11h61 61 61 61 60L47 37h61 61 60 61L16 63h61 61 61 61 60L47 89h61 61 60 61L16 115h61 61 61 61 60L47 141h61 61 60 61L16 166h61 61 61 61 60L47 192h61 61 60 61L16 218h61 61 61 61 60z"/>
+</svg>
+</span><span class="code-text">USA</span><span class="row-arrow">→</span></span></td><td class="pos" data-sort="2.2">+2.2</td><td data-sort="2.3">2.3</td><td data-sort="4.2">4.2</td><td data-sort="3.25">3.2</td><td data-sort="4.45">4.5</td><td class="pos" data-sort="7.4">+7.4</td><td class="muted" data-sort="">—</td></tr><tr class="clickable" data-href="chn.html"><td data-sort="CHN"><span class="code-cell"><span class="row-flag"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="flag-icons-cn" viewBox="0 0 640 480">
+  <defs>
+    <path id="cn-a" fill="#ff0" d="M-.6.8 0-1 .6.8-1-.3h2z"/>
+  </defs>
+  <path fill="#ee1c25" d="M0 0h640v480H0z"/>
+  <use xlink:href="#cn-a" width="30" height="20" transform="matrix(71.9991 0 0 72 120 120)"/>
+  <use xlink:href="#cn-a" width="30" height="20" transform="matrix(-12.33562 -20.5871 20.58684 -12.33577 240.3 48)"/>
+  <use xlink:href="#cn-a" width="30" height="20" transform="matrix(-3.38573 -23.75998 23.75968 -3.38578 288 95.8)"/>
+  <use xlink:href="#cn-a" width="30" height="20" transform="matrix(6.5991 -23.0749 23.0746 6.59919 288 168)"/>
+  <use xlink:href="#cn-a" width="30" height="20" transform="matrix(14.9991 -18.73557 18.73533 14.99929 240 216)"/>
+</svg>
+</span><span class="code-text">CHN</span><span class="row-arrow">→</span></span></td><td class="pos" data-sort="4.7">+4.7</td><td data-sort="2.0">2.0</td><td data-sort="5.1">5.1</td><td data-sort="2.75">2.8</td><td data-sort="2.4">2.4</td><td class="pos" data-sort="3.9">+3.9</td><td class="pos" data-sort="2.9">+2.9</td></tr><tr class="clickable" data-href="deu.html"><td data-sort="DEU"><span class="code-cell"><span class="row-flag"><svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-de" viewBox="0 0 640 480">
+  <path fill="#fc0" d="M0 320h640v160H0z"/>
+  <path fill="#000001" d="M0 0h640v160H0z"/>
+  <path fill="red" d="M0 160h640v160H0z"/>
+</svg>
+</span><span class="code-text">DEU</span><span class="row-arrow">→</span></span></td><td class="pos" data-sort="1.2">+1.2</td><td data-sort="2.2">2.2</td><td data-sort="3.8">3.8</td><td data-sort="2.5">2.5</td><td data-sort="2.91">2.9</td><td class="pos" data-sort="1.4">+1.4</td><td class="pos" data-sort="0.2">+0.2</td></tr><tr class="clickable" data-href="jpn.html"><td data-sort="JPN"><span class="code-cell"><span class="row-flag"><svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-jp" viewBox="0 0 640 480">
+  <defs>
+    <clipPath id="jp-a">
+      <path fill-opacity=".7" d="M-88 32h640v480H-88z"/>
+    </clipPath>
+  </defs>
+  <g fill-rule="evenodd" stroke-width="1pt" clip-path="url(#jp-a)" transform="translate(88 -32)">
+    <path fill="#fff" d="M-128 32h720v480h-720z"/>
+    <circle cx="523.1" cy="344.1" r="194.9" fill="#bc002d" transform="translate(-168.4 8.6)scale(.76554)"/>
+  </g>
+</svg>
+</span><span class="code-text">JPN</span><span class="row-arrow">→</span></span></td><td class="pos" data-sort="0.8">+0.8</td><td data-sort="1.8">1.8</td><td data-sort="2.5">2.5</td><td data-sort="1.25">1.2</td><td data-sort="2.35">2.4</td><td class="pos" data-sort="21.2">+21.2</td><td class="pos" data-sort="0.3">+0.3</td></tr><tr class="clickable" data-href="ind.html"><td data-sort="IND"><span class="code-cell"><span class="row-flag"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="flag-icons-in" viewBox="0 0 640 480">
+  <path fill="#f93" d="M0 0h640v160H0z"/>
+  <path fill="#fff" d="M0 160h640v160H0z"/>
+  <path fill="#128807" d="M0 320h640v160H0z"/>
+  <g transform="matrix(3.2 0 0 3.2 320 240)">
+    <circle r="20" fill="#008"/>
+    <circle r="17.5" fill="#fff"/>
+    <circle r="3.5" fill="#008"/>
+    <g id="in-d">
+      <g id="in-c">
+        <g id="in-b">
+          <g id="in-a" fill="#008">
+            <circle r=".9" transform="rotate(7.5 -8.8 133.5)"/>
+            <path d="M0 17.5.6 7 0 2l-.6 5z"/>
+          </g>
+          <use xlink:href="#in-a" width="100%" height="100%" transform="rotate(15)"/>
+        </g>
+        <use xlink:href="#in-b" width="100%" height="100%" transform="rotate(30)"/>
+      </g>
+      <use xlink:href="#in-c" width="100%" height="100%" transform="rotate(60)"/>
+    </g>
+    <use xlink:href="#in-d" width="100%" height="100%" transform="rotate(120)"/>
+    <use xlink:href="#in-d" width="100%" height="100%" transform="rotate(-120)"/>
+  </g>
+</svg>
+</span><span class="code-text">IND</span><span class="row-arrow">→</span></span></td><td class="pos" data-sort="6.3">+6.3</td><td data-sort="4.2">4.2</td><td data-sort="4.7">4.7</td><td data-sort="6.0">6.0</td><td data-sort="6.78">6.8</td><td class="neg" data-sort="-8.4">−8.4</td><td class="neg" data-sort="-4.5">−4.5</td></tr><tr class="clickable" data-href="gbr.html"><td data-sort="GBR"><span class="code-cell"><span class="row-flag"><svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-gb" viewBox="0 0 640 480">
+  <path fill="#012169" d="M0 0h640v480H0z"/>
+  <path fill="#FFF" d="m75 0 244 181L562 0h78v62L400 241l240 178v61h-80L320 301 81 480H0v-60l239-178L0 64V0z"/>
+  <path fill="#C8102E" d="m424 281 216 159v40L369 281zm-184 20 6 35L54 480H0zM640 0v3L391 191l2-44L590 0zM0 0l239 176h-60L0 42z"/>
+  <path fill="#FFF" d="M241 0v480h160V0zM0 160v160h640V160z"/>
+  <path fill="#C8102E" d="M0 193v96h640v-96zM273 0v480h96V0z"/>
+</svg>
+</span><span class="code-text">GBR</span><span class="row-arrow">→</span></span></td><td class="pos" data-sort="1.5">+1.5</td><td data-sort="2.5">2.5</td><td data-sort="5.0">5.0</td><td data-sort="3.25">3.2</td><td data-sort="4.7">4.7</td><td class="pos" data-sort="4.2">+4.2</td><td class="pos" data-sort="1.1">+1.1</td></tr><tr class="clickable" data-href="fra.html"><td data-sort="FRA"><span class="code-cell"><span class="row-flag"><svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-fr" viewBox="0 0 640 480">
+  <path fill="#000091" d="M0 0h213.3v480H0z"/>
+  <path fill="#fff" d="M213.3 0h213.4v480H213.3z"/>
+  <path fill="#e1000f" d="M426.7 0H640v480H426.7z"/>
+</svg>
+</span><span class="code-text">FRA</span><span class="row-arrow">→</span></span></td><td class="pos" data-sort="1.4">+1.4</td><td data-sort="2.0">2.0</td><td data-sort="7.7">7.7</td><td data-sort="2.5">2.5</td><td data-sort="3.4">3.4</td><td class="pos" data-sort="1.3">+1.3</td><td class="pos" data-sort="0.2">+0.2</td></tr><tr class="clickable" data-href="ita.html"><td data-sort="ITA"><span class="code-cell"><span class="row-flag"><svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-it" viewBox="0 0 640 480">
+  <g fill-rule="evenodd" stroke-width="1pt">
+    <path fill="#fff" d="M0 0h640v480H0z"/>
+    <path fill="#009246" d="M0 0h213.3v480H0z"/>
+    <path fill="#ce2b37" d="M426.7 0H640v480H426.7z"/>
+  </g>
+</svg>
+</span><span class="code-text">ITA</span><span class="row-arrow">→</span></span></td><td class="pos" data-sort="1.0">+1.0</td><td data-sort="2.3">2.3</td><td data-sort="5.6">5.6</td><td data-sort="2.5">2.5</td><td data-sort="3.39">3.4</td><td class="pos" data-sort="9.4">+9.4</td><td class="pos" data-sort="0.2">+0.2</td></tr><tr class="clickable" data-href="bra.html"><td data-sort="BRA"><span class="code-cell"><span class="row-flag"><svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-br" viewBox="0 0 640 480">
+  <g stroke-width="1pt">
+    <path fill="#229e45" fill-rule="evenodd" d="M0 0h640v480H0z"/>
+    <path fill="#f8e509" fill-rule="evenodd" d="m321.4 436 301.5-195.7L319.6 44 17.1 240.7z"/>
+    <path fill="#2b49a3" fill-rule="evenodd" d="M452.8 240c0 70.3-57.1 127.3-127.6 127.3A127.4 127.4 0 1 1 452.8 240"/>
+    <path fill="#ffffef" fill-rule="evenodd" d="m283.3 316.3-4-2.3-4 2 .9-4.5-3.2-3.4 4.5-.5 2.2-4 1.9 4.2 4.4.8-3.3 3m86 26.3-3.9-2.3-4 2 .8-4.5-3.1-3.3 4.5-.5 2.1-4.1 2 4.2 4.4.8-3.4 3.1m-36.2-30-3.4-2-3.5 1.8.8-3.9-2.8-2.9 4-.4 1.8-3.6 1.6 3.7 3.9.7-3 2.7m87-8.5-3.4-2-3.5 1.8.8-3.9-2.7-2.8 3.9-.4 1.8-3.5 1.6 3.6 3.8.7-2.9 2.6m-87.3-22-4-2.2-4 2 .8-4.6-3.1-3.3 4.5-.5 2.1-4.1 2 4.2 4.4.8-3.4 3.2m-104.6-35-4-2.2-4 2 1-4.6-3.3-3.3 4.6-.5 2-4.1 2 4.2 4.4.8-3.3 3.1m13.3 57.2-4-2.3-4 2 .9-4.5-3.2-3.3 4.5-.6 2.1-4 2 4.2 4.4.8-3.3 3.1m132-67.3-3.6-2-3.6 1.8.8-4-2.8-3 4-.5 1.9-3.6 1.7 3.8 4 .7-3 2.7m-6.7 38.3-2.7-1.6-2.9 1.4.6-3.2-2.2-2.3 3.2-.4 1.5-2.8 1.3 3 3 .5-2.2 2.2m-142.2 50.4-2.7-1.5-2.7 1.3.6-3-2.1-2.2 3-.4 1.4-2.7 1.3 2.8 3 .6-2.3 2M419 299.8l-2.2-1.1-2.2 1 .5-2.3-1.7-1.6 2.4-.3 1.2-2 1 2 2.5.5-1.9 1.5"/>
+    <path fill="#ffffef" fill-rule="evenodd" d="m219.3 287.6-2.7-1.5-2.7 1.3.6-3-2.1-2.2 3-.4 1.4-2.7 1.3 2.8 3 .6-2.3 2"/>
+    <path fill="#ffffef" fill-rule="evenodd" d="m219.3 287.6-2.7-1.5-2.7 1.3.6-3-2.1-2.2 3-.4 1.4-2.7 1.3 2.8 3 .6-2.3 2m42.3 3-2.6-1.4-2.7 1.3.6-3-2.1-2.2 3-.4 1.4-2.7 1.3 2.8 3 .5-2.3 2.1m-4.8 17-2.6-1.5-2.7 1.4.6-3-2.1-2.3 3-.4 1.4-2.7 1.3 2.8 3 .6-2.3 2m87.4-22.2-2.6-1.6-2.8 1.4.6-3-2-2.3 3-.3 1.4-2.7 1.2 2.8 3 .5-2.2 2.1m-25.1 3-2.7-1.5-2.7 1.4.6-3-2-2.3 3-.3 1.4-2.8 1.2 2.9 3 .5-2.2 2.1m-68.8-5.8-1.7-1-1.7.8.4-1.9-1.3-1.4 1.9-.2.8-1.7.8 1.8 1.9.3-1.4 1.3m167.8 45.4-2.6-1.5-2.7 1.4.6-3-2.1-2.3 3-.4 1.4-2.7 1.3 2.8 3 .6-2.3 2m-20.8 6-2.2-1.4-2.3 1.2.5-2.6-1.7-1.8 2.5-.3 1.2-2.3 1 2.4 2.5.4-1.9 1.8m10.4 2.3-2-1.2-2.1 1 .4-2.3-1.6-1.7 2.3-.3 1.1-2 1 2 2.3.5-1.7 1.6m29.1-22.8-2-1-2 1 .5-2.3-1.6-1.7 2.3-.3 1-2 1 2.1 2.1.4-1.6 1.6m-38.8 41.8-2.5-1.4-2.7 1.2.6-2.8-2-2 3-.3 1.3-2.5 1.2 2.6 3 .5-2.3 1.9m.6 14.2-2.4-1.4-2.4 1.3.6-2.8-1.9-2 2.7-.4 1.2-2.5 1.1 2.6 2.7.5-2 2m-19-23.1-1.9-1.2-2 1 .4-2.2-1.5-1.7 2.2-.2 1-2 1 2 2.2.4-1.6 1.6m-17.8 2.3-2-1.2-2 1 .5-2.2-1.6-1.7 2.3-.2 1-2 1 2 2.1.4-1.6 1.6m-30.4-24.6-2-1.1-2 1 .5-2.3-1.6-1.6 2.2-.3 1-2 1 2 2.2.5-1.6 1.5m3.7 57-1.6-.9-1.8.9.4-2-1.3-1.4 1.9-.2.9-1.7.8 1.8 1.9.3-1.4 1.3m-46.2-86.6-4-2.3-4 2 .9-4.5-3.2-3.3 4.5-.6 2.2-4 1.9 4.2 4.4.8-3.3 3.1"/>
+    <path fill="#fff" fill-rule="evenodd" d="M444.4 285.8a125 125 0 0 0 5.8-19.8c-67.8-59.5-143.3-90-238.7-83.7a125 125 0 0 0-8.5 20.9c113-10.8 196 39.2 241.4 82.6"/>
+    <path fill="#309e3a" d="m414 252.4 2.3 1.3a3 3 0 0 0-.3 2.2 3 3 0 0 0 1.4 1.7q1 .8 2 .7.9 0 1.3-.7l.2-.9-.5-1-1.5-1.8a8 8 0 0 1-1.8-3 4 4 0 0 1 2-4.4 4 4 0 0 1 2.3-.2 7 7 0 0 1 2.6 1.2q2.1 1.5 2.6 3.2a4 4 0 0 1-.6 3.3l-2.4-1.5q.5-1 .2-1.7-.2-.8-1.2-1.4a3 3 0 0 0-1.8-.7 1 1 0 0 0-.9.5q-.3.4-.1 1 .2.8 1.6 2.2t2 2.5a4 4 0 0 1-.3 4.2 4 4 0 0 1-1.9 1.5 4 4 0 0 1-2.4.3q-1.3-.3-2.8-1.3-2.2-1.5-2.7-3.3a5 5 0 0 1 .6-4zm-11.6-7.6 2.5 1.3a3 3 0 0 0-.2 2.2 3 3 0 0 0 1.4 1.6q1.1.8 2 .6.9 0 1.3-.8l.2-.8q0-.5-.5-1l-1.6-1.8q-1.7-1.6-2-2.8a4 4 0 0 1 .4-3.1 4 4 0 0 1 1.6-1.4 4 4 0 0 1 2.2-.3 7 7 0 0 1 2.6 1q2.3 1.5 2.7 3.1a4 4 0 0 1-.4 3.4l-2.5-1.4q.5-1 .2-1.7-.4-1-1.3-1.4a3 3 0 0 0-1.9-.6 1 1 0 0 0-.8.5q-.3.4-.1 1 .3.8 1.7 2.2 1.5 1.5 2 2.4a4 4 0 0 1 0 4.2 4 4 0 0 1-1.8 1.6 4 4 0 0 1-2.4.3 8 8 0 0 1-2.9-1.1 6 6 0 0 1-2.8-3.2 5 5 0 0 1 .4-4m-14.2-3.8 7.3-12 8.8 5.5-1.2 2-6.4-4-1.6 2.7 6 3.7-1.3 2-6-3.7-2 3.3 6.7 4-1.2 2zm-20.7-17 1.1-2 5.4 2.7-2.5 5q-1.2.3-3 .2a9 9 0 0 1-3.3-1 8 8 0 0 1-3-2.6 6 6 0 0 1-1-3.5 9 9 0 0 1 1-3.7 8 8 0 0 1 2.6-3 6 6 0 0 1 3.6-1.1q1.4 0 3.2 1 2.4 1.1 3.1 2.8a5 5 0 0 1 .3 3.5l-2.7-.8a3 3 0 0 0-.2-2q-.4-.9-1.6-1.4a4 4 0 0 0-3.1-.3q-1.5.5-2.6 2.6t-.7 3.8a4 4 0 0 0 2 2.4q.8.5 1.7.5h1.8l.8-1.6zm-90.2-22.3 2-14 4.2.7 1.1 9.8 3.9-9 4.2.6-2 13.8-2.7-.4 1.7-10.9-4.4 10.5-2.7-.4-1.1-11.3-1.6 11zm-14.1-1.7 1.3-14 10.3 1-.2 2.4-7.5-.7-.3 3 7 .7-.3 2.4-7-.7-.3 3.8 7.8.7-.2 2.4z"/>
+    <g stroke-opacity=".5">
+      <path fill="#309e3a" d="M216.5 191.3q0-2.2.7-3.6a7 7 0 0 1 1.4-1.9 5 5 0 0 1 1.8-1.2q1.5-.5 3-.5 3.1.1 5 2a7 7 0 0 1 1.6 5.5q0 3.3-2 5.3a7 7 0 0 1-5 1.7 7 7 0 0 1-4.8-2 7 7 0 0 1-1.7-5.3"/>
+      <path fill="#f7ffff" d="M219.4 191.3q0 2.3 1 3.6t2.8 1.3a4 4 0 0 0 2.8-1.1q1-1.2 1.1-3.7.1-2.4-1-3.6a4 4 0 0 0-2.7-1.3 4 4 0 0 0-2.8 1.2q-1.1 1.2-1.2 3.6"/>
+    </g>
+    <g stroke-opacity=".5">
+      <path fill="#309e3a" d="m233 198.5.2-14h6q2.2 0 3.2.5 1 .3 1.6 1.3c.6 1 .6 1.4.6 2.3a4 4 0 0 1-1 2.6 5 5 0 0 1-2.7 1.2l1.5 1.2q.6.6 1.5 2.3l1.7 2.8h-3.4l-2-3.2-1.4-2-.9-.6-1.4-.2h-.6v5.8z"/>
+      <path fill="#fff" d="M236 190.5h2q2.1 0 2.6-.2.5-.1.8-.5.4-.6.3-1 0-.9-.4-1.2-.3-.4-1-.6h-2l-2.3-.1z"/>
+    </g>
+    <g stroke-opacity=".5">
+      <path fill="#309e3a" d="m249 185.2 5.2.3q1.7 0 2.6.3a5 5 0 0 1 2 1.4 6 6 0 0 1 1.2 2.4q.4 1.4.3 3.3a9 9 0 0 1-.5 3q-.6 1.5-1.7 2.4a5 5 0 0 1-2 1q-1 .3-2.5.2l-5.3-.3z"/>
+      <path fill="#fff" d="m251.7 187.7-.5 9.3h3.8q.8 0 1.2-.5.5-.4.8-1.3t.4-2.6l-.1-2.5a3 3 0 0 0-.8-1.4l-1.2-.7-2.3-.3z"/>
+    </g>
+    <g stroke-opacity=".5">
+      <path fill="#309e3a" d="m317.6 210.2 3.3-13.6 4.4 1 3.2 1q1.1.6 1.6 1.9t.2 2.8q-.3 1.2-1 2a4 4 0 0 1-3 1.4q-1 0-3-.5l-1.7-.5-1.2 5.2z"/>
+      <path fill="#fff" d="m323 199.6-.8 3.8 1.5.4q1.6.4 2.2.3a2 2 0 0 0 1.6-1.5q0-.7-.2-1.3a2 2 0 0 0-1-.9l-1.9-.5-1.3-.3z"/>
+    </g>
+    <g stroke-opacity=".5">
+      <path fill="#309e3a" d="m330.6 214.1 4.7-13.2 5.5 2q2.2.8 3 1.4.8.7 1 1.8c.2 1.1.2 1.5 0 2.3q-.6 1.5-1.8 2.2-1.2.6-3 .3.6.7 1 1.6l.8 2.7.6 3.1-3.1-1.1-1-3.6-.7-2.4-.6-.8q-.3-.4-1.3-.7l-.5-.2-2 5.6z"/>
+      <path fill="#fff" d="m336 207.4 1.9.7q2 .7 2.5.7t.9-.3q.5-.3.6-.9.3-.6 0-1.2l-.8-.9-2-.7-2-.7-1.2 3.3z"/>
+    </g>
+    <g stroke-opacity=".5">
+      <path fill="#309e3a" d="M347 213.6a9 9 0 0 1 1.7-3.2l1.8-1.5 2-.7q1.5-.1 3.1.4a7 7 0 0 1 4.2 3.3q1.2 2.4.2 5.7a7 7 0 0 1-3.4 4.5q-2.3 1.3-5.2.4a7 7 0 0 1-4.2-3.3 7 7 0 0 1-.2-5.6"/>
+      <path fill="#fff" d="M349.8 214.4q-.7 2.3 0 3.8c.7 1.5 1.2 1.6 2.3 2q1.5.5 3-.4 1.4-.8 2.1-3.2.8-2.2 0-3.7a4 4 0 0 0-2.2-2 4 4 0 0 0-3 .3q-1.5.8-2.2 3.2"/>
+    </g>
+    <g stroke-opacity=".5">
+      <path fill="#309e3a" d="m374.3 233.1 6.4-12.4 5.3 2.7a10 10 0 0 1 2.7 1.9q.8.7.8 1.9c0 1.2 0 1.5-.4 2.2a4 4 0 0 1-2 2q-1.5.4-3.1-.2.6 1 .8 1.7.3.9.4 2.8l.2 3.2-3-1.5-.4-3.7-.3-2.5-.5-1-1.2-.7-.5-.3-2.7 5.2z"/>
+      <path fill="#fff" d="m380.5 227.2 1.9 1q1.8 1 2.3 1t1-.2q.4-.2.7-.8t.2-1.2l-.7-1-1.8-1-2-1z"/>
+    </g>
+    <g stroke-opacity=".5">
+      <path fill="#309e3a" d="M426.1 258.7a9 9 0 0 1 2.5-2.6 7 7 0 0 1 2.2-.9 6 6 0 0 1 2.2 0q1.5.3 2.8 1.2a7 7 0 0 1 3 4.4q.4 2.6-1.4 5.5a7 7 0 0 1-4.5 3.3 7 7 0 0 1-5.2-1.1 7 7 0 0 1-3-4.4q-.4-2.7 1.4-5.4"/>
+      <path fill="#fff" d="M428.6 260.3q-1.4 2-1.1 3.6a4 4 0 0 0 1.6 2.5q1.5 1 3 .6t2.9-2.4q1.4-2.1 1.1-3.6t-1.6-2.6c-1.4-1.1-2-.8-3-.5q-1.5.3-3 2.4z"/>
+    </g>
+    <path fill="#309e3a" d="m301.8 204.5 2.3-9.8 7.2 1.7-.3 1.6-5.3-1.2-.5 2.2 4.9 1.1-.4 1.7-4.9-1.2-.6 2.7 5.5 1.3-.4 1.6z"/>
+  </g>
+</svg>
+</span><span class="code-text">BRA</span><span class="row-arrow">→</span></span></td><td class="pos" data-sort="1.7">+1.7</td><td data-sort="4.2">4.2</td><td data-sort="6.5">6.5</td><td data-sort="12.0">12.0</td><td data-sort="13.8">13.8</td><td class="pos" data-sort="16.9">+16.9</td><td class="pos" data-sort="12.1">+12.1</td></tr><tr class="clickable" data-href="can.html"><td data-sort="CAN"><span class="code-cell"><span class="row-flag"><svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-ca" viewBox="0 0 640 480">
+  <path fill="#fff" d="M150.1 0h339.7v480H150z"/>
+  <path fill="#d52b1e" d="M-19.7 0h169.8v480H-19.7zm509.5 0h169.8v480H489.9zM201 232l-13.3 4.4 61.4 54c4.7 13.7-1.6 17.8-5.6 25l66.6-8.4-1.6 67 13.9-.3-3.1-66.6 66.7 8c-4.1-8.7-7.8-13.3-4-27.2l61.3-51-10.7-4c-8.8-6.8 3.8-32.6 5.6-48.9 0 0-35.7 12.3-38 5.8l-9.2-17.5-32.6 35.8c-3.5.9-5-.5-5.9-3.5l15-74.8-23.8 13.4q-3.2 1.3-5.2-2.2l-23-46-23.6 47.8q-2.8 2.5-5 .7L264 130.8l13.7 74.1c-1.1 3-3.7 3.8-6.7 2.2l-31.2-35.3c-4 6.5-6.8 17.1-12.2 19.5s-23.5-4.5-35.6-7c4.2 14.8 17 39.6 9 47.7"/>
+</svg>
+</span><span class="code-text">CAN</span><span class="row-arrow">→</span></span></td><td class="pos" data-sort="1.7">+1.7</td><td data-sort="2.0">2.0</td><td data-sort="6.5">6.5</td><td data-sort="2.25">2.2</td><td data-sort="3.44">3.4</td><td class="pos" data-sort="6.6">+6.6</td><td class="pos" data-sort="0.6">+0.6</td></tr><tr class="clickable" data-href="rus.html"><td data-sort="RUS"><span class="code-cell"><span class="row-flag"><svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-ru" viewBox="0 0 640 480">
+  <path fill="#fff" d="M0 0h640v160H0z"/>
+  <path fill="#0039a6" d="M0 160h640v160H0z"/>
+  <path fill="#d52b1e" d="M0 320h640v160H0z"/>
+</svg>
+</span><span class="code-text">RUS</span><span class="row-arrow">→</span></span></td><td class="pos" data-sort="1.2">+1.2</td><td data-sort="4.7">4.7</td><td data-sort="2.5">2.5</td><td data-sort="12.5">12.5</td><td data-sort="13.5">13.5</td><td class="neg" data-sort="-4.5">−4.5</td><td class="pos" data-sort="5.8">+5.8</td></tr><tr class="clickable" data-href="zaf.html"><td data-sort="ZAF"><span class="code-cell"><span class="row-flag"><svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-za" viewBox="0 0 640 480">
+  <defs>
+    <clipPath id="za-a">
+      <path fill-opacity=".7" d="M-71.9 0h682.7v512H-71.9z"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#za-a)" transform="translate(67.4)scale(.93748)">
+    <g fill-rule="evenodd" stroke-width="1pt">
+      <path fill="#000001" d="M-71.9 407.8V104.4L154 256.1z"/>
+      <path fill="#000c8a" d="m82.2 512.1 253.6-170.6H696V512H82.2z"/>
+      <path fill="#e1392d" d="M66 0h630v170.8H335.7S69.3-1.7 66 0"/>
+      <path fill="#ffb915" d="M-71.9 64v40.4L154 256-72 407.8v40.3l284.5-192z"/>
+      <path fill="#007847" d="M-71.9 64V0h95l301.2 204h371.8v104.2H324.3L23 512h-94.9v-63.9l284.4-192L-71.8 64z"/>
+      <path fill="#fff" d="M23 0h59.2l253.6 170.7H696V204H324.3zm0 512.1h59.2l253.6-170.6H696v-33.2H324.3L23 512z"/>
+    </g>
+  </g>
+</svg>
+</span><span class="code-text">ZAF</span><span class="row-arrow">→</span></span></td><td class="pos" data-sort="1.5">+1.5</td><td data-sort="3.5">3.5</td><td data-sort="32.5">32.5</td><td data-sort="6.25">6.2</td><td data-sort="9.05">9.1</td><td class="pos" data-sort="2.8">+2.8</td><td class="pos" data-sort="1.5">+1.5</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="box">
+    <div class="section-label">Commodities</div>
+    <div class="commodities-grid">
+        <div class="commodity-item">
+          <div class="c-name">Brent Crude</div>
+          <div class="c-value">$99.11<span class="c-change neg">−6.7%</span></div>
+        </div>
+        <div class="commodity-item">
+          <div class="c-name">Natural Gas</div>
+          <div class="c-value">$2.72<span class="c-change neg">−2.2%</span></div>
+        </div>
+        <div class="commodity-item">
+          <div class="c-name">Gold</div>
+          <div class="c-value">$4,737<span class="c-change pos">+1.1%</span></div>
+        </div></div>
+  </div>
+
+  <div class="footer">
+    Built Mon 11 May 2026 · macrosnaps.app
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var table = document.querySelector('.snapshot');
+  if (!table) return;
+  var tbody = table.tBodies[0];
+  var headers = table.tHead.rows[0].cells;
+  var originalOrder = Array.prototype.slice.call(tbody.rows);
+  var currentCol = -1;
+  var asc = false;
+
+  for (var i = 0; i < headers.length; i++) {
+    (function (idx) {
+      headers[idx].addEventListener('click', function () { sortBy(idx); });
+    })(i);
+  }
+
+  // Row click navigates to the country page.
+  // Sort happens on <th> only, navigation on <td> only - no conflict.
+  Array.prototype.slice.call(tbody.rows).forEach(function (row) {
+    var href = row.getAttribute('data-href');
+    if (!href) return;
+    row.addEventListener('click', function () { window.location.href = href; });
+  });
+
+  function sortBy(col) {
+    var isText = (col === 0);
+    if (currentCol === col) {
+      asc = !asc;
+    } else {
+      asc = isText ? true : false;  // text: A→Z first; numeric: highest first
+      currentCol = col;
+    }
+    var rows = Array.prototype.slice.call(tbody.rows);
+    rows.sort(function (a, b) {
+      var av = a.cells[col].getAttribute('data-sort') || a.cells[col].textContent;
+      var bv = b.cells[col].getAttribute('data-sort') || b.cells[col].textContent;
+      if (isText) {
+        return av.localeCompare(bv);
+      }
+      var aNum = parseFloat(av);
+      var bNum = parseFloat(bv);
+      var aNull = isNaN(aNum);
+      var bNull = isNaN(bNum);
+      if (aNull && bNull) return 0;
+      if (aNull) return 1;
+      if (bNull) return -1;
+      return bNum - aNum;
+    });
+    if (asc) rows.reverse();
+    rows.forEach(function (r) { tbody.appendChild(r); });
+    updateArrows();
+  }
+
+  function updateArrows() {
+    for (var i = 0; i < headers.length; i++) {
+      var arrow = headers[i].querySelector('.sort-arrow');
+      headers[i].classList.toggle('active', i === currentCol);
+      if (arrow) {
+        arrow.textContent = (i === currentCol) ? (asc ? '↑' : '↓') : '';
+      }
+    }
+  }
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>/* ─────────────────────────────────────────────────────────────
+   MacroSnaps v2 — Chart rendering
+   Ported from existing renderMetricChart, adapted for light mode.
+   Reads chart data from each metric's mounted element's data-spark
+   attribute (JSON-encoded) and renders into the matching canvas.
+   ───────────────────────────────────────────────────────────── */
+
+(function () {
+  const ORANGE_RGB = '249,115,22';
+  const GREEN_RGB = '0,176,116';
+  const RED_RGB = '217,58,79';
+  const GRID = 'rgba(0,0,0,.05)';
+  const ZERO = 'rgba(0,0,0,.2)';
+  const TICK = '#888';
+  const TOOLTIP_BG = '#fff';
+  const TOOLTIP_BORDER = 'rgba(249,115,22,.4)';
+
+  // From shell-frozen.chartConfig.annualLabels
+  const ANNUAL_LABELS = [
+    '2000','2001','2002','2003','2004','2005','2006','2007','2008','2009',
+    '2010','2011','2012','2013','2014','2015','2016','2017','2018','2019',
+    '2020','2021','2022','2023','2024','2025','2026F'
+  ];
+
+  // Per-metric chart config
+  const METRIC_CFG = {
+    'GDP Growth':     { type: 'bar', zeroLine: true },
+    'Inflation (CPI)':{ type: 'line' },
+    'Unemployment':   { type: 'line' },
+    'Budget Deficit': { type: 'bar', zeroLine: true },
+    'Current Account':{ type: 'bar', zeroLine: true },
+    'Policy Rate':    { type: 'line', stepped: true },
+    'Stock Market YTD': { type: 'line', zeroLine: true },
+    '10Y Bond Yield': { type: 'line' },
+    'Yield Curve':    { type: 'line', zeroLine: true, segmentColor: true },
+    'USD/DXY':        { type: 'line', indexLabel: true },
+    'CAD/USD':        { type: 'line' },
+    'GBP/USD':        { type: 'line' },
+    'USD/JPY':        { type: 'line' },
+    'EUR/USD':        { type: 'line' },
+    'USD/CNY':        { type: 'line' },
+    'USD/INR':        { type: 'line' },
+    'USD/ZAR':        { type: 'line' },
+    'USD/BRL':        { type: 'line' },
+    'USD/RUB':        { type: 'line' },
+    'FX Rate':        { type: 'line' }
+  };
+
+  function monthLabelsFrom(startDateStr, n) {
+    // startDateStr: "YYYY-MM"
+    // Emit "MMM 'YY" at every position so autoSkip has labels to pick from
+    // at any tick density (1Y, 2Y, 5Y, All).
+    if (!startDateStr) return Array(n).fill('');
+    const MONTH_ABBR = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const [y0, m0] = startDateStr.split('-').map(Number);
+    const labels = [];
+    for (let i = 0; i < n; i++) {
+      const monthIdx = (m0 - 1) + i;
+      const y = y0 + Math.floor(monthIdx / 12);
+      const m = monthIdx % 12;
+      labels.push(MONTH_ABBR[m] + " '" + String(y).slice(2));
+    }
+    return labels;
+  }
+
+  function sliceData(allVals, allLabels, rangeMonths) {
+    if (!rangeMonths || rangeMonths === 0 || rangeMonths >= allVals.length) {
+      return { vals: allVals, labels: allLabels };
+    }
+    return {
+      vals: allVals.slice(-rangeMonths),
+      labels: allLabels.slice(-rangeMonths)
+    };
+  }
+
+  function renderChart(canvas, metricName, metricData, rangeMonths) {
+    if (!window.Chart) { console.warn('Chart.js not loaded'); return; }
+    const cfg = METRIC_CFG[metricName] || { type: 'line' };
+    const isBar = cfg.type === 'bar';
+    const allVals = metricData.v || [];
+    if (!allVals.length) return;
+
+    // Build labels
+    let allLabels;
+    if (isBar) {
+      allLabels = ANNUAL_LABELS.slice(0, allVals.length);
+    } else {
+      allLabels = monthLabelsFrom(metricData.startDate, allVals.length);
+    }
+
+    const sliced = sliceData(allVals, allLabels, rangeMonths);
+    const sliceVals = sliced.vals;
+    const sliceLabels = sliced.labels;
+    const n = sliceVals.length;
+
+    // Axis range
+    const mn = Math.min(...sliceVals);
+    const mx = Math.max(...sliceVals);
+    const range = mx - mn;
+    const pad = (range * 0.15) || (Math.abs(mx) * 0.1) || 1;
+
+    // Destroy any prior chart on this canvas
+    if (canvas._chart) { canvas._chart.destroy(); canvas._chart = null; }
+    const ctx = canvas.getContext('2d');
+
+    let datasets;
+    if (isBar) {
+      const colors = sliceVals.map(v => v >= 0 ? `rgba(${ORANGE_RGB},.55)` : `rgba(${RED_RGB},.55)`);
+      const borders = sliceVals.map(v => v >= 0 ? `rgba(${ORANGE_RGB},.9)` : `rgba(${RED_RGB},.9)`);
+      datasets = [{
+        data: sliceVals,
+        backgroundColor: colors,
+        borderColor: borders,
+        borderWidth: 1,
+        barPercentage: 0.85,
+        categoryPercentage: 0.85
+      }];
+    } else if (cfg.segmentColor) {
+      // Yield curve: green above 0, red below 0
+      datasets = [{
+        data: sliceVals,
+        borderWidth: 1.5,
+        pointRadius: 0,
+        pointHitRadius: 8,
+        pointHoverRadius: 3,
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderWidth: 1,
+        tension: .3,
+        fill: false,
+        segment: {
+          borderColor: function (ctx2) {
+            const y0 = ctx2.p0.parsed.y, y1 = ctx2.p1.parsed.y;
+            if (y0 >= 0 && y1 >= 0) return `rgba(${GREEN_RGB},.8)`;
+            if (y0 < 0 && y1 < 0) return `rgba(${RED_RGB},.8)`;
+            return 'rgba(120,120,120,.6)';
+          }
+        }
+      }];
+    } else {
+      const grad = ctx.createLinearGradient(0, 0, 0, 140);
+      grad.addColorStop(0, `rgba(${ORANGE_RGB},.22)`);
+      grad.addColorStop(1, `rgba(${ORANGE_RGB},.01)`);
+      datasets = [{
+        data: sliceVals,
+        borderColor: `rgba(${ORANGE_RGB},.9)`,
+        borderWidth: 1.5,
+        backgroundColor: grad,
+        fill: true,
+        pointRadius: 0,
+        pointHitRadius: 8,
+        pointHoverRadius: 3,
+        pointHoverBackgroundColor: '#F97316',
+        pointHoverBorderColor: '#fff',
+        pointHoverBorderWidth: 1,
+        tension: .35,
+        stepped: cfg.stepped || false
+      }];
+    }
+
+    canvas._chart = new Chart(ctx, {
+      type: isBar ? 'bar' : 'line',
+      data: { labels: sliceLabels, datasets: datasets },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        events: ['mousemove', 'mouseout', 'touchstart', 'touchmove'],
+        layout: { padding: { left: 2, right: 2, top: 4, bottom: 0 } },
+        scales: {
+          x: {
+            display: true,
+            grid: { display: false },
+            ticks: {
+              color: function (context) {
+                var label = sliceLabels[context.index];
+                return (label && label.toString().endsWith('F')) ? '#F97316' : TICK;
+              },
+              font: { family: "'Space Mono', monospace", size: 8 },
+              maxRotation: 0, autoSkip: true,
+              maxTicksLimit: isBar ? 8 : (n <= 12 ? 6 : n <= 24 ? 8 : 10)
+            },
+            border: { display: false }
+          },
+          y: {
+            display: true,
+            position: 'right',
+            grid: {
+              color: function (context) {
+                if (cfg.zeroLine && context.tick.value === 0) return ZERO;
+                return GRID;
+              },
+              lineWidth: function (context) {
+                return (cfg.zeroLine && context.tick.value === 0) ? 1.2 : 1;
+              }
+            },
+            ticks: {
+              color: TICK, font: { family: "'Space Mono', monospace", size: 8 },
+              maxTicksLimit: 5,
+              callback: function (v) {
+                if (cfg.indexLabel && v >= 1000) return (v / 1000).toFixed(v % 1000 === 0 ? 0 : 1) + 'k';
+                return (v % 1 === 0) ? v : v.toFixed(1);
+              }
+            },
+            border: { display: false },
+            min: mn - pad,
+            max: mx + pad
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: TOOLTIP_BG,
+            borderColor: TOOLTIP_BORDER,
+            borderWidth: 1,
+            titleFont: { family: "'Space Mono', monospace", size: 9 },
+            bodyFont: { family: "'DM Sans', sans-serif", size: 11 },
+            titleColor: '#888', bodyColor: '#1a1a1a',
+            cornerRadius: 4, padding: 8, displayColors: false,
+            callbacks: {
+              label: function (ctx2) {
+                let v = ctx2.parsed.y;
+                if (cfg.indexLabel) return ' ' + v.toLocaleString();
+                if (cfg.segmentColor) return ' ' + (v >= 0 ? '+' : '') + v + ' bps';
+                return ' ' + v;
+              }
+            }
+          }
+        },
+        interaction: { mode: 'index', intersect: false },
+        animation: { duration: 350, easing: 'easeOutCubic' }
+      }
+    });
+  }
+
+  // Wire up all chart panels on the page
+  function initAllCharts() {
+    document.querySelectorAll('.metric-chart-wrap').forEach(wrap => {
+      const metricName = wrap.dataset.metric;
+      const dataAttr = wrap.dataset.chart;
+      if (!metricName || !dataAttr) return;
+      let metricData;
+      try { metricData = JSON.parse(dataAttr); } catch (e) { return; }
+
+      const canvas = wrap.querySelector('canvas');
+      if (!canvas) return;
+
+      const cfg = METRIC_CFG[metricName] || {};
+      const isBar = cfg.type === 'bar';
+
+      // Render with default range
+      const defaultRange = isBar ? 0 : 60; // bar = all years; line = 5Y default
+      renderChart(canvas, metricName, metricData, defaultRange);
+
+      // Wire range buttons (line charts only)
+      const btns = wrap.querySelectorAll('.mcr-btn');
+      btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          btns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const r = parseInt(btn.dataset.r) || 0;
+          renderChart(canvas, metricName, metricData, r);
+        });
+      });
+
+      // Mark default-active button
+      if (!isBar) {
+        btns.forEach(b => { if (parseInt(b.dataset.r) === 60) b.classList.add('active'); });
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAllCharts);
+  } else {
+    initAllCharts();
+  }
+})();
+</script>
+</body>
+</html>

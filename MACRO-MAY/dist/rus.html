@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Russia · MacroSnaps</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>/* ─────────────────────────────────────────────────────────────
+   MacroSnaps v2 (MACRO-MAY)
+   Light mode · orange palette · coral bullets
+   ───────────────────────────────────────────────────────────── */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --orange: #F97316;
+  --orange-dark: #C2410C;
+  --coral: #CC785C;
+  --green: #00b074;
+  --red: #d93a4f;
+  --text: #1a1a1a;
+  --text-2: #333;
+  --text-3: #444;
+  --text-4: #555;
+  --text-5: #888;
+  --text-6: #999;
+  --border: rgba(0,0,0,.06);
+  --border-2: rgba(0,0,0,.04);
+  --surface: #f5f5f4;
+  --card: #fff;
+  --pill-bg: rgba(0,0,0,.04);
+  --font-display: 'Space Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+}
+
+html { background: var(--surface); color: var(--text); font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
+body { min-height: 100vh; padding: 0; }
+
+a { color: var(--orange-dark); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.page { max-width: 760px; margin: 0 auto; padding: 18px 16px 64px; }
+
+/* ── Box (the modular container) ─────────────────────────────── */
+.box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px 22px;
+  margin-bottom: 14px;
+}
+.box.compact { padding: 16px 22px; }
+a.box { display: block; color: inherit; cursor: pointer; transition: border-color .15s, transform .05s; }
+a.box:hover { border-color: rgba(0,0,0,.12); text-decoration: none; }
+a.box:active { transform: scale(.998); }
+
+/* ── Header ───────────────────────────────────────────────────── */
+.head-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-bottom: 14px; border-bottom: 1px solid var(--border); margin-bottom: 18px;
+}
+.head-row.no-divider { padding-bottom: 0; border-bottom: none; margin-bottom: 0; }
+.back-link {
+  font-family: var(--font-display); font-size: 10px; letter-spacing: 1.4px;
+  text-transform: uppercase; color: var(--text-5); text-decoration: none;
+}
+.back-link:hover { color: var(--text-3); text-decoration: none; }
+.date {
+  font-family: var(--font-display); font-size: 10px; letter-spacing: 1.4px;
+  text-transform: uppercase; color: var(--text-5);
+}
+.brand {
+  margin: 0; font-size: 22px; font-weight: 500; letter-spacing: -.01em; line-height: 1;
+}
+.country-title { display: flex; align-items: baseline; gap: 14px; }
+.country-title h1 {
+  margin: 0; font-size: 30px; font-weight: 500; letter-spacing: -.02em; line-height: 1;
+}
+.flag-pill {
+  font-family: var(--font-display); font-size: 10px; letter-spacing: 1.6px;
+  color: var(--text-5); background: var(--pill-bg); padding: 3px 10px; border-radius: 3px; font-weight: 500;
+}
+
+/* ── Section label (the small uppercase header inside a box) ───── */
+.section-label {
+  font-family: var(--font-display); font-size: 10px; letter-spacing: 1.6px;
+  text-transform: uppercase; color: var(--text-5); margin-bottom: 14px;
+}
+
+/* ── Stories list (numbered with coral circles) ─────────────────── */
+.stories { list-style: none; padding: 0; margin: 0; counter-reset: story; }
+.stories li {
+  counter-increment: story;
+  font-size: 15px; color: var(--text-2); line-height: 1.65;
+  padding-left: 30px; position: relative; margin-bottom: 11px;
+}
+.stories li:last-child { margin-bottom: 0; }
+.stories li::before {
+  content: counter(story);
+  position: absolute; left: 0; top: 3px;
+  width: 18px; height: 18px; display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; border: 1.5px solid var(--coral); color: var(--coral);
+  font-size: 11px; font-weight: 700; font-family: var(--font-body);
+}
+.stories.sm li { font-size: 14px; color: var(--text-3); padding-left: 28px; margin-bottom: 8px; }
+.stories.sm li::before { width: 17px; height: 17px; font-size: 10px; }
+
+/* ── Snapshot table ─────────────────────────────────────────────── */
+.snapshot {
+  width: 100%; border-collapse: collapse;
+  font-family: var(--font-display); font-size: 13px;
+  font-variant-numeric: tabular-nums; table-layout: fixed;
+}
+.snapshot th, .snapshot td { padding: 11px 4px 12px; text-align: right; border-bottom: 1px solid var(--border-2); vertical-align: middle; }
+.snapshot thead th { border-bottom: 1px solid rgba(0,0,0,.1); font-weight: 500; color: var(--text-5); font-size: 9px; letter-spacing: 1.4px; text-transform: uppercase; padding: 9px 4px; }
+.snapshot th.sortable { cursor: pointer; user-select: none; transition: color .15s; }
+.snapshot th.sortable:hover { color: var(--text-3); }
+.snapshot th.sortable.active { color: var(--orange-dark); }
+.snapshot th .sort-arrow { display: inline-block; margin-left: 3px; color: var(--orange-dark); font-size: 10px; min-width: 6px; }
+.snapshot td:first-child, .snapshot th:first-child { text-align: left; padding-left: 8px; }
+.snapshot td:first-child { color: var(--text); font-weight: 500; transition: color .15s; }
+.snapshot tbody tr:last-child td { border-bottom: none; }
+.snapshot tbody tr.clickable { cursor: pointer; transition: background-color .15s; }
+.snapshot tbody tr.clickable td { cursor: pointer; }
+.snapshot tbody tr.clickable:hover { background: rgba(249,115,22,.12); }
+.snapshot tbody tr.clickable:hover td:first-child .code-text { color: var(--orange-dark); }
+
+/* Country code cell: flag + code + hover arrow */
+.code-cell {
+  display: inline-flex; align-items: center; gap: 8px;
+  line-height: 1;
+}
+.row-flag {
+  display: inline-block; flex-shrink: 0;
+  width: 22px; height: 16px;
+  border-radius: 3px; overflow: hidden;
+  border: 1px solid rgba(0,0,0,.1);
+  line-height: 0;
+}
+.row-flag svg { display: block; width: 100%; height: 100%; }
+.code-text { transition: color .15s; }
+.row-arrow {
+  display: inline-block; margin-left: 2px;
+  color: var(--orange-dark); font-weight: 700;
+  opacity: 0; transition: opacity .15s;
+}
+.snapshot tbody tr.clickable:hover .row-arrow { opacity: 1; }
+
+/* Numeric cells: simple right-aligned values */
+.pos { color: var(--green); }
+.neg { color: var(--red); }
+.muted { color: var(--text-6); }
+
+/* ── Country card ────────────────────────────────────────────────── */
+.country-card-head {
+  display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;
+}
+.country-card-name { display: flex; align-items: center; gap: 11px; }
+.country-card-name h2 { margin: 0; font-size: 17px; font-weight: 500; }
+.country-card-arrow { color: var(--orange-dark); font-size: 14px; }
+
+/* ── Metric box ───────────────────────────────────────────────────── */
+.metric-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 20px; gap: 14px;
+}
+.metric-head h2 {
+  margin: 0; font-size: 26px; font-weight: 500; letter-spacing: -.01em; line-height: 1.1;
+}
+.metric-value {
+  font-size: 26px; font-weight: 500; color: var(--text);
+  font-variant-numeric: tabular-nums; letter-spacing: -.01em; line-height: 1; white-space: nowrap;
+}
+
+/* ── Chart panel (ported from existing site) ──────────────────────── */
+.metric-chart-wrap {
+  margin: 10px 0 0; padding: 12px 0 4px;
+  border-top: 1px solid var(--border);
+}
+.metric-chart-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.metric-chart-title {
+  font-family: var(--font-display); font-size: 8px; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text-5);
+}
+.metric-chart-range { display: flex; gap: 2px; }
+.mcr-btn {
+  font-family: var(--font-display); font-size: 8px; letter-spacing: .5px;
+  text-transform: uppercase; padding: 3px 8px;
+  border: 1px solid rgba(0,0,0,.08); border-radius: 2px;
+  background: transparent; color: var(--text-5); cursor: pointer; transition: all .15s;
+}
+.mcr-btn:hover { border-color: rgba(249,115,22,.4); color: var(--text-3); }
+.mcr-btn.active {
+  background: rgba(249,115,22,.08); border-color: rgba(249,115,22,.35);
+  color: var(--orange-dark);
+}
+.metric-chart-canvas { height: 140px; position: relative; }
+.metric-chart-canvas canvas { width: 100% !important; height: 100% !important; }
+
+/* ── Glossary block ───────────────────────────────────────────────── */
+.gloss { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
+.gloss-title {
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--text-5); margin-bottom: 6px;
+}
+.gloss-body { font-size: 13px; color: var(--text-4); line-height: 1.6; margin: 0; }
+.gloss-source {
+  font-family: var(--font-display); font-size: 8px; letter-spacing: .8px;
+  color: var(--text-6); margin-top: 12px;
+}
+
+/* ── FX regime callout (USD/DXY etc.) ─────────────────────────────── */
+.fx-regime {
+  background: rgba(249,115,22,.05); border-left: 2px solid rgba(249,115,22,.5);
+  padding: 13px 15px; margin-top: 14px; border-radius: 0 4px 4px 0;
+}
+.fx-regime .fx-label {
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--orange-dark); margin-bottom: 6px;
+}
+.fx-regime p { font-size: 13px; line-height: 1.6; color: var(--text-3); margin: 0; }
+
+/* ── Commodities ──────────────────────────────────────────────────── */
+.commodities-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 22px;
+}
+.commodity-item .c-name {
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--text-5); margin-bottom: 4px;
+}
+.commodity-item .c-value {
+  font-family: var(--font-display); font-size: 15px; font-weight: 500;
+  color: var(--text); font-variant-numeric: tabular-nums;
+}
+.commodity-item .c-change { font-size: 11px; font-weight: 400; margin-left: 4px; }
+
+/* ── Countries grid (homepage) ──────────────────────────────────── */
+.countries-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px 14px;
+}
+.country-tile {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; gap: 9px;
+  padding: 6px 4px;
+  border-radius: 6px;
+  color: inherit; text-decoration: none;
+  transition: transform .15s, background .15s;
+}
+.country-tile:hover {
+  background: rgba(0,0,0,.025);
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+.flag-rect {
+  width: 80px; height: 60px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,.1);
+  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+  background: #fff;
+  transition: border-color .15s, box-shadow .15s;
+}
+.country-tile:hover .flag-rect {
+  border-color: var(--orange);
+  box-shadow: 0 2px 6px rgba(249,115,22,.18);
+}
+.flag-rect svg {
+  display: block;
+  width: 100%; height: 100%;
+}
+.country-tile-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-2);
+  line-height: 1.2;
+}
+
+/* ── Empty/placeholder ─────────────────────────────────────────────── */
+.note {
+  text-align: center; padding: 18px;
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--text-6);
+}
+
+/* ── Footer ────────────────────────────────────────────────────────── */
+.footer {
+  text-align: center; padding: 24px 12px; margin-top: 18px;
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--text-6);
+}
+.footer a { color: var(--text-5); }
+
+/* ── Responsive ────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .page { padding: 12px 10px 48px; }
+  .box { padding: 16px 16px; }
+  .country-title h1 { font-size: 26px; }
+  .metric-head h2 { font-size: 22px; }
+  .metric-value { font-size: 22px; }
+  .commodities-grid { grid-template-columns: repeat(2, 1fr); }
+  .countries-grid { grid-template-columns: repeat(3, 1fr); gap: 16px 8px; }
+  .flag-rect { width: 64px; height: 48px; }
+  .country-tile-name { font-size: 12px; }
+  .snapshot { font-size: 12px; }
+  .snapshot th, .snapshot td { padding: 10px 3px 11px; }
+  .snapshot td:first-child, .snapshot th:first-child { padding-left: 6px; }
+  .row-flag { width: 18px; height: 13px; }
+  .code-cell { gap: 6px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="box compact">
+    <div class="head-row">
+      <a class="back-link" href="index.html">← MacroSnaps</a>
+      <span class="date">Mon 11 May 2026</span>
+    </div>
+    <div class="country-title">
+      <h1>Russia</h1>
+      <span class="flag-pill">RUS</span>
+    </div>
+  </div>
+
+  <div class="box">
+    <div class="section-label">Today</div>
+    <ol class="stories"><li>Russia cut rates in March alongside Brazil and Mexico, ignoring the war and betting inflation is tame enough to grow.</li><li>Russia&#x27;s inflation at 6.01% and policy rates at 15.5% mean the central bank is fighting persistent price pressures even as geopolitical risk stays elevated.</li><li>As an oil exporter, Russia benefits when energy prices rise, but prolonged war escalation or trade shocks could fracture that advantage.</li></ol>
+  </div>
+
+  
+    <div class="box">
+      <div class="metric-head">
+        <h2>GDP Growth</h2>
+        <div class="metric-value pos">+1.2%</div>
+      </div>
+      <ol class="stories sm"><li>Russia&#x27;s economy grew just 1.2% in the past year, which is slower than it was before 2022 when it typically grew 2-3% annually.</li><li>Sanctions and capital controls are holding back growth even though Russia kept the world&#x27;s fourth largest economy by purchasing power.</li><li>Watch whether the Kremlin can push growth above 2% without access to Western technology and finance, which will determine if this stall is temporary or structural.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="GDP Growth" data-chart='{&quot;v&quot;: [10.0, 5.1, 4.7, 7.3, 7.2, 6.4, 8.2, 8.5, 5.2, -7.8, 4.5, 4.3, 3.7, 1.8, 0.7, -2.0, 0.2, 1.8, 2.8, 2.2, -2.7, 5.6, -2.1, 3.6, 4.1, 1.0, 1.2], &quot;startDate&quot;: null, &quot;type&quot;: &quot;bar&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">GDP Growth · Annual</div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is GDP growth?</div>
+        <p class="gloss-body">GDP growth measures how fast a country&#x27;s economy is expanding or shrinking. It is the single most important number for understanding whether an economy is healthy, struggling, or in recession.</p>
+        <div class="gloss-source">Source: National statistics offices · IMF</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>Inflation (CPI)</h2>
+        <div class="metric-value">4.7%</div>
+      </div>
+      <ol class="stories sm"><li>Russia&#x27;s inflation is running at 4.7%, which means prices are rising nearly as fast as they were during the worst of the 2022 crisis.</li><li>The central bank kept interest rates high at 12.5% to try to cool inflation, but prices are still sticky because the war disrupted supply chains and pushed up wages.</li><li>If inflation stays above 4-5% for much longer, ordinary Russians will see their paychecks buy less stuff, which could force the central bank to raise rates even higher and slow the economy down more.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="Inflation (CPI)" data-chart='{&quot;v&quot;: [28.93, 25.11, 22.49, 19.95, 19.4, 20.15, 18.94, 18.73, 18.54, 19.41, 19.75, 20.2, 20.71, 22.19, 23.67, 24.77, 24.81, 23.68, 22.05, 20.88, 20.02, 18.82, 18.63, 18.58, 18.96, 17.66, 16.76, 16.04, 15.94, 14.69, 15.0, 15.09, 14.86, 14.84, 15.12, 15.06, 14.29, 14.82, 14.78, 14.62, 13.62, 13.93, 13.91, 13.35, 13.28, 13.2, 12.48, 11.99, 11.28, 10.58, 10.25, 10.22, 10.15, 10.13, 10.36, 11.28, 11.38, 11.53, 11.7, 11.74, 12.7, 12.96, 13.63, 13.77, 13.84, 13.68, 13.16, 12.53, 12.33, 11.68, 11.27, 10.91, 10.71, 11.18, 10.61, 9.77, 9.42, 9.03, 9.26, 9.62, 9.44, 9.15, 9.03, 9.0, 8.2, 7.61, 7.37, 7.6, 7.76, 8.48, 8.7, 8.59, 9.35, 10.83, 11.49, 11.87, 12.56, 12.66, 13.35, 14.3, 15.12, 15.14, 14.73, 15.04, 15.05, 14.23, 13.78, 13.28, 13.35, 13.85, 13.98, 13.16, 12.28, 11.87, 12.01, 11.6, 10.69, 9.69, 9.1, 8.8, 8.02, 7.18, 6.46, 6.04, 5.97, 5.74, 5.46, 6.04, 6.96, 7.5, 8.06, 8.78, 9.56, 9.47, 9.46, 9.61, 9.59, 9.42, 9.01, 8.16, 7.21, 7.19, 6.78, 6.1, 4.16, 3.74, 3.7, 3.57, 3.61, 4.3, 5.59, 5.95, 6.58, 6.55, 6.47, 6.58, 7.07, 7.28, 7.02, 7.23, 7.38, 6.88, 6.45, 6.49, 6.13, 6.25, 6.5, 6.45, 6.05, 6.19, 6.91, 7.33, 7.59, 7.8, 7.45, 7.55, 8.03, 8.29, 9.06, 11.36, 14.97, 16.71, 16.93, 16.42, 15.78, 15.29, 15.64, 15.77, 15.68, 15.59, 14.98, 12.91, 9.77, 8.06, 7.26, 7.24, 7.3, 7.48, 7.21, 6.84, 6.42, 6.09, 5.76, 5.38, 5.02, 4.59, 4.25, 4.13, 4.09, 4.35, 3.86, 3.29, 2.96, 2.73, 2.5, 2.52, 2.21, 2.2, 2.36, 2.41, 2.42, 2.3, 2.5, 3.07, 3.39, 3.55, 3.83, 4.27, 5.0, 5.24, 5.27, 5.18, 5.13, 4.66, 4.59, 4.33, 4.0, 3.77, 3.54, 3.05, 2.43, 2.31, 2.55, 3.1, 3.03, 3.21, 3.37, 3.57, 3.67, 3.98, 4.42, 4.91, 5.19, 5.67, 5.78, 5.52, 6.01, 6.51, 6.47, 6.69, 7.41, 8.14, 8.4, 8.39, 8.74, 9.16, 16.7, 17.85, 17.08, 15.88, 15.07, 14.28, 13.64, 12.64, 11.96, 11.92, 11.78, 10.96, 3.5, 2.29, 2.5, 3.25, 4.31, 5.16, 6.03, 6.67, 7.48, 7.42, 7.44, 7.71, 7.72, 7.82, 8.3, 8.6, 8.88, 9.11, 8.62, 8.5, 8.9, 9.51, 9.91, 10.12, 10.35, 10.27, 9.88, 9.39, 9.04, 8.08, 8.01, 7.76, 6.65, 5.61, 6.01], &quot;startDate&quot;: &quot;2000-01&quot;, &quot;type&quot;: &quot;line&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">Inflation (CPI) · History since 2000</div>
+            <div class="metric-chart-range">
+              <button class="mcr-btn" data-r="12">1Y</button>
+              <button class="mcr-btn" data-r="24">2Y</button>
+              <button class="mcr-btn" data-r="60">5Y</button>
+              <button class="mcr-btn" data-r="0">All</button>
+            </div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is inflation?</div>
+        <p class="gloss-body">Inflation is a sustained increase in the overall price level of goods and services, which reduces the purchasing power of money over time.</p>
+        <div class="gloss-source">Source: National statistics offices · IMF</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>Unemployment</h2>
+        <div class="metric-value">2.5%</div>
+      </div>
+      <ol class="stories sm"><li>Russia&#x27;s unemployment rate dropped to 2.5%, which is extremely low and means almost everyone who wants a job can find one.</li><li>The war pulled millions of workers into the military and defense factories, so there are simply not enough people left to fill regular jobs in stores, schools, and offices.</li><li>This super-tight labor market is pushing wages up fast, which is one big reason inflation is still stubborn at 4.7% even with high interest rates.</li></ol>
+      
+      
+      <div class="gloss">
+        <div class="gloss-title">What is the unemployment rate?</div>
+        <p class="gloss-body">The unemployment rate measures what percentage of people who want to work cannot find a job. It is one of the clearest signals of whether an economy is providing enough opportunity for its citizens.</p>
+        <div class="gloss-source">Source: National statistics offices · IMF</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>Budget Deficit</h2>
+        <div class="metric-value">-2.5% GDP</div>
+      </div>
+      <ol class="stories sm"><li>Russia is running a budget deficit of 2.5% of GDP, meaning the government is spending about 2.5% more than it collects in taxes every year.</li><li>This deficit exists mainly because the government is paying for the war in Ukraine and building up military and defense factories instead of cutting spending elsewhere.</li><li>As long as Russia can borrow from its own banks and export oil, this deficit is manageable, but if oil prices fall or foreign investment stops, the government will have to choose between raising taxes, cutting spending, or printing more money.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="Budget Deficit" data-chart='{&quot;v&quot;: [2.5, 3.0, 1.4, 1.7, 4.5, 7.5, 8.3, 6.0, 4.9, -6.0, -3.4, 1.5, 0.4, -1.2, -1.0, -3.4, -3.7, -1.5, 2.9, 1.9, -4.1, 0.8, -2.3, -3.2, -3.0, -3.5, -2.5], &quot;startDate&quot;: null, &quot;type&quot;: &quot;bar&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">Budget Deficit · Annual</div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is the budget deficit?</div>
+        <p class="gloss-body">The budget deficit measures how much more a government spends than it earns in a given year. A deficit means the government is borrowing to cover the gap, adding to national debt.</p>
+        <div class="gloss-source">Source: IMF Fiscal Monitor · National finance ministries</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>Current Account</h2>
+        <div class="metric-value">+2% GDP</div>
+      </div>
+      <ol class="stories sm"><li>Russia has a current account surplus of 2% of GDP, meaning it exports more than it imports, which brings in foreign money and strengthens its economy.</li><li>This surplus comes almost entirely from selling oil and gas abroad, so Russia is even more dependent on energy exports than it was before the war.</li><li>If global oil prices fall or countries find other energy sources, Russia&#x27;s surplus could disappear and the government would struggle to pay for the war and maintain living standards.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="Current Account" data-chart='{&quot;v&quot;: [18.0, 11.1, 8.4, 8.2, 10.1, 11.1, 9.5, 5.9, 6.2, 4.0, 4.4, 5.1, 3.5, 1.6, 3.0, 5.0, 1.9, 2.1, 7.0, 3.8, 2.4, 6.8, 10.4, 2.8, 2.5, 2.0, 2.0], &quot;startDate&quot;: null, &quot;type&quot;: &quot;bar&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">Current Account · Annual</div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is the current account?</div>
+        <p class="gloss-body">The current account measures whether a country earns more from the rest of the world than it spends. It tracks trade in goods and services, plus income flows like investment returns and remittances.</p>
+        <div class="gloss-source">Source: IMF BOP Statistics</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>Policy Rate</h2>
+        <div class="metric-value">12.5%</div>
+      </div>
+      <ol class="stories sm"><li>Russia&#x27;s central bank set interest rates at 12.5%, which is very high and means borrowing money is expensive for businesses and families.</li><li>The central bank raised rates so high to try to stop inflation from spiraling out of control after the 2022 crisis, and it is keeping them there to keep a lid on prices.</li><li>High rates help control inflation but also hurt economic growth because companies are reluctant to invest and people are reluctant to borrow, which is one reason GDP growth is stuck at just 1.2%.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="Policy Rate" data-chart='{&quot;v&quot;: [45.0, 45.0, 33.0, 33.0, 33.0, 33.0, 28.0, 28.0, 28.0, 28.0, 25.0, 25.0, 25.0, 25.0, 25.0, 25.0, 25.0, 25.0, 25.0, 25.0, 25.0, 25.0, 25.0, 25.0, 25.0, 25.0, 25.0, 23.0, 23.0, 23.0, 23.0, 21.0, 21.0, 21.0, 21.0, 21.0, 21.0, 18.0, 18.0, 18.0, 18.0, 16.0, 16.0, 16.0, 16.0, 16.0, 16.0, 16.0, 14.0, 14.0, 14.0, 14.0, 14.0, 13.0, 13.0, 13.0, 13.0, 13.0, 13.0, 13.0, 13.0, 13.0, 13.0, 13.0, 13.0, 13.0, 13.0, 13.0, 13.0, 13.0, 13.0, 12.0, 12.0, 12.0, 12.0, 12.0, 12.0, 11.5, 11.5, 11.5, 11.5, 11.0, 11.0, 11.0, 10.5, 10.5, 10.5, 10.5, 10.5, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.25, 10.25, 10.5, 10.5, 10.75, 11.0, 11.0, 11.0, 11.0, 12.0, 13.0, 13.0, 13.0, 13.0, 12.5, 12.0, 11.5, 11.0, 10.75, 10.0, 9.5, 9.0, 8.75, 8.75, 8.5, 8.25, 8.0, 7.75, 7.75, 7.75, 7.75, 7.75, 7.75, 7.75, 7.75, 7.75, 8.0, 8.0, 8.0, 8.25, 8.25, 8.25, 8.25, 8.25, 8.25, 8.25, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.25, 8.0, 8.0, 8.25, 8.25, 8.25, 8.25, 8.25, 8.25, 8.25, 8.25, 8.25, 8.25, 8.25, 8.25, 5.5, 5.5, 5.5, 5.5, 5.5, 5.5, 7.0, 7.5, 7.5, 7.5, 8.0, 8.0, 8.0, 8.0, 9.5, 17.0, 17.0, 15.0, 14.0, 14.0, 12.5, 11.5, 11.5, 11.0, 11.0, 11.0, 11.0, 11.0, 11.0, 11.0, 11.0, 11.0, 11.0, 10.5, 10.5, 10.5, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 9.75, 9.75, 9.25, 9.0, 9.0, 9.0, 8.5, 8.25, 8.25, 7.75, 7.75, 7.5, 7.25, 7.25, 7.25, 7.25, 7.25, 7.25, 7.5, 7.5, 7.5, 7.75, 7.75, 7.75, 7.75, 7.75, 7.75, 7.5, 7.25, 7.25, 7.0, 6.5, 6.5, 6.25, 6.25, 6.0, 6.0, 5.5, 5.5, 4.5, 4.25, 4.25, 4.25, 4.25, 4.25, 4.25, 4.25, 4.25, 4.5, 5.0, 5.0, 5.5, 6.5, 6.5, 6.75, 7.5, 7.5, 8.5, 8.5, 20.0, 20.0, 17.0, 11.0, 9.5, 8.0, 8.0, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 8.5, 12.0, 13.0, 15.0, 15.0, 16.0, 16.0, 16.0, 16.0, 16.0, 16.0, 16.0, 18.0, 18.0, 19.0, 21.0, 21.0, 21.0, 21.0, 21.0, 21.0, 21.0, 21.0, 20.0, 18.0, 18.0, 17.0, 16.5, 16.5, 16.0, 16.0, 15.5], &quot;startDate&quot;: &quot;2000-03&quot;, &quot;type&quot;: &quot;line&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">Policy Rate · History since 2000</div>
+            <div class="metric-chart-range">
+              <button class="mcr-btn" data-r="12">1Y</button>
+              <button class="mcr-btn" data-r="24">2Y</button>
+              <button class="mcr-btn" data-r="60">5Y</button>
+              <button class="mcr-btn" data-r="0">All</button>
+            </div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is the policy rate?</div>
+        <p class="gloss-body">The policy rate is the interest rate set by a country&#x27;s central bank. It is the most powerful tool for controlling inflation and influencing economic growth, because it affects the cost of borrowing for everyone.</p>
+        <div class="gloss-source">Source: National central banks</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>Stock Market</h2>
+        <div class="metric-value neg">-4.5%</div>
+      </div>
+      <ol class="stories sm"><li>Russian stocks have lost 4.5% since January despite the central bank cutting rates in March, meaning cheaper borrowing costs haven&#x27;t convinced investors to buy yet.</li><li>When a stock market falls even as the central bank tries to stimulate the economy by lowering rates, it signals traders fear something bigger than interest rates, like ongoing sanctions or war-related uncertainty.</li><li>Watch whether the market bounces when rate cuts actually reach businesses and consumers, or keeps falling if geopolitical risk remains the dominant concern.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="Stock Market YTD" data-chart='{&quot;v&quot;: [188.81, 191.49, 254.68, 242.85, 217.05, 194.93, 200.22, 239.03, 204.61, 192.22, 149.84, 144.39, 167.74, 158.1, 166.67, 177.31, 207.71, 219.4, 200.64, 193.72, 167.33, 187.41, 213.32, 236.24, 260.77, 262.65, 302.96, 343.33, 333.61, 304.18, 281.81, 292.23, 289.96, 311.41, 321.41, 318.91, 307.78, 341.52, 325.56, 369.77, 421.08, 455.44, 430.3, 484.0, 515.17, 468.85, 484.73, 514.71, 551.72, 591.09, 644.64, 561.78, 535.4, 534.84, 502.81, 549.28, 611.03, 632.97, 570.76, 552.22, 575.74, 635.38, 598.04, 593.88, 603.89, 639.98, 700.65, 784.28, 892.5, 842.52, 944.55, 1011.0, 1171.44, 1320.83, 1299.19, 1486.85, 1281.5, 1331.39, 1380.24, 1448.72, 1367.24, 1426.86, 1550.58, 1693.47, 1656.94, 1655.25, 1698.08, 1678.27, 1570.34, 1665.96, 1734.42, 1677.02, 1759.44, 1874.73, 1850.64, 1888.86, 1574.33, 1660.42, 1628.43, 1667.35, 1925.24, 1753.67, 1495.33, 1348.92, 1027.66, 731.96, 611.32, 619.53, 624.9, 666.05, 772.93, 920.35, 1123.38, 971.55, 1053.3, 1091.98, 1197.2, 1237.18, 1284.95, 1370.01, 1419.42, 1323.72, 1450.15, 1436.04, 1332.62, 1309.31, 1397.12, 1368.9, 1440.3, 1523.39, 1565.52, 1687.99, 1723.42, 1777.84, 1813.59, 1741.84, 1666.3, 1666.59, 1705.18, 1546.05, 1366.54, 1498.6, 1499.62, 1402.23, 1514.03, 1597.67, 1517.34, 1469.65, 1306.42, 1387.52, 1407.02, 1422.91, 1458.26, 1425.7, 1405.97, 1474.72, 1546.76, 1486.04, 1436.62, 1386.69, 1343.99, 1331.24, 1377.6, 1364.54, 1463.13, 1509.62, 1479.78, 1503.39, 1454.05, 1444.71, 1369.29, 1306.01, 1432.03, 1476.38, 1379.61, 1400.71, 1411.07, 1488.47, 1533.68, 1396.61, 1647.69, 1758.97, 1626.18, 1688.34, 1609.19, 1654.55, 1669.0, 1733.17, 1642.97, 1711.53, 1771.05, 1761.36, 1784.92, 1840.17, 1871.15, 1953.05, 1899.01, 1891.09, 1944.62, 1971.59, 1978.0, 1989.64, 2104.91, 2232.72, 2217.39, 2035.77, 1995.9, 2016.71, 1900.38, 1879.5, 1919.53, 2022.22, 2077.19, 2064.31, 2100.62, 2109.74, 2289.99, 2296.8, 2285.53, 2301.49, 2302.88, 2295.95, 2321.11, 2345.85, 2475.36, 2352.71, 2392.5, 2358.5, 2521.1, 2485.27, 2497.1, 2559.32, 2665.33, 2765.85, 2739.5, 2740.04, 2747.18, 2893.98, 2935.37, 3045.87, 3076.65, 2785.08, 2508.81, 2650.56, 2734.83, 2743.2, 2911.57, 2966.2, 2905.81, 2690.59, 3107.58, 3289.02, 3277.08, 3346.64, 3541.72, 3544.0, 3721.63, 3841.85, 3771.58, 3918.96, 4103.52, 4150.0, 3890.59, 3787.26, 3530.38, 2470.48, 2703.51, 2445.17, 2355.75, 2204.85, 2213.81, 2400.08, 1957.31, 2166.61, 2174.53, 2154.12, 2225.6, 2253.16, 2450.67, 2634.94, 2717.64, 2797.37, 3073.5, 3227.99, 3133.26, 3200.97, 3165.79, 3099.11, 3214.19, 3256.8, 3332.53, 3469.83, 3217.19, 3154.36, 2942.68, 2650.32, 2857.56, 2560.2, 2578.0, 2883.04, 2948.1, 3200.48, 3013.36, 2918.47, 2828.83, 2847.38, 2732.12, 2899.38, 2684.6, 2525.2, 2676.42, 2766.62, 2782.74, 2799.14, 2789.61], &quot;startDate&quot;: &quot;2000-02&quot;, &quot;type&quot;: &quot;line&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">Stock Market · History since 2000</div>
+            <div class="metric-chart-range">
+              <button class="mcr-btn" data-r="12">1Y</button>
+              <button class="mcr-btn" data-r="24">2Y</button>
+              <button class="mcr-btn" data-r="60">5Y</button>
+              <button class="mcr-btn" data-r="0">All</button>
+            </div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is the stock market YTD?</div>
+        <p class="gloss-body">Stock Market YTD shows how much a country&#x27;s main stock market index has gone up or down since the start of the year. It is the most visible daily scoreboard for investor confidence in a country&#x27;s economy and companies.</p>
+        <div class="gloss-source">Source: Exchange data</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>10Y Bond Yield</h2>
+        <div class="metric-value">13.5%</div>
+      </div>
+      <ol class="stories sm"><li>Russian 10-year bonds pay 13.5% interest, which is sky-high compared to safe countries like the US, because investors demand extra pay for the political and war risk.</li><li>The Central Bank keeps rates punishing to fight inflation caused by war spending and sanctions, making borrowing expensive for everyone from the government to regular companies.</li><li>High yields trap money in bonds rather than stocks or business investment, which slows growth even when oil prices climb.</li></ol>
+      
+      
+      <div class="gloss">
+        <div class="gloss-title">What is the 10-year bond yield?</div>
+        <p class="gloss-body">The 10-year bond yield is the annual return investors earn for lending money to a government for 10 years. It is the most important interest rate in any economy, the benchmark that influences mortgage rates, corporate borrowing costs, and stock valuations.</p>
+        <div class="gloss-source">Source: Bloomberg · Refinitiv</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>Yield Curve</h2>
+        <div class="metric-value">-140bps</div>
+      </div>
+      <ol class="stories sm"><li>Short-term bonds are paying MORE than long-term bonds (inverted by 140 basis points), which normally signals an economy heading for trouble because investors fear the future.</li><li>The Central Bank jacked up short-term rates to fight inflation, making it expensive to borrow for anything right now, but long-term rates stayed lower because inflation might cool down later.</li><li>An inverted curve usually comes before recessions, and Russia&#x27;s looks worse because war uncertainty makes people doubt that later years will be safer or more stable.</li></ol>
+      
+      
+      <div class="gloss">
+        <div class="gloss-title">What is the yield curve?</div>
+        <p class="gloss-body">The yield curve shows the difference between short-term and long-term government bond yields. Its shape is one of the most reliable predictors of recessions: when long-term rates fall below short-term rates (an inversion), a recession has followed almost every time in history.</p>
+        <div class="gloss-source">Source: Bloomberg · Refinitiv</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>USD/RUB</h2>
+        <div class="metric-value">74.7</div>
+      </div>
+      <ol class="stories sm"><li>The ruble weakened to 75.4 rubles per dollar, meaning Russian money is worth less globally and imported goods cost more for Russian consumers and businesses.</li><li>Capital controls and sanctions trapped Russian money inside Russia, reducing demand for the ruble on world markets and pushing its value down.</li><li>A weaker ruble makes Russian exports cheaper for foreign buyers (which sounds good), but it also means Russians pay more for anything bought from overseas, fueling inflation.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="USD/RUB" data-chart='{&quot;v&quot;: [29.23, 28.52, 28.52, 28.49, 29.0, 28.99, 29.06, 29.1, 29.22, 29.22, 28.73, 28.12, 27.71, 28.12, 27.69, 27.87, 27.78, 28.24, 28.63, 28.61, 28.67, 28.49, 28.45, 28.87, 28.74, 28.87, 28.87, 28.87, 28.87, 27.01, 26.85, 26.8, 26.75, 26.79, 26.7, 26.25, 26.32, 26.48, 26.11, 25.98, 25.69, 25.86, 25.71, 25.57, 25.65, 24.85, 24.66, 24.51, 24.57, 24.43, 24.01, 23.52, 23.63, 23.68, 23.45, 23.43, 24.64, 25.64, 27.08, 27.91, 30.52, 35.6, 35.81, 33.83, 32.98, 30.72, 31.07, 31.54, 32.4, 30.05, 29.18, 29.22, 30.0, 30.35, 29.92, 29.42, 29.2, 30.89, 31.25, 30.27, 30.65, 30.4, 30.66, 31.34, 30.55, 29.68, 28.93, 28.52, 27.52, 28.0, 27.97, 27.55, 28.84, 31.97, 29.68, 30.79, 31.96, 30.35, 29.0, 29.41, 29.27, 32.77, 33.13, 32.16, 32.54, 30.9, 31.34, 30.87, 30.44, 30.03, 30.44, 31.05, 30.93, 31.66, 32.79, 32.92, 33.2, 32.34, 31.96, 33.12, 32.68, 34.9, 35.99, 35.55, 35.62, 34.62, 33.73, 35.56, 36.62, 39.33, 41.01, 49.26, 56.56, 68.73, 61.13, 57.52, 50.99, 52.53, 55.65, 59.68, 65.3, 65.71, 64.19, 66.42, 73.23, 76.55, 76.34, 67.68, 64.56, 65.67, 63.81, 66.58, 65.31, 63.08, 63.04, 65.14, 60.34, 59.72, 58.18, 55.98, 56.97, 56.53, 59.42, 59.48, 58.46, 57.89, 57.9, 58.6, 57.57, 56.32, 56.22, 57.25, 62.32, 62.1, 62.83, 62.21, 68.2, 65.54, 65.47, 66.07, 69.52, 65.41, 65.73, 64.91, 64.43, 65.21, 63.06, 63.49, 66.49, 64.62, 63.75, 64.06, 61.97, 63.2, 66.27, 79.59, 73.07, 70.5, 69.97, 73.32, 74.13, 78.97, 78.84, 75.99, 74.52, 76.17, 74.71, 75.9, 74.73, 73.19, 72.72, 73.15, 73.42, 72.85, 70.14, 74.44, 74.53, 77.74, 83.26, 83.47, 72.72, 64.59, 52.47, 62.47, 59.97, 57.47, 61.49, 60.81, 73.97, 69.88, 74.61, 77.24, 81.81, 79.61, 86.83, 92.03, 96.27, 96.61, 92.52, 88.67, 88.44, 89.74, 91.87, 92.44, 93.42, 89.57, 85.0, 85.75, 91.5, 94.23, 97.02, 107.99, 110.49, 98.5, 87.7, 82.62, 82.0, 76.89, 77.73, 81.25, 80.5, 83.07, 79.95, 77.95, 79.5, 75.25, 76.87, 81.19, 74.84, 74.68], &quot;startDate&quot;: &quot;2003-12&quot;, &quot;type&quot;: &quot;line&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">USD/RUB · History since 2000</div>
+            <div class="metric-chart-range">
+              <button class="mcr-btn" data-r="12">1Y</button>
+              <button class="mcr-btn" data-r="24">2Y</button>
+              <button class="mcr-btn" data-r="60">5Y</button>
+              <button class="mcr-btn" data-r="0">All</button>
+            </div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+        <div class="fx-regime">
+          <div class="fx-label">Russia&#x27;s FX regime: Managed Float (Capital Controls)</div>
+          <p>Russia&#x27;s ruble is officially a &#x27;floating&#x27; currency, but in practice the government heavily controls it. After Western sanctions froze Russia&#x27;s foreign reserves in 2022, Moscow imposed strict rules: exporters must convert most of their foreign earnings into rubles, and there are limits on how much money can leave the country. USD/RUB shows how many rubles one US dollar buys. At 81, one dollar costs 81 rubles — much stronger than the 110+ level seen in late 2024, but this strength is largely engineered by capital controls rather than genuine market confidence.</p>
+        </div>
+      <div class="gloss">
+        <div class="gloss-title">What is the exchange rate?</div>
+        <p class="gloss-body">The exchange rate is how much one currency is worth in terms of another. It determines the price of everything a country imports and exports, and is one of the most visible daily indicators of a country&#x27;s economic standing in the world.</p>
+        <div class="gloss-source">Source: WM/Refinitiv · Bloomberg · National central banks</div>
+      </div>
+    </div>
+
+  <div class="footer">
+    Built Mon 11 May 2026 · macrosnaps.app · <a href="index.html">All countries</a>
+  </div>
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>/* ─────────────────────────────────────────────────────────────
+   MacroSnaps v2 — Chart rendering
+   Ported from existing renderMetricChart, adapted for light mode.
+   Reads chart data from each metric's mounted element's data-spark
+   attribute (JSON-encoded) and renders into the matching canvas.
+   ───────────────────────────────────────────────────────────── */
+
+(function () {
+  const ORANGE_RGB = '249,115,22';
+  const GREEN_RGB = '0,176,116';
+  const RED_RGB = '217,58,79';
+  const GRID = 'rgba(0,0,0,.05)';
+  const ZERO = 'rgba(0,0,0,.2)';
+  const TICK = '#888';
+  const TOOLTIP_BG = '#fff';
+  const TOOLTIP_BORDER = 'rgba(249,115,22,.4)';
+
+  // From shell-frozen.chartConfig.annualLabels
+  const ANNUAL_LABELS = [
+    '2000','2001','2002','2003','2004','2005','2006','2007','2008','2009',
+    '2010','2011','2012','2013','2014','2015','2016','2017','2018','2019',
+    '2020','2021','2022','2023','2024','2025','2026F'
+  ];
+
+  // Per-metric chart config
+  const METRIC_CFG = {
+    'GDP Growth':     { type: 'bar', zeroLine: true },
+    'Inflation (CPI)':{ type: 'line' },
+    'Unemployment':   { type: 'line' },
+    'Budget Deficit': { type: 'bar', zeroLine: true },
+    'Current Account':{ type: 'bar', zeroLine: true },
+    'Policy Rate':    { type: 'line', stepped: true },
+    'Stock Market YTD': { type: 'line', zeroLine: true },
+    '10Y Bond Yield': { type: 'line' },
+    'Yield Curve':    { type: 'line', zeroLine: true, segmentColor: true },
+    'USD/DXY':        { type: 'line', indexLabel: true },
+    'CAD/USD':        { type: 'line' },
+    'GBP/USD':        { type: 'line' },
+    'USD/JPY':        { type: 'line' },
+    'EUR/USD':        { type: 'line' },
+    'USD/CNY':        { type: 'line' },
+    'USD/INR':        { type: 'line' },
+    'USD/ZAR':        { type: 'line' },
+    'USD/BRL':        { type: 'line' },
+    'USD/RUB':        { type: 'line' },
+    'FX Rate':        { type: 'line' }
+  };
+
+  function monthLabelsFrom(startDateStr, n) {
+    // startDateStr: "YYYY-MM"
+    // Emit "MMM 'YY" at every position so autoSkip has labels to pick from
+    // at any tick density (1Y, 2Y, 5Y, All).
+    if (!startDateStr) return Array(n).fill('');
+    const MONTH_ABBR = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const [y0, m0] = startDateStr.split('-').map(Number);
+    const labels = [];
+    for (let i = 0; i < n; i++) {
+      const monthIdx = (m0 - 1) + i;
+      const y = y0 + Math.floor(monthIdx / 12);
+      const m = monthIdx % 12;
+      labels.push(MONTH_ABBR[m] + " '" + String(y).slice(2));
+    }
+    return labels;
+  }
+
+  function sliceData(allVals, allLabels, rangeMonths) {
+    if (!rangeMonths || rangeMonths === 0 || rangeMonths >= allVals.length) {
+      return { vals: allVals, labels: allLabels };
+    }
+    return {
+      vals: allVals.slice(-rangeMonths),
+      labels: allLabels.slice(-rangeMonths)
+    };
+  }
+
+  function renderChart(canvas, metricName, metricData, rangeMonths) {
+    if (!window.Chart) { console.warn('Chart.js not loaded'); return; }
+    const cfg = METRIC_CFG[metricName] || { type: 'line' };
+    const isBar = cfg.type === 'bar';
+    const allVals = metricData.v || [];
+    if (!allVals.length) return;
+
+    // Build labels
+    let allLabels;
+    if (isBar) {
+      allLabels = ANNUAL_LABELS.slice(0, allVals.length);
+    } else {
+      allLabels = monthLabelsFrom(metricData.startDate, allVals.length);
+    }
+
+    const sliced = sliceData(allVals, allLabels, rangeMonths);
+    const sliceVals = sliced.vals;
+    const sliceLabels = sliced.labels;
+    const n = sliceVals.length;
+
+    // Axis range
+    const mn = Math.min(...sliceVals);
+    const mx = Math.max(...sliceVals);
+    const range = mx - mn;
+    const pad = (range * 0.15) || (Math.abs(mx) * 0.1) || 1;
+
+    // Destroy any prior chart on this canvas
+    if (canvas._chart) { canvas._chart.destroy(); canvas._chart = null; }
+    const ctx = canvas.getContext('2d');
+
+    let datasets;
+    if (isBar) {
+      const colors = sliceVals.map(v => v >= 0 ? `rgba(${ORANGE_RGB},.55)` : `rgba(${RED_RGB},.55)`);
+      const borders = sliceVals.map(v => v >= 0 ? `rgba(${ORANGE_RGB},.9)` : `rgba(${RED_RGB},.9)`);
+      datasets = [{
+        data: sliceVals,
+        backgroundColor: colors,
+        borderColor: borders,
+        borderWidth: 1,
+        barPercentage: 0.85,
+        categoryPercentage: 0.85
+      }];
+    } else if (cfg.segmentColor) {
+      // Yield curve: green above 0, red below 0
+      datasets = [{
+        data: sliceVals,
+        borderWidth: 1.5,
+        pointRadius: 0,
+        pointHitRadius: 8,
+        pointHoverRadius: 3,
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderWidth: 1,
+        tension: .3,
+        fill: false,
+        segment: {
+          borderColor: function (ctx2) {
+            const y0 = ctx2.p0.parsed.y, y1 = ctx2.p1.parsed.y;
+            if (y0 >= 0 && y1 >= 0) return `rgba(${GREEN_RGB},.8)`;
+            if (y0 < 0 && y1 < 0) return `rgba(${RED_RGB},.8)`;
+            return 'rgba(120,120,120,.6)';
+          }
+        }
+      }];
+    } else {
+      const grad = ctx.createLinearGradient(0, 0, 0, 140);
+      grad.addColorStop(0, `rgba(${ORANGE_RGB},.22)`);
+      grad.addColorStop(1, `rgba(${ORANGE_RGB},.01)`);
+      datasets = [{
+        data: sliceVals,
+        borderColor: `rgba(${ORANGE_RGB},.9)`,
+        borderWidth: 1.5,
+        backgroundColor: grad,
+        fill: true,
+        pointRadius: 0,
+        pointHitRadius: 8,
+        pointHoverRadius: 3,
+        pointHoverBackgroundColor: '#F97316',
+        pointHoverBorderColor: '#fff',
+        pointHoverBorderWidth: 1,
+        tension: .35,
+        stepped: cfg.stepped || false
+      }];
+    }
+
+    canvas._chart = new Chart(ctx, {
+      type: isBar ? 'bar' : 'line',
+      data: { labels: sliceLabels, datasets: datasets },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        events: ['mousemove', 'mouseout', 'touchstart', 'touchmove'],
+        layout: { padding: { left: 2, right: 2, top: 4, bottom: 0 } },
+        scales: {
+          x: {
+            display: true,
+            grid: { display: false },
+            ticks: {
+              color: function (context) {
+                var label = sliceLabels[context.index];
+                return (label && label.toString().endsWith('F')) ? '#F97316' : TICK;
+              },
+              font: { family: "'Space Mono', monospace", size: 8 },
+              maxRotation: 0, autoSkip: true,
+              maxTicksLimit: isBar ? 8 : (n <= 12 ? 6 : n <= 24 ? 8 : 10)
+            },
+            border: { display: false }
+          },
+          y: {
+            display: true,
+            position: 'right',
+            grid: {
+              color: function (context) {
+                if (cfg.zeroLine && context.tick.value === 0) return ZERO;
+                return GRID;
+              },
+              lineWidth: function (context) {
+                return (cfg.zeroLine && context.tick.value === 0) ? 1.2 : 1;
+              }
+            },
+            ticks: {
+              color: TICK, font: { family: "'Space Mono', monospace", size: 8 },
+              maxTicksLimit: 5,
+              callback: function (v) {
+                if (cfg.indexLabel && v >= 1000) return (v / 1000).toFixed(v % 1000 === 0 ? 0 : 1) + 'k';
+                return (v % 1 === 0) ? v : v.toFixed(1);
+              }
+            },
+            border: { display: false },
+            min: mn - pad,
+            max: mx + pad
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: TOOLTIP_BG,
+            borderColor: TOOLTIP_BORDER,
+            borderWidth: 1,
+            titleFont: { family: "'Space Mono', monospace", size: 9 },
+            bodyFont: { family: "'DM Sans', sans-serif", size: 11 },
+            titleColor: '#888', bodyColor: '#1a1a1a',
+            cornerRadius: 4, padding: 8, displayColors: false,
+            callbacks: {
+              label: function (ctx2) {
+                let v = ctx2.parsed.y;
+                if (cfg.indexLabel) return ' ' + v.toLocaleString();
+                if (cfg.segmentColor) return ' ' + (v >= 0 ? '+' : '') + v + ' bps';
+                return ' ' + v;
+              }
+            }
+          }
+        },
+        interaction: { mode: 'index', intersect: false },
+        animation: { duration: 350, easing: 'easeOutCubic' }
+      }
+    });
+  }
+
+  // Wire up all chart panels on the page
+  function initAllCharts() {
+    document.querySelectorAll('.metric-chart-wrap').forEach(wrap => {
+      const metricName = wrap.dataset.metric;
+      const dataAttr = wrap.dataset.chart;
+      if (!metricName || !dataAttr) return;
+      let metricData;
+      try { metricData = JSON.parse(dataAttr); } catch (e) { return; }
+
+      const canvas = wrap.querySelector('canvas');
+      if (!canvas) return;
+
+      const cfg = METRIC_CFG[metricName] || {};
+      const isBar = cfg.type === 'bar';
+
+      // Render with default range
+      const defaultRange = isBar ? 0 : 60; // bar = all years; line = 5Y default
+      renderChart(canvas, metricName, metricData, defaultRange);
+
+      // Wire range buttons (line charts only)
+      const btns = wrap.querySelectorAll('.mcr-btn');
+      btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          btns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const r = parseInt(btn.dataset.r) || 0;
+          renderChart(canvas, metricName, metricData, r);
+        });
+      });
+
+      // Mark default-active button
+      if (!isBar) {
+        btns.forEach(b => { if (parseInt(b.dataset.r) === 60) b.classList.add('active'); });
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAllCharts);
+  } else {
+    initAllCharts();
+  }
+})();
+</script>
+</body>
+</html>

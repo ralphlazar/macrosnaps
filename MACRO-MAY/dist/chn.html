@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China · MacroSnaps</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>/* ─────────────────────────────────────────────────────────────
+   MacroSnaps v2 (MACRO-MAY)
+   Light mode · orange palette · coral bullets
+   ───────────────────────────────────────────────────────────── */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --orange: #F97316;
+  --orange-dark: #C2410C;
+  --coral: #CC785C;
+  --green: #00b074;
+  --red: #d93a4f;
+  --text: #1a1a1a;
+  --text-2: #333;
+  --text-3: #444;
+  --text-4: #555;
+  --text-5: #888;
+  --text-6: #999;
+  --border: rgba(0,0,0,.06);
+  --border-2: rgba(0,0,0,.04);
+  --surface: #f5f5f4;
+  --card: #fff;
+  --pill-bg: rgba(0,0,0,.04);
+  --font-display: 'Space Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+}
+
+html { background: var(--surface); color: var(--text); font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
+body { min-height: 100vh; padding: 0; }
+
+a { color: var(--orange-dark); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.page { max-width: 760px; margin: 0 auto; padding: 18px 16px 64px; }
+
+/* ── Box (the modular container) ─────────────────────────────── */
+.box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px 22px;
+  margin-bottom: 14px;
+}
+.box.compact { padding: 16px 22px; }
+a.box { display: block; color: inherit; cursor: pointer; transition: border-color .15s, transform .05s; }
+a.box:hover { border-color: rgba(0,0,0,.12); text-decoration: none; }
+a.box:active { transform: scale(.998); }
+
+/* ── Header ───────────────────────────────────────────────────── */
+.head-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-bottom: 14px; border-bottom: 1px solid var(--border); margin-bottom: 18px;
+}
+.head-row.no-divider { padding-bottom: 0; border-bottom: none; margin-bottom: 0; }
+.back-link {
+  font-family: var(--font-display); font-size: 10px; letter-spacing: 1.4px;
+  text-transform: uppercase; color: var(--text-5); text-decoration: none;
+}
+.back-link:hover { color: var(--text-3); text-decoration: none; }
+.date {
+  font-family: var(--font-display); font-size: 10px; letter-spacing: 1.4px;
+  text-transform: uppercase; color: var(--text-5);
+}
+.brand {
+  margin: 0; font-size: 22px; font-weight: 500; letter-spacing: -.01em; line-height: 1;
+}
+.country-title { display: flex; align-items: baseline; gap: 14px; }
+.country-title h1 {
+  margin: 0; font-size: 30px; font-weight: 500; letter-spacing: -.02em; line-height: 1;
+}
+.flag-pill {
+  font-family: var(--font-display); font-size: 10px; letter-spacing: 1.6px;
+  color: var(--text-5); background: var(--pill-bg); padding: 3px 10px; border-radius: 3px; font-weight: 500;
+}
+
+/* ── Section label (the small uppercase header inside a box) ───── */
+.section-label {
+  font-family: var(--font-display); font-size: 10px; letter-spacing: 1.6px;
+  text-transform: uppercase; color: var(--text-5); margin-bottom: 14px;
+}
+
+/* ── Stories list (numbered with coral circles) ─────────────────── */
+.stories { list-style: none; padding: 0; margin: 0; counter-reset: story; }
+.stories li {
+  counter-increment: story;
+  font-size: 15px; color: var(--text-2); line-height: 1.65;
+  padding-left: 30px; position: relative; margin-bottom: 11px;
+}
+.stories li:last-child { margin-bottom: 0; }
+.stories li::before {
+  content: counter(story);
+  position: absolute; left: 0; top: 3px;
+  width: 18px; height: 18px; display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; border: 1.5px solid var(--coral); color: var(--coral);
+  font-size: 11px; font-weight: 700; font-family: var(--font-body);
+}
+.stories.sm li { font-size: 14px; color: var(--text-3); padding-left: 28px; margin-bottom: 8px; }
+.stories.sm li::before { width: 17px; height: 17px; font-size: 10px; }
+
+/* ── Snapshot table ─────────────────────────────────────────────── */
+.snapshot {
+  width: 100%; border-collapse: collapse;
+  font-family: var(--font-display); font-size: 13px;
+  font-variant-numeric: tabular-nums; table-layout: fixed;
+}
+.snapshot th, .snapshot td { padding: 11px 4px 12px; text-align: right; border-bottom: 1px solid var(--border-2); vertical-align: middle; }
+.snapshot thead th { border-bottom: 1px solid rgba(0,0,0,.1); font-weight: 500; color: var(--text-5); font-size: 9px; letter-spacing: 1.4px; text-transform: uppercase; padding: 9px 4px; }
+.snapshot th.sortable { cursor: pointer; user-select: none; transition: color .15s; }
+.snapshot th.sortable:hover { color: var(--text-3); }
+.snapshot th.sortable.active { color: var(--orange-dark); }
+.snapshot th .sort-arrow { display: inline-block; margin-left: 3px; color: var(--orange-dark); font-size: 10px; min-width: 6px; }
+.snapshot td:first-child, .snapshot th:first-child { text-align: left; padding-left: 8px; }
+.snapshot td:first-child { color: var(--text); font-weight: 500; transition: color .15s; }
+.snapshot tbody tr:last-child td { border-bottom: none; }
+.snapshot tbody tr.clickable { cursor: pointer; transition: background-color .15s; }
+.snapshot tbody tr.clickable td { cursor: pointer; }
+.snapshot tbody tr.clickable:hover { background: rgba(249,115,22,.12); }
+.snapshot tbody tr.clickable:hover td:first-child .code-text { color: var(--orange-dark); }
+
+/* Country code cell: flag + code + hover arrow */
+.code-cell {
+  display: inline-flex; align-items: center; gap: 8px;
+  line-height: 1;
+}
+.row-flag {
+  display: inline-block; flex-shrink: 0;
+  width: 22px; height: 16px;
+  border-radius: 3px; overflow: hidden;
+  border: 1px solid rgba(0,0,0,.1);
+  line-height: 0;
+}
+.row-flag svg { display: block; width: 100%; height: 100%; }
+.code-text { transition: color .15s; }
+.row-arrow {
+  display: inline-block; margin-left: 2px;
+  color: var(--orange-dark); font-weight: 700;
+  opacity: 0; transition: opacity .15s;
+}
+.snapshot tbody tr.clickable:hover .row-arrow { opacity: 1; }
+
+/* Numeric cells: simple right-aligned values */
+.pos { color: var(--green); }
+.neg { color: var(--red); }
+.muted { color: var(--text-6); }
+
+/* ── Country card ────────────────────────────────────────────────── */
+.country-card-head {
+  display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;
+}
+.country-card-name { display: flex; align-items: center; gap: 11px; }
+.country-card-name h2 { margin: 0; font-size: 17px; font-weight: 500; }
+.country-card-arrow { color: var(--orange-dark); font-size: 14px; }
+
+/* ── Metric box ───────────────────────────────────────────────────── */
+.metric-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 20px; gap: 14px;
+}
+.metric-head h2 {
+  margin: 0; font-size: 26px; font-weight: 500; letter-spacing: -.01em; line-height: 1.1;
+}
+.metric-value {
+  font-size: 26px; font-weight: 500; color: var(--text);
+  font-variant-numeric: tabular-nums; letter-spacing: -.01em; line-height: 1; white-space: nowrap;
+}
+
+/* ── Chart panel (ported from existing site) ──────────────────────── */
+.metric-chart-wrap {
+  margin: 10px 0 0; padding: 12px 0 4px;
+  border-top: 1px solid var(--border);
+}
+.metric-chart-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.metric-chart-title {
+  font-family: var(--font-display); font-size: 8px; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text-5);
+}
+.metric-chart-range { display: flex; gap: 2px; }
+.mcr-btn {
+  font-family: var(--font-display); font-size: 8px; letter-spacing: .5px;
+  text-transform: uppercase; padding: 3px 8px;
+  border: 1px solid rgba(0,0,0,.08); border-radius: 2px;
+  background: transparent; color: var(--text-5); cursor: pointer; transition: all .15s;
+}
+.mcr-btn:hover { border-color: rgba(249,115,22,.4); color: var(--text-3); }
+.mcr-btn.active {
+  background: rgba(249,115,22,.08); border-color: rgba(249,115,22,.35);
+  color: var(--orange-dark);
+}
+.metric-chart-canvas { height: 140px; position: relative; }
+.metric-chart-canvas canvas { width: 100% !important; height: 100% !important; }
+
+/* ── Glossary block ───────────────────────────────────────────────── */
+.gloss { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
+.gloss-title {
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--text-5); margin-bottom: 6px;
+}
+.gloss-body { font-size: 13px; color: var(--text-4); line-height: 1.6; margin: 0; }
+.gloss-source {
+  font-family: var(--font-display); font-size: 8px; letter-spacing: .8px;
+  color: var(--text-6); margin-top: 12px;
+}
+
+/* ── FX regime callout (USD/DXY etc.) ─────────────────────────────── */
+.fx-regime {
+  background: rgba(249,115,22,.05); border-left: 2px solid rgba(249,115,22,.5);
+  padding: 13px 15px; margin-top: 14px; border-radius: 0 4px 4px 0;
+}
+.fx-regime .fx-label {
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--orange-dark); margin-bottom: 6px;
+}
+.fx-regime p { font-size: 13px; line-height: 1.6; color: var(--text-3); margin: 0; }
+
+/* ── Commodities ──────────────────────────────────────────────────── */
+.commodities-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 22px;
+}
+.commodity-item .c-name {
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--text-5); margin-bottom: 4px;
+}
+.commodity-item .c-value {
+  font-family: var(--font-display); font-size: 15px; font-weight: 500;
+  color: var(--text); font-variant-numeric: tabular-nums;
+}
+.commodity-item .c-change { font-size: 11px; font-weight: 400; margin-left: 4px; }
+
+/* ── Countries grid (homepage) ──────────────────────────────────── */
+.countries-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px 14px;
+}
+.country-tile {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; gap: 9px;
+  padding: 6px 4px;
+  border-radius: 6px;
+  color: inherit; text-decoration: none;
+  transition: transform .15s, background .15s;
+}
+.country-tile:hover {
+  background: rgba(0,0,0,.025);
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+.flag-rect {
+  width: 80px; height: 60px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,.1);
+  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+  background: #fff;
+  transition: border-color .15s, box-shadow .15s;
+}
+.country-tile:hover .flag-rect {
+  border-color: var(--orange);
+  box-shadow: 0 2px 6px rgba(249,115,22,.18);
+}
+.flag-rect svg {
+  display: block;
+  width: 100%; height: 100%;
+}
+.country-tile-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-2);
+  line-height: 1.2;
+}
+
+/* ── Empty/placeholder ─────────────────────────────────────────────── */
+.note {
+  text-align: center; padding: 18px;
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--text-6);
+}
+
+/* ── Footer ────────────────────────────────────────────────────────── */
+.footer {
+  text-align: center; padding: 24px 12px; margin-top: 18px;
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--text-6);
+}
+.footer a { color: var(--text-5); }
+
+/* ── Responsive ────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .page { padding: 12px 10px 48px; }
+  .box { padding: 16px 16px; }
+  .country-title h1 { font-size: 26px; }
+  .metric-head h2 { font-size: 22px; }
+  .metric-value { font-size: 22px; }
+  .commodities-grid { grid-template-columns: repeat(2, 1fr); }
+  .countries-grid { grid-template-columns: repeat(3, 1fr); gap: 16px 8px; }
+  .flag-rect { width: 64px; height: 48px; }
+  .country-tile-name { font-size: 12px; }
+  .snapshot { font-size: 12px; }
+  .snapshot th, .snapshot td { padding: 10px 3px 11px; }
+  .snapshot td:first-child, .snapshot th:first-child { padding-left: 6px; }
+  .row-flag { width: 18px; height: 13px; }
+  .code-cell { gap: 6px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="box compact">
+    <div class="head-row">
+      <a class="back-link" href="index.html">← MacroSnaps</a>
+      <span class="date">Mon 11 May 2026</span>
+    </div>
+    <div class="country-title">
+      <h1>China</h1>
+      <span class="flag-pill">CHN</span>
+    </div>
+  </div>
+
+  <div class="box">
+    <div class="section-label">Today</div>
+    <ol class="stories"><li>Chinese inflation jumped to 1.3% in February from near zero, driven by Lunar New Year holiday spending and rising service prices, showing the economy is starting to move again after months of stagnation.</li><li>The real estate market is still broken and consumer confidence is weak, so the government&#x27;s promises of stimulus may struggle to ignite spending because households are worried about jobs and property values.</li><li>Growth is forecast at 4.5% this year but the underlying momentum is fragile, dependent on government spending to prop things up rather than organic business investment or consumer demand driving the economy organically.</li></ol>
+  </div>
+
+  
+    <div class="box">
+      <div class="metric-head">
+        <h2>GDP Growth</h2>
+        <div class="metric-value pos">+4.7%</div>
+      </div>
+      <ol class="stories sm"><li>China&#x27;s economy is growing at 4.7% right now, which beats the official forecast of 4.4% and shows momentum heading into mid-2026.</li><li>At 4.7%, China is outpacing the US (which is around 2.1%) and staying on track to remain the world&#x27;s largest economy for decades.</li><li>The upward revision signals Beijing&#x27;s stimulus measures are working, but watch whether growth holds above 4.5% through Q3 or if it fades.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="GDP Growth" data-chart='{&quot;v&quot;: [8.5, 8.3, 9.1, 10.0, 10.1, 11.4, 12.7, 14.2, 9.7, 9.4, 10.6, 9.5, 7.9, 7.8, 7.3, 7.0, 6.8, 6.9, 6.7, 6.0, 2.2, 8.4, 3.0, 5.2, 4.8, 5.0, 4.7], &quot;startDate&quot;: null, &quot;type&quot;: &quot;bar&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">GDP Growth · Annual</div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is GDP growth?</div>
+        <p class="gloss-body">GDP growth measures how fast a country&#x27;s economy is expanding or shrinking. It is the single most important number for understanding whether an economy is healthy, struggling, or in recession.</p>
+        <div class="gloss-source">Source: National statistics offices · IMF</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>Inflation (CPI)</h2>
+        <div class="metric-value">2%</div>
+      </div>
+      <ol class="stories sm"><li>China&#x27;s inflation is stuck at 2%, the lowest among major economies, which means consumers and businesses have almost no pricing power right now.</li><li>At 2%, inflation is well below the central bank&#x27;s comfort zone, giving policymakers room to cut rates further if growth stumbles.</li><li>Watch whether inflation creeps up toward 2.5% as the economy strengthens, because that&#x27;s the point where Beijing might tap the brakes on stimulus.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="Inflation (CPI)" data-chart='{&quot;v&quot;: [-0.2, 0.7, -0.2, -0.3, 0.1, 0.5, 0.5, 0.3, 0.0, 0.0, 1.3, 1.5, 1.2, 0.0, 0.8, 1.6, 1.7, 1.4, 1.5, 1.0, -0.1, 0.2, -0.3, -0.3, -1.01, -0.02, -0.73, -1.22, -1.02, -0.72, -0.92, -0.72, -0.63, -0.73, -0.63, -0.43, 0.37, 0.17, 0.88, 0.98, 0.57, 0.27, 0.47, 0.87, 1.07, 1.78, 2.9, 3.21, 3.21, 2.08, 3.01, 3.73, 4.36, 4.88, 5.2, 5.2, 5.1, 4.16, 2.82, 2.31, 1.8, 3.84, 2.6, 1.78, 1.68, 1.58, 1.78, 1.28, 0.87, 1.28, 1.28, 1.58, 2.29, 0.98, 0.98, 1.49, 1.59, 1.9, 1.59, 1.69, 1.49, 1.19, 1.8, 2.81, 2.2, 2.71, 3.33, 3.02, 3.44, 4.37, 5.63, 6.58, 6.36, 6.58, 7.0, 6.58, 7.11, 8.8, 8.37, 8.59, 7.83, 7.18, 6.33, 4.97, 4.65, 4.03, 2.48, 1.26, 0.96, -1.6, -1.2, -1.5, -1.4, -1.7, -1.79, -1.2, -0.81, -0.61, 0.5, 1.7, 1.4, 2.62, 2.2, 2.62, 2.82, 2.72, 3.13, 3.23, 3.43, 4.26, 5.09, 4.57, 5.0, 5.07, 5.6, 5.5, 5.7, 6.67, 6.71, 6.37, 6.24, 5.6, 4.25, 4.03, 4.54, 3.13, 3.52, 3.33, 2.94, 2.06, 1.7, 2.08, 1.91, 1.71, 2.07, 2.53, 2.02, 3.24, 2.12, 2.42, 2.09, 2.66, 2.67, 2.52, 3.02, 3.23, 2.95, 2.51, 2.51, 1.91, 2.31, 1.7, 2.41, 2.31, 2.21, 1.9, 1.61, 1.51, 1.3, 1.41, 0.71, 1.41, 1.32, 1.53, 1.22, 1.32, 1.73, 2.03, 1.62, 1.21, 1.52, 1.62, 1.81, 2.19, 2.3, 2.31, 2.11, 1.91, 1.7, 1.29, 1.89, 2.2, 2.3, 1.99, 2.57, 0.78, 0.98, 1.18, 1.67, 1.68, 1.38, 1.77, 1.66, 1.86, 1.76, 1.85, 1.45, 2.9, 2.03, 1.84, 1.55, 1.75, 2.14, 2.32, 2.4, 2.5, 2.11, 1.91, 1.71, 1.5, 2.28, 2.57, 2.76, 2.67, 2.76, 2.83, 3.0, 3.75, 4.51, 4.41, 5.42, 5.18, 4.27, 3.25, 2.41, 2.51, 1.76, 2.39, 1.73, 0.54, -0.45, 0.27, -0.22, -0.42, 0.32, 0.92, 1.64, 1.24, 1.91, 0.64, 0.46, 1.43, 2.48, 1.44, 0.99, 0.99, 1.49, 2.18, 2.09, 2.5, 2.69, 2.49, 2.78, 2.17, 1.57, 1.78, 2.06, 0.98, 0.68, 0.1, 0.19, 0.0, -0.29, 0.1, 0.0, -0.19, -0.48, -0.29, -0.87, 0.68, 0.1, 0.19, 0.29, 0.19, 0.49, 0.58, 0.39, 0.29, 0.19, 0.1, 0.48, -0.77, -0.1, -0.07, -0.07, 0.11, 0.02, -0.36, -0.27, 0.23, 0.72, 0.82, 0.23], &quot;startDate&quot;: &quot;2000-01&quot;, &quot;type&quot;: &quot;line&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">Inflation (CPI) · History since 2000</div>
+            <div class="metric-chart-range">
+              <button class="mcr-btn" data-r="12">1Y</button>
+              <button class="mcr-btn" data-r="24">2Y</button>
+              <button class="mcr-btn" data-r="60">5Y</button>
+              <button class="mcr-btn" data-r="0">All</button>
+            </div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is inflation?</div>
+        <p class="gloss-body">Inflation is a sustained increase in the overall price level of goods and services, which reduces the purchasing power of money over time.</p>
+        <div class="gloss-source">Source: National statistics offices · IMF</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>Unemployment</h2>
+        <div class="metric-value">5.1%</div>
+      </div>
+      <ol class="stories sm"><li>China&#x27;s unemployment rate sits at 5.1%, which is low by global standards but creeping higher as the economy shifts away from manufacturing.</li><li>At 5.1%, unemployment is still loose enough that wage growth stays contained, helping businesses manage costs as demand returns.</li><li>Monitor whether this rate climbs above 5.3% in the coming months, because that&#x27;s when Beijing typically intervenes with job creation programs.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="Unemployment" data-chart='{&quot;v&quot;: [3.1, 3.11, 3.12, 3.12, 3.13, 3.14, 3.15, 3.16, 3.17, 3.17, 3.18, 3.19, 3.2, 3.27, 3.33, 3.4, 3.47, 3.53, 3.6, 3.67, 3.73, 3.8, 3.87, 3.93, 4.0, 4.03, 4.05, 4.08, 4.1, 4.12, 4.15, 4.17, 4.2, 4.22, 4.25, 4.28, 4.3, 4.29, 4.28, 4.28, 4.27, 4.26, 4.25, 4.24, 4.23, 4.22, 4.22, 4.21, 4.2, 4.2, 4.2, 4.2, 4.2, 4.2, 4.2, 4.2, 4.2, 4.2, 4.2, 4.2, 4.2, 4.19, 4.18, 4.17, 4.17, 4.16, 4.15, 4.14, 4.13, 4.12, 4.12, 4.11, 4.1, 4.09, 4.08, 4.08, 4.07, 4.06, 4.05, 4.04, 4.03, 4.03, 4.02, 4.01, 4.0, 4.02, 4.03, 4.05, 4.07, 4.08, 4.1, 4.12, 4.13, 4.15, 4.17, 4.18, 4.2, 4.21, 4.22, 4.22, 4.23, 4.24, 4.25, 4.26, 4.27, 4.28, 4.28, 4.29, 4.3, 4.28, 4.27, 4.25, 4.23, 4.22, 4.2, 4.18, 4.17, 4.15, 4.13, 4.12, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.09, 4.09, 4.08, 4.08, 4.08, 4.07, 4.07, 4.06, 4.06, 4.05, 4.05, 4.05, 4.04, 4.04, 4.04, 4.04, 4.04, 4.03, 4.03, 4.03, 4.03, 4.02, 4.02, 4.01, 4.01, 4.0, 4.0, 3.99, 3.98, 3.98, 3.97, 3.97, 3.96, 3.96, 3.95, 3.95, 3.95, 3.95, 3.95, 3.95, 3.95, 3.95, 3.95, 3.95, 3.95, 3.95, 4.9, 5.0, 5.1, 4.9, 4.8, 4.8, 5.1, 5.0, 4.9, 4.9, 4.8, 4.9, 4.9, 5.0, 5.1, 4.9, 4.8, 4.8, 5.1, 5.0, 4.9, 4.9, 4.8, 4.9, 4.9, 5.0, 5.1, 4.9, 4.8, 4.8, 5.1, 5.0, 4.9, 4.9, 4.8, 4.9, 4.9, 5.0, 5.1, 4.9, 4.8, 4.8, 5.1, 5.0, 4.9, 4.9, 4.8, 4.9, 4.9, 5.0, 5.1, 4.9, 4.8, 4.8, 5.1, 5.0, 4.9, 4.9, 4.8, 4.9, 4.9, 5.0, 5.1, 4.9, 4.8, 4.8, 5.1, 5.0, 4.9, 4.9, 4.8, 4.9, 4.9, 5.0, 5.1, 4.9, 4.8, 4.8, 5.1, 5.0, 4.9, 4.9, 4.8, 4.9, 4.9, 5.0, 5.1, 4.9, 4.8, 4.8, 5.1, 5.0, 4.9, 4.9, 4.8, 4.9], &quot;startDate&quot;: &quot;2000-05&quot;, &quot;type&quot;: &quot;line&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">Unemployment · History since 2000</div>
+            <div class="metric-chart-range">
+              <button class="mcr-btn" data-r="12">1Y</button>
+              <button class="mcr-btn" data-r="24">2Y</button>
+              <button class="mcr-btn" data-r="60">5Y</button>
+              <button class="mcr-btn" data-r="0">All</button>
+            </div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is the unemployment rate?</div>
+        <p class="gloss-body">The unemployment rate measures what percentage of people who want to work cannot find a job. It is one of the clearest signals of whether an economy is providing enough opportunity for its citizens.</p>
+        <div class="gloss-source">Source: National statistics offices · IMF</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>Budget Deficit</h2>
+        <div class="metric-value">-6.8% GDP</div>
+      </div>
+      <ol class="stories sm"><li>China&#x27;s government is spending 6.8% more than it takes in, a large deficit that reflects aggressive stimulus to prop up growth after the property collapse.</li><li>At 6.8% of GDP, the deficit is much bigger than before 2022, showing Beijing is using the fiscal toolkit aggressively while interest rates stay low.</li><li>Watch whether the deficit shrinks back toward 5% over the next two years, because a sustained 6.8% level would eventually pressure the currency and inflation.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="Budget Deficit" data-chart='{&quot;v&quot;: [-2.8, -2.3, -2.6, -2.2, -1.3, -1.2, -0.7, 0.9, -0.4, -2.8, -1.7, -1.1, -1.5, -1.9, -1.8, -2.8, -3.7, -3.8, -4.7, -6.3, -11.4, -5.5, -5.7, -7.1, -7.0, -7.0, -6.8], &quot;startDate&quot;: null, &quot;type&quot;: &quot;bar&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">Budget Deficit · Annual</div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is the budget deficit?</div>
+        <p class="gloss-body">The budget deficit measures how much more a government spends than it earns in a given year. A deficit means the government is borrowing to cover the gap, adding to national debt.</p>
+        <div class="gloss-source">Source: IMF Fiscal Monitor · National finance ministries</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>Current Account</h2>
+        <div class="metric-value">+2.5% GDP</div>
+      </div>
+      <ol class="stories sm"><li>China is running a trade surplus of 2.5% of GDP, meaning it exports more than it imports, which brings dollars into the country and supports the yuan.</li><li>At 2.5%, the surplus is down from the 5% to 10% levels of the early 2000s, reflecting that China is richer now and buys more foreign goods.</li><li>Monitor whether this surplus shrinks further as China&#x27;s domestic growth picks up, because that would ease global trade tensions and reduce pressure on the yuan.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="Current Account" data-chart='{&quot;v&quot;: [1.7, 1.3, 2.4, 2.8, 3.6, 5.9, 8.5, 10.1, 9.3, 4.8, 3.9, 1.8, 2.5, 1.5, 2.3, 2.7, 1.8, 1.6, 0.2, 1.0, 1.9, 2.0, 2.3, 1.5, 2.0, 2.1, 2.5], &quot;startDate&quot;: null, &quot;type&quot;: &quot;bar&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">Current Account · Annual</div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is the current account?</div>
+        <p class="gloss-body">The current account measures whether a country earns more from the rest of the world than it spends. It tracks trade in goods and services, plus income flows like investment returns and remittances.</p>
+        <div class="gloss-source">Source: IMF BOP Statistics</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>Policy Rate</h2>
+        <div class="metric-value">2.75%</div>
+      </div>
+      <ol class="stories sm"><li>China&#x27;s central bank has set its main interest rate at 2.75%, which is very low and means borrowing is cheap right now.</li><li>At 2.75%, the rate is lower than inflation (2%), giving borrowers free money in real terms, a sign that Beijing wants credit to flow and the economy to grow.</li><li>Watch whether the rate stays near 2.75% or falls further, because a cut would signal Beijing sees growth risks and wants to stimulate more.</li></ol>
+      
+      
+      <div class="gloss">
+        <div class="gloss-title">What is the policy rate?</div>
+        <p class="gloss-body">The policy rate is the interest rate set by a country&#x27;s central bank. It is the most powerful tool for controlling inflation and influencing economic growth, because it affects the cost of borrowing for everyone.</p>
+        <div class="gloss-source">Source: National central banks</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>Stock Market</h2>
+        <div class="metric-value pos">+3.9%</div>
+      </div>
+      <ol class="stories sm"><li>China&#x27;s stock market gained 3.9% since January despite weak consumer spending and a struggling real estate sector, suggesting investors still see opportunity ahead.</li><li>The modest gain masks a split market where tech and export stocks rallied while domestic consumption plays lagged, reflecting doubt about government stimulus effectiveness.</li><li>Watch whether the promised consumption-support measures can reverse job losses and confidence erosion, because without them this modest rally risks reversing.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="Stock Market YTD" data-chart='{&quot;v&quot;: [1535.0, 1714.58, 1800.22, 1836.32, 1894.55, 1928.11, 2023.54, 2021.2, 1910.16, 1961.29, 2070.61, 2073.48, 2065.61, 1959.18, 2112.77, 2119.18, 2214.26, 2218.03, 1920.32, 1834.14, 1764.87, 1689.17, 1747.99, 1645.97, 1491.67, 1524.7, 1603.91, 1667.75, 1515.73, 1732.76, 1651.59, 1666.62, 1581.62, 1507.5, 1434.18, 1357.65, 1499.81, 1511.93, 1510.58, 1521.44, 1576.26, 1486.02, 1476.74, 1421.98, 1367.16, 1348.3, 1397.22, 1497.04, 1590.73, 1675.07, 1741.62, 1595.59, 1555.91, 1399.16, 1386.2, 1342.06, 1396.7, 1320.54, 1340.77, 1266.5, 1191.82, 1306.0, 1181.24, 1159.15, 1060.74, 1080.94, 1083.03, 1162.8, 1155.61, 1092.82, 1099.26, 1161.06, 1258.05, 1299.03, 1298.3, 1440.22, 1641.3, 1672.21, 1612.73, 1658.64, 1752.42, 1837.99, 2099.29, 2675.47, 2786.33, 2881.07, 3183.98, 3841.27, 4109.65, 3820.7, 4471.03, 5218.83, 5552.3, 5954.77, 4871.78, 5261.56, 4383.39, 4348.54, 3472.71, 3693.11, 3433.35, 2736.1, 2775.72, 2397.37, 2293.78, 1728.79, 1871.16, 1820.81, 1990.66, 2082.85, 2373.21, 2477.57, 2632.93, 2959.36, 3412.06, 2667.75, 2779.43, 2995.85, 3195.3, 3277.14, 2989.29, 3051.94, 3109.1, 2870.61, 2592.15, 2398.37, 2637.5, 2638.8, 2655.66, 2978.83, 2820.18, 2808.08, 2790.69, 2905.05, 2928.11, 2911.51, 2743.47, 2762.08, 2701.73, 2567.34, 2359.22, 2468.25, 2333.41, 2199.42, 2292.61, 2428.49, 2262.79, 2396.32, 2372.23, 2225.43, 2103.64, 2047.52, 2086.17, 2068.88, 1980.12, 2269.13, 2385.42, 2365.59, 2236.62, 2177.91, 2300.59, 1979.21, 1993.8, 2098.38, 2174.67, 2141.61, 2220.5, 2115.98, 2033.08, 2056.3, 2033.31, 2026.36, 2039.21, 2048.33, 2201.56, 2217.2, 2363.87, 2420.18, 2682.92, 3234.68, 3210.36, 3310.3, 3747.9, 4441.65, 4611.74, 4277.22, 3663.73, 3205.99, 3052.78, 3382.56, 3445.41, 3539.18, 2737.6, 2687.98, 3003.92, 2938.32, 2916.62, 2929.61, 2979.34, 3085.49, 3004.7, 3100.49, 3250.03, 3103.64, 3159.17, 3241.73, 3222.51, 3154.66, 3117.18, 3192.43, 3273.03, 3360.81, 3348.94, 3393.34, 3317.19, 3307.17, 3480.83, 3259.41, 3168.9, 3082.23, 3095.47, 2847.42, 2876.4, 2725.25, 2821.35, 2602.78, 2588.19, 2493.9, 2584.57, 2940.95, 3090.76, 3086.4, 2898.7, 2978.88, 2932.51, 2886.24, 2905.19, 2929.06, 2871.98, 3050.12, 2976.53, 2880.3, 2750.3, 2860.08, 2852.35, 2984.67, 3310.01, 3395.68, 3218.05, 3224.53, 3391.76, 3473.07, 3483.07, 3509.08, 3441.91, 3446.86, 3615.48, 3591.2, 3397.36, 3543.94, 3568.17, 3547.34, 3563.89, 3639.78, 3361.44, 3462.31, 3252.2, 3047.06, 3186.43, 3398.62, 3253.24, 3202.14, 3024.39, 2893.48, 3151.34, 3089.26, 3255.67, 3279.61, 3272.86, 3323.27, 3204.56, 3202.06, 3291.04, 3119.88, 3110.48, 3018.77, 3029.67, 2974.94, 2788.55, 3015.17, 3041.17, 3104.82, 3086.81, 2967.4, 2938.75, 2842.21, 3336.5, 3279.82, 3326.46, 3351.76, 3250.6, 3320.9, 3335.75, 3279.03, 3347.49, 3444.43, 3573.21, 3857.93, 3882.78, 3954.79, 3888.6, 3968.84, 4117.95, 4162.88, 3913.72], &quot;startDate&quot;: &quot;2000-02&quot;, &quot;type&quot;: &quot;line&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">Stock Market · History since 2000</div>
+            <div class="metric-chart-range">
+              <button class="mcr-btn" data-r="12">1Y</button>
+              <button class="mcr-btn" data-r="24">2Y</button>
+              <button class="mcr-btn" data-r="60">5Y</button>
+              <button class="mcr-btn" data-r="0">All</button>
+            </div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is the stock market YTD?</div>
+        <p class="gloss-body">Stock Market YTD shows how much a country&#x27;s main stock market index has gone up or down since the start of the year. It is the most visible daily scoreboard for investor confidence in a country&#x27;s economy and companies.</p>
+        <div class="gloss-source">Source: Exchange data</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>10Y Bond Yield</h2>
+        <div class="metric-value">2.40%</div>
+      </div>
+      <ol class="stories sm"><li>China&#x27;s 10-year borrowing cost sits at 2.40%, meaning Beijing can still borrow cheaply even as growth accelerates, so the property crisis hasn&#x27;t broken investor confidence in the government&#x27;s ability to pay.</li><li>The low yield reflects investors betting that Moody&#x27;s outlook upgrade signals real stability ahead, not just temporary relief from tariff cuts.</li><li>Watch whether yields rise above 2.50% in the next quarter, which would signal that markets no longer believe growth can stay resilient without more stimulus.</li></ol>
+      
+      
+      <div class="gloss">
+        <div class="gloss-title">What is the 10-year bond yield?</div>
+        <p class="gloss-body">The 10-year bond yield is the annual return investors earn for lending money to a government for 10 years. It is the most important interest rate in any economy, the benchmark that influences mortgage rates, corporate borrowing costs, and stock valuations.</p>
+        <div class="gloss-source">Source: Bloomberg · Refinitiv</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>Yield Curve</h2>
+        <div class="metric-value">+35bps</div>
+      </div>
+      <ol class="stories sm"><li>China&#x27;s yield curve steepened by 35 basis points, meaning longer-term bonds now pay noticeably more than short-term ones, a signal that investors expect either growth to slow later or the PBOC to cut rates soon.</li><li>The steepening came as Beijing cut tariffs and added fiscal support, so markets are saying &#x27;growth now, but not forever&#x27; rather than expecting sustained acceleration.</li><li>If the curve flattens again (spreads narrow below 30bps), it would mean markets are losing faith in the durability of the tariff relief story.</li></ol>
+      
+      
+      <div class="gloss">
+        <div class="gloss-title">What is the yield curve?</div>
+        <p class="gloss-body">The yield curve shows the difference between short-term and long-term government bond yields. Its shape is one of the most reliable predictors of recessions: when long-term rates fall below short-term rates (an inversion), a recession has followed almost every time in history.</p>
+        <div class="gloss-source">Source: Bloomberg · Refinitiv</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>USD/CNY</h2>
+        <div class="metric-value">6.80</div>
+      </div>
+      <ol class="stories sm"><li>The yuan is at 6.83 per dollar, meaning it has weakened modestly since the tariff deal, as investors move money back into the US for higher returns rather than betting on China&#x27;s growth recovery.</li><li>Even with 4.4% growth and a stable credit outlook, the yuan isn&#x27;t strengthening because US interest rates stay much higher than China&#x27;s 2.40% 10Y yield, so carry trades favor the dollar.</li><li>If the yuan breaks above 6.90 (weaker), it signals that foreign investors are losing confidence in China&#x27;s ability to defend its currency without aggressive capital controls.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="USD/CNY" data-chart='{&quot;v&quot;: [8.28, 8.28, 8.28, 8.28, 8.28, 8.28, 8.28, 8.28, 8.28, 8.28, 8.28, 8.28, 8.28, 8.28, 8.28, 8.27, 8.28, 8.28, 8.28, 8.28, 8.28, 8.28, 8.28, 8.28, 8.28, 8.28, 8.28, 8.28, 8.28, 8.28, 8.27, 8.27, 8.27, 8.27, 8.27, 8.27, 8.27, 8.27, 8.27, 8.27, 8.27, 8.27, 8.27, 8.27, 8.27, 8.27, 8.27, 8.27, 8.27, 8.1, 8.09, 8.08, 8.07, 8.08, 8.07, 8.06, 8.04, 8.01, 8.0, 8.01, 7.98, 7.96, 7.94, 7.9, 7.87, 7.82, 7.8, 7.76, 7.73, 7.72, 7.7, 7.64, 7.6, 7.56, 7.54, 7.5, 7.46, 7.39, 7.29, 7.17, 7.1, 7.0, 6.98, 6.93, 6.84, 6.82, 6.83, 6.84, 6.83, 6.82, 6.81, 6.83, 6.83, 6.83, 6.81, 6.82, 6.82, 6.82, 6.82, 6.82, 6.82, 6.82, 6.83, 6.82, 6.82, 6.82, 6.82, 6.82, 6.77, 6.77, 6.79, 6.68, 6.68, 6.65, 6.61, 6.57, 6.56, 6.55, 6.5, 6.47, 6.46, 6.44, 6.38, 6.39, 6.35, 6.37, 6.31, 6.31, 6.3, 6.31, 6.3, 6.35, 6.36, 6.38, 6.35, 6.3, 6.24, 6.23, 6.23, 6.22, 6.23, 6.21, 6.17, 6.12, 6.23, 6.12, 6.11, 6.11, 6.08, 6.08, 6.05, 6.05, 6.12, 6.2, 6.25, 6.23, 6.21, 6.16, 6.13, 6.14, 6.1, 6.13, 6.19, 6.24, 6.25, 6.2, 6.19, 6.19, 6.2, 6.2, 6.38, 6.35, 6.35, 6.38, 6.48, 6.57, 6.53, 6.46, 6.47, 6.57, 6.63, 6.66, 6.68, 6.67, 6.78, 6.9, 6.95, 6.88, 6.87, 6.89, 6.9, 6.86, 6.79, 6.74, 6.6, 6.67, 6.64, 6.61, 6.53, 6.32, 6.32, 6.29, 6.34, 6.42, 6.63, 6.81, 6.84, 6.88, 6.97, 6.94, 6.88, 6.72, 6.69, 6.74, 6.73, 6.9, 6.87, 6.88, 7.14, 7.12, 7.05, 7.03, 6.99, 6.94, 7.0, 7.1, 7.08, 7.15, 7.08, 7.01, 6.86, 6.82, 6.71, 6.58, 6.52, 6.45, 6.45, 6.57, 6.47, 6.37, 6.46, 6.46, 6.47, 6.47, 6.39, 6.39, 6.37, 6.35, 6.32, 6.35, 6.63, 6.66, 6.7, 6.75, 6.91, 7.12, 7.25, 7.16, 6.96, 6.75, 6.94, 6.87, 6.92, 7.08, 7.25, 7.1, 7.28, 7.3, 7.31, 7.08, 7.11, 7.09, 7.2, 7.23, 7.24, 7.23, 7.27, 7.25, 7.1, 7.01, 7.11, 7.24, 7.3, 7.18, 7.29, 7.26, 7.27, 7.2, 7.17, 7.18, 7.15, 7.12, 7.11, 7.08, 7.0, 6.95, 6.84, 6.91], &quot;startDate&quot;: &quot;2001-07&quot;, &quot;type&quot;: &quot;line&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">USD/CNY · History since 2000</div>
+            <div class="metric-chart-range">
+              <button class="mcr-btn" data-r="12">1Y</button>
+              <button class="mcr-btn" data-r="24">2Y</button>
+              <button class="mcr-btn" data-r="60">5Y</button>
+              <button class="mcr-btn" data-r="0">All</button>
+            </div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+        <div class="fx-regime">
+          <div class="fx-label">China&#x27;s FX regime: Managed Peg</div>
+          <p>China tightly manages its currency, the yuan (also called the renminbi). The government sets a daily &quot;reference rate&quot; and only allows the yuan to move a small amount (2%) above or below it each day. This gives China significant control over its exchange rate. USD/CNY shows how many yuan you give up to buy one dollar. At 7.24, one dollar costs about 7.24 yuan.</p>
+        </div>
+      <div class="gloss">
+        <div class="gloss-title">What is the exchange rate?</div>
+        <p class="gloss-body">The exchange rate is how much one currency is worth in terms of another. It determines the price of everything a country imports and exports, and is one of the most visible daily indicators of a country&#x27;s economic standing in the world.</p>
+        <div class="gloss-source">Source: WM/Refinitiv · Bloomberg · National central banks</div>
+      </div>
+    </div>
+
+  <div class="footer">
+    Built Mon 11 May 2026 · macrosnaps.app · <a href="index.html">All countries</a>
+  </div>
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>/* ─────────────────────────────────────────────────────────────
+   MacroSnaps v2 — Chart rendering
+   Ported from existing renderMetricChart, adapted for light mode.
+   Reads chart data from each metric's mounted element's data-spark
+   attribute (JSON-encoded) and renders into the matching canvas.
+   ───────────────────────────────────────────────────────────── */
+
+(function () {
+  const ORANGE_RGB = '249,115,22';
+  const GREEN_RGB = '0,176,116';
+  const RED_RGB = '217,58,79';
+  const GRID = 'rgba(0,0,0,.05)';
+  const ZERO = 'rgba(0,0,0,.2)';
+  const TICK = '#888';
+  const TOOLTIP_BG = '#fff';
+  const TOOLTIP_BORDER = 'rgba(249,115,22,.4)';
+
+  // From shell-frozen.chartConfig.annualLabels
+  const ANNUAL_LABELS = [
+    '2000','2001','2002','2003','2004','2005','2006','2007','2008','2009',
+    '2010','2011','2012','2013','2014','2015','2016','2017','2018','2019',
+    '2020','2021','2022','2023','2024','2025','2026F'
+  ];
+
+  // Per-metric chart config
+  const METRIC_CFG = {
+    'GDP Growth':     { type: 'bar', zeroLine: true },
+    'Inflation (CPI)':{ type: 'line' },
+    'Unemployment':   { type: 'line' },
+    'Budget Deficit': { type: 'bar', zeroLine: true },
+    'Current Account':{ type: 'bar', zeroLine: true },
+    'Policy Rate':    { type: 'line', stepped: true },
+    'Stock Market YTD': { type: 'line', zeroLine: true },
+    '10Y Bond Yield': { type: 'line' },
+    'Yield Curve':    { type: 'line', zeroLine: true, segmentColor: true },
+    'USD/DXY':        { type: 'line', indexLabel: true },
+    'CAD/USD':        { type: 'line' },
+    'GBP/USD':        { type: 'line' },
+    'USD/JPY':        { type: 'line' },
+    'EUR/USD':        { type: 'line' },
+    'USD/CNY':        { type: 'line' },
+    'USD/INR':        { type: 'line' },
+    'USD/ZAR':        { type: 'line' },
+    'USD/BRL':        { type: 'line' },
+    'USD/RUB':        { type: 'line' },
+    'FX Rate':        { type: 'line' }
+  };
+
+  function monthLabelsFrom(startDateStr, n) {
+    // startDateStr: "YYYY-MM"
+    // Emit "MMM 'YY" at every position so autoSkip has labels to pick from
+    // at any tick density (1Y, 2Y, 5Y, All).
+    if (!startDateStr) return Array(n).fill('');
+    const MONTH_ABBR = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const [y0, m0] = startDateStr.split('-').map(Number);
+    const labels = [];
+    for (let i = 0; i < n; i++) {
+      const monthIdx = (m0 - 1) + i;
+      const y = y0 + Math.floor(monthIdx / 12);
+      const m = monthIdx % 12;
+      labels.push(MONTH_ABBR[m] + " '" + String(y).slice(2));
+    }
+    return labels;
+  }
+
+  function sliceData(allVals, allLabels, rangeMonths) {
+    if (!rangeMonths || rangeMonths === 0 || rangeMonths >= allVals.length) {
+      return { vals: allVals, labels: allLabels };
+    }
+    return {
+      vals: allVals.slice(-rangeMonths),
+      labels: allLabels.slice(-rangeMonths)
+    };
+  }
+
+  function renderChart(canvas, metricName, metricData, rangeMonths) {
+    if (!window.Chart) { console.warn('Chart.js not loaded'); return; }
+    const cfg = METRIC_CFG[metricName] || { type: 'line' };
+    const isBar = cfg.type === 'bar';
+    const allVals = metricData.v || [];
+    if (!allVals.length) return;
+
+    // Build labels
+    let allLabels;
+    if (isBar) {
+      allLabels = ANNUAL_LABELS.slice(0, allVals.length);
+    } else {
+      allLabels = monthLabelsFrom(metricData.startDate, allVals.length);
+    }
+
+    const sliced = sliceData(allVals, allLabels, rangeMonths);
+    const sliceVals = sliced.vals;
+    const sliceLabels = sliced.labels;
+    const n = sliceVals.length;
+
+    // Axis range
+    const mn = Math.min(...sliceVals);
+    const mx = Math.max(...sliceVals);
+    const range = mx - mn;
+    const pad = (range * 0.15) || (Math.abs(mx) * 0.1) || 1;
+
+    // Destroy any prior chart on this canvas
+    if (canvas._chart) { canvas._chart.destroy(); canvas._chart = null; }
+    const ctx = canvas.getContext('2d');
+
+    let datasets;
+    if (isBar) {
+      const colors = sliceVals.map(v => v >= 0 ? `rgba(${ORANGE_RGB},.55)` : `rgba(${RED_RGB},.55)`);
+      const borders = sliceVals.map(v => v >= 0 ? `rgba(${ORANGE_RGB},.9)` : `rgba(${RED_RGB},.9)`);
+      datasets = [{
+        data: sliceVals,
+        backgroundColor: colors,
+        borderColor: borders,
+        borderWidth: 1,
+        barPercentage: 0.85,
+        categoryPercentage: 0.85
+      }];
+    } else if (cfg.segmentColor) {
+      // Yield curve: green above 0, red below 0
+      datasets = [{
+        data: sliceVals,
+        borderWidth: 1.5,
+        pointRadius: 0,
+        pointHitRadius: 8,
+        pointHoverRadius: 3,
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderWidth: 1,
+        tension: .3,
+        fill: false,
+        segment: {
+          borderColor: function (ctx2) {
+            const y0 = ctx2.p0.parsed.y, y1 = ctx2.p1.parsed.y;
+            if (y0 >= 0 && y1 >= 0) return `rgba(${GREEN_RGB},.8)`;
+            if (y0 < 0 && y1 < 0) return `rgba(${RED_RGB},.8)`;
+            return 'rgba(120,120,120,.6)';
+          }
+        }
+      }];
+    } else {
+      const grad = ctx.createLinearGradient(0, 0, 0, 140);
+      grad.addColorStop(0, `rgba(${ORANGE_RGB},.22)`);
+      grad.addColorStop(1, `rgba(${ORANGE_RGB},.01)`);
+      datasets = [{
+        data: sliceVals,
+        borderColor: `rgba(${ORANGE_RGB},.9)`,
+        borderWidth: 1.5,
+        backgroundColor: grad,
+        fill: true,
+        pointRadius: 0,
+        pointHitRadius: 8,
+        pointHoverRadius: 3,
+        pointHoverBackgroundColor: '#F97316',
+        pointHoverBorderColor: '#fff',
+        pointHoverBorderWidth: 1,
+        tension: .35,
+        stepped: cfg.stepped || false
+      }];
+    }
+
+    canvas._chart = new Chart(ctx, {
+      type: isBar ? 'bar' : 'line',
+      data: { labels: sliceLabels, datasets: datasets },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        events: ['mousemove', 'mouseout', 'touchstart', 'touchmove'],
+        layout: { padding: { left: 2, right: 2, top: 4, bottom: 0 } },
+        scales: {
+          x: {
+            display: true,
+            grid: { display: false },
+            ticks: {
+              color: function (context) {
+                var label = sliceLabels[context.index];
+                return (label && label.toString().endsWith('F')) ? '#F97316' : TICK;
+              },
+              font: { family: "'Space Mono', monospace", size: 8 },
+              maxRotation: 0, autoSkip: true,
+              maxTicksLimit: isBar ? 8 : (n <= 12 ? 6 : n <= 24 ? 8 : 10)
+            },
+            border: { display: false }
+          },
+          y: {
+            display: true,
+            position: 'right',
+            grid: {
+              color: function (context) {
+                if (cfg.zeroLine && context.tick.value === 0) return ZERO;
+                return GRID;
+              },
+              lineWidth: function (context) {
+                return (cfg.zeroLine && context.tick.value === 0) ? 1.2 : 1;
+              }
+            },
+            ticks: {
+              color: TICK, font: { family: "'Space Mono', monospace", size: 8 },
+              maxTicksLimit: 5,
+              callback: function (v) {
+                if (cfg.indexLabel && v >= 1000) return (v / 1000).toFixed(v % 1000 === 0 ? 0 : 1) + 'k';
+                return (v % 1 === 0) ? v : v.toFixed(1);
+              }
+            },
+            border: { display: false },
+            min: mn - pad,
+            max: mx + pad
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: TOOLTIP_BG,
+            borderColor: TOOLTIP_BORDER,
+            borderWidth: 1,
+            titleFont: { family: "'Space Mono', monospace", size: 9 },
+            bodyFont: { family: "'DM Sans', sans-serif", size: 11 },
+            titleColor: '#888', bodyColor: '#1a1a1a',
+            cornerRadius: 4, padding: 8, displayColors: false,
+            callbacks: {
+              label: function (ctx2) {
+                let v = ctx2.parsed.y;
+                if (cfg.indexLabel) return ' ' + v.toLocaleString();
+                if (cfg.segmentColor) return ' ' + (v >= 0 ? '+' : '') + v + ' bps';
+                return ' ' + v;
+              }
+            }
+          }
+        },
+        interaction: { mode: 'index', intersect: false },
+        animation: { duration: 350, easing: 'easeOutCubic' }
+      }
+    });
+  }
+
+  // Wire up all chart panels on the page
+  function initAllCharts() {
+    document.querySelectorAll('.metric-chart-wrap').forEach(wrap => {
+      const metricName = wrap.dataset.metric;
+      const dataAttr = wrap.dataset.chart;
+      if (!metricName || !dataAttr) return;
+      let metricData;
+      try { metricData = JSON.parse(dataAttr); } catch (e) { return; }
+
+      const canvas = wrap.querySelector('canvas');
+      if (!canvas) return;
+
+      const cfg = METRIC_CFG[metricName] || {};
+      const isBar = cfg.type === 'bar';
+
+      // Render with default range
+      const defaultRange = isBar ? 0 : 60; // bar = all years; line = 5Y default
+      renderChart(canvas, metricName, metricData, defaultRange);
+
+      // Wire range buttons (line charts only)
+      const btns = wrap.querySelectorAll('.mcr-btn');
+      btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          btns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const r = parseInt(btn.dataset.r) || 0;
+          renderChart(canvas, metricName, metricData, r);
+        });
+      });
+
+      // Mark default-active button
+      if (!isBar) {
+        btns.forEach(b => { if (parseInt(b.dataset.r) === 60) b.classList.add('active'); });
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAllCharts);
+  } else {
+    initAllCharts();
+  }
+})();
+</script>
+</body>
+</html>

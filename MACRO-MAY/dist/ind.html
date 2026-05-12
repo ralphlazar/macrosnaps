@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>India · MacroSnaps</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>/* ─────────────────────────────────────────────────────────────
+   MacroSnaps v2 (MACRO-MAY)
+   Light mode · orange palette · coral bullets
+   ───────────────────────────────────────────────────────────── */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --orange: #F97316;
+  --orange-dark: #C2410C;
+  --coral: #CC785C;
+  --green: #00b074;
+  --red: #d93a4f;
+  --text: #1a1a1a;
+  --text-2: #333;
+  --text-3: #444;
+  --text-4: #555;
+  --text-5: #888;
+  --text-6: #999;
+  --border: rgba(0,0,0,.06);
+  --border-2: rgba(0,0,0,.04);
+  --surface: #f5f5f4;
+  --card: #fff;
+  --pill-bg: rgba(0,0,0,.04);
+  --font-display: 'Space Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+}
+
+html { background: var(--surface); color: var(--text); font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
+body { min-height: 100vh; padding: 0; }
+
+a { color: var(--orange-dark); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.page { max-width: 760px; margin: 0 auto; padding: 18px 16px 64px; }
+
+/* ── Box (the modular container) ─────────────────────────────── */
+.box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px 22px;
+  margin-bottom: 14px;
+}
+.box.compact { padding: 16px 22px; }
+a.box { display: block; color: inherit; cursor: pointer; transition: border-color .15s, transform .05s; }
+a.box:hover { border-color: rgba(0,0,0,.12); text-decoration: none; }
+a.box:active { transform: scale(.998); }
+
+/* ── Header ───────────────────────────────────────────────────── */
+.head-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-bottom: 14px; border-bottom: 1px solid var(--border); margin-bottom: 18px;
+}
+.head-row.no-divider { padding-bottom: 0; border-bottom: none; margin-bottom: 0; }
+.back-link {
+  font-family: var(--font-display); font-size: 10px; letter-spacing: 1.4px;
+  text-transform: uppercase; color: var(--text-5); text-decoration: none;
+}
+.back-link:hover { color: var(--text-3); text-decoration: none; }
+.date {
+  font-family: var(--font-display); font-size: 10px; letter-spacing: 1.4px;
+  text-transform: uppercase; color: var(--text-5);
+}
+.brand {
+  margin: 0; font-size: 22px; font-weight: 500; letter-spacing: -.01em; line-height: 1;
+}
+.country-title { display: flex; align-items: baseline; gap: 14px; }
+.country-title h1 {
+  margin: 0; font-size: 30px; font-weight: 500; letter-spacing: -.02em; line-height: 1;
+}
+.flag-pill {
+  font-family: var(--font-display); font-size: 10px; letter-spacing: 1.6px;
+  color: var(--text-5); background: var(--pill-bg); padding: 3px 10px; border-radius: 3px; font-weight: 500;
+}
+
+/* ── Section label (the small uppercase header inside a box) ───── */
+.section-label {
+  font-family: var(--font-display); font-size: 10px; letter-spacing: 1.6px;
+  text-transform: uppercase; color: var(--text-5); margin-bottom: 14px;
+}
+
+/* ── Stories list (numbered with coral circles) ─────────────────── */
+.stories { list-style: none; padding: 0; margin: 0; counter-reset: story; }
+.stories li {
+  counter-increment: story;
+  font-size: 15px; color: var(--text-2); line-height: 1.65;
+  padding-left: 30px; position: relative; margin-bottom: 11px;
+}
+.stories li:last-child { margin-bottom: 0; }
+.stories li::before {
+  content: counter(story);
+  position: absolute; left: 0; top: 3px;
+  width: 18px; height: 18px; display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; border: 1.5px solid var(--coral); color: var(--coral);
+  font-size: 11px; font-weight: 700; font-family: var(--font-body);
+}
+.stories.sm li { font-size: 14px; color: var(--text-3); padding-left: 28px; margin-bottom: 8px; }
+.stories.sm li::before { width: 17px; height: 17px; font-size: 10px; }
+
+/* ── Snapshot table ─────────────────────────────────────────────── */
+.snapshot {
+  width: 100%; border-collapse: collapse;
+  font-family: var(--font-display); font-size: 13px;
+  font-variant-numeric: tabular-nums; table-layout: fixed;
+}
+.snapshot th, .snapshot td { padding: 11px 4px 12px; text-align: right; border-bottom: 1px solid var(--border-2); vertical-align: middle; }
+.snapshot thead th { border-bottom: 1px solid rgba(0,0,0,.1); font-weight: 500; color: var(--text-5); font-size: 9px; letter-spacing: 1.4px; text-transform: uppercase; padding: 9px 4px; }
+.snapshot th.sortable { cursor: pointer; user-select: none; transition: color .15s; }
+.snapshot th.sortable:hover { color: var(--text-3); }
+.snapshot th.sortable.active { color: var(--orange-dark); }
+.snapshot th .sort-arrow { display: inline-block; margin-left: 3px; color: var(--orange-dark); font-size: 10px; min-width: 6px; }
+.snapshot td:first-child, .snapshot th:first-child { text-align: left; padding-left: 8px; }
+.snapshot td:first-child { color: var(--text); font-weight: 500; transition: color .15s; }
+.snapshot tbody tr:last-child td { border-bottom: none; }
+.snapshot tbody tr.clickable { cursor: pointer; transition: background-color .15s; }
+.snapshot tbody tr.clickable td { cursor: pointer; }
+.snapshot tbody tr.clickable:hover { background: rgba(249,115,22,.12); }
+.snapshot tbody tr.clickable:hover td:first-child .code-text { color: var(--orange-dark); }
+
+/* Country code cell: flag + code + hover arrow */
+.code-cell {
+  display: inline-flex; align-items: center; gap: 8px;
+  line-height: 1;
+}
+.row-flag {
+  display: inline-block; flex-shrink: 0;
+  width: 22px; height: 16px;
+  border-radius: 3px; overflow: hidden;
+  border: 1px solid rgba(0,0,0,.1);
+  line-height: 0;
+}
+.row-flag svg { display: block; width: 100%; height: 100%; }
+.code-text { transition: color .15s; }
+.row-arrow {
+  display: inline-block; margin-left: 2px;
+  color: var(--orange-dark); font-weight: 700;
+  opacity: 0; transition: opacity .15s;
+}
+.snapshot tbody tr.clickable:hover .row-arrow { opacity: 1; }
+
+/* Numeric cells: simple right-aligned values */
+.pos { color: var(--green); }
+.neg { color: var(--red); }
+.muted { color: var(--text-6); }
+
+/* ── Country card ────────────────────────────────────────────────── */
+.country-card-head {
+  display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;
+}
+.country-card-name { display: flex; align-items: center; gap: 11px; }
+.country-card-name h2 { margin: 0; font-size: 17px; font-weight: 500; }
+.country-card-arrow { color: var(--orange-dark); font-size: 14px; }
+
+/* ── Metric box ───────────────────────────────────────────────────── */
+.metric-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 20px; gap: 14px;
+}
+.metric-head h2 {
+  margin: 0; font-size: 26px; font-weight: 500; letter-spacing: -.01em; line-height: 1.1;
+}
+.metric-value {
+  font-size: 26px; font-weight: 500; color: var(--text);
+  font-variant-numeric: tabular-nums; letter-spacing: -.01em; line-height: 1; white-space: nowrap;
+}
+
+/* ── Chart panel (ported from existing site) ──────────────────────── */
+.metric-chart-wrap {
+  margin: 10px 0 0; padding: 12px 0 4px;
+  border-top: 1px solid var(--border);
+}
+.metric-chart-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.metric-chart-title {
+  font-family: var(--font-display); font-size: 8px; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text-5);
+}
+.metric-chart-range { display: flex; gap: 2px; }
+.mcr-btn {
+  font-family: var(--font-display); font-size: 8px; letter-spacing: .5px;
+  text-transform: uppercase; padding: 3px 8px;
+  border: 1px solid rgba(0,0,0,.08); border-radius: 2px;
+  background: transparent; color: var(--text-5); cursor: pointer; transition: all .15s;
+}
+.mcr-btn:hover { border-color: rgba(249,115,22,.4); color: var(--text-3); }
+.mcr-btn.active {
+  background: rgba(249,115,22,.08); border-color: rgba(249,115,22,.35);
+  color: var(--orange-dark);
+}
+.metric-chart-canvas { height: 140px; position: relative; }
+.metric-chart-canvas canvas { width: 100% !important; height: 100% !important; }
+
+/* ── Glossary block ───────────────────────────────────────────────── */
+.gloss { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
+.gloss-title {
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--text-5); margin-bottom: 6px;
+}
+.gloss-body { font-size: 13px; color: var(--text-4); line-height: 1.6; margin: 0; }
+.gloss-source {
+  font-family: var(--font-display); font-size: 8px; letter-spacing: .8px;
+  color: var(--text-6); margin-top: 12px;
+}
+
+/* ── FX regime callout (USD/DXY etc.) ─────────────────────────────── */
+.fx-regime {
+  background: rgba(249,115,22,.05); border-left: 2px solid rgba(249,115,22,.5);
+  padding: 13px 15px; margin-top: 14px; border-radius: 0 4px 4px 0;
+}
+.fx-regime .fx-label {
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--orange-dark); margin-bottom: 6px;
+}
+.fx-regime p { font-size: 13px; line-height: 1.6; color: var(--text-3); margin: 0; }
+
+/* ── Commodities ──────────────────────────────────────────────────── */
+.commodities-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 22px;
+}
+.commodity-item .c-name {
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--text-5); margin-bottom: 4px;
+}
+.commodity-item .c-value {
+  font-family: var(--font-display); font-size: 15px; font-weight: 500;
+  color: var(--text); font-variant-numeric: tabular-nums;
+}
+.commodity-item .c-change { font-size: 11px; font-weight: 400; margin-left: 4px; }
+
+/* ── Countries grid (homepage) ──────────────────────────────────── */
+.countries-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px 14px;
+}
+.country-tile {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; gap: 9px;
+  padding: 6px 4px;
+  border-radius: 6px;
+  color: inherit; text-decoration: none;
+  transition: transform .15s, background .15s;
+}
+.country-tile:hover {
+  background: rgba(0,0,0,.025);
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+.flag-rect {
+  width: 80px; height: 60px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,.1);
+  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+  background: #fff;
+  transition: border-color .15s, box-shadow .15s;
+}
+.country-tile:hover .flag-rect {
+  border-color: var(--orange);
+  box-shadow: 0 2px 6px rgba(249,115,22,.18);
+}
+.flag-rect svg {
+  display: block;
+  width: 100%; height: 100%;
+}
+.country-tile-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-2);
+  line-height: 1.2;
+}
+
+/* ── Empty/placeholder ─────────────────────────────────────────────── */
+.note {
+  text-align: center; padding: 18px;
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--text-6);
+}
+
+/* ── Footer ────────────────────────────────────────────────────────── */
+.footer {
+  text-align: center; padding: 24px 12px; margin-top: 18px;
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--text-6);
+}
+.footer a { color: var(--text-5); }
+
+/* ── Responsive ────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .page { padding: 12px 10px 48px; }
+  .box { padding: 16px 16px; }
+  .country-title h1 { font-size: 26px; }
+  .metric-head h2 { font-size: 22px; }
+  .metric-value { font-size: 22px; }
+  .commodities-grid { grid-template-columns: repeat(2, 1fr); }
+  .countries-grid { grid-template-columns: repeat(3, 1fr); gap: 16px 8px; }
+  .flag-rect { width: 64px; height: 48px; }
+  .country-tile-name { font-size: 12px; }
+  .snapshot { font-size: 12px; }
+  .snapshot th, .snapshot td { padding: 10px 3px 11px; }
+  .snapshot td:first-child, .snapshot th:first-child { padding-left: 6px; }
+  .row-flag { width: 18px; height: 13px; }
+  .code-cell { gap: 6px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="box compact">
+    <div class="head-row">
+      <a class="back-link" href="index.html">← MacroSnaps</a>
+      <span class="date">Mon 11 May 2026</span>
+    </div>
+    <div class="country-title">
+      <h1>India</h1>
+      <span class="flag-pill">IND</span>
+    </div>
+  </div>
+
+  <div class="box">
+    <div class="section-label">Today</div>
+    <ol class="stories"><li>India is threatening to block Chinese products over lopsided trade, a sign the country is taking sides as global supply chains fracture.</li><li>The IMF just cut its forecast for emerging market growth and raised inflation expectations, meaning India faces headwinds even as it remains a bright spot.</li><li>Wall Street thinks India stocks are already priced for perfection, warning that the easy gains may be behind us.</li></ol>
+  </div>
+
+  
+    <div class="box">
+      <div class="metric-head">
+        <h2>GDP Growth</h2>
+        <div class="metric-value pos">+6.3%</div>
+      </div>
+      <ol class="stories sm"><li>India&#x27;s 6.3% growth means the economy expanded faster than most countries last year, putting it on track to become the world&#x27;s 4th largest economy in 2026.</li><li>At 6.3%, India is growing more than twice as fast as developed economies like the US or Europe, which is why multinational companies keep moving operations there.</li><li>This growth rate is solid but down slightly from India&#x27;s usual 7-8% range, signaling that momentum is easing as the central bank tightens policy to fight inflation.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="GDP Growth" data-chart='{&quot;v&quot;: [4.0, 4.8, 3.8, 7.9, 7.8, 9.3, 9.3, 9.8, 3.9, 8.4, 10.3, 6.6, 5.5, 6.4, 7.4, 8.0, 8.3, 6.8, 6.5, 4.0, -5.8, 9.1, 7.2, 8.2, 6.5, 6.5, 6.3], &quot;startDate&quot;: null, &quot;type&quot;: &quot;bar&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">GDP Growth · Annual</div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is GDP growth?</div>
+        <p class="gloss-body">GDP growth measures how fast a country&#x27;s economy is expanding or shrinking. It is the single most important number for understanding whether an economy is healthy, struggling, or in recession.</p>
+        <div class="gloss-source">Source: National statistics offices · IMF</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>Inflation (CPI)</h2>
+        <div class="metric-value">4.2%</div>
+      </div>
+      <ol class="stories sm"><li>At 4.2%, inflation is near the RBI&#x27;s 4% target, meaning prices are rising at a pace the central bank considers healthy and stable.</li><li>India&#x27;s inflation is lower than it was two years ago when it hit 7%, so the RBI&#x27;s rate hikes are working, but they have not solved the problem entirely.</li><li>Food inflation (vegetables, grains, oils) remains the wildcard, and another drought next season could push the headline number back up to 5-6% and force the RBI to hold rates higher for longer.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="Inflation (CPI)" data-chart='{&quot;v&quot;: [2.62, 3.61, 4.83, 5.54, 5.01, 5.24, 4.95, 3.99, 3.5, 2.75, 2.74, 3.48, 3.25, 3.02, 2.53, 2.28, 2.5, 3.39, 4.04, 5.19, 4.73, 4.23, 4.89, 5.16, 4.94, 5.19, 5.17, 4.69, 4.66, 4.16, 3.89, 3.86, 4.3, 4.06, 3.6, 3.2, 3.43, 3.86, 4.06, 5.12, 4.66, 4.41, 4.16, 3.1, 2.89, 3.29, 3.07, 3.72, 4.35, 4.13, 3.49, 2.23, 2.83, 3.02, 3.19, 4.61, 4.81, 4.57, 4.17, 3.78, 4.37, 4.17, 4.17, 4.96, 3.74, 3.32, 4.06, 3.45, 3.63, 4.18, 5.33, 5.57, 4.37, 4.57, 4.57, 4.65, 5.93, 7.27, 6.33, 5.94, 6.4, 6.92, 5.95, 6.53, 6.72, 7.56, 6.72, 6.67, 6.61, 5.69, 6.45, 7.26, 6.4, 5.51, 5.51, 5.51, 5.51, 5.47, 7.87, 7.81, 7.75, 7.69, 8.33, 9.02, 9.77, 10.45, 10.45, 9.7, 10.45, 9.63, 8.03, 8.7, 8.63, 9.29, 11.89, 11.72, 11.64, 11.49, 13.51, 14.97, 16.22, 14.86, 14.86, 13.33, 13.91, 13.73, 11.25, 9.88, 9.82, 9.7, 8.33, 9.47, 9.3, 8.82, 8.82, 9.41, 8.72, 8.62, 8.43, 8.99, 10.06, 9.39, 9.34, 7.1, 5.76, 8.04, 8.89, 9.8, 10.24, 10.37, 9.71, 10.49, 9.78, 10.02, 9.9, 10.56, 10.35, 10.51, 9.65, 8.97, 8.77, 9.91, 9.96, 9.99, 10.28, 10.54, 11.54, 9.64, 8.6, 7.88, 8.45, 8.48, 8.33, 6.77, 7.39, 7.03, 5.63, 4.62, 3.27, 4.28, 5.19, 5.37, 5.25, 4.87, 5.01, 5.4, 3.69, 3.74, 4.41, 5.0, 5.41, 5.61, 5.69, 5.26, 4.83, 5.47, 5.76, 5.77, 6.07, 5.05, 4.39, 4.2, 3.63, 3.41, 3.17, 3.65, 3.81, 2.99, 2.18, 1.54, 2.36, 3.28, 3.28, 3.58, 4.88, 5.21, 5.07, 4.44, 4.36, 4.58, 4.87, 4.84, 4.17, 3.69, 3.7, 3.31, 2.33, 2.11, 1.97, 2.57, 2.86, 2.99, 3.05, 3.18, 3.15, 3.28, 3.99, 4.69, 5.54, 7.35, 7.59, 6.58, 5.84, 7.22, 6.27, 6.23, 6.73, 6.69, 7.27, 7.61, 6.93, 4.59, 4.06, 5.03, 5.52, 4.23, 6.3, 6.26, 5.59, 5.3, 4.35, 4.48, 4.91, 5.59, 6.01, 6.07, 6.95, 7.79, 7.04, 7.01, 6.71, 7.0, 7.41, 6.77, 5.88, 5.78, 6.52, 6.44, 5.66, 4.7, 4.25, 4.87, 7.44, 6.83, 5.02, 4.87, 5.55, 5.69, 5.1, 5.09, 4.85, 4.83, 4.86, 5.08, 3.6, 3.65, 5.49, 6.21, 5.48, 5.22, 4.26, 3.61, 3.34, 3.16, 2.82, 2.1, 1.61, 2.07, 1.44, 0.25, 0.71, 1.33], &quot;startDate&quot;: &quot;2000-01&quot;, &quot;type&quot;: &quot;line&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">Inflation (CPI) · History since 2000</div>
+            <div class="metric-chart-range">
+              <button class="mcr-btn" data-r="12">1Y</button>
+              <button class="mcr-btn" data-r="24">2Y</button>
+              <button class="mcr-btn" data-r="60">5Y</button>
+              <button class="mcr-btn" data-r="0">All</button>
+            </div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is inflation?</div>
+        <p class="gloss-body">Inflation is a sustained increase in the overall price level of goods and services, which reduces the purchasing power of money over time.</p>
+        <div class="gloss-source">Source: National statistics offices · IMF</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>Unemployment</h2>
+        <div class="metric-value">4.7%</div>
+      </div>
+      <ol class="stories sm"><li>At 4.7%, unemployment is near historic lows in India, meaning jobs are plentiful and most people who want to work can find employment.</li><li>This low unemployment rate is one reason India&#x27;s economy feels resilient despite the central bank raising interest rates, because people are still earning and spending.</li><li>The risk is that unemployment could rise sharply if GDP growth drops below 5%, so the RBI needs to be careful not to tighten too aggressively and kill job creation.</li></ol>
+      
+      
+      <div class="gloss">
+        <div class="gloss-title">What is the unemployment rate?</div>
+        <p class="gloss-body">The unemployment rate measures what percentage of people who want to work cannot find a job. It is one of the clearest signals of whether an economy is providing enough opportunity for its citizens.</p>
+        <div class="gloss-source">Source: National statistics offices · IMF</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>Budget Deficit</h2>
+        <div class="metric-value">-7.2% GDP</div>
+      </div>
+      <ol class="stories sm"><li>India&#x27;s government is spending 7.2% more than it takes in through taxes, meaning it is borrowing heavily to fund roads, schools, and welfare programs that boost growth now but create debt later.</li><li>This deficit is higher than it should be, and it is putting pressure on bond yields and crowding out private borrowers, which means companies have a harder time getting loans to invest and grow.</li><li>If the deficit stays this wide, the government will need to either raise taxes, cut spending, or slow growth, none of which are politically easy choices in a country preparing for elections.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="Budget Deficit" data-chart='{&quot;v&quot;: [-9.5, -9.9, -9.0, -8.3, -7.1, -6.7, -5.9, -4.0, -8.3, -9.7, -8.9, -8.2, -7.6, -7.3, -7.0, -6.9, -6.5, -6.4, -6.2, -7.4, -13.1, -10.0, -9.0, -8.3, -7.8, -7.3, -7.2], &quot;startDate&quot;: null, &quot;type&quot;: &quot;bar&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">Budget Deficit · Annual</div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is the budget deficit?</div>
+        <p class="gloss-body">The budget deficit measures how much more a government spends than it earns in a given year. A deficit means the government is borrowing to cover the gap, adding to national debt.</p>
+        <div class="gloss-source">Source: IMF Fiscal Monitor · National finance ministries</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>Current Account</h2>
+        <div class="metric-value">-1.2% GDP</div>
+      </div>
+      <ol class="stories sm"><li>India is importing more than it exports by an amount equal to 1.2% of its economy, meaning the country is spending more foreign currency than it earns, a trend that can weaken the rupee over time.</li><li>This deficit is driven by high oil prices and a large appetite for imported machinery and electronics, which is normal for a fast-growing economy, but it does mean India depends on foreign investment to fund the gap.</li><li>If oil prices spike or foreign investors get nervous, the rupee could fall sharply, making imports more expensive and pushing inflation back up, which would force the RBI to keep rates high longer.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="Current Account" data-chart='{&quot;v&quot;: [-1.0, 0.3, 1.3, 1.5, -0.3, -1.3, -1.0, -1.3, -2.3, -2.8, -3.2, -4.2, -5.1, -1.7, -1.3, -1.0, -0.6, -1.5, -2.1, -0.9, 0.9, -1.2, -2.0, -1.0, -1.1, -1.1, -1.2], &quot;startDate&quot;: null, &quot;type&quot;: &quot;bar&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">Current Account · Annual</div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is the current account?</div>
+        <p class="gloss-body">The current account measures whether a country earns more from the rest of the world than it spends. It tracks trade in goods and services, plus income flows like investment returns and remittances.</p>
+        <div class="gloss-source">Source: IMF BOP Statistics</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>Policy Rate</h2>
+        <div class="metric-value">6%</div>
+      </div>
+      <ol class="stories sm"><li>The RBI&#x27;s policy rate is 6%, which is the interest rate the central bank charges banks to borrow overnight money, and it influences all other borrowing costs in the economy.</li><li>At 6%, this rate is high enough to slow down borrowing and spending, which helps fight inflation but makes it harder for businesses to invest and for families to take out loans for homes or cars.</li><li>The RBI is holding the rate steady here, signaling it is done raising for now, but whether it starts cutting later in 2026 depends on whether inflation stays below 4% and growth does not fall too far.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="Policy Rate" data-chart='{&quot;v&quot;: [8.0, 8.0, 8.0, 7.0, 7.0, 7.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 7.5, 7.0, 8.75, 8.75, 8.5, 8.5, 8.5, 8.5, 8.5, 8.5, 8.5, 8.5, 8.5, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 7.5, 7.5, 7.5, 7.5, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.25, 6.25, 6.25, 6.5, 6.5, 6.5, 6.5, 6.5, 6.75, 7.0, 7.0, 7.0, 7.25, 7.25, 7.25, 7.5, 7.5, 7.5, 7.75, 7.75, 7.75, 7.75, 7.75, 7.75, 7.75, 7.75, 7.75, 7.75, 7.75, 7.75, 7.75, 7.75, 8.5, 9.0, 9.0, 9.0, 8.0, 7.5, 6.5, 5.5, 5.5, 5.0, 4.75, 4.75, 4.75, 4.75, 4.75, 4.75, 4.75, 4.75, 4.75, 4.75, 4.75, 5.0, 5.25, 5.25, 5.25, 5.75, 5.75, 6.0, 6.0, 6.25, 6.25, 6.5, 6.5, 6.75, 6.75, 7.25, 7.5, 8.0, 8.0, 8.25, 8.5, 8.5, 8.5, 8.5, 8.5, 8.5, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 7.75, 7.75, 7.5, 7.5, 7.25, 7.25, 7.25, 7.25, 7.5, 7.75, 7.75, 7.75, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 7.75, 7.75, 7.5, 7.5, 7.5, 7.25, 7.25, 7.25, 6.75, 6.75, 6.75, 6.75, 6.75, 6.75, 6.75, 6.5, 6.5, 6.5, 6.5, 6.5, 6.5, 6.25, 6.25, 6.25, 6.25, 6.25, 6.25, 6.25, 6.25, 6.25, 6.25, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.25, 6.25, 6.5, 6.5, 6.5, 6.5, 6.5, 6.5, 6.25, 6.25, 6.0, 6.0, 5.75, 5.75, 5.4, 5.4, 5.15, 5.15, 5.15, 5.15, 5.15, 4.4, 4.4, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.4, 4.9, 4.9, 5.4, 5.9, 5.9, 5.9, 6.25, 6.25, 6.5, 6.5, 6.5, 6.5, 6.5, 6.5, 6.5, 6.5, 6.5, 6.5, 6.5, 6.5, 6.5, 6.5, 6.5, 6.5, 6.5, 6.5, 6.5, 6.5, 6.5, 6.5, 6.5, 6.5, 6.25, 6.25, 6.0, 6.0, 5.5, 5.5, 5.5, 5.5, 5.5, 5.5, 5.25, 5.25], &quot;startDate&quot;: &quot;2000-04&quot;, &quot;type&quot;: &quot;line&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">Policy Rate · History since 2000</div>
+            <div class="metric-chart-range">
+              <button class="mcr-btn" data-r="12">1Y</button>
+              <button class="mcr-btn" data-r="24">2Y</button>
+              <button class="mcr-btn" data-r="60">5Y</button>
+              <button class="mcr-btn" data-r="0">All</button>
+            </div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is the policy rate?</div>
+        <p class="gloss-body">The policy rate is the interest rate set by a country&#x27;s central bank. It is the most powerful tool for controlling inflation and influencing economic growth, because it affects the cost of borrowing for everyone.</p>
+        <div class="gloss-source">Source: National central banks</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>Stock Market</h2>
+        <div class="metric-value neg">-8.4%</div>
+      </div>
+      <ol class="stories sm"><li>India&#x27;s stock market fell 8.4% since January, erasing early-year gains as trade tensions with China and global growth fears spooked investors.</li><li>BlackRock&#x27;s warning that India looks crowded compared to other emerging markets reflects a real shift in investor sentiment away from the country&#x27;s overheated rally.</li><li>Watch whether new tariffs on Chinese goods help Indian manufacturers or trigger retaliation that drags corporate earnings lower.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="Stock Market YTD" data-chart='{&quot;v&quot;: [5205.29, 5447.47, 5001.28, 4657.55, 4433.61, 4748.77, 4279.86, 4477.31, 4090.38, 3711.02, 3997.99, 3972.12, 4326.72, 4247.04, 3604.38, 3519.16, 3631.91, 3456.78, 3329.28, 3244.95, 2811.6, 2989.35, 3287.56, 3262.33, 3311.03, 3562.31, 3469.35, 3338.16, 3125.73, 3244.7, 2987.65, 3181.23, 2991.36, 2949.32, 3228.82, 3377.28, 3250.38, 3283.66, 3048.72, 2959.79, 3180.75, 3607.13, 3792.61, 4244.73, 4453.24, 4906.87, 5044.82, 5838.96, 5695.67, 5667.51, 5590.6, 5655.09, 4759.62, 4795.46, 5170.32, 5192.08, 5583.61, 5672.27, 6234.29, 6602.69, 6555.94, 6713.86, 6492.82, 6154.44, 6715.11, 7193.85, 7635.42, 7805.43, 8634.48, 7892.32, 8788.81, 9397.93, 9919.89, 10370.24, 11279.96, 11851.93, 10398.61, 10609.25, 10743.88, 11699.05, 12454.42, 12961.9, 13696.31, 13786.91, 14090.92, 12938.09, 13072.1, 13872.37, 14544.46, 14650.51, 15550.99, 15318.6, 17291.1, 19837.99, 19363.19, 20286.99, 17648.71, 17578.72, 15644.44, 17287.31, 16415.57, 13461.6, 14355.75, 14564.53, 12860.43, 9788.06, 9092.72, 9647.31, 9424.24, 8891.61, 9708.5, 11403.25, 14625.25, 14493.84, 15670.31, 15666.64, 17126.84, 15896.28, 16926.22, 17464.81, 16357.96, 16429.55, 17527.77, 17558.71, 16944.63, 17700.9, 17868.29, 17971.12, 20069.12, 20032.34, 19521.25, 20509.09, 18327.76, 17823.4, 19445.22, 19135.96, 18503.28, 18845.87, 18197.2, 16676.75, 16453.76, 17705.01, 16123.46, 15454.92, 17193.55, 17752.68, 17404.2, 17318.81, 16218.53, 17429.98, 17236.18, 17380.75, 18762.74, 18505.38, 19339.9, 19426.71, 19894.98, 18861.54, 18835.77, 19504.18, 19760.3, 19395.81, 19345.7, 18619.72, 19379.77, 21164.52, 20791.93, 21170.68, 20513.85, 21120.12, 22386.27, 22417.8, 24217.34, 25413.78, 25894.97, 26638.11, 26630.51, 27865.83, 28693.99, 27499.42, 29182.95, 29220.12, 27957.49, 27011.31, 27828.44, 27780.83, 28114.56, 26283.09, 26154.83, 26656.83, 26145.67, 26117.54, 24870.69, 23002.0, 25341.86, 25606.62, 26667.96, 26999.72, 28051.86, 28452.17, 27865.96, 27941.51, 26652.81, 26626.46, 27655.96, 28743.32, 29620.5, 29918.4, 31145.8, 30921.61, 32514.94, 31730.49, 31283.72, 33213.13, 33149.35, 34056.83, 35965.02, 34184.04, 32968.68, 35160.36, 35322.38, 35423.48, 37606.58, 38645.07, 36227.14, 34442.05, 36194.3, 36068.33, 36256.69, 35867.44, 38545.72, 39031.55, 39714.2, 39394.64, 37481.12, 37332.79, 38667.33, 40129.05, 40793.81, 41253.74, 40723.49, 38297.29, 29468.49, 33717.62, 32424.1, 34915.8, 37606.89, 38628.29, 38067.93, 39614.07, 44149.72, 47751.33, 46285.77, 49099.99, 49509.15, 48782.36, 51937.44, 52482.71, 52586.84, 57552.39, 59126.36, 59306.93, 57064.87, 58253.82, 58014.17, 56247.28, 58568.51, 57060.87, 55566.41, 53018.94, 57570.25, 59537.07, 57426.92, 60746.59, 63099.65, 60840.74, 59549.9, 58962.12, 58991.52, 61112.44, 62622.24, 64718.56, 66527.67, 64831.41, 65828.41, 63874.93, 66988.44, 72240.26, 71752.11, 72500.3, 73651.35, 74482.78, 73961.31, 79032.73, 81741.34, 82365.77, 84299.78, 79389.06, 79802.79, 78139.01, 77500.57, 73198.1, 77414.92, 80242.24, 81451.01, 83606.46, 81185.58, 79809.65, 80267.62, 83938.71, 85706.67, 85220.6, 82269.78, 81287.19, 71947.55, 76913.45, 78053.2], &quot;startDate&quot;: &quot;2000-01&quot;, &quot;type&quot;: &quot;line&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">Stock Market · History since 2000</div>
+            <div class="metric-chart-range">
+              <button class="mcr-btn" data-r="12">1Y</button>
+              <button class="mcr-btn" data-r="24">2Y</button>
+              <button class="mcr-btn" data-r="60">5Y</button>
+              <button class="mcr-btn" data-r="0">All</button>
+            </div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is the stock market YTD?</div>
+        <p class="gloss-body">Stock Market YTD shows how much a country&#x27;s main stock market index has gone up or down since the start of the year. It is the most visible daily scoreboard for investor confidence in a country&#x27;s economy and companies.</p>
+        <div class="gloss-source">Source: Exchange data</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>10Y Bond Yield</h2>
+        <div class="metric-value">6.78%</div>
+      </div>
+      <ol class="stories sm"><li>Indian government bonds now yield 6.78%, up sharply as investors demand higher returns due to inflation fears and capital outflows.</li><li>Higher bond yields make borrowing more expensive for companies and the government, which slows investment and growth just when India needs it most.</li><li>Central bank policy and global rates will determine whether yields keep climbing or stabilize, so watch RBI moves closely over the next two months.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="10Y Bond Yield" data-chart='{&quot;v&quot;: [6.783, 6.783, 6.783], &quot;startDate&quot;: &quot;2026-03&quot;, &quot;type&quot;: &quot;line&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">10Y Bond Yield · History since 2000</div>
+            <div class="metric-chart-range">
+              <button class="mcr-btn" data-r="12">1Y</button>
+              <button class="mcr-btn" data-r="24">2Y</button>
+              <button class="mcr-btn" data-r="60">5Y</button>
+              <button class="mcr-btn" data-r="0">All</button>
+            </div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is the 10-year bond yield?</div>
+        <p class="gloss-body">The 10-year bond yield is the annual return investors earn for lending money to a government for 10 years. It is the most important interest rate in any economy, the benchmark that influences mortgage rates, corporate borrowing costs, and stock valuations.</p>
+        <div class="gloss-source">Source: Bloomberg · Refinitiv</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>Yield Curve</h2>
+        <div class="metric-value">+128bps</div>
+      </div>
+      <ol class="stories sm"><li>The gap between short-term and long-term Indian bond rates is 128 basis points, which is normal and means the market expects stable growth ahead.</li><li>A steep curve like this usually happens when investors believe inflation will cool and interest rates will eventually fall from current highs.</li><li>If this curve flattens suddenly, it would signal investors are getting nervous about the economy, so monitor any major shifts as an early warning sign.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="Yield Curve" data-chart='{&quot;v&quot;: [128.0, 128.0, 128.0], &quot;startDate&quot;: &quot;2026-03&quot;, &quot;type&quot;: &quot;line&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">Yield Curve · History since 2000</div>
+            <div class="metric-chart-range">
+              <button class="mcr-btn" data-r="12">1Y</button>
+              <button class="mcr-btn" data-r="24">2Y</button>
+              <button class="mcr-btn" data-r="60">5Y</button>
+              <button class="mcr-btn" data-r="0">All</button>
+            </div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is the yield curve?</div>
+        <p class="gloss-body">The yield curve shows the difference between short-term and long-term government bond yields. Its shape is one of the most reliable predictors of recessions: when long-term rates fall below short-term rates (an inversion), a recession has followed almost every time in history.</p>
+        <div class="gloss-source">Source: Bloomberg · Refinitiv</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>USD/INR</h2>
+        <div class="metric-value">94.21</div>
+      </div>
+      <ol class="stories sm"><li>The rupee has weakened to 95.35 per dollar, meaning it takes more rupees to buy one dollar than it did a year ago.</li><li>Rupee weakness happens because foreign investors are pulling money out of India due to growth fears and higher US interest rates making dollar investments more attractive.</li><li>A weaker rupee makes imports more expensive for Indian companies and households, which could worsen inflation and pressure the central bank to keep interest rates higher for longer.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="USD/INR" data-chart='{&quot;v&quot;: [45.53, 45.0, 45.2, 43.33, 44.28, 45.29, 45.89, 46.25, 46.27, 45.81, 45.31, 44.43, 43.31, 43.66, 43.56, 43.61, 43.38, 43.62, 43.46, 43.35, 43.98, 43.93, 45.04, 45.86, 44.97, 43.9, 44.25, 44.53, 44.9, 46.16, 45.8, 46.42, 46.48, 45.72, 44.84, 44.55, 44.04, 44.01, 44.02, 43.05, 40.97, 40.55, 40.53, 40.4, 40.58, 39.58, 39.17, 39.45, 39.24, 39.31, 39.91, 39.89, 40.39, 42.53, 42.85, 42.43, 43.62, 46.6, 49.4, 49.87, 48.06, 48.73, 50.65, 50.78, 49.19, 46.97, 47.8, 47.63, 48.75, 47.81, 46.92, 46.46, 46.4, 46.1, 45.9, 44.8, 44.25, 46.36, 46.4, 46.36, 46.87, 44.69, 44.42, 45.8, 44.81, 45.84, 45.25, 44.61, 44.3, 45.08, 44.76, 44.01, 45.94, 48.86, 48.63, 51.9, 53.0, 52.49, 49.07, 51.34, 52.54, 56.23, 56.8, 55.42, 55.63, 53.01, 53.96, 54.84, 54.75, 53.3, 53.86, 54.39, 54.23, 56.38, 60.19, 60.81, 67.39, 62.91, 61.32, 62.41, 61.78, 62.31, 62.02, 59.84, 60.42, 58.9, 60.04, 60.25, 60.61, 61.55, 61.43, 61.85, 63.38, 61.8, 61.75, 62.51, 63.44, 63.83, 63.72, 64.12, 66.14, 65.92, 65.44, 66.9, 66.45, 68.09, 68.73, 66.37, 66.44, 67.13, 67.42, 67.01, 67.13, 66.82, 66.78, 68.61, 67.93, 67.82, 66.69, 64.79, 64.06, 64.62, 64.79, 64.12, 63.98, 65.36, 64.84, 64.41, 64.06, 63.77, 64.91, 65.03, 66.61, 67.43, 68.8, 68.69, 71.41, 72.95, 73.65, 69.92, 69.92, 71.12, 71.19, 69.5, 69.81, 69.98, 69.33, 69.08, 71.68, 70.5, 70.99, 71.55, 71.31, 71.64, 71.93, 75.4, 75.26, 75.96, 75.7, 74.99, 73.13, 73.84, 74.26, 73.94, 73.13, 72.94, 73.15, 73.45, 74.11, 72.39, 74.29, 74.25, 73.41, 74.32, 74.8, 75.05, 74.43, 75.04, 75.07, 75.83, 76.59, 77.52, 78.9, 79.57, 79.68, 81.48, 82.24, 81.63, 82.84, 81.58, 82.65, 82.1, 81.77, 82.68, 82.08, 82.25, 82.7, 83.19, 83.3, 83.33, 82.3, 83.11, 82.91, 83.39, 83.45, 83.32, 83.45, 83.74, 83.9, 83.72, 84.09, 84.47, 85.79, 86.65, 87.33, 85.54, 85.17, 85.36, 85.46, 87.71, 87.59, 88.7, 88.63, 89.36, 89.77, 91.78, 91.01, 93.92, 94.91, 94.21], &quot;startDate&quot;: &quot;2003-12&quot;, &quot;type&quot;: &quot;line&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">USD/INR · History since 2000</div>
+            <div class="metric-chart-range">
+              <button class="mcr-btn" data-r="12">1Y</button>
+              <button class="mcr-btn" data-r="24">2Y</button>
+              <button class="mcr-btn" data-r="60">5Y</button>
+              <button class="mcr-btn" data-r="0">All</button>
+            </div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+        <div class="fx-regime">
+          <div class="fx-label">India&#x27;s FX regime: Managed Float</div>
+          <p>India&#x27;s rupee is officially a floating currency, but the Reserve Bank of India actively manages it. The RBI regularly buys and sells dollars to prevent big swings, making it more of a &quot;managed float&quot; in practice. USD/INR shows how many rupees you give up to buy one dollar. At 83.1, one dollar costs about 83 rupees - the rupee has gradually weakened over time, losing about 3-4% per year against the dollar due to India&#x27;s higher inflation.</p>
+        </div>
+      <div class="gloss">
+        <div class="gloss-title">What is the exchange rate?</div>
+        <p class="gloss-body">The exchange rate is how much one currency is worth in terms of another. It determines the price of everything a country imports and exports, and is one of the most visible daily indicators of a country&#x27;s economic standing in the world.</p>
+        <div class="gloss-source">Source: WM/Refinitiv · Bloomberg · National central banks</div>
+      </div>
+    </div>
+
+  <div class="footer">
+    Built Mon 11 May 2026 · macrosnaps.app · <a href="index.html">All countries</a>
+  </div>
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>/* ─────────────────────────────────────────────────────────────
+   MacroSnaps v2 — Chart rendering
+   Ported from existing renderMetricChart, adapted for light mode.
+   Reads chart data from each metric's mounted element's data-spark
+   attribute (JSON-encoded) and renders into the matching canvas.
+   ───────────────────────────────────────────────────────────── */
+
+(function () {
+  const ORANGE_RGB = '249,115,22';
+  const GREEN_RGB = '0,176,116';
+  const RED_RGB = '217,58,79';
+  const GRID = 'rgba(0,0,0,.05)';
+  const ZERO = 'rgba(0,0,0,.2)';
+  const TICK = '#888';
+  const TOOLTIP_BG = '#fff';
+  const TOOLTIP_BORDER = 'rgba(249,115,22,.4)';
+
+  // From shell-frozen.chartConfig.annualLabels
+  const ANNUAL_LABELS = [
+    '2000','2001','2002','2003','2004','2005','2006','2007','2008','2009',
+    '2010','2011','2012','2013','2014','2015','2016','2017','2018','2019',
+    '2020','2021','2022','2023','2024','2025','2026F'
+  ];
+
+  // Per-metric chart config
+  const METRIC_CFG = {
+    'GDP Growth':     { type: 'bar', zeroLine: true },
+    'Inflation (CPI)':{ type: 'line' },
+    'Unemployment':   { type: 'line' },
+    'Budget Deficit': { type: 'bar', zeroLine: true },
+    'Current Account':{ type: 'bar', zeroLine: true },
+    'Policy Rate':    { type: 'line', stepped: true },
+    'Stock Market YTD': { type: 'line', zeroLine: true },
+    '10Y Bond Yield': { type: 'line' },
+    'Yield Curve':    { type: 'line', zeroLine: true, segmentColor: true },
+    'USD/DXY':        { type: 'line', indexLabel: true },
+    'CAD/USD':        { type: 'line' },
+    'GBP/USD':        { type: 'line' },
+    'USD/JPY':        { type: 'line' },
+    'EUR/USD':        { type: 'line' },
+    'USD/CNY':        { type: 'line' },
+    'USD/INR':        { type: 'line' },
+    'USD/ZAR':        { type: 'line' },
+    'USD/BRL':        { type: 'line' },
+    'USD/RUB':        { type: 'line' },
+    'FX Rate':        { type: 'line' }
+  };
+
+  function monthLabelsFrom(startDateStr, n) {
+    // startDateStr: "YYYY-MM"
+    // Emit "MMM 'YY" at every position so autoSkip has labels to pick from
+    // at any tick density (1Y, 2Y, 5Y, All).
+    if (!startDateStr) return Array(n).fill('');
+    const MONTH_ABBR = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const [y0, m0] = startDateStr.split('-').map(Number);
+    const labels = [];
+    for (let i = 0; i < n; i++) {
+      const monthIdx = (m0 - 1) + i;
+      const y = y0 + Math.floor(monthIdx / 12);
+      const m = monthIdx % 12;
+      labels.push(MONTH_ABBR[m] + " '" + String(y).slice(2));
+    }
+    return labels;
+  }
+
+  function sliceData(allVals, allLabels, rangeMonths) {
+    if (!rangeMonths || rangeMonths === 0 || rangeMonths >= allVals.length) {
+      return { vals: allVals, labels: allLabels };
+    }
+    return {
+      vals: allVals.slice(-rangeMonths),
+      labels: allLabels.slice(-rangeMonths)
+    };
+  }
+
+  function renderChart(canvas, metricName, metricData, rangeMonths) {
+    if (!window.Chart) { console.warn('Chart.js not loaded'); return; }
+    const cfg = METRIC_CFG[metricName] || { type: 'line' };
+    const isBar = cfg.type === 'bar';
+    const allVals = metricData.v || [];
+    if (!allVals.length) return;
+
+    // Build labels
+    let allLabels;
+    if (isBar) {
+      allLabels = ANNUAL_LABELS.slice(0, allVals.length);
+    } else {
+      allLabels = monthLabelsFrom(metricData.startDate, allVals.length);
+    }
+
+    const sliced = sliceData(allVals, allLabels, rangeMonths);
+    const sliceVals = sliced.vals;
+    const sliceLabels = sliced.labels;
+    const n = sliceVals.length;
+
+    // Axis range
+    const mn = Math.min(...sliceVals);
+    const mx = Math.max(...sliceVals);
+    const range = mx - mn;
+    const pad = (range * 0.15) || (Math.abs(mx) * 0.1) || 1;
+
+    // Destroy any prior chart on this canvas
+    if (canvas._chart) { canvas._chart.destroy(); canvas._chart = null; }
+    const ctx = canvas.getContext('2d');
+
+    let datasets;
+    if (isBar) {
+      const colors = sliceVals.map(v => v >= 0 ? `rgba(${ORANGE_RGB},.55)` : `rgba(${RED_RGB},.55)`);
+      const borders = sliceVals.map(v => v >= 0 ? `rgba(${ORANGE_RGB},.9)` : `rgba(${RED_RGB},.9)`);
+      datasets = [{
+        data: sliceVals,
+        backgroundColor: colors,
+        borderColor: borders,
+        borderWidth: 1,
+        barPercentage: 0.85,
+        categoryPercentage: 0.85
+      }];
+    } else if (cfg.segmentColor) {
+      // Yield curve: green above 0, red below 0
+      datasets = [{
+        data: sliceVals,
+        borderWidth: 1.5,
+        pointRadius: 0,
+        pointHitRadius: 8,
+        pointHoverRadius: 3,
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderWidth: 1,
+        tension: .3,
+        fill: false,
+        segment: {
+          borderColor: function (ctx2) {
+            const y0 = ctx2.p0.parsed.y, y1 = ctx2.p1.parsed.y;
+            if (y0 >= 0 && y1 >= 0) return `rgba(${GREEN_RGB},.8)`;
+            if (y0 < 0 && y1 < 0) return `rgba(${RED_RGB},.8)`;
+            return 'rgba(120,120,120,.6)';
+          }
+        }
+      }];
+    } else {
+      const grad = ctx.createLinearGradient(0, 0, 0, 140);
+      grad.addColorStop(0, `rgba(${ORANGE_RGB},.22)`);
+      grad.addColorStop(1, `rgba(${ORANGE_RGB},.01)`);
+      datasets = [{
+        data: sliceVals,
+        borderColor: `rgba(${ORANGE_RGB},.9)`,
+        borderWidth: 1.5,
+        backgroundColor: grad,
+        fill: true,
+        pointRadius: 0,
+        pointHitRadius: 8,
+        pointHoverRadius: 3,
+        pointHoverBackgroundColor: '#F97316',
+        pointHoverBorderColor: '#fff',
+        pointHoverBorderWidth: 1,
+        tension: .35,
+        stepped: cfg.stepped || false
+      }];
+    }
+
+    canvas._chart = new Chart(ctx, {
+      type: isBar ? 'bar' : 'line',
+      data: { labels: sliceLabels, datasets: datasets },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        events: ['mousemove', 'mouseout', 'touchstart', 'touchmove'],
+        layout: { padding: { left: 2, right: 2, top: 4, bottom: 0 } },
+        scales: {
+          x: {
+            display: true,
+            grid: { display: false },
+            ticks: {
+              color: function (context) {
+                var label = sliceLabels[context.index];
+                return (label && label.toString().endsWith('F')) ? '#F97316' : TICK;
+              },
+              font: { family: "'Space Mono', monospace", size: 8 },
+              maxRotation: 0, autoSkip: true,
+              maxTicksLimit: isBar ? 8 : (n <= 12 ? 6 : n <= 24 ? 8 : 10)
+            },
+            border: { display: false }
+          },
+          y: {
+            display: true,
+            position: 'right',
+            grid: {
+              color: function (context) {
+                if (cfg.zeroLine && context.tick.value === 0) return ZERO;
+                return GRID;
+              },
+              lineWidth: function (context) {
+                return (cfg.zeroLine && context.tick.value === 0) ? 1.2 : 1;
+              }
+            },
+            ticks: {
+              color: TICK, font: { family: "'Space Mono', monospace", size: 8 },
+              maxTicksLimit: 5,
+              callback: function (v) {
+                if (cfg.indexLabel && v >= 1000) return (v / 1000).toFixed(v % 1000 === 0 ? 0 : 1) + 'k';
+                return (v % 1 === 0) ? v : v.toFixed(1);
+              }
+            },
+            border: { display: false },
+            min: mn - pad,
+            max: mx + pad
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: TOOLTIP_BG,
+            borderColor: TOOLTIP_BORDER,
+            borderWidth: 1,
+            titleFont: { family: "'Space Mono', monospace", size: 9 },
+            bodyFont: { family: "'DM Sans', sans-serif", size: 11 },
+            titleColor: '#888', bodyColor: '#1a1a1a',
+            cornerRadius: 4, padding: 8, displayColors: false,
+            callbacks: {
+              label: function (ctx2) {
+                let v = ctx2.parsed.y;
+                if (cfg.indexLabel) return ' ' + v.toLocaleString();
+                if (cfg.segmentColor) return ' ' + (v >= 0 ? '+' : '') + v + ' bps';
+                return ' ' + v;
+              }
+            }
+          }
+        },
+        interaction: { mode: 'index', intersect: false },
+        animation: { duration: 350, easing: 'easeOutCubic' }
+      }
+    });
+  }
+
+  // Wire up all chart panels on the page
+  function initAllCharts() {
+    document.querySelectorAll('.metric-chart-wrap').forEach(wrap => {
+      const metricName = wrap.dataset.metric;
+      const dataAttr = wrap.dataset.chart;
+      if (!metricName || !dataAttr) return;
+      let metricData;
+      try { metricData = JSON.parse(dataAttr); } catch (e) { return; }
+
+      const canvas = wrap.querySelector('canvas');
+      if (!canvas) return;
+
+      const cfg = METRIC_CFG[metricName] || {};
+      const isBar = cfg.type === 'bar';
+
+      // Render with default range
+      const defaultRange = isBar ? 0 : 60; // bar = all years; line = 5Y default
+      renderChart(canvas, metricName, metricData, defaultRange);
+
+      // Wire range buttons (line charts only)
+      const btns = wrap.querySelectorAll('.mcr-btn');
+      btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          btns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const r = parseInt(btn.dataset.r) || 0;
+          renderChart(canvas, metricName, metricData, r);
+        });
+      });
+
+      // Mark default-active button
+      if (!isBar) {
+        btns.forEach(b => { if (parseInt(b.dataset.r) === 60) b.classList.add('active'); });
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAllCharts);
+  } else {
+    initAllCharts();
+  }
+})();
+</script>
+</body>
+</html>

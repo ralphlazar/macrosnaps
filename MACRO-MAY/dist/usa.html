@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>United States · MacroSnaps</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>/* ─────────────────────────────────────────────────────────────
+   MacroSnaps v2 (MACRO-MAY)
+   Light mode · orange palette · coral bullets
+   ───────────────────────────────────────────────────────────── */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --orange: #F97316;
+  --orange-dark: #C2410C;
+  --coral: #CC785C;
+  --green: #00b074;
+  --red: #d93a4f;
+  --text: #1a1a1a;
+  --text-2: #333;
+  --text-3: #444;
+  --text-4: #555;
+  --text-5: #888;
+  --text-6: #999;
+  --border: rgba(0,0,0,.06);
+  --border-2: rgba(0,0,0,.04);
+  --surface: #f5f5f4;
+  --card: #fff;
+  --pill-bg: rgba(0,0,0,.04);
+  --font-display: 'Space Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+}
+
+html { background: var(--surface); color: var(--text); font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
+body { min-height: 100vh; padding: 0; }
+
+a { color: var(--orange-dark); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.page { max-width: 760px; margin: 0 auto; padding: 18px 16px 64px; }
+
+/* ── Box (the modular container) ─────────────────────────────── */
+.box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px 22px;
+  margin-bottom: 14px;
+}
+.box.compact { padding: 16px 22px; }
+a.box { display: block; color: inherit; cursor: pointer; transition: border-color .15s, transform .05s; }
+a.box:hover { border-color: rgba(0,0,0,.12); text-decoration: none; }
+a.box:active { transform: scale(.998); }
+
+/* ── Header ───────────────────────────────────────────────────── */
+.head-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-bottom: 14px; border-bottom: 1px solid var(--border); margin-bottom: 18px;
+}
+.head-row.no-divider { padding-bottom: 0; border-bottom: none; margin-bottom: 0; }
+.back-link {
+  font-family: var(--font-display); font-size: 10px; letter-spacing: 1.4px;
+  text-transform: uppercase; color: var(--text-5); text-decoration: none;
+}
+.back-link:hover { color: var(--text-3); text-decoration: none; }
+.date {
+  font-family: var(--font-display); font-size: 10px; letter-spacing: 1.4px;
+  text-transform: uppercase; color: var(--text-5);
+}
+.brand {
+  margin: 0; font-size: 22px; font-weight: 500; letter-spacing: -.01em; line-height: 1;
+}
+.country-title { display: flex; align-items: baseline; gap: 14px; }
+.country-title h1 {
+  margin: 0; font-size: 30px; font-weight: 500; letter-spacing: -.02em; line-height: 1;
+}
+.flag-pill {
+  font-family: var(--font-display); font-size: 10px; letter-spacing: 1.6px;
+  color: var(--text-5); background: var(--pill-bg); padding: 3px 10px; border-radius: 3px; font-weight: 500;
+}
+
+/* ── Section label (the small uppercase header inside a box) ───── */
+.section-label {
+  font-family: var(--font-display); font-size: 10px; letter-spacing: 1.6px;
+  text-transform: uppercase; color: var(--text-5); margin-bottom: 14px;
+}
+
+/* ── Stories list (numbered with coral circles) ─────────────────── */
+.stories { list-style: none; padding: 0; margin: 0; counter-reset: story; }
+.stories li {
+  counter-increment: story;
+  font-size: 15px; color: var(--text-2); line-height: 1.65;
+  padding-left: 30px; position: relative; margin-bottom: 11px;
+}
+.stories li:last-child { margin-bottom: 0; }
+.stories li::before {
+  content: counter(story);
+  position: absolute; left: 0; top: 3px;
+  width: 18px; height: 18px; display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; border: 1.5px solid var(--coral); color: var(--coral);
+  font-size: 11px; font-weight: 700; font-family: var(--font-body);
+}
+.stories.sm li { font-size: 14px; color: var(--text-3); padding-left: 28px; margin-bottom: 8px; }
+.stories.sm li::before { width: 17px; height: 17px; font-size: 10px; }
+
+/* ── Snapshot table ─────────────────────────────────────────────── */
+.snapshot {
+  width: 100%; border-collapse: collapse;
+  font-family: var(--font-display); font-size: 13px;
+  font-variant-numeric: tabular-nums; table-layout: fixed;
+}
+.snapshot th, .snapshot td { padding: 11px 4px 12px; text-align: right; border-bottom: 1px solid var(--border-2); vertical-align: middle; }
+.snapshot thead th { border-bottom: 1px solid rgba(0,0,0,.1); font-weight: 500; color: var(--text-5); font-size: 9px; letter-spacing: 1.4px; text-transform: uppercase; padding: 9px 4px; }
+.snapshot th.sortable { cursor: pointer; user-select: none; transition: color .15s; }
+.snapshot th.sortable:hover { color: var(--text-3); }
+.snapshot th.sortable.active { color: var(--orange-dark); }
+.snapshot th .sort-arrow { display: inline-block; margin-left: 3px; color: var(--orange-dark); font-size: 10px; min-width: 6px; }
+.snapshot td:first-child, .snapshot th:first-child { text-align: left; padding-left: 8px; }
+.snapshot td:first-child { color: var(--text); font-weight: 500; transition: color .15s; }
+.snapshot tbody tr:last-child td { border-bottom: none; }
+.snapshot tbody tr.clickable { cursor: pointer; transition: background-color .15s; }
+.snapshot tbody tr.clickable td { cursor: pointer; }
+.snapshot tbody tr.clickable:hover { background: rgba(249,115,22,.12); }
+.snapshot tbody tr.clickable:hover td:first-child .code-text { color: var(--orange-dark); }
+
+/* Country code cell: flag + code + hover arrow */
+.code-cell {
+  display: inline-flex; align-items: center; gap: 8px;
+  line-height: 1;
+}
+.row-flag {
+  display: inline-block; flex-shrink: 0;
+  width: 22px; height: 16px;
+  border-radius: 3px; overflow: hidden;
+  border: 1px solid rgba(0,0,0,.1);
+  line-height: 0;
+}
+.row-flag svg { display: block; width: 100%; height: 100%; }
+.code-text { transition: color .15s; }
+.row-arrow {
+  display: inline-block; margin-left: 2px;
+  color: var(--orange-dark); font-weight: 700;
+  opacity: 0; transition: opacity .15s;
+}
+.snapshot tbody tr.clickable:hover .row-arrow { opacity: 1; }
+
+/* Numeric cells: simple right-aligned values */
+.pos { color: var(--green); }
+.neg { color: var(--red); }
+.muted { color: var(--text-6); }
+
+/* ── Country card ────────────────────────────────────────────────── */
+.country-card-head {
+  display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;
+}
+.country-card-name { display: flex; align-items: center; gap: 11px; }
+.country-card-name h2 { margin: 0; font-size: 17px; font-weight: 500; }
+.country-card-arrow { color: var(--orange-dark); font-size: 14px; }
+
+/* ── Metric box ───────────────────────────────────────────────────── */
+.metric-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 20px; gap: 14px;
+}
+.metric-head h2 {
+  margin: 0; font-size: 26px; font-weight: 500; letter-spacing: -.01em; line-height: 1.1;
+}
+.metric-value {
+  font-size: 26px; font-weight: 500; color: var(--text);
+  font-variant-numeric: tabular-nums; letter-spacing: -.01em; line-height: 1; white-space: nowrap;
+}
+
+/* ── Chart panel (ported from existing site) ──────────────────────── */
+.metric-chart-wrap {
+  margin: 10px 0 0; padding: 12px 0 4px;
+  border-top: 1px solid var(--border);
+}
+.metric-chart-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.metric-chart-title {
+  font-family: var(--font-display); font-size: 8px; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text-5);
+}
+.metric-chart-range { display: flex; gap: 2px; }
+.mcr-btn {
+  font-family: var(--font-display); font-size: 8px; letter-spacing: .5px;
+  text-transform: uppercase; padding: 3px 8px;
+  border: 1px solid rgba(0,0,0,.08); border-radius: 2px;
+  background: transparent; color: var(--text-5); cursor: pointer; transition: all .15s;
+}
+.mcr-btn:hover { border-color: rgba(249,115,22,.4); color: var(--text-3); }
+.mcr-btn.active {
+  background: rgba(249,115,22,.08); border-color: rgba(249,115,22,.35);
+  color: var(--orange-dark);
+}
+.metric-chart-canvas { height: 140px; position: relative; }
+.metric-chart-canvas canvas { width: 100% !important; height: 100% !important; }
+
+/* ── Glossary block ───────────────────────────────────────────────── */
+.gloss { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
+.gloss-title {
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--text-5); margin-bottom: 6px;
+}
+.gloss-body { font-size: 13px; color: var(--text-4); line-height: 1.6; margin: 0; }
+.gloss-source {
+  font-family: var(--font-display); font-size: 8px; letter-spacing: .8px;
+  color: var(--text-6); margin-top: 12px;
+}
+
+/* ── FX regime callout (USD/DXY etc.) ─────────────────────────────── */
+.fx-regime {
+  background: rgba(249,115,22,.05); border-left: 2px solid rgba(249,115,22,.5);
+  padding: 13px 15px; margin-top: 14px; border-radius: 0 4px 4px 0;
+}
+.fx-regime .fx-label {
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--orange-dark); margin-bottom: 6px;
+}
+.fx-regime p { font-size: 13px; line-height: 1.6; color: var(--text-3); margin: 0; }
+
+/* ── Commodities ──────────────────────────────────────────────────── */
+.commodities-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 22px;
+}
+.commodity-item .c-name {
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--text-5); margin-bottom: 4px;
+}
+.commodity-item .c-value {
+  font-family: var(--font-display); font-size: 15px; font-weight: 500;
+  color: var(--text); font-variant-numeric: tabular-nums;
+}
+.commodity-item .c-change { font-size: 11px; font-weight: 400; margin-left: 4px; }
+
+/* ── Countries grid (homepage) ──────────────────────────────────── */
+.countries-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px 14px;
+}
+.country-tile {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; gap: 9px;
+  padding: 6px 4px;
+  border-radius: 6px;
+  color: inherit; text-decoration: none;
+  transition: transform .15s, background .15s;
+}
+.country-tile:hover {
+  background: rgba(0,0,0,.025);
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+.flag-rect {
+  width: 80px; height: 60px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,.1);
+  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+  background: #fff;
+  transition: border-color .15s, box-shadow .15s;
+}
+.country-tile:hover .flag-rect {
+  border-color: var(--orange);
+  box-shadow: 0 2px 6px rgba(249,115,22,.18);
+}
+.flag-rect svg {
+  display: block;
+  width: 100%; height: 100%;
+}
+.country-tile-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-2);
+  line-height: 1.2;
+}
+
+/* ── Empty/placeholder ─────────────────────────────────────────────── */
+.note {
+  text-align: center; padding: 18px;
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--text-6);
+}
+
+/* ── Footer ────────────────────────────────────────────────────────── */
+.footer {
+  text-align: center; padding: 24px 12px; margin-top: 18px;
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--text-6);
+}
+.footer a { color: var(--text-5); }
+
+/* ── Responsive ────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .page { padding: 12px 10px 48px; }
+  .box { padding: 16px 16px; }
+  .country-title h1 { font-size: 26px; }
+  .metric-head h2 { font-size: 22px; }
+  .metric-value { font-size: 22px; }
+  .commodities-grid { grid-template-columns: repeat(2, 1fr); }
+  .countries-grid { grid-template-columns: repeat(3, 1fr); gap: 16px 8px; }
+  .flag-rect { width: 64px; height: 48px; }
+  .country-tile-name { font-size: 12px; }
+  .snapshot { font-size: 12px; }
+  .snapshot th, .snapshot td { padding: 10px 3px 11px; }
+  .snapshot td:first-child, .snapshot th:first-child { padding-left: 6px; }
+  .row-flag { width: 18px; height: 13px; }
+  .code-cell { gap: 6px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="box compact">
+    <div class="head-row">
+      <a class="back-link" href="index.html">← MacroSnaps</a>
+      <span class="date">Mon 11 May 2026</span>
+    </div>
+    <div class="country-title">
+      <h1>United States</h1>
+      <span class="flag-pill">USA</span>
+    </div>
+  </div>
+
+  <div class="box">
+    <div class="section-label">Today</div>
+    <ol class="stories"><li>The economy bounced back hard in early 2026, growing at 2.0% after nearly stalling late last year, but energy prices from the Iran conflict pushed inflation back up to 3.5% and spooked investors into expecting the Fed to hold rates steady for months.</li><li>Those year-old tariffs on China are doing what they were supposed to (boosting domestic factories) but hitting consumers in the wallet at the same time, creating a tension the Fed now has to manage.</li><li>Markets have basically given up on rate cuts this year despite full-year inflation forecasts around 2.3%, meaning the Fed is betting that the energy spike proves temporary while staying cautious about letting up pressure.</li></ol>
+  </div>
+
+  
+    <div class="box">
+      <div class="metric-head">
+        <h2>GDP Growth</h2>
+        <div class="metric-value pos">+2.2%</div>
+      </div>
+      <ol class="stories sm"><li>The economy grew at 2.2% annually, which means it&#x27;s expanding but at a pace that won&#x27;t create many new jobs or push unemployment lower.</li><li>Growth this slow leaves room for the Fed to cut rates without worrying the economy will overheat, but it also means companies won&#x27;t rush to hire.</li><li>Watch whether Q2 growth accelerates above 2.5% or rolls over below 2%, since anything below 1.5% would signal a recession is near.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="GDP Growth" data-chart='{&quot;v&quot;: [2.9, 0.2, 2.0, 4.3, 3.4, 3.0, 2.6, 2.1, -2.5, 0.1, 2.8, 1.5, 1.6, 3.0, 2.7, 2.1, 2.2, 3.0, 2.1, 3.4, -0.9, 5.8, 1.3, 3.4, 2.4, 2.2, 2.2], &quot;startDate&quot;: null, &quot;type&quot;: &quot;bar&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">GDP Growth · Annual</div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is GDP growth?</div>
+        <p class="gloss-body">GDP growth measures how fast a country&#x27;s economy is expanding or shrinking. It is the single most important number for understanding whether an economy is healthy, struggling, or in recession.</p>
+        <div class="gloss-source">Source: National statistics offices · IMF</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>Inflation (CPI)</h2>
+        <div class="metric-value">2.3%</div>
+      </div>
+      <ol class="stories sm"><li>Inflation measured 2.3% in recent data, right at the Fed&#x27;s target, but the deeper problem is core inflation (stripping out food and energy) stuck at 3.1%, meaning prices for things you actually buy daily are still climbing too fast.</li><li>The gap between headline and core inflation means energy prices have stopped accelerating, which is good, but business pricing power on goods and services remains stubborn.</li><li>If core PCE stays above 3% through summer, the Fed will stay put on rates even if growth slows, because cutting into sticky inflation would be a policy mistake.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="Inflation (CPI)" data-chart='{&quot;v&quot;: [2.74, 3.22, 3.76, 3.07, 3.19, 3.73, 3.66, 3.41, 3.45, 3.45, 3.45, 3.39, 3.73, 3.53, 2.92, 3.27, 3.62, 3.25, 2.72, 2.72, 2.65, 2.13, 1.9, 1.55, 1.14, 1.14, 1.48, 1.64, 1.18, 1.07, 1.46, 1.8, 1.51, 2.03, 2.2, 2.38, 2.6, 2.98, 3.02, 2.22, 2.06, 2.11, 2.11, 2.16, 2.32, 2.04, 1.77, 1.88, 1.93, 1.69, 1.74, 2.29, 3.05, 3.27, 2.99, 2.65, 2.54, 3.19, 3.52, 3.26, 2.97, 3.01, 3.15, 3.51, 2.8, 2.53, 3.17, 3.64, 4.69, 4.35, 3.46, 3.42, 3.99, 3.6, 3.36, 3.55, 4.17, 4.32, 4.15, 3.82, 2.06, 1.31, 1.97, 2.54, 2.08, 2.42, 2.78, 2.57, 2.69, 2.69, 2.36, 1.97, 2.76, 3.54, 4.31, 4.08, 4.28, 4.03, 3.98, 3.94, 4.18, 5.02, 5.6, 5.37, 4.94, 3.66, 1.07, 0.09, 0.03, 0.24, -0.38, -0.74, -1.28, -1.43, -2.1, -1.48, -1.29, -0.18, 1.84, 2.72, 2.63, 2.14, 2.31, 2.24, 2.02, 1.05, 1.24, 1.15, 1.14, 1.17, 1.14, 1.5, 1.63, 2.11, 2.68, 3.16, 3.57, 3.56, 3.63, 3.77, 3.87, 3.53, 3.39, 2.96, 2.93, 2.87, 2.65, 2.3, 1.7, 1.66, 1.41, 1.69, 1.99, 2.16, 1.76, 1.74, 1.59, 1.98, 1.47, 1.06, 1.36, 1.75, 1.96, 1.52, 1.18, 0.96, 1.24, 1.5, 1.58, 1.13, 1.51, 1.95, 2.13, 2.07, 1.99, 1.7, 1.66, 1.66, 1.32, 0.76, -0.09, -0.03, -0.07, -0.2, -0.04, 0.12, 0.17, 0.2, -0.04, 0.17, 0.5, 0.73, 1.37, 1.02, 0.85, 1.13, 1.02, 1.0, 0.83, 1.06, 1.46, 1.64, 1.69, 2.07, 2.5, 2.74, 2.38, 2.2, 1.87, 1.63, 1.73, 1.94, 2.23, 2.04, 2.2, 2.11, 2.07, 2.21, 2.36, 2.46, 2.8, 2.87, 2.95, 2.7, 2.28, 2.52, 2.18, 1.91, 1.55, 1.52, 1.86, 2.0, 1.79, 1.65, 1.81, 1.75, 1.71, 1.76, 2.05, 2.29, 2.49, 2.33, 1.54, 0.33, 0.12, 0.65, 0.99, 1.31, 1.37, 1.18, 1.17, 1.36, 1.4, 1.68, 2.62, 4.16, 4.99, 5.39, 5.37, 5.25, 5.39, 6.22, 6.81, 7.04, 7.48, 7.87, 8.54, 8.26, 8.58, 9.06, 8.52, 8.26, 8.2, 7.75, 7.11, 6.45, 6.41, 6.04, 4.98, 4.93, 4.05, 2.97, 3.18, 3.67, 3.7, 3.24, 3.14, 3.35, 3.09, 3.15, 3.48, 3.36, 3.27, 2.97, 2.89, 2.53, 2.44, 2.6, 2.75, 2.89, 3.0, 2.82, 2.39, 2.31, 2.35, 2.67, 2.7, 2.92, 3.01, null, 2.74, 2.68, 2.39, 2.41], &quot;startDate&quot;: &quot;2000-01&quot;, &quot;type&quot;: &quot;line&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">Inflation (CPI) · History since 2000</div>
+            <div class="metric-chart-range">
+              <button class="mcr-btn" data-r="12">1Y</button>
+              <button class="mcr-btn" data-r="24">2Y</button>
+              <button class="mcr-btn" data-r="60">5Y</button>
+              <button class="mcr-btn" data-r="0">All</button>
+            </div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is inflation?</div>
+        <p class="gloss-body">Inflation is a sustained increase in the overall price level of goods and services, which reduces the purchasing power of money over time.</p>
+        <div class="gloss-source">Source: National statistics offices · IMF</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>Unemployment</h2>
+        <div class="metric-value">4.2%</div>
+      </div>
+      <ol class="stories sm"><li>Unemployment sits at 4.2%, which is historically low but creeping higher, suggesting that companies have stopped hiring new workers and may soon start cutting.</li><li>This rate doesn&#x27;t sound alarming today, but it&#x27;s higher than the 3.8% we saw last year, so the trend is moving in the wrong direction.</li><li>If unemployment hits 4.5% in the next two quarters, the Fed will feel real pressure to cut rates aggressively even if inflation doesn&#x27;t fall, because a rising jobless rate signals recession risk.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="Unemployment" data-chart='{&quot;v&quot;: [4.0, 4.1, 4.0, 3.8, 4.0, 4.0, 4.0, 4.1, 3.9, 3.9, 3.9, 3.9, 4.2, 4.2, 4.3, 4.4, 4.3, 4.5, 4.6, 4.9, 5.0, 5.3, 5.5, 5.7, 5.7, 5.7, 5.7, 5.9, 5.8, 5.8, 5.8, 5.7, 5.7, 5.7, 5.9, 6.0, 5.8, 5.9, 5.9, 6.0, 6.1, 6.3, 6.2, 6.1, 6.1, 6.0, 5.8, 5.7, 5.7, 5.6, 5.8, 5.6, 5.6, 5.6, 5.5, 5.4, 5.4, 5.5, 5.4, 5.4, 5.3, 5.4, 5.2, 5.2, 5.1, 5.0, 5.0, 4.9, 5.0, 5.0, 5.0, 4.9, 4.7, 4.8, 4.7, 4.7, 4.6, 4.6, 4.7, 4.7, 4.5, 4.4, 4.5, 4.4, 4.6, 4.5, 4.4, 4.5, 4.4, 4.6, 4.7, 4.6, 4.7, 4.7, 4.7, 5.0, 5.0, 4.9, 5.1, 5.0, 5.4, 5.6, 5.8, 6.1, 6.1, 6.5, 6.8, 7.3, 7.8, 8.3, 8.7, 9.0, 9.4, 9.5, 9.5, 9.6, 9.8, 10.0, 9.9, 9.9, 9.8, 9.8, 9.9, 9.9, 9.6, 9.4, 9.4, 9.5, 9.5, 9.4, 9.8, 9.3, 9.1, 9.0, 9.0, 9.1, 9.0, 9.1, 9.0, 9.0, 9.0, 8.8, 8.6, 8.5, 8.3, 8.3, 8.2, 8.2, 8.2, 8.2, 8.2, 8.1, 7.8, 7.8, 7.7, 7.9, 8.0, 7.7, 7.5, 7.6, 7.5, 7.5, 7.3, 7.2, 7.2, 7.2, 6.9, 6.7, 6.6, 6.7, 6.7, 6.2, 6.3, 6.1, 6.2, 6.1, 5.9, 5.7, 5.8, 5.6, 5.7, 5.5, 5.4, 5.4, 5.6, 5.3, 5.2, 5.1, 5.0, 5.0, 5.1, 5.0, 4.8, 4.9, 5.0, 5.1, 4.8, 4.9, 4.8, 4.9, 5.0, 4.9, 4.7, 4.7, 4.7, 4.6, 4.4, 4.4, 4.4, 4.3, 4.3, 4.4, 4.3, 4.2, 4.2, 4.1, 4.0, 4.1, 4.0, 4.0, 3.8, 4.0, 3.8, 3.8, 3.7, 3.8, 3.8, 3.9, 4.0, 3.8, 3.8, 3.7, 3.6, 3.6, 3.7, 3.6, 3.5, 3.6, 3.6, 3.6, 3.6, 3.5, 4.4, 14.8, 13.2, 11.0, 10.2, 8.4, 7.8, 6.9, 6.7, 6.7, 6.4, 6.2, 6.1, 6.1, 5.8, 5.9, 5.4, 5.1, 4.7, 4.5, 4.1, 3.9, 4.0, 3.9, 3.7, 3.7, 3.6, 3.6, 3.5, 3.6, 3.5, 3.6, 3.6, 3.5, 3.5, 3.6, 3.5, 3.4, 3.6, 3.6, 3.5, 3.7, 3.7, 3.9, 3.7, 3.8, 3.7, 3.9, 3.9, 3.9, 3.9, 4.1, 4.2, 4.2, 4.1, 4.1, 4.2, 4.1, 4.0, 4.2, 4.2, 4.2, 4.3, 4.1, 4.3, 4.3, 4.4, 4.5, 4.4, 4.3, 4.4], &quot;startDate&quot;: &quot;2000-04&quot;, &quot;type&quot;: &quot;line&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">Unemployment · History since 2000</div>
+            <div class="metric-chart-range">
+              <button class="mcr-btn" data-r="12">1Y</button>
+              <button class="mcr-btn" data-r="24">2Y</button>
+              <button class="mcr-btn" data-r="60">5Y</button>
+              <button class="mcr-btn" data-r="0">All</button>
+            </div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is the unemployment rate?</div>
+        <p class="gloss-body">The unemployment rate measures what percentage of people who want to work cannot find a job. It is one of the clearest signals of whether an economy is providing enough opportunity for its citizens.</p>
+        <div class="gloss-source">Source: National statistics offices · IMF</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>Budget Deficit</h2>
+        <div class="metric-value">-6.9% GDP</div>
+      </div>
+      <ol class="stories sm"><li>The U.S. government is borrowing 6.9% of the entire economy every year to pay for spending, which is unsustainable and means you&#x27;re inheriting a massive bill.</li><li>This deficit has grown because revenues haven&#x27;t kept pace with spending on defense, healthcare, and interest on prior debt, and no politician is willing to cut spending or raise taxes enough to fix it.</li><li>Watch for international demand for U.S. Treasury bonds to weaken; if foreign central banks and investors stop buying at current yields (4.30% on the 10-year), rates will spike and trigger a credit crisis.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="Budget Deficit" data-chart='{&quot;v&quot;: [2.4, 1.3, -1.5, -3.4, -3.5, -2.6, -1.9, -1.2, -3.2, -9.8, -8.7, -8.5, -6.8, -4.1, -2.8, -2.4, -3.1, -3.4, -3.8, -4.6, -14.9, -12.4, -5.4, -6.3, -6.4, -6.5, -6.9], &quot;startDate&quot;: null, &quot;type&quot;: &quot;bar&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">Budget Deficit · Annual</div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is the budget deficit?</div>
+        <p class="gloss-body">The budget deficit measures how much more a government spends than it earns in a given year. A deficit means the government is borrowing to cover the gap, adding to national debt.</p>
+        <div class="gloss-source">Source: IMF Fiscal Monitor · National finance ministries</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>Current Account</h2>
+        <div class="metric-value">-3.7% GDP</div>
+      </div>
+      <ol class="stories sm"><li>America imports much more than it exports, creating a 3.7% current account deficit, which means we&#x27;re selling assets and borrowing from the rest of the world to maintain our living standards.</li><li>This deficit reflects strong consumer demand for cheap imports and weak export competitiveness, a pattern that has persisted for decades regardless of which party controls Washington.</li><li>If the deficit widens beyond 5% of GDP, foreign investors will demand higher returns to keep buying American assets, pushing up mortgage rates and stock valuations.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="Current Account" data-chart='{&quot;v&quot;: [-4.2, -3.8, -4.3, -4.8, -5.3, -5.9, -6.0, -5.1, -4.7, -2.7, -3.0, -2.9, -2.7, -2.2, -2.2, -2.4, -2.3, -2.4, -2.4, -2.1, -2.9, -3.6, -3.8, -3.0, -3.3, -3.4, -3.7], &quot;startDate&quot;: null, &quot;type&quot;: &quot;bar&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">Current Account · Annual</div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is the current account?</div>
+        <p class="gloss-body">The current account measures whether a country earns more from the rest of the world than it spends. It tracks trade in goods and services, plus income flows like investment returns and remittances.</p>
+        <div class="gloss-source">Source: IMF BOP Statistics</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>Policy Rate</h2>
+        <div class="metric-value">3.25%</div>
+      </div>
+      <ol class="stories sm"><li>The Fed&#x27;s interest rate stands at 3.25%, down from 5.25% two years ago, and it&#x27;s probably not going much lower because inflation at 3.1% (in the core version that matters) is still too high.</li><li>The Fed has cut rates to help the economy avoid recession, but if inflation ticks back up, they&#x27;ll have to stop cutting or even raise rates again, which would hammer stocks and job creation.</li><li>The key question is whether the Fed cuts rates further in June or holds firm; watch the May inflation report for the answer, because if core PCE stays above 3%, expect no cut.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="Policy Rate" data-chart='{&quot;v&quot;: [5.45, 5.73, 5.85, 6.02, 6.27, 6.53, 6.54, 6.5, 6.52, 6.51, 6.51, 6.4, 5.98, 5.49, 5.31, 4.8, 4.21, 3.97, 3.77, 3.65, 3.07, 2.49, 2.09, 1.82, 1.73, 1.74, 1.73, 1.75, 1.75, 1.75, 1.73, 1.74, 1.75, 1.75, 1.34, 1.24, 1.24, 1.26, 1.25, 1.26, 1.26, 1.22, 1.01, 1.03, 1.01, 1.01, 1.0, 0.98, 1.0, 1.01, 1.0, 1.0, 1.0, 1.03, 1.26, 1.43, 1.61, 1.76, 1.93, 2.16, 2.28, 2.5, 2.63, 2.79, 3.0, 3.04, 3.26, 3.5, 3.62, 3.78, 4.0, 4.16, 4.29, 4.49, 4.59, 4.79, 4.94, 4.99, 5.24, 5.25, 5.25, 5.25, 5.25, 5.24, 5.25, 5.26, 5.26, 5.25, 5.25, 5.25, 5.26, 5.02, 4.94, 4.76, 4.49, 4.24, 3.94, 2.98, 2.61, 2.28, 1.98, 2.0, 2.01, 2.0, 1.81, 0.97, 0.39, 0.16, 0.15, 0.22, 0.18, 0.15, 0.18, 0.21, 0.16, 0.16, 0.15, 0.12, 0.12, 0.12, 0.11, 0.13, 0.16, 0.2, 0.2, 0.18, 0.18, 0.19, 0.19, 0.19, 0.19, 0.18, 0.17, 0.16, 0.14, 0.1, 0.09, 0.09, 0.07, 0.1, 0.08, 0.07, 0.08, 0.07, 0.08, 0.1, 0.13, 0.14, 0.16, 0.16, 0.16, 0.13, 0.14, 0.16, 0.16, 0.16, 0.14, 0.15, 0.14, 0.15, 0.11, 0.09, 0.09, 0.08, 0.08, 0.09, 0.08, 0.09, 0.07, 0.07, 0.08, 0.09, 0.09, 0.1, 0.09, 0.09, 0.09, 0.09, 0.09, 0.12, 0.11, 0.11, 0.11, 0.12, 0.12, 0.13, 0.13, 0.14, 0.14, 0.12, 0.12, 0.24, 0.34, 0.38, 0.36, 0.37, 0.37, 0.38, 0.39, 0.4, 0.4, 0.4, 0.41, 0.54, 0.65, 0.66, 0.79, 0.9, 0.91, 1.04, 1.15, 1.16, 1.15, 1.15, 1.16, 1.3, 1.41, 1.42, 1.51, 1.69, 1.7, 1.82, 1.91, 1.91, 1.95, 2.19, 2.2, 2.27, 2.4, 2.4, 2.41, 2.42, 2.39, 2.38, 2.4, 2.13, 2.04, 1.83, 1.55, 1.55, 1.55, 1.58, 0.65, 0.05, 0.05, 0.08, 0.09, 0.1, 0.09, 0.09, 0.09, 0.09, 0.09, 0.08, 0.07, 0.07, 0.06, 0.08, 0.1, 0.09, 0.08, 0.08, 0.08, 0.08, 0.08, 0.08, 0.2, 0.33, 0.77, 1.21, 1.68, 2.33, 2.56, 3.08, 3.78, 4.1, 4.33, 4.57, 4.65, 4.83, 5.06, 5.08, 5.12, 5.33, 5.33, 5.33, 5.33, 5.33, 5.33, 5.33, 5.33, 5.33, 5.33, 5.33, 5.33, 5.33, 5.13, 4.83, 4.64, 4.48, 4.33, 4.33, 4.33, 4.33, 4.33, 4.33, 4.33, 4.33, 4.22, 4.09, 3.88, 3.72, 3.64, 3.64], &quot;startDate&quot;: &quot;2000-03&quot;, &quot;type&quot;: &quot;line&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">Policy Rate · History since 2000</div>
+            <div class="metric-chart-range">
+              <button class="mcr-btn" data-r="12">1Y</button>
+              <button class="mcr-btn" data-r="24">2Y</button>
+              <button class="mcr-btn" data-r="60">5Y</button>
+              <button class="mcr-btn" data-r="0">All</button>
+            </div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is the policy rate?</div>
+        <p class="gloss-body">The policy rate is the interest rate set by a country&#x27;s central bank. It is the most powerful tool for controlling inflation and influencing economic growth, because it affects the cost of borrowing for everyone.</p>
+        <div class="gloss-source">Source: National central banks</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>Stock Market</h2>
+        <div class="metric-value pos">+7.4%</div>
+      </div>
+      <ol class="stories sm"><li>Stocks climbed 7.4% since January despite inflation jumping to 3.5%, suggesting investors believe the Fed will hold rates steady through the end of the year.</li><li>The gain came entirely on the back of Q1&#x27;s surprise GDP rebound to 2.0% after a near-stall in late 2025, which convinced traders the economy wasn&#x27;t heading into recession.</li><li>Energy stocks led the rally thanks to the Iran conflict pushing oil prices higher, meaning the tariff-driven manufacturing recovery and inflation threat haven&#x27;t yet scared money away.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="Stock Market YTD" data-chart='{&quot;v&quot;: [1394.46, 1366.42, 1498.58, 1452.43, 1420.6, 1454.6, 1430.83, 1517.68, 1436.51, 1429.4, 1314.95, 1320.28, 1366.01, 1239.94, 1160.33, 1249.46, 1255.82, 1224.38, 1211.23, 1133.58, 1040.94, 1059.78, 1139.45, 1148.08, 1130.2, 1106.73, 1147.39, 1076.92, 1067.14, 989.82, 911.62, 916.07, 815.28, 885.76, 936.31, 879.82, 855.7, 841.15, 848.18, 916.92, 963.59, 974.5, 990.31, 1008.01, 995.97, 1050.71, 1058.2, 1111.92, 1131.13, 1144.94, 1126.21, 1107.3, 1120.68, 1140.84, 1101.72, 1104.24, 1114.58, 1130.2, 1173.82, 1211.92, 1181.27, 1203.6, 1180.59, 1156.85, 1191.5, 1191.33, 1234.18, 1220.33, 1228.81, 1207.01, 1249.48, 1248.29, 1280.08, 1280.66, 1294.87, 1310.61, 1270.09, 1270.2, 1276.66, 1303.82, 1335.85, 1377.94, 1400.63, 1418.3, 1438.24, 1406.82, 1420.86, 1482.37, 1530.62, 1503.35, 1455.27, 1473.99, 1526.75, 1549.38, 1481.14, 1468.36, 1378.55, 1330.63, 1322.7, 1385.59, 1400.38, 1280.0, 1267.38, 1282.83, 1166.36, 968.75, 896.24, 903.25, 825.88, 735.09, 797.87, 872.81, 919.14, 919.32, 987.48, 1020.62, 1057.08, 1036.19, 1095.63, 1115.1, 1073.87, 1104.49, 1169.43, 1186.69, 1089.41, 1030.71, 1101.6, 1049.33, 1141.2, 1183.26, 1180.55, 1257.64, 1286.12, 1327.22, 1325.83, 1363.61, 1345.2, 1320.64, 1292.28, 1218.89, 1131.42, 1253.3, 1246.96, 1257.6, 1312.41, 1365.68, 1408.47, 1397.91, 1310.33, 1362.16, 1379.32, 1406.58, 1440.67, 1412.16, 1416.18, 1426.19, 1498.11, 1514.68, 1569.19, 1597.57, 1630.74, 1606.28, 1685.73, 1632.97, 1681.55, 1756.54, 1805.81, 1848.36, 1782.59, 1859.45, 1872.34, 1883.95, 1923.57, 1960.23, 1930.67, 2003.37, 1972.29, 2018.05, 2067.56, 2058.9, 1994.99, 2104.5, 2067.89, 2085.51, 2107.39, 2063.11, 2103.84, 1972.18, 1920.03, 2079.36, 2080.41, 2043.94, 1940.24, 1932.23, 2059.74, 2065.3, 2096.95, 2098.86, 2173.6, 2170.95, 2168.27, 2126.15, 2198.81, 2238.83, 2278.87, 2363.64, 2362.72, 2384.2, 2411.8, 2423.41, 2470.3, 2471.65, 2519.36, 2575.26, 2647.58, 2673.61, 2823.81, 2713.83, 2640.87, 2648.05, 2705.27, 2718.37, 2816.29, 2901.52, 2913.98, 2711.74, 2760.17, 2506.85, 2704.1, 2784.49, 2834.4, 2945.83, 2752.06, 2941.76, 2980.38, 2926.46, 2976.74, 3037.56, 3140.98, 3230.78, 3225.52, 2954.22, 2584.59, 2912.43, 3044.31, 3100.29, 3271.12, 3500.31, 3363.0, 3269.96, 3621.63, 3756.07, 3714.24, 3811.15, 3972.89, 4181.17, 4204.11, 4297.5, 4395.26, 4522.68, 4307.54, 4605.38, 4567.0, 4766.18, 4515.55, 4373.94, 4530.41, 4131.93, 4132.15, 3785.38, 4130.29, 3955.0, 3585.62, 3871.98, 4080.11, 3839.5, 4076.6, 3970.15, 4109.31, 4169.48, 4179.83, 4450.38, 4588.96, 4507.66, 4288.05, 4193.8, 4567.8, 4769.83, 4845.65, 5096.27, 5254.35, 5035.69, 5277.51, 5460.48, 5522.3, 5648.4, 5762.48, 5705.45, 6032.38, 5881.63, 6040.53, 5954.5, 5611.85, 5569.06, 5911.69, 6204.95, 6339.39, 6460.26, 6688.46, 6840.2, 6849.09, 6845.5, 6939.03, 6878.88, 6343.72, 7135.95, 7365.12], &quot;startDate&quot;: &quot;2000-01&quot;, &quot;type&quot;: &quot;line&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">Stock Market · History since 2000</div>
+            <div class="metric-chart-range">
+              <button class="mcr-btn" data-r="12">1Y</button>
+              <button class="mcr-btn" data-r="24">2Y</button>
+              <button class="mcr-btn" data-r="60">5Y</button>
+              <button class="mcr-btn" data-r="0">All</button>
+            </div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is the stock market YTD?</div>
+        <p class="gloss-body">Stock Market YTD shows how much a country&#x27;s main stock market index has gone up or down since the start of the year. It is the most visible daily scoreboard for investor confidence in a country&#x27;s economy and companies.</p>
+        <div class="gloss-source">Source: Exchange data</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>10Y Bond Yield</h2>
+        <div class="metric-value">4.45%</div>
+      </div>
+      <ol class="stories sm"><li>The 10-year bond yield sits at 4.39%, meaning the government pays that much interest to borrow money for a decade, and investors demand this rate because they worry inflation or economic weakness could hit later.</li><li>Bonds are looking more attractive right now because consumer confidence collapsed to a 74-year low in April, so people are trading stocks for the safety of government debt.</li><li>Watch whether yields drop further if the Fed cuts rates this summer, or spike if energy prices from the Iranian conflict force inflation back up and force the Fed to hold rates higher for longer.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="10Y Bond Yield" data-chart='{&quot;v&quot;: [6.68, 6.42, 6.03, 6.23, 6.29, 6.03, 6.04, 5.73, 5.8, 5.77, 5.48, 5.12, 5.19, 4.92, 4.93, 5.35, 5.43, 5.42, 5.07, 4.85, 4.6, 4.3, 4.78, 5.07, 5.07, 4.88, 5.42, 5.11, 5.08, 4.86, 4.51, 4.14, 3.63, 3.93, 4.22, 3.83, 4.0, 3.71, 3.83, 3.89, 3.37, 3.54, 4.49, 4.45, 3.96, 4.33, 4.34, 4.27, 4.16, 3.99, 3.86, 4.53, 4.66, 4.62, 4.5, 4.13, 4.14, 4.05, 4.36, 4.24, 4.14, 4.36, 4.5, 4.21, 4.0, 3.94, 4.28, 4.02, 4.34, 4.57, 4.49, 4.39, 4.53, 4.55, 4.86, 5.07, 5.12, 5.15, 4.99, 4.74, 4.64, 4.61, 4.46, 4.71, 4.83, 4.56, 4.65, 4.63, 4.9, 5.03, 4.78, 4.54, 4.59, 4.48, 3.97, 4.04, 3.67, 3.53, 3.45, 3.77, 4.06, 3.99, 3.99, 3.83, 3.85, 4.01, 2.93, 2.25, 2.87, 3.02, 2.71, 3.16, 3.47, 3.53, 3.52, 3.4, 3.31, 3.41, 3.21, 3.85, 3.63, 3.61, 3.84, 3.69, 3.31, 2.97, 2.94, 2.47, 2.53, 2.63, 2.81, 3.3, 3.42, 3.42, 3.47, 3.32, 3.05, 3.18, 2.82, 2.23, 1.92, 2.17, 2.08, 1.89, 1.83, 1.98, 2.23, 1.95, 1.59, 1.67, 1.51, 1.57, 1.65, 1.72, 1.62, 1.78, 2.02, 1.89, 1.87, 1.7, 2.16, 2.52, 2.6, 2.78, 2.64, 2.57, 2.75, 3.04, 2.67, 2.66, 2.73, 2.67, 2.48, 2.53, 2.58, 2.35, 2.52, 2.35, 2.18, 2.17, 1.68, 2.0, 1.94, 2.05, 2.12, 2.35, 2.2, 2.21, 2.06, 2.16, 2.21, 2.27, 1.94, 1.74, 1.78, 1.83, 1.84, 1.49, 1.46, 1.58, 1.6, 1.84, 2.37, 2.45, 2.45, 2.36, 2.4, 2.29, 2.21, 2.31, 2.3, 2.12, 2.33, 2.38, 2.42, 2.4, 2.72, 2.87, 2.74, 2.95, 2.83, 2.85, 2.96, 2.86, 3.05, 3.15, 3.01, 2.69, 2.63, 2.73, 2.41, 2.51, 2.14, 2.0, 2.02, 1.5, 1.68, 1.69, 1.78, 1.92, 1.51, 1.13, 0.7, 0.64, 0.65, 0.66, 0.55, 0.72, 0.69, 0.88, 0.84, 0.93, 1.11, 1.44, 1.74, 1.65, 1.58, 1.45, 1.24, 1.3, 1.52, 1.55, 1.43, 1.52, 1.79, 1.83, 2.32, 2.89, 2.85, 2.98, 2.67, 3.15, 3.83, 4.1, 3.68, 3.88, 3.52, 3.92, 3.48, 3.44, 3.64, 3.81, 3.97, 4.09, 4.59, 4.88, 4.37, 3.88, 3.99, 4.25, 4.2, 4.69, 4.51, 4.36, 4.09, 3.91, 3.81, 4.28, 4.18, 4.58, 4.58, 4.24, 4.23, 4.17, 4.41, 4.24, 4.37, 4.23, 4.16, 4.11, 4.02, 4.18, 4.26, 3.97, 4.44, 4.36, 4.45], &quot;startDate&quot;: &quot;2000-01&quot;, &quot;type&quot;: &quot;line&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">10Y Bond Yield · History since 2000</div>
+            <div class="metric-chart-range">
+              <button class="mcr-btn" data-r="12">1Y</button>
+              <button class="mcr-btn" data-r="24">2Y</button>
+              <button class="mcr-btn" data-r="60">5Y</button>
+              <button class="mcr-btn" data-r="0">All</button>
+            </div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is the 10-year bond yield?</div>
+        <p class="gloss-body">The 10-year bond yield is the annual return investors earn for lending money to a government for 10 years. It is the most important interest rate in any economy, the benchmark that influences mortgage rates, corporate borrowing costs, and stock valuations.</p>
+        <div class="gloss-source">Source: Bloomberg · Refinitiv</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>Yield Curve</h2>
+        <div class="metric-value">+84bps</div>
+      </div>
+      <ol class="stories sm"><li>The gap between short-term and long-term bond rates widened by 81 basis points, meaning bond investors now expect the Fed to eventually cut rates more than they did three months ago.</li><li>This steepening happened even though the Fed kept rates on hold in April, which shows the market is betting on rate cuts regardless of what the Fed says right now.</li><li>A steeper curve is generally good for banks (they borrow short and lend long) and bad for savers in money market accounts, so this reshuffles who benefits from the current setup.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="Yield Curve" data-chart='{&quot;v&quot;: [92.0, 64.0, 15.0, 41.0, 66.0, 15.0, -23.0, -58.0, -43.0, -61.0, -73.0, -77.0, 20.0, 7.0, 63.0, 140.0, 180.0, 177.0, 153.0, 148.0, 220.0, 225.0, 300.0, 333.0, 331.0, 309.0, 363.0, 334.0, 334.0, 316.0, 280.0, 245.0, 206.0, 249.0, 300.0, 261.0, 282.0, 251.0, 269.0, 276.0, 226.0, 264.0, 353.0, 347.0, 301.0, 337.0, 341.0, 332.0, 324.0, 303.0, 291.0, 355.0, 358.0, 329.0, 305.0, 254.0, 243.0, 214.0, 213.0, 202.0, 163.0, 160.0, 171.0, 131.0, 101.0, 81.0, 86.0, 50.0, 79.0, 59.0, 54.0, 31.0, 6.0, -7.0, 23.0, 30.0, 26.0, 14.0, -11.0, -31.0, -25.0, -47.0, -57.0, -31.0, -29.0, -60.0, -39.0, -28.0, 17.0, 21.0, -18.0, 53.0, 77.0, 54.0, 82.0, 68.0, 171.0, 168.0, 207.0, 234.0, 217.0, 209.0, 231.0, 211.0, 293.0, 355.0, 292.0, 214.0, 263.0, 276.0, 250.0, 302.0, 333.0, 334.0, 334.0, 325.0, 317.0, 336.0, 315.0, 379.0, 355.0, 348.0, 368.0, 353.0, 315.0, 279.0, 279.0, 233.0, 237.0, 251.0, 264.0, 318.0, 327.0, 327.0, 338.0, 328.0, 299.0, 315.0, 272.0, 221.0, 190.0, 216.0, 207.0, 187.0, 177.0, 190.0, 216.0, 185.0, 152.0, 158.0, 140.0, 148.0, 155.0, 161.0, 154.0, 173.0, 195.0, 178.0, 180.0, 165.0, 212.0, 248.0, 256.0, 275.0, 262.0, 253.0, 269.0, 297.0, 265.0, 261.0, 268.0, 264.0, 244.0, 249.0, 255.0, 232.0, 250.0, 234.0, 216.0, 213.0, 166.0, 198.0, 191.0, 204.0, 211.0, 234.0, 212.0, 213.0, 206.0, 208.0, 199.0, 211.0, 161.0, 141.0, 157.0, 161.0, 150.0, 123.0, 118.0, 125.0, 131.0, 150.0, 189.0, 194.0, 193.0, 183.0, 164.0, 149.0, 123.0, 128.0, 123.0, 111.0, 127.0, 123.0, 115.0, 101.0, 126.0, 122.0, 101.0, 108.0, 90.0, 92.0, 93.0, 75.0, 86.0, 81.0, 64.0, 24.0, 22.0, 28.0, 1.0, 8.0, -21.0, -12.0, -6.0, -49.0, -20.0, 15.0, 19.0, 37.0, -4.0, -14.0, 59.0, 55.0, 51.0, 50.0, 46.0, 61.0, 59.0, 79.0, 76.0, 84.0, 105.0, 140.0, 171.0, 164.0, 157.0, 140.0, 118.0, 126.0, 148.0, 150.0, 138.0, 146.0, 157.0, 148.0, 180.0, 204.0, 169.0, 126.0, 26.0, 19.0, 50.0, -12.0, -69.0, -54.0, -118.0, -96.0, -137.0, -166.0, -188.0, -162.0, -158.0, -147.0, -96.0, -71.0, -108.0, -152.0, -143.0, -120.0, -126.0, -77.0, -95.0, -112.0, -132.0, -130.0, -92.0, -36.0, -40.0, 21.0, 27.0, -8.0, -9.0, -14.0, 5.0, -17.0, -4.0, 0.0, 14.0, 22.0, 14.0, 51.0, 59.0, 30.0, 84.0, 75.0, 84.0], &quot;startDate&quot;: &quot;2000-01&quot;, &quot;type&quot;: &quot;line&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">Yield Curve · History since 2000</div>
+            <div class="metric-chart-range">
+              <button class="mcr-btn" data-r="12">1Y</button>
+              <button class="mcr-btn" data-r="24">2Y</button>
+              <button class="mcr-btn" data-r="60">5Y</button>
+              <button class="mcr-btn" data-r="0">All</button>
+            </div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is the yield curve?</div>
+        <p class="gloss-body">The yield curve shows the difference between short-term and long-term government bond yields. Its shape is one of the most reliable predictors of recessions: when long-term rates fall below short-term rates (an inversion), a recession has followed almost every time in history.</p>
+        <div class="gloss-source">Source: Bloomberg · Refinitiv</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>USD/DXY</h2>
+        <div class="metric-value">97.9</div>
+      </div>
+      <ol class="stories sm"><li>The dollar index is at 98.5, meaning the US dollar is slightly weaker against a basket of major currencies like the euro and yen, so American goods become cheaper to buy abroad but foreign imports cost more here at home.</li><li>The weak dollar reflects deep consumer pessimism in the US (sentiment hit a 74-year low) pushing investors to move money into other countries where growth looks steadier or less burdened by energy costs.</li><li>If the Iranian conflict pushes oil prices higher, the dollar could strengthen again because energy importers flee to dollar safety, but if consumer confidence starts to recover, the index could slip toward 97.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="USD/DXY" data-chart='{&quot;v&quot;: [105.13, 105.92, 105.44, 110.14, 108.74, 106.84, 109.57, 112.6, 113.25, 116.65, 115.24, 109.56, 110.52, 112.01, 117.37, 115.85, 119.07, 119.43, 117.18, 113.42, 113.48, 114.86, 116.13, 116.75, 120.24, 119.16, 118.62, 115.19, 111.81, 106.11, 107.41, 106.98, 106.87, 106.64, 106.41, 101.85, 99.91, 99.71, 99.06, 97.19, 93.27, 94.73, 96.89, 98.1, 92.85, 92.73, 90.21, 86.92, 87.2, 87.31, 87.61, 90.48, 88.95, 88.8, 89.96, 88.94, 87.36, 84.91, 81.82, 80.85, 83.6, 82.51, 84.06, 84.43, 87.76, 89.11, 89.35, 87.58, 89.52, 90.07, 91.57, 91.17, 88.96, 90.11, 89.73, 86.11, 84.72, 85.22, 85.3, 85.05, 85.97, 85.32, 82.92, 83.72, 84.61, 83.57, 82.93, 81.45, 82.3, 81.92, 80.77, 80.79, 77.72, 76.48, 76.15, 76.7, 75.18, 73.71, 71.8, 72.51, 72.88, 72.46, 73.23, 77.38, 79.45, 85.63, 86.52, 81.31, 86.0, 88.01, 85.43, 84.61, 80.43, 80.13, 78.35, 78.17, 76.65, 76.3, 74.88, 77.86, 79.46, 80.36, 81.07, 81.87, 86.48, 86.02, 81.54, 83.2, 78.72, 77.27, 81.2, 79.03, 77.74, 76.89, 75.86, 72.93, 74.64, 74.3, 73.9, 74.13, 78.55, 76.17, 78.39, 80.17, 79.28, 78.73, 78.93, 78.79, 83.04, 81.65, 82.64, 81.25, 79.94, 79.92, 80.15, 79.77, 79.21, 81.98, 82.99, 81.73, 83.38, 83.17, 81.45, 82.09, 80.22, 80.2, 80.68, 80.04, 81.27, 79.78, 80.1, 79.49, 80.37, 79.78, 81.46, 82.75, 85.94, 86.88, 88.36, 90.27, 94.8, 95.25, 98.36, 94.6, 96.91, 95.49, 97.37, 95.95, 96.35, 96.95, 100.17, 98.63, 99.61, 98.21, 94.59, 93.08, 95.89, 96.14, 95.53, 96.02, 95.46, 98.45, 101.5, 102.39, 99.51, 101.12, 100.35, 99.05, 96.92, 95.66, 92.86, 92.67, 93.08, 94.55, 93.01, 92.12, 89.13, 90.61, 90.15, 91.84, 93.99, 94.63, 94.49, 95.14, 95.19, 97.13, 97.27, 96.17, 95.58, 96.16, 97.28, 97.48, 97.75, 96.13, 98.52, 98.92, 99.38, 97.35, 98.27, 96.39, 97.39, 98.13, 99.05, 99.02, 98.34, 97.39, 93.49, 92.14, 93.89, 94.04, 91.87, 89.94, 90.58, 90.93, 93.23, 91.28, 90.03, 92.44, 92.17, 92.63, 94.25, 94.12, 95.99, 95.67, 96.54, 96.71, 98.31, 102.96, 101.75, 104.69, 105.9, 108.7, 112.12, 111.53, 105.95, 103.52, 102.1, 104.87, 102.51, 101.67, 104.32, 102.91, 101.86, 103.62, 106.17, 106.66, 103.5, 101.33, 103.27, 104.16, 104.55, 106.22, 104.67, 105.87, 104.1, 101.7, 100.78, 103.98, 105.74, 108.49, 108.37, 107.61, 104.21, 99.47, 99.33, 96.88, 100.03, 97.77, 97.77, 99.8, 99.46, 98.28, 96.99, 97.61, 100.44, 98.69, 97.88], &quot;startDate&quot;: &quot;2000-01&quot;, &quot;type&quot;: &quot;line&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">USD/DXY · History since 2000</div>
+            <div class="metric-chart-range">
+              <button class="mcr-btn" data-r="12">1Y</button>
+              <button class="mcr-btn" data-r="24">2Y</button>
+              <button class="mcr-btn" data-r="60">5Y</button>
+              <button class="mcr-btn" data-r="0">All</button>
+            </div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+        <div class="fx-regime">
+          <div class="fx-label">United States&#x27;s FX regime: Free Float</div>
+          <p>The US dollar floats freely - its value is set by supply and demand in global markets. As the world&#x27;s reserve currency, the dollar is the benchmark against which most other currencies are measured. The DXY index shown here is not a single exchange rate - it measures the dollar&#x27;s strength against a basket of 6 major currencies (euro, yen, pound, Canadian dollar, Swedish krona, Swiss franc). A DXY of 104 means the dollar is 4% stronger than the basket&#x27;s baseline value of 100.</p>
+        </div>
+      <div class="gloss">
+        <div class="gloss-title">What is the exchange rate?</div>
+        <p class="gloss-body">The exchange rate is how much one currency is worth in terms of another. It determines the price of everything a country imports and exports, and is one of the most visible daily indicators of a country&#x27;s economic standing in the world.</p>
+        <div class="gloss-source">Source: WM/Refinitiv · Bloomberg · National central banks</div>
+      </div>
+    </div>
+
+  <div class="footer">
+    Built Mon 11 May 2026 · macrosnaps.app · <a href="index.html">All countries</a>
+  </div>
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>/* ─────────────────────────────────────────────────────────────
+   MacroSnaps v2 — Chart rendering
+   Ported from existing renderMetricChart, adapted for light mode.
+   Reads chart data from each metric's mounted element's data-spark
+   attribute (JSON-encoded) and renders into the matching canvas.
+   ───────────────────────────────────────────────────────────── */
+
+(function () {
+  const ORANGE_RGB = '249,115,22';
+  const GREEN_RGB = '0,176,116';
+  const RED_RGB = '217,58,79';
+  const GRID = 'rgba(0,0,0,.05)';
+  const ZERO = 'rgba(0,0,0,.2)';
+  const TICK = '#888';
+  const TOOLTIP_BG = '#fff';
+  const TOOLTIP_BORDER = 'rgba(249,115,22,.4)';
+
+  // From shell-frozen.chartConfig.annualLabels
+  const ANNUAL_LABELS = [
+    '2000','2001','2002','2003','2004','2005','2006','2007','2008','2009',
+    '2010','2011','2012','2013','2014','2015','2016','2017','2018','2019',
+    '2020','2021','2022','2023','2024','2025','2026F'
+  ];
+
+  // Per-metric chart config
+  const METRIC_CFG = {
+    'GDP Growth':     { type: 'bar', zeroLine: true },
+    'Inflation (CPI)':{ type: 'line' },
+    'Unemployment':   { type: 'line' },
+    'Budget Deficit': { type: 'bar', zeroLine: true },
+    'Current Account':{ type: 'bar', zeroLine: true },
+    'Policy Rate':    { type: 'line', stepped: true },
+    'Stock Market YTD': { type: 'line', zeroLine: true },
+    '10Y Bond Yield': { type: 'line' },
+    'Yield Curve':    { type: 'line', zeroLine: true, segmentColor: true },
+    'USD/DXY':        { type: 'line', indexLabel: true },
+    'CAD/USD':        { type: 'line' },
+    'GBP/USD':        { type: 'line' },
+    'USD/JPY':        { type: 'line' },
+    'EUR/USD':        { type: 'line' },
+    'USD/CNY':        { type: 'line' },
+    'USD/INR':        { type: 'line' },
+    'USD/ZAR':        { type: 'line' },
+    'USD/BRL':        { type: 'line' },
+    'USD/RUB':        { type: 'line' },
+    'FX Rate':        { type: 'line' }
+  };
+
+  function monthLabelsFrom(startDateStr, n) {
+    // startDateStr: "YYYY-MM"
+    // Emit "MMM 'YY" at every position so autoSkip has labels to pick from
+    // at any tick density (1Y, 2Y, 5Y, All).
+    if (!startDateStr) return Array(n).fill('');
+    const MONTH_ABBR = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const [y0, m0] = startDateStr.split('-').map(Number);
+    const labels = [];
+    for (let i = 0; i < n; i++) {
+      const monthIdx = (m0 - 1) + i;
+      const y = y0 + Math.floor(monthIdx / 12);
+      const m = monthIdx % 12;
+      labels.push(MONTH_ABBR[m] + " '" + String(y).slice(2));
+    }
+    return labels;
+  }
+
+  function sliceData(allVals, allLabels, rangeMonths) {
+    if (!rangeMonths || rangeMonths === 0 || rangeMonths >= allVals.length) {
+      return { vals: allVals, labels: allLabels };
+    }
+    return {
+      vals: allVals.slice(-rangeMonths),
+      labels: allLabels.slice(-rangeMonths)
+    };
+  }
+
+  function renderChart(canvas, metricName, metricData, rangeMonths) {
+    if (!window.Chart) { console.warn('Chart.js not loaded'); return; }
+    const cfg = METRIC_CFG[metricName] || { type: 'line' };
+    const isBar = cfg.type === 'bar';
+    const allVals = metricData.v || [];
+    if (!allVals.length) return;
+
+    // Build labels
+    let allLabels;
+    if (isBar) {
+      allLabels = ANNUAL_LABELS.slice(0, allVals.length);
+    } else {
+      allLabels = monthLabelsFrom(metricData.startDate, allVals.length);
+    }
+
+    const sliced = sliceData(allVals, allLabels, rangeMonths);
+    const sliceVals = sliced.vals;
+    const sliceLabels = sliced.labels;
+    const n = sliceVals.length;
+
+    // Axis range
+    const mn = Math.min(...sliceVals);
+    const mx = Math.max(...sliceVals);
+    const range = mx - mn;
+    const pad = (range * 0.15) || (Math.abs(mx) * 0.1) || 1;
+
+    // Destroy any prior chart on this canvas
+    if (canvas._chart) { canvas._chart.destroy(); canvas._chart = null; }
+    const ctx = canvas.getContext('2d');
+
+    let datasets;
+    if (isBar) {
+      const colors = sliceVals.map(v => v >= 0 ? `rgba(${ORANGE_RGB},.55)` : `rgba(${RED_RGB},.55)`);
+      const borders = sliceVals.map(v => v >= 0 ? `rgba(${ORANGE_RGB},.9)` : `rgba(${RED_RGB},.9)`);
+      datasets = [{
+        data: sliceVals,
+        backgroundColor: colors,
+        borderColor: borders,
+        borderWidth: 1,
+        barPercentage: 0.85,
+        categoryPercentage: 0.85
+      }];
+    } else if (cfg.segmentColor) {
+      // Yield curve: green above 0, red below 0
+      datasets = [{
+        data: sliceVals,
+        borderWidth: 1.5,
+        pointRadius: 0,
+        pointHitRadius: 8,
+        pointHoverRadius: 3,
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderWidth: 1,
+        tension: .3,
+        fill: false,
+        segment: {
+          borderColor: function (ctx2) {
+            const y0 = ctx2.p0.parsed.y, y1 = ctx2.p1.parsed.y;
+            if (y0 >= 0 && y1 >= 0) return `rgba(${GREEN_RGB},.8)`;
+            if (y0 < 0 && y1 < 0) return `rgba(${RED_RGB},.8)`;
+            return 'rgba(120,120,120,.6)';
+          }
+        }
+      }];
+    } else {
+      const grad = ctx.createLinearGradient(0, 0, 0, 140);
+      grad.addColorStop(0, `rgba(${ORANGE_RGB},.22)`);
+      grad.addColorStop(1, `rgba(${ORANGE_RGB},.01)`);
+      datasets = [{
+        data: sliceVals,
+        borderColor: `rgba(${ORANGE_RGB},.9)`,
+        borderWidth: 1.5,
+        backgroundColor: grad,
+        fill: true,
+        pointRadius: 0,
+        pointHitRadius: 8,
+        pointHoverRadius: 3,
+        pointHoverBackgroundColor: '#F97316',
+        pointHoverBorderColor: '#fff',
+        pointHoverBorderWidth: 1,
+        tension: .35,
+        stepped: cfg.stepped || false
+      }];
+    }
+
+    canvas._chart = new Chart(ctx, {
+      type: isBar ? 'bar' : 'line',
+      data: { labels: sliceLabels, datasets: datasets },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        events: ['mousemove', 'mouseout', 'touchstart', 'touchmove'],
+        layout: { padding: { left: 2, right: 2, top: 4, bottom: 0 } },
+        scales: {
+          x: {
+            display: true,
+            grid: { display: false },
+            ticks: {
+              color: function (context) {
+                var label = sliceLabels[context.index];
+                return (label && label.toString().endsWith('F')) ? '#F97316' : TICK;
+              },
+              font: { family: "'Space Mono', monospace", size: 8 },
+              maxRotation: 0, autoSkip: true,
+              maxTicksLimit: isBar ? 8 : (n <= 12 ? 6 : n <= 24 ? 8 : 10)
+            },
+            border: { display: false }
+          },
+          y: {
+            display: true,
+            position: 'right',
+            grid: {
+              color: function (context) {
+                if (cfg.zeroLine && context.tick.value === 0) return ZERO;
+                return GRID;
+              },
+              lineWidth: function (context) {
+                return (cfg.zeroLine && context.tick.value === 0) ? 1.2 : 1;
+              }
+            },
+            ticks: {
+              color: TICK, font: { family: "'Space Mono', monospace", size: 8 },
+              maxTicksLimit: 5,
+              callback: function (v) {
+                if (cfg.indexLabel && v >= 1000) return (v / 1000).toFixed(v % 1000 === 0 ? 0 : 1) + 'k';
+                return (v % 1 === 0) ? v : v.toFixed(1);
+              }
+            },
+            border: { display: false },
+            min: mn - pad,
+            max: mx + pad
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: TOOLTIP_BG,
+            borderColor: TOOLTIP_BORDER,
+            borderWidth: 1,
+            titleFont: { family: "'Space Mono', monospace", size: 9 },
+            bodyFont: { family: "'DM Sans', sans-serif", size: 11 },
+            titleColor: '#888', bodyColor: '#1a1a1a',
+            cornerRadius: 4, padding: 8, displayColors: false,
+            callbacks: {
+              label: function (ctx2) {
+                let v = ctx2.parsed.y;
+                if (cfg.indexLabel) return ' ' + v.toLocaleString();
+                if (cfg.segmentColor) return ' ' + (v >= 0 ? '+' : '') + v + ' bps';
+                return ' ' + v;
+              }
+            }
+          }
+        },
+        interaction: { mode: 'index', intersect: false },
+        animation: { duration: 350, easing: 'easeOutCubic' }
+      }
+    });
+  }
+
+  // Wire up all chart panels on the page
+  function initAllCharts() {
+    document.querySelectorAll('.metric-chart-wrap').forEach(wrap => {
+      const metricName = wrap.dataset.metric;
+      const dataAttr = wrap.dataset.chart;
+      if (!metricName || !dataAttr) return;
+      let metricData;
+      try { metricData = JSON.parse(dataAttr); } catch (e) { return; }
+
+      const canvas = wrap.querySelector('canvas');
+      if (!canvas) return;
+
+      const cfg = METRIC_CFG[metricName] || {};
+      const isBar = cfg.type === 'bar';
+
+      // Render with default range
+      const defaultRange = isBar ? 0 : 60; // bar = all years; line = 5Y default
+      renderChart(canvas, metricName, metricData, defaultRange);
+
+      // Wire range buttons (line charts only)
+      const btns = wrap.querySelectorAll('.mcr-btn');
+      btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          btns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const r = parseInt(btn.dataset.r) || 0;
+          renderChart(canvas, metricName, metricData, r);
+        });
+      });
+
+      // Mark default-active button
+      if (!isBar) {
+        btns.forEach(b => { if (parseInt(b.dataset.r) === 60) b.classList.add('active'); });
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAllCharts);
+  } else {
+    initAllCharts();
+  }
+})();
+</script>
+</body>
+</html>

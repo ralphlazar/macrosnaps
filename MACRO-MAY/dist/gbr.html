@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>United Kingdom · MacroSnaps</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>/* ─────────────────────────────────────────────────────────────
+   MacroSnaps v2 (MACRO-MAY)
+   Light mode · orange palette · coral bullets
+   ───────────────────────────────────────────────────────────── */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --orange: #F97316;
+  --orange-dark: #C2410C;
+  --coral: #CC785C;
+  --green: #00b074;
+  --red: #d93a4f;
+  --text: #1a1a1a;
+  --text-2: #333;
+  --text-3: #444;
+  --text-4: #555;
+  --text-5: #888;
+  --text-6: #999;
+  --border: rgba(0,0,0,.06);
+  --border-2: rgba(0,0,0,.04);
+  --surface: #f5f5f4;
+  --card: #fff;
+  --pill-bg: rgba(0,0,0,.04);
+  --font-display: 'Space Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+}
+
+html { background: var(--surface); color: var(--text); font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
+body { min-height: 100vh; padding: 0; }
+
+a { color: var(--orange-dark); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.page { max-width: 760px; margin: 0 auto; padding: 18px 16px 64px; }
+
+/* ── Box (the modular container) ─────────────────────────────── */
+.box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px 22px;
+  margin-bottom: 14px;
+}
+.box.compact { padding: 16px 22px; }
+a.box { display: block; color: inherit; cursor: pointer; transition: border-color .15s, transform .05s; }
+a.box:hover { border-color: rgba(0,0,0,.12); text-decoration: none; }
+a.box:active { transform: scale(.998); }
+
+/* ── Header ───────────────────────────────────────────────────── */
+.head-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-bottom: 14px; border-bottom: 1px solid var(--border); margin-bottom: 18px;
+}
+.head-row.no-divider { padding-bottom: 0; border-bottom: none; margin-bottom: 0; }
+.back-link {
+  font-family: var(--font-display); font-size: 10px; letter-spacing: 1.4px;
+  text-transform: uppercase; color: var(--text-5); text-decoration: none;
+}
+.back-link:hover { color: var(--text-3); text-decoration: none; }
+.date {
+  font-family: var(--font-display); font-size: 10px; letter-spacing: 1.4px;
+  text-transform: uppercase; color: var(--text-5);
+}
+.brand {
+  margin: 0; font-size: 22px; font-weight: 500; letter-spacing: -.01em; line-height: 1;
+}
+.country-title { display: flex; align-items: baseline; gap: 14px; }
+.country-title h1 {
+  margin: 0; font-size: 30px; font-weight: 500; letter-spacing: -.02em; line-height: 1;
+}
+.flag-pill {
+  font-family: var(--font-display); font-size: 10px; letter-spacing: 1.6px;
+  color: var(--text-5); background: var(--pill-bg); padding: 3px 10px; border-radius: 3px; font-weight: 500;
+}
+
+/* ── Section label (the small uppercase header inside a box) ───── */
+.section-label {
+  font-family: var(--font-display); font-size: 10px; letter-spacing: 1.6px;
+  text-transform: uppercase; color: var(--text-5); margin-bottom: 14px;
+}
+
+/* ── Stories list (numbered with coral circles) ─────────────────── */
+.stories { list-style: none; padding: 0; margin: 0; counter-reset: story; }
+.stories li {
+  counter-increment: story;
+  font-size: 15px; color: var(--text-2); line-height: 1.65;
+  padding-left: 30px; position: relative; margin-bottom: 11px;
+}
+.stories li:last-child { margin-bottom: 0; }
+.stories li::before {
+  content: counter(story);
+  position: absolute; left: 0; top: 3px;
+  width: 18px; height: 18px; display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; border: 1.5px solid var(--coral); color: var(--coral);
+  font-size: 11px; font-weight: 700; font-family: var(--font-body);
+}
+.stories.sm li { font-size: 14px; color: var(--text-3); padding-left: 28px; margin-bottom: 8px; }
+.stories.sm li::before { width: 17px; height: 17px; font-size: 10px; }
+
+/* ── Snapshot table ─────────────────────────────────────────────── */
+.snapshot {
+  width: 100%; border-collapse: collapse;
+  font-family: var(--font-display); font-size: 13px;
+  font-variant-numeric: tabular-nums; table-layout: fixed;
+}
+.snapshot th, .snapshot td { padding: 11px 4px 12px; text-align: right; border-bottom: 1px solid var(--border-2); vertical-align: middle; }
+.snapshot thead th { border-bottom: 1px solid rgba(0,0,0,.1); font-weight: 500; color: var(--text-5); font-size: 9px; letter-spacing: 1.4px; text-transform: uppercase; padding: 9px 4px; }
+.snapshot th.sortable { cursor: pointer; user-select: none; transition: color .15s; }
+.snapshot th.sortable:hover { color: var(--text-3); }
+.snapshot th.sortable.active { color: var(--orange-dark); }
+.snapshot th .sort-arrow { display: inline-block; margin-left: 3px; color: var(--orange-dark); font-size: 10px; min-width: 6px; }
+.snapshot td:first-child, .snapshot th:first-child { text-align: left; padding-left: 8px; }
+.snapshot td:first-child { color: var(--text); font-weight: 500; transition: color .15s; }
+.snapshot tbody tr:last-child td { border-bottom: none; }
+.snapshot tbody tr.clickable { cursor: pointer; transition: background-color .15s; }
+.snapshot tbody tr.clickable td { cursor: pointer; }
+.snapshot tbody tr.clickable:hover { background: rgba(249,115,22,.12); }
+.snapshot tbody tr.clickable:hover td:first-child .code-text { color: var(--orange-dark); }
+
+/* Country code cell: flag + code + hover arrow */
+.code-cell {
+  display: inline-flex; align-items: center; gap: 8px;
+  line-height: 1;
+}
+.row-flag {
+  display: inline-block; flex-shrink: 0;
+  width: 22px; height: 16px;
+  border-radius: 3px; overflow: hidden;
+  border: 1px solid rgba(0,0,0,.1);
+  line-height: 0;
+}
+.row-flag svg { display: block; width: 100%; height: 100%; }
+.code-text { transition: color .15s; }
+.row-arrow {
+  display: inline-block; margin-left: 2px;
+  color: var(--orange-dark); font-weight: 700;
+  opacity: 0; transition: opacity .15s;
+}
+.snapshot tbody tr.clickable:hover .row-arrow { opacity: 1; }
+
+/* Numeric cells: simple right-aligned values */
+.pos { color: var(--green); }
+.neg { color: var(--red); }
+.muted { color: var(--text-6); }
+
+/* ── Country card ────────────────────────────────────────────────── */
+.country-card-head {
+  display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;
+}
+.country-card-name { display: flex; align-items: center; gap: 11px; }
+.country-card-name h2 { margin: 0; font-size: 17px; font-weight: 500; }
+.country-card-arrow { color: var(--orange-dark); font-size: 14px; }
+
+/* ── Metric box ───────────────────────────────────────────────────── */
+.metric-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 20px; gap: 14px;
+}
+.metric-head h2 {
+  margin: 0; font-size: 26px; font-weight: 500; letter-spacing: -.01em; line-height: 1.1;
+}
+.metric-value {
+  font-size: 26px; font-weight: 500; color: var(--text);
+  font-variant-numeric: tabular-nums; letter-spacing: -.01em; line-height: 1; white-space: nowrap;
+}
+
+/* ── Chart panel (ported from existing site) ──────────────────────── */
+.metric-chart-wrap {
+  margin: 10px 0 0; padding: 12px 0 4px;
+  border-top: 1px solid var(--border);
+}
+.metric-chart-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.metric-chart-title {
+  font-family: var(--font-display); font-size: 8px; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text-5);
+}
+.metric-chart-range { display: flex; gap: 2px; }
+.mcr-btn {
+  font-family: var(--font-display); font-size: 8px; letter-spacing: .5px;
+  text-transform: uppercase; padding: 3px 8px;
+  border: 1px solid rgba(0,0,0,.08); border-radius: 2px;
+  background: transparent; color: var(--text-5); cursor: pointer; transition: all .15s;
+}
+.mcr-btn:hover { border-color: rgba(249,115,22,.4); color: var(--text-3); }
+.mcr-btn.active {
+  background: rgba(249,115,22,.08); border-color: rgba(249,115,22,.35);
+  color: var(--orange-dark);
+}
+.metric-chart-canvas { height: 140px; position: relative; }
+.metric-chart-canvas canvas { width: 100% !important; height: 100% !important; }
+
+/* ── Glossary block ───────────────────────────────────────────────── */
+.gloss { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
+.gloss-title {
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--text-5); margin-bottom: 6px;
+}
+.gloss-body { font-size: 13px; color: var(--text-4); line-height: 1.6; margin: 0; }
+.gloss-source {
+  font-family: var(--font-display); font-size: 8px; letter-spacing: .8px;
+  color: var(--text-6); margin-top: 12px;
+}
+
+/* ── FX regime callout (USD/DXY etc.) ─────────────────────────────── */
+.fx-regime {
+  background: rgba(249,115,22,.05); border-left: 2px solid rgba(249,115,22,.5);
+  padding: 13px 15px; margin-top: 14px; border-radius: 0 4px 4px 0;
+}
+.fx-regime .fx-label {
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--orange-dark); margin-bottom: 6px;
+}
+.fx-regime p { font-size: 13px; line-height: 1.6; color: var(--text-3); margin: 0; }
+
+/* ── Commodities ──────────────────────────────────────────────────── */
+.commodities-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 22px;
+}
+.commodity-item .c-name {
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--text-5); margin-bottom: 4px;
+}
+.commodity-item .c-value {
+  font-family: var(--font-display); font-size: 15px; font-weight: 500;
+  color: var(--text); font-variant-numeric: tabular-nums;
+}
+.commodity-item .c-change { font-size: 11px; font-weight: 400; margin-left: 4px; }
+
+/* ── Countries grid (homepage) ──────────────────────────────────── */
+.countries-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px 14px;
+}
+.country-tile {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; gap: 9px;
+  padding: 6px 4px;
+  border-radius: 6px;
+  color: inherit; text-decoration: none;
+  transition: transform .15s, background .15s;
+}
+.country-tile:hover {
+  background: rgba(0,0,0,.025);
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+.flag-rect {
+  width: 80px; height: 60px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,.1);
+  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+  background: #fff;
+  transition: border-color .15s, box-shadow .15s;
+}
+.country-tile:hover .flag-rect {
+  border-color: var(--orange);
+  box-shadow: 0 2px 6px rgba(249,115,22,.18);
+}
+.flag-rect svg {
+  display: block;
+  width: 100%; height: 100%;
+}
+.country-tile-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-2);
+  line-height: 1.2;
+}
+
+/* ── Empty/placeholder ─────────────────────────────────────────────── */
+.note {
+  text-align: center; padding: 18px;
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--text-6);
+}
+
+/* ── Footer ────────────────────────────────────────────────────────── */
+.footer {
+  text-align: center; padding: 24px 12px; margin-top: 18px;
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--text-6);
+}
+.footer a { color: var(--text-5); }
+
+/* ── Responsive ────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .page { padding: 12px 10px 48px; }
+  .box { padding: 16px 16px; }
+  .country-title h1 { font-size: 26px; }
+  .metric-head h2 { font-size: 22px; }
+  .metric-value { font-size: 22px; }
+  .commodities-grid { grid-template-columns: repeat(2, 1fr); }
+  .countries-grid { grid-template-columns: repeat(3, 1fr); gap: 16px 8px; }
+  .flag-rect { width: 64px; height: 48px; }
+  .country-tile-name { font-size: 12px; }
+  .snapshot { font-size: 12px; }
+  .snapshot th, .snapshot td { padding: 10px 3px 11px; }
+  .snapshot td:first-child, .snapshot th:first-child { padding-left: 6px; }
+  .row-flag { width: 18px; height: 13px; }
+  .code-cell { gap: 6px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="box compact">
+    <div class="head-row">
+      <a class="back-link" href="index.html">← MacroSnaps</a>
+      <span class="date">Mon 11 May 2026</span>
+    </div>
+    <div class="country-title">
+      <h1>United Kingdom</h1>
+      <span class="flag-pill">GBR</span>
+    </div>
+  </div>
+
+  <div class="box">
+    <div class="section-label">Today</div>
+    <ol class="stories"><li>Britain&#x27;s economy stayed weak in late 2025, but inflation finally came down sharply in early 2026, giving the Bank of England room to start raising rates later this year alongside the European Central Bank.</li><li>Markets are pricing in UK rate increases because traders expect inflation pressures in Europe to stay stronger than in the US, a bet that signals the UK is moving away from Fed policy and back toward defending sterling against currency weakness.</li><li>BlackRock is quietly highlighting the UK as undervalued compared to crowded trades in Germany and emerging markets, suggesting big money sees better relative value in UK assets now that growth stabilized and inflation eased.</li></ol>
+  </div>
+
+  
+    <div class="box">
+      <div class="metric-head">
+        <h2>GDP Growth</h2>
+        <div class="metric-value pos">+1.5%</div>
+      </div>
+      <ol class="stories sm"><li>The UK economy expanded 1.5% annually after posting a surprise 0.5% jump in February, showing momentum builds despite years of post-pandemic sluggishness.</li><li>Growth at 1.5% sits well below the 2.5% average for developed economies, reflecting persistent weakness in consumer spending and business investment compared to peers.</li><li>Q1 2026 trajectory suggests the Bank of England&#x27;s rate cuts (now at 3.25%) finally begin transmitting to real activity, but the 1.5% pace remains half the speed needed to close the output gap.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="GDP Growth" data-chart='{&quot;v&quot;: [4.5, 2.4, 1.7, 3.2, 2.3, 2.8, 2.2, 2.9, 0.0, -4.6, 2.3, 0.9, 1.5, 1.7, 3.2, 2.1, 2.2, 3.0, 1.6, 1.3, -10.0, 8.5, 5.1, 0.3, 1.1, 1.3, 1.5], &quot;startDate&quot;: null, &quot;type&quot;: &quot;bar&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">GDP Growth · Annual</div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is GDP growth?</div>
+        <p class="gloss-body">GDP growth measures how fast a country&#x27;s economy is expanding or shrinking. It is the single most important number for understanding whether an economy is healthy, struggling, or in recession.</p>
+        <div class="gloss-source">Source: National statistics offices · IMF</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>Inflation (CPI)</h2>
+        <div class="metric-value">2.5%</div>
+      </div>
+      <ol class="stories sm"><li>CPI sits at 2.5%, dead in the center of the Bank of England&#x27;s target, meaning price growth no longer pressures households or forces rate hikes.</li><li>Inflation fell from 3.4% a year ago, showing energy prices and supply chain healing have done the heavy lifting, not wage discipline.</li><li>The 2.5% reading gives the central bank room to keep cutting rates further without stoking price fears, a luxury most developed economies no longer have.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="Inflation (CPI)" data-chart='{&quot;v&quot;: [1.11, 1.25, 0.97, 0.96, 0.96, 1.24, 1.24, 0.96, 1.37, 1.37, 1.51, 1.23, 1.24, 1.24, 1.23, 1.5, 1.9, 1.9, 1.64, 2.05, 1.63, 1.49, 1.22, 1.35, 1.77, 1.76, 1.76, 1.61, 1.2, 1.07, 1.48, 1.34, 1.33, 1.6, 1.6, 1.73, 1.47, 1.47, 1.6, 1.59, 1.32, 1.19, 1.32, 1.32, 1.32, 1.31, 1.31, 1.31, 1.45, 1.45, 1.18, 1.04, 1.43, 1.56, 1.44, 1.43, 1.17, 1.3, 1.56, 1.68, 1.69, 1.68, 1.94, 1.93, 1.93, 1.93, 2.32, 2.31, 2.57, 2.43, 2.17, 2.16, 2.17, 2.17, 2.03, 2.28, 2.39, 2.64, 2.52, 2.63, 2.5, 2.5, 2.75, 2.86, 2.62, 2.74, 2.99, 2.72, 2.46, 2.45, 1.96, 1.96, 1.95, 2.2, 2.31, 2.3, 2.44, 2.67, 2.54, 3.01, 3.36, 3.71, 4.21, 4.44, 4.79, 4.18, 3.8, 3.08, 2.97, 3.07, 2.83, 2.22, 2.09, 1.73, 1.62, 1.38, 0.91, 1.26, 1.49, 2.07, 2.54, 2.06, 2.41, 2.74, 2.5, 2.38, 2.27, 2.38, 2.38, 2.49, 2.6, 3.15, 3.38, 3.71, 3.58, 3.78, 3.77, 3.66, 3.89, 3.87, 4.54, 4.3, 4.18, 3.6, 3.16, 3.14, 3.02, 2.79, 2.57, 2.25, 2.35, 2.34, 2.01, 2.43, 2.43, 2.42, 2.43, 2.42, 2.52, 2.19, 2.4, 2.51, 2.4, 2.39, 2.39, 2.07, 1.86, 1.95, 1.75, 1.64, 1.53, 1.63, 1.43, 1.84, 1.63, 1.52, 1.32, 1.32, 1.11, 0.71, 0.51, 0.4, 0.3, 0.3, 0.5, 0.3, 0.4, 0.4, 0.2, 0.2, 0.4, 0.5, 0.71, 0.6, 0.8, 0.7, 0.7, 0.9, 0.9, 0.9, 1.3, 1.3, 1.5, 1.79, 1.9, 2.3, 2.29, 2.58, 2.68, 2.48, 2.58, 2.77, 2.76, 2.76, 2.85, 2.74, 2.65, 2.44, 2.34, 2.23, 2.32, 2.32, 2.32, 2.4, 2.21, 2.2, 2.1, 2.0, 1.82, 1.81, 1.81, 1.99, 1.89, 1.89, 1.98, 1.69, 1.69, 1.5, 1.5, 1.31, 1.79, 1.69, 1.5, 0.93, 0.65, 0.83, 1.11, 0.46, 0.74, 0.83, 0.55, 0.83, 0.92, 0.74, 1.01, 1.66, 2.21, 2.39, 2.01, 3.03, 2.93, 3.85, 4.58, 4.84, 4.85, 5.48, 6.2, 7.79, 7.84, 8.17, 8.8, 8.65, 8.81, 9.61, 9.38, 9.24, 8.9, 9.19, 8.84, 7.82, 7.85, 7.39, 6.44, 6.24, 6.38, 4.75, 4.17, 4.15, 4.17, 3.81, 3.79, 3.04, 2.79, 2.78, 3.02, 3.09, 2.61, 3.15, 3.54, 3.52, 3.92, 3.67, 3.42, 4.16, 3.99, 4.06, 4.21, 4.12, 4.04, 3.87, 3.57, 3.55, 3.18, 3.24], &quot;startDate&quot;: &quot;2000-01&quot;, &quot;type&quot;: &quot;line&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">Inflation (CPI) · History since 2000</div>
+            <div class="metric-chart-range">
+              <button class="mcr-btn" data-r="12">1Y</button>
+              <button class="mcr-btn" data-r="24">2Y</button>
+              <button class="mcr-btn" data-r="60">5Y</button>
+              <button class="mcr-btn" data-r="0">All</button>
+            </div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is inflation?</div>
+        <p class="gloss-body">Inflation is a sustained increase in the overall price level of goods and services, which reduces the purchasing power of money over time.</p>
+        <div class="gloss-source">Source: National statistics offices · IMF</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>Unemployment</h2>
+        <div class="metric-value">5%</div>
+      </div>
+      <ol class="stories sm"><li>Joblessness stands at 5%, meaning one worker in twenty lacks a job, up from historic lows but still below pre-pandemic norms.</li><li>The 5% rate shows the labor market softening after years of tightness, though most people seeking work can still find jobs.</li><li>Higher unemployment reduces wage pressure, which helps explain why inflation sits at 2.5% despite economic growth.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="Unemployment" data-chart='{&quot;v&quot;: [5.8, 5.8, 5.7, 5.6, 5.5, 5.3, 5.3, 5.3, 5.4, 5.3, 5.2, 5.2, 5.2, 5.1, 5.0, 4.9, 5.0, 5.0, 5.1, 5.1, 5.1, 5.1, 5.2, 5.2, 5.1, 5.2, 5.2, 5.2, 5.2, 5.2, 5.2, 5.3, 5.2, 5.2, 5.1, 5.0, 5.1, 5.2, 5.1, 5.0, 4.9, 5.1, 5.1, 5.0, 5.0, 4.9, 4.9, 4.8, 4.8, 4.8, 4.8, 4.8, 4.8, 4.8, 4.7, 4.7, 4.7, 4.7, 4.7, 4.7, 4.8, 4.7, 4.7, 4.8, 4.8, 4.7, 4.7, 4.7, 4.9, 5.1, 5.1, 5.1, 5.2, 5.2, 5.3, 5.4, 5.5, 5.5, 5.5, 5.5, 5.5, 5.4, 5.5, 5.5, 5.5, 5.5, 5.5, 5.4, 5.4, 5.3, 5.3, 5.3, 5.2, 5.2, 5.2, 5.2, 5.2, 5.2, 5.3, 5.2, 5.4, 5.5, 5.7, 5.9, 6.0, 6.2, 6.4, 6.5, 6.7, 7.1, 7.3, 7.6, 7.8, 7.9, 7.9, 7.8, 7.9, 7.8, 7.8, 7.7, 7.9, 8.0, 8.0, 7.9, 7.9, 7.8, 7.8, 7.8, 7.9, 7.9, 7.9, 7.9, 7.8, 7.8, 7.7, 7.8, 7.9, 8.0, 8.2, 8.3, 8.4, 8.5, 8.4, 8.3, 8.3, 8.2, 8.2, 8.1, 8.0, 8.0, 7.9, 7.8, 7.8, 7.8, 7.8, 7.8, 8.0, 7.8, 7.8, 7.7, 7.7, 7.7, 7.7, 7.6, 7.4, 7.2, 7.2, 7.1, 6.9, 6.7, 6.6, 6.4, 6.3, 6.1, 6.0, 6.0, 5.9, 5.9, 5.7, 5.6, 5.6, 5.5, 5.5, 5.6, 5.6, 5.5, 5.4, 5.3, 5.2, 5.1, 5.1, 5.1, 5.1, 5.1, 5.0, 4.9, 4.9, 4.9, 5.0, 4.8, 4.8, 4.8, 4.7, 4.7, 4.6, 4.6, 4.5, 4.4, 4.4, 4.3, 4.3, 4.3, 4.2, 4.3, 4.4, 4.3, 4.2, 4.2, 4.2, 4.2, 4.0, 4.0, 4.0, 4.1, 4.1, 4.0, 4.0, 3.9, 4.0, 3.8, 3.8, 3.8, 3.9, 3.9, 3.9, 3.9, 3.8, 3.8, 3.7, 3.9, 3.9, 4.1, 4.1, 4.1, 4.1, 4.4, 4.6, 5.0, 5.2, 5.2, 5.3, 5.2, 5.0, 4.9, 4.8, 4.8, 4.7, 4.6, 4.5, 4.4, 4.3, 4.2, 4.2, 4.1, 3.9, 3.8, 3.8, 3.7, 3.8, 3.6, 3.6, 3.7, 3.8, 3.9, 3.9, 3.9, 4.0, 4.0, 3.9, 4.0, 4.2, 4.3, 4.3, 4.1, 4.0, 4.0, 3.9, 4.1, 4.2, 4.3, 4.4, 4.4, 4.2, 4.2, 4.1, 4.3, 4.3, 4.4, 4.4, 4.4, 4.4, 4.5, 4.6, 4.7, 4.7, 4.7, 4.8, 5.0, 5.1, 5.1], &quot;startDate&quot;: &quot;2000-07&quot;, &quot;type&quot;: &quot;line&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">Unemployment · History since 2000</div>
+            <div class="metric-chart-range">
+              <button class="mcr-btn" data-r="12">1Y</button>
+              <button class="mcr-btn" data-r="24">2Y</button>
+              <button class="mcr-btn" data-r="60">5Y</button>
+              <button class="mcr-btn" data-r="0">All</button>
+            </div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is the unemployment rate?</div>
+        <p class="gloss-body">The unemployment rate measures what percentage of people who want to work cannot find a job. It is one of the clearest signals of whether an economy is providing enough opportunity for its citizens.</p>
+        <div class="gloss-source">Source: National statistics offices · IMF</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>Budget Deficit</h2>
+        <div class="metric-value">-4% GDP</div>
+      </div>
+      <ol class="stories sm"><li>The government runs a 4% deficit, meaning it spends four pounds for every hundred in taxes it collects, a situation that demands borrowing.</li><li>A 4% deficit is a red flag for a developed economy in peacetime, showing the state still spends far more than it takes in after years of austerity promises.</li><li>Higher deficits force the government to borrow more, which pushes up bond yields and crowds out private investment in businesses and homes.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="Budget Deficit" data-chart='{&quot;v&quot;: [2.0, 0.9, -1.7, -3.2, -3.4, -3.2, -2.6, -2.6, -5.0, -10.2, -9.5, -7.6, -8.3, -5.7, -5.6, -4.5, -3.3, -2.5, -2.3, -2.4, -13.1, -8.5, -4.5, -5.6, -4.5, -4.6, -4.0], &quot;startDate&quot;: null, &quot;type&quot;: &quot;bar&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">Budget Deficit · Annual</div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is the budget deficit?</div>
+        <p class="gloss-body">The budget deficit measures how much more a government spends than it earns in a given year. A deficit means the government is borrowing to cover the gap, adding to national debt.</p>
+        <div class="gloss-source">Source: IMF Fiscal Monitor · National finance ministries</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>Current Account</h2>
+        <div class="metric-value">-2.5% GDP</div>
+      </div>
+      <ol class="stories sm"><li>The UK sends out 2.5 pounds for every 100 it brings in from abroad, a trade deficit that means the country lives beyond what it produces.</li><li>A 2.5% current account deficit means Britain imports more goods and services than it exports, requiring foreign investors to fund the gap.</li><li>This deficit matters because it ties UK fortunes to foreign capital inflows; if investors lose confidence, the pound weakens and inflation returns.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="Current Account" data-chart='{&quot;v&quot;: [-2.6, -2.1, -1.7, -1.5, -2.0, -2.4, -3.0, -2.3, -1.3, -1.3, -3.3, -1.9, -3.8, -4.2, -5.2, -5.2, -5.2, -3.8, -3.9, -2.9, -3.0, -2.5, -3.7, -2.8, -2.7, -1.8, -2.5], &quot;startDate&quot;: null, &quot;type&quot;: &quot;bar&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">Current Account · Annual</div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is the current account?</div>
+        <p class="gloss-body">The current account measures whether a country earns more from the rest of the world than it spends. It tracks trade in goods and services, plus income flows like investment returns and remittances.</p>
+        <div class="gloss-source">Source: IMF BOP Statistics</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>Policy Rate</h2>
+        <div class="metric-value">3.25%</div>
+      </div>
+      <ol class="stories sm"><li>The Bank of England charges 3.25% on overnight lending, down from 5.25% a year ago, making borrowing cheaper for households and businesses.</li><li>The 3.25% rate sits in the middle of the range where central banks usually cut, signaling the Bank of England still has room to ease further if growth stays weak.</li><li>Lower rates encourage people to borrow for homes and cars, spending that boosts growth, but also weakens the pound and could let inflation creep back up.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="Policy Rate" data-chart='{&quot;v&quot;: [5.75, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 5.75, 5.75, 5.5, 5.25, 5.25, 5.25, 5.0, 4.75, 4.5, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 3.75, 3.75, 3.75, 3.75, 3.75, 3.5, 3.5, 3.5, 3.5, 3.75, 3.75, 3.75, 4.0, 4.0, 4.0, 4.25, 4.5, 4.5, 4.75, 4.75, 4.75, 4.75, 4.75, 4.75, 4.75, 4.75, 4.75, 4.75, 4.75, 4.75, 4.5, 4.5, 4.5, 4.5, 4.5, 4.5, 4.5, 4.5, 4.5, 4.5, 4.5, 4.5, 4.75, 4.75, 4.75, 5.0, 5.0, 5.25, 5.25, 5.25, 5.25, 5.5, 5.5, 5.75, 5.75, 5.75, 5.75, 5.75, 5.5, 5.5, 5.25, 5.25, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 4.5, 3.0, 2.0, 1.5, 1.0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.25, 0.25, 0.5, 0.75, 0.75, 1.0, 1.25, 1.25, 1.75, 2.25, 2.25, 3.0, 3.5, 3.5, 4.0, 4.25, 4.25, 4.5, 5.0, 5.0, 5.25, 5.25, 5.25, 5.25, 5.25, 5.25, 5.25, 5.25, 5.25, 5.25, 5.25, 5.25, 5.0, 5.0, 5.0, 4.75, 4.75, 4.75, 4.5, 4.5, 4.5, 4.25, 4.25, 4.25, 4.0, 4.0, 4.0, 4.0, 3.75, 3.75, 3.75], &quot;startDate&quot;: &quot;2000-03&quot;, &quot;type&quot;: &quot;line&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">Policy Rate · History since 2000</div>
+            <div class="metric-chart-range">
+              <button class="mcr-btn" data-r="12">1Y</button>
+              <button class="mcr-btn" data-r="24">2Y</button>
+              <button class="mcr-btn" data-r="60">5Y</button>
+              <button class="mcr-btn" data-r="0">All</button>
+            </div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is the policy rate?</div>
+        <p class="gloss-body">The policy rate is the interest rate set by a country&#x27;s central bank. It is the most powerful tool for controlling inflation and influencing economic growth, because it affects the cost of borrowing for everyone.</p>
+        <div class="gloss-source">Source: National central banks</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>Stock Market</h2>
+        <div class="metric-value pos">+4.2%</div>
+      </div>
+      <ol class="stories sm"><li>UK stocks have climbed 4.4% since January despite weak business confidence, suggesting investors believe things will improve even if company bosses remain worried.</li><li>Consumer gloom and talk of tax rises have not yet scared away equity buyers, which means markets are betting the Bank of England will cut rates faster than the government raises taxes.</li><li>A modest gain in a year when wage growth finally outpaced inflation shows the stock market is pricing in recovery, but weak earnings reports could flip that bet quickly.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="Stock Market YTD" data-chart='{&quot;v&quot;: [6268.5, 6232.6, 6540.2, 6327.4, 6359.4, 6312.7, 6365.3, 6672.7, 6294.2, 6438.4, 6142.2, 6222.5, 6297.5, 5917.9, 5633.7, 5967.0, 5796.2, 5642.5, 5529.1, 5345.0, 4903.4, 5039.7, 5203.6, 5217.4, 5164.8, 5101.0, 5271.8, 5165.6, 5085.1, 4656.4, 4246.2, 4227.3, 3721.8, 4039.7, 4169.4, 3940.4, 3567.4, 3655.6, 3613.3, 3926.0, 4048.1, 4031.2, 4157.0, 4161.1, 4091.3, 4287.6, 4342.6, 4476.9, 4390.7, 4492.2, 4385.7, 4489.7, 4430.7, 4464.1, 4413.1, 4459.3, 4570.8, 4624.2, 4703.2, 4814.3, 4852.3, 4968.5, 4894.4, 4801.7, 4964.0, 5113.2, 5282.3, 5296.9, 5477.7, 5317.3, 5423.2, 5618.8, 5760.3, 5791.5, 5964.6, 6023.1, 5723.8, 5833.4, 5928.3, 5906.1, 5960.8, 6129.2, 6048.9, 6220.8, 6203.1, 6171.5, 6308.0, 6449.2, 6621.5, 6607.9, 6360.1, 6303.3, 6466.8, 6721.6, 6432.5, 6456.9, 5879.8, 5884.3, 5702.1, 6087.3, 6053.5, 5625.9, 5411.9, 5636.6, 4902.5, 4377.3, 4288.0, 4434.2, 4149.6, 3830.1, 3926.1, 4243.7, 4417.9, 4249.2, 4608.4, 4908.9, 5133.9, 5044.6, 5190.7, 5412.9, 5188.5, 5354.5, 5679.6, 5553.3, 5188.4, 4916.9, 5258.0, 5225.2, 5548.6, 5675.2, 5528.3, 5899.9, 5862.9, 5994.0, 5908.8, 6069.9, 5990.0, 5945.7, 5815.2, 5394.5, 5128.5, 5544.2, 5505.4, 5572.3, 5681.6, 5871.5, 5768.5, 5737.8, 5320.9, 5571.2, 5635.3, 5711.5, 5742.1, 5782.7, 5866.8, 5897.8, 6276.9, 6360.8, 6411.7, 6430.1, 6583.1, 6215.5, 6621.1, 6412.9, 6462.2, 6731.4, 6650.6, 6749.1, 6510.4, 6809.7, 6598.4, 6780.0, 6844.5, 6743.9, 6730.1, 6819.8, 6622.7, 6546.5, 6722.6, 6566.1, 6749.4, 6946.7, 6773.0, 6960.6, 6984.4, 6521.0, 6696.3, 6247.9, 6061.6, 6361.1, 6356.1, 6242.3, 6083.8, 6097.1, 6174.9, 6241.9, 6230.8, 6504.3, 6724.4, 6781.5, 6899.3, 6954.2, 6783.8, 7142.8, 7099.2, 7263.4, 7322.9, 7203.9, 7520.0, 7312.7, 7372.0, 7430.6, 7372.8, 7493.1, 7326.7, 7687.8, 7533.6, 7231.9, 7056.6, 7509.3, 7678.2, 7636.9, 7748.8, 7432.4, 7510.2, 7128.1, 6980.2, 6728.1, 6968.9, 7074.7, 7279.2, 7418.2, 7161.7, 7425.6, 7586.8, 7207.2, 7408.2, 7248.4, 7346.5, 7542.4, 7286.0, 6580.6, 5672.0, 5901.2, 6076.6, 6169.7, 5897.8, 5963.6, 5866.1, 5577.3, 6266.2, 6460.5, 6407.5, 6483.4, 6713.6, 6969.8, 7022.6, 7037.5, 7032.3, 7119.7, 7086.4, 7237.6, 7059.5, 7384.5, 7464.4, 7458.3, 7515.7, 7544.6, 7607.7, 7169.3, 7423.4, 7284.2, 6893.8, 7094.5, 7573.1, 7451.7, 7771.7, 7876.3, 7631.7, 7870.6, 7446.1, 7531.5, 7699.4, 7439.1, 7608.1, 7321.7, 7453.8, 7733.2, 7630.6, 7630.0, 7952.6, 8144.1, 8275.4, 8164.1, 8368.0, 8376.6, 8237.0, 8110.1, 8287.3, 8173.0, 8674.0, 8809.7, 8582.8, 8494.9, 8772.4, 8761.0, 9132.8, 9187.3, 9350.4, 9717.3, 9720.5, 9931.4, 10223.5, 10910.6, 10197.5, 10311.51, 10372.0], &quot;startDate&quot;: &quot;2000-01&quot;, &quot;type&quot;: &quot;line&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">Stock Market · History since 2000</div>
+            <div class="metric-chart-range">
+              <button class="mcr-btn" data-r="12">1Y</button>
+              <button class="mcr-btn" data-r="24">2Y</button>
+              <button class="mcr-btn" data-r="60">5Y</button>
+              <button class="mcr-btn" data-r="0">All</button>
+            </div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is the stock market YTD?</div>
+        <p class="gloss-body">Stock Market YTD shows how much a country&#x27;s main stock market index has gone up or down since the start of the year. It is the most visible daily scoreboard for investor confidence in a country&#x27;s economy and companies.</p>
+        <div class="gloss-source">Source: Exchange data</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>10Y Bond Yield</h2>
+        <div class="metric-value">4.70%</div>
+      </div>
+      <ol class="stories sm"><li>British 10-year government bonds now offer 4.70% in annual interest, meaning borrowing costs stay elevated even though the BoE is not raising rates right now.</li><li>Gas fears in the Middle East are pushing UK bond yields higher because markets expect energy inflation to force the BoE to tighten later this year.</li><li>If energy prices keep climbing, bond yields could spike further, making mortgages and business loans more expensive for ordinary borrowers.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="10Y Bond Yield" data-chart='{&quot;v&quot;: [5.823, 5.635, 5.371, 5.321, 5.403, 5.21, 5.239, 5.331, 5.387, 5.218, 5.098, 4.912, 4.847, 4.825, 4.703, 4.947, 5.115, 5.195, 5.204, 4.985, 4.988, 4.825, 4.627, 4.893, 4.917, 4.925, 5.22, 5.233, 5.269, 5.099, 5.003, 4.746, 4.501, 4.616, 4.638, 4.564, 4.39, 4.213, 4.324, 4.466, 4.22, 4.113, 4.408, 4.604, 4.713, 4.907, 5.065, 4.896, 4.788, 4.806, 4.709, 4.957, 5.112, 5.2, 5.108, 5.007, 4.911, 4.768, 4.69, 4.532, 4.542, 4.588, 4.796, 4.622, 4.417, 4.285, 4.301, 4.325, 4.211, 4.348, 4.313, 4.219, 4.075, 4.154, 4.318, 4.518, 4.649, 4.664, 4.656, 4.654, 4.552, 4.616, 4.545, 4.62, 4.869, 4.896, 4.819, 5.044, 5.146, 5.432, 5.408, 5.15, 4.993, 4.958, 4.726, 4.694, 4.492, 4.623, 4.445, 4.643, 4.868, 5.21, 5.049, 4.727, 4.57, 4.579, 4.257, 3.624, 3.67, 3.69, 3.25, 3.407, 3.621, 3.722, 3.824, 3.714, 3.657, 3.57, 3.759, 3.887, 4.003, 4.062, 4.092, 4.101, 3.777, 3.601, 3.509, 3.233, 3.127, 3.068, 3.311, 3.61, 3.727, 3.88, 3.739, 3.762, 3.505, 3.414, 3.314, 2.783, 2.504, 2.529, 2.292, 2.183, 2.11, 2.219, 2.323, 2.212, 1.942, 1.77, 1.652, 1.674, 1.722, 1.772, 1.774, 1.847, 2.08, 2.178, 1.977, 1.782, 1.946, 2.306, 2.471, 2.709, 2.844, 2.678, 2.76, 2.946, 2.91, 2.815, 2.784, 2.742, 2.699, 2.784, 2.734, 2.535, 2.492, 2.247, 2.159, 1.929, 1.589, 1.736, 1.794, 1.755, 2.024, 2.17, 2.135, 1.98, 1.881, 1.846, 1.978, 1.923, 1.783, 1.503, 1.543, 1.569, 1.537, 1.31, 0.957, 0.742, 0.824, 1.078, 1.382, 1.434, 1.42, 1.306, 1.194, 1.079, 1.118, 1.085, 1.271, 1.124, 1.244, 1.382, 1.33, 1.278, 1.393, 1.603, 1.508, 1.511, 1.502, 1.423, 1.374, 1.399, 1.502, 1.546, 1.454, 1.312, 1.322, 1.239, 1.19, 1.191, 1.13, 0.919, 0.83, 0.578, 0.598, 0.637, 0.765, 0.831, 0.724, 0.633, 0.461, 0.358, 0.274, 0.278, 0.209, 0.272, 0.273, 0.306, 0.384, 0.322, 0.367, 0.622, 0.846, 0.852, 0.906, 0.855, 0.698, 0.644, 0.802, 1.083, 0.939, 0.838, 1.205, 1.489, 1.546, 1.836, 1.907, 2.382, 2.145, 2.328, 3.501, 4.11, 3.417, 3.502, 3.512, 3.555, 3.564, 3.65, 3.962, 4.366, 4.437, 4.53, 4.42, 4.57, 4.272, 3.862, 3.932, 4.123, 4.033, 4.217, 4.223, 4.164, 4.139, 3.944, 3.905, 4.199, 4.416, 4.434, 4.663, 4.506, 4.645, 4.576, 4.6, 4.525, 4.592, 4.637, 4.688, 4.572, 4.498, 4.483, 4.451, 4.451, 4.432, 4.701, 4.701], &quot;startDate&quot;: &quot;2000-01&quot;, &quot;type&quot;: &quot;line&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">10Y Bond Yield · History since 2000</div>
+            <div class="metric-chart-range">
+              <button class="mcr-btn" data-r="12">1Y</button>
+              <button class="mcr-btn" data-r="24">2Y</button>
+              <button class="mcr-btn" data-r="60">5Y</button>
+              <button class="mcr-btn" data-r="0">All</button>
+            </div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is the 10-year bond yield?</div>
+        <p class="gloss-body">The 10-year bond yield is the annual return investors earn for lending money to a government for 10 years. It is the most important interest rate in any economy, the benchmark that influences mortgage rates, corporate borrowing costs, and stock valuations.</p>
+        <div class="gloss-source">Source: Bloomberg · Refinitiv</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>Yield Curve</h2>
+        <div class="metric-value">+99bps</div>
+      </div>
+      <ol class="stories sm"><li>The gap between short and long-term UK bond yields stands at 99 basis points, meaning investors earn extra reward for lending money for 10 years instead of shorter periods.</li><li>This steep curve tells you that traders expect the BoE to raise interest rates soon, pushing short-term rates up while long-term rates stay anchored by growth fears.</li><li>If this curve flattens back toward zero, it would signal recession fears have returned and the BoE should cut, not hike.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="Yield Curve" data-chart='{&quot;v&quot;: [-31.3, -60.3, -85.7, -97.5, -90.1, -101.7, -95.3, -88.7, -81.9, -94.5, -98.8, -104.3, -99.9, -93.2, -84.8, -45.7, -13.4, -6.4, -5.0, -1.2, 25.9, 39.7, 63.0, 84.2, 87.0, 87.2, 108.9, 106.0, 111.5, 92.1, 94.2, 75.9, 51.2, 65.2, 66.7, 54.6, 40.7, 45.9, 66.9, 82.0, 58.7, 47.3, 91.8, 108.2, 101.6, 110.4, 108.5, 87.7, 73.3, 63.9, 41.2, 56.2, 58.3, 41.0, 25.1, 4.4, -3.6, -13.3, -19.4, -33.9, -33.1, -30.3, -19.1, -32.1, -47.7, -55.6, -35.7, -27.0, -38.6, -23.9, -30.5, -41.8, -52.9, -42.8, -26.9, -11.2, -5.3, -7.1, -7.7, -29.0, -47.3, -51.6, -68.0, -67.2, -61.7, -67.0, -73.0, -60.5, -62.1, -44.8, -61.6, -126.9, -165.4, -131.2, -168.3, -166.5, -116.8, -101.9, -145.4, -127.6, -95.8, -71.9, -78.3, -103.9, -134.1, -155.4, -19.0, 45.2, 132.7, 160.0, 141.9, 187.3, 226.3, 248.1, 282.3, 294.0, 305.1, 299.9, 315.0, 328.2, 339.0, 342.9, 344.7, 344.5, 308.0, 287.3, 277.3, 250.0, 239.8, 233.0, 257.2, 286.0, 295.8, 308.0, 293.0, 294.1, 268.2, 258.9, 248.5, 192.5, 158.6, 155.9, 128.0, 112.2, 102.3, 114.7, 128.5, 119.4, 93.7, 82.0, 83.5, 96.9, 107.4, 122.8, 124.9, 132.9, 156.8, 166.8, 147.0, 127.6, 144.0, 179.8, 196.2, 219.6, 232.7, 216.1, 223.7, 242.1, 238.9, 229.3, 226.2, 221.5, 217.2, 224.0, 217.8, 197.4, 192.9, 168.9, 160.3, 137.1, 102.6, 117.2, 123.0, 118.5, 145.6, 159.8, 155.4, 139.3, 129.5, 126.6, 140.4, 134.0, 119.3, 91.2, 95.5, 98.0, 94.8, 73.5, 44.3, 33.6, 44.5, 68.0, 98.4, 106.2, 105.8, 94.9, 84.8, 74.4, 80.7, 79.1, 97.8, 84.3, 93.5, 100.0, 81.1, 75.9, 87.1, 105.6, 88.0, 75.5, 85.8, 78.4, 62.8, 59.4, 70.1, 74.0, 57.9, 40.8, 40.4, 36.3, 35.0, 37.1, 33.0, 13.9, 6.0, -18.2, -17.2, -14.3, -2.5, 4.1, -1.6, -11.7, -6.9, -29.2, -5.6, 8.8, 10.9, 20.2, 21.3, 25.6, 34.4, 29.2, 33.7, 57.2, 76.6, 76.2, 82.6, 77.5, 61.8, 57.4, 73.2, 92.3, 80.9, 67.8, 67.5, 67.9, 55.6, 70.6, 59.7, 81.2, 30.5, 9.8, 59.1, 72.0, -10.3, -27.8, -49.8, -65.5, -76.6, -87.0, -76.8, -72.4, -105.3, -100.0, -110.0, -83.0, -108.8, -135.8, -126.8, -108.7, -116.7, -96.3, -93.7, -99.6, -95.1, -96.6, -93.5, -55.1, -26.4, -20.6, 11.3, 6.6, 25.5, 31.6, 41.0, 37.5, 54.2, 65.7, 71.8, 64.2, 65.8, 73.3, 74.1, 74.1, 72.0, 99.0, 99.0], &quot;startDate&quot;: &quot;2000-01&quot;, &quot;type&quot;: &quot;line&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">Yield Curve · History since 2000</div>
+            <div class="metric-chart-range">
+              <button class="mcr-btn" data-r="12">1Y</button>
+              <button class="mcr-btn" data-r="24">2Y</button>
+              <button class="mcr-btn" data-r="60">5Y</button>
+              <button class="mcr-btn" data-r="0">All</button>
+            </div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+      <div class="gloss">
+        <div class="gloss-title">What is the yield curve?</div>
+        <p class="gloss-body">The yield curve shows the difference between short-term and long-term government bond yields. Its shape is one of the most reliable predictors of recessions: when long-term rates fall below short-term rates (an inversion), a recession has followed almost every time in history.</p>
+        <div class="gloss-source">Source: Bloomberg · Refinitiv</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="metric-head">
+        <h2>GBP/USD</h2>
+        <div class="metric-value">1.36</div>
+      </div>
+      <ol class="stories sm"><li>The pound trades at 1.35 dollars, meaning it has weakened significantly and buys less US currency than it did a year ago when it was near 1.28.</li><li>Sterling is struggling because markets expect the BoE to raise rates less aggressively than the Fed did before its pause, removing the interest rate advantage that normally supports the pound.</li><li>If the BoE tightens more than expected due to energy inflation, the pound could bounce back to 1.40 or higher, rewarding long-term pound holders.</li></ol>
+      
+        <div class="metric-chart-wrap" data-metric="GBP/USD" data-chart='{&quot;v&quot;: [1.79, 1.83, 1.87, 1.84, 1.78, 1.83, 1.82, 1.82, 1.8, 1.81, 1.84, 1.91, 1.92, 1.88, 1.92, 1.89, 1.91, 1.82, 1.79, 1.76, 1.8, 1.76, 1.77, 1.73, 1.72, 1.78, 1.75, 1.74, 1.83, 1.87, 1.85, 1.87, 1.9, 1.87, 1.91, 1.97, 1.96, 1.96, 1.96, 1.95, 2.0, 1.98, 2.01, 2.03, 2.02, 2.05, 2.08, 2.06, 1.99, 1.99, 1.99, 1.98, 1.99, 1.98, 1.99, 1.98, 1.82, 1.78, 1.61, 1.54, 1.47, 1.46, 1.43, 1.43, 1.48, 1.62, 1.65, 1.67, 1.63, 1.6, 1.64, 1.65, 1.62, 1.6, 1.52, 1.52, 1.53, 1.45, 1.49, 1.57, 1.55, 1.58, 1.58, 1.56, 1.54, 1.58, 1.61, 1.61, 1.67, 1.65, 1.61, 1.64, 1.63, 1.56, 1.61, 1.56, 1.54, 1.57, 1.59, 1.6, 1.63, 1.55, 1.55, 1.57, 1.58, 1.62, 1.61, 1.6, 1.62, 1.58, 1.52, 1.52, 1.55, 1.52, 1.53, 1.52, 1.55, 1.62, 1.6, 1.63, 1.65, 1.65, 1.67, 1.66, 1.68, 1.67, 1.7, 1.69, 1.66, 1.62, 1.6, 1.57, 1.56, 1.51, 1.54, 1.48, 1.54, 1.53, 1.57, 1.56, 1.54, 1.52, 1.53, 1.5, 1.48, 1.44, 1.39, 1.44, 1.46, 1.46, 1.35, 1.32, 1.31, 1.3, 1.22, 1.25, 1.23, 1.25, 1.24, 1.25, 1.29, 1.28, 1.3, 1.31, 1.29, 1.34, 1.32, 1.34, 1.34, 1.42, 1.39, 1.4, 1.38, 1.33, 1.31, 1.31, 1.3, 1.31, 1.27, 1.28, 1.27, 1.31, 1.33, 1.31, 1.29, 1.26, 1.27, 1.22, 1.22, 1.23, 1.29, 1.29, 1.31, 1.31, 1.29, 1.24, 1.25, 1.23, 1.23, 1.31, 1.34, 1.29, 1.29, 1.33, 1.36, 1.37, 1.4, 1.37, 1.4, 1.42, 1.38, 1.4, 1.38, 1.34, 1.38, 1.33, 1.35, 1.34, 1.34, 1.31, 1.25, 1.26, 1.21, 1.22, 1.17, 1.12, 1.16, 1.19, 1.21, 1.24, 1.21, 1.24, 1.25, 1.24, 1.26, 1.29, 1.27, 1.22, 1.22, 1.27, 1.27, 1.27, 1.27, 1.26, 1.26, 1.27, 1.26, 1.28, 1.32, 1.34, 1.3, 1.27, 1.25, 1.24, 1.26, 1.29, 1.34, 1.35, 1.37, 1.33, 1.35, 1.34, 1.32, 1.32, 1.35, 1.38, 1.35, 1.32, 1.35, 1.36], &quot;startDate&quot;: &quot;2003-12&quot;, &quot;type&quot;: &quot;line&quot;}'>
+          <div class="metric-chart-head">
+            <div class="metric-chart-title">GBP/USD · History since 2000</div>
+            <div class="metric-chart-range">
+              <button class="mcr-btn" data-r="12">1Y</button>
+              <button class="mcr-btn" data-r="24">2Y</button>
+              <button class="mcr-btn" data-r="60">5Y</button>
+              <button class="mcr-btn" data-r="0">All</button>
+            </div>
+          </div>
+          <div class="metric-chart-canvas"><canvas></canvas></div>
+        </div>
+      
+        <div class="fx-regime">
+          <div class="fx-label">United Kingdom&#x27;s FX regime: Free Float</div>
+          <p>The British pound floats freely. Its value changes based on how investors view the UK economy. GBP/USD is quoted the opposite way to most currencies - it shows how many dollars one pound buys, not how many pounds per dollar. At 1.27, one pound buys $1.27. This convention is called &quot;cable&quot; - named after the transatlantic telegraph cable that carried the rate between London and New York in the 1800s. The euro is quoted the same way (EUR/USD), but almost all other currencies are quoted as units per dollar.</p>
+        </div>
+      <div class="gloss">
+        <div class="gloss-title">What is the exchange rate?</div>
+        <p class="gloss-body">The exchange rate is how much one currency is worth in terms of another. It determines the price of everything a country imports and exports, and is one of the most visible daily indicators of a country&#x27;s economic standing in the world.</p>
+        <div class="gloss-source">Source: WM/Refinitiv · Bloomberg · National central banks</div>
+      </div>
+    </div>
+
+  <div class="footer">
+    Built Mon 11 May 2026 · macrosnaps.app · <a href="index.html">All countries</a>
+  </div>
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>/* ─────────────────────────────────────────────────────────────
+   MacroSnaps v2 — Chart rendering
+   Ported from existing renderMetricChart, adapted for light mode.
+   Reads chart data from each metric's mounted element's data-spark
+   attribute (JSON-encoded) and renders into the matching canvas.
+   ───────────────────────────────────────────────────────────── */
+
+(function () {
+  const ORANGE_RGB = '249,115,22';
+  const GREEN_RGB = '0,176,116';
+  const RED_RGB = '217,58,79';
+  const GRID = 'rgba(0,0,0,.05)';
+  const ZERO = 'rgba(0,0,0,.2)';
+  const TICK = '#888';
+  const TOOLTIP_BG = '#fff';
+  const TOOLTIP_BORDER = 'rgba(249,115,22,.4)';
+
+  // From shell-frozen.chartConfig.annualLabels
+  const ANNUAL_LABELS = [
+    '2000','2001','2002','2003','2004','2005','2006','2007','2008','2009',
+    '2010','2011','2012','2013','2014','2015','2016','2017','2018','2019',
+    '2020','2021','2022','2023','2024','2025','2026F'
+  ];
+
+  // Per-metric chart config
+  const METRIC_CFG = {
+    'GDP Growth':     { type: 'bar', zeroLine: true },
+    'Inflation (CPI)':{ type: 'line' },
+    'Unemployment':   { type: 'line' },
+    'Budget Deficit': { type: 'bar', zeroLine: true },
+    'Current Account':{ type: 'bar', zeroLine: true },
+    'Policy Rate':    { type: 'line', stepped: true },
+    'Stock Market YTD': { type: 'line', zeroLine: true },
+    '10Y Bond Yield': { type: 'line' },
+    'Yield Curve':    { type: 'line', zeroLine: true, segmentColor: true },
+    'USD/DXY':        { type: 'line', indexLabel: true },
+    'CAD/USD':        { type: 'line' },
+    'GBP/USD':        { type: 'line' },
+    'USD/JPY':        { type: 'line' },
+    'EUR/USD':        { type: 'line' },
+    'USD/CNY':        { type: 'line' },
+    'USD/INR':        { type: 'line' },
+    'USD/ZAR':        { type: 'line' },
+    'USD/BRL':        { type: 'line' },
+    'USD/RUB':        { type: 'line' },
+    'FX Rate':        { type: 'line' }
+  };
+
+  function monthLabelsFrom(startDateStr, n) {
+    // startDateStr: "YYYY-MM"
+    // Emit "MMM 'YY" at every position so autoSkip has labels to pick from
+    // at any tick density (1Y, 2Y, 5Y, All).
+    if (!startDateStr) return Array(n).fill('');
+    const MONTH_ABBR = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const [y0, m0] = startDateStr.split('-').map(Number);
+    const labels = [];
+    for (let i = 0; i < n; i++) {
+      const monthIdx = (m0 - 1) + i;
+      const y = y0 + Math.floor(monthIdx / 12);
+      const m = monthIdx % 12;
+      labels.push(MONTH_ABBR[m] + " '" + String(y).slice(2));
+    }
+    return labels;
+  }
+
+  function sliceData(allVals, allLabels, rangeMonths) {
+    if (!rangeMonths || rangeMonths === 0 || rangeMonths >= allVals.length) {
+      return { vals: allVals, labels: allLabels };
+    }
+    return {
+      vals: allVals.slice(-rangeMonths),
+      labels: allLabels.slice(-rangeMonths)
+    };
+  }
+
+  function renderChart(canvas, metricName, metricData, rangeMonths) {
+    if (!window.Chart) { console.warn('Chart.js not loaded'); return; }
+    const cfg = METRIC_CFG[metricName] || { type: 'line' };
+    const isBar = cfg.type === 'bar';
+    const allVals = metricData.v || [];
+    if (!allVals.length) return;
+
+    // Build labels
+    let allLabels;
+    if (isBar) {
+      allLabels = ANNUAL_LABELS.slice(0, allVals.length);
+    } else {
+      allLabels = monthLabelsFrom(metricData.startDate, allVals.length);
+    }
+
+    const sliced = sliceData(allVals, allLabels, rangeMonths);
+    const sliceVals = sliced.vals;
+    const sliceLabels = sliced.labels;
+    const n = sliceVals.length;
+
+    // Axis range
+    const mn = Math.min(...sliceVals);
+    const mx = Math.max(...sliceVals);
+    const range = mx - mn;
+    const pad = (range * 0.15) || (Math.abs(mx) * 0.1) || 1;
+
+    // Destroy any prior chart on this canvas
+    if (canvas._chart) { canvas._chart.destroy(); canvas._chart = null; }
+    const ctx = canvas.getContext('2d');
+
+    let datasets;
+    if (isBar) {
+      const colors = sliceVals.map(v => v >= 0 ? `rgba(${ORANGE_RGB},.55)` : `rgba(${RED_RGB},.55)`);
+      const borders = sliceVals.map(v => v >= 0 ? `rgba(${ORANGE_RGB},.9)` : `rgba(${RED_RGB},.9)`);
+      datasets = [{
+        data: sliceVals,
+        backgroundColor: colors,
+        borderColor: borders,
+        borderWidth: 1,
+        barPercentage: 0.85,
+        categoryPercentage: 0.85
+      }];
+    } else if (cfg.segmentColor) {
+      // Yield curve: green above 0, red below 0
+      datasets = [{
+        data: sliceVals,
+        borderWidth: 1.5,
+        pointRadius: 0,
+        pointHitRadius: 8,
+        pointHoverRadius: 3,
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderWidth: 1,
+        tension: .3,
+        fill: false,
+        segment: {
+          borderColor: function (ctx2) {
+            const y0 = ctx2.p0.parsed.y, y1 = ctx2.p1.parsed.y;
+            if (y0 >= 0 && y1 >= 0) return `rgba(${GREEN_RGB},.8)`;
+            if (y0 < 0 && y1 < 0) return `rgba(${RED_RGB},.8)`;
+            return 'rgba(120,120,120,.6)';
+          }
+        }
+      }];
+    } else {
+      const grad = ctx.createLinearGradient(0, 0, 0, 140);
+      grad.addColorStop(0, `rgba(${ORANGE_RGB},.22)`);
+      grad.addColorStop(1, `rgba(${ORANGE_RGB},.01)`);
+      datasets = [{
+        data: sliceVals,
+        borderColor: `rgba(${ORANGE_RGB},.9)`,
+        borderWidth: 1.5,
+        backgroundColor: grad,
+        fill: true,
+        pointRadius: 0,
+        pointHitRadius: 8,
+        pointHoverRadius: 3,
+        pointHoverBackgroundColor: '#F97316',
+        pointHoverBorderColor: '#fff',
+        pointHoverBorderWidth: 1,
+        tension: .35,
+        stepped: cfg.stepped || false
+      }];
+    }
+
+    canvas._chart = new Chart(ctx, {
+      type: isBar ? 'bar' : 'line',
+      data: { labels: sliceLabels, datasets: datasets },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        events: ['mousemove', 'mouseout', 'touchstart', 'touchmove'],
+        layout: { padding: { left: 2, right: 2, top: 4, bottom: 0 } },
+        scales: {
+          x: {
+            display: true,
+            grid: { display: false },
+            ticks: {
+              color: function (context) {
+                var label = sliceLabels[context.index];
+                return (label && label.toString().endsWith('F')) ? '#F97316' : TICK;
+              },
+              font: { family: "'Space Mono', monospace", size: 8 },
+              maxRotation: 0, autoSkip: true,
+              maxTicksLimit: isBar ? 8 : (n <= 12 ? 6 : n <= 24 ? 8 : 10)
+            },
+            border: { display: false }
+          },
+          y: {
+            display: true,
+            position: 'right',
+            grid: {
+              color: function (context) {
+                if (cfg.zeroLine && context.tick.value === 0) return ZERO;
+                return GRID;
+              },
+              lineWidth: function (context) {
+                return (cfg.zeroLine && context.tick.value === 0) ? 1.2 : 1;
+              }
+            },
+            ticks: {
+              color: TICK, font: { family: "'Space Mono', monospace", size: 8 },
+              maxTicksLimit: 5,
+              callback: function (v) {
+                if (cfg.indexLabel && v >= 1000) return (v / 1000).toFixed(v % 1000 === 0 ? 0 : 1) + 'k';
+                return (v % 1 === 0) ? v : v.toFixed(1);
+              }
+            },
+            border: { display: false },
+            min: mn - pad,
+            max: mx + pad
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: TOOLTIP_BG,
+            borderColor: TOOLTIP_BORDER,
+            borderWidth: 1,
+            titleFont: { family: "'Space Mono', monospace", size: 9 },
+            bodyFont: { family: "'DM Sans', sans-serif", size: 11 },
+            titleColor: '#888', bodyColor: '#1a1a1a',
+            cornerRadius: 4, padding: 8, displayColors: false,
+            callbacks: {
+              label: function (ctx2) {
+                let v = ctx2.parsed.y;
+                if (cfg.indexLabel) return ' ' + v.toLocaleString();
+                if (cfg.segmentColor) return ' ' + (v >= 0 ? '+' : '') + v + ' bps';
+                return ' ' + v;
+              }
+            }
+          }
+        },
+        interaction: { mode: 'index', intersect: false },
+        animation: { duration: 350, easing: 'easeOutCubic' }
+      }
+    });
+  }
+
+  // Wire up all chart panels on the page
+  function initAllCharts() {
+    document.querySelectorAll('.metric-chart-wrap').forEach(wrap => {
+      const metricName = wrap.dataset.metric;
+      const dataAttr = wrap.dataset.chart;
+      if (!metricName || !dataAttr) return;
+      let metricData;
+      try { metricData = JSON.parse(dataAttr); } catch (e) { return; }
+
+      const canvas = wrap.querySelector('canvas');
+      if (!canvas) return;
+
+      const cfg = METRIC_CFG[metricName] || {};
+      const isBar = cfg.type === 'bar';
+
+      // Render with default range
+      const defaultRange = isBar ? 0 : 60; // bar = all years; line = 5Y default
+      renderChart(canvas, metricName, metricData, defaultRange);
+
+      // Wire range buttons (line charts only)
+      const btns = wrap.querySelectorAll('.mcr-btn');
+      btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          btns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const r = parseInt(btn.dataset.r) || 0;
+          renderChart(canvas, metricName, metricData, r);
+        });
+      });
+
+      // Mark default-active button
+      if (!isBar) {
+        btns.forEach(b => { if (parseInt(b.dataset.r) === 60) b.classList.add('active'); });
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAllCharts);
+  } else {
+    initAllCharts();
+  }
+})();
+</script>
+</body>
+</html>
