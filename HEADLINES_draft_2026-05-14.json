@@ -1,0 +1,371 @@
+{
+  "date": "2026-05-14",
+  "generated_at": "2026-05-14 15:36",
+  "countries": {
+    "USA": {
+      "stories": {
+        "beginner": [
+          "Inflation just spiked hard. Wholesale prices jumped from 4% to 6% in one month, and what you pay in stores hit 3.8%, the highest in three years. The Iran conflict is making everything more expensive to ship and produce.",
+          "The Fed has a problem. Inflation was supposed to be cooling toward 2%, but April data shows it's moving the wrong direction just as the central bank holds rates steady.",
+          "Oil prices matter enormously right now. Even if the Iran situation stops today, it takes months for shipping to return to normal, so expect elevated costs at the pump and in supply chains through summer."
+        ],
+        "moderate": [
+          "Wholesale inflation surged to 6% annually in April from 4% in March, while consumer prices rose 0.6% monthly to reach 3.8% annually, the highest since May 2023. The Iran conflict is driving business costs up at the fastest pace in four years, directly feeding into these prints.",
+          "This reversal breaks the disinflationary trend of late 2025. Compare this to the steady decline from 2022 peaks, and you see momentum shifting: month-over-month CPI acceleration at 0.6% is materially higher than the 0.2% pace seen in early 2026.",
+          "The supply-side shock dominates near-term pricing power. Even a ceasefire today leaves months of bottlenecks ahead, meaning the Fed faces imported inflation when the unemployment rate sits at 4.4%, making any rate cut much harder to justify before Q4."
+        ],
+        "expert": [
+          "PPI surged 200 basis points to 6.0% annually in April versus 4.0% in March, while CPI hit 3.8% annually on a 0.6% monthly print, the highest since May 2023. Core services remain the stickiest component, signaling persistent domestic demand pressure beneath headline volatility.",
+          "Geopolitical supply constraints are compressing margins. Oil shipping premiums have pushed input costs higher at the fastest pace since early 2022, and with unemployment at 4.4%, wage pass-through risk is real if inflation sticks above 3.5% for another quarter.",
+          "The Fed's 3.64% policy rate (February snapshot) is now below both CPI and PPI readings, inverting the real rate structure at a time when the output gap is tightening. Watch May CPI closely. If energy-adjusted inflation remains above 3%, the Fed abandons its easing cycle and holds through Q3."
+        ]
+      },
+      "sources": []
+    },
+    "CAN": {
+      "stories": {
+        "beginner": [
+          "Canada's economy is surging way harder than anyone expected. The business activity index hit 57.7 in April, crushing the forecast of 50, signaling explosive growth ahead.",
+          "This strength comes as inflation cools nicely. Consumer prices are up just 1.78% annually as of February, well below the 2% target, giving the central bank room to cut rates further.",
+          "The big risk is the USMCA renegotiation happening later this year. If the US pushes hard on tariffs or rules of origin, Canada's export-heavy economy could face real headwinds despite current momentum."
+        ],
+        "moderate": [
+          "The Ivey PMI crushed consensus in April with a 57.7 reading against an expected 49.9, a massive 7.8-point beat signaling extraordinary near-term momentum in business activity and new orders. This is the kind of print that signals accelerating growth, not a slowdown.",
+          "Inflation is cooling fast. At 1.78% in February, CPI sits comfortably below target and the 2.25% policy rate, giving the Bank of Canada cover to cut. Unlike the US, Canada faces disinflationary pressure, not the opposite.",
+          "USMCA renegotiation in 2026 creates binary risk. A US tariff push would crater this PMI momentum; a smooth renegotiation leaves Canada positioned for 2.0%+ growth versus the 1.7% forecast, suggesting markets underpriced the upside if politics cooperate."
+        ],
+        "expert": [
+          "Ivey PMI printed 57.7 in April versus consensus 49.9, a 780 basis point surprise, indicating manufacturing and services activity accelerating sharply. This is a leading signal; Q2 GDP growth is likely tracking well ahead of the 1.7% full-year forecast.",
+          "CPI at 1.78% in February sits 22 basis points below the Bank of Canada's 2.0% target with unemployment at 6.74%, creating a dovish setup. The policy rate at 2.25% is now above inflation, raising real rates and supporting further cuts if growth holds but inflation doesn't reaccelerate.",
+          "USMCA renegotiation scheduled for H2 2026 is the pivot point. A 10% US tariff threat would erase 150 basis points of growth; a neutral outcome leaves Canada tracking 2.1% growth and supports 150200 basis points of additional easing from a now-hawkish BoC."
+        ]
+      },
+      "sources": []
+    },
+    "GBR": {
+      "stories": {
+        "beginner": [
+          "The UK construction sector just collapsed. Building activity plunged to its worst level since the pandemic, a shock that signals real trouble ahead for investment and employment.",
+          "Services stayed afloat but barely. The 52.7 reading shows activity is still expanding, but it's weak and fragile compared to the rest of the developed world.",
+          "This divergence matters because construction drives jobs and confidence. If builders keep cutting back, the unemployment rate could rise from 5.2%, pushing the Bank of England to cut rates faster than expected even though inflation sits at 3.24%."
+        ],
+        "moderate": [
+          "UK construction PMI collapsed to 39.7 in the latest print versus consensus 45.8 and prior 45.6, a 5.9-point miss and the worst reading since the pandemic. This is a contraction signal, not a slowdown, suggesting business investment is freezing.",
+          "Services PMI at 52.7 is barely expanding and lags the global recovery. Compare this to Canada's 57.7 Ivey, and UK momentum is visibly anemic, reflecting weak domestic demand and tight fiscal policy.",
+          "The Bank of England faces a credibility gap. CPI sits at 3.24%, well above the 2.5% forecast, yet construction weakness signals demand is fragile. If builders' confidence doesn't recover in May, the BoE cuts before inflation falls, betting that supply-side healing drives disinflation without demand collapse."
+        ],
+        "expert": [
+          "Construction PMI at 39.7 versus 45.8 consensus is a 590 basis point miss and the worst pandemic-era print, indicating sharp cutbacks in new orders and employment. This is a leading indicator of capex weakness that will drag potential growth below the 1.5% forecast.",
+          "Services PMI at 52.7 masks a two-speed economy. Input prices are sticky at 3.24% CPI, but services demand is soft and unemployment at 5.2% leaves little slack. The 3.75% policy rate is now materially restrictive in real terms (75 basis points above CPI), justifying BoE cuts.",
+          "Watch forward guidance in June. If construction PMI remains below 42 in May, the BoE signals cuts before Q3, breaking the tightening cycle early. This trades off near-term inflation credibility against preventing a demand spiral that could push unemployment to 5.8% by year-end."
+        ]
+      },
+      "sources": []
+    },
+    "JPN": {
+      "stories": {
+        "beginner": [
+          "Japan's inflation finally cooled below its target. Prices rose just 1.26% in February, the first time below the Bank of Japan's 2% goal since mid-2022, showing price pressures have eased.",
+          "The central bank did nothing about it. The BoJ left rates unchanged, betting that inflation will stay under control without tightening further, a signal that the easing cycle is over.",
+          "Japan's problem is growth, not inflation. With unemployment incredibly low at 2.4% and inflation falling away, the BoJ is now focused on supporting the economy rather than fighting price increases, a complete flip from what other central banks are doing."
+        ],
+        "moderate": [
+          "Inflation fell sharply below 2% in January for the first time since Q2 2022, landing at 1.26% in February. The BoJ's January rate hike to 0.75% has already tightened financial conditions enough; further hikes risk snuffing out fragile growth.",
+          "The BoJ's policy hold signals confidence that inflation won't reignite. Unlike the Fed (pivoting away from cuts due to 3.8% CPI) or the BoE (rates above inflation), Japan has achieved price stability and can now pivot toward supporting the 0.8% growth forecast.",
+          "Unemployment at 2.4% is nearly full employment, yet the BoJ isn't racing to tighten. This reflects confidence in structural labor supply and inflation anchoring, allowing the central bank to remain patient even though the output gap is now positive, supporting a stable 1.25% policy rate by year-end."
+        ],
+        "expert": [
+          "CPI fell to 1.26% in February versus 1.8% full-year forecast, the first sub-2.0% print since Q2 2022, confirming disinflation is sustained. Core services inflation, the stickiest component, also softened materially, ruling out a second-quarter BoJ hike.",
+          "The BoJ's January move to 0.75% was sufficient to contain inflation expectations without derailing activity. With unemployment at 2.4% and real rates now positive (75 basis points above CPI), the neutral rate is likely 1.0%, supporting a policy hold through Q4 and a maximum terminal rate of 1.25%.",
+          "Directional signal is dovish. If CPI prints below 1.2% again in March-April, the BoJ's forward guidance shifts to conditional easing, with a 50 basis point cut possible by late Q3 if growth falters or external demand weakens. Watch yen strength; if USD/JPY falls below 145 on BoJ easing expectations, it constrains exports and accelerates the easing timeline."
+        ]
+      },
+      "sources": []
+    },
+    "DEU": {
+      "stories": {
+        "beginner": [
+          "German factories just got hammered with orders, jumping 5% in one month as defense spending and companies rush to stock up before supply chain chaos hits. This is real demand, not wishful thinking.",
+          "But regular people have stopped spending. Retail sales tanked 2%, and consumer confidence crashed to negative territory for the first time in years. The economy is splitting into two worlds.",
+          "The risk is that the defense boom masks how weak the rest of Germany actually is right now. Once that order surge fades, growth could disappear fast."
+        ],
+        "moderate": [
+          "German factory orders surged 5% in March on defense procurement acceleration and front-loaded buying ahead of potential Iran supply-chain disruptions, massively beating the 1% forecast. This is the strongest manufacturing signal since late 2024, but it is almost entirely geopolitical, not economic.",
+          "Consumer spending has cratered simultaneously. Retail sales fell 2% while the ZEW sentiment index crashed to minus 17.2, the weakest level in two years. The gap between export-facing factories and domestic demand is widening in real time.",
+          "Germany needs sustained demand beyond defense orders to hit its 1.2% growth forecast for the year. If the geopolitical tailwind fades and consumer weakness persists, the economy runs out of fuel by mid-2026."
+        ],
+        "expert": [
+          "Factory orders accelerated 5.0% month-on-month in March, far exceeding 1.0% consensus, driven by defense procurement and front-loaded orders ahead of Iran war supply-chain risks. This is a strong cyclical signal but one that sits atop collapsing consumer demand and ZEW sentiment at minus 17.2, the weakest since Q2 2024.",
+          "Retail sales contracted 2.0% while CPI remained benign at 1.9% in February and unemployment held steady at 3.6%. The manufacturing uptick is not translating into broad-based activity or reflation.",
+          "Watch whether the order acceleration sustains beyond April or retreats to trend once front-loading demand exhausts. If factory momentum rolls over while consumer weakness deepens, the 1.2% annual growth forecast becomes at risk of downside revision by Q3 2026."
+        ]
+      },
+      "sources": []
+    },
+    "FRA": {
+      "stories": {
+        "beginner": [
+          "France's construction sector is in freefall. The building PMI fell to 38, well below 50, meaning contractors are actually losing business instead of growing it.",
+          "The broader economy is stuck. With GDP growth expected to limp along at just 0.7% this year, France is one of Europe's slowest-growing major economies, even slower than Italy or Germany.",
+          "The problem is structural: high energy costs, tight financing, and material prices are squeezing builders. Until those pressures ease, construction will drag down the whole economy."
+        ],
+        "moderate": [
+          "France's construction PMI fell to 38.1 in April, dropping from an already-depressed 38.4, indicating ongoing contraction in the sector. The eurozone average is 41.7, so France is underperforming peers even in a weak environment.",
+          "This weakness is happening despite benign inflation (CPI at 0.9% in February) and a relatively strong labor market at 7.7% unemployment, suggesting the problem is sector-specific rather than macroeconomic. Elevated material costs, tight credit conditions, and energy uncertainty are crushing the building sector directly.",
+          "The 0.7% growth forecast for 2025 relies heavily on inventory rebuilding in aeronautics, which is fragile and cyclical. Construction weakness signals that domestic demand is softer than official forecasts assume, putting downside risk to the 0.9% 2026 growth recovery."
+        ],
+        "expert": [
+          "French construction PMI fell to 38.1 in April, continuing contraction below the 41.7 eurozone average, signaling demand destruction in the sector rather than cyclical weakness. Material costs, financing constraints, and energy-price uncertainty are binding constraints on building activity.",
+          "CPI at 0.9% in February and unemployment stable at 7.7% show the economy is not overheating, yet construction demand is collapsing. This suggests the sector is facing structural headwinds independent of macro tightening, likely reflecting tight financing conditions and elevated real borrowing costs despite nominal ECB rates at 2.15%.",
+          "Watch whether construction stabilizes or accelerates its decline through Q2 2026. A breakdown below 38 would signal that the aeronautics inventory rebuild assumption underpinning the 0.9% 2026 growth forecast is too optimistic, warranting downward revisions to full-year GDP guidance."
+        ]
+      },
+      "sources": []
+    },
+    "ITA": {
+      "stories": {
+        "beginner": [
+          "Italy's construction sector is collapsing just like France's, with the building PMI at 44.8 and falling. Builders cannot find financing, materials cost too much, and energy prices are too high.",
+          "Even the services sector is barely staying afloat at 49.8, meaning the rest of the economy beyond tourism is struggling too. Employment is stable, but actual economic activity is softening across the board.",
+          "Italy was supposed to grow faster than France this year, but with both sectors contracting simultaneously, that growth forecast of 1% looks very optimistic right now."
+        ],
+        "moderate": [
+          "Italy's construction PMI fell to 44.8 in April from 46.8 a month earlier, while services PMI contracted to 49.8, below the 50 expansion threshold. Unlike France, Italy is experiencing broad-based weakness across two major sectors, not just construction.",
+          "Inflation remains subdued at 1.51% in February and unemployment stable at 5.6%, so the weakness is not driven by macro tightening but rather by sector-level stress. Material costs, financing constraints, and energy-price uncertainty are crushing both sectors simultaneously.",
+          "Italy's 1% annual growth forecast assumes stabilization in the second half of 2026. But with both construction and services contracting in April, the economy is running slower than expected heading into the slowest quarter of the year. Risk of downside surprise to full-year numbers by Q3."
+        ],
+        "expert": [
+          "Italian construction PMI contracted to 44.8 in April from 46.8, while services PMI fell to 49.8, indicating simultaneous weakness across both major sectors. Elevated material costs, tight financing conditions, and energy-price uncertainty are the binding constraints.",
+          "CPI at 1.51% in February and unemployment at 5.6% show that macro tightening is not the culprit. Real financing costs appear elevated despite nominal ECB policy rates at 2.15%, compressing credit availability for construction investment.",
+          "Monitor whether the dual contraction in construction and services accelerates or stabilizes through May 2026. A breakdown below 44 in construction and below 49 in services would suggest the 1% annual growth forecast faces material downside risk, with the economy potentially contracting in H2 2026."
+        ]
+      },
+      "sources": []
+    },
+    "CHN": {
+      "stories": {
+        "beginner": [
+          "China's services sector just beat expectations with a PMI of 52.6, signaling that the economy is still expanding. The composite PMI held steady at 58.2, suggesting broad-based growth is holding up.",
+          "Inflation is almost nonexistent at 0.23% in January, which means the government has plenty of room to spend money and stimulate the economy without worrying about price pressures.",
+          "The real risk is global backlash against Chinese exports. The forecast assumes 4.5% growth this year, but that depends on the government spending more aggressively while tariffs and trade wars stay manageable."
+        ],
+        "moderate": [
+          "China's Caixin services PMI beat expectations at 52.6 while the composite PMI held at 58.2, indicating that domestic demand is not collapsing despite manufacturing headwinds. Services expansion is holding the economy together.",
+          "Deflation-level inflation at 0.23% in January gives the government enormous fiscal space to stimulate without triggering reflation concerns. The 4.5% GDP growth forecast for 2026 explicitly assumes more expansionary fiscal policy, which Beijing has room to deliver.",
+          "The constraint is external. Multiple trade and export barriers are building against China, from US tariff threats to regional supply-chain diversification. If the government cannot offset export weakness with domestic spending fast enough, growth undershoots the 4.5% target in H2 2026."
+        ],
+        "expert": [
+          "Caixin services PMI beat at 52.6 while composite PMI held at 58.2 in April, indicating domestic demand resilience despite external headwinds. CPI at 0.23% in January signals deflationary pressures that justify aggressive fiscal stimulus under the 4.5% 2026 GDP growth scenario.",
+          "The government has adequate fiscal space to deploy given near-zero inflation, a 5.1% unemployment rate, and a 2.5% current account surplus. The constraint is political execution: delivering stimulus fast enough to offset export deterioration and maintain growth momentum.",
+          "Watch for Q2 2026 services PMI and official GDP prints in mid-May. If services PMI drops below 51 or composite falls below 56, it signals that domestic demand is weakening faster than fiscal stimulus can offset, implying downside revisions to the 4.5% annual growth forecast and potential policy escalation by late Q2."
+        ]
+      },
+      "sources": []
+    },
+    "IND": {
+      "stories": {
+        "beginner": [
+          "India's services sector is firing on all cylinders. The PMI hit 58.8, which means businesses are hiring, customers are spending, and the economy is accelerating faster than almost anywhere else in the world.",
+          "Inflation has cooled to just 1.33%, giving the central bank room to cut rates if growth slows. This is the opposite problem most countries face right now.",
+          "Watch for a US trade deal by year-end. If that happens, it could unlock even more export demand and push growth toward the 7.5% to 7.8% range forecasters expect."
+        ],
+        "moderate": [
+          "Services PMI at 58.8 marks the second consecutive month of the world's strongest reading, signaling India has pulled ahead of the growth pack. This beats China's slowdown and most developed market momentum.",
+          "CPI fell to 1.33% while the central bank sits at 5.25%, creating a real policy rate of nearly 4 percentage points. By comparison, Brazil holds rates at 15% to fight 3.81% inflation, showing India's relative stability.",
+          "A US trade agreement by year-end could accelerate the 7.5% to 7.8% growth forecast, but watch whether services strength translates to manufacturing. If it doesn't, export competitiveness may stall."
+        ],
+        "expert": [
+          "Composite PMI at 58.2 with services leading at 58.8 indicates domestic demand is strong enough to offset any external shocks. The policy rate at 5.25% versus CPI at 1.33% suggests the RBI has room for 75 to 100 basis points of cuts if growth falters.",
+          "Current account deficit remains structurally negative at (1.2% GDP in forecast), but robust services growth can cover it through invisibles. Compare this to Brazil's (2.6% GDP) deficit, where depreciating currency and capital outflows are forcing 15% rates.",
+          "Trade deal completion by year-end becomes the key directional signal. If negotiations stall or tariffs escalate, the 7.5% to 7.8% growth forecast retreats toward the 6.3% full-year consensus, compressing multiples."
+        ]
+      },
+      "sources": []
+    },
+    "ZAF": {
+      "stories": {
+        "beginner": [
+          "South Africa's PMI ticked up to 51.6, which means the economy finally stopped shrinking and started growing again. It's a small move, but it matters after months of contraction.",
+          "Unemployment is stuck at 31.88%, the highest in the world by far. Even as the economy recovers, that jobs crisis isn't getting better, which means most South Africans still can't find work.",
+          "Sub-Saharan Africa is expected to grow 4.3% in 2026, and South Africa should benefit from that regional lift. But at 1.5%, South Africa trails the region badly and needs investment to accelerate hiring."
+        ],
+        "moderate": [
+          "PMI jumped from 50.8 to 51.6, crossing into expansion territory, but the momentum is fragile. South Africa's 1.5% growth forecast lags Sub-Saharan Africa's projected 4.3% partly because load-shedding and crumbling infrastructure drain competitiveness.",
+          "The unemployment rate of 31.88% sits alongside inflation at 2.96%, giving the central bank justification to hold rates steady at 6.75%. Most countries would cut aggressively at 2.96% inflation, but South Africa can't risk capital flight with unemployment this severe.",
+          "Watch whether regional investment flows from strengthening Sub-Saharan exports reach South Africa. If manufacturing and agriculture fail to hire, the 4.3% regional growth becomes a headwind for rand weakness, not a tailwind for job creation."
+        ],
+        "expert": [
+          "PMI at 51.6 is barely above the expansion threshold and remains the weakest in the sample, signaling the recovery is nascent and fragile. The composition matters: if gains are concentrated in services rather than tradables, the current account deficit at (1.4% GDP) widens.",
+          "CPI at 2.96% with unemployment at 31.88% creates a policy bind. The central bank can't cut to boost employment without risking rand depreciation and imported inflation, so rates stay anchored at 6.75% despite disinflation.",
+          "The 4.3% Sub-Saharan growth forecast versus 1.5% for South Africa reflects structural gaps: electricity, port congestion, and skills shortages. Unless infrastructure investment accelerates, the economy underperforms regional tailwinds and unemployment remains above 30%."
+        ]
+      },
+      "sources": []
+    },
+    "BRA": {
+      "stories": {
+        "beginner": [
+          "Foreign investors pulled money out of Brazil last month. Inflows dropped from $9.184 billion to $3.307 billion, a sign that confidence is fading fast.",
+          "The central bank raised rates to 15% to defend the currency and fight inflation, but inflation is only at 3.81%. That's a huge rate hike for a small inflation problem, which tells you the real crisis is the collapsing real (the currency).",
+          "Latin America is expected to grow just 2.3% in 2026 because of trade tensions and weak domestic spending. Brazil is trapped in this slowdown, and high rates are making it worse by discouraging borrowing and investment."
+        ],
+        "moderate": [
+          "FX inflows collapsed from $9.184 billion to $3.307 billion month-on-month, driven by capital flight ahead of rising geopolitical tensions and trade uncertainty. The 15% policy rate reflects panic defense, not inflation reality: CPI sits at 3.81%.",
+          "Brazil's unemployment at 5.8% is relatively low, but that masks underemployment. When the central bank jacks rates to 15% to save the currency, credit dries up and informal employment rises, keeping official jobless rates artificially stable.",
+          "Latin America's 2.3% growth forecast versus Brazil's 1.7% shows Brazil is lagging its peers. Combined with capital outflows and rate shock, domestic demand will weaken further, pushing unemployment above the 6.5% full-year forecast."
+        ],
+        "expert": [
+          "FX inflows at $3.307 billion (down 64% month-on-month) signal capital flight accelerating. The central bank's 15% policy rate versus 3.81% CPI inflation reveals currency defense taking priority over growth. Real rates now sit at 11 percentage points, the highest in the sample.",
+          "Current account deficit at (2.6% GDP) combined with shrinking inflows means reserve drain is accelerating. If monthly inflows stay below $5 billion, the real continues weakening, forcing further rate hikes despite unemployment creeping toward 7%.",
+          "The 1.7% growth forecast assumes some stabilization, but forward-looking signals (capital flight, rate shock, regional headwinds) suggest 2026 tracks closer to 1.2% to 1.4%. Watch whether May FX flows recover or confirm sustained capital exit."
+        ]
+      },
+      "sources": []
+    },
+    "RUS": {
+      "stories": {
+        "beginner": [
+          "Russia's central bank is keeping rates at 15.5% to fight inflation of 6.01%, which is nearly double the target. The tightening is working, but it's killing growth.",
+          "Unemployment is incredibly low at 2.15%, which sounds great but actually means the labor market is strained. Wages are rising, pulling inflation higher, and the central bank has to keep rates elevated to cool things down.",
+          "NATO tensions and the ongoing Ukraine war create huge downside risk for European growth, which affects Russian trade partners and adds to economic uncertainty. That keeps investors nervous and rates from falling."
+        ],
+        "moderate": [
+          "CPI at 6.01% with the policy rate at 15.5% shows the central bank fighting elevated inflation from currency depreciation and supply constraints tied to sanctions. Real rates at 9.5 percentage points are among the highest globally, suppressing investment.",
+          "Unemployment at 2.15% is artificially low because military mobilization and emigration pulled workers out of the civilian labor force. The tight labor market drives wage growth, which feeds back into services inflation and justifies rate maintenance.",
+          "Downside risk to European growth from prolonged Ukraine conflict directly constrains Russian exports and investment. The 1.2% growth forecast assumes some stabilization, but escalation or extension of tensions could flip Russia's current account surplus into deficit despite sanctions."
+        ],
+        "expert": [
+          "CPI at 6.01% with 15.5% policy rates creates real rates near 9.5 percentage points, the highest in the BRICS sample and well above neutral. This level persists because ruble depreciation (from capital controls and sanctions) feeds into tradable goods prices faster than wages adjust.",
+          "Unemployment at 2.15% reflects labor market tightness from military mobilization offsetting normal civilian employment. Wage growth at this tight margin (visible in services inflation) prevents disinflation even with 15.5% rates, locking in expectations of elevated policy rates through 2026.",
+          "The current account surplus at 2% GDP masks capital outflows: it's oil exports plus import collapse, not investment inflow. If Ukraine tensions escalate, energy exports face further sanctions, turning the surplus into deficit and forcing either rate hikes above 16% or forced ruble depreciation."
+        ]
+      },
+      "sources": []
+    }
+  },
+  "globalStories": {
+    "beginner": [
+      {
+        "icon": "🛢️",
+        "label": "Iran Blocks Oil Strait",
+        "bullets": [
+          "Iran closed the Strait of Hormuz two months ago, cutting off 20% of world oil",
+          "Oil prices jumped above $100 for the first time in years",
+          "Gas stations and energy bills getting more expensive everywhere"
+        ],
+        "source": "Multiple sources"
+      },
+      {
+        "icon": "📈",
+        "label": "US Stock Markets Rise",
+        "bullets": [
+          "Stock prices hit new highs despite the oil crisis",
+          "AI companies like Nvidia keep climbing",
+          "Investors think tech growth can overcome energy problems"
+        ],
+        "source": "Bloomberg"
+      },
+      {
+        "icon": "🤝",
+        "label": "Trump Meets China Leader",
+        "bullets": [
+          "US and Chinese leaders meeting today about the crisis",
+          "China buys lots of Iranian oil so they might help",
+          "Markets hoping this meeting solves the problem"
+        ],
+        "source": "T. Rowe Price"
+      }
+    ],
+    "moderate": [
+      {
+        "icon": "🛢️",
+        "label": "Iran Blocks Oil Strait",
+        "bullets": [
+          "Iran effectively closed Strait of Hormuz since March, disrupting 20 million barrels daily",
+          "Brent crude trading above $100, biggest energy shock since 1970s",
+          "22,000 mariners stranded, insurance costs skyrocketed for Gulf shipping"
+        ],
+        "source": "Multiple sources"
+      },
+      {
+        "icon": "📈",
+        "label": "US Stock Markets Rise",
+        "bullets": [
+          "S&P 500 and Dow hit records as AI earnings offset energy concerns",
+          "Markets pricing eventual strait reopening while commodities reflect supply risk",
+          "Dow reclaimed 50,000 level on strong tech performance and diplomatic hopes"
+        ],
+        "source": "Bloomberg"
+      },
+      {
+        "icon": "🤝",
+        "label": "Trump Meets China Leader",
+        "bullets": [
+          "Trump-Xi summit in Beijing today focuses on Iran as China is largest Iranian oil buyer",
+          "Markets rallying on diplomatic momentum hopes despite competing strategic interests",
+          "Asian markets up 0.6% as investors price potential breakthrough"
+        ],
+        "source": "T. Rowe Price"
+      }
+    ],
+    "expert": [
+      {
+        "icon": "🛢️",
+        "label": "Iran Blocks Oil Strait",
+        "bullets": [
+          "Strait closure since March 27 cut daily transits from 138 vessels to near-zero, stranding 2,000 ships",
+          "WTI futures markets pricing 51.5% probability of $110 crude by month-end",
+          "Fed hawks cite energy inflation risk, 97.5% probability of June policy pause"
+        ],
+        "source": "Multiple sources"
+      },
+      {
+        "icon": "📈",
+        "label": "US Stock Markets Rise",
+        "bullets": [
+          "Nasdaq futures +0.2% heading for third daily record, Nvidia +1.9% premarket for sixth consecutive session",
+          "BlackRock sees AI buildout offsetting growth drag from energy shock",
+          "Market dispersion shows equity resilience versus commodity/rates repricing geopolitical risk"
+        ],
+        "source": "Bloomberg"
+      },
+      {
+        "icon": "🤝",
+        "label": "Trump Meets China Leader",
+        "bullets": [
+          "Beijing summit targeting trade truce extension, agricultural purchases, AI safeguards amid Iran leverage",
+          "Chinese strategic Iran alliance complicates expectations for swift concessions",
+          "Breakthrough could trigger rapid Brent decline below $80, failure risks $130-150 scenarios"
+        ],
+        "source": "T. Rowe Price"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Bloomberg Markets",
+        "url": "https://www.bloomberg.com/news/articles/2026-05-13/asian-stocks-to-climb-as-wall-street-hits-new-high-markets-wrap"
+      },
+      {
+        "title": "BlackRock Investment Institute",
+        "url": "https://www.blackrock.com/us/individual/insights/blackrock-investment-institute/weekly-commentary"
+      },
+      {
+        "title": "T. Rowe Price Global Markets Update",
+        "url": "https://www.troweprice.com/personal-investing/resources/insights/global-markets-weekly-update.html"
+      },
+      {
+        "title": "Strait of Hormuz Crisis Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/2026_Strait_of_Hormuz_crisis"
+      },
+      {
+        "title": "Foreign Policy Journal",
+        "url": "https://www.foreignpolicyjournal.com/2026/05/13/strait-of-hormuz-closure-drives-crude-oil-price-toward-110-as-conflict-markets-price-extended-supply-disruption/"
+      },
+      {
+        "title": "CNBC Markets",
+        "url": "https://www.cnbc.com/2026/05/13/stock-market-today-live-updates.html"
+      }
+    ]
+  },
+  "_failures": []
+}
