@@ -1,0 +1,331 @@
+{
+  "date": "2026-05-16",
+  "countries": {
+    "USA": {
+      "stories": {
+        "beginner": [
+          "Inflation jumped to 3.5% in the last year, mostly because of oil prices spiking from the Iran conflict. That's why your grocery bill and gas feel expensive even though things were getting cheaper a year ago.",
+          "Jobs are booming right now. Companies hired way more workers in early 2026 than they did throughout 2025, and people's paychecks are actually keeping up with price increases for once.",
+          "The Fed's next leader takes over in May with a tough job. Inflation is still too high to cut rates much, especially with Middle East tensions keeping energy prices unpredictable."
+        ],
+        "moderate": [
+          "PCE inflation hit 3.5% year-over-year through March, up from 2.4% a year earlier, with energy volatility from the Iranian conflict driving the bulk of the acceleration. The full-year forecast at 2.3% looks optimistic if geopolitical pressure lingers.",
+          "Employment growth surged to 2.5 times the 2025 monthly average in Q1, and worker wages are still outpacing inflation despite elevated prices. This labor strength contradicts the usual story of a cooling economy.",
+          "Fed Chair Powell's departure in May coincides with policy rates sitting near neutral and limited cutting room. The new chair inherits an economy running hot on labor while energy shocks keep inflation sticky, narrowing policy flexibility."
+        ],
+        "expert": [
+          "PCE inflation accelerated to 3.5% YoY through March 2026 from 2.4% a year prior, with Iranian conflict-driven energy price shocks as the primary driver. The 110 basis point jump exceeds the full-year 2.3% forecast, signaling geopolitical tail risk.",
+          "Q1 2026 employment growth ran at 2.5x the 2025 monthly average with unemployment at 4.4% in February and real wage growth persistent despite elevated headline prices. This labor market resilience limits Fed optionality despite inflation above target.",
+          "Powell's May 2026 departure occurs with the policy rate at 3.64% (above the 3.25% full-year forecast), leaving the incoming chair to navigate a narrow corridor between sticky energy-driven inflation and a labor market still running ahead of potential."
+        ]
+      }
+    },
+    "CAN": {
+      "stories": {
+        "beginner": [
+          "Canada's economy hit a wall. After starting 2025 strong, exports dried up and businesses stopped investing, turning growth from solid to sluggish.",
+          "The central bank has been cutting rates, and the government tried stimulus measures to help. They actually sparked a temporary rebound in late 2025, but the damage to confidence from trade uncertainty lingers.",
+          "Inflation is now very low at 1.78%, giving policymakers room to keep easing. But the real problem is not price pressures anymore, it is that Canadian companies are nervous about selling to a world that does not want to buy."
+        ],
+        "moderate": [
+          "After a strong start to 2025, Canada's economy lost momentum in Q2 as falling exports and softer business investment collapsed growth. Unemployment rose to 6.74% by January 2026, showing the trade shock was real.",
+          "Monetary easing and fiscal stimulus delivered an unexpected Q3 2025 rebound, yet the broader expansion remains restrained. CPI fell to 1.78% by February, well below target, giving the Bank of Canada room to keep cutting even as economic slack widens.",
+          "Trade uncertainty from US policy remains the ceiling on growth. A full-year forecast of 1.7% GDP growth signals that businesses expect structural damage from export weakness, not just cyclical softness."
+        ],
+        "expert": [
+          "Canada's economy lost momentum in Q2 2025 as exports and business investment rolled over, with Q3 delivering only a modest rebound despite monetary easing and fiscal stimulus. Unemployment at 6.74% in January signals widening slack.",
+          "CPI printed 1.78% in February 2026, well below the 2% full-year forecast, creating dovish pressure even as the policy rate sits at 2.25%. The central bank has room to ease further, but rate cuts alone cannot fix trade-related capex weakness.",
+          "The 1.7% full-year GDP forecast embeds persistent export headwinds from US tariff uncertainty and subdued business investment. Watch for any uptick in capex intentions or exports to signal whether trade tensions are pricing in genuine structural damage or remain cyclical."
+        ]
+      }
+    },
+    "GBR": {
+      "stories": {
+        "beginner": [
+          "British shoppers are still shell-shocked. Inflation hit hard in 2021-2022, prices never came back down the way people expected, and now consumers are just not spending like they used to.",
+          "Wages have actually been rising faster than prices for over two years, so households are earning more in real terms. But that has not convinced people to spend freely because the sticker shock from years ago is still in their heads.",
+          "Recent inflation surprises upward just made things worse. Consumer confidence is now below pre-pandemic levels, making it hard for the economy to grow even though household finances look okay on paper."
+        ],
+        "moderate": [
+          "Consumer spending has barely budged since summer 2022 despite real wage growth for over two years, a puzzle tied to lingering trauma from the 2021-2022 inflation surge. Sticker shock, not balance sheets, is holding back demand.",
+          "CPI surprised upward recently at 3.24% in February 2026, damaging consumer confidence that is still below pre-pandemic levels. Even though unemployment stayed low at 5.2% in November 2025, household caution and weak business sentiment persist.",
+          "Higher employment and financing costs are squeezing businesses on the supply side while consumers retrench on the demand side. This creates a stagflation-lite dynamic where growth struggles even as price pressures linger, limiting Bank of England cutting room."
+        ],
+        "expert": [
+          "Consumer spending growth has stalled since summer 2022 despite real wage gains exceeding 2% annually, indicating demand destruction from 2021-2022 inflation psychology rather than income constraints. CPI at 3.24% in February compounds this by re-anchoring inflation expectations upward.",
+          "Real wages have risen consistently for over 24 months, yet consumer confidence remains below 2020 levels and business sentiment is weak due to persistent cost pressures from elevated employment and financing costs. Policy rate at 3.75% in February leaves little room to support demand.",
+          "The 1.5% full-year GDP forecast assumes modest recovery as inflation moderates and confidence gradually repairs. Watch for consumer spending to accelerate only once the psychological anchor from 2022 inflation dislodges, likely requiring either sustained price stability or a surprise income shock."
+        ]
+      }
+    },
+    "JPN": {
+      "stories": {
+        "beginner": [
+          "Japan's economy is slowing down hard. Growth was decent in 2025 at 1.1%, but the forecast for 2026 is just 0.4%, a drop of more than two-thirds.",
+          "US tariffs are hitting Japanese exporters, cutting into sales abroad. At the same time, inflation pressures at home are making business investment hesitant and weighing on confidence.",
+          "Consumers are holding up better than businesses right now, but that is not enough to carry growth. Weak exports, cautious companies, and structural constraints mean Japan is bumping against its growth ceiling."
+        ],
+        "moderate": [
+          "Japan survived 2025 with 1.1% growth despite US trade policy uncertainty and domestic inflation, but the 2026 forecast collapsed to 0.4% as tariff impacts bite. This reflects a sharp reversal from above-trend 2025 performance rather than underlying strength.",
+          "Unemployment stayed very low at 2.4% in December 2025 and CPI is tame at 1.26%, showing a tight labor market and stable prices. Yet business confidence remains subdued and exports are weakening, signaling that full employment and low inflation mask export-led slowdown.",
+          "Consumption is stabilizing the economy but cannot offset export drag and depressed capex. The policy rate sits at 0.75%, leaving room for cuts if growth falters further, but structural aging and trade exposure limit the upside."
+        ],
+        "expert": [
+          "Japan's 2025 growth of 1.1% was above trend, but the 2026 forecast collapsed to 0.4%, a 70 basis point downgrade driven by US tariff blowback and normalization after 2025 outperformance. Consumption stabilizing around 0.7-0.8% growth cannot offset export weakness.",
+          "CPI at 1.26% in February 2026 and unemployment at 2.4% in December show the labor market is fully employed despite weak demand. Policy rate at 0.75% provides cutting room, but the Bank of Japan faces a constraint of structural stagnation in a trade-dependent economy.",
+          "Watch for capex intentions and export orders to signal whether tariff impacts are transitory or structural. If business investment remains depressed through Q2 2026 despite accommodative policy, Japan's potential growth may have reset lower, limiting both policy and market upside."
+        ]
+      }
+    },
+    "DEU": {
+      "stories": {
+        "beginner": [
+          "Germany just slashed electricity prices for factories to less than a third of what they pay now, trying to stop manufacturers from leaving. The catch: it only lasts three years, so companies still don't know what happens after.",
+          "After getting hammered for three straight years, Germany's economy is finally turning around, but barely. Growth this year will barely scrape above zero because stimulus spending and new investments are the only things keeping it alive.",
+          "Germany has an unusual advantage right now: it's the only eurozone country actually combating its inflation problem. At 1.9% in February, German prices are cooling while the rest of Europe heats up, giving the ECB less reason to cut rates soon."
+        ],
+        "moderate": [
+          "Germany's emergency electricity subsidy reveals a silent industrial crisis. Factories still face crushing energy costs that will snap back to EUR 0.12-0.18 per kWh in three years, meaning the price cut is a stalling tactic, not a solution. Without structural energy reform, manufacturing competitiveness stays fragile.",
+          "Germany's recovery will depend almost entirely on government spending and investment for the next year or two, not on organic business confidence. This matters because fiscal support is temporary, unlike the structural problems that created three years of stagnation in the first place.",
+          "German inflation at 1.9% sits well below the eurozone average of 3%, a rare bright spot that actually gives Berlin some political cover to lobby the ECB for patience. The unemployment rate held steady at 3.6% through December, suggesting the labor market is stabilizing even as growth remains anemic."
+        ],
+        "expert": [
+          "The EUR 0.05 per kWh electricity cap expires in 2029, forcing a cliff when support vanishes. This creates a two-year window for industrial adaptation or relocation, intensifying competition for private investment even as fiscal multipliers fade. Watch capex intentions in H2 2026.",
+          "Q1 2026 eurozone GDP printed 0.1%, yet Germany's forecast tracks to 1.2% full-year growth, implying H2 acceleration dependent on fiscal transmission. CPI at 1.9% (February) vs 2.2% full-year forecast suggests first-half disinflation from energy base effects. ECB hold through Q2 is now highly probable.",
+          "The 4.5% current account surplus persists despite industrial weakness, signaling export value concentration in high-margin segments. Budget deficit at minus 2% of GDP leaves room for further stimulus if growth disappoints, but RWI forecasts suggest multiplier fatigue by Q4 2026."
+        ]
+      }
+    },
+    "FRA": {
+      "stories": {
+        "beginner": [
+          "France is stuck in slow motion. Growth barely moves, unemployment stays stubbornly high at 7.7%, and now inflation across the eurozone just jumped from 2.6% to 3%, making everything more expensive.",
+          "The eurozone's inflation spike to 3% in April suggests energy and wage pressures hitting harder than expected. France, which has low inflation at 0.9%, might seem insulated, but the ECB won't cut rates for the whole zone just to help one country grow faster.",
+          "France's real problem is structural: 7.7% unemployment means millions still can't find work even as the economy grows. That depresses wages and consumer spending, keeping growth stuck around 1.4% forever unless something breaks the pattern."
+        ],
+        "moderate": [
+          "French inflation at 0.9% in February masks a eurozone problem the ECB can't ignore. Headline inflation jumped to 3% in April from 2.6% in March, yet the ECB stayed on hold because cutting rates now would risk overheating the southern eurozone. France's low inflation buys it nothing when policy is set for the whole currency bloc.",
+          "France's unemployment at 7.7% is more than a third higher than Germany's, yet growth forecasts are nearly identical (1.4% vs 1.2%). This gap reveals the real constraint: France's labor market scars run deeper. Even modest growth isn't translating into job creation fast enough to pull down the jobless rate.",
+          "The budget deficit at minus 4.8% of GDP is the eurozone's second worst after Italy, limiting Paris's ability to stimulate. Meanwhile, the current account barely moves at plus 1%, suggesting France's export competitiveness isn't improving. Fiscal space exists, but using it would violate EU rules that tighten in 2027."
+        ],
+        "expert": [
+          "Q1 2026 eurozone GDP at 0.1% growth masks divergence: France's trajectory suggests 0.3-0.4% quarterly pace, implying calendar-year 1.4% will require accelerating momentum that inflation dynamics now threaten. CPI at 0.9% (February) is lowest in the bloc; expect base effect support to fade by Q3.",
+          "The 7.7% unemployment rate has declined only 30 basis points since 2024, signaling structural rigidities (sectoral mismatch, skills gap, fiscal drag from social contributions) that 1.4% growth cannot overcome. Participation rate remains the constraint, not cyclical slack.",
+          "Eurozone inflation at 3% in April vs ECB's 2% target shifts the risk to no cuts through 2026. France's budget deficit at minus 4.8% and current account at plus 1% imply modest external demand contribution. Watch labor cost acceleration in wage data (May CPI) to signal whether April spike is transient or persistent."
+        ]
+      }
+    },
+    "ITA": {
+      "stories": {
+        "beginner": [
+          "Italy's economy is growing, but so slowly it barely counts. At just 1% expected this year, growth is barely keeping up with inflation, leaving living standards flat for ordinary people.",
+          "Like France, Italy faces a eurozone inflation problem it didn't create. Prices jumped to 3% in April across the currency union, but Italy's at 1.51%, so the ECB won't cut rates to help southern Europe grow faster, even though Italy needs it more.",
+          "Italy's debt problem never went away. With a budget deficit at minus 3.2% and growth so weak, the government can't grow its way out of high debt levels. Budget discipline and slow growth is now the permanent condition."
+        ],
+        "moderate": [
+          "Italy's inflation at 1.51% in February is deceptively low. The April eurozone print of 3% signals imported energy and wage pressures that will eventually force Italy's prices higher, but by then the ECB will have locked in a higher rate path, choking off growth that's already barely above stall speed.",
+          "Italy's 5.6% unemployment is the second lowest in the eurozone after Germany, yet growth at 1% is the weakest among major economies. This reveals the real constraint: weak productivity and capital investment, not labor availability. More workers won't help if capital deepening stalls.",
+          "Italy's budget deficit at minus 3.2% is sustainable only because of eurozone credibility. The current account is barely positive at 0.8%, meaning exports aren't pulling growth. Without either fiscal space or external demand, Italy is trapped in a low-growth equilibrium where debt ratios stay elevated."
+        ],
+        "expert": [
+          "Q1 2026 eurozone real GDP at 0.1% suggests Italian quarterly pace of 0.2-0.3%, tracking to 1% full-year, below consensus of 1.1%. CPI at 1.51% (February) will accelerate toward 2.3% forecast as services inflation (wages, rents) persists. ECB hold confirmed through Q2.",
+          "Unemployment at 5.6% signals labor markets near neutral rate of slack. Wage growth data (April earnings) will determine whether services disinflation compounds. Current account at 0.8% is structural floor; external demand from eurozone and emerging markets remains tepid.",
+          "Budget deficit at minus 3.2% of GDP approaches EU fiscal rule thresholds post-2027 transition. Without growth surprise, Italy faces consolidation pressure while debt-to-GDP remains elevated at 140%+. Watch ECB guidance on medium-term rate path (June meeting) for signal on whether 2027 contraction risk rises."
+        ]
+      }
+    },
+    "CHN": {
+      "stories": {
+        "beginner": [
+          "China's economy is slowing because nobody inside the country is spending or investing. Households are saving instead of buying, and private companies are scared to expand because the property market is still broken.",
+          "The big pivot China is trying: shift away from relying on exports to America and toward building high-tech manufacturing and exporting to Europe, Southeast Asia, and Latin America instead. It's a long-term bet, not a quick fix for today's weakness.",
+          "China's central bank is being careful not to flood the economy with stimulus like it used to. Inflation barely moved at 0.23% in January, so the government has room to loosen policy, but it's moving slowly and trying to prop up the currency at the same time, which limits how much it can actually help."
+        ],
+        "moderate": [
+          "Private investment in China is soft, which is the real warning sign. Companies aren't deploying capital because they're uncertain about property sector repair timelines and whether domestic demand will recover. Government can't force private capex, only encourage it, so growth stays weak even with infrastructure spending.",
+          "China's inflation at 0.23% in January is nearly deflation, but the risk isn't backward-looking prices, it's whether demand collapse deepens. PBOC easing is being calibrated to avoid RMB weakness that would trigger capital flight, a constraint that historical cycles didn't face. This makes the policy response structurally weaker than 2008-2009.",
+          "China's strategic shift away from US export dependence toward Europe, ASEAN, and Latin America is real and necessary, but it assumes those markets have import appetite China can capture. Q1 2026 data from external partners will signal whether this pivot is realistic or merely a hedge while domestic conditions worsen."
+        ],
+        "expert": [
+          "CPI at 0.23% (January) printed well below the 0.3% full-year forecast, signaling demand-side disinflation despite fiscal support. Core CPI likely tracking 0.4-0.6%, suggesting unit labor cost stagnation. PBOC maintaining RMB stability constrains scope for aggressive rate cuts; expect measured 25-50 basis point moves through H2 2026.",
+          "Property sector adjustment remains the constraint. New construction starts and sales data (April releases) are key to determining whether household confidence stabilizes. Unemployment at 4.9% suggests modest labor market slack, but this masks quality deterioration (gig work, reduced hours in tech sector).",
+          "Fiscal impulse is moderate: full-year budget deficit at minus 6.8% includes off-budget spending. Infrastructure capex is concrete, but private capex recovery depends on property market bottoming and export demand clarifying. Watch June trade data (direction of exports to US vs Europe, ASEAN) for evidence that rebalancing is real. Forward guidance from National Development and Reform Commission on 2027-2028 capex plans will signal confidence depth."
+        ]
+      }
+    },
+    "IND": {
+      "stories": {
+        "beginner": [
+          "India's economy is still growing fast enough to create jobs and raise living standards, even as growth slows slightly from last year.",
+          "Inflation has cooled to 1.33%, which means the central bank has room to cut interest rates and make borrowing cheaper for businesses and families.",
+          "New trade deals with the US, UK, and EU are opening doors for Indian exporters to sell more goods abroad and attract foreign investment."
+        ],
+        "moderate": [
+          "December CPI of 1.33% sits well below the central bank's 4.2% full-year forecast, giving policymakers clear space to ease rates from 5.25% and support growth that faces headwinds from global trade uncertainty.",
+          "GST-driven consumption strength and resilient services activity are anchoring demand domestically, a contrast to struggling exporters in many peers facing tariff pressures.",
+          "Three trade agreements in flight (US, UK, EU) signal India is pivoting toward bilateral deals as multilateral frameworks weaken, positioning the country to capture investment fleeing higher-tariff regions."
+        ],
+        "expert": [
+          "CPI at 1.33% (December) runs 290 basis points below the 4.2% forecast, creating room for 50-75 basis points of cuts from the current 5.25% policy rate without overshooting inflation targets.",
+          "Real GDP growth expected to ease to 6.3% remains anchored by domestic demand and services, but goods exports face real appreciation pressure as the dollar strengthens against emerging market currencies.",
+          "Trade deal momentum (US by end-2026, UK signed, EU pending) shifts India's export strategy from WTO reliance toward preferential access, potentially raising goods export elasticity if tariff walls rise elsewhere."
+        ]
+      }
+    },
+    "ZAF": {
+      "stories": {
+        "beginner": [
+          "South Africa's unemployment rate is stuck at nearly 32%, meaning almost one in three people cannot find work, even as the broader economy inches forward.",
+          "Inflation has fallen to 2.96%, the lowest level in years, giving the central bank room to cut rates and ease the pain of high borrowing costs.",
+          "Job creation is failing to keep pace with population growth, so even if the economy grows, more people are left without work each year."
+        ],
+        "moderate": [
+          "February CPI of 2.96% sits comfortably below the 3.5% full-year forecast and the 6.75% policy rate, signaling the central bank will likely cut rates soon, but rate cuts alone cannot solve unemployment when jobs are not being created fast enough.",
+          "Sub-Saharan Africa as a whole is accelerating to 4.3% growth in 2026 (supported by investment and exports), yet South Africa's 1.5% forecast lags peers, held back by structural constraints and tight fiscal space.",
+          "High public debt and elevated interest burdens (compounded by declining aid flows) leave little room for the spending needed to create jobs, trapping policymakers between stabilizing debt and reducing unemployment."
+        ],
+        "expert": [
+          "CPI at 2.96% (February) is 54 basis points below full-year forecast, but the 31.88% unemployment rate (December) shows the Phillips curve is flat, limiting the growth-to-jobs transmission even if the central bank cuts the 6.75% policy rate by 50-75 basis points.",
+          "Sub-Saharan Africa growth accelerating to 4.3% while South Africa runs 1.5% reflects domestic bottlenecks (load shedding, logistics, skills gaps) that monetary easing cannot address, widening the regional growth divergence.",
+          "Fiscal space erosion (declining ODA, high debt servicing) means job-creating infrastructure investment requires either fiscal consolidation (crowding out demand) or external financing (vulnerable to rising global rates or trade barriers)."
+        ]
+      }
+    },
+    "BRA": {
+      "stories": {
+        "beginner": [
+          "Brazil's central bank has jacked interest rates to 15%, one of the highest in the world, because inflation keeps running hot and the currency keeps weakening.",
+          "Inflation is at 3.81%, which is still above where the central bank wants it, so rates are likely to stay high for longer, making borrowing expensive for businesses and families.",
+          "Latin America as a whole is barely growing at 2.3% in 2026 due to trade tensions and weak demand, and Brazil is stuck in that slowdown with no clear catalyst to accelerate."
+        ],
+        "moderate": [
+          "February CPI of 3.81% sits below the 4.2% forecast but above the central bank's target, justifying the 15% policy rate that is already the highest in the region and raising the risk of demand destruction if cuts come too slowly.",
+          "At 2.3% regional growth amid elevated trade tensions, Brazil faces a squeeze: the currency is under pressure (limiting export competitiveness), domestic demand is sluggish (limiting investment), and fiscal constraints (6.7% deficit forecast) block counter-cyclical spending.",
+          "The unemployment rate of 5.8% appears benign but masks labor market fragmentation and wage pressures driven by currency weakness and inflation expectations, making the central bank reluctant to ease despite growth headwinds."
+        ],
+        "expert": [
+          "CPI at 3.81% (February) trends below the 4.2% full-year forecast, but the 15% policy rate (February) is 300 basis points above the full-year 12% forecast, signaling the central bank front-loaded tightening to anchor expectations amid persistent currency depreciation.",
+          "Latin America growth at 2.3% (versus 4.3% in Sub-Saharan Africa) reflects Brazil's fiscal constraints and low investment climate, with trade policy uncertainty keeping capital formation depressed and external demand weak.",
+          "Real depreciation pressure from external deficits (2.6% of GDP current account deficit forecast) combined with 15% rates suggests the central bank is accepting growth sacrifice to defend the currency and inflation credibility, implying rate cuts will lag disinflation."
+        ]
+      }
+    },
+    "RUS": {
+      "stories": {
+        "beginner": [
+          "Russia's central bank has raised rates to 15.5%, the highest on record, because inflation is still climbing at 6.01% due to the war in Ukraine and sanctions cutting off supplies.",
+          "Manufacturing is getting crushed because energy prices are still elevated from the war, and companies cannot get the inputs they need to produce goods.",
+          "The war shows no signs of ending, which means energy prices will stay high, factories will keep struggling, and investment will remain frozen, leaving growth at just 1.2%."
+        ],
+        "moderate": [
+          "January CPI of 6.01% sits above the 4.7% full-year forecast, and the 15.5% policy rate (February) is 300 basis points above the forecast, revealing the central bank's struggle to anchor inflation expectations as ruble depreciation feeds imported costs and wage-price dynamics tighten.",
+          "Manufacturing weakness from persistently elevated energy prices (Ukraine war legacy) is compounded by real appreciation of the euro against peer currencies, pricing Russian exports out of emerging market competitors and narrowing export volume growth even as energy revenues hold up.",
+          "Downside risks of war escalation or intensified trade tensions could spike energy costs or block market access, while upside (peace, sanctions relief) faces geopolitical barriers; the 1.2% growth forecast assumes neither scenario occurs."
+        ],
+        "expert": [
+          "CPI at 6.01% (January) runs 131 basis points above the 4.7% forecast, while the 15.5% policy rate (February) suggests the central bank is holding tighter than the full-year 12.5% forecast implies, signaling expectations remain unanchored despite the 2.15% unemployment floor.",
+          "Manufacturing durability is undermined by two channels: persistent energy price elevation (Ukraine war supply shock) and real appreciation of the euro relative to peer emerging market currencies, reducing export competitiveness in third markets even as Gazprom revenues stabilize.",
+          "The 2% current account surplus (forecast) masks vulnerability to energy price swings and trade barrier escalation; any sustained oil price decline below USD 60/barrel or deepening sanctions on commodity exports would force sharp ruble devaluation and rate increases."
+        ]
+      }
+    }
+  },
+  "globalStories": {
+    "beginner": [
+      {
+        "icon": "🏦",
+        "label": "Fed Changes Hands Amid Iran War",
+        "source": "Federal Reserve",
+        "bullets": [
+          "Kevin Warsh officially replaced Jerome Powell as Federal Reserve chair on May 15, starting his term during high inflation and Middle East conflict",
+          "Powell remains on the Fed board while Warsh faces pressure to cut rates despite inflation hitting 3.8 percent, double the Fed target",
+          "Bond markets are pricing steady rates through 2026 as energy costs from the Iran war keep pushing prices higher"
+        ]
+      },
+      {
+        "icon": "🚀",
+        "label": "AI Chip Company Goes Public",
+        "source": "CNBC",
+        "bullets": [
+          "Cerebras Systems, an AI chipmaker, went public with the biggest stock offering of 2026 at 67 billion dollar value",
+          "The company makes dinner plate sized chips to compete with Nvidia and signed a 20 billion dollar deal with ChatGPT maker OpenAI",
+          "Stock jumped 68 percent on first day as investors bet on AI alternatives to expensive Nvidia chips"
+        ]
+      },
+      {
+        "icon": "🔗",
+        "label": "War Inflation Meets AI Boom",
+        "source": "BlackRock",
+        "bullets": [
+          "Stock markets hit new records despite inflation from the Iran war because AI investment is offsetting economic damage",
+          "Energy prices surge while tech companies keep spending hundreds of billions on AI infrastructure and data centers",
+          "Markets are testing whether artificial intelligence growth can overcome traditional economic pressures from war and inflation"
+        ]
+      }
+    ],
+    "moderate": [
+      {
+        "icon": "🏦",
+        "label": "Fed Changes Hands Amid Iran War",
+        "source": "Federal Reserve",
+        "bullets": [
+          "Kevin Warsh replaced Powell as Fed chair during the most divisive confirmation in Fed history, facing Iran war inflation that hit 3.8 percent annually",
+          "Unlike past transitions, Powell stays on the Fed board while markets price 74.5 percent odds of unchanged rates through 2026",
+          "Warsh wants less Fed communication and tighter inflation control, but faces committee resistance as energy costs climb"
+        ]
+      },
+      {
+        "icon": "🚀",
+        "label": "AI Chip Company Goes Public",
+        "source": "CNBC",
+        "bullets": [
+          "Cerebras raised 5.55 billion dollars in the largest tech IPO since 2020, valuing the Nvidia competitor at 67 billion despite 510 million revenue",
+          "The AI chipmaker diversified from heavy UAE customer dependence to major deals with OpenAI and Amazon Web Services",
+          "IPO signals broader AI company wave expected this year including SpaceX, OpenAI, and Anthropic public offerings"
+        ]
+      },
+      {
+        "icon": "🔗",
+        "label": "War Inflation Meets AI Boom",
+        "source": "BlackRock",
+        "bullets": [
+          "Stock indices in US, Asia hit records as productivity gains from 700 billion in AI spending offset Iran war supply disruptions",
+          "Oil demand destruction began in Asia while tech earnings show 29.1 percent margins in information technology sector",
+          "Markets bet AI infrastructure buildout provides partial offset to 1970s style stagflation risks from energy shocks"
+        ]
+      }
+    ],
+    "expert": [
+      {
+        "icon": "🏦",
+        "label": "Fed Changes Hands Amid Iran War",
+        "source": "Federal Reserve",
+        "bullets": [
+          "Warsh confirmed 54-45 to replace Powell with FOMC pricing 14.9 percent hike probability by December as PPI surged 6.0 percent year-over-year",
+          "Powell staying on board until 2028 creates unprecedented dynamic with 30-year Treasury yields hitting 5.13 percent, highest since June 2007",
+          "Fed balance sheet reduction plans face constraints from 100 percent debt-to-GDP ratio versus 25 percent during Volcker era"
+        ]
+      },
+      {
+        "icon": "🚀",
+        "label": "AI Chip Company Goes Public",
+        "source": "CNBC",
+        "bullets": [
+          "Cerebras priced 30 million shares at 185 dollars versus 115-125 initial range, with oversubscription exceeding 20x available float",
+          "WSE-3 chip architecture targets inference market with 57x larger surface area than largest GPU, competing against internal ASIC development",
+          "Revenue concentration remains elevated with Mohamed bin Zayed University accounting for 62 percent of 2025 sales"
+        ]
+      },
+      {
+        "icon": "🔗",
+        "label": "War Inflation Meets AI Boom",
+        "source": "BlackRock",
+        "bullets": [
+          "S&P 500 profit margins hit record 13.4 percent in Q1 2026 while IEA projects 1.5 million barrel daily demand destruction in Q2",
+          "Cross-asset dispersion normalized with policy rate spreads across G10 reaching multi-year highs enabling macro alpha generation",
+          "AI capital spending creating structural productivity offset to energy supply shock, preventing 1970s stagflation scenario replication"
+        ]
+      }
+    ]
+  }
+}
